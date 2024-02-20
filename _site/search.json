@@ -1,0 +1,65 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Psych 434: Conducting Research Across Cultures",
+    "section": "",
+    "text": "Welcome to the Psych 434 lecture website.\nYou can access the course lectures by navigating to the “Contents” section and selecting the appropriate tab"
+  },
+  {
+    "objectID": "index.html#class-times-and-locations",
+    "href": "index.html#class-times-and-locations",
+    "title": "Psych 434: Conducting Research Across Cultures",
+    "section": "Class times and locations",
+    "text": "Class times and locations\nLectures Day/Time: Mondays, 11:00-12:50pm\nLecture Location All classes are in Easterfield Building EA407"
+  },
+  {
+    "objectID": "index.html#names-and-contact-details",
+    "href": "index.html#names-and-contact-details",
+    "title": "Psych 434: Conducting Research Across Cultures",
+    "section": "Names and contact details",
+    "text": "Names and contact details\nCourse Coordinator Prof Joseph Bulbulia joseph.bulbulia@vuw.ac.nz\nRoom EA324\nLecturers Dr.Inkuk Kim inkuk.kim@vuw.ac.nz\nLecturers Dr.Torven Schalk torven.schalk@vuw.ac.nz"
+  },
+  {
+    "objectID": "index.html#course-description",
+    "href": "index.html#course-description",
+    "title": "Psych 434: Conducting Research Across Cultures",
+    "section": "Course Description",
+    "text": "Course Description\nThe official description:\nThis course will focus on theoretical and practical challenges for conducting research involving individuals from more than one cultural background or ethnicity. Topics are likely to include defining and measuring culture; developing culture-sensitive studies, choice of language and translation; communication styles and bias; questionnaire and interview design; qualitative and quantitative data analysis for cultural and cross-cultural research; minorities, power and ethics in cross-cultural research; and ethno-methodologies and indigenous research methodologies. Appropriate background for this course: PSYC 338."
+  },
+  {
+    "objectID": "index.html#course-learning-objectives",
+    "href": "index.html#course-learning-objectives",
+    "title": "Psych 434: Conducting Research Across Cultures",
+    "section": "Course Learning Objectives",
+    "text": "Course Learning Objectives\nPreamble: in this advanced course, students will develop foundational skills in cross-cultural psychological research with a strong emphasis on causal inference, a new and critical methodological approach.\n\nProgramming in R students will learn the basics of programming in the statistical language R, gaining essential computational tools for psychological research. This will lay the foundation for applying data analysis techniques in a causal inference framework, and beyond.\nUnderstanding Causal Inference. students will develop a robust understanding of causal inference concepts and approaches, with particular emphasis on how they mitigate common pitfalls in cross-cultural research. We will focus on how to design studies, analyze data, and draw strong conclusions about cause-and-effect relationships across cultures.\nUnderstanding Measurement in Comparative Settings. students will learn techniques for constructing and validating psychometrically sound measures across diverse cultures. We will examine how to ensure measurements are reliable, cross-culturally valid, and aligned with theoretical constructs, while keeping a strong focus on causal reasoning."
+  },
+  {
+    "objectID": "index.html#assignments-and-due-dates",
+    "href": "index.html#assignments-and-due-dates",
+    "title": "Psych 434: Conducting Research Across Cultures",
+    "section": "Assignments and due dates",
+    "text": "Assignments and due dates\n\n\n\n\n\nAssessment\nCLOs\nPercent\nDue\n\n\n\n\nClass participation\n1,2,3\n10\nWeekly\n\n\nTest 1\n2\n25\n25 March (w5)\n\n\nTest 2\n2\n25\n6 May (w9)\n\n\nResearch Report\n1,2,3\n40\n3 June (w12)\n\n\n\n\n\n\n\n\nAssessment 1: Class Participation\n\nAttendance and Participation:\n\n\nClass attendance and active participation.\n\n\nLab attendance and active participation.\n\n\n\n\n\nAssessment 2: In-class Tests\n\nFirst Test (50 minutes, total time allowed: 1 hour 50 minutes):\n\nFocuses on revising core statistical and methodological concepts.\nAims to refresh basic statistical knowledge foundational for later course material.\n\nSecond Test (50 minutes, total time allowed: 1 hour 50 minutes):\n\nBuilds upon the first test’s concepts, emphasizing the application of basic conceptual, statistical, and theoretical knowledge.\n\n\n\n\nAssessment 3: Research Report\n\nTitle: “Causal Inference in Cultural Psychology: Examining the Effect of Exposure on Dimensions of Well-being Modified by Cultural or Sociodemographic Categories”.\nObjective:\n\nTo quantify the causal effect of a specific exposure on well-being dimensions, modified by sociodemographic categories (born_nz, eth_cat, big_doms, gen_cohort) using the NZAVS longitudinal synthetic dataset.\n\nInstructions:\n\nTheoretical Interest and Research Question:\n\nDescribe the significance of your chosen exposure and its potential impact on the selected outcomes, modified by the cultural or sociodemographic category.\nState the research question clearly.\n\nDirected Acyclic Graph (DAG):\n\nConstruct a DAG illustrating the relationships between exposure, outcomes, sociodemographic category, and potential bias sources. Ensure clarity in labeling.\n\nConfounding Control Strategy:\n\nOutline your strategy for confounding control, justifying the chosen confounders.\n\nMeasurement Biases:\n\nAddress and analyze measurement biases as relevant.\n\nAssumptions and Statistical Models:\n\nDiscuss the assumptions of your causal inference approach and your statistical model, including their limitations.\n\n\nRequirements:\n\nIntroduction: 1,500 words limit.\nConclusion: 1,500 words limit.\nMethod and Results sections should be concise; no specific word limit.\nUtilize any useful sources, citing appropriately to avoid academic misconduct.\nFollow APA style for citations and references.\nInclude tables/figures as needed.\nSubmit as a single PDF, including R code in an appendix.\n\nEvaluation Criteria:\n\nClarity of theoretical framework, research question, and design.\nValidity of confounding control strategy.\nDiscussion on assumptions and statistical models.\nOrganization and presentation quality.\n\n\n\n\nExtensions and Penalties\n\nExtensions:\n\nNegotiate a new due date by writing (email) before March 10th, 2024, if necessary.\n\nPenalties:\n\nLate submissions incur a one-grade-per-day penalty.\nOver-length assignments will be penalized.\n\nUnforeseeable Events:\n\nExtensions post-March 10 require evidence (e.g., medical certificate).\n\n\n\n\nMaterials and Equipment\n\nBring a laptop with R and RStudio installed for data analysis sessions. Contact the instructor if you lack computer access.\nFor in-class tests, bring a writing utensil. Electronic devices are not permitted."
+  },
+  {
+    "objectID": "index.html#assignments-and-due-dates-1",
+    "href": "index.html#assignments-and-due-dates-1",
+    "title": "Psych 434: Conducting Research Across Cultures",
+    "section": "Assignments and due dates",
+    "text": "Assignments and due dates\n\n\n\n\n\nAssessment\nCLOs\nPercent\nDue\n\n\n\n\nClass participation\n1,2,3\n10\nWeekly\n\n\nTest 1\n2\n25\n25 March (w5)\n\n\nTest 2\n2\n25\n6 May (w9)\n\n\nResearch Report\n1,2,3\n40\n3 June (w12)"
+  },
+  {
+    "objectID": "index.html#course-outline",
+    "href": "index.html#course-outline",
+    "title": "Psych 434: Conducting Research Across Cultures",
+    "section": "Course Outline",
+    "text": "Course Outline\n\nAssessment 1: Class Participation\n\nAttendance and Participation:\n\n\nClass attendance and active participation.\n\n\nLab attendance and active participation.\n\n\n\n\n\nAssessment 2: In-class Tests\n\nFirst Test (50 minutes, total time allowed: 1 hour 50 minutes):\n\nFocuses on revising core statistical and methodological concepts.\nAims to refresh basic statistical knowledge foundational for later course material.\n\nSecond Test (50 minutes, total time allowed: 1 hour 50 minutes):\n\nBuilds upon the first test’s concepts, emphasizing the application of basic conceptual, statistical, and theoretical knowledge.\n\n\n\n\nAssessment 3: Research Report\n\nTitle: “Causal Inference in Cultural Psychology: Examining the Effect of Exposure on Dimensions of Well-being Modified by Cultural or Sociodemographic Categories”.\nObjective:\n\nTo quantify the causal effect of a specific exposure on well-being dimensions, modified by sociodemographic categories (born_nz, eth_cat, big_doms, gen_cohort) using the NZAVS longitudinal synthetic dataset.\n\nInstructions:\n\nTheoretical Interest and Research Question:\n\nDescribe the significance of your chosen exposure and its potential impact on the selected outcomes, modified by the cultural or sociodemographic category.\nState the research question clearly.\n\nDirected Acyclic Graph (DAG):\n\nConstruct a DAG illustrating the relationships between exposure, outcomes, sociodemographic category, and potential bias sources. Ensure clarity in labeling.\n\nConfounding Control Strategy:\n\nOutline your strategy for confounding control, justifying the chosen confounders.\n\nMeasurement Biases:\n\nAddress and analyze measurement biases as relevant.\n\nAssumptions and Statistical Models:\n\nDiscuss the assumptions of your causal inference approach and your statistical model, including their limitations.\n\n\nRequirements:\n\nIntroduction: 1,500 words limit.\nConclusion: 1,500 words limit.\nMethod and Results sections should be concise; no specific word limit.\nUtilize any useful sources, citing appropriately to avoid academic misconduct.\nFollow APA style for citations and references.\nInclude tables/figures as needed.\nSubmit as a single PDF, including R code in an appendix.\n\nEvaluation Criteria:\n\nClarity of theoretical framework, research question, and design.\nValidity of confounding control strategy.\nDiscussion on assumptions and statistical models.\nOrganization and presentation quality.\n\n\n\n\nExtensions and Penalties\n\nExtensions:\n\nNegotiate a new due date by writing (email) before March 10th, 2024, if necessary.\n\nPenalties:\n\nLate submissions incur a one-grade-per-day penalty.\nOver-length assignments will be penalized.\n\nUnforeseeable Events:\n\nExtensions post-March 10 require evidence (e.g., medical certificate).\n\n\n\n\nMaterials and Equipment\n\nBring a laptop with R and RStudio installed for data analysis sessions. Contact the instructor if you lack computer access.\nFor in-class tests, bring a writing utensil. Electronic devices are not permitted."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site\n\n1 + 1\n\n[1] 2"
+  }
+]

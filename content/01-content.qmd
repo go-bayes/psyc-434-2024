@@ -1,0 +1,632 @@
+---
+title: "Asking questions in cross-cultural psychology"
+date: "2023-FEB-28"
+bibliography: /Users/joseph/GIT/templates/bib/references.bib
+editor_options: 
+  chunk_output_type: console
+---
+
+
+
+```{r}
+#| echo: false
+#| warning: false
+
+# WARNING:  COMMENT THIS OUT. JB DOES THIS FOR WORKING WITHOUT WIFI
+source("/Users/joseph/GIT/templates/functions/libs2.R")
+
+# WARNING:  COMMENT THIS OUT. JB DOES THIS FOR WORKING WITHOUT WIFI
+source("/Users/joseph/GIT/templates/functions/funs.R")
+
+# ALERT: UNCOMMENT THIS AND DOWNLOAD THE FUNCTIONS FROM JB's GITHUB
+# source(
+#   "https://raw.githubusercontent.com/go-bayes/templates/main/functions/experimental_funs.R"
+# )
+
+# source(
+#   "https://raw.githubusercontent.com/go-bayes/templates/main/functions/experimental_funs.R"
+# )
+
+# for making graphs
+library("tinytex")
+library("extrafont")
+loadfonts(device = "all")
+```
+
+```{tikz}
+#| echo: false
+#| out-width: 60%
+#| caption: "dag"
+#| label: fig-line-plot
+#| fig-cap: "A caual graph "
+
+\usetikzlibrary{positioning}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows}
+\usetikzlibrary{decorations}
+\tikzstyle{Arrow} = [->, thin, preaction = {decorate}]
+\tikzset{>=latex}
+
+\begin{tikzpicture}[{every node/.append style}=draw]
+  \node [ellipse, draw=white] (Age) at (0, 0) {$A$};
+  \node [rectangle, draw=white] (Marriage) at (2, 0) {$M$};
+  \node [rectangle, draw=white] (Happiness) at (4, 0) {$H$};
+  \draw [-latex, draw=black] (Age) to (Marriage);
+  \draw [-latex, bend left] (Age) to (Happiness);
+\end{tikzpicture}
+```
+
+
+## Lecture: Introduction to the Course
+
+
+
+## Slides
+
+[PREVIEW](/slides/01-slides.html)
+
+<div>
+
+```{=html}
+<iframe class="slide-deck" src="/slides/01-slides.html"></iframe>
+```
+
+</div>
+
+Open in browser [here](/slides/01-slides.html){target="_blank"}
+
+## Background Readings
+
+[@he2012]
+
+[@vandevijver2021]
+
+[@berry1989]
+
+
+## Lab: Introduction to R. 
+
+
+# Session 1: Installing R and RStudio
+
+## Introduction
+
+This session is designed to introduce you to R and RStudio, the essential tools for statistical analysis in cross-cultural psychology. We aim to familiarise you with the software and enable you to simulate and manipulate data from the beginning.
+
+## Installing R
+
+1. Visit the Comprehensive R Archive Network (CRAN) at [https://cran.r-project.org/](https://cran.r-project.org/).
+2. Select the version of R suitable for your operating system (Windows, Mac, or Linux).
+3. Download and install it by following the on-screen instructions.
+
+## Installing RStudio
+
+1. Go to the RStudio download page at [https://www.rstudio.com/products/rstudio/download/](https://www.rstudio.com/products/rstudio/download/).
+2. Choose the free version of RStudio Desktop, and download it for your operating system.
+3. Install RStudio by following the provided instructions.
+
+## Familiarizing Yourself with RStudio
+
+- **Console**: Executes R code line by line.
+- **Source Editor**: Allows you to write and execute scripts (series of commands).
+- **Environment**: Displays variables and data you've loaded.
+- **Files/Plots/Packages/Help**: Allows you to navigate your files, view plots, manage packages, and access R documentation.
+
+## Basic R Commands
+
+Let us start by using R as a calculator. This will help you understand how to execute simple commands in the console.
+
+```{r basic-calculations}
+# Addition
+3 + 2
+
+# Subtraction
+5 - 2
+
+# Multiplication
+3 * 2
+
+# Division
+10 / 2
+
+# Modulus
+7 %% 2
+
+# Exponentiation
+2 ^ 3
+
+# Integer Division
+10 %/% 3
+```
+
+### Exercise 1: Installing the `tidyverse` Package
+
+In this exercise, you will install the `tidyverse` package, a collection of R packages designed for data science. Follow the steps below to complete the installation:
+
+1. **Open RStudio:** Start by launching RStudio on your computer.
+
+2. **Access Help Tab:** Locate and click on the "Help" tab in the lower right pane of RStudio.
+
+3. **Search for Installation Instructions:** In the search bar within the "Help" tab, type in "install packages" and press Enter. Browse through the help documents if available. (Note: The specific steps to search within the Help tab might vary based on RStudio version and setup. If you cannot find the option to search for "install packages" directly in the Help tab, proceed to the next step.)
+
+4. **Open Package Installation:**
+    - Alternatively, you can directly access the package installation option by going to the "Tools" menu at the top of RStudio.
+    - Select "Install Packages..." from the dropdown menu.
+
+5. **Install `tidyverse`:**
+    - In the "Install Packages" dialogue box, you'll find a field to type in the name of the package you wish to install. Type `tidyverse` into this field.
+    - Ensure the "Install dependencies" checkbox is ticked. This option ensures that any additional packages needed by `tidyverse` are also installed.
+
+6. **Begin Installation:**
+    - Click on the "Install" button to start the installation process.
+
+7. **Wait for Completion:** The installation might take a few minutes. Monitor the progress in the "Console" pane. Once the installation is complete, you will see a message in the console indicating that the process has finished.
+
+8. **Loading `tidyverse`:** After successful installation, you can load the `tidyverse` package into your R session by typing `library(tidyverse)` in the console and pressing Enter.
+
+
+
+## Simulating Data in R
+
+Simulating data is a powerful method to understand statistical concepts and data manipulation. Let's simulate a simple dataset representing scores from two cultural groups.
+
+
+#### Step 1: Setting Up Your R Environment
+
+Before simulating data, ensure R or RStudio is installed and open. RStudio provides a user-friendly interface for R, which can simplify the process of writing and executing R scripts.
+
+#### Step 2: Setting a Seed for Reproducibility
+
+To ensure that your simulated data can be reproduced exactly, it's good practice to set a seed before generating random data. This makes your analyses and simulations replicable.
+
+```r
+set.seed(123) # use any number to set the seed
+```
+
+#### Step 3: Simulating Continuous Data
+
+To simulate continuous data, you can use functions like `rnorm()` for normal distributions, `runif()` for uniform distributions, etc. Here’s how to simulate 100 normally distributed data points with a mean of 50 and a standard deviation of 10:
+
+```{r}
+n <- 100 # number of observations
+mean <- 50
+sd <- 10
+data_continuous <- rnorm(n, mean, sd)
+```
+
+#### Step 4: Simulating Categorical Data
+
+Categorical data can be simulated using the `sample()` function. For example, to simulate a binary variable (e.g., gender) with two levels for 100 observations:
+
+```{r}
+levels <- c("Male", "Female")
+data_categorical <- sample(levels, n, replace = TRUE)
+```
+
+#### Step 5: Simulating Data Frames
+
+Data frames are used in R to store data tables. To simulate a dataset with both continuous and categorical data, you can combine the above steps:
+
+```{r}
+# create a data frame with simulated data for ID, Gender, Age, and Income
+data_frame <- data.frame(
+  # generate a sequence of IDs from 1 to n
+  ID = 1:n,
+  
+  # randomly assign 'Male' or 'Female' to each observation
+  Gender = sample(c("Male", "Female"), n, replace = TRUE),
+  
+  # simulate 'Age' data: normally distributed with mean 30 and sd 5
+  Age = rnorm(n, mean = 30, sd = 5),
+  
+  # simulate 'Income' data: normally distributed with mean 50000 and sd 10000
+  Income = rnorm(n, mean = 50000, sd = 10000)
+)
+```
+
+
+Note that you can sample probabilistically for your groups
+
+```{r}
+n <- 100 # total number of observations
+
+# sample 'Gender' with a 40/60 proportion for Male/Female
+Gender = sample(c("Male", "Female"), n, replace = TRUE, prob = c(0.4, 0.6))
+```
+
+
+#### Step 6: Add Complexity
+
+To simulate more complex datasets, you can introduce relationships between variables. For instance, simulating age and income with a correlation:
+
+```{r}
+# set the number of observations
+n <- 100
+
+# simulate the 'Age' variable
+mean_age <- 30
+sd_age <- 5
+Age <- rnorm(n, mean = mean_age, sd = sd_age)
+
+# define coefficients explicitly
+intercept <- 20000   # Intercept for the income equation
+beta_age <- 1500     # Coefficient for the effect of age on income
+error_sd <- 10000    # Standard deviation of the error term
+
+# simulate 'Income' based on 'Age' and defined coefficients
+Income <- intercept + beta_age * Age + rnorm(n, mean = 0, sd = error_sd)
+
+# create a data frame to hold the simulated data
+data_complex <- data.frame(Age, Income)
+```
+
+#### Step 7: Visualising Simulated Data
+
+Visualising your simulated data can help understand its distribution and relationships. Use the `ggplot2` package for this:
+
+```{r}
+library(ggplot2)
+ggplot(data_complex, aes(x = Age, y = Income)) +
+  geom_point() +
+  theme_minimal() +
+  labs(title = "Simulated Age vs. Income", x = "Age", y = "Income")
+```
+
+
+## Practice
+
+
+
+```{r simulate-data}
+set.seed(123) #  reproducibility
+groupA_scores <- rnorm(100, mean = 100, sd = 15) # simulate scores for group A
+groupB_scores <- rnorm(100, mean = 105, sd = 15) # simulate scores for group B
+
+# ombine into a data frame
+scores_df <- data.frame(Group = rep(c("A", "B"), each = 100), Scores = c(groupA_scores, groupB_scores))
+
+# commands to view data
+str(scores_df)
+
+# summary of columns
+summary(scores_df)
+
+# top rows
+head(scores_df)
+
+# bottom rows
+tail(scores_df)
+```
+
+
+## Visualising simulated data
+
+Understanding your data visually is as important as the statistical analysis itself. Let's create a simple plot to compare the score distributions between the two groups.
+
+```{r visualize-data, fig.cap="Score Distribution by Group"}
+if (!require(ggplot2)) {
+  install.packages("ggplot2")
+  library(ggplot2)
+} else {
+  library(ggplot2)
+}
+
+# plot your data
+ggplot(scores_df, aes(x = Group, y = Scores, fill = Group)) +
+  geom_boxplot() +
+  theme_minimal() +
+  labs(title = "Score Distribution by Group", x = "Group", y = "Scores")
+```
+
+
+## Histogram {#sec-histogram}
+
+```{r}
+library(ggplot2)
+
+# H=histograms for both groups
+ggplot(scores_df, aes(x = Scores, fill = Group)) +
+  geom_histogram(binwidth = 5, color = "black") +
+  labs(title = "Distribution of Scores",
+       x = "Scores",
+       y = "Frequency") +
+  facet_wrap(~Group, ncol = 1)
+
+```
+
+
+## Excercise 1
+
+1. Modify the simulation parameters to change each group's mean and standard deviation. Observe how these changes affect the distribution.
+
+2. Go to the [histogram](#sec-histogram). Experiment with different bin widths. In your own words, how do large and small numbers speak differently to the data? When might you use one histogram and not another. 
+
+
+## Simulating data for familiar statistical tests 
+
+
+```{r}
+# simulate some data
+data <- rnorm(100, mean = 5, sd = 1) # 100 random normal values with mean = 5
+
+# perform one-sample t-test
+# testing if the mean of the data is reliably different from 4
+t.test(data, mu = 4)
+
+```
+
+```{r}
+# simulate data for two groups
+group1 <- rnorm(50, mean = 5, sd = 1) # 50 random normal values, mean = 5
+group2 <- rnorm(50, mean = 5.5, sd = 1) # 50 random normal values, mean = 5.5
+
+# two-sample t-test
+t.test(group1, group2)
+```
+
+```{r}
+# simulate pre-test and post-test scores
+pre_test <- rnorm(30, mean = 80, sd = 10)
+post_test <- rnorm(30, mean =  pre_test + 5, sd = 5) # assume an increase
+
+# perform paired t-test
+t.test(pre_test, post_test, paired = TRUE)
+```
+
+
+## Equivalence of ANOVA and Regression
+
+
+We will simulate data in R to show that a one-way ANOVA is a special case of linear regression with categorical predictors. We will give some reasons for preferring regression (in some settings).
+
+## Method
+
+First, we simulate a dataset with one categorical independent variable with three levels (groups) and a continuous outcome (also called a "dependant") variable. This setup allows us to apply both ANOVA and linear regression for comparison.
+
+```{r}
+# nice tables
+if (!require(parameters)) {
+  install.packages("parameters")
+  library(parameters)
+} else {
+  library(parameters)
+}
+
+
+set.seed(321) # reproducibility
+n <- 90 # total number of observations
+k <- 3 # number of groups
+
+# simulate independent variable (grouping factor)
+group <- factor(rep(1:k, each = n/k))
+
+# inspect
+str(group)
+
+# simulate outcome variable
+means <- c(100, 100, 220) # Mean for each group
+sd <- 15 # Standard deviation (same for all groups)
+
+# generate random data
+y <- rnorm(n, mean = rep(means, each = n/k), sd = sd)
+
+
+# make data frame
+df_1 <- cbind.data.frame(y, group)
+
+anova_model <- aov(y ~ group, data = df_1)
+# summary(anova_model)
+table_anova <- model_parameters(anova_model)
+
+# report the model
+report::report(anova_model)
+```
+
+
+Next, we analyse the same data using linear regression. In R, regression models automatically convert categorical variables into dummy variables.
+
+```{r}
+# for tables (just installed)
+library(parameters)
+
+# regression model 
+fit <- lm(y ~ group, data = df_1)
+
+# uncomment if you want an ordinary summary
+# summary(regression_model)
+
+table_fit <- parameters::model_parameters(fit)
+
+# print table
+table_fit
+```
+
+```{r}
+library(parameters)
+library(report)
+
+# report the model
+report_fit <- report_parameters(fit)
+
+#print
+report_fit
+```
+
+
+## Upshot
+
+ANOVA partitions variance into between-group and within-group components, while regression models the mean of the dependent variable as a linear function of the independent (including categorical) variables. For many questions, ANOVA is appropriate, however, when we are comparing groups, we often want a finer-grained interpretation. Regression is built for obtaining this finer grain understanding. We will return to regression over the next few weeks and use regression to hone your skills in R. Later, Along the way, you'll learn more about data visualisation, modelling, and reporting.  
+
+```{r}
+# graph the output of the parameters table
+# visualisation
+plot(table_fit)
+```
+
+### Exercise 3
+
+Perform a linear regression analysis using R. Follow the detailed instructions below to simulate the necessary data, execute the regression, and report your findings:
+
+1. **Simulate Data:**
+   - Generate two continuous variables, `Y` and `A`, with `n = 100` observations each.
+   - The variable `A` should have a mean of `50` and a standard deviation (`sd`) of `10`.
+
+2. **Define the Relationship:**
+   - Simulate the variable `Y` such that it is linearly related to `A` with a specified effect size. The effect size of `A` on `Y` must be explicitly defined as `2`.
+
+3. **Incorporate an Error Term:**
+   - When simulating `Y`, include an error term with a standard deviation (`sd`) of `20` to introduce variability.
+
+4. **Regression Analysis:**
+   - Use the `lm()` function in R to regress `Y` on `A`.
+   - Ensure the regression model captures the specified effect of `A` on `Y`.
+
+5. **Report the Results:**
+   - Output the regression model summary to examine the coefficients, including the effect of `A` on `Y`, and assess the model's overall fit and significance.
+
+
+## For more information about packages
+
+[ggplot2](https://ggplot2.tidyverse.org/)
+[Parameters package](https://easystats.github.io/parameters/)
+[Report package](https://easystats.github.io/report/index.html)
+
+
+## Further Information on Packages
+
+For comprehensive details and resources on specific packages, visit the following links:
+
+  - [ggplot2](https://ggplot2.tidyverse.org/): A system for declaratively creating graphics, based on The Grammar of Graphics.
+
+  - [Parameters package](https://easystats.github.io/parameters/): Provides utilities for processing model parameters and their metrics.
+
+  - [Report package](https://easystats.github.io/report/index.html): Facilitates the automated generation of reports from statistical models.
+
+
+
+
+## Here is what you have learned
+
+- **How to install and setup R:** 
+
+You've successfully installed R and RStudio, setting up your workstation for statistical analysis.
+  
+- **How to install and use RStudio:** 
+
+You've familiarised yourself with the RStudio interface, including the console, source editor, environment tab, and other utilities for effective data analysis.
+  
+- **Basic R operations:** 
+
+You've practided using R for basic arithmetic operations, understanding how to execute simple commands in the console.
+  
+- **Data simulation:** 
+
+You've learned to simulate datasets in R. This is a foundational skill for exploring statistical concepts and data manipulation techniques. Congratulations! 
+  
+- **Data visualisation:** 
+
+You've begun data visualising data through boxplots and histograms and coefficient plots, which is crucial for analysing and communicating statistical findings.
+  
+- **Statistical tests:** You've conducted basic statistical tests, including t-tests and ANOVA, gaining insights into comparing means across groups.
+  
+- **Understanding ANOVA and regression:** 
+
+You've explored the equivalence of ANOVA and regression analysis, learning how these methods can be applied to analyse and interpret data effectively.
+
+
+
+
+
+
+## Getting Help 
+
+As sure as night follows day, you will need help coding.  Key resources
+
+1. **Large Language Models (LLMs):** OpenAI's premium LLM (GPT-4) outperforms the free version (GPT-3.5) for complex queries. 
+
+2. **Stack Exchange:** a valuable resource for coding advice and solutions.
+
+3. **Developer Websites and GitHub Pages:** Directly engage with package developers and the community for insights and support.[Parameters package discussion page](https://github.com/easystats/parameters/discussions) offers insights and support directly from its developers and user community.
+
+4.  Your tutors and lecturer. We care. We’re here to help you. 
+
+
+## Recommended Reading
+
+- Wickham, H., & Grolemund, G. (2016). *R for Data Science*. O'Reilly Media. [Available online](https://r4ds.had.co.nz
+
+
+## Packages
+
+```{r}
+library(report)
+report::cite_packages()
+```
+
+
+
+## Appendix A: Solutions to Problem Sets {#appendix-a}
+
+
+
+### Solution Problem Set 3: simulate data and regression reporting 
+
+
+```{r}
+library(parameters)
+#  seed for reproducibility
+set.seed(12345)
+
+# number of observations
+n <- 100
+
+# simulate data for variable A with specified mean and sd
+A <- rnorm(n, mean = 50, sd = 10)
+
+# define the specified effect size of A on Y
+beta_A <- 2
+
+
+# simulate data and make data frame in one step
+
+df_3 <- data.frame(
+  # simulate data for variable A with specified mean and sd
+  A =  rnorm(n, mean = 50, sd = 10),
+  Y = 5 + beta_A * A + rnorm(n, mean = 0, sd = 20)
+)
+
+# view
+head(df_3)
+str(df_3)
+# Perform linear regression of Y on A
+
+fit_3 <- lm(Y ~ A, data = df_3)
+
+# Report the results of the regression
+# summary(model)
+
+# report
+parameters::model_parameters(fit_3)
+report(fit_3)
+
+
+```
+
+
+## Appendix B: I lied
+
+We can get group comparisons with ANOVA, for example:
+
+```{r}
+# Conduct Tukey's HSD test for post-hoc comparisons
+tukey_post_hoc <- TukeyHSD(anova_model)
+
+# Display the results
+print(tukey_post_hoc)
+plot(tukey_post_hoc)
+```
+
+Regression and ANOVA are equivalent
+
+
+

@@ -1,19 +1,37 @@
 project:
   type: website
+  output-dir: docs
 
+title-block-banner: true
+
+execute:
+  freeze: auto  # Re-render only when source changes
+  
 website:
-  title: "psyc-434-2024"
+  title: "PSYC 434 Conducting Research Across Cultures: Trimester 1, 2024"
   navbar:
-    left:
-      - href: index.qmd
-        text: Home
-      - about.qmd
-
+    search: false
+    right:
+    - text: "Content"
+      menu:
+        - text: "Week 1: Course Introduction - R (installing packages)"
+          href: content/01-content.qmd
+        - text: "Week 2: Causal Diagrams - Elementary Structures and Rules - R (using the interface/simulating data)"
+        - text: "Week 3: Causal Diagrams - Confounding Bias - R (regression/simulation)"
+        - text: "Week 4: Causal Diagrams - Interaction, Measurement Bias, Selection Bias - R (regression/simulation)"
+        - text: "Week 5: Quiz - R (regression/simulation/reporting)"
+        - text: "Week 6: Causal Inference - Key Concepts ATE - R (regression/simulation: ATE)"
+        - text: "Week 7: Causal Inference - Key Concept CATE - R (regression/simulation: ATE)"
+        - text: "Week 8: Causal Inference - Estimation of ATE and CATE - R and LaTeX"
+        - text: "Week 9: Quiz - R"
+        - text: "Week 10: Measurement Matters - Factor Analysis, CFA, MultiGroup CFA, Partial Invariance - R"
+        - text: "Week 11: Measurement + External Validity in Causal Inference - R (writing introduction/method section)"
+        - text: "Week 12: Missing Data Workflows - Quarto Documents Seminar - Workflows"
 format:
   html:
-    theme: cosmo
-    css: styles.css
     toc: true
+    css: styles.css
+    html-math-method: katex
 
 
-
+license: CC BY-NC-SA

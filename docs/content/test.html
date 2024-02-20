@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.523">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Joseph Bulbulia">
+<meta name="dcterms.date" content="2023-05-16">
+
+<title>PSYC 434 Conducting Research Across Cultures: Trimester 1, 2024 - Causal Inference: reconsidering measurement and selection biases</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">PSYC 434 Conducting Research Across Cultures: Trimester 1, 2024</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-content" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Content</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-content">    
+        <li>
+    <a class="dropdown-item" href="../content/01-content.html">
+ <span class="dropdown-text">Week 1: Course Introduction - R (installing packages)</span></a>
+  </li>  
+        <li class="dropdown-header">Week 2: Causal Diagrams - Elementary Structures and Rules - R (using the interface/simulating data)</li>
+        <li class="dropdown-header">Week 3: Causal Diagrams - Confounding Bias - R (regression/simulation)</li>
+        <li class="dropdown-header">Week 4: Causal Diagrams - Interaction, Measurement Bias, Selection Bias - R (regression/simulation)</li>
+        <li class="dropdown-header">Week 5: Quiz - R (regression/simulation/reporting)</li>
+        <li class="dropdown-header">Week 6: Causal Inference - Key Concepts ATE - R (regression/simulation: ATE)</li>
+        <li class="dropdown-header">Week 7: Causal Inference - Key Concept CATE - R (regression/simulation: ATE)</li>
+        <li class="dropdown-header">Week 8: Causal Inference - Estimation of ATE and CATE - R and LaTeX</li>
+        <li class="dropdown-header">Week 9: Quiz - R</li>
+        <li class="dropdown-header">Week 10: Measurement Matters - Factor Analysis, CFA, MultiGroup CFA, Partial Invariance - R</li>
+        <li class="dropdown-header">Week 11: Measurement + External Validity in Causal Inference - R (writing introduction/method section)</li>
+        <li class="dropdown-header">Week 12: Missing Data Workflows - Quarto Documents Seminar - Workflows</li>
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Causal Inference: reconsidering measurement and selection biases</h1>
+                      </div>
+  </div>
+    
+  <div class="quarto-title-meta-author">
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-heading">Affiliation</div>
+    
+      <div class="quarto-title-meta-contents">
+      <p class="author">Joseph Bulbulia <a href="mailto:joseph.bulbulia@vuw.ac.nz" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> <a href="https://orcid.org/0000-0002-5861-2056" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
+    </div>
+    <div class="quarto-title-meta-contents">
+          <p class="affiliation">
+              Victoria University of Wellington, New Zealand
+            </p>
+        </div>
+    </div>
+
+  <div class="quarto-title-meta">
+
+        
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">May 16, 2023</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#how-do-we-do-causal-estimation" id="toc-how-do-we-do-causal-estimation" class="nav-link" data-scroll-target="#how-do-we-do-causal-estimation">How do we do causal estimation?</a></li>
+  <li><a href="#step-1-state-a-causal-question" id="toc-step-1-state-a-causal-question" class="nav-link" data-scroll-target="#step-1-state-a-causal-question">Step 1: State a causal question</a>
+  <ul class="collapse">
+  <li><a href="#a.-identify-the-outcomes-of-interest" id="toc-a.-identify-the-outcomes-of-interest" class="nav-link" data-scroll-target="#a.-identify-the-outcomes-of-interest">a. Identify the outcome(s) of interest</a></li>
+  <li><a href="#b.-define-the-exposure-or-intervention" id="toc-b.-define-the-exposure-or-intervention" class="nav-link" data-scroll-target="#b.-define-the-exposure-or-intervention">b. Define the exposure or intervention</a></li>
+  <li><a href="#c.-identify-pre-exposure-covariates-for-confounding-control" id="toc-c.-identify-pre-exposure-covariates-for-confounding-control" class="nav-link" data-scroll-target="#c.-identify-pre-exposure-covariates-for-confounding-control">c.&nbsp;Identify pre-exposure covariates for confounding control</a></li>
+  <li><a href="#d.-highlight-unmeasured-pre-treatment-covariates" id="toc-d.-highlight-unmeasured-pre-treatment-covariates" class="nav-link" data-scroll-target="#d.-highlight-unmeasured-pre-treatment-covariates">d.&nbsp;Highlight unmeasured pre-treatment covariates</a></li>
+  <li><a href="#choose-the-scale-for-a-causal-contrast" id="toc-choose-the-scale-for-a-causal-contrast" class="nav-link" data-scroll-target="#choose-the-scale-for-a-causal-contrast">Choose the scale for a causal contrast</a></li>
+  <li><a href="#summary-step-1-consider-how-much-we-need-to-do-when-asking-a-causal-question" id="toc-summary-step-1-consider-how-much-we-need-to-do-when-asking-a-causal-question" class="nav-link" data-scroll-target="#summary-step-1-consider-how-much-we-need-to-do-when-asking-a-causal-question">Summary Step 1: Consider how much we need to do when asking a causal question!</a></li>
+  </ul></li>
+  <li><a href="#step-2-answer-a-causal-question" id="toc-step-2-answer-a-causal-question" class="nav-link" data-scroll-target="#step-2-answer-a-causal-question">STEP 2: ANSWER A CAUSAL QUESTION</a>
+  <ul class="collapse">
+  <li><a href="#include-the-measured-outcome-with-baseline-covariates" id="toc-include-the-measured-outcome-with-baseline-covariates" class="nav-link" data-scroll-target="#include-the-measured-outcome-with-baseline-covariates">Include the measured outcome with baseline covariates</a></li>
+  <li><a href="#include-the-measured-exposure-with-baseline-covariates" id="toc-include-the-measured-exposure-with-baseline-covariates" class="nav-link" data-scroll-target="#include-the-measured-exposure-with-baseline-covariates">Include the measured exposure with baseline covariates</a></li>
+  <li><a href="#state-the-eligibility-criteria-for-participation" id="toc-state-the-eligibility-criteria-for-participation" class="nav-link" data-scroll-target="#state-the-eligibility-criteria-for-participation">State the eligibility criteria for participation</a></li>
+  <li><a href="#handling-of-missing-data" id="toc-handling-of-missing-data" class="nav-link" data-scroll-target="#handling-of-missing-data">Handling of missing data</a></li>
+  <li><a href="#state-a-statistical-model" id="toc-state-a-statistical-model" class="nav-link" data-scroll-target="#state-a-statistical-model">State a statistical model</a></li>
+  <li><a href="#what-we-have-not-done" id="toc-what-we-have-not-done" class="nav-link" data-scroll-target="#what-we-have-not-done">What we have not done</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>Recall that psychology begings with a question about cognition and behavior. What do we want to know? Before all else, we must ask, and motivate this question.</p>
+<p>Suppose we have defined a question. How can we address it using observational data?</p>
+<p>This is the topic of today’s siminar.</p>
+</section>
+<section id="how-do-we-do-causal-estimation" class="level2">
+<h2 class="anchored" data-anchor-id="how-do-we-do-causal-estimation">How do we do causal estimation?</h2>
+<p>There are two steps to causal estimation:</p>
+<ol type="1">
+<li>State a causal question</li>
+<li>Answer that question [Cite Hernan]</li>
+</ol>
+</section>
+<section id="step-1-state-a-causal-question" class="level2">
+<h2 class="anchored" data-anchor-id="step-1-state-a-causal-question">Step 1: State a causal question</h2>
+<p>Stating a causal question requires describing: a. outcome(s), b. exposure, c.&nbsp;measured confounders, d.&nbsp;(suspected) unmeasured confounders, e. scale of causal contrasts, f.&nbsp;target population for whom the inferences apply.</p>
+<p>We consider each of these processes in turn.</p>
+<section id="a.-identify-the-outcomes-of-interest" class="level3">
+<h3 class="anchored" data-anchor-id="a.-identify-the-outcomes-of-interest">a. Identify the outcome(s) of interest</h3>
+<p>We use <em>Y</em> to denote an outcome of interest. This is the “effect” of interest.</p>
+<section id="consider" class="level4">
+<h4 class="anchored" data-anchor-id="consider">Consider:</h4>
+<ul>
+<li>The outcome might be binary (severely distressed/not severely distressed), continuous (the average of the sum of the indicators), or a rate variable (the sum of the indicators).</li>
+<li>It is crucial to specify the units in which the outcome is measured.</li>
+<li>Transforming the outcome into standard deviation units can be beneficial.</li>
+<li>The outcome must occur after the exposure or treatment.</li>
+<li>We must designate a time period within which the outcome occurs, e.g, “the one-year effect of a treatment on well-being as measured by Kessler-6.”</li>
+<li>We may be interested in multiple outcomes. This is the rational behind outcomewide science [cite tyler]</li>
+<li>We must remember that the outcome might be measured with error, that such errors may be affected by the treatment or correlated with the measurement error of the treatment. (A topic of future seminars, which we will set to the side for now)</li>
+</ul>
+<p>Here, imagine we are interested in understanding only one outcome in our study: well-being as measured by the Kessler-6 depression/anxiety scale.</p>
+</section>
+</section>
+<section id="b.-define-the-exposure-or-intervention" class="level3">
+<h3 class="anchored" data-anchor-id="b.-define-the-exposure-or-intervention">b. Define the exposure or intervention</h3>
+<p>We use <em>A</em> to denote the the exposure or treatment. This is the variable that we hypothesise might affect the outcome. This variable denotes the cause of interest. We will restrict our focus to consider in which there is only one treatment (i.e.&nbsp;we will not consider complex multi-treatment regimes.)</p>
+<p>Here, imagine we are interested in understanding the causal effect of ‘Church attendance’.</p>
+<section id="consider-1" class="level4">
+<h4 class="anchored" data-anchor-id="consider-1">Consider:</h4>
+<ul>
+<li>To affect <em>Y</em>, <em>A</em> must occur before <em>Y</em>.</li>
+<li>What does <em>A</em> indicate? We may characterise ‘Church Attendance’ as a binary exposure (attend/not attend) or as a continuous exposure (attend weekly/attend monthly). The exposure, in this instance, remains nebulous until we delineate the unit change in <em>A</em> we are interested in investigating.</li>
+<li>For theoretical and practical purpose we might want to trunctate the variable into categories: (none/some; none/less than weekly, weekly or more)… Why? Because our causal question requires stating the contrast between the states of the world in which we are interested. Additionally, experts often make decisions on the basis of discrete thresholds (has risk of depression/does not).</li>
+<li>We must remember that an exposure or treatment might be measured with error, that such errors might be correlated with the measurement error of the outcome or affect it. (Again, a topic of future seminars, which we will set to the side for now).</li>
+</ul>
+</section>
+</section>
+<section id="c.-identify-pre-exposure-covariates-for-confounding-control" class="level3">
+<h3 class="anchored" data-anchor-id="c.-identify-pre-exposure-covariates-for-confounding-control">c.&nbsp;Identify pre-exposure covariates for confounding control</h3>
+<p>We use <strong>L</strong> to denote the set of measured baseline confounders of the the exposure-outcome association. For a three-wave panel design, we employ VanderWeele’s modified disjunctive cause criterion, we advises: control for any covariate that is a cause of the exposure, the outcome, or both, excluding any instrumental variable and incorporating any proxy for an unmeasured variable that is a common cause of both the exposure and the outcome.</p>
+<section id="consider-2" class="level4">
+<h4 class="anchored" data-anchor-id="consider-2">Consider:</h4>
+<ul>
+<li>To affect <em>Y</em>, <em>L</em> must occur before <em>Y</em>.<br>
+</li>
+<li>To affect <em>A</em>, <em>L</em> must occur before <em>A</em>.</li>
+<li>Although we may gain precision by including an <em>L</em> that affects <em>Y</em> but is unrelated to <em>A</em>, including variables that occur after <em>A</em> will be hazardous if it is possible that <em>A</em> affects <em>L</em> (or its measurement).</li>
+<li>A useful set of default counfounders in NZAVS studies is given in your workbooks.</li>
+<li>Note we have left out the concept of “selection bias.” There are indeed sources of bias that may occure after <em>A</em>. This is another topic for the week ahead.</li>
+</ul>
+</section>
+</section>
+<section id="d.-highlight-unmeasured-pre-treatment-covariates" class="level3">
+<h3 class="anchored" data-anchor-id="d.-highlight-unmeasured-pre-treatment-covariates">d.&nbsp;Highlight unmeasured pre-treatment covariates</h3>
+<p>Let <strong>U</strong> denoted unmeasured pre-treatment covariates that may potentially bias the statistical association between <em>A</em> and <em>Y</em> independently of the measured covariates.</p>
+<section id="consider-3" class="level4">
+<h4 class="anchored" data-anchor-id="consider-3">Consider:</h4>
+<ul>
+<li>To affect <em>Y</em> and <em>A</em>, <em>U</em> must occur before <em>A</em>.</li>
+<li>It is useful to draw a causal diagramme to illustrate all potential sources of bias.</li>
+<li>Causal diagrammes are qualitative tools that require specialist expertise. We cannot typically obtain a causal graph from the data.</li>
+<li>A causal diagramme should include only as much information as is required to assess confounding. See <strong>?@fig-dag-outcomewide</strong> for an example.</li>
+<li>Because we cannot ensure the absence of unmeasured confounders in observational settings, it is vital to conduct sensitivity analyses for the results. For sensitivity analyeses, we use E-values, a topic for a latter seminar.</li>
+</ul>
+</section>
+</section>
+<section id="choose-the-scale-for-a-causal-contrast" class="level3">
+<h3 class="anchored" data-anchor-id="choose-the-scale-for-a-causal-contrast">Choose the scale for a causal contrast</h3>
+<p>Average causal effects can be inferred by contrasting the expected outcome when a population is exposed to an exposure level, <span class="math inline">E[Y(A = a)]</span>, with the expected outcome under a different exposure level, <span class="math inline">E[Y(A=a')]</span>.</p>
+<p>For a binary treatment with levels <span class="math inline">A=0</span> and <span class="math inline">A=1</span>, the Average Treatment Effect (ATE), on the difference scale, is expressed:</p>
+<p><span class="math display">ATE_{\text{risk difference}} = E[Y(1)|L] - E[Y(0)|L]</span></p>
+<p>On the risk ratio scale, the ATE is expressed:</p>
+<p><span class="math display">ATE_{\text{risk ratio}} = \frac{E[Y(1)|L]}{E[Y(0)|L]}</span></p>
+<p>Other effect scales, such as the incidence rate ratio, incidence rate difference, or hazard ratio, might also be of interest. We can also define the Average Treatment Effect on the Treated (ATT) :</p>
+<p><span class="math display">ATT_{\text{risk difference}} = E[Y(1) - Y(0)|A=1,L]</span></p>
+<p><span class="math display">ATT_{\text{risk ratio}} = \frac{E[Y(1)|A=1,L]}{E[Y(0)|A=1, L]}</span></p>
+<p>Another common estimand is the Population Average Treatment Effect (PATE), which denotes the effect the treatment would have on the entire population if applied universally to that population. This quantity can be expressed:</p>
+<p><span class="math display">PATE_{\text{risk difference}} = f(E[Y(1) - Y(0)|L], W)</span></p>
+<p><span class="math display">PATE_{\text{risk ratio}} = f\left(\frac{E[Y(1)|L]}{E[Y(0)|L]}, W\right)</span></p>
+<p>where <span class="math inline">f</span> is a function that incorporates weights <span class="math inline">W</span> into the estimation of the expected outcomes. These weights may correspond to the inverse probability of being sampled or in the case of NZAVS data, the survey weights are given from census estimates for the wider population. Note: I will show you how to use weights in future seminars.</p>
+<p>We might also be interested in identifying effects specific to certain strata, such as risk differences or risk ratios, as they are modified by baseline indicators. Denote a stratum of interest by <span class="math inline">S</span>. We may then compute:</p>
+<p><span class="math display">ATE_{S,\text{risk difference}} = E[Y(1) - Y(0)|S, L]</span></p>
+<p><span class="math display">ATE_{S,\text{risk ratio}} = \frac{E[Y(1)|S, L]}{E[Y(0)|S, L]}</span></p>
+<section id="consider-4" class="level4">
+<h4 class="anchored" data-anchor-id="consider-4">Consider:</h4>
+<ul>
+<li>** In this course, we are interested in stratum specific comparisons **</li>
+<li>In the causal inference literature, the concept we use to make sense of stratum specific comparisons is called “effect modification.”</li>
+<li>By inferring effects within stratums, we may evaluate whether the effects of different exposures or treatments on some well-defined outcome (measured in some well-defined time-period after the exposure) differ depending on group measurement.</li>
+<li>The logic of effect modification differs from that of intereaction.</li>
+</ul>
+</section>
+<section id="aside-extensions" class="level4">
+<h4 class="anchored" data-anchor-id="aside-extensions">Aside: extensions</h4>
+<p>For continuous exposures, we must stipulate the level of contrast for the exposure (e.g.&nbsp;weekly versus monthly church attendance):</p>
+<p><span class="math display">ATE_{A,A'} = E[Y(A) - Y(A')| L]</span></p>
+<p>This essentially denotes an average treatment effect comparing the outcome under treatment level <span class="math inline">A</span> to the outcome under treatment level <span class="math inline">A'</span>.</p>
+<p>Likewise:</p>
+<p><span class="math display">ATE_{A/A'} = \frac{E[Y(A)| L]}{E[Y(A')| L]}</span></p>
+<p>This defines the contrast of <span class="math inline">A</span> and <span class="math inline">A'</span> on a ratio scale.</p>
+</section>
+<section id="f.-describe-the-populations-for-whom-the-intended-study-is-meant-to-generalise." class="level4">
+<h4 class="anchored" data-anchor-id="f.-describe-the-populations-for-whom-the-intended-study-is-meant-to-generalise.">f.&nbsp;Describe the population(s) for whom the intended study is meant to generalise.</h4>
+<p>The potential outcomes literature in causal inference distinguishes between the concepts of generalisability and transportability.</p>
+<ul>
+<li><strong>Generalisability</strong> refers to the ability to apply the causal effects estimated from a sample to the population it was drawn from. In simpler terms, it deals with the extrapolation of causal knowledge from a sample to the broader population. This concept is also called “external validity”.</li>
+</ul>
+<p><span class="math display">\text{Generalizability} = PATE \approx ATE_{\text{sample}}</span></p>
+<ul>
+<li><strong>Transportability</strong> refers to the ability to extrapolate causal effects learned from a source population to a target population when certain conditions are met. It deals with the transfer of causal knowledge across different settings or populations.</li>
+</ul>
+<p><span class="math display">\text{Transportability} = ATE_{\text{target}} \approx f(ATE_{\text{source}}, T)</span></p>
+<p>where <span class="math inline">f</span> is a function and <span class="math inline">T</span> is a function that maps the results from our source population to another population. To achieve transportability, we need information about the source and target populations and an understanding of how the relationships between treatment, outcome, and covariates differ between the populations. Assessing transportability requires scientific knowledge.</p>
+</section>
+</section>
+<section id="summary-step-1-consider-how-much-we-need-to-do-when-asking-a-causal-question" class="level3">
+<h3 class="anchored" data-anchor-id="summary-step-1-consider-how-much-we-need-to-do-when-asking-a-causal-question">Summary Step 1: Consider how much we need to do when asking a causal question!</h3>
+<p>We discover that asking a causal question is a multifaceted task. It demands careful definition of the outcome, including its timing, the exposure, and covariates. It also requires selecting the appropriate scale for causal contrast, controlling for confounding, and potentially adjusting for sample weights or stratification. Finally, when asking a causal question, we must consider for whom the results apply. Only after following these steps can we then ask: “How may we answer this causal question?”</p>
+</section>
+</section>
+<section id="step-2-answer-a-causal-question" class="level2">
+<h2 class="anchored" data-anchor-id="step-2-answer-a-causal-question">STEP 2: ANSWER A CAUSAL QUESTION</h2>
+<section id="obtain-longitudinal-data" class="level4">
+<h4 class="anchored" data-anchor-id="obtain-longitudinal-data">Obtain longitudinal data</h4>
+<p>Note that causal inference from observational data turns on the appropriate temporal ordering of the key variables involved in the study.</p>
+<p>Recall we have defined.</p>
+<ul>
+<li><p><strong>A</strong>: Our exposure or treatment variable, denoted as <strong>A</strong>. Here we consider the example of ‘Church attendance’.</p></li>
+<li><p><strong>Y</strong>: The outcome variable we are interested in, represented by <strong>Y</strong>, is psychological distress. We operationalise this variable through the ‘Kessler-6’ distress scale.</p></li>
+<li><p><strong>L</strong>: The confounding variables, collectively referred to as <strong>L</strong>, represent factors that can independently influence both <strong>A</strong> and <strong>Y</strong>. For example, socio-economic status could be a confounder that impacts both the likelihood of church attendance and the levels of psychological distress.</p></li>
+</ul>
+<p>Given the importance of temporal ordering, we must now define time:</p>
+<ul>
+<li><strong>t <span class="math inline">\in</span> T</strong>: Let <span class="math inline">t</span> denote within a multiwave panel study with <strong>T</strong> measurement intervals.</li>
+</ul>
+<p>Where <span class="math inline">t/\text{{exposure}}</span> denotes the measurement interval for the exposure. Longitudinal data collection provides us the ability to establish a causal model such that: <span class="math inline">t\text{{baseline}}/\mathbf{L} &lt; t\text{{exposure}}/\text{{A}} &lt; t\text{{exposure}}/\mathbf{Y}</span>.</p>
+<p>To minimise the posibility of time-varying confounding and obtain the clearest effect estimates, we should acquire the most recent values of <span class="math inline">\mathbf{L}</span> preceding <span class="math inline">A</span> and the latest values of <span class="math inline">A</span> before <span class="math inline">Y</span> such that: <span class="math inline">t\text{{0}}/\mathbf{L} &lt; t\text{{1}}/\text{{A}} &lt; t\text{{2}}/\mathbf{Y}</span>.</p>
+</section>
+<section id="include-the-measured-outcome-with-baseline-covariates" class="level3">
+<h3 class="anchored" data-anchor-id="include-the-measured-outcome-with-baseline-covariates">Include the measured outcome with baseline covariates</h3>
+<p>Controlling for previous outcome is crucial because the outcome at baseline is often the most potent confounder of both the exposure post-exposure-outcome association.</p>
+</section>
+<section id="include-the-measured-exposure-with-baseline-covariates" class="level3">
+<h3 class="anchored" data-anchor-id="include-the-measured-exposure-with-baseline-covariates">Include the measured exposure with baseline covariates</h3>
+<p>Controlling for prior exposure enables the interpretation of the effect estimate as a change in the exposure in a manner akin to a randomised trial. We propose that the effect estimate with prior control for the exposure estimates the “incidence exposure” rather than the “prevalence exposure” [Hernan Danaei, Tavakkoli and Hernán, 2012, Hernán, 2015]. It is crucial to estimate the incidence exposure because if the effects of an exposure are harmful in the short term such that these effects are not subsequently measured, a failure to adjust for prior exposure will yield the illusion that the exposure is beneficial. Furthermore, this approach aids in controlling for unmeasured confounding. For such a confounder to dismiss the observed exposure-outcome association, it would need to do so independently of the prior level of the exposure and outcome.</p>
+</section>
+<section id="state-the-eligibility-criteria-for-participation" class="level3">
+<h3 class="anchored" data-anchor-id="state-the-eligibility-criteria-for-participation">State the eligibility criteria for participation</h3>
+<p>This step is invaluable for assessing whether we are answering the causal question that we have asked.</p>
+<section id="consider-5" class="level4">
+<h4 class="anchored" data-anchor-id="consider-5">Consider:</h4>
+<ul>
+<li>Generalisability: we cannot evaluate inferences to a target group from the source popuation if we do not describe the source population</li>
+<li>Eligibility criteria will help us to ensure whether we have correctly evaluated potential measurement bias/error in our instruments.</li>
+</ul>
+<p>For example, the New Zealand Attitudes and Values Study is a National Probability study of New Zealanders. The details provided in the supplementary materials describe how individuals were randomly selected from the country’s electoral roll. From these invitations there was typically less than 15% response rate. How might this process of recruitment affect generalisability and transportability of our results?</p>
+<ul>
+<li>(Aside: discuss per protocol effects/ intention to treat effects)</li>
+</ul>
+</section>
+</section>
+<section id="handling-of-missing-data" class="level3">
+<h3 class="anchored" data-anchor-id="handling-of-missing-data">Handling of missing data</h3>
+<ul>
+<li>As we will consider in the upcoming weeks, loss to follow up and non-response opens sources for bias. We must develop a strategy for handling missing data.</li>
+</ul>
+</section>
+<section id="state-a-statistical-model" class="level3">
+<h3 class="anchored" data-anchor-id="state-a-statistical-model">State a statistical model</h3>
+<p>The models we have considered in this course are G-computation, Inverse Probability of Treatement Weighting, and Doubly-Robust estimation.<br>
+:</p>
+<section id="g-computation-for-subgroup-analysis-algorithm" class="level4">
+<h4 class="anchored" data-anchor-id="g-computation-for-subgroup-analysis-algorithm"><strong>G-computation for Subgroup Analysis Algorithm</strong></h4>
+<p><strong>Step 1</strong> Estimate the outcome model. Fit a model for the outcome <span class="math inline">Y</span>, conditional on both the exposure <span class="math inline">A</span>, the covariates <span class="math inline">L</span>, and subgroup indicator <span class="math inline">G</span>. This model can be linear regression, logistic regression, or another statistical model. The goal is to capture the relationship between the outcome, exposure, confounders, and subgroups.</p>
+<p><span class="math display"> E(Y|A,L,G) = f_Y(A,L,G; \theta_Y) </span></p>
+<p>This equation represents the expected value of the outcome <span class="math inline">Y</span> given the exposure <span class="math inline">A</span>, covariates <span class="math inline">L</span>, and subgroup <span class="math inline">G</span> as modeled by the function <span class="math inline">f_Y</span> with parameters <span class="math inline">\theta_Y</span>. This formulation allows for the prediction of the average outcome <span class="math inline">Y</span> given certain values of <span class="math inline">A</span>, <span class="math inline">L</span>, and <span class="math inline">G</span>.</p>
+<p><strong>Step 2</strong> Simulate potential outcomes. For each individual <span class="math inline">i</span> in each subgroup <span class="math inline">g</span>, predict their potential outcome <span class="math inline">\hat{Y}_{i,g}(a)</span> under the intervention <span class="math inline">A=a</span>, and <span class="math inline">\hat{Y}_{i,g}(a^{\prime})</span> under the intervention <span class="math inline">A=a^{\prime}</span>, using the estimated outcome model. This is done by replacing the observed value of the exposure <span class="math inline">A</span> in the outcome model with the counterfactual exposure values <span class="math inline">a</span> and <span class="math inline">a^{\prime}</span>, while keeping the values of the covariates <span class="math inline">L</span> and subgroup <span class="math inline">G</span> unchanged:</p>
+<p>[_{i,g}(a) = E[Y|A=a,L_i,G=g; _Y]]</p>
+<p>[_{i,g}(a^{}) = E[Y|A=a^{},L_i,G=g; _Y]]</p>
+<p>This step involves simulating the outcomes under each intervention level for every individual within each subgroup, as if they were exposed to treatment level <span class="math inline">a</span> or <span class="math inline">a^{\prime}</span>.</p>
+<p><strong>Step 3</strong> Estimate the average causal effect for each subgroup. Compute the expected value of the potential outcomes under each intervention level for each subgroup <span class="math inline">g</span>:</p>
+<p>[E[Y(a)|G=g] = <em>{G_i=g}^N </em>{i,g}(a)]</p>
+<p>[E[Y(a^{})|G=g] = <em>{G_i=g}^N </em>{i,g}(a^{})]</p>
+<p>and calculate the difference for each subgroup <span class="math inline">g</span>:</p>
+<p>[_g = E[Y(a)|G=g] - E[Y(a^{})|G=g]]</p>
+<p>This difference represents the average causal effect of changing the exposure from level <span class="math inline">a^{\prime}</span> to level <span class="math inline">a</span> within subgroup <span class="math inline">g</span>.</p>
+<p>To obtain the standard errors and confidence intervals for the subgroup-specific causal effects, simulation-based inference methods, such as the clarify package<span class="citation" data-cites="greifer2023">[@greifer2023]</span>, can be used.</p>
+</section>
+</section>
+<section id="what-we-have-not-done" class="level3">
+<h3 class="anchored" data-anchor-id="what-we-have-not-done">What we have not done</h3>
+<p>We have not addressed: - measurement error. Our graphs do not incorporate it. - selection bias - Outcome-wide studies - Sampling weights.</p>
+
+
+</section>
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></div></div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    const typesetMath = (el) => {
+      if (window.MathJax) {
+        // MathJax Typeset
+        window.MathJax.typeset([el]);
+      } else if (window.katex) {
+        // KaTeX Render
+        var mathElements = el.getElementsByClassName("math");
+        var macros = [];
+        for (var i = 0; i < mathElements.length; i++) {
+          var texText = mathElements[i].firstChild;
+          if (mathElements[i].tagName == "SPAN") {
+            window.katex.render(texText.data, mathElements[i], {
+              displayMode: mathElements[i].classList.contains('display'),
+              throwOnError: false,
+              macros: macros,
+              fleqn: false
+            });
+          }
+        }
+      }
+    }
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        typesetMath(container);
+        return container.innerHTML
+      } else {
+        typesetMath(note);
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      typesetMath(note);
+      return note.innerHTML;
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

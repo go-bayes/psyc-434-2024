@@ -1,0 +1,1795 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.523">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>PSYC 434 Conducting Research Across Cultures: Trimester 1, 2024 - Introduction to Causal Inference</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">PSYC 434 Conducting Research Across Cultures: Trimester 1, 2024</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-content" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Content</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-content">    
+        <li>
+    <a class="dropdown-item" href="../content/01-content.html">
+ <span class="dropdown-text">Week 1: Course Introduction - R (installing packages)</span></a>
+  </li>  
+        <li class="dropdown-header">Week 2: Causal Diagrams - Elementary Structures and Rules - R (using the interface/simulating data)</li>
+        <li class="dropdown-header">Week 3: Causal Diagrams - Confounding Bias - R (regression/simulation)</li>
+        <li class="dropdown-header">Week 4: Causal Diagrams - Interaction, Measurement Bias, Selection Bias - R (regression/simulation)</li>
+        <li class="dropdown-header">Week 5: Quiz - R (regression/simulation/reporting)</li>
+        <li class="dropdown-header">Week 6: Causal Inference - Key Concepts ATE - R (regression/simulation: ATE)</li>
+        <li class="dropdown-header">Week 7: Causal Inference - Key Concept CATE - R (regression/simulation: ATE)</li>
+        <li class="dropdown-header">Week 8: Causal Inference - Estimation of ATE and CATE - R and LaTeX</li>
+        <li class="dropdown-header">Week 9: Quiz - R</li>
+        <li class="dropdown-header">Week 10: Measurement Matters - Factor Analysis, CFA, MultiGroup CFA, Partial Invariance - R</li>
+        <li class="dropdown-header">Week 11: Measurement + External Validity in Causal Inference - R (writing introduction/method section)</li>
+        <li class="dropdown-header">Week 12: Missing Data Workflows - Quarto Documents Seminar - Workflows</li>
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Introduction to Causal Inference</h1>
+            <p class="subtitle lead">Data Exercise</p>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#load-data" id="toc-load-data" class="nav-link active" data-scroll-target="#load-data">load Data</a></li>
+  <li><a href="#load-data-1" id="toc-load-data-1" class="nav-link" data-scroll-target="#load-data-1">Load Data</a></li>
+  <li><a href="#inspect" id="toc-inspect" class="nav-link" data-scroll-target="#inspect">Inspect</a></li>
+  <li><a href="#prepare-data" id="toc-prepare-data" class="nav-link" data-scroll-target="#prepare-data">Prepare data</a></li>
+  <li><a href="#create-composite-scores-for-constructs" id="toc-create-composite-scores-for-constructs" class="nav-link" data-scroll-target="#create-composite-scores-for-constructs">create composite scores for constructs</a></li>
+  <li><a href="#save-your-dataframe-for-future-use" id="toc-save-your-dataframe-for-future-use" class="nav-link" data-scroll-target="#save-your-dataframe-for-future-use">save your dataframe for future use</a></li>
+  <li><a href="#prepare-models" id="toc-prepare-models" class="nav-link" data-scroll-target="#prepare-models">prepare models</a></li>
+  <li><a href="#simulate-coefficients-for-the-continuous-exposure" id="toc-simulate-coefficients-for-the-continuous-exposure" class="nav-link" data-scroll-target="#simulate-coefficients-for-the-continuous-exposure">simulate coefficients for the continuous exposure</a>
+  <ul class="collapse">
+  <li><a href="#coarsened-variable." id="toc-coarsened-variable." class="nav-link" data-scroll-target="#coarsened-variable.">Coarsened variable.</a></li>
+  <li><a href="#simulate-coefficients" id="toc-simulate-coefficients" class="nav-link" data-scroll-target="#simulate-coefficients">simulate coefficients</a></li>
+  <li><a href="#suppose-we-want-to-contrast-everyone-being-assigned-to-medium-with-everyone-being-assigned-to-high." id="toc-suppose-we-want-to-contrast-everyone-being-assigned-to-medium-with-everyone-being-assigned-to-high." class="nav-link" data-scroll-target="#suppose-we-want-to-contrast-everyone-being-assigned-to-medium-with-everyone-being-assigned-to-high.">Suppose we want to contrast everyone being assigned to medium with everyone being assigned to high.</a></li>
+  <li><a href="#causal-graphs" id="toc-causal-graphs" class="nav-link" data-scroll-target="#causal-graphs">CAUSAL GRAPHS</a></li>
+  <li><a href="#problem-1-bilingualism-on-cognitive-abilities" id="toc-problem-1-bilingualism-on-cognitive-abilities" class="nav-link" data-scroll-target="#problem-1-bilingualism-on-cognitive-abilities">Problem 1: bilingualism on cognitive abilities</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="07-exercise.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<section id="load-data" class="level2">
+<h2 class="anchored" data-anchor-id="load-data">load Data</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#|label: source</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"https://raw.githubusercontent.com/go-bayes/templates/main/functions/funs.R"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="load-data-1" class="level2">
+<h2 class="anchored" data-anchor-id="load-data-1">Load Data</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#|label: load-data</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">#|eval: false</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="do">######### PART 1: DATA EXCERCISE ##############</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a folder called "data", in your Rstudio project. Download this file, add it to your the folder called "data" in your Rstudio project.</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># "https://www.dropbox.com/s/vwqijg4ha17hbs1/nzavs_dat_synth_t10_t12?dl=0"</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># This will read the synthetic data into Rstudio.  Note that the arrow package allows us to have lower memory demands in the storage and retrieval of data.</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>nzavs_synth <span class="ot">&lt;-</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  arrow<span class="sc">::</span><span class="fu">read_parquet</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"nzavs_dat_synth_t10_t12"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="inspect" class="level2">
+<h2 class="anchored" data-anchor-id="inspect">Inspect</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="do">## inspect colnames</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(nzavs_synth)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="do">## inspect data properties</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(nzavs_synth)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="prepare-data" class="level2">
+<h2 class="anchored" data-anchor-id="prepare-data">Prepare data</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>baseline_vars <span class="ot">=</span> <span class="fu">c</span>(</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"edu"</span>,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"male"</span>,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"eth_cat"</span>,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"employed"</span>,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"gen_cohort"</span>,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"nz_dep2018"</span>,</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"nzsei13"</span>,</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">"partner"</span>,</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">"parent"</span>,</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">"pol_orient"</span>,</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">"rural_gch2018"</span>,</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">"agreeableness"</span>,</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">"conscientiousness"</span>,</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="st">"extraversion"</span>,</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  <span class="st">"honesty_humility"</span>,</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  <span class="st">"openness"</span>,</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>  <span class="st">"neuroticism"</span>,</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  <span class="st">"modesty"</span>,</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  <span class="st">"religion_identification_level"</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="do">## Step 2, select the exposure variable.  This is the "cause"</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>exposure_var <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"perfectionism"</span>)</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="do">## step 3. select the outcome variable.  These are the outcomes.</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>outcome_vars_reflective <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"meaning_purpose"</span>,</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>                            <span class="st">"meaning_sense"</span>)</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="co"># optional: select exclusion variables (this will not be necessary most of the time)</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>exclude_vars <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"year_measured"</span>)</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a><span class="co"># the function "create_wide_data" should be in your environment. If not, make sure to run the first line of code in this script once more.  You may ignore the warnings.</span></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>prep_reflective <span class="ot">&lt;-</span></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">create_wide_data</span>(</span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">dat_long =</span> nzavs_synth,</span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>    <span class="co">#nzavs_synth,</span></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">baseline_vars =</span> baseline_vars,</span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">exposure_var =</span> exposure_var,</span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>    <span class="at">outcome_vars =</span> outcome_vars_reflective</span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a><span class="co"># check. Note that any column that is the exposure or an outcome is added to "t0_".  This ensures the strongest possible confounding control, as described by VanderWeele:</span></span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a><span class="co"># https://cdn1.sph.harvard.edu/wp-content/uploads/sites/603/2020/09/OutcomeWide_StatisticalScience.pdf</span></span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(prep_reflective)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "id"                               "t0_edu"                          
+ [3] "t0_male"                          "t0_eth_cat"                      
+ [5] "t0_employed"                      "t0_gen_cohort"                   
+ [7] "t0_nz_dep2018"                    "t0_nzsei13"                      
+ [9] "t0_partner"                       "t0_parent"                       
+[11] "t0_pol_orient"                    "t0_rural_gch2018"                
+[13] "t0_agreeableness"                 "t0_conscientiousness"            
+[15] "t0_extraversion"                  "t0_honesty_humility"             
+[17] "t0_openness"                      "t0_neuroticism"                  
+[19] "t0_modesty"                       "t0_religion_identification_level"
+[21] "t0_perfectionism"                 "t0_meaning_purpose"              
+[23] "t0_meaning_sense"                 "t1_perfectionism"                
+[25] "t2_meaning_purpose"               "t2_meaning_sense"                </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># if the data is not working, you much run the code below to make the object in an object of the class dataframe.</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># prep_reflective &lt;- as.data.frame(prep_reflective)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="create-composite-scores-for-constructs" class="level2">
+<h2 class="anchored" data-anchor-id="create-composite-scores-for-constructs">create composite scores for constructs</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># should be loaded</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a> dt_ref <span class="ot">&lt;-</span> prep_reflective <span class="sc">|&gt;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">id =</span> <span class="fu">factor</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(prep_reflective))) <span class="sc">|&gt;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">t1_perfectionism =</span> <span class="fu">round</span>(t1_perfectionism)) <span class="sc">|&gt;</span> <span class="co"># we create a three-level exposure to enable clear causal contrasts. We could also use a continous variable.</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">t1_perfectionism_coarsen =</span> <span class="fu">cut</span>(</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>      t1_perfectionism,</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">7</span>),</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">include.lowest =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">include.highest =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">na.rm =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">right =</span> <span class="cn">FALSE</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">t0_eth_cat =</span> <span class="fu">as.factor</span>(t0_eth_cat),</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">t0_rural_gch2018 =</span> <span class="fu">as.factor</span>(t0_rural_gch2018),</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">t0_gen_cohort =</span> <span class="fu">as.factor</span>(t0_gen_cohort)</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(id) <span class="sc">|&gt;</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">t2_meaning =</span> <span class="fu">mean</span>(<span class="fu">c</span>(t2_meaning_purpose,</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>                                    t2_meaning_sense),</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>  <span class="co"># transform numeric variables into z scores (improves estimation)</span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), <span class="sc">~</span> <span class="fu">scale</span>(.x), <span class="at">.names =</span> <span class="st">"{col}_z"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>  <span class="co"># select only factors and numeric values that are z-scores</span></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(id,</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>         <span class="fu">where</span>(is.factor),</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>         t1_perfectionism, <span class="co"># for comparison</span></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>         <span class="fu">ends_with</span>(<span class="st">"_z"</span>), ) <span class="sc">|&gt;</span></span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>  <span class="co"># tidy data frame so that the columns are ordered by time (useful for more complex models)</span></span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">relocate</span>(id, <span class="at">.before =</span> <span class="fu">starts_with</span>(<span class="st">"t1_"</span>))   <span class="sc">|&gt;</span></span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">relocate</span>(<span class="fu">starts_with</span>(<span class="st">"t0_"</span>), <span class="at">.before =</span> <span class="fu">starts_with</span>(<span class="st">"t1_"</span>))  <span class="sc">|&gt;</span></span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">relocate</span>(<span class="fu">starts_with</span>(<span class="st">"t2_"</span>), <span class="at">.after =</span> <span class="fu">starts_with</span>(<span class="st">"t1_"</span>))</span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a><span class="co"># inspect</span></span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(dt_ref<span class="sc">$</span>t1_perfectionism_coarsen)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "[1,4)" "[4,5)" "[5,7]"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># rename levels</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>dt_ref<span class="sc">$</span>t1_perfectionism_coarsen <span class="ot">&lt;-</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">factor</span>(</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    dt_ref<span class="sc">$</span>t1_perfectionism_coarsen,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"[1,4)"</span>, <span class="st">"[4,5)"</span>, <span class="st">"[5,7]"</span>),</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"low"</span>, <span class="st">"medium"</span>, <span class="st">"high"</span>),</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">ordered =</span> <span class="cn">TRUE</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="save-your-dataframe-for-future-use" class="level2">
+<h2 class="anchored" data-anchor-id="save-your-dataframe-for-future-use">save your dataframe for future use</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#|eval: false</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># make dataframe</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>dt_ref <span class="ot">=</span> <span class="fu">as.data.frame</span>(dt_ref)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co"># save data</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(dt_ref, here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"dt_ref"</span>))</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co"># read -- you may start here if you need to repeat the analysis</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>dt_ref <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"dt_ref"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="prepare-models" class="level2">
+<h2 class="anchored" data-anchor-id="prepare-models">prepare models</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>dt_ref <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"dt_ref"</span>))</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># needs to be data frame</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>dt_ref <span class="ot">=</span> <span class="fu">data.frame</span>(dt_ref)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co"># simplicity</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>df <span class="ot">=</span> dt_ref </span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co"># this is the continuous exposure</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>X <span class="ot">=</span> <span class="st">"t1_perfectionism_z"</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="co"># this is a categorical exposure</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>X_pc <span class="ot">&lt;-</span> <span class="st">"t1_perfectionism_coarsen"</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="co"># set our outcome variable:</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">=</span> <span class="st">"t2_meaning_z"</span> <span class="co">#note that we have created all numeric values into z-scores.  This will facilitate estimation and also interpretation. The outcome is expressed in standard deviation units</span></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Get baseline names</span></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>baseline_vars_reflective_cont <span class="ot">=</span> dt_ref <span class="sc">|&gt;</span></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="fu">starts_with</span>(<span class="st">"t0"</span>)) <span class="sc">|&gt;</span> <span class="fu">colnames</span>()</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a><span class="co"># See what we have created:  These are all the "t0_" variables.</span></span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a><span class="co"># baseline_vars_reflective_cont</span></span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a><span class="co"># to run these models our data need to be a dataframe (not a tibble or another kind of obect)</span></span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a><span class="co"># above we've made the data a dataframe, but lets repeat in case you skipped that steip</span></span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>dt_ref <span class="ot">=</span> <span class="fu">as.data.frame</span>(dt_ref)</span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a><span class="co"># create our formula string, this time for the categorical variable.</span></span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>formula_str_X <span class="ot">&lt;-</span></span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">paste</span>(Y,</span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>        <span class="st">"~"</span>,</span>
+<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a>        X ,</span>
+<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a>        <span class="st">"*"</span>,</span>
+<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a>        <span class="st">"("</span>,</span>
+<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a>        <span class="fu">paste</span>(baseline_vars_reflective_cont, <span class="at">collapse =</span> <span class="st">"+"</span>),</span>
+<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a>        <span class="st">")"</span>)</span>
+<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a>formula_str_X</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "t2_meaning_z ~ t1_perfectionism_z * ( t0_male+t0_eth_cat+t0_gen_cohort+t0_rural_gch2018+t0_edu_z+t0_employed_z+t0_nz_dep2018_z+t0_nzsei13_z+t0_partner_z+t0_parent_z+t0_pol_orient_z+t0_agreeableness_z+t0_conscientiousness_z+t0_extraversion_z+t0_honesty_humility_z+t0_openness_z+t0_neuroticism_z+t0_modesty_z+t0_religion_identification_level_z+t0_perfectionism_z+t0_meaning_purpose_z+t0_meaning_sense_z )"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="do">## regression based control</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># fit model</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">glm</span>(<span class="fu">as.formula</span>(formula_str_X),</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>          <span class="co"># shortcut</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>          <span class="co">#  weights = weights, # will use weights with propensity score models</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">family =</span> <span class="st">"gaussian"</span>,</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>          <span class="at">data =</span> df)</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co"># we can look at the coefficients of this model, but again, it would be a mistake to interpret them</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+glm(formula = as.formula(formula_str_X), family = "gaussian", 
+    data = df)
+
+Coefficients:
+                                                                Estimate
+(Intercept)                                                   -0.0458559
+t1_perfectionism_z                                            -0.1347193
+t0_maleNot_male                                                0.0632191
+t0_eth_catmāori                                                0.0341978
+t0_eth_catpacific                                             -0.0420690
+t0_eth_catasian                                                0.0224974
+t0_gen_cohort.L                                               -0.0203971
+t0_gen_cohort.Q                                                0.0224781
+t0_gen_cohort.C                                               -0.0005157
+t0_gen_cohort^4                                               -0.0234273
+t0_rural_gch2018medium_urban_accessibility                     0.0277126
+t0_rural_gch2018low_urban_accessibility                        0.0196446
+t0_rural_gch2018remote                                         0.0314218
+t0_rural_gch2018very_remote                                    0.0184033
+t0_edu_z                                                       0.0354573
+t0_employed_z                                                  0.0104852
+t0_nz_dep2018_z                                                0.0038250
+t0_nzsei13_z                                                   0.0186043
+t0_partner_z                                                   0.0186944
+t0_parent_z                                                    0.0304512
+t0_pol_orient_z                                                0.0268793
+t0_agreeableness_z                                             0.0251108
+t0_conscientiousness_z                                         0.0160022
+t0_extraversion_z                                              0.0443726
+t0_honesty_humility_z                                          0.0189023
+t0_openness_z                                                  0.0116959
+t0_neuroticism_z                                              -0.0440279
+t0_modesty_z                                                   0.0008530
+t0_religion_identification_level_z                             0.0601431
+t0_perfectionism_z                                             0.0136652
+t0_meaning_purpose_z                                           0.3689498
+t0_meaning_sense_z                                             0.2410291
+t1_perfectionism_z:t0_maleNot_male                             0.0331692
+t1_perfectionism_z:t0_eth_catmāori                             0.0094140
+t1_perfectionism_z:t0_eth_catpacific                          -0.0679774
+t1_perfectionism_z:t0_eth_catasian                            -0.0852596
+t1_perfectionism_z:t0_gen_cohort.L                            -0.0211112
+t1_perfectionism_z:t0_gen_cohort.Q                             0.1133846
+t1_perfectionism_z:t0_gen_cohort.C                            -0.0321318
+t1_perfectionism_z:t0_gen_cohort^4                             0.0033751
+t1_perfectionism_z:t0_rural_gch2018medium_urban_accessibility -0.0007409
+t1_perfectionism_z:t0_rural_gch2018low_urban_accessibility    -0.0087372
+t1_perfectionism_z:t0_rural_gch2018remote                     -0.0051989
+t1_perfectionism_z:t0_rural_gch2018very_remote                 0.0406504
+t1_perfectionism_z:t0_edu_z                                    0.0180683
+t1_perfectionism_z:t0_employed_z                               0.0110596
+t1_perfectionism_z:t0_nz_dep2018_z                            -0.0062207
+t1_perfectionism_z:t0_nzsei13_z                               -0.0011272
+t1_perfectionism_z:t0_partner_z                                0.0053248
+t1_perfectionism_z:t0_parent_z                                 0.0111114
+t1_perfectionism_z:t0_pol_orient_z                            -0.0003759
+t1_perfectionism_z:t0_agreeableness_z                         -0.0052810
+t1_perfectionism_z:t0_conscientiousness_z                     -0.0003144
+t1_perfectionism_z:t0_extraversion_z                          -0.0041967
+t1_perfectionism_z:t0_honesty_humility_z                       0.0026688
+t1_perfectionism_z:t0_openness_z                               0.0086363
+t1_perfectionism_z:t0_neuroticism_z                           -0.0145938
+t1_perfectionism_z:t0_modesty_z                               -0.0026194
+t1_perfectionism_z:t0_religion_identification_level_z          0.0086293
+t1_perfectionism_z:t0_perfectionism_z                          0.0212526
+t1_perfectionism_z:t0_meaning_purpose_z                        0.0231580
+t1_perfectionism_z:t0_meaning_sense_z                         -0.0017437
+                                                              Std. Error
+(Intercept)                                                    0.0206239
+t1_perfectionism_z                                             0.0217018
+t0_maleNot_male                                                0.0158872
+t0_eth_catmāori                                                0.0257156
+t0_eth_catpacific                                              0.0513832
+t0_eth_catasian                                                0.0401502
+t0_gen_cohort.L                                                0.0537594
+t0_gen_cohort.Q                                                0.0452441
+t0_gen_cohort.C                                                0.0287586
+t0_gen_cohort^4                                                0.0160948
+t0_rural_gch2018medium_urban_accessibility                     0.0185188
+t0_rural_gch2018low_urban_accessibility                        0.0226516
+t0_rural_gch2018remote                                         0.0338997
+t0_rural_gch2018very_remote                                    0.0697321
+t0_edu_z                                                       0.0085782
+t0_employed_z                                                  0.0073289
+t0_nz_dep2018_z                                                0.0072973
+t0_nzsei13_z                                                   0.0083108
+t0_partner_z                                                   0.0075420
+t0_parent_z                                                    0.0082115
+t0_pol_orient_z                                                0.0079719
+t0_agreeableness_z                                             0.0079531
+t0_conscientiousness_z                                         0.0075374
+t0_extraversion_z                                              0.0075663
+t0_honesty_humility_z                                          0.0080126
+t0_openness_z                                                  0.0076666
+t0_neuroticism_z                                               0.0084511
+t0_modesty_z                                                   0.0079318
+t0_religion_identification_level_z                             0.0075053
+t0_perfectionism_z                                             0.0106384
+t0_meaning_purpose_z                                           0.0097171
+t0_meaning_sense_z                                             0.0098484
+t1_perfectionism_z:t0_maleNot_male                             0.0159842
+t1_perfectionism_z:t0_eth_catmāori                             0.0248536
+t1_perfectionism_z:t0_eth_catpacific                           0.0513900
+t1_perfectionism_z:t0_eth_catasian                             0.0395309
+t1_perfectionism_z:t0_gen_cohort.L                             0.0531681
+t1_perfectionism_z:t0_gen_cohort.Q                             0.0443921
+t1_perfectionism_z:t0_gen_cohort.C                             0.0280822
+t1_perfectionism_z:t0_gen_cohort^4                             0.0158307
+t1_perfectionism_z:t0_rural_gch2018medium_urban_accessibility  0.0181669
+t1_perfectionism_z:t0_rural_gch2018low_urban_accessibility     0.0231386
+t1_perfectionism_z:t0_rural_gch2018remote                      0.0363971
+t1_perfectionism_z:t0_rural_gch2018very_remote                 0.0788117
+t1_perfectionism_z:t0_edu_z                                    0.0086251
+t1_perfectionism_z:t0_employed_z                               0.0070229
+t1_perfectionism_z:t0_nz_dep2018_z                             0.0072208
+t1_perfectionism_z:t0_nzsei13_z                                0.0082785
+t1_perfectionism_z:t0_partner_z                                0.0072999
+t1_perfectionism_z:t0_parent_z                                 0.0082109
+t1_perfectionism_z:t0_pol_orient_z                             0.0078204
+t1_perfectionism_z:t0_agreeableness_z                          0.0075244
+t1_perfectionism_z:t0_conscientiousness_z                      0.0071301
+t1_perfectionism_z:t0_extraversion_z                           0.0073804
+t1_perfectionism_z:t0_honesty_humility_z                       0.0078333
+t1_perfectionism_z:t0_openness_z                               0.0074053
+t1_perfectionism_z:t0_neuroticism_z                            0.0082842
+t1_perfectionism_z:t0_modesty_z                                0.0079651
+t1_perfectionism_z:t0_religion_identification_level_z          0.0074253
+t1_perfectionism_z:t0_perfectionism_z                          0.0081526
+t1_perfectionism_z:t0_meaning_purpose_z                        0.0090046
+t1_perfectionism_z:t0_meaning_sense_z                          0.0086903
+                                                              t value Pr(&gt;|t|)
+(Intercept)                                                    -2.223  0.02621
+t1_perfectionism_z                                             -6.208 5.59e-10
+t0_maleNot_male                                                 3.979 6.96e-05
+t0_eth_catmāori                                                 1.330  0.18360
+t0_eth_catpacific                                              -0.819  0.41296
+t0_eth_catasian                                                 0.560  0.57527
+t0_gen_cohort.L                                                -0.379  0.70439
+t0_gen_cohort.Q                                                 0.497  0.61933
+t0_gen_cohort.C                                                -0.018  0.98569
+t0_gen_cohort^4                                                -1.456  0.14554
+t0_rural_gch2018medium_urban_accessibility                      1.496  0.13457
+t0_rural_gch2018low_urban_accessibility                         0.867  0.38583
+t0_rural_gch2018remote                                          0.927  0.35400
+t0_rural_gch2018very_remote                                     0.264  0.79185
+t0_edu_z                                                        4.133 3.60e-05
+t0_employed_z                                                   1.431  0.15256
+t0_nz_dep2018_z                                                 0.524  0.60018
+t0_nzsei13_z                                                    2.239  0.02521
+t0_partner_z                                                    2.479  0.01320
+t0_parent_z                                                     3.708  0.00021
+t0_pol_orient_z                                                 3.372  0.00075
+t0_agreeableness_z                                              3.157  0.00160
+t0_conscientiousness_z                                          2.123  0.03378
+t0_extraversion_z                                               5.865 4.65e-09
+t0_honesty_humility_z                                           2.359  0.01834
+t0_openness_z                                                   1.526  0.12715
+t0_neuroticism_z                                               -5.210 1.93e-07
+t0_modesty_z                                                    0.108  0.91436
+t0_religion_identification_level_z                              8.013 1.24e-15
+t0_perfectionism_z                                              1.285  0.19899
+t0_meaning_purpose_z                                           37.969  &lt; 2e-16
+t0_meaning_sense_z                                             24.474  &lt; 2e-16
+t1_perfectionism_z:t0_maleNot_male                              2.075  0.03800
+t1_perfectionism_z:t0_eth_catmāori                              0.379  0.70486
+t1_perfectionism_z:t0_eth_catpacific                           -1.323  0.18594
+t1_perfectionism_z:t0_eth_catasian                             -2.157  0.03105
+t1_perfectionism_z:t0_gen_cohort.L                             -0.397  0.69133
+t1_perfectionism_z:t0_gen_cohort.Q                              2.554  0.01066
+t1_perfectionism_z:t0_gen_cohort.C                             -1.144  0.25257
+t1_perfectionism_z:t0_gen_cohort^4                              0.213  0.83117
+t1_perfectionism_z:t0_rural_gch2018medium_urban_accessibility  -0.041  0.96747
+t1_perfectionism_z:t0_rural_gch2018low_urban_accessibility     -0.378  0.70573
+t1_perfectionism_z:t0_rural_gch2018remote                      -0.143  0.88642
+t1_perfectionism_z:t0_rural_gch2018very_remote                  0.516  0.60601
+t1_perfectionism_z:t0_edu_z                                     2.095  0.03621
+t1_perfectionism_z:t0_employed_z                                1.575  0.11533
+t1_perfectionism_z:t0_nz_dep2018_z                             -0.861  0.38899
+t1_perfectionism_z:t0_nzsei13_z                                -0.136  0.89169
+t1_perfectionism_z:t0_partner_z                                 0.729  0.46575
+t1_perfectionism_z:t0_parent_z                                  1.353  0.17601
+t1_perfectionism_z:t0_pol_orient_z                             -0.048  0.96167
+t1_perfectionism_z:t0_agreeableness_z                          -0.702  0.48279
+t1_perfectionism_z:t0_conscientiousness_z                      -0.044  0.96482
+t1_perfectionism_z:t0_extraversion_z                           -0.569  0.56963
+t1_perfectionism_z:t0_honesty_humility_z                        0.341  0.73334
+t1_perfectionism_z:t0_openness_z                                1.166  0.24355
+t1_perfectionism_z:t0_neuroticism_z                            -1.762  0.07816
+t1_perfectionism_z:t0_modesty_z                                -0.329  0.74226
+t1_perfectionism_z:t0_religion_identification_level_z           1.162  0.24520
+t1_perfectionism_z:t0_perfectionism_z                           2.607  0.00915
+t1_perfectionism_z:t0_meaning_purpose_z                         2.572  0.01013
+t1_perfectionism_z:t0_meaning_sense_z                          -0.201  0.84098
+                                                                 
+(Intercept)                                                   *  
+t1_perfectionism_z                                            ***
+t0_maleNot_male                                               ***
+t0_eth_catmāori                                                  
+t0_eth_catpacific                                                
+t0_eth_catasian                                                  
+t0_gen_cohort.L                                                  
+t0_gen_cohort.Q                                                  
+t0_gen_cohort.C                                                  
+t0_gen_cohort^4                                                  
+t0_rural_gch2018medium_urban_accessibility                       
+t0_rural_gch2018low_urban_accessibility                          
+t0_rural_gch2018remote                                           
+t0_rural_gch2018very_remote                                      
+t0_edu_z                                                      ***
+t0_employed_z                                                    
+t0_nz_dep2018_z                                                  
+t0_nzsei13_z                                                  *  
+t0_partner_z                                                  *  
+t0_parent_z                                                   ***
+t0_pol_orient_z                                               ***
+t0_agreeableness_z                                            ** 
+t0_conscientiousness_z                                        *  
+t0_extraversion_z                                             ***
+t0_honesty_humility_z                                         *  
+t0_openness_z                                                    
+t0_neuroticism_z                                              ***
+t0_modesty_z                                                     
+t0_religion_identification_level_z                            ***
+t0_perfectionism_z                                               
+t0_meaning_purpose_z                                          ***
+t0_meaning_sense_z                                            ***
+t1_perfectionism_z:t0_maleNot_male                            *  
+t1_perfectionism_z:t0_eth_catmāori                               
+t1_perfectionism_z:t0_eth_catpacific                             
+t1_perfectionism_z:t0_eth_catasian                            *  
+t1_perfectionism_z:t0_gen_cohort.L                               
+t1_perfectionism_z:t0_gen_cohort.Q                            *  
+t1_perfectionism_z:t0_gen_cohort.C                               
+t1_perfectionism_z:t0_gen_cohort^4                               
+t1_perfectionism_z:t0_rural_gch2018medium_urban_accessibility    
+t1_perfectionism_z:t0_rural_gch2018low_urban_accessibility       
+t1_perfectionism_z:t0_rural_gch2018remote                        
+t1_perfectionism_z:t0_rural_gch2018very_remote                   
+t1_perfectionism_z:t0_edu_z                                   *  
+t1_perfectionism_z:t0_employed_z                                 
+t1_perfectionism_z:t0_nz_dep2018_z                               
+t1_perfectionism_z:t0_nzsei13_z                                  
+t1_perfectionism_z:t0_partner_z                                  
+t1_perfectionism_z:t0_parent_z                                   
+t1_perfectionism_z:t0_pol_orient_z                               
+t1_perfectionism_z:t0_agreeableness_z                            
+t1_perfectionism_z:t0_conscientiousness_z                        
+t1_perfectionism_z:t0_extraversion_z                             
+t1_perfectionism_z:t0_honesty_humility_z                         
+t1_perfectionism_z:t0_openness_z                                 
+t1_perfectionism_z:t0_neuroticism_z                           .  
+t1_perfectionism_z:t0_modesty_z                                  
+t1_perfectionism_z:t0_religion_identification_level_z            
+t1_perfectionism_z:t0_perfectionism_z                         ** 
+t1_perfectionism_z:t0_meaning_purpose_z                       *  
+t1_perfectionism_z:t0_meaning_sense_z                            
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+(Dispersion parameter for gaussian family taken to be 0.479121)
+
+    Null deviance: 9999.0  on 9999  degrees of freedom
+Residual deviance: 4761.5  on 9938  degrees of freedom
+AIC: 21085
+
+Number of Fisher Scoring iterations: 2</code></pre>
+</div>
+</div>
+</section>
+<section id="simulate-coefficients-for-the-continuous-exposure" class="level1">
+<h1>simulate coefficients for the continuous exposure</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(clarify)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>nsims <span class="ot">=</span> <span class="dv">200</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>sim_model_r <span class="ot">&lt;-</span> <span class="fu">sim</span>(m1, <span class="at">n =</span> nsims)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co"># set to number of cores on your machine, e.g.</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>cores <span class="ot">=</span> <span class="dv">2</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="co"># simulate effect as modified</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>sim_estimand_r <span class="ot">&lt;-</span> <span class="fu">sim_ame</span>(sim_model_r,</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>                          <span class="at">var =</span> X,</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>                          <span class="at">cl =</span> cores,</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>                          <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a><span class="co"># this is the difference in expectations between everyone in the population being subject to a one standard deviation increase in perfectionism</span></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a><span class="co"># and everyone being subject to an average level of perfectionism.</span></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimate  2.5 % 97.5 %</span></span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a><span class="co">#   dY/d(t1_perfectionism_z)   -0.160 -0.178 -0.140</span></span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sim_estimand_r)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                            Estimate  2.5 % 97.5 %
+E[dY/d(t1_perfectionism_z)]   -0.160 -0.179 -0.142</code></pre>
+</div>
+</div>
+<section id="coarsened-variable." class="level2">
+<h2 class="anchored" data-anchor-id="coarsened-variable.">Coarsened variable.</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create our formula string:</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>formula_str_X_pc <span class="ot">&lt;-</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">paste</span>(Y,</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>        <span class="st">"~"</span>,</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>        X_pc ,</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">"*"</span>,</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">"("</span>,</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>        <span class="fu">paste</span>(baseline_vars_reflective_cont, <span class="at">collapse =</span> <span class="st">"+"</span>),</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>        <span class="st">")"</span>)</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>formula_str_X_pc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "t2_meaning_z ~ t1_perfectionism_coarsen * ( t0_male+t0_eth_cat+t0_gen_cohort+t0_rural_gch2018+t0_edu_z+t0_employed_z+t0_nz_dep2018_z+t0_nzsei13_z+t0_partner_z+t0_parent_z+t0_pol_orient_z+t0_agreeableness_z+t0_conscientiousness_z+t0_extraversion_z+t0_honesty_humility_z+t0_openness_z+t0_neuroticism_z+t0_modesty_z+t0_religion_identification_level_z+t0_perfectionism_z+t0_meaning_purpose_z+t0_meaning_sense_z )"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fit model</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">glm</span>(<span class="fu">as.formula</span>(formula_str_X_pc),</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>          <span class="co"># shortcut</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>          <span class="co">#  weights = weights, # will use weights with propensity score models</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">family =</span> <span class="st">"gaussian"</span>,</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">data =</span> df)</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="co"># we can look at the coefficients of this model, but again it would be a mistake to interpret them</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+glm(formula = as.formula(formula_str_X_pc), family = "gaussian", 
+    data = df)
+
+Coefficients:
+                                                                        Estimate
+(Intercept)                                                           -0.1226132
+t1_perfectionism_coarsen.L                                            -0.1470404
+t1_perfectionism_coarsen.Q                                             0.0968493
+t0_maleNot_male                                                        0.0953799
+t0_eth_catmāori                                                        0.0330656
+t0_eth_catpacific                                                     -0.0797194
+t0_eth_catasian                                                       -0.0450017
+t0_gen_cohort.L                                                       -0.0638088
+t0_gen_cohort.Q                                                        0.0783060
+t0_gen_cohort.C                                                       -0.0171482
+t0_gen_cohort^4                                                       -0.0209400
+t0_rural_gch2018medium_urban_accessibility                             0.0356611
+t0_rural_gch2018low_urban_accessibility                                0.0112271
+t0_rural_gch2018remote                                                 0.0206451
+t0_rural_gch2018very_remote                                            0.0708426
+t0_edu_z                                                               0.0436332
+t0_employed_z                                                          0.0170529
+t0_nz_dep2018_z                                                       -0.0018689
+t0_nzsei13_z                                                           0.0204286
+t0_partner_z                                                           0.0165503
+t0_parent_z                                                            0.0377576
+t0_pol_orient_z                                                        0.0228034
+t0_agreeableness_z                                                     0.0180559
+t0_conscientiousness_z                                                 0.0192677
+t0_extraversion_z                                                      0.0450764
+t0_honesty_humility_z                                                  0.0222787
+t0_openness_z                                                          0.0159350
+t0_neuroticism_z                                                      -0.0602859
+t0_modesty_z                                                          -0.0035097
+t0_religion_identification_level_z                                     0.0604881
+t0_perfectionism_z                                                     0.0008418
+t0_meaning_purpose_z                                                   0.3868685
+t0_meaning_sense_z                                                     0.2434801
+t1_perfectionism_coarsen.L:t0_maleNot_male                             0.0620947
+t1_perfectionism_coarsen.Q:t0_maleNot_male                            -0.0431561
+t1_perfectionism_coarsen.L:t0_eth_catmāori                             0.0669463
+t1_perfectionism_coarsen.Q:t0_eth_catmāori                             0.1235800
+t1_perfectionism_coarsen.L:t0_eth_catpacific                          -0.0718211
+t1_perfectionism_coarsen.Q:t0_eth_catpacific                           0.0856952
+t1_perfectionism_coarsen.L:t0_eth_catasian                            -0.1551102
+t1_perfectionism_coarsen.Q:t0_eth_catasian                             0.0883442
+t1_perfectionism_coarsen.L:t0_gen_cohort.L                            -0.0306497
+t1_perfectionism_coarsen.Q:t0_gen_cohort.L                             0.1516702
+t1_perfectionism_coarsen.L:t0_gen_cohort.Q                             0.1958547
+t1_perfectionism_coarsen.Q:t0_gen_cohort.Q                             0.0454657
+t1_perfectionism_coarsen.L:t0_gen_cohort.C                            -0.0322455
+t1_perfectionism_coarsen.Q:t0_gen_cohort.C                             0.0440922
+t1_perfectionism_coarsen.L:t0_gen_cohort^4                             0.0173854
+t1_perfectionism_coarsen.Q:t0_gen_cohort^4                             0.0131898
+t1_perfectionism_coarsen.L:t0_rural_gch2018medium_urban_accessibility  0.0090066
+t1_perfectionism_coarsen.Q:t0_rural_gch2018medium_urban_accessibility  0.0005206
+t1_perfectionism_coarsen.L:t0_rural_gch2018low_urban_accessibility    -0.0464747
+t1_perfectionism_coarsen.Q:t0_rural_gch2018low_urban_accessibility    -0.0419324
+t1_perfectionism_coarsen.L:t0_rural_gch2018remote                     -0.0830230
+t1_perfectionism_coarsen.Q:t0_rural_gch2018remote                     -0.1385026
+t1_perfectionism_coarsen.L:t0_rural_gch2018very_remote                 0.0971420
+t1_perfectionism_coarsen.Q:t0_rural_gch2018very_remote                -0.0499774
+t1_perfectionism_coarsen.L:t0_edu_z                                    0.0286493
+t1_perfectionism_coarsen.Q:t0_edu_z                                   -0.0028539
+t1_perfectionism_coarsen.L:t0_employed_z                               0.0252432
+t1_perfectionism_coarsen.Q:t0_employed_z                               0.0091128
+t1_perfectionism_coarsen.L:t0_nz_dep2018_z                            -0.0093324
+t1_perfectionism_coarsen.Q:t0_nz_dep2018_z                             0.0005713
+t1_perfectionism_coarsen.L:t0_nzsei13_z                                0.0009809
+t1_perfectionism_coarsen.Q:t0_nzsei13_z                                0.0032192
+t1_perfectionism_coarsen.L:t0_partner_z                                0.0012847
+t1_perfectionism_coarsen.Q:t0_partner_z                                0.0115548
+t1_perfectionism_coarsen.L:t0_parent_z                                 0.0270801
+t1_perfectionism_coarsen.Q:t0_parent_z                                 0.0090702
+t1_perfectionism_coarsen.L:t0_pol_orient_z                            -0.0006814
+t1_perfectionism_coarsen.Q:t0_pol_orient_z                             0.0172947
+t1_perfectionism_coarsen.L:t0_agreeableness_z                         -0.0189019
+t1_perfectionism_coarsen.Q:t0_agreeableness_z                          0.0024354
+t1_perfectionism_coarsen.L:t0_conscientiousness_z                     -0.0126309
+t1_perfectionism_coarsen.Q:t0_conscientiousness_z                     -0.0194902
+t1_perfectionism_coarsen.L:t0_extraversion_z                          -0.0002204
+t1_perfectionism_coarsen.Q:t0_extraversion_z                           0.0165607
+t1_perfectionism_coarsen.L:t0_honesty_humility_z                      -0.0027931
+t1_perfectionism_coarsen.Q:t0_honesty_humility_z                      -0.0140992
+t1_perfectionism_coarsen.L:t0_openness_z                               0.0065241
+t1_perfectionism_coarsen.Q:t0_openness_z                              -0.0126349
+t1_perfectionism_coarsen.L:t0_neuroticism_z                           -0.0234255
+t1_perfectionism_coarsen.Q:t0_neuroticism_z                            0.0062206
+t1_perfectionism_coarsen.L:t0_modesty_z                               -0.0108579
+t1_perfectionism_coarsen.Q:t0_modesty_z                                0.0147372
+t1_perfectionism_coarsen.L:t0_religion_identification_level_z          0.0227283
+t1_perfectionism_coarsen.Q:t0_religion_identification_level_z          0.0279009
+t1_perfectionism_coarsen.L:t0_perfectionism_z                          0.0320759
+t1_perfectionism_coarsen.Q:t0_perfectionism_z                         -0.0455083
+t1_perfectionism_coarsen.L:t0_meaning_purpose_z                        0.0411158
+t1_perfectionism_coarsen.Q:t0_meaning_purpose_z                        0.0056432
+t1_perfectionism_coarsen.L:t0_meaning_sense_z                         -0.0091829
+t1_perfectionism_coarsen.Q:t0_meaning_sense_z                         -0.0111806
+                                                                      Std. Error
+(Intercept)                                                            0.0254701
+t1_perfectionism_coarsen.L                                             0.0431872
+t1_perfectionism_coarsen.Q                                             0.0450248
+t0_maleNot_male                                                        0.0192675
+t0_eth_catmāori                                                        0.0299149
+t0_eth_catpacific                                                      0.0608525
+t0_eth_catasian                                                        0.0426782
+t0_gen_cohort.L                                                        0.0603945
+t0_gen_cohort.Q                                                        0.0506044
+t0_gen_cohort.C                                                        0.0321417
+t0_gen_cohort^4                                                        0.0184486
+t0_rural_gch2018medium_urban_accessibility                             0.0227806
+t0_rural_gch2018low_urban_accessibility                                0.0280264
+t0_rural_gch2018remote                                                 0.0427166
+t0_rural_gch2018very_remote                                            0.0932044
+t0_edu_z                                                               0.0105185
+t0_employed_z                                                          0.0086131
+t0_nz_dep2018_z                                                        0.0086805
+t0_nzsei13_z                                                           0.0100606
+t0_partner_z                                                           0.0085931
+t0_parent_z                                                            0.0097982
+t0_pol_orient_z                                                        0.0097893
+t0_agreeableness_z                                                     0.0092234
+t0_conscientiousness_z                                                 0.0085661
+t0_extraversion_z                                                      0.0091048
+t0_honesty_humility_z                                                  0.0096794
+t0_openness_z                                                          0.0092394
+t0_neuroticism_z                                                       0.0099422
+t0_modesty_z                                                           0.0094387
+t0_religion_identification_level_z                                     0.0092116
+t0_perfectionism_z                                                     0.0113879
+t0_meaning_purpose_z                                                   0.0105537
+t0_meaning_sense_z                                                     0.0099679
+t1_perfectionism_coarsen.L:t0_maleNot_male                             0.0314355
+t1_perfectionism_coarsen.Q:t0_maleNot_male                             0.0352027
+t1_perfectionism_coarsen.L:t0_eth_catmāori                             0.0484912
+t1_perfectionism_coarsen.Q:t0_eth_catmāori                             0.0549365
+t1_perfectionism_coarsen.L:t0_eth_catpacific                           0.1061646
+t1_perfectionism_coarsen.Q:t0_eth_catpacific                           0.1046290
+t1_perfectionism_coarsen.L:t0_eth_catasian                             0.0698406
+t1_perfectionism_coarsen.Q:t0_eth_catasian                             0.0777872
+t1_perfectionism_coarsen.L:t0_gen_cohort.L                             0.1029227
+t1_perfectionism_coarsen.Q:t0_gen_cohort.L                             0.1062634
+t1_perfectionism_coarsen.L:t0_gen_cohort.Q                             0.0861450
+t1_perfectionism_coarsen.Q:t0_gen_cohort.Q                             0.0891283
+t1_perfectionism_coarsen.L:t0_gen_cohort.C                             0.0545987
+t1_perfectionism_coarsen.Q:t0_gen_cohort.C                             0.0567232
+t1_perfectionism_coarsen.L:t0_gen_cohort^4                             0.0306661
+t1_perfectionism_coarsen.Q:t0_gen_cohort^4                             0.0331920
+t1_perfectionism_coarsen.L:t0_rural_gch2018medium_urban_accessibility  0.0367803
+t1_perfectionism_coarsen.Q:t0_rural_gch2018medium_urban_accessibility  0.0419635
+t1_perfectionism_coarsen.L:t0_rural_gch2018low_urban_accessibility     0.0461386
+t1_perfectionism_coarsen.Q:t0_rural_gch2018low_urban_accessibility     0.0508341
+t1_perfectionism_coarsen.L:t0_rural_gch2018remote                      0.0743191
+t1_perfectionism_coarsen.Q:t0_rural_gch2018remote                      0.0736540
+t1_perfectionism_coarsen.L:t0_rural_gch2018very_remote                 0.1618903
+t1_perfectionism_coarsen.Q:t0_rural_gch2018very_remote                 0.1609781
+t1_perfectionism_coarsen.L:t0_edu_z                                    0.0169322
+t1_perfectionism_coarsen.Q:t0_edu_z                                    0.0194200
+t1_perfectionism_coarsen.L:t0_employed_z                               0.0140222
+t1_perfectionism_coarsen.Q:t0_employed_z                               0.0157635
+t1_perfectionism_coarsen.L:t0_nz_dep2018_z                             0.0140633
+t1_perfectionism_coarsen.Q:t0_nz_dep2018_z                             0.0159476
+t1_perfectionism_coarsen.L:t0_nzsei13_z                                0.0163164
+t1_perfectionism_coarsen.Q:t0_nzsei13_z                                0.0184681
+t1_perfectionism_coarsen.L:t0_partner_z                                0.0140428
+t1_perfectionism_coarsen.Q:t0_partner_z                                0.0156797
+t1_perfectionism_coarsen.L:t0_parent_z                                 0.0160940
+t1_perfectionism_coarsen.Q:t0_parent_z                                 0.0178048
+t1_perfectionism_coarsen.L:t0_pol_orient_z                             0.0158645
+t1_perfectionism_coarsen.Q:t0_pol_orient_z                             0.0179807
+t1_perfectionism_coarsen.L:t0_agreeableness_z                          0.0144998
+t1_perfectionism_coarsen.Q:t0_agreeableness_z                          0.0173259
+t1_perfectionism_coarsen.L:t0_conscientiousness_z                      0.0135816
+t1_perfectionism_coarsen.Q:t0_conscientiousness_z                      0.0159942
+t1_perfectionism_coarsen.L:t0_extraversion_z                           0.0146683
+t1_perfectionism_coarsen.Q:t0_extraversion_z                           0.0167994
+t1_perfectionism_coarsen.L:t0_honesty_humility_z                       0.0155358
+t1_perfectionism_coarsen.Q:t0_honesty_humility_z                       0.0179105
+t1_perfectionism_coarsen.L:t0_openness_z                               0.0147235
+t1_perfectionism_coarsen.Q:t0_openness_z                               0.0171878
+t1_perfectionism_coarsen.L:t0_neuroticism_z                            0.0160470
+t1_perfectionism_coarsen.Q:t0_neuroticism_z                            0.0183189
+t1_perfectionism_coarsen.L:t0_modesty_z                                0.0153804
+t1_perfectionism_coarsen.Q:t0_modesty_z                                0.0172620
+t1_perfectionism_coarsen.L:t0_religion_identification_level_z          0.0149222
+t1_perfectionism_coarsen.Q:t0_religion_identification_level_z          0.0169249
+t1_perfectionism_coarsen.L:t0_perfectionism_z                          0.0178542
+t1_perfectionism_coarsen.Q:t0_perfectionism_z                          0.0214321
+t1_perfectionism_coarsen.L:t0_meaning_purpose_z                        0.0171386
+t1_perfectionism_coarsen.Q:t0_meaning_purpose_z                        0.0193535
+t1_perfectionism_coarsen.L:t0_meaning_sense_z                          0.0158506
+t1_perfectionism_coarsen.Q:t0_meaning_sense_z                          0.0185719
+                                                                      t value
+(Intercept)                                                            -4.814
+t1_perfectionism_coarsen.L                                             -3.405
+t1_perfectionism_coarsen.Q                                              2.151
+t0_maleNot_male                                                         4.950
+t0_eth_catmāori                                                         1.105
+t0_eth_catpacific                                                      -1.310
+t0_eth_catasian                                                        -1.054
+t0_gen_cohort.L                                                        -1.057
+t0_gen_cohort.Q                                                         1.547
+t0_gen_cohort.C                                                        -0.534
+t0_gen_cohort^4                                                        -1.135
+t0_rural_gch2018medium_urban_accessibility                              1.565
+t0_rural_gch2018low_urban_accessibility                                 0.401
+t0_rural_gch2018remote                                                  0.483
+t0_rural_gch2018very_remote                                             0.760
+t0_edu_z                                                                4.148
+t0_employed_z                                                           1.980
+t0_nz_dep2018_z                                                        -0.215
+t0_nzsei13_z                                                            2.031
+t0_partner_z                                                            1.926
+t0_parent_z                                                             3.854
+t0_pol_orient_z                                                         2.329
+t0_agreeableness_z                                                      1.958
+t0_conscientiousness_z                                                  2.249
+t0_extraversion_z                                                       4.951
+t0_honesty_humility_z                                                   2.302
+t0_openness_z                                                           1.725
+t0_neuroticism_z                                                       -6.064
+t0_modesty_z                                                           -0.372
+t0_religion_identification_level_z                                      6.566
+t0_perfectionism_z                                                      0.074
+t0_meaning_purpose_z                                                   36.657
+t0_meaning_sense_z                                                     24.426
+t1_perfectionism_coarsen.L:t0_maleNot_male                              1.975
+t1_perfectionism_coarsen.Q:t0_maleNot_male                             -1.226
+t1_perfectionism_coarsen.L:t0_eth_catmāori                              1.381
+t1_perfectionism_coarsen.Q:t0_eth_catmāori                              2.250
+t1_perfectionism_coarsen.L:t0_eth_catpacific                           -0.677
+t1_perfectionism_coarsen.Q:t0_eth_catpacific                            0.819
+t1_perfectionism_coarsen.L:t0_eth_catasian                             -2.221
+t1_perfectionism_coarsen.Q:t0_eth_catasian                              1.136
+t1_perfectionism_coarsen.L:t0_gen_cohort.L                             -0.298
+t1_perfectionism_coarsen.Q:t0_gen_cohort.L                              1.427
+t1_perfectionism_coarsen.L:t0_gen_cohort.Q                              2.274
+t1_perfectionism_coarsen.Q:t0_gen_cohort.Q                              0.510
+t1_perfectionism_coarsen.L:t0_gen_cohort.C                             -0.591
+t1_perfectionism_coarsen.Q:t0_gen_cohort.C                              0.777
+t1_perfectionism_coarsen.L:t0_gen_cohort^4                              0.567
+t1_perfectionism_coarsen.Q:t0_gen_cohort^4                              0.397
+t1_perfectionism_coarsen.L:t0_rural_gch2018medium_urban_accessibility   0.245
+t1_perfectionism_coarsen.Q:t0_rural_gch2018medium_urban_accessibility   0.012
+t1_perfectionism_coarsen.L:t0_rural_gch2018low_urban_accessibility     -1.007
+t1_perfectionism_coarsen.Q:t0_rural_gch2018low_urban_accessibility     -0.825
+t1_perfectionism_coarsen.L:t0_rural_gch2018remote                      -1.117
+t1_perfectionism_coarsen.Q:t0_rural_gch2018remote                      -1.880
+t1_perfectionism_coarsen.L:t0_rural_gch2018very_remote                  0.600
+t1_perfectionism_coarsen.Q:t0_rural_gch2018very_remote                 -0.310
+t1_perfectionism_coarsen.L:t0_edu_z                                     1.692
+t1_perfectionism_coarsen.Q:t0_edu_z                                    -0.147
+t1_perfectionism_coarsen.L:t0_employed_z                                1.800
+t1_perfectionism_coarsen.Q:t0_employed_z                                0.578
+t1_perfectionism_coarsen.L:t0_nz_dep2018_z                             -0.664
+t1_perfectionism_coarsen.Q:t0_nz_dep2018_z                              0.036
+t1_perfectionism_coarsen.L:t0_nzsei13_z                                 0.060
+t1_perfectionism_coarsen.Q:t0_nzsei13_z                                 0.174
+t1_perfectionism_coarsen.L:t0_partner_z                                 0.091
+t1_perfectionism_coarsen.Q:t0_partner_z                                 0.737
+t1_perfectionism_coarsen.L:t0_parent_z                                  1.683
+t1_perfectionism_coarsen.Q:t0_parent_z                                  0.509
+t1_perfectionism_coarsen.L:t0_pol_orient_z                             -0.043
+t1_perfectionism_coarsen.Q:t0_pol_orient_z                              0.962
+t1_perfectionism_coarsen.L:t0_agreeableness_z                          -1.304
+t1_perfectionism_coarsen.Q:t0_agreeableness_z                           0.141
+t1_perfectionism_coarsen.L:t0_conscientiousness_z                      -0.930
+t1_perfectionism_coarsen.Q:t0_conscientiousness_z                      -1.219
+t1_perfectionism_coarsen.L:t0_extraversion_z                           -0.015
+t1_perfectionism_coarsen.Q:t0_extraversion_z                            0.986
+t1_perfectionism_coarsen.L:t0_honesty_humility_z                       -0.180
+t1_perfectionism_coarsen.Q:t0_honesty_humility_z                       -0.787
+t1_perfectionism_coarsen.L:t0_openness_z                                0.443
+t1_perfectionism_coarsen.Q:t0_openness_z                               -0.735
+t1_perfectionism_coarsen.L:t0_neuroticism_z                            -1.460
+t1_perfectionism_coarsen.Q:t0_neuroticism_z                             0.340
+t1_perfectionism_coarsen.L:t0_modesty_z                                -0.706
+t1_perfectionism_coarsen.Q:t0_modesty_z                                 0.854
+t1_perfectionism_coarsen.L:t0_religion_identification_level_z           1.523
+t1_perfectionism_coarsen.Q:t0_religion_identification_level_z           1.649
+t1_perfectionism_coarsen.L:t0_perfectionism_z                           1.797
+t1_perfectionism_coarsen.Q:t0_perfectionism_z                          -2.123
+t1_perfectionism_coarsen.L:t0_meaning_purpose_z                         2.399
+t1_perfectionism_coarsen.Q:t0_meaning_purpose_z                         0.292
+t1_perfectionism_coarsen.L:t0_meaning_sense_z                          -0.579
+t1_perfectionism_coarsen.Q:t0_meaning_sense_z                          -0.602
+                                                                      Pr(&gt;|t|)
+(Intercept)                                                           1.50e-06
+t1_perfectionism_coarsen.L                                            0.000665
+t1_perfectionism_coarsen.Q                                            0.031498
+t0_maleNot_male                                                       7.53e-07
+t0_eth_catmāori                                                       0.269047
+t0_eth_catpacific                                                     0.190212
+t0_eth_catasian                                                       0.291706
+t0_gen_cohort.L                                                       0.290751
+t0_gen_cohort.Q                                                       0.121795
+t0_gen_cohort.C                                                       0.593687
+t0_gen_cohort^4                                                       0.256384
+t0_rural_gch2018medium_urban_accessibility                            0.117517
+t0_rural_gch2018low_urban_accessibility                               0.688730
+t0_rural_gch2018remote                                                0.628891
+t0_rural_gch2018very_remote                                           0.447226
+t0_edu_z                                                              3.38e-05
+t0_employed_z                                                         0.047744
+t0_nz_dep2018_z                                                       0.829534
+t0_nzsei13_z                                                          0.042327
+t0_partner_z                                                          0.054135
+t0_parent_z                                                           0.000117
+t0_pol_orient_z                                                       0.019857
+t0_agreeableness_z                                                    0.050304
+t0_conscientiousness_z                                                0.024516
+t0_extraversion_z                                                     7.51e-07
+t0_honesty_humility_z                                                 0.021375
+t0_openness_z                                                         0.084617
+t0_neuroticism_z                                                      1.38e-09
+t0_modesty_z                                                          0.710020
+t0_religion_identification_level_z                                    5.41e-11
+t0_perfectionism_z                                                    0.941074
+t0_meaning_purpose_z                                                   &lt; 2e-16
+t0_meaning_sense_z                                                     &lt; 2e-16
+t1_perfectionism_coarsen.L:t0_maleNot_male                            0.048261
+t1_perfectionism_coarsen.Q:t0_maleNot_male                            0.220253
+t1_perfectionism_coarsen.L:t0_eth_catmāori                            0.167437
+t1_perfectionism_coarsen.Q:t0_eth_catmāori                            0.024502
+t1_perfectionism_coarsen.L:t0_eth_catpacific                          0.498734
+t1_perfectionism_coarsen.Q:t0_eth_catpacific                          0.412784
+t1_perfectionism_coarsen.L:t0_eth_catasian                            0.026379
+t1_perfectionism_coarsen.Q:t0_eth_catasian                            0.256103
+t1_perfectionism_coarsen.L:t0_gen_cohort.L                            0.765867
+t1_perfectionism_coarsen.Q:t0_gen_cohort.L                            0.153524
+t1_perfectionism_coarsen.L:t0_gen_cohort.Q                            0.023014
+t1_perfectionism_coarsen.Q:t0_gen_cohort.Q                            0.609982
+t1_perfectionism_coarsen.L:t0_gen_cohort.C                            0.554808
+t1_perfectionism_coarsen.Q:t0_gen_cohort.C                            0.436987
+t1_perfectionism_coarsen.L:t0_gen_cohort^4                            0.570776
+t1_perfectionism_coarsen.Q:t0_gen_cohort^4                            0.691096
+t1_perfectionism_coarsen.L:t0_rural_gch2018medium_urban_accessibility 0.806558
+t1_perfectionism_coarsen.Q:t0_rural_gch2018medium_urban_accessibility 0.990102
+t1_perfectionism_coarsen.L:t0_rural_gch2018low_urban_accessibility    0.313823
+t1_perfectionism_coarsen.Q:t0_rural_gch2018low_urban_accessibility    0.409455
+t1_perfectionism_coarsen.L:t0_rural_gch2018remote                     0.263972
+t1_perfectionism_coarsen.Q:t0_rural_gch2018remote                     0.060076
+t1_perfectionism_coarsen.L:t0_rural_gch2018very_remote                0.548488
+t1_perfectionism_coarsen.Q:t0_rural_gch2018very_remote                0.756217
+t1_perfectionism_coarsen.L:t0_edu_z                                   0.090678
+t1_perfectionism_coarsen.Q:t0_edu_z                                   0.883169
+t1_perfectionism_coarsen.L:t0_employed_z                              0.071854
+t1_perfectionism_coarsen.Q:t0_employed_z                              0.563212
+t1_perfectionism_coarsen.L:t0_nz_dep2018_z                            0.506962
+t1_perfectionism_coarsen.Q:t0_nz_dep2018_z                            0.971423
+t1_perfectionism_coarsen.L:t0_nzsei13_z                               0.952065
+t1_perfectionism_coarsen.Q:t0_nzsei13_z                               0.861624
+t1_perfectionism_coarsen.L:t0_partner_z                               0.927110
+t1_perfectionism_coarsen.Q:t0_partner_z                               0.461182
+t1_perfectionism_coarsen.L:t0_parent_z                                0.092480
+t1_perfectionism_coarsen.Q:t0_parent_z                                0.610469
+t1_perfectionism_coarsen.L:t0_pol_orient_z                            0.965741
+t1_perfectionism_coarsen.Q:t0_pol_orient_z                            0.336148
+t1_perfectionism_coarsen.L:t0_agreeableness_z                         0.192401
+t1_perfectionism_coarsen.Q:t0_agreeableness_z                         0.888218
+t1_perfectionism_coarsen.L:t0_conscientiousness_z                     0.352392
+t1_perfectionism_coarsen.Q:t0_conscientiousness_z                     0.223033
+t1_perfectionism_coarsen.L:t0_extraversion_z                          0.988010
+t1_perfectionism_coarsen.Q:t0_extraversion_z                          0.324261
+t1_perfectionism_coarsen.L:t0_honesty_humility_z                      0.857325
+t1_perfectionism_coarsen.Q:t0_honesty_humility_z                      0.431181
+t1_perfectionism_coarsen.L:t0_openness_z                              0.657697
+t1_perfectionism_coarsen.Q:t0_openness_z                              0.462292
+t1_perfectionism_coarsen.L:t0_neuroticism_z                           0.144377
+t1_perfectionism_coarsen.Q:t0_neuroticism_z                           0.734185
+t1_perfectionism_coarsen.L:t0_modesty_z                               0.480232
+t1_perfectionism_coarsen.Q:t0_modesty_z                               0.393271
+t1_perfectionism_coarsen.L:t0_religion_identification_level_z         0.127762
+t1_perfectionism_coarsen.Q:t0_religion_identification_level_z         0.099281
+t1_perfectionism_coarsen.L:t0_perfectionism_z                         0.072437
+t1_perfectionism_coarsen.Q:t0_perfectionism_z                         0.033747
+t1_perfectionism_coarsen.L:t0_meaning_purpose_z                       0.016457
+t1_perfectionism_coarsen.Q:t0_meaning_purpose_z                       0.770611
+t1_perfectionism_coarsen.L:t0_meaning_sense_z                         0.562371
+t1_perfectionism_coarsen.Q:t0_meaning_sense_z                         0.547176
+                                                                         
+(Intercept)                                                           ***
+t1_perfectionism_coarsen.L                                            ***
+t1_perfectionism_coarsen.Q                                            *  
+t0_maleNot_male                                                       ***
+t0_eth_catmāori                                                          
+t0_eth_catpacific                                                        
+t0_eth_catasian                                                          
+t0_gen_cohort.L                                                          
+t0_gen_cohort.Q                                                          
+t0_gen_cohort.C                                                          
+t0_gen_cohort^4                                                          
+t0_rural_gch2018medium_urban_accessibility                               
+t0_rural_gch2018low_urban_accessibility                                  
+t0_rural_gch2018remote                                                   
+t0_rural_gch2018very_remote                                              
+t0_edu_z                                                              ***
+t0_employed_z                                                         *  
+t0_nz_dep2018_z                                                          
+t0_nzsei13_z                                                          *  
+t0_partner_z                                                          .  
+t0_parent_z                                                           ***
+t0_pol_orient_z                                                       *  
+t0_agreeableness_z                                                    .  
+t0_conscientiousness_z                                                *  
+t0_extraversion_z                                                     ***
+t0_honesty_humility_z                                                 *  
+t0_openness_z                                                         .  
+t0_neuroticism_z                                                      ***
+t0_modesty_z                                                             
+t0_religion_identification_level_z                                    ***
+t0_perfectionism_z                                                       
+t0_meaning_purpose_z                                                  ***
+t0_meaning_sense_z                                                    ***
+t1_perfectionism_coarsen.L:t0_maleNot_male                            *  
+t1_perfectionism_coarsen.Q:t0_maleNot_male                               
+t1_perfectionism_coarsen.L:t0_eth_catmāori                               
+t1_perfectionism_coarsen.Q:t0_eth_catmāori                            *  
+t1_perfectionism_coarsen.L:t0_eth_catpacific                             
+t1_perfectionism_coarsen.Q:t0_eth_catpacific                             
+t1_perfectionism_coarsen.L:t0_eth_catasian                            *  
+t1_perfectionism_coarsen.Q:t0_eth_catasian                               
+t1_perfectionism_coarsen.L:t0_gen_cohort.L                               
+t1_perfectionism_coarsen.Q:t0_gen_cohort.L                               
+t1_perfectionism_coarsen.L:t0_gen_cohort.Q                            *  
+t1_perfectionism_coarsen.Q:t0_gen_cohort.Q                               
+t1_perfectionism_coarsen.L:t0_gen_cohort.C                               
+t1_perfectionism_coarsen.Q:t0_gen_cohort.C                               
+t1_perfectionism_coarsen.L:t0_gen_cohort^4                               
+t1_perfectionism_coarsen.Q:t0_gen_cohort^4                               
+t1_perfectionism_coarsen.L:t0_rural_gch2018medium_urban_accessibility    
+t1_perfectionism_coarsen.Q:t0_rural_gch2018medium_urban_accessibility    
+t1_perfectionism_coarsen.L:t0_rural_gch2018low_urban_accessibility       
+t1_perfectionism_coarsen.Q:t0_rural_gch2018low_urban_accessibility       
+t1_perfectionism_coarsen.L:t0_rural_gch2018remote                        
+t1_perfectionism_coarsen.Q:t0_rural_gch2018remote                     .  
+t1_perfectionism_coarsen.L:t0_rural_gch2018very_remote                   
+t1_perfectionism_coarsen.Q:t0_rural_gch2018very_remote                   
+t1_perfectionism_coarsen.L:t0_edu_z                                   .  
+t1_perfectionism_coarsen.Q:t0_edu_z                                      
+t1_perfectionism_coarsen.L:t0_employed_z                              .  
+t1_perfectionism_coarsen.Q:t0_employed_z                                 
+t1_perfectionism_coarsen.L:t0_nz_dep2018_z                               
+t1_perfectionism_coarsen.Q:t0_nz_dep2018_z                               
+t1_perfectionism_coarsen.L:t0_nzsei13_z                                  
+t1_perfectionism_coarsen.Q:t0_nzsei13_z                                  
+t1_perfectionism_coarsen.L:t0_partner_z                                  
+t1_perfectionism_coarsen.Q:t0_partner_z                                  
+t1_perfectionism_coarsen.L:t0_parent_z                                .  
+t1_perfectionism_coarsen.Q:t0_parent_z                                   
+t1_perfectionism_coarsen.L:t0_pol_orient_z                               
+t1_perfectionism_coarsen.Q:t0_pol_orient_z                               
+t1_perfectionism_coarsen.L:t0_agreeableness_z                            
+t1_perfectionism_coarsen.Q:t0_agreeableness_z                            
+t1_perfectionism_coarsen.L:t0_conscientiousness_z                        
+t1_perfectionism_coarsen.Q:t0_conscientiousness_z                        
+t1_perfectionism_coarsen.L:t0_extraversion_z                             
+t1_perfectionism_coarsen.Q:t0_extraversion_z                             
+t1_perfectionism_coarsen.L:t0_honesty_humility_z                         
+t1_perfectionism_coarsen.Q:t0_honesty_humility_z                         
+t1_perfectionism_coarsen.L:t0_openness_z                                 
+t1_perfectionism_coarsen.Q:t0_openness_z                                 
+t1_perfectionism_coarsen.L:t0_neuroticism_z                              
+t1_perfectionism_coarsen.Q:t0_neuroticism_z                              
+t1_perfectionism_coarsen.L:t0_modesty_z                                  
+t1_perfectionism_coarsen.Q:t0_modesty_z                                  
+t1_perfectionism_coarsen.L:t0_religion_identification_level_z            
+t1_perfectionism_coarsen.Q:t0_religion_identification_level_z         .  
+t1_perfectionism_coarsen.L:t0_perfectionism_z                         .  
+t1_perfectionism_coarsen.Q:t0_perfectionism_z                         *  
+t1_perfectionism_coarsen.L:t0_meaning_purpose_z                       *  
+t1_perfectionism_coarsen.Q:t0_meaning_purpose_z                          
+t1_perfectionism_coarsen.L:t0_meaning_sense_z                            
+t1_perfectionism_coarsen.Q:t0_meaning_sense_z                            
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+(Dispersion parameter for gaussian family taken to be 0.4840355)
+
+    Null deviance: 9999.0  on 9999  degrees of freedom
+Residual deviance: 4795.3  on 9907  degrees of freedom
+AIC: 21217
+
+Number of Fisher Scoring iterations: 2</code></pre>
+</div>
+</div>
+</section>
+<section id="simulate-coefficients" class="level2">
+<h2 class="anchored" data-anchor-id="simulate-coefficients">simulate coefficients</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(clarify)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>nsims <span class="ot">=</span> <span class="dv">200</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>sim_model_r2 <span class="ot">&lt;-</span> <span class="fu">sim</span>(m2, <span class="at">n =</span> nsims)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="co"># set to number of cores on your machine, e.g.</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>cores <span class="ot">=</span> <span class="dv">4</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="co"># simulate effect as modified</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>sim_estimand_r2 <span class="ot">&lt;-</span> <span class="fu">sim_ame</span>(sim_model_r2,</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>                           <span class="at">var =</span> X_pc,</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>                           <span class="at">cl =</span> cores,</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>                           <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sim_estimand_r2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>             Estimate   2.5 %  97.5 %
+E[Y(low)]      0.0747  0.0519  0.0951
+E[Y(medium)]  -0.1220 -0.1627 -0.0811
+E[Y(high)]    -0.1872 -0.2399 -0.1309</code></pre>
+</div>
+</div>
+</section>
+<section id="suppose-we-want-to-contrast-everyone-being-assigned-to-medium-with-everyone-being-assigned-to-high." class="level2">
+<h2 class="anchored" data-anchor-id="suppose-we-want-to-contrast-everyone-being-assigned-to-medium-with-everyone-being-assigned-to-high.">Suppose we want to contrast everyone being assigned to medium with everyone being assigned to high.</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>sim_estimand_r2_focal <span class="ot">&lt;-</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transform</span>(sim_estimand_r2, <span class="at">RD =</span> <span class="st">`</span><span class="at">E[Y(low)]</span><span class="st">`</span> <span class="sc">-</span> <span class="st">`</span><span class="at">E[Y(high)]</span><span class="st">`</span>)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="co"># RD describes the causal contrast on the risk difference scale.</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sim_estimand_r2_focal)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>             Estimate   2.5 %  97.5 %
+E[Y(low)]      0.0747  0.0519  0.0951
+E[Y(medium)]  -0.1220 -0.1627 -0.0811
+E[Y(high)]    -0.1872 -0.2399 -0.1309
+RD             0.2619  0.1952  0.3235</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The ATE for the effect of moving from low to high is .26 a standard deviation unit in meaning.  What this means is that the expected loss of meaning from perfectionism is about a quarter standard deviation</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="co"># &gt; summary(sim_estimand_r2)</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimate   2.5 %  97.5 %</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="co"># E[Y(low)]      0.0747  0.0519  0.0950</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="co"># E[Y(medium)]  -0.1220 -0.1534 -0.0788</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="co"># E[Y(high)]    -0.1872 -0.2408 -0.1360</span></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a><span class="co"># We interpret these contrasts as the expected effects were everyone "low" verses everyone assigned "medium" versus everyone assigned "high"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="causal-graphs" class="level2">
+<h2 class="anchored" data-anchor-id="causal-graphs">CAUSAL GRAPHS</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># also load the ggdag package</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(ggdag)){</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Install the package if it is not already installed</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="st">"ggdag"</span>)</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="co"># load the ggdag package</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggdag)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="problem-1-bilingualism-on-cognitive-abilities" class="level2">
+<h2 class="anchored" data-anchor-id="problem-1-bilingualism-on-cognitive-abilities">Problem 1: bilingualism on cognitive abilities</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Using the DAG below as a starting point, create a DAG in R using the `ggdag` package that represents the causal relationships among bilingualism (B), cognitive abilities (C), and socioeconomic status (S).</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>dag1 <span class="ot">&lt;-</span> <span class="fu">dagify</span>(C <span class="sc">~</span> B <span class="sc">+</span> S,</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>               B <span class="sc">~</span> S,</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">coords =</span> <span class="fu">list</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="at">S =</span> <span class="dv">1</span>, <span class="at">B =</span> <span class="dv">2</span>, <span class="at">C =</span> <span class="dv">3</span>),</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>                             <span class="at">y =</span> <span class="fu">c</span>(<span class="at">S =</span> <span class="dv">1</span>, <span class="at">B =</span> <span class="dv">2</span>, <span class="at">C =</span> <span class="dv">1</span>)),</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>               <span class="at">exposure =</span> <span class="st">"B"</span>,</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>               <span class="at">outcome =</span> <span class="st">"C"</span>)</span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a><span class="co"># inspect</span></span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy_dagitty</span>(dag1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A DAG with 3 nodes and 3 edges
+#
+# Exposure: B
+# Outcome: C
+#
+# A tibble: 4 × 8
+  name      x     y direction to     xend  yend circular
+  &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;fct&gt;     &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;lgl&gt;   
+1 B         2     2 -&gt;        C         3     1 FALSE   
+2 C         3     1 &lt;NA&gt;      &lt;NA&gt;     NA    NA FALSE   
+3 S         1     1 -&gt;        B         2     2 FALSE   
+4 S         1     1 -&gt;        C         3     1 FALSE   </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>dag1_t <span class="ot">&lt;-</span> <span class="fu">tidy_dagitty</span>(dag1)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="co"># # plot</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ggdag(dag1_t)</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="co"># # view</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="co"># ggdag::ggdag_paths(dag1_t)</span></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a><span class="co"># # inspect</span></span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a><span class="co"># ggdag_parents(dag1_t, "B")</span></span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a><span class="co"># find adjustment set: adjusting for S is sufficient to control for confounding (on the model's assumptions)</span></span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a><span class="fu">ggdag_adjustment_set</span>(dag1_t)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="07-exercise_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></div></div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    const typesetMath = (el) => {
+      if (window.MathJax) {
+        // MathJax Typeset
+        window.MathJax.typeset([el]);
+      } else if (window.katex) {
+        // KaTeX Render
+        var mathElements = el.getElementsByClassName("math");
+        var macros = [];
+        for (var i = 0; i < mathElements.length; i++) {
+          var texText = mathElements[i].firstChild;
+          if (mathElements[i].tagName == "SPAN") {
+            window.katex.render(texText.data, mathElements[i], {
+              displayMode: mathElements[i].classList.contains('display'),
+              throwOnError: false,
+              macros: macros,
+              fleqn: false
+            });
+          }
+        }
+      }
+    }
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        typesetMath(container);
+        return container.innerHTML
+      } else {
+        typesetMath(note);
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      typesetMath(note);
+      return note.innerHTML;
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

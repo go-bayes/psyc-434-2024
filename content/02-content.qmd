@@ -1,0 +1,30 @@
+---
+title: "Getting started with R"
+date: "2023-MAR-07"
+author:
+    name: Torven Schalk
+    email: torven.schalk@vuw.ac.nz
+    corresponding: yes
+---
+  
+  
+## Overview
+
+This session is devoted to learning R. There are no required readings. 
+
+  
+## Slides
+
+Torven's slides will be on Nuku/Canvas.
+
+
+
+## OPTIONAL extra material
+
+Proofread version:
+
+(1) A helpful resource for learning R is Megan Hall's lecture available at: [https://meghan.rbind.io/talk/neair/](https://meghan.rbind.io/talk/neair/).
+
+(2) RStudio has compiled numerous accessible materials for learning R, which can be found here: [https://education.rstudio.com/learn/beginner/](https://education.rstudio.com/learn/beginner/).
+
+(3) Materials from a previous course on learning R can be accessed here.  [https://go-bayes.github.io/psych-447/](https://education.rstudio.com/learn/beginner/) For now, only lecture 1 would be relevant. It's worth noting that this lecture covers working with GitHub. While GitHub is a useful tool, it's not a requirement for the current course.
