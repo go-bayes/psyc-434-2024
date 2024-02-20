@@ -4,13 +4,13 @@ subtitle: "Ethical and conceptual considerations"
 format:
   revealjs: 
     slide-number: true
-    smaller: false
+    smaller: true
     scrollable: true
     incremental: true
-    chalkboard: true 
+    chalkboard: false 
     buttons: false
     preview-links: auto
-    theme: simple
+    theme: default
     embed-resources: false
     code-fold: true
     code-overflow: scroll
@@ -21,33 +21,34 @@ format:
     bibliography: references.bib
 ---
 
+##
+
+###
+
+<p>
+```{r, engine = 'tikz'}
+\begin{tikzpicture}
+%\node [draw=none, align=center, font=\small] at (0,1) {\bf Timing};
+\node [draw=none, inner sep = 0] (Y) at (0, 0) {$Y_1$};
+\node [draw=none, inner sep = 0] (A) at (1, 0) {$A_2$};
+\draw [-latex, red] (Y) to (A);
+\end{tikzpicture}
+```
+<p>
 
 
 ## Goals
 
-### By the end of this seminaryou will be able to:
+### By the end of this seminar you will be able to:
 
-1.  Consider ethical problems that cultural research might present.
-2.  Understand the special problems that cultural research presents for **measurement.**
-3.  Understand the concept of **confounding.**
+1.  Understand the special problems that cultural research presents for **measurement.**
+2.  Understand the deeper, and prior concept of **confounding.**
 
 ### Key Concepts
 
 1.  Measurement
 2.  Validity 
 3.  A confounder 
-
-
-
-## Group discussion: Ethics brainstorm
-
-1.  What are some ethical considerations that researchers need to take into account when conducting cross-cultural research? How do these considerations differ from those in other types of research?
-
-2.  How can cultural differences in values and beliefs impact the ethical considerations in cross-cultural research? What are some examples of cultural differences that researchers need to be aware of?
-
-3.  How can researchers ensure that their cross-cultural research is ethical, while still being scientifically rigorous and producing valuable insights? What are some best practices or guidelines that researchers can follow?
-
-
 
 
 ## Where does psychology start?
@@ -86,9 +87,9 @@ Psychology starts with a question about how people think or behave.
 
 -   "Consult a palm reader."
 
--   Assertion: "Yes marriage always makes people happy"; "No marriage can't possibly make anyone happy"
+-   Assert: "Yes marriage always makes people happy"; "No marriage can't possibly make anyone happy"
 
--   Intuition: "It depends on the gender of the individual. Men are always happier in marriage, while women are never happier."
+-   Intuit: "It depends on the gender of the individual. Men are always happier in marriage, while women are never happier."
 
 -   Intuition: "It depends on the cultural background of the individuals. Couples from Western cultures are always happier in marriage, while couples from Eastern cultures are never happier."
 
@@ -149,19 +150,13 @@ Scale: A collection of items designed to measure a construct. Example: a happine
 
 -   Content Validity: The degree an instrument measures what it is intended to measure (the "construct").
 -   Construct Validity: Whether the construct assumed to measure is accurately defined and operationalised.
--   Criterion Validity: Whether an instrument accurately predicts performance
+-   Criterion Validity: Whether an instrument accurately predicts performance.
 -   Face Validity: whether an instrument measure what it is intended to measure, as assessed by experts.
 -   Ecological Validity: whether an instrument accurately reflects real-world situations and behavior [@bandalos2018]
 
 ## What can we do about it?
 
-Part 1: Measurement matters
-
--   Week 2: Getting started with R (Torven Schalk) tools for probing validity
--   Week 3: Lost in Translation? Measurement and Language (Inkuk Kim) -- tools for addressing differences in meanings and concepts
--   Week 4: Dealing with Data Factor Analysis (Inkuk Kim) - tools needed for modelling relationship of items in a scale.
--   Week 5: Dealing with Data (Multi-Group CFA) (In Kuk Kim) - test the factor structures across groups.
--   Week 6: Dealing with Data (Partial Invariance) (Torven Schalk) -- test (a) whether there are differences in the measurement properties of variables between groups, but the overall structure of the measurement model is similar (b) investigate whether there are differences in the factor structure of a measure between groups. Interest is in *equivalence*
+-Week 10: 
 
 :::{.notes}
 Metric equivalence: Factor loadings are similar across groups.
@@ -181,9 +176,13 @@ Does marriage cause happiness cross culturally?
 ## What might go wrong?
 
 
-## Happiness might cause marriage
+## Happiness might *cause* marriage
 
-## Age might be a confounder of both Marriage and Happiness
+
+
+## Age might cause both Marriage and Happiness
+
+- That is Age might be a *confounder by common cause*
 
 
 ## Many psychologists will simply "control for age"
@@ -226,20 +225,7 @@ parameters::pool_parameters(r_lm_B)
 
 ## The problem is confounding: what can we do about it?
 
-Week 7: Causal inference: Causal Graphs(Joseph Bulbulia). How to diagnosis sources of confounding and what to do about it.
-
-Week 8: Causal inference: Target Trial Emulation (Joseph Bulbulia). How to emulate an experiment with observational data and how to identify the modification of effects by cultural groups.
-
-Week 9: Causal inference: Reconsidering measurement and selection biases (Joseph Bulbulia). A discussion of problems in standard approaches to measurement.
-
-Week 10 Causal inference: Cross-Cultural Experiments (Joseph Bulbulia & Guests). For whom to our results generalise?
-
-## Course conclusions
-
-Week 11 Ethics and Ownership (Joseph Bulbulia & Guests). Can causal inference help us to improve ethical reasoning? Why is data protection important? How do the ethics of data protection relate to the ethics of open science?
-
-Week 12 Future Horizons (Joseph Bulbulia, Torven, Inkuk):
-
+- Weeks 2-4: Causal Diagrams
 
 ## What have we learned? 
 
