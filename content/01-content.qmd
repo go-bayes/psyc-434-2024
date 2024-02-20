@@ -13,10 +13,10 @@ editor_options:
 #| warning: false
 
 # WARNING:  COMMENT THIS OUT. JB DOES THIS FOR WORKING WITHOUT WIFI
-source("/Users/joseph/GIT/templates/functions/libs2.R")
+#source("/Users/joseph/GIT/templates/functions/libs2.R")
 
 # WARNING:  COMMENT THIS OUT. JB DOES THIS FOR WORKING WITHOUT WIFI
-source("/Users/joseph/GIT/templates/functions/funs.R")
+#source("/Users/joseph/GIT/templates/functions/funs.R")
 
 # ALERT: UNCOMMENT THIS AND DOWNLOAD THE FUNCTIONS FROM JB's GITHUB
 # source(
@@ -276,7 +276,6 @@ ggplot(data_complex, aes(x = Age, y = Income)) +
 ## Practice
 
 
-
 ```{r simulate-data}
 set.seed(123) #  reproducibility
 groupA_scores <- rnorm(100, mean = 100, sd = 15) # simulate scores for group A
@@ -485,16 +484,56 @@ Perform a linear regression analysis using R. Follow the detailed instructions b
    - Output the regression model summary to examine the coefficients, including the effect of `A` on `Y`, and assess the model's overall fit and significance.
 
 
-## For more information about packages
-
-[ggplot2](https://ggplot2.tidyverse.org/)
-[Parameters package](https://easystats.github.io/parameters/)
-[Report package](https://easystats.github.io/report/index.html)
+Here's a template to get you started
 
 
-## Further Information on Packages
 
-For comprehensive details and resources on specific packages, visit the following links:
+```{r}
+#| echo: true
+#| eval: false
+
+
+library(parameters)
+#  seed for reproducibility
+set.seed( ) # numbers go in brackets
+
+# number of observations
+n <-   # number goes here
+
+# simulate data for variable A with specified mean and sd
+A <- rnorm(n, 
+           mean = , # set your number here 
+           sd = )# set your number here 
+
+# define the specified effect size of A on Y
+beta_A <-   # define your effect with a number here 
+
+
+# simulate data and make data frame in one step
+
+df_3 <- data.frame(
+  # simulate data for variable A with specified mean and sd
+  A = A, # from above
+  Y = 5 + beta_A * A + rnorm(n, mean = 0, sd = 20) #  effect is intercept + ...
+)
+
+# view
+head(df_3)
+str(df_3)
+
+#  linear regression of Y on A
+fit_3 <- lm(Y ~ A, data = df_3)
+
+#  results (standard code)
+# summary(model)
+
+# time saving reports
+parameters::model_parameters(fit_3)
+report(fit_3)
+
+```
+
+## For more information about the packages used here:
 
   - [ggplot2](https://ggplot2.tidyverse.org/): A system for declaratively creating graphics, based on The Grammar of Graphics.
 
@@ -503,9 +542,7 @@ For comprehensive details and resources on specific packages, visit the followin
   - [Report package](https://easystats.github.io/report/index.html): Facilitates the automated generation of reports from statistical models.
 
 
-
-
-## Here is what you have learned
+## What You Have Learned
 
 - **How to install and setup R:** 
 
@@ -532,11 +569,6 @@ You've begun data visualising data through boxplots and histograms and coefficie
 - **Understanding ANOVA and regression:** 
 
 You've explored the equivalence of ANOVA and regression analysis, learning how these methods can be applied to analyse and interpret data effectively.
-
-
-
-
-
 
 ## Getting Help 
 
