@@ -8,7 +8,7 @@ format:
     warnings: false
     error: false
     messages: false
-    highlight-style: kate
+    highlight-style: dracula
     code-tools:
       source: true
       toggle: false

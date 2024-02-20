@@ -56,7 +56,7 @@ leaflet() %>%
 
 **Lecturers** Dr.Inkuk Kim [inkuk.kim\@vuw.ac.nz](mailto:inkuk.kim@vuw.ac.nz){.email}
 
-**Lecturers** Dr.Torven Schalk [torven.schalk\@vuw.ac.nz](mailto:torven.schalk@vuw.ac.nz){.email}
+**Lecturers** Dr Torven Schalk [torven.schalk\@vuw.ac.nz](mailto:torven.schalk@vuw.ac.nz){.email}
 
 ## Course Description
 
@@ -68,11 +68,11 @@ The official description:
 
 **Preamble:** in this advanced course, students will develop foundational skills in cross-cultural psychological research with a strong emphasis on causal inference, a new and critical methodological approach. 
 
-1.  **Programming in R** students will learn the basics of programming in the statistical language R, gaining essential computational tools for psychological research. This will lay the foundation for applying data analysis techniques in a causal inference framework, and beyond.
+1.  **Programming in R** students will learn the basics of programming in the statistical language R, gaining essential computational tools for psychological research. This will lay the foundation for applying data analysis techniques in a causal inference framework and beyond.
 
-2.  **Understanding Causal Inference.** students will develop a robust understanding of causal inference concepts and approaches, with particular emphasis on how they mitigate common pitfalls in cross-cultural research. We will focus on how to design studies, analyze data, and draw strong conclusions about cause-and-effect relationships across cultures.
+2.  **Understanding Causal Inference.** students will develop a robust understanding of causal inference concepts and approaches, with particular emphasis on how they mitigate common pitfalls in cross-cultural research. We will focus on how to design studies, analyse data, and draw strong conclusions about cause-and-effect relationships across cultures.
 
-5.  **Understanding Measurement in Comparative Settings.** students will learn techniques for constructing and validating psychometrically sound measures across diverse cultures. We will examine how to ensure measurements are reliable, cross-culturally valid, and aligned with theoretical constructs, while keeping a strong focus on causal reasoning. 
+5.  **Understanding Measurement in Comparative Settings.** students will learn techniques for constructing and validating psychometrically sound measures across diverse cultures. We will examine how to ensure measurements are reliable, cross-culturally valid, and aligned with theoretical constructs while keeping a strong focus on causal reasoning. 
 
 ## Assignments and due dates
 
@@ -125,11 +125,11 @@ my_data %>%
     - Aims to refresh basic statistical knowledge foundational for later course material.
 
 - **Second Test (50 minutes, total time allowed: 1 hour 50 minutes)**:
-    - Builds upon the first test's concepts, emphasizing the application of basic conceptual, statistical, and theoretical knowledge.
+    - Builds upon the first test's concepts, emphasising the application of basic conceptual, statistical, and theoretical knowledge.
 
 ### Assessment 3: Research Report
 
-- **Title**: "Causal Inference in Cultural Psychology: Examining the Effect of Exposure on Dimensions of Well-being Modified by Cultural or Sociodemographic Categories".
+- **Title**: "Causal Inference in Cultural Psychology: Examining Exposure Effects on Dimensions of Well-being Modified by Cultural or Sociodemographic Categories".
 
 - **Objective**:
     - To quantify the causal effect of a specific exposure on well-being dimensions, modified by sociodemographic categories (`born_nz`, `eth_cat`, `big_doms`, `gen_cohort`) using the NZAVS longitudinal synthetic dataset.
@@ -141,13 +141,13 @@ my_data %>%
         - State the research question clearly.
 
   2. **Directed Acyclic Graph (DAG)**:
-        - Construct a DAG illustrating the relationships between exposure, outcomes, sociodemographic category, and potential bias sources. Ensure clarity in labeling.
+        - Construct a DAG illustrating the relationships between exposure, outcomes, sociodemographic category, and potential bias sources. Ensure clarity in labelling.
 
   3. **Confounding Control Strategy**:
         - Outline your strategy for confounding control, justifying the chosen confounders.
 
   4. **Measurement Biases**:
-        - Address and analyze measurement biases as relevant.
+        - Address and analyse measurement biases as relevant.
 
     5. **Assumptions and Statistical Models**:
         - Discuss the assumptions of your causal inference approach and your statistical model, including their limitations.
@@ -174,7 +174,7 @@ my_data %>%
 
 - **Penalties**:
     - Late submissions incur a one-grade-per-day penalty.
-    - Over-length assignments will be penalized.
+    - Over-length assignments will be penalised.
 
 - **Unforeseeable Events**:
     - Extensions post-March 10 require evidence (e.g., medical certificate).
@@ -183,6 +183,5 @@ my_data %>%
 
 - Bring a laptop with R and RStudio installed for data analysis sessions. Contact the instructor if you lack computer access.
 - For in-class tests, bring a writing utensil. Electronic devices are not permitted.
-
 
 
