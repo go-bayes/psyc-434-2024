@@ -1,5 +1,6 @@
 ---
 title: "Asking questions in cross-cultural psychology"
+subtitle: "Lab: Getting Started with R"
 date: "2023-FEB-28"
 bibliography: /Users/joseph/GIT/templates/bib/references.bib
 editor_options: 
@@ -38,7 +39,7 @@ loadfonts(device = "all")
 #| out-width: 60%
 #| caption: "dag"
 #| label: fig-line-plot
-#| fig-cap: "A caual graph "
+#| fig-cap: "Causal graph: we will refer to this image in the lecture and begin reviewing this tool in Week 2 "
 
 \usetikzlibrary{positioning}
 \usetikzlibrary{shapes.geometric}
@@ -56,10 +57,34 @@ loadfonts(device = "all")
 \end{tikzpicture}
 ```
 
+::: {.callout-note}
+## Background Readings: None today!
+
+- If you want to get started, download R and Rstudio as below
+- List of recommended readings at the end of this lecture.
+:::
+
+::: {.callout-important}
+## Key Concepts For the Test(s):
+
+Today we introduce the following topics relevant to the Test(s)
+
+- Confounding  (introduced in week 2)
+- Internal Validity (introduced in week 2)
+- External Validity (introduced in week 3)
+
+Today we discuss these concepts informally. We will define these concepts formally in technical detail in **week 2**.
+:::
+
+::: {.callout-tip}
+## Order your R-studio/R workflow
+
+- Clear folder structure
+- Clearly defined script names
+- Annotate your code
+:::
 
 ## Lecture: Introduction to the Course
-
-
 
 ## Slides
 
@@ -75,23 +100,12 @@ loadfonts(device = "all")
 
 Open in browser [here](/slides/01-slides.html){target="_blank"}
 
-## Background Readings
-
-[@he2012]
-
-[@vandevijver2021]
-
-[@berry1989]
 
 
-## Lab: Introduction to R. 
 
+## Lab 1: Installing R and RStudio
 
-# Session 1: Installing R and RStudio
-
-## Introduction
-
-This session is designed to introduce you to R and RStudio, the essential tools for statistical analysis in cross-cultural psychology. We aim to familiarise you with the software and enable you to simulate and manipulate data from the beginning.
+This session is designed to introduce you to R and RStudio.
 
 ## Installing R
 
@@ -101,437 +115,740 @@ This session is designed to introduce you to R and RStudio, the essential tools 
 
 ## Installing RStudio
 
+After Downloading R...
+
+### Step 1: Installing RStudio
+
+Assume you have downloaded and installed R from the Comprehensive R Archive Network (CRAN).
+
 1. Go to the RStudio download page at [https://www.rstudio.com/products/rstudio/download/](https://www.rstudio.com/products/rstudio/download/).
 2. Choose the free version of RStudio Desktop, and download it for your operating system.
-3. Install RStudio by following the provided instructions.
+3. Download and install RStudio Desktop.
+4. Open RStudio to begin setting up your project environment.
 
-## Familiarizing Yourself with RStudio
 
-- **Console**: Executes R code line by line.
-- **Source Editor**: Allows you to write and execute scripts (series of commands).
-- **Environment**: Displays variables and data you've loaded.
-- **Files/Plots/Packages/Help**: Allows you to navigate your files, view plots, manage packages, and access R documentation.
+### Step 2: Create a New Project
+
+1. In RStudio, go to `File > New Project`.
+2. Choose `New Directory` for a new project or `Existing Directory` if you have a folder where you want to initialise an RStudio project.
+3. For a new project, select `New Project`, then provide a directory name. This name will also be the name of your project.
+4. Specify the location where the project folder will be created.
+5. Click `Create Project`.
+
+### Step 3: Give Project Structure
+
+1. **Organising Files and Folders:**
+   - Within your project, create folders to organise your scripts and data. Common folder names include `R/` for R scripts, `data/` for datasets, and `doc/` for documentation.
+   - You can create these folders using RStudio's `Files` pane or through your operating system's file explorer.
+
+2. **Creating and Managing R Scripts:**
+   - To create a new R script, go to `File > New File > R Script`.
+   - Save the script in your project directory's `R/` folder to keep your work organised. Use meaningful file names that describe the script's purpose.
+
+3. **Version Control:**
+   - If you are familiar with version control, you can initialise a Git repository within your project by selecting the `Version Control` option when creating a new project.
+   - This allows for better tracking of changes and collaboration if working with others.
+   - If you are not familiar with version control (or have not installed `git` on your machine), do not worry about initialising a Git repository 
+
+### Step 4: Working with R Scripts
+
+1. **Writing and Executing Code:**
+   - Write your R code in the *script editor.* 
+   - Execute code by selecting lines and pressing `Ctrl + Enter` (Windows/Linux) or `Cmd + Enter` (Mac).
+
+2. **Commenting and Documentation:**
+   - Use comments (preceded by `#`) to document your code for clarity and future reference.
+
+3. **Saving and Organising Scripts:**
+   - Regularly save your scripts (`Ctrl + S` or `Cmd + S`).
+   - Organise scripts into folders within your project for different analyses or data processing tasks.
+
+
+### Step 5: Exit R-studio
+
+- Before concluding your work, save your workspace or clear it to start fresh in the next session (`Session > Restart R`).
+
+::: {.callout-note  title="Exercise 1",  icon=false}
+
+### Exercise 1: Install the `tidyverse` Package
+
+Follow these instructions to install the `tidyverse` package in RStudio:
+
+1. **Open RStudio:** Launch the RStudio application on your computer.
+
+2. **Access Package Installation:**
+   - Navigate to the menu at the top of RStudio and click on `Tools > Install Packages...`. This opens the Install Packages dialogue box.
+
+3. **Install `tidyverse`:**
+   - In the Install Packages dialogue box, you will see a field labelled "Packages (separate multiple with space or comma):". Click in this field and type `tidyverse`.
+   - Below the packages field, ensure the checkbox for `Install dependencies` is checked. This ensures all packages that `tidyverse` depends on are also installed.
+   - Click the `Install` button to begin the installation process.
+
+4. **Begin installation:**
+    - Click on the "Install" button to start the installation process.
+
+5. **Wait for completion:** The installation might take a few minutes. Monitor the progress in the "Console" pane. Once the installation is complete, you will see a message in the console indicating that the process has finished.
+
+6. **Loading `tidyverse`:** After successful installation, you can load the `tidyverse` package into your R session by typing `library(tidyverse)` in the console and pressing `Enter`.
+:::
+
 
 ## Basic R Commands
 
-Let us start by using R as a calculator. This will help you understand how to execute simple commands in the console.
+### Assignment (`<-`)
 
-```{r basic-calculations}
-# Addition
-3 + 2
+Assignment in R is done using the `<-` operator. It assigns values to variables.
 
-# Subtraction
-5 - 2
+```{r}
+x <- 10 # assigns the value 10 to x
+y <- 5 # assigns the value 5 to y
 
+# this does the same
+x = 10
+y = 5
+
+# note what happens when we do this
+# 10 = 5 # not run
+
+# but we can do this
+# 10 == 5 # considered below
+```
+
+### Concatenation (`c()`)
+
+The `c()` function combines multiple elements into a vector.
+
+```{r}
+numbers <- c(1, 2, 3, 4, 5) #  a vector of numbers
+print(numbers)
+```
+
+### Operations (`+`, `-`)
+
+Basic arithmetic operations include addition (`+`) and subtraction (`-`).
+
+```{r}
+sum <- x + y # adds x and y
+
+print(sum)
+
+difference <- x - y # subtracts y from x
+
+# note we did not need to use the `print()` function 
+difference
+```
+
+In addition to assignment, multiplication and division are fundamental arithmetic operations in R that allow you to manipulate numeric data. Here is how you can incorporate these operations into your basic R commands documentation:
+
+### Multiplication (`*`) and Division (`/`)
+
+Multiplication and division in R are performed using the `*` and `/` operators, respectively. These operators allow for element-wise operations on vectors, as well as operations on individual numeric values.
+
+```{r}
 # Multiplication
-3 * 2
+product <- x * y # multiplies x by y
 
 # Division
-10 / 2
+quotient <- x / y # divides x by y
 
-# Modulus
-7 %% 2
+# Element-wise multiplication on vectors
+vector1 <- c(1, 2, 3)
+vector2 <- c(4, 5, 6)
+vector_product <- vector1 * vector2 # multiplies each element of vector1 by the corresponding element of vector2
 
-# Exponentiation
-2 ^ 3
-
-# Integer Division
-10 %/% 3
+# Element-wise division on vectors
+vector_division <- vector1 / vector2 # divides each element of vector1 by the corresponding element of vector2
 ```
 
-### Exercise 1: Installing the `tidyverse` Package
-
-In this exercise, you will install the `tidyverse` package, a collection of R packages designed for data science. Follow the steps below to complete the installation:
-
-1. **Open RStudio:** Start by launching RStudio on your computer.
-
-2. **Access Help Tab:** Locate and click on the "Help" tab in the lower right pane of RStudio.
-
-3. **Search for Installation Instructions:** In the search bar within the "Help" tab, type in "install packages" and press Enter. Browse through the help documents if available. (Note: The specific steps to search within the Help tab might vary based on RStudio version and setup. If you cannot find the option to search for "install packages" directly in the Help tab, proceed to the next step.)
-
-4. **Open Package Installation:**
-    - Alternatively, you can directly access the package installation option by going to the "Tools" menu at the top of RStudio.
-    - Select "Install Packages..." from the dropdown menu.
-
-5. **Install `tidyverse`:**
-    - In the "Install Packages" dialogue box, you'll find a field to type in the name of the package you wish to install. Type `tidyverse` into this field.
-    - Ensure the "Install dependencies" checkbox is ticked. This option ensures that any additional packages needed by `tidyverse` are also installed.
-
-6. **Begin Installation:**
-    - Click on the "Install" button to start the installation process.
-
-7. **Wait for Completion:** The installation might take a few minutes. Monitor the progress in the "Console" pane. Once the installation is complete, you will see a message in the console indicating that the process has finished.
-
-8. **Loading `tidyverse`:** After successful installation, you can load the `tidyverse` package into your R session by typing `library(tidyverse)` in the console and pressing Enter.
-
-
-
-## Simulating Data in R
-
-Simulating data is a powerful method to understand statistical concepts and data manipulation. Let's simulate a simple dataset representing scores from two cultural groups.
-
-
-#### Step 1: Setting Up Your R Environment
-
-Before simulating data, ensure R or RStudio is installed and open. RStudio provides a user-friendly interface for R, which can simplify the process of writing and executing R scripts.
-
-#### Step 2: Setting a Seed for Reproducibility
-
-To ensure that your simulated data can be reproduced exactly, it's good practice to set a seed before generating random data. This makes your analyses and simulations replicable.
-
-```r
-set.seed(123) # use any number to set the seed
-```
-
-#### Step 3: Simulating Continuous Data
-
-To simulate continuous data, you can use functions like `rnorm()` for normal distributions, `runif()` for uniform distributions, etc. Here’s how to simulate 100 normally distributed data points with a mean of 50 and a standard deviation of 10:
+- Multiplication and division can be used for scalar (single values) and vector (multiple values) operations. When applied to vectors, these operations are performed element-wise.
+- It's essential to be mindful of division by zero, as this will result in `Inf` (infinity) or `NaN` (not a number) depending on the context.
 
 ```{r}
-n <- 100 # number of observations
-mean <- 50
-sd <- 10
-data_continuous <- rnorm(n, mean, sd)
+# Example of division by zero
+result <- 10 / 0 # results in Inf
+zero_division <- 0 / 0 # results in NaN
 ```
 
-#### Step 4: Simulating Categorical Data
-
-Categorical data can be simulated using the `sample()` function. For example, to simulate a binary variable (e.g., gender) with two levels for 100 observations:
+- R also supports integer division using the `%/%` operator and modulo operation using `%%` to find the remainder.
 
 ```{r}
-levels <- c("Male", "Female")
-data_categorical <- sample(levels, n, replace = TRUE)
+# Integer division
+integer_division <- 10 %/% 3 # results in 3
+
+# Modulo operation
+remainder <- 10 %% 3 # results in 1
 ```
 
-#### Step 5: Simulating Data Frames
+### Logic (`!`, `!=`, `==`)
 
-Data frames are used in R to store data tables. To simulate a dataset with both continuous and categorical data, you can combine the above steps:
+Logical operations include NOT (`!`), NOT EQUAL (`!=`), and EQUAL (`==`).
 
 ```{r}
-# create a data frame with simulated data for ID, Gender, Age, and Income
-data_frame <- data.frame(
-  # generate a sequence of IDs from 1 to n
-  ID = 1:n,
-  
-  # randomly assign 'Male' or 'Female' to each observation
-  Gender = sample(c("Male", "Female"), n, replace = TRUE),
-  
-  # simulate 'Age' data: normally distributed with mean 30 and sd 5
-  Age = rnorm(n, mean = 30, sd = 5),
-  
-  # simulate 'Income' data: normally distributed with mean 50000 and sd 10000
-  Income = rnorm(n, mean = 50000, sd = 10000)
-)
+x_not_y <- x != y # checks if x is not equal to y
+
+x_not_y
+
+x_equal_10 <- x == 10 # checks if x is equal to 10
+
+x_equal_10
+
 ```
 
+Logical operations are fundamental in R for controlling the flow of execution and making decisions based on conditions. In addition to NOT (`!`), NOT EQUAL (`!=`), and EQUAL (`==`), there are several other logical operators you should know:
 
-Note that you can sample probabilistically for your groups
+### OR (`|` and `||`)
+
+- The `|` operator performs element-wise logical OR operation. It evaluates each pair of elements in two logical vectors to see if at least one is `TRUE`.
+- The `||` operator performs a logical OR operation but only evaluates the first element of each vector. It's mainly used in if statements and not for vectorised operations.
 
 ```{r}
-n <- 100 # total number of observations
+# element-wise OR
+vector_or <- c(TRUE, FALSE) | c(FALSE, TRUE) # returns c(TRUE, TRUE)
 
-# sample 'Gender' with a 40/60 proportion for Male/Female
-Gender = sample(c("Male", "Female"), n, replace = TRUE, prob = c(0.4, 0.6))
+# single OR (only looks at first element)
+single_or <- TRUE || FALSE # returns TRUE
 ```
 
+### AND (`&` and `&&`)
 
-#### Step 6: Add Complexity
-
-To simulate more complex datasets, you can introduce relationships between variables. For instance, simulating age and income with a correlation:
+- The `&` operator performs element-wise logical AND operations. It checks if both elements in the corresponding positions of two logical vectors are `TRUE`.
+- The `&&` operator performs a logical AND operation but only evaluates the first element of each vector. Like `||`, it's used in conditions that do not require vectorised operations.
 
 ```{r}
-# set the number of observations
-n <- 100
+# element-wise AND
+vector_and <- c(TRUE, FALSE) & c(FALSE, TRUE) # returns c(FALSE, FALSE)
+vector_and
 
-# simulate the 'Age' variable
-mean_age <- 30
-sd_age <- 5
-Age <- rnorm(n, mean = mean_age, sd = sd_age)
-
-# define coefficients explicitly
-intercept <- 20000   # Intercept for the income equation
-beta_age <- 1500     # Coefficient for the effect of age on income
-error_sd <- 10000    # Standard deviation of the error term
-
-# simulate 'Income' based on 'Age' and defined coefficients
-Income <- intercept + beta_age * Age + rnorm(n, mean = 0, sd = error_sd)
-
-# create a data frame to hold the simulated data
-data_complex <- data.frame(Age, Income)
+# single AND (only looks at first element)
+single_and <- TRUE && FALSE # returns FALSE
+single_and
 ```
 
-#### Step 7: Visualising Simulated Data
+## Working with Strings
 
-Visualising your simulated data can help understand its distribution and relationships. Use the `ggplot2` package for this:
+Strings are sequences of characters.
 
 ```{r}
-library(ggplot2)
-ggplot(data_complex, aes(x = Age, y = Income)) +
-  geom_point() +
-  theme_minimal() +
-  labs(title = "Simulated Age vs. Income", x = "Age", y = "Income")
+name <- "world" # assigns a string to name
+greeting <- paste("Hello,", name) # Concatenates strings
+
+print(greeting)
 ```
 
+## Factors
 
-## Practice
-
-
-```{r simulate-data}
-set.seed(123) #  reproducibility
-groupA_scores <- rnorm(100, mean = 100, sd = 15) # simulate scores for group A
-groupB_scores <- rnorm(100, mean = 105, sd = 15) # simulate scores for group B
-
-# ombine into a data frame
-scores_df <- data.frame(Group = rep(c("A", "B"), each = 100), Scores = c(groupA_scores, groupB_scores))
-
-# commands to view data
-str(scores_df)
-
-# summary of columns
-summary(scores_df)
-
-# top rows
-head(scores_df)
-
-# bottom rows
-tail(scores_df)
-```
-
-
-## Visualising simulated data
-
-Understanding your data visually is as important as the statistical analysis itself. Let's create a simple plot to compare the score distributions between the two groups.
-
-```{r visualize-data, fig.cap="Score Distribution by Group"}
-if (!require(ggplot2)) {
-  install.packages("ggplot2")
-  library(ggplot2)
-} else {
-  library(ggplot2)
-}
-
-# plot your data
-ggplot(scores_df, aes(x = Group, y = Scores, fill = Group)) +
-  geom_boxplot() +
-  theme_minimal() +
-  labs(title = "Score Distribution by Group", x = "Group", y = "Scores")
-```
-
-
-## Histogram {#sec-histogram}
+Factors are used to represent categorical data.
 
 ```{r}
-library(ggplot2)
+gender <- factor(c("Male", "Female", "Female", "Male"))
 
-# H=histograms for both groups
-ggplot(scores_df, aes(x = Scores, fill = Group)) +
-  geom_histogram(binwidth = 5, color = "black") +
-  labs(title = "Distribution of Scores",
-       x = "Scores",
-       y = "Frequency") +
-  facet_wrap(~Group, ncol = 1)
+head(gender)
+```
 
+### Ordered Factors
+
+To create an ordered factor, you use the `factor()` function with the `ordered` argument set to `TRUE`, or you can directly use the `ordered()` function. You can also specify the levels in their natural order using the `levels` argument if the default order does not match the natural sequence.
+
+```{r}
+# using factor() function with ordered = TRUE
+education_levels <- c("High School", "Bachelor", "Master", "Ph.D.")
+education_factor <- factor(education_levels, ordered = TRUE)
+
+# alternatively, using ordered() function
+education_ordered <- ordered(education_levels)
+
+# specifying levels explicitly
+education_ordered_explicit <- factor(education_levels, levels = c("High School", "Bachelor", "Master", "Ph.D."), ordered = TRUE)
+```
+
+### Operations with Ordered Factors
+
+Ordered factors allow for comparison operations that make sense in their context, such as less than (`<`), greater than (`>`), etc., based on their order.
+
+```{r}
+# Comparing educational levels
+edu1 <- ordered("Bachelor", levels = c("High School", "Bachelor", "Master", "Ph.D."))
+edu2 <- ordered("Master", levels = c("High School", "Bachelor", "Master", "Ph.D."))
+
+# Check if edu2 is a higher degree than edu1
+edu2 > edu1 # Returns TRUE
+```
+
+Ordered factors can be useful in statistical models where the order impacts the model, such as ordinal logistic regression. The order of the factor levels can influence the model's interpretation and coefficients. **We will return to ordered factors and ordered/logistic regression later in the course.**
+
+### Checking Data with Ordered Factors
+
+You can view the structure and summary of ordered factors just as with regular factors, but the output will indicate the order.
+
+```{r}
+# Viewing the structure
+str(education_ordered)
+
+# Summary to see the distribution
+summary(education_ordered)
+```
+
+### Modifying Ordered Factors
+
+If you need to change the order of levels or add new levels, you can re-factor the variable using `factor()` or `ordered()` and specify the new levels.
+
+```{r}
+# Adding a new level and reordering
+new_levels <- c("Primary School", "High School", "Bachelor", "Master", "Ph.D.")
+education_updated <- factor(education_levels, levels = new_levels, ordered = TRUE)
 ```
 
 
-## Excercise 1
+## Working with Vectors
 
-1. Modify the simulation parameters to change each group's mean and standard deviation. Observe how these changes affect the distribution.
+Vectors are one of R's most fundamental data structures, essential for storing and manipulating a sequence of data elements. They are homogenous, meaning all elements in a vector must be of the same type (e.g., all numeric, all character, etc.). Here's an overview of vectors in R, including how to create, access, and manipulate them.
 
-2. Go to the [histogram](#sec-histogram). Experiment with different bin widths. In your own words, how do large and small numbers speak differently to the data? When might you use one histogram and not another. 
-
-
-## Simulating data for familiar statistical tests 
-
+Vectors in R can be created using the `c()` function, which stands for concatenate or combine:
 
 ```{r}
-# simulate some data
-data <- rnorm(100, mean = 5, sd = 1) # 100 random normal values with mean = 5
+# Numeric vector
+numeric_vector <- c(1, 2, 3, 4, 5)
 
-# perform one-sample t-test
-# testing if the mean of the data is reliably different from 4
-t.test(data, mu = 4)
+# Character vector
+character_vector <- c("apple", "banana", "cherry")
 
-```
-
-```{r}
-# simulate data for two groups
-group1 <- rnorm(50, mean = 5, sd = 1) # 50 random normal values, mean = 5
-group2 <- rnorm(50, mean = 5.5, sd = 1) # 50 random normal values, mean = 5.5
-
-# two-sample t-test
-t.test(group1, group2)
-```
-
-```{r}
-# simulate pre-test and post-test scores
-pre_test <- rnorm(30, mean = 80, sd = 10)
-post_test <- rnorm(30, mean =  pre_test + 5, sd = 5) # assume an increase
-
-# perform paired t-test
-t.test(pre_test, post_test, paired = TRUE)
+# Logical vector
+logical_vector <- c(TRUE, FALSE, TRUE, FALSE)
 ```
 
 
-## Equivalence of ANOVA and Regression
+### Manipulating Vectors
 
-
-We will simulate data in R to show that a one-way ANOVA is a special case of linear regression with categorical predictors. We will give some reasons for preferring regression (in some settings).
-
-## Method
-
-First, we simulate a dataset with one categorical independent variable with three levels (groups) and a continuous outcome (also called a "dependant") variable. This setup allows us to apply both ANOVA and linear regression for comparison.
+You can modify vectors by adding new elements, changing existing elements, or removing elements:
 
 ```{r}
-# nice tables
-if (!require(parameters)) {
-  install.packages("parameters")
-  library(parameters)
-} else {
-  library(parameters)
-}
+# adding an element
 
-
-set.seed(321) # reproducibility
-n <- 90 # total number of observations
-k <- 3 # number of groups
-
-# simulate independent variable (grouping factor)
-group <- factor(rep(1:k, each = n/k))
-
-# inspect
-str(group)
-
-# simulate outcome variable
-means <- c(100, 100, 220) # Mean for each group
-sd <- 15 # Standard deviation (same for all groups)
-
-# generate random data
-y <- rnorm(n, mean = rep(means, each = n/k), sd = sd)
-
-
-# make data frame
-df_1 <- cbind.data.frame(y, group)
-
-anova_model <- aov(y ~ group, data = df_1)
-# summary(anova_model)
-table_anova <- model_parameters(anova_model)
-
-# report the model
-report::report(anova_model)
-```
-
-
-Next, we analyse the same data using linear regression. In R, regression models automatically convert categorical variables into dummy variables.
-
-```{r}
-# for tables (just installed)
-library(parameters)
-
-# regression model 
-fit <- lm(y ~ group, data = df_1)
-
-# uncomment if you want an ordinary summary
-# summary(regression_model)
-
-table_fit <- parameters::model_parameters(fit)
-
-# print table
-table_fit
-```
-
-```{r}
-library(parameters)
-library(report)
-
-# report the model
-report_fit <- report_parameters(fit)
+numeric_vector <- c(numeric_vector, 6)  # Adds 6 to the end of numeric_vector
+numeric_vector
 
 #print
-report_fit
+numeric_vector
+
+# changing an element
+numeric_vector[1] <- 10  # Changes the first element to 10
+
+#print
+numeric_vector
+
 ```
 
-
-## Upshot
-
-ANOVA partitions variance into between-group and within-group components, while regression models the mean of the dependent variable as a linear function of the independent (including categorical) variables. For many questions, ANOVA is appropriate, however, when we are comparing groups, we often want a finer-grained interpretation. Regression is built for obtaining this finer grain understanding. We will return to regression over the next few weeks and use regression to hone your skills in R. Later, Along the way, you'll learn more about data visualisation, modelling, and reporting.  
+You can access elements of a vector by using square brackets `[ ]` with an index or a vector of indices:
 
 ```{r}
-# graph the output of the parameters table
-# visualisation
-plot(table_fit)
+#  the first element of numeric_vector
+first_element <- numeric_vector[1]
+
+first_element
+# multiple elements
+some_elements <- numeric_vector[c(2, 4)]  # Gets the 2nd and 4th elements
+
+first_element
 ```
 
-### Exercise 3
+### Vector Operations
 
-Perform a linear regression analysis using R. Follow the detailed instructions below to simulate the necessary data, execute the regression, and report your findings:
-
-1. **Simulate Data:**
-   - Generate two continuous variables, `Y` and `A`, with `n = 100` observations each.
-   - The variable `A` should have a mean of `50` and a standard deviation (`sd`) of `10`.
-
-2. **Define the Relationship:**
-   - Simulate the variable `Y` such that it is linearly related to `A` with a specified effect size. The effect size of `A` on `Y` must be explicitly defined as `2`.
-
-3. **Incorporate an Error Term:**
-   - When simulating `Y`, include an error term with a standard deviation (`sd`) of `20` to introduce variability.
-
-4. **Regression Analysis:**
-   - Use the `lm()` function in R to regress `Y` on `A`.
-   - Ensure the regression model captures the specified effect of `A` on `Y`.
-
-5. **Report the Results:**
-   - Output the regression model summary to examine the coefficients, including the effect of `A` on `Y`, and assess the model's overall fit and significance.
-
-
-Here's a template to get you started
-
-
+R allows you to perform operations on vectors in a very intuitive way. Operations are vectorised, meaning they are applied element-wise:
 
 ```{r}
-#| echo: true
-#| eval: false
+# Arithmetic operations
+vector_sum <- numeric_vector + 10  # Adds 10 to each element
 
+#print
+vector_sum
 
-library(parameters)
-#  seed for reproducibility
-set.seed( ) # numbers go in brackets
+vector_multiplication <- numeric_vector * 2  # Multiplies each element by 2
+# print
+vector_multiplication
 
-# number of observations
-n <-   # number goes here
+# logical operations
+vector_greater_than_three <- numeric_vector > 3  # Returns a logical vector
 
-# simulate data for variable A with specified mean and sd
-A <- rnorm(n, 
-           mean = , # set your number here 
-           sd = )# set your number here 
+#print
+vector_greater_than_three
+```
 
-# define the specified effect size of A on Y
-beta_A <-   # define your effect with a number here 
+### Functions with vectors
 
+R provides a rich set of functions for statistical computations and manipulations that work with vectors:
 
-# simulate data and make data frame in one step
+```{r}
+# statistical summary
+vector_mean <- mean(numeric_vector)
+vector_mean
 
-df_3 <- data.frame(
-  # simulate data for variable A with specified mean and sd
-  A = A, # from above
-  Y = 5 + beta_A * A + rnorm(n, mean = 0, sd = 20) #  effect is intercept + ...
+vector_sum <- sum(numeric_vector)
+vector_sum
+
+# sorting
+sorted_vector <- sort(numeric_vector)
+sorted_vector
+
+# unique values
+unique_vector <- unique(character_vector)
+unique_vector
+```
+
+### Manipulating vectors
+
+You can modify vectors by adding new elements, changing existing elements, or removing elements:
+
+```{r}
+# adding an element
+
+numeric_vector <- c(numeric_vector, 6)  # Adds 6 to the end of numeric_vector
+numeric_vector
+
+#print
+numeric_vector
+
+# changing an element
+numeric_vector[1] <- 10  # Changes the first element to 10
+
+#print
+numeric_vector
+
+```
+
+## Working with Data Frames
+
+### Creating Data Frames
+
+Data frames can be created using the `data.frame()` function, specifying each column and its values. Here's a simple example:
+
+```{r}
+df <- data.frame(
+  Name = c("Alice", "Bob", "Charlie"),
+  Age = c(25, 30, 35),
+  Gender = c("Female", "Male", "Male")
 )
 
-# view
-head(df_3)
-str(df_3)
+# check structure
+head(df)
+str(df)
+summary(df)
+```
 
-#  linear regression of Y on A
-fit_3 <- lm(Y ~ A, data = df_3)
+In this example, `df` is a data frame with three columns (`Name`, `Age`, `Gender`) and three rows, each representing a different individual.
 
-#  results (standard code)
-# summary(model)
+### Accessing Data Frame Elements
 
-# time saving reports
-parameters::model_parameters(fit_3)
-report(fit_3)
+**There are often several ways to do the same thing in R**. You can access the elements of a data frame in several ways:
+
+- **By Column Name:** Use the `$` operator followed by the column name.
+
+```{r}
+names <- df$Name  # extracts the `Name` column
+```
+
+- **By Row and Column:** Use the `[row, column]` indexing. Rows or columns can be specified by number or name.
+
+```{r}
+second_person <- df[2, ]  # extracts the second row
+age_column <- df[, "Age"]  # extracts the `Age` column
+
+# show
+second_person
+age_column
 
 ```
+
+- **Using `subset()` Function:** To extract subsets of the data frame based on conditions.
+
+```{r}
+adults <- subset(df, Age > 18)  # extracts rows where `Age` is greater than 18
+
+summary(adults$Age)
+mean(adults$Age)
+min(adults$Age)
+```
+
+
+### Manipulating Data Frames
+
+Data frames are flexible; they can be manipulated in various ways, such as: 
+
+- **Adding Columns:** You can add new columns using the `$` operator.
+
+```{r}
+df$Employed <- c(TRUE, TRUE, FALSE)  # Adds a new column "Employed"
+
+# show
+head(df)
+```
+
+- **Adding Rows:** Use the `rbind()` function to add new rows.
+
+```{r}
+new_person <- data.frame(Name = "Diana", Age = 28, Gender = "Female", Employed = TRUE)
+df <- rbind(df, new_person)
+
+# show
+head(df)
+
+```
+
+- **Modifying Values:** Access the element or column and assign it a new value.
+
+```{r}
+# note double brackets
+
+df[4, "Age"] <- 26  # changes Alice's age to 26
+
+# view row
+df[4, ]
+
+```
+
+- **Removing Columns or Rows:** Set columns to `NULL` to remove them, or use `-` with row or column indices.
+
+```{r}
+head(df)
+
+# remove employed column
+df$Employed <- NULL  # Removes the Employed column
+
+head(df)
+
+# remove fourth row (Diana)
+df <- df[-4, ]  # Removes the fourth row
+  
+df
+```
+
+### Viewing Data Structure (`summary()`, `str()`, `head()`, `tail()`)
+
+- `summary()`: Provides a summary of an object's structure.
+- `str()`: Displays the structure of an object.
+- `head()`: Shows the first few rows of a data frame or the first elements of a vector.
+- `tail()`: Shows the last few rows of a data frame or the last elements of a vector.
+
+```{r}
+# iris is a preloaded dataset
+
+str(iris) # Displays structure of scores_df
+summary(iris) # Summary statistics
+head(iris) # First few rows
+tail(iris) # Last few rows
+```
+
+### mean()
+
+- Calculates the arithmetic mean of a numerical object.
+
+```{r}
+set.seed(12345)
+
+# we will cover R’s powerful simulation functions like `rnorm()`next week
+vector <- rnorm(n = 40, mean = 0, sd = 1)
+mean(vector)  # note the sampling error here
+
+```
+
+### sd()
+
+- Computes the standard deviation, which measures the amount of variation or dispersion of a set of values.
+
+```{r}
+sd(vector)  # replace 'vector' with your numerical vector
+```
+
+### min() and max()
+
+- These functions return a numerical object's minimum and maximum values, respectively.
+
+```{r}
+min(vector)  # minimum value
+max(vector)  # maximum value
+```
+
+### table()
+
+- Generates a frequency table of an object, useful for categorical data. It counts the number of occurrences of each unique element.
+
+```{r}
+#  seed for reproducibility
+set.seed(12345)
+
+#  two categorical variables
+Gender <- sample(c("Male", "Female"), size = 100, replace = TRUE, prob = c(0.5, 0.5))
+Education_Level <- sample(c("High School", "Bachelor", "Master"), size = 100, replace = TRUE, prob = c(0.4, 0.4, 0.2))
+
+# Create a data frame
+df_table_example <- data.frame(Gender, Education_Level)
+
+# Print the first few rows of the data frame to confirm
+head(df_table_example)
+
+```
+
+### Cross-Tabulation with table()
+
+- `table()` can also be used for cross-tabulation, providing a way to analyse the relationship between two or more factors.
+
+```{r}
+table(df_table_example$Gender, df_table_example$Education_Level)  # crosstab
+```
+
+This produces a contingency table showing the counts at each combination of `factor1` and `factor2` levels.
+
+
+
+###  Explore Data Frames
+
+- **Data Exploration:** Functions like `head()`, `tail()`, and `str()` help you explore the first few rows, last few rows, and the structure of the data frame, respectively.
+
+```{r}
+head(df)  # First six rows
+tail(df)  # Last six rows
+str(df)   # Structure of the data frame
+```
+
+###  Summary Statistics
+
+Use `summary()` to get a summary of each column.
+
+```{r}
+summary(df)
+```
+
+## First Data Visualisation with `ggplot2`
+
+`ggplot2` is a powerful and flexible R package for creating elegant data visualisations. It is based on the Grammar of Graphics, allowing users to build plots layer by layer, making it versatile for creating a wide range of plots.
+
+#### Installing and Loading `ggplot2`
+
+Before using `ggplot2`, ensure it's installed and loaded into your R session:
+
+```{r}
+# load ggplot2
+if (!require(ggplot2)) install.packages("ggplot2")
+library(ggplot2)
+
+# Set seed for reproducibility
+set.seed(12345)
+
+# Simulate student data
+student_data <- data.frame(
+  Name = c("Alice", "Bob", "Charlie", "Diana", "Ethan", "Fiona", "George", "Hannah"),
+  Score = sample(80:100, 8, replace = TRUE), # Random scores between 80 and 100
+  stringsAsFactors = FALSE
+)
+
+# determine pass/fail based on score
+# we will cover the ifelse() operator in detail in upcoming weeks
+student_data$Passed <- ifelse(student_data$Score >= 90, "Passed", "Failed")
+
+# Convert 'Passed' to factor for colour coding in ggplot2
+student_data$Passed <- factor(student_data$Passed, levels = c("Failed", "Passed"))
+
+# View the first few rows of the data frame
+head(student_data)
+
+# Simulate study hours
+student_data$Study_Hours <- sample(5:15, 8, replace = TRUE)
+```
+
+### Basic Components of a `ggplot2` Plot
+
+- **Data:** The dataset you want to visualise.
+- **Aesthetics (`aes`):** Defines how data are mapped to colour, size, shape, and other visual properties.
+- **Geometries (`geom_` functions):** The type of plot or layer you want to add (e.g., points, lines, bars).
+
+#### Creating a Basic Plot
+
+Let's start by creating a simple bar plot:
+
+```{r}
+ggplot(student_data, aes(x = Name, y = Score)) +
+  geom_bar(stat = "identity")
+```
+
+This code plots `Score` for each `Name` in the `student_data` dataframe. The `stat = "identity"` argument tells `ggplot2` to use the `Score` values directly to determine the height of the bars.
+
+#### Customizing the Plot
+
+To enhance your plot, you can add titles, change axis labels, and modify colours:
+
+```{r}
+ggplot(student_data, aes(x = Name, y = Score, fill = Passed)) +
+  geom_bar(stat = "identity") +
+  scale_fill_manual(values = c("TRUE" = "blue", "FALSE" = "red")) +
+  labs(title = "Student Scores", x = "Student Name", y = "Score") +
+  theme_minimal()
+```
+
+- `aes(fill = Passed)`: Maps the `Passed` variable to the colour fill of the bars, allowing for colour differentiation based on whether students passed or failed.
+- `scale_fill_manual()`: Customizes the colours used for the `TRUE` and `FALSE` values of the `Passed` variable.
+- `labs()`: Adds a main title and axis labels.
+- `theme_minimal()`: Applies a minimalistic theme to the plot for a cleaner appearance.
+
+
+### Scatter Plot with `ggplot2`
+
+A scatter plot is useful for examining the relationship between two continuous variables. While our `student_data` doesn't naturally lend itself to a scatter plot, let's simulate a scenario where we're comparing student scores against study hours.
+
+```{r}
+# create a scatter plot
+ggplot(student_data, aes(x = Study_Hours, y = Score, color = Passed)) +
+  geom_point(size = 4) +
+  labs(title = "Student Scores vs. Study Hours", x = "Study Hours", y = "Score") +
+  theme_minimal() +
+  scale_color_manual(values = c("Failed" = "red", "Passed" = "blue"))
+```
+
+### Box Plot with `ggplot2`
+
+Box plots are excellent for visualising the distribution of scores by pass/fail status, highlighting medians, quartiles, and potential outliers.
+
+```{r}
+# Create a box plot
+ggplot(student_data, aes(x = Passed, y = Score, fill = Passed)) +
+  geom_boxplot() +
+  labs(title = "Score Distribution by Pass/Fail Status", x = "Status", y = "Score") +
+  theme_minimal() +
+  scale_fill_manual(values = c("Failed" = "red", "Passed" = "blue"))
+```
+
+### Histogram with `ggplot2`
+
+Histograms are helpful for understanding the distribution of a single continuous variable, such as scores.
+
+```{r}
+# Create a histogram
+ggplot(student_data, aes(x = Score, fill = Passed)) +
+  geom_histogram(binwidth = 5, color = "black", alpha = 0.7) +
+  labs(title = "Histogram of Scores", x = "Score", y = "Count") +
+  theme_minimal() +
+  scale_fill_manual(values = c("Failed" = "red", "Passed" = "blue"))
+```
+
+### Line Plot with `ggplot2` (Time Series)
+
+For demonstrating a line plot, let's simulate monthly study hours over a semester for a student.
+
+```{r}
+# Simulate monthly study hours
+months <- factor(month.abb[1:8], levels = month.abb[1:8])
+study_hours <- c(10, 12, 15, 13, 14, 16, 18, 17)
+
+# Create a data frame
+study_data <- data.frame(Month = months, Study_Hours = study_hours)
+
+# Create a line plot
+ggplot(study_data, aes(x = Month, y = Study_Hours, group = 1)) +  # Explicitly define a group
+  geom_line(linewidth = 1, color = "blue") +  # Corrected to use `aes(linewidth = 1)`
+  geom_point(color = "red", size = 1) +
+  labs(title = "Monthly Study Hours", x = "Month", y = "Study Hours") +
+  theme_minimal()
+```
+
+
 
 ## For more information about the packages used here:
 
@@ -542,7 +859,9 @@ report(fit_3)
   - [Report package](https://easystats.github.io/report/index.html): Facilitates the automated generation of reports from statistical models.
 
 
-## What You Have Learned
+## Summary
+
+### What You Have Learned
 
 - **How to install and setup R:** 
 
@@ -556,109 +875,398 @@ You've familiarised yourself with the RStudio interface, including the console, 
 
 You've practided using R for basic arithmetic operations, understanding how to execute simple commands in the console.
   
-- **Data simulation:** 
+- **Basic R Data Structures such as:** 
 
-You've learned to simulate datasets in R. This is a foundational skill for exploring statistical concepts and data manipulation techniques. Congratulations! 
-  
-- **Data visualisation:** 
+  - **Vectors and Matrices:** You have learned to create and manipulate vectors and matrices, the simplest forms of data storage in R, which are crucial for handling numeric, character, and logical data types in a structured manner.
 
-You've begun data visualising data through boxplots and histograms and coefficient plots, which is crucial for analysing and communicating statistical findings.
-  
-- **Statistical tests:** You've conducted basic statistical tests, including t-tests and ANOVA, gaining insights into comparing means across groups.
-  
-- **Understanding ANOVA and regression:** 
+  - **Data Frames:** You've been introduced to data frames, a key data structure in R for storing tabular data. Data frames accommodate columns of different data types, making them highly versatile for data analysis and manipulation.
 
-You've explored the equivalence of ANOVA and regression analysis, learning how these methods can be applied to analyse and interpret data effectively.
+  - **Factors and Ordered Factors:** Understanding factors and ordered factors has provided you with the tools to handle categorical data effectively, including the ability to manage and analyse data involving categorical variables with both unordered and ordered levels.
 
-## Getting Help 
+- **Basics of `ggplot2`:**
 
-As sure as night follows day, you will need help coding.  Key resources
+You've been equipped with the fundamentals of data visualisation using `ggplot2`, including how to create basic plots like bar charts, scatter plots, and line graphs. You've learned about the importance of aesthetics (`aes`) and geometries (`geom_` functions) in creating visually appealing and informative graphics.
 
-1. **Large Language Models (LLMs):** OpenAI's premium LLM (GPT-4) outperforms the free version (GPT-3.5) for complex queries. 
+- **Customizing Plots:** Techniques for enhancing plots with titles, axis labels, and custom colour schemes have been covered. You've practised making your visualisations more informative and engaging by customising plot aesthetics.
+
+
+### Moving Forward
+
+- **Practical Application:** 
+
+Do the hands-on exercises at home. They'll help you apply what you have learned
+
+- **Building on the Foundation:** 
+
+This session has laid the groundwork. We've covered a lot, but we'll have a good deal of practice throughout the course. 
+
+### Conclusion
+
+Congratulations on completing Lab 1!  Remember, the key to proficiency in R is practice and exploration. Keep working at it.
+
+
+### Getting Help 
+
+As sure as night follows day, you will need help coding. Good resources:
+
+1. **Large Language Models (LLMs):** OpenAI's premium LLM (GPT-4) outperforms the free version (GPT-3.5) for complex queries. I don't think LLM's are quite ready for science, but they are remarkably helpful for coding, and for learning how to code. So please use them, with caution, but use them. 
 
 2. **Stack Exchange:** a valuable resource for coding advice and solutions.
 
 3. **Developer Websites and GitHub Pages:** Directly engage with package developers and the community for insights and support.[Parameters package discussion page](https://github.com/easystats/parameters/discussions) offers insights and support directly from its developers and user community.
 
-4.  Your tutors and lecturer. We care. We’re here to help you. 
+4.  Your tutors and lecturer. We care. We’re here to help you!
 
 
-## Recommended Reading
+### Recommended Reading
 
 - Wickham, H., & Grolemund, G. (2016). *R for Data Science*. O'Reilly Media. [Available online](https://r4ds.had.co.nz
 
 
-## Packages
+- A helpful resource for learning R is Megan Hall's lecture available at: [https://meghan.rbind.io/talk/neair/](https://meghan.rbind.io/talk/neair/).
+
+- RStudio has compiled numerous accessible materials for learning R, which can be found here: [https://education.rstudio.com/learn/beginner/](https://education.rstudio.com/learn/beginner/).
+
+- Materials from a previous course on learning R can be accessed here.  [https://go-bayes.github.io/psych-447/](https://education.rstudio.com/learn/beginner/) For now, only lecture 1 would be relevant. It's worth noting that this lecture covers working with GitHub.  GitHub is a useful tool, you should learn how to use it; however, it is not a requirement for the current course.
+
+
+### Packages
 
 ```{r}
-library(report)
 report::cite_packages()
 ```
 
 
-
-## Appendix A: Solutions to Problem Sets {#appendix-a}
-
+## Appendix A: At Home Exercises
 
 
-### Solution Problem Set 3: simulate data and regression reporting 
+::: {.callout-note  title="Exercise 2",  icon=false}
 
+### **Exercise 2: Install the `parameters` and `report` packages**
+
+To install the `parameters` and `report` packages in RStudio, follow these instructions:
+
+1. **Open RStudio:** start by launching the RStudio application on your computer.
+
+2. **Access Package Installation:**
+   - Go to the RStudio menu bar at the top of the screen and click on `Tools > Install Packages...`. This action opens the Install Packages dialogue box.
+
+3. **Install `parameters` and `report`:**
+   - In the Install Packages dialogue box, locate the field labelled "Packages (separate multiple with space or comma):". Click in this field and type `parameters, report`, separating the package names with a comma.
+   - Make sure the checkbox for `Install dependencies` is selected. This ensures that any additional packages needed by `parameters` and `report` are also installed.
+   - Click the `Install` button to initiate the installation of both packages and their dependencies.
+
+:::
+
+
+::: {.callout-note  title="Exercise 4",  icon=false}
+### Exercise 4: Basic Operations and Data Structure Manipulation
+
+**Objective:** Practice creating vectors and performing basic arithmetic operations.
+
+1. Create two numeric vectors, `vector_a` and `vector_b`, with the following values:
+   - `vector_a`: 2, 4, 6, 8
+   - `vector_b`: 1, 3, 5, 7
+
+2. Perform the following operations and store the results in new variables:
+   - Add `vector_a` and `vector_b`.
+   - Subtract `vector_b` from `vector_a`.
+   - Multiply `vector_a` by 2.
+   - Divide `vector_b` by 2.
+
+3. Calculate the mean and standard deviation of both `vector_a` and `vector_b`.
+::: 
+
+
+::: {.callout-note  title="Exercise 5",  icon=false}
+### Exercise 5: Working with Data Frames
+
+**Objective:** Gain familiarity with data frame creation, manipulation, and basic data exploration functions.
+
+1. Create a data frame `student_data` with the following columns:
+   - `ID`: 1, 2, 3, 4
+   - `Name`: Alice, Bob, Charlie, Diana
+   - `Score`: 88, 92, 85, 95
+   - Ensure you set `stringsAsFactors = FALSE`.
+
+2. Add a new column `Passed` to `student_data` indicating whether the student passed. Assume a pass mark of 90.
+
+3. Extract the `Name` and `Score` of students who passed into a new data frame.
+
+4. Use `summary()`, `head()`, and `str()` functions to explore `student_data`.
+::: 
+
+
+::: {.callout-note  title="Exercise 6",  icon=false}
+### Exercise 6: Logical Operations and Subsetting
+
+**Objective:** Practice using logical operations to subset data frames.
+
+1. Using the `student_data` data frame from Exercise 2, subset the data to find students who scored above the mean score of the class.
+
+2. Create a vector `attendance` with values (`Present`, `Absent`, `Present`, `Present`) corresponding to each student's attendance.
+
+3. Add `attendance` as a new column to `student_data` and then subset the data frame to select only the rows where students were present.
+:::
+
+
+::: {.callout-note  title="Exercise 7",  icon=false}
+### Exercise 4: Cross-Tabulation and Analysis
+
+**Objective:** Understand the use of `table()` function for cross-tabulation and analysis.
+
+1. Create two-factor variables:
+   - `Fruit`: Apple, Banana, Apple, Orange, Banana
+   - `Color`: Red, Yellow, Green, Orange, Green
+
+2. Convert `Fruit` and `Color` into factors and then into a data frame named `fruit_data`.
+
+3. Use the `table()` function to perform a cross-tabulation of `Fruit` by `Color`.
+
+4. Interpret the results. Which fruit has the most colour variety?
+:::
+
+::: {.callout-note  title="Exercise 8",  icon=false}
+### Exercise 8: Visualization with `ggplot2`
+
+**Objective:** (If `ggplot2` was introduced) Create a simple plot to visualise the data.
+
+1. Install and load the `ggplot2` package if not already done.
+
+2. Using `student_data`, create a bar plot showing the scores of students. Use `Name` for the x-axis and `Score` for the y-axis.
+
+3. Enhance the plot by adding a title, x and y-axis labels, and use different colours for passed and failed students.
+
+These exercises are designed to be progressively challenging, ensuring that students apply what they've learned about basic operations, data frame manipulation, logical operations, and simple data analysis and visualisation in R.
+:::
+
+
+#### Solutions 
+
+- Exercises 1 and 2 have no solutions. Installation worked or it did not! If you have trouble, please see your tutor or instructor. 
+
+### Solution Exercise 4: Basic Operations and Data Structure Manipulation
 
 ```{r}
-library(parameters)
-#  seed for reproducibility
-set.seed(12345)
+# e.g. create vectors
+vector_a <- c(2, 4, 6, 8)
+vector_b <- c(1, 3, 5, 7)
 
-# number of observations
-n <- 100
+# operations
+sum_vector <- vector_a + vector_b
+diff_vector <- vector_a - vector_b
+double_vector_a <- vector_a * 2
+half_vector_b <- vector_b / 2
 
-# simulate data for variable A with specified mean and sd
-A <- rnorm(n, mean = 50, sd = 10)
+#view
+sum_vector
+diff_vector
+double_vector_a
+half_vector_b
 
-# define the specified effect size of A on Y
-beta_A <- 2
-
-
-# simulate data and make data frame in one step
-
-df_3 <- data.frame(
-  # simulate data for variable A with specified mean and sd
-  A =  rnorm(n, mean = 50, sd = 10),
-  Y = 5 + beta_A * A + rnorm(n, mean = 0, sd = 20)
-)
+# Mean and Standard Deviation
+mean_a <- mean(vector_a)
+sd_a <- sd(vector_a)
+mean_b <- mean(vector_b)
+sd_b <- sd(vector_b)
 
 # view
-head(df_3)
-str(df_3)
-# Perform linear regression of Y on A
-
-fit_3 <- lm(Y ~ A, data = df_3)
-
-# Report the results of the regression
-# summary(model)
-
-# report
-parameters::model_parameters(fit_3)
-report(fit_3)
-
-
+mean_a
+sd_a
+mean_b
+sd_b
 ```
 
-
-## Appendix B: I lied
-
-We can get group comparisons with ANOVA, for example:
+### Solution 5: Working with Data Frames
 
 ```{r}
-# Conduct Tukey's HSD test for post-hoc comparisons
-tukey_post_hoc <- TukeyHSD(anova_model)
+# create data frame
+student_data <- data.frame(
+  ID = 1:4,
+  Name = c("Alice", "Bob", "Charlie", "Diana"),
+  Score = c(88, 92, 85, 95),
+  stringsAsFactors = FALSE
+)
 
-# Display the results
-print(tukey_post_hoc)
-plot(tukey_post_hoc)
+# add `Passed` column
+student_data$Passed <- student_data$Score >= 90
+
+# subset students who passed
+passed_students <- student_data[student_data$Passed == TRUE, ]
+
+# explore data frame
+summary(student_data)
+head(student_data)
+str(student_data)
 ```
 
-Regression and ANOVA are equivalent
+### Solution 6: Logical Operations and Subsetting
 
+```{r}
+# subset data based on score
+mean_score <- mean(student_data$Score)
+students_above_mean <- student_data[student_data$Score > mean_score, ]
+
+# add attendance and subset
+attendance <- c("Present", "Absent", "Present", "Present")
+student_data$Attendance <- attendance
+present_students <- student_data[student_data$Attendance == "Present", ]
+```
+
+### Solution 7: Cross-Tabulation and Analysis
+
+```{r}
+# create factor variables
+Fruit <- factor(c("Apple", "Banana", "Apple", "Orange", "Banana"))
+Color <- factor(c("Red", "Yellow", "Green", "Orange", "Green"))
+
+# create data frame
+fruit_data <- data.frame(Fruit, Color)
+
+# cross-tabulation
+fruit_color_table <- table(fruit_data$Fruit, fruit_data$Color)
+print(fruit_color_table)
+
+# interpretation: Apple has the most colour variety with 2 colours (Red, Green).
+```
+
+### Solution 8: Visualization with `ggplot2`
+
+```{r}
+# install and load ggplot2
+if (!require(ggplot2)) install.packages("ggplot2")
+library(ggplot2)
+
+# create bar plot
+ggplot(student_data, aes(x = Name, y = Score, fill = Passed)) +
+  geom_bar(stat = "identity") +
+  scale_fill_manual(values = c("TRUE" = "blue", "FALSE" = "red")) +
+  labs(title = "Student Scores", x = "Name", y = "Score") +
+  theme_minimal()
+```
+
+
+
+## Appendix C: Other Data Types You May Encounter
+
+
+#### **Arrays and Matrices**
+
+Arrays are multi-dimensional data structures, while matrices are two-dimensional.
+
+```{r}
+matrix_1 <- matrix(1:9, nrow = 3) # creates a 3x3 matrix
+array_1 <- array(1:12, dim = c(2, 3, 2)) # creates a 2x3x2 array
+```
+
+#### **Data Frames**
+
+A `data.frame` is used for storing tabular data.
+
+```{r}
+df <- data.frame(Name = c("Alice", "Bob"), Age = c(24, 27))
+
+#check
+str(df)
+
+# change matrix to array:
+df_matrix_1 <- data.frame( matrix_1 )
+
+str(df_matrix_1)
+
+head(df_matrix_1)
+
+# change colnames
+new_colnames <- c("col_1", "col_2", "col_3")
+
+colnames(df_matrix_1)<- new_colnames
+
+# check
+str(df_matrix_1)  
+head(df_matrix_1)
+
+```
+
+
+
+
+### **Working with Lists in R**
+
+#### **Creating Lists**
+
+To create a list, you use the `list()` function. Here's an example:
+
+```{r}
+# Creating a simple list
+my_list <- list(name = "John Doe", age = 30, scores = c(90, 80, 70))
+
+# A list containing various types of elements, including another list
+complex_list <- list(id = 1, name = "Jane Doe", preferences = list(color = "blue", hobby = "reading"))
+```
+
+#### **Accessing List Elements**
+
+List elements can be accessed using the `[[ ]]` notation for single elements, or the `$` notation if you're accessing named elements:
+
+```{r}
+# Accessing elements
+name <- my_list$name  # or my_list[["name"]]
+preference_color <- complex_list$preferences$color
+```
+
+#### **Modifying Lists**
+
+Lists can be modified by adding new elements, changing existing elements, or removing elements:
+
+```{r}
+# Adding a new element
+my_list$gender <- "Male"
+
+# Changing an existing element
+my_list$age <- 31
+
+# Removing an element
+my_list$scores <- NULL
+```
+
+#### **Lists in Functions**
+
+Lists are often used as return values for functions that need to provide multiple pieces of data:
+
+```{r}
+# Function returning a list
+calculate_stats <- function(numbers) {
+  mean_val <- mean(numbers)
+  sum_val <- sum(numbers)
+  return(list(mean = mean_val, sum = sum_val))
+}
+
+# Using the function
+results <- calculate_stats(c(1, 2, 3, 4, 5))
+```
+
+#### Why Lists are Important
+
+- **Flexibility:** lists can contain different types of elements, including other lists, data frames, and functions.
+- **Function outputs:** many R functions return lists because they can hold multiple types of outputs.
+
+
+
+## Appendix C: Else
+
+#### Using Logical Operators in Conditions
+
+These operators are often used in conditional statements and loops:
+
+```{r}
+if (x > 0 && y > 0) {
+  print("both x and y are positive")
+}
+z <- c(TRUE, FALSE, TRUE)
+w <- c(FALSE, TRUE, TRUE)
+combined_logic <- z | w # element-wise OR
+
+combined_logic
+```
 
 
