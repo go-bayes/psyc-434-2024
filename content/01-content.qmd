@@ -332,6 +332,7 @@ Logical operations are fundamental in R for controlling the flow of execution an
 - The `|` operator performs element-wise logical OR operation. It evaluates each pair of elements in two logical vectors to see if at least one is `TRUE`.
 - The `||` operator performs a logical OR operation but only evaluates the first element of each vector. It's mainly used in if statements and not for vectorised operations.
 
+
 ```{r}
 # element-wise OR
 vector_or <- c(TRUE, FALSE) | c(FALSE, TRUE) # returns c(TRUE, TRUE)
@@ -353,27 +354,105 @@ vector_and <- c(TRUE, FALSE) & c(FALSE, TRUE) # returns c(FALSE, FALSE)
 single_and <- TRUE && FALSE # returns FALSE
 ```
 
-## Working with Strings
 
-Strings are sequences of characters.
+::: {.callout-tip}
+## RStudio Workflow Shortcuts
+
+Boost your productivity in RStudio with these essential shortcuts:
+
+- **Execute Code Line**: `Cmd` + `Return` (Mac) or `Ctrl` + `Enter` (Windows/Linux)
+- **Insert Section Heading**: `Cmd` + `Shift` + `R` (Mac) or `Ctrl` + `Shift` + `R` (Windows/Linux)
+- **Align Code**: `Cmd` + `Shift` + `A` (Mac) or `Ctrl` + `Shift` + `A` (Windows/Linux)
+- **Comment/Uncomment**: `Cmd`/`Ctrl` + `Shift` + `C`
+- **Save All**: `Cmd`/`Ctrl` + `Shift` + `S`
+- **Find/Replace**: `Cmd`/`Ctrl` + `F`, `Cmd`/`Ctrl` + `Shift` + `F`
+- **New File**: `Cmd`/`Ctrl` + `Shift` + `N`
+- **Auto-complete**: `Tab`
+
+For more commands, explore the Command Palette available under `Tools` -> `Command Palette` or `Shift` + `Cmd` + `P` (Mac) or `Shift` + `Ctrl` + `P` (Windows/Linux). These shortcuts facilitate efficient code execution, organisation, and formatting.
+:::
+
+
+
+
+
+
+## Data Types in R
+
+Understanding data types in R is crucial for effective data manipulation and analysis. R supports several fundamental data types, including integers, characters, factors, and ordered factors. Each type has its specific use case and functions associated with it.
+
+### Integers
+
+Integers are whole numbers without decimal points. In R, integers can be explicitly defined by adding an `L` suffix to the number.
 
 ```{r}
-name <- "world" # assigns a string to name
-greeting <- paste("Hello,", name) # Concatenates strings
-
-#show
-greeting
+# define an integer
+x <- 42L
 ```
 
-## Factors
+Integers are particularly useful when dealing with counts or indices that do not require fractional values.
 
-Factors are used to represent categorical data.
+### Characters
+
+Character data types are used to represent text. In R, text strings are enclosed in quotes, either single (`'`) or double (`"`).
 
 ```{r}
-gender <- factor(c("Male", "Female", "Female", "Male"))
-
-head(gender)
+# define a character string
+name <- "Alice"
 ```
+
+Characters are essential for categorical data that does not fit into numerical categories, such as names, labels, and descriptions.
+
+### Factors
+
+Factors are used to represent categorical data that can take on a limited number of values, known as levels. Factors are useful for statistical modeling as they explicitly define categories in the data.
+
+```{r}
+# Define a factor
+colors <- factor(c("red", "blue", "green"))
+```
+
+Factors can improve efficiency and memory usage when dealing with categorical data, especially in large datasets. And they are useful when dealing with categorical variables (naturally).
+
+### Ordered Factors
+
+Ordered factors are a special type of factor where the levels have an inherent order. They are defined similarly to factors but with an additional argument to denote the order.
+
+```{r}
+# create an ordered factor using the `ordered` function
+education_levels <- c("High School", "Bachelor", "Master", "Ph.D.")
+education_factor <- factor(education_levels, ordered = TRUE)
+# specify levels explicitly
+education_ordered_explicit <- factor(c("High School", "Bachelor", "Master", "Ph.D."), levels = c("High School", "Bachelor", "Master", "Ph.D."), ordered = TRUE)
+```
+
+Ordered factors allow for logical comparisons based on their order, which is particularly useful in analyses where the order of categories matters, such as ordinal regression.
+
+### Operations with Ordered Factors
+
+Ordered factors support logical comparisons that consider the order of the levels.
+
+```{r}
+# Comparison of ordered factors
+edu1 <- ordered("Bachelor", levels = c("High School", "Bachelor", "Master", "Ph.D."))
+edu2 <- ordered("Master", levels = c("High School", "Bachelor", "Master", "Ph.D."))
+
+edu2 > edu1 # Returns TRUE
+
+x <- 42L
+
+# check
+str(x)
+
+str(55)
+
+# note we use "as.integer()" not "integer()" because 
+# we are converting a variable that already exists
+y <- as.integer(x)
+
+str(y)
+```
+
 
 ### Ordered Factors
 
@@ -387,22 +466,11 @@ education_factor <- factor(education_levels, ordered = TRUE)
 # alternatively, using ordered() function
 education_ordered <- ordered(education_levels)
 
-# specifying levels explicitly
+# specify levels explicitly
 education_ordered_explicit <- factor(education_levels, levels = c("High School", "Bachelor", "Master", "Ph.D."), ordered = TRUE)
 ```
 
-### Operations with Ordered Factors
 
-Ordered factors allow for comparison operations that make sense in their context, such as less than (`<`), greater than (`>`), etc., based on their order.
-
-```{r}
-# Comparing educational levels
-edu1 <- ordered("Bachelor", levels = c("High School", "Bachelor", "Master", "Ph.D."))
-edu2 <- ordered("Master", levels = c("High School", "Bachelor", "Master", "Ph.D."))
-
-# Check if edu2 is a higher degree than edu1
-edu2 > edu1 # Returns TRUE
-```
 
 Ordered factors can be useful in statistical models where the order impacts the model, such as ordinal logistic regression. The order of the factor levels can influence the model's interpretation and coefficients. **We will return to ordered factors and ordered/logistic regression later in the course.**
 
@@ -423,66 +491,46 @@ summary(education_ordered)
 If you need to change the order of levels or add new levels, you can re-factor the variable using `factor()` or `ordered()` and specify the new levels.
 
 ```{r}
-# adding a new level and reordering
+# add new level and reordering
 new_levels <- c("Primary School", "High School", "Bachelor", "Master", "Ph.D.")
 education_updated <- factor(education_levels, levels = new_levels, ordered = TRUE)
 ```
 
 
+## Working with Strings
+
+Strings are sequences of characters.
+
+```{r}
+name <- "world" # assigns a string to name
+greeting <- paste("Hello,", name) # concatenates strings
+
+#show
+greeting
+```
+
 ## Working with Vectors
 
-Vectors are one of R's most fundamental data structures, essential for storing and manipulating a sequence of data elements. They are homogenous, meaning all elements in a vector must be of the same type (e.g., all numeric, all character, etc.). Here's an overview of vectors in R, including how to create, access, and manipulate them.
+Vectors are one of R's most fundamental data structures, essential for storing and manipulating a sequence of data elements. 
+
+Vectors are homogenous, meaning all elements in a vector must be of the same type (e.g., all numeric, all character, etc.).
 
 Vectors in R can be created using the `c()` function, which stands for concatenate or combine:
 
 ```{r}
-# Numeric vector
+# numeric vector
 numeric_vector <- c(1, 2, 3, 4, 5)
 
-# Character vector
+# character vector
 character_vector <- c("apple", "banana", "cherry")
 
-# Logical vector
+# logical vector
 logical_vector <- c(TRUE, FALSE, TRUE, FALSE)
 ```
 
 
 ### Manipulating Vectors
 
-You can modify vectors by adding new elements, changing existing elements, or removing elements:
-
-```{r}
-# adding an element
-numeric_vector <- c(numeric_vector, 6)  # Adds 6 to the end of numeric_vector
-numeric_vector
-
-#print
-numeric_vector
-
-# changing an element
-numeric_vector[1] <- 10  # Changes the first element to 10
-
-#show
-numeric_vector
-
-```
-
-You can access elements of a vector by using square brackets `[ ]` with an index or a vector of indices:
-
-```{r}
-#  the first element of numeric_vector
-first_element <- numeric_vector[1]
-
-#show
-first_element
-# multiple elements
-some_elements <- numeric_vector[c(2, 4)]  # Gets the 2nd and 4th elements
-
-#show
-first_element
-```
-
-### Vector Operations
 
 R allows you to perform operations on vectors in a very intuitive way. Operations are vectorised, meaning they are applied element-wise:
 
@@ -503,6 +551,23 @@ vector_greater_than_three <- numeric_vector > 3  # Returns a logical vector
 #show
 vector_greater_than_three
 ```
+
+
+You can access elements of a vector by using square brackets `[ ]` with an index or a vector of indices:
+
+```{r}
+#  the first element of numeric_vector
+first_element <- numeric_vector[1]
+
+#show
+first_element
+# multiple elements
+some_elements <- numeric_vector[c(2, 4)]  # Gets the 2nd and 4th elements
+
+#show
+first_element
+```
+
 
 ### Functions with vectors
 
@@ -525,40 +590,6 @@ unique_vector <- unique(character_vector)
 unique_vector
 ```
 
-### Manipulating vectors
-
-You can modify vectors by adding new elements, changing existing elements, or removing elements:
-
-```{r}
-# adding an element
-numeric_vector <-
-  c(numeric_vector, 6)  # Adds 6 to the end of numeric_vector
-numeric_vector
-
-# changing an element
-numeric_vector[1] <- 10  # Changes the first element to 10
-
-#show new
-numeric_vector
-
-```
-
-::: {.callout-tip}
-## RStudio Workflow Shortcuts
-
-Boost your productivity in RStudio with these essential shortcuts:
-
-- **Execute Code Line**: `Cmd` + `Return` (Mac) or `Ctrl` + `Enter` (Windows/Linux)
-- **Insert Section Heading**: `Cmd` + `Shift` + `R` (Mac) or `Ctrl` + `Shift` + `R` (Windows/Linux)
-- **Align Code**: `Cmd` + `Shift` + `A` (Mac) or `Ctrl` + `Shift` + `A` (Windows/Linux)
-- **Comment/Uncomment**: `Cmd`/`Ctrl` + `Shift` + `C`
-- **Save All**: `Cmd`/`Ctrl` + `Shift` + `S`
-- **Find/Replace**: `Cmd`/`Ctrl` + `F`, `Cmd`/`Ctrl` + `Shift` + `F`
-- **New File**: `Cmd`/`Ctrl` + `Shift` + `N`
-- **Auto-complete**: `Tab`
-
-For more commands, explore the Command Palette available under `Tools` -> `Command Palette` or `Shift` + `Cmd` + `P` (Mac) or `Shift` + `Ctrl` + `P` (Windows/Linux). These shortcuts facilitate efficient code execution, organisation, and formatting.
-:::
 
 
 ## Working with Data Frames
@@ -806,6 +837,13 @@ head(student_data)
 # simulate study hours
 student_data$Study_Hours <- sample(5:15, 8, replace = TRUE)
 ```
+
+
+
+
+
+
+
 
 ### Basic Components of a `ggplot2` Plot
 
