@@ -1,7 +1,7 @@
 ---
 title: "Asking questions in cross-cultural psychology"
 subtitle: "Lab: Getting Started with R"
-date: "2023-FEB-28"
+date: "2024-FEB-26"
 bibliography: /Users/joseph/GIT/templates/bib/references.bib
 editor_options: 
   chunk_output_type: console
@@ -58,14 +58,14 @@ loadfonts(device = "all")
 ```
 
 ::: {.callout-note}
-## Background Readings: None today!
+## Background readings: none today!
 
 - If you want to get started, download R and Rstudio as below
 - List of recommended readings at the end of this lecture.
 :::
 
 ::: {.callout-important}
-## Key Concepts For the Test(s):
+## Key concepts for the test(s):
 
 Today we introduce the following topics relevant to the Test(s)
 
@@ -76,15 +76,8 @@ Today we introduce the following topics relevant to the Test(s)
 Today we discuss these concepts informally. We will define these concepts formally in technical detail in **week 2**.
 :::
 
-::: {.callout-tip}
-## Order your R-studio/R workflow
 
-- Clear folder structure
-- Clearly defined script names
-- Annotate your code
-:::
-
-## Lecture: Introduction to the Course
+# Lecture: Introduction to the Course
 
 ## Slides
 
@@ -103,9 +96,16 @@ Open in browser [here](/slides/01-slides.html){target="_blank"}
 
 
 
-## Lab 1: Installing R and RStudio
+# Lab 1: Installing R and RStudio
 
-This session is designed to introduce you to R and RStudio.
+## Why learn R?
+
+This session introduces R and R-Studio. 
+
+- Essential for your final report.
+- Supports your psychology coursework.
+- Enhances your coding skills, crucial for navigating AI advancements.
+- Coding can become as enjoyable as music or languages over time.
 
 ## Installing R
 
@@ -117,7 +117,7 @@ This session is designed to introduce you to R and RStudio.
 
 After Downloading R...
 
-### Step 1: Installing RStudio
+### Step 1: Installing R-Studio
 
 Assume you have downloaded and installed R from the Comprehensive R Archive Network (CRAN).
 
@@ -127,7 +127,7 @@ Assume you have downloaded and installed R from the Comprehensive R Archive Netw
 4. Open RStudio to begin setting up your project environment.
 
 
-### Step 2: Create a New Project
+### Step 2: Create a new project
 
 1. In RStudio, go to `File > New Project`.
 2. Choose `New Directory` for a new project or `Existing Directory` if you have a folder where you want to initialise an RStudio project.
@@ -135,7 +135,7 @@ Assume you have downloaded and installed R from the Comprehensive R Archive Netw
 4. Specify the location where the project folder will be created.
 5. Click `Create Project`.
 
-### Step 3: Give Project Structure
+### Step 3: Give project structure
 
 1. **Organising Files and Folders:**
    - Within your project, create folders to organise your scripts and data. Common folder names include `R/` for R scripts, `data/` for datasets, and `doc/` for documentation.
@@ -150,7 +150,7 @@ Assume you have downloaded and installed R from the Comprehensive R Archive Netw
    - This allows for better tracking of changes and collaboration if working with others.
    - If you are not familiar with version control (or have not installed `git` on your machine), do not worry about initialising a Git repository 
 
-### Step 4: Working with R Scripts
+### Step 4: Working with R-scripts
 
 1. **Writing and Executing Code:**
    - Write your R code in the *script editor.* 
@@ -170,7 +170,18 @@ Assume you have downloaded and installed R from the Comprehensive R Archive Netw
 
 ::: {.callout-note  title="Exercise 1",  icon=false}
 
-### Exercise 1: Install the `tidyverse` Package
+
+::: {.callout-tip}
+## Order your R-studio/R workflow
+
+- Clear folder structure
+- Clearly defined script names
+- Annotate your code
+:::
+
+
+::: {.callout-note  title="Exercise 1",  icon=false}
+### Exercise 1: Install the `tidyverse` package
 
 Follow these instructions to install the `tidyverse` package in RStudio:
 
@@ -194,6 +205,10 @@ Follow these instructions to install the `tidyverse` package in RStudio:
 
 
 ## Basic R Commands
+
+::: {.callout-note}
+Copy R-code from the code blocks by hovering your cursor over the top right of the code panel.
+:::
 
 ### Assignment (`<-`)
 
@@ -245,26 +260,30 @@ In addition to assignment, multiplication and division are fundamental arithmeti
 Multiplication and division in R are performed using the `*` and `/` operators, respectively. These operators allow for element-wise operations on vectors, as well as operations on individual numeric values.
 
 ```{r}
-# Multiplication
+# multiplication
 product <- x * y # multiplies x by y
+product
 
-# Division
+# division
 quotient <- x / y # divides x by y
+quotient
 
-# Element-wise multiplication on vectors
+# element-wise multiplication on vectors
 vector1 <- c(1, 2, 3)
 vector2 <- c(4, 5, 6)
 vector_product <- vector1 * vector2 # multiplies each element of vector1 by the corresponding element of vector2
+vector_product
 
-# Element-wise division on vectors
+# element-wise division on vectors
 vector_division <- vector1 / vector2 # divides each element of vector1 by the corresponding element of vector2
+vector_division
 ```
 
 - Multiplication and division can be used for scalar (single values) and vector (multiple values) operations. When applied to vectors, these operations are performed element-wise.
-- It's essential to be mindful of division by zero, as this will result in `Inf` (infinity) or `NaN` (not a number) depending on the context.
+- Be mindful of division by zero, as this will result in `Inf` (infinity) or `NaN` (not a number) depending on the context.
 
 ```{r}
-# Example of division by zero
+# example of division by zero
 result <- 10 / 0 # results in Inf
 zero_division <- 0 / 0 # results in NaN
 ```
@@ -272,10 +291,10 @@ zero_division <- 0 / 0 # results in NaN
 - R also supports integer division using the `%/%` operator and modulo operation using `%%` to find the remainder.
 
 ```{r}
-# Integer division
+# integer division
 integer_division <- 10 %/% 3 # results in 3
 
-# Modulo operation
+# modulo operation
 remainder <- 10 %% 3 # results in 1
 ```
 
@@ -285,11 +304,9 @@ Logical operations include NOT (`!`), NOT EQUAL (`!=`), and EQUAL (`==`).
 
 ```{r}
 x_not_y <- x != y # checks if x is not equal to y
-
 x_not_y
 
 x_equal_10 <- x == 10 # checks if x is equal to 10
-
 x_equal_10
 
 ```
@@ -317,11 +334,9 @@ single_or <- TRUE || FALSE # returns TRUE
 ```{r}
 # element-wise AND
 vector_and <- c(TRUE, FALSE) & c(FALSE, TRUE) # returns c(FALSE, FALSE)
-vector_and
 
 # single AND (only looks at first element)
 single_and <- TRUE && FALSE # returns FALSE
-single_and
 ```
 
 ## Working with Strings
@@ -332,7 +347,8 @@ Strings are sequences of characters.
 name <- "world" # assigns a string to name
 greeting <- paste("Hello,", name) # Concatenates strings
 
-print(greeting)
+#print
+greeting
 ```
 
 ## Factors
@@ -381,10 +397,10 @@ Ordered factors can be useful in statistical models where the order impacts the 
 You can view the structure and summary of ordered factors just as with regular factors, but the output will indicate the order.
 
 ```{r}
-# Viewing the structure
+# viewing the structure
 str(education_ordered)
 
-# Summary to see the distribution
+# summary to see the distribution
 summary(education_ordered)
 ```
 
@@ -393,7 +409,7 @@ summary(education_ordered)
 If you need to change the order of levels or add new levels, you can re-factor the variable using `factor()` or `ordered()` and specify the new levels.
 
 ```{r}
-# Adding a new level and reordering
+# adding a new level and reordering
 new_levels <- c("Primary School", "High School", "Bachelor", "Master", "Ph.D.")
 education_updated <- factor(education_levels, levels = new_levels, ordered = TRUE)
 ```
@@ -423,7 +439,6 @@ You can modify vectors by adding new elements, changing existing elements, or re
 
 ```{r}
 # adding an element
-
 numeric_vector <- c(numeric_vector, 6)  # Adds 6 to the end of numeric_vector
 numeric_vector
 
@@ -433,7 +448,7 @@ numeric_vector
 # changing an element
 numeric_vector[1] <- 10  # Changes the first element to 10
 
-#print
+#show
 numeric_vector
 
 ```
@@ -444,10 +459,12 @@ You can access elements of a vector by using square brackets `[ ]` with an index
 #  the first element of numeric_vector
 first_element <- numeric_vector[1]
 
+#show
 first_element
 # multiple elements
 some_elements <- numeric_vector[c(2, 4)]  # Gets the 2nd and 4th elements
 
+#show
 first_element
 ```
 
@@ -456,20 +473,20 @@ first_element
 R allows you to perform operations on vectors in a very intuitive way. Operations are vectorised, meaning they are applied element-wise:
 
 ```{r}
-# Arithmetic operations
+# arithmetic operations
 vector_sum <- numeric_vector + 10  # Adds 10 to each element
-
-#print
+#show
 vector_sum
 
+# vector mutliplication
 vector_multiplication <- numeric_vector * 2  # Multiplies each element by 2
-# print
+#show
 vector_multiplication
 
 # logical operations
 vector_greater_than_three <- numeric_vector > 3  # Returns a logical vector
 
-#print
+#show
 vector_greater_than_three
 ```
 
@@ -500,17 +517,13 @@ You can modify vectors by adding new elements, changing existing elements, or re
 
 ```{r}
 # adding an element
-
 numeric_vector <- c(numeric_vector, 6)  # Adds 6 to the end of numeric_vector
-numeric_vector
-
-#print
 numeric_vector
 
 # changing an element
 numeric_vector[1] <- 10  # Changes the first element to 10
 
-#print
+#show new
 numeric_vector
 
 ```
@@ -576,7 +589,7 @@ Data frames are flexible; they can be manipulated in various ways, such as:
 - **Adding Columns:** You can add new columns using the `$` operator.
 
 ```{r}
-df$Employed <- c(TRUE, TRUE, FALSE)  # Adds a new column "Employed"
+df$Employed <- c(TRUE, TRUE, FALSE)  # adds a new column "Employed"
 
 # show
 head(df)
@@ -611,13 +624,14 @@ df[4, ]
 head(df)
 
 # remove employed column
-df$Employed <- NULL  # Removes the Employed column
+df$Employed <- NULL  # removes the Employed column
 
 head(df)
 
 # remove fourth row (Diana)
-df <- df[-4, ]  # Removes the fourth row
-  
+df <- df[-4, ]  # removes the fourth row
+
+#show  
 df
 ```
 
@@ -630,11 +644,10 @@ df
 
 ```{r}
 # iris is a preloaded dataset
-
-str(iris) # Displays structure of scores_df
-summary(iris) # Summary statistics
-head(iris) # First few rows
-tail(iris) # Last few rows
+str(iris) # displays structure of scores_df
+summary(iris) # summary statistics
+head(iris) # first few rows
+tail(iris) # last few rows
 ```
 
 ### mean()
@@ -676,13 +689,18 @@ max(vector)  # maximum value
 set.seed(12345)
 
 #  two categorical variables
-Gender <- sample(c("Male", "Female"), size = 100, replace = TRUE, prob = c(0.5, 0.5))
-Education_Level <- sample(c("High School", "Bachelor", "Master"), size = 100, replace = TRUE, prob = c(0.4, 0.4, 0.2))
-
-# Create a data frame
+Gender <- sample(c("Male", "Female"), 
+                 size = 100, 
+                 replace = TRUE, 
+                 prob = c(0.5, 0.5))
+Education_Level <- sample(c("High School", "Bachelor", "Master"),
+                          size = 100, 
+                          replace = TRUE, 
+                          prob = c(0.4, 0.4, 0.2))
+# create a data frame
 df_table_example <- data.frame(Gender, Education_Level)
 
-# Print the first few rows of the data frame to confirm
+# show
 head(df_table_example)
 
 ```
@@ -704,6 +722,7 @@ This produces a contingency table showing the counts at each combination of `fac
 - **Data Exploration:** Functions like `head()`, `tail()`, and `str()` help you explore the first few rows, last few rows, and the structure of the data frame, respectively.
 
 ```{r}
+# show
 head(df)  # First six rows
 tail(df)  # Last six rows
 str(df)   # Structure of the data frame
@@ -714,6 +733,7 @@ str(df)   # Structure of the data frame
 Use `summary()` to get a summary of each column.
 
 ```{r}
+# show
 summary(df)
 ```
 
@@ -730,10 +750,10 @@ Before using `ggplot2`, ensure it's installed and loaded into your R session:
 if (!require(ggplot2)) install.packages("ggplot2")
 library(ggplot2)
 
-# Set seed for reproducibility
+# seed for reproducibility
 set.seed(12345)
 
-# Simulate student data
+# simulate student data (more on simulation next week)
 student_data <- data.frame(
   Name = c("Alice", "Bob", "Charlie", "Diana", "Ethan", "Fiona", "George", "Hannah"),
   Score = sample(80:100, 8, replace = TRUE), # Random scores between 80 and 100
@@ -744,13 +764,13 @@ student_data <- data.frame(
 # we will cover the ifelse() operator in detail in upcoming weeks
 student_data$Passed <- ifelse(student_data$Score >= 90, "Passed", "Failed")
 
-# Convert 'Passed' to factor for colour coding in ggplot2
+# convert 'Passed' to factor for colour coding in ggplot2
 student_data$Passed <- factor(student_data$Passed, levels = c("Failed", "Passed"))
 
-# View the first few rows of the data frame
+# view the first few rows of the data frame
 head(student_data)
 
-# Simulate study hours
+# simulate study hours
 student_data$Study_Hours <- sample(5:15, 8, replace = TRUE)
 ```
 
@@ -771,7 +791,7 @@ ggplot(student_data, aes(x = Name, y = Score)) +
 
 This code plots `Score` for each `Name` in the `student_data` dataframe. The `stat = "identity"` argument tells `ggplot2` to use the `Score` values directly to determine the height of the bars.
 
-#### Customizing the Plot
+#### Customizing the plot
 
 To enhance your plot, you can add titles, change axis labels, and modify colours:
 
@@ -794,7 +814,7 @@ ggplot(student_data, aes(x = Name, y = Score, fill = Passed)) +
 A scatter plot is useful for examining the relationship between two continuous variables. While our `student_data` doesn't naturally lend itself to a scatter plot, let's simulate a scenario where we're comparing student scores against study hours.
 
 ```{r}
-# create a scatter plot
+# create  scatter plot
 ggplot(student_data, aes(x = Study_Hours, y = Score, color = Passed)) +
   geom_point(size = 4) +
   labs(title = "Student Scores vs. Study Hours", x = "Study Hours", y = "Score") +
@@ -807,7 +827,7 @@ ggplot(student_data, aes(x = Study_Hours, y = Score, color = Passed)) +
 Box plots are excellent for visualising the distribution of scores by pass/fail status, highlighting medians, quartiles, and potential outliers.
 
 ```{r}
-# Create a box plot
+# create box plot
 ggplot(student_data, aes(x = Passed, y = Score, fill = Passed)) +
   geom_boxplot() +
   labs(title = "Score Distribution by Pass/Fail Status", x = "Status", y = "Score") +
@@ -833,14 +853,14 @@ ggplot(student_data, aes(x = Score, fill = Passed)) +
 For demonstrating a line plot, let's simulate monthly study hours over a semester for a student.
 
 ```{r}
-# Simulate monthly study hours
+# simulate monthly study hours
 months <- factor(month.abb[1:8], levels = month.abb[1:8])
 study_hours <- c(10, 12, 15, 13, 14, 16, 18, 17)
 
-# Create a data frame
+# make data frame
 study_data <- data.frame(Month = months, Study_Hours = study_hours)
 
-# Create a line plot
+# create a line plot
 ggplot(study_data, aes(x = Month, y = Study_Hours, group = 1)) +  # Explicitly define a group
   geom_line(linewidth = 1, color = "blue") +  # Corrected to use `aes(linewidth = 1)`
   geom_point(color = "red", size = 1) +
@@ -849,19 +869,11 @@ ggplot(study_data, aes(x = Month, y = Study_Hours, group = 1)) +  # Explicitly d
 ```
 
 
-
-## For more information about the packages used here:
-
-  - [ggplot2](https://ggplot2.tidyverse.org/): A system for declaratively creating graphics, based on The Grammar of Graphics.
-
-  - [Parameters package](https://easystats.github.io/parameters/): Provides utilities for processing model parameters and their metrics.
-
-  - [Report package](https://easystats.github.io/report/index.html): Facilitates the automated generation of reports from statistical models.
-
-
 ## Summary
 
-### What You Have Learned
+Congratulations on completing Lab 1! This session has laid the groundwork. We've covered a lot, but we'll have a good deal of practice throughout the course. 
+
+### What We Have Learned
 
 - **How to install and setup R:** 
 
@@ -887,33 +899,30 @@ You've practided using R for basic arithmetic operations, understanding how to e
 
 You've been equipped with the fundamentals of data visualisation using `ggplot2`, including how to create basic plots like bar charts, scatter plots, and line graphs. You've learned about the importance of aesthetics (`aes`) and geometries (`geom_` functions) in creating visually appealing and informative graphics.
 
-- **Customizing Plots:** Techniques for enhancing plots with titles, axis labels, and custom colour schemes have been covered. You've practised making your visualisations more informative and engaging by customising plot aesthetics.
+- **Customizing Plots:** 
+
+Techniques for enhancing plots with titles, axis labels, and custom colour schemes have been covered. You've practised making your visualisations more informative and engaging by customising plot aesthetics.
 
 
-### Moving Forward
+### How to Build Skills?
 
 - **Practical Application:** 
 
-Do the hands-on exercises at home. They'll help you apply what you have learned
-
-- **Building on the Foundation:** 
-
-This session has laid the groundwork. We've covered a lot, but we'll have a good deal of practice throughout the course. 
-
-### Conclusion
-
-Congratulations on completing Lab 1!  Remember, the key to proficiency in R is practice and exploration. Keep working at it.
+Do the hands-on exercises at home. They'll help you apply what you have learned here.
 
 
-### Getting Help 
+
+### Where to Get Help
 
 As sure as night follows day, you will need help coding. Good resources:
 
 1. **Large Language Models (LLMs):** OpenAI's premium LLM (GPT-4) outperforms the free version (GPT-3.5) for complex queries. I don't think LLM's are quite ready for science, but they are remarkably helpful for coding, and for learning how to code. So please use them, with caution, but use them. 
 
-2. **Stack Exchange:** a valuable resource for coding advice and solutions.
+2. [**Stack Overflow:**](https://stackoverflow.com/questions/tagged/r) a valuable resource for coding advice and solutions.
 
-3. **Developer Websites and GitHub Pages:** Directly engage with package developers and the community for insights and support.[Parameters package discussion page](https://github.com/easystats/parameters/discussions) offers insights and support directly from its developers and user community.
+3. [Cross-validated](https://stats.stackexchange.com/) is probably the best place to go for stats advice. (LLMs are currently not reliable for statisticis for which there is not much information -- which is most of science.)
+
+4. **Developer Websites and GitHub Pages:** Directly engage with package developers and the community for insights and support.[Parameters package discussion page](https://github.com/easystats/parameters/discussions) offers insights and support directly from its developers and user community.
 
 4.  Your tutors and lecturer. We care. We’re here to help you!
 
@@ -942,7 +951,7 @@ report::cite_packages()
 
 ::: {.callout-note  title="Exercise 2",  icon=false}
 
-### **Exercise 2: Install the `parameters` and `report` packages**
+### Exercise 2: Install the `parameters` and `report` packages
 
 To install the `parameters` and `report` packages in RStudio, follow these instructions:
 
@@ -1150,7 +1159,7 @@ ggplot(student_data, aes(x = Name, y = Score, fill = Passed)) +
 ## Appendix C: Other Data Types You May Encounter
 
 
-#### **Arrays and Matrices**
+#### Arrays and Matrices
 
 Arrays are multi-dimensional data structures, while matrices are two-dimensional.
 
@@ -1159,16 +1168,11 @@ matrix_1 <- matrix(1:9, nrow = 3) # creates a 3x3 matrix
 array_1 <- array(1:12, dim = c(2, 3, 2)) # creates a 2x3x2 array
 ```
 
-#### **Data Frames**
+#### Convert Matrix to Data Frame
 
 A `data.frame` is used for storing tabular data.
 
 ```{r}
-df <- data.frame(Name = c("Alice", "Bob"), Age = c(24, 27))
-
-#check
-str(df)
-
 # change matrix to array:
 df_matrix_1 <- data.frame( matrix_1 )
 
@@ -1190,11 +1194,11 @@ head(df_matrix_1)
 
 
 
-### **Working with Lists in R**
+### Working with Lists in R
 
-#### **Creating Lists**
+#### Creating lists
 
-To create a list, you use the `list()` function. Here's an example:
+To create a list, you use the `list()` function. 
 
 ```{r}
 # Creating a simple list
@@ -1204,17 +1208,18 @@ my_list <- list(name = "John Doe", age = 30, scores = c(90, 80, 70))
 complex_list <- list(id = 1, name = "Jane Doe", preferences = list(color = "blue", hobby = "reading"))
 ```
 
-#### **Accessing List Elements**
+#### Accessing list elements
 
 List elements can be accessed using the `[[ ]]` notation for single elements, or the `$` notation if you're accessing named elements:
 
 ```{r}
 # Accessing elements
 name <- my_list$name  # or my_list[["name"]]
+
 preference_color <- complex_list$preferences$color
 ```
 
-#### **Modifying Lists**
+#### Modifying lists
 
 Lists can be modified by adding new elements, changing existing elements, or removing elements:
 
@@ -1229,7 +1234,7 @@ my_list$age <- 31
 my_list$scores <- NULL
 ```
 
-#### **Lists in Functions**
+#### Lists in Functions
 
 Lists are often used as return values for functions that need to provide multiple pieces of data:
 
@@ -1252,21 +1257,21 @@ results <- calculate_stats(c(1, 2, 3, 4, 5))
 
 
 
-## Appendix C: Else
+<!-- ## Appendix C: Sundry -->
 
-#### Using Logical Operators in Conditions
+<!-- #### Using Logical Operators in Conditions -->
 
-These operators are often used in conditional statements and loops:
+<!-- These operators are often used in conditional statements and loops: -->
 
-```{r}
-if (x > 0 && y > 0) {
-  print("both x and y are positive")
-}
-z <- c(TRUE, FALSE, TRUE)
-w <- c(FALSE, TRUE, TRUE)
-combined_logic <- z | w # element-wise OR
+<!-- ```{r} -->
+<!-- if (x > 0 && y > 0) { -->
+<!--   print("both x and y are positive") -->
+<!-- } -->
+<!-- z <- c(TRUE, FALSE, TRUE) -->
+<!-- w <- c(FALSE, TRUE, TRUE) -->
+<!-- combined_logic <- z | w # element-wise OR -->
 
-combined_logic
-```
+<!-- combined_logic -->
+<!-- ``` -->
 
 
