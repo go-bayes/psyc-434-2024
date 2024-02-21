@@ -12,8 +12,12 @@ website:
   navbar:
     search: false
     right:
+    - text: "Course Outline"
+      href: content/course-outline.qmd
     - text: "Content"
       menu:
+        - text: "Course Outline"
+          href: content/course-outline.qmd
         - text: "Week 1: Course Introduction - R (installing packages)"
           href: content/01-content.qmd
         - text: "Week 2: Causal Diagrams - Elementary Structures and Rules - R (using the interface)"
