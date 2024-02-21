@@ -685,6 +685,51 @@ df <- df[-4, ]  # removes the fourth row
 df
 ```
 
+
+### Add Rows with `rbind()`
+
+The `rbind()` function in R stands for "row bind". It is used to combine data frames or matrices by rows. This function is particularly useful when you want to add new observations or records to an existing data frame.
+
+```{r}
+#  adding a new row
+new_person <- data.frame(Name = "Eve", Age = 32, Gender = "Female")
+df <- rbind(df, new_person)
+
+# verify the row addition
+head(df)
+```
+
+When using `rbind()`, ensure that the columns in the data frames being combined match in both name and order. If they do not match, you may encounter errors or unexpected results.
+
+### Adding Columns with `cbind()`
+
+Conversely, the `cbind()` function in R stands for "column bind". It is used to combine data frames or matrices by columns. This function allows you to add new variables to an existing data frame.
+
+```{r}
+# example of adding a new column
+df$Occupation <- c("Engineer", "Doctor", "Artist", "Teacher")  # direct assignment
+# or using cbind for a separate vector
+Occupation_vector <- c("Engineer", "Doctor", "Artist", "Teacher")
+df <- cbind(df, Occupation_vector)
+
+# verify the column addition
+head(df)
+```
+
+As with `rbind()`, when using `cbind()`, it is crucial that the data frames or vectors being combined have compatible dimensions. For `cbind()`, the number of rows must match.
+
+### Considerations for `rbind()` and `cbind()`
+
+While `rbind()` and `cbind()` are straightforward and powerful functions for combining data, they have some limitations:
+
+- **Matching Column or Row Names**: for `rbind()`, the column names between the data frames need to match exactly. For `cbind()`, the row numbers must be equal.
+- **Factor Levels**: when binding factors with different levels, R will unify the levels, which can sometimes lead to unexpected results. Be mindful of factor levels when using these functions.
+- **Performance**: we will use a different approach next week (and following), draing on the`dplyr` package, which will connect more easily to our workflows. 
+
+By understanding and utilizing `rbind()` and `cbind()`, you can efficiently manipulate the structure of your data frames, adding flexibility to your data analysis workflows in R.
+
+
+
 ### View Data Structure (`summary()`, `str()`, `head()`, `tail()`)
 
 - `summary()`: Provides a summary of an object's structure.
