@@ -551,11 +551,15 @@ You've begun data visualising data through boxplots and histograms and coefficie
 You've explored the equivalence of ANOVA and regression analysis, learning how these methods can be applied to analyse and interpret data effectively.
 
 
+## For more information about the packages used here:
 
-## Appendix 
+  - [ggplot2](https://ggplot2.tidyverse.org/): A system for declaratively creating graphics, based on The Grammar of Graphics.
 
+  - [Parameters package](https://easystats.github.io/parameters/): Provides utilities for processing model parameters and their metrics.
 
-## Appendix B: I lied
+  - [Report package](https://easystats.github.io/report/index.html): Facilitates the automated generation of reports from statistical models.
+
+## Appendix A: I lied
 
 We can get group comparisons with ANOVA, for example:
 

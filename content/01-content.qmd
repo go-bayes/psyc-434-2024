@@ -5,6 +5,18 @@ date: "2024-FEB-26"
 bibliography: /Users/joseph/GIT/templates/bib/references.bib
 editor_options: 
   chunk_output_type: console
+format: 
+  html:
+    html-math-method: katex
+    warnings: false
+    error: false
+    messages: false
+    code-overflow: scroll
+    highlight-style: dracula
+    code-tools:
+      source: true
+      toggle: false
+      caption: none
 ---
 
 
@@ -517,7 +529,8 @@ You can modify vectors by adding new elements, changing existing elements, or re
 
 ```{r}
 # adding an element
-numeric_vector <- c(numeric_vector, 6)  # Adds 6 to the end of numeric_vector
+numeric_vector <-
+  c(numeric_vector, 6)  # Adds 6 to the end of numeric_vector
 numeric_vector
 
 # changing an element
@@ -527,6 +540,24 @@ numeric_vector[1] <- 10  # Changes the first element to 10
 numeric_vector
 
 ```
+
+::: {.callout-tip}
+## RStudio Workflow Shortcuts
+
+Boost your productivity in RStudio with these essential shortcuts:
+
+- **Execute Code Line**: `Cmd` + `Return` (Mac) or `Ctrl` + `Enter` (Windows/Linux)
+- **Insert Section Heading**: `Cmd` + `Shift` + `R` (Mac) or `Ctrl` + `Shift` + `R` (Windows/Linux)
+- **Align Code**: `Cmd` + `Shift` + `A` (Mac) or `Ctrl` + `Shift` + `A` (Windows/Linux)
+- **Comment/Uncomment**: `Cmd`/`Ctrl` + `Shift` + `C`
+- **Save All**: `Cmd`/`Ctrl` + `Shift` + `S`
+- **Find/Replace**: `Cmd`/`Ctrl` + `F`, `Cmd`/`Ctrl` + `Shift` + `F`
+- **New File**: `Cmd`/`Ctrl` + `Shift` + `N`
+- **Auto-complete**: `Tab`
+
+For more commands, explore the Command Palette available under `Tools` -> `Command Palette` or `Shift` + `Cmd` + `P` (Mac) or `Shift` + `Ctrl` + `P` (Windows/Linux). These shortcuts facilitate efficient code execution, organisation, and formatting.
+:::
+
 
 ## Working with Data Frames
 
