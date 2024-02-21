@@ -945,13 +945,8 @@ ggplot(study_data, aes(x = Month, y = Study_Hours, group = 1)) +  # Explicitly d
 
 Although `ggplot2` is renowned for its flexibility and aesthetic appeal, Base R graphics remain a staple for straightforward and quick visualisations. 
 
-Base R provides a set of plotting functions that are readily available without the need for additional packages. 
+Base R provides a set of plotting functions that are readily available without the need for additional packages, and it is speedy.
 
-### Why Use Base R Graphs?
-
-- **Simplicity:** Base R functions like `plot`, `hist`, `boxplot`, and others are straightforward to use for basic plotting tasks.
-- **Speed:** For small to medium-sized datasets, Base R plots can be generated quickly, making them ideal for initial data exploration.
-- **No Dependencies:** There's no need to install or load additional packages, which is particularly beneficial in environments with limited access to external resources.
 
 ### Basic Plotting Functions
 
@@ -1003,8 +998,6 @@ boxplot(Score ~ Passed, data = student_data,
 ```
 
 This code uses the `boxplot` function to create box plots for scores, grouped by the pass/fail status, with custom colours for each group.
-
-
 
 ## Lab Summary
 

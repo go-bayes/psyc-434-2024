@@ -273,7 +273,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#base-r-graphs" id="toc-base-r-graphs" class="nav-link" data-scroll-target="#base-r-graphs">Base R Graphs</a>
   <ul class="collapse">
-  <li><a href="#why-use-base-r-graphs" id="toc-why-use-base-r-graphs" class="nav-link" data-scroll-target="#why-use-base-r-graphs">Why Use Base R Graphs?</a></li>
   <li><a href="#basic-plotting-functions" id="toc-basic-plotting-functions" class="nav-link" data-scroll-target="#basic-plotting-functions">Basic Plotting Functions</a></li>
   <li><a href="#creating-a-basic-scatter-plot-with-base-r" id="toc-creating-a-basic-scatter-plot-with-base-r" class="nav-link" data-scroll-target="#creating-a-basic-scatter-plot-with-base-r">Creating a Basic Scatter Plot with Base R</a></li>
   <li><a href="#generating-a-histogram-with-base-r" id="toc-generating-a-histogram-with-base-r" class="nav-link" data-scroll-target="#generating-a-histogram-with-base-r">Generating a Histogram with Base R</a></li>
@@ -1463,15 +1462,7 @@ RStudio Workflow Shortcuts
 <section id="base-r-graphs" class="level2">
 <h2 class="anchored" data-anchor-id="base-r-graphs">Base R Graphs</h2>
 <p>Although <code>ggplot2</code> is renowned for its flexibility and aesthetic appeal, Base R graphics remain a staple for straightforward and quick visualisations.</p>
-<p>Base R provides a set of plotting functions that are readily available without the need for additional packages.</p>
-<section id="why-use-base-r-graphs" class="level3">
-<h3 class="anchored" data-anchor-id="why-use-base-r-graphs">Why Use Base R Graphs?</h3>
-<ul>
-<li><strong>Simplicity:</strong> Base R functions like <code>plot</code>, <code>hist</code>, <code>boxplot</code>, and others are straightforward to use for basic plotting tasks.</li>
-<li><strong>Speed:</strong> For small to medium-sized datasets, Base R plots can be generated quickly, making them ideal for initial data exploration.</li>
-<li><strong>No Dependencies:</strong> There’s no need to install or load additional packages, which is particularly beneficial in environments with limited access to external resources.</li>
-</ul>
-</section>
+<p>Base R provides a set of plotting functions that are readily available without the need for additional packages, and it is speedy.</p>
 <section id="basic-plotting-functions" class="level3">
 <h3 class="anchored" data-anchor-id="basic-plotting-functions">Basic Plotting Functions</h3>
 <ul>
@@ -3387,474 +3378,467 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb174-1039"><a href="#cb174-1039" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb174-1040"><a href="#cb174-1040" aria-hidden="true" tabindex="-1"></a>Although <span class="in">`ggplot2`</span> is renowned for its flexibility and aesthetic appeal, Base R graphics remain a staple for straightforward and quick visualisations. </span>
 <span id="cb174-1041"><a href="#cb174-1041" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1042"><a href="#cb174-1042" aria-hidden="true" tabindex="-1"></a>Base R provides a set of plotting functions that are readily available without the need for additional packages. </span>
+<span id="cb174-1042"><a href="#cb174-1042" aria-hidden="true" tabindex="-1"></a>Base R provides a set of plotting functions that are readily available without the need for additional packages, and it is speedy.</span>
 <span id="cb174-1043"><a href="#cb174-1043" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1044"><a href="#cb174-1044" aria-hidden="true" tabindex="-1"></a><span class="fu">### Why Use Base R Graphs?</span></span>
-<span id="cb174-1045"><a href="#cb174-1045" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1046"><a href="#cb174-1046" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Simplicity:** Base R functions like <span class="in">`plot`</span>, <span class="in">`hist`</span>, <span class="in">`boxplot`</span>, and others are straightforward to use for basic plotting tasks.</span>
-<span id="cb174-1047"><a href="#cb174-1047" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Speed:** For small to medium-sized datasets, Base R plots can be generated quickly, making them ideal for initial data exploration.</span>
-<span id="cb174-1048"><a href="#cb174-1048" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**No Dependencies:** There's no need to install or load additional packages, which is particularly beneficial in environments with limited access to external resources.</span>
-<span id="cb174-1049"><a href="#cb174-1049" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1050"><a href="#cb174-1050" aria-hidden="true" tabindex="-1"></a><span class="fu">### Basic Plotting Functions</span></span>
+<span id="cb174-1044"><a href="#cb174-1044" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1045"><a href="#cb174-1045" aria-hidden="true" tabindex="-1"></a><span class="fu">### Basic Plotting Functions</span></span>
+<span id="cb174-1046"><a href="#cb174-1046" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1047"><a href="#cb174-1047" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`plot()`</span>: The workhorse of Base R for creating scatter plots, line graphs, and more, with extensive customisation options.</span>
+<span id="cb174-1048"><a href="#cb174-1048" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`hist()`</span>: Generates histograms to explore the distribution of a single continuous variable.</span>
+<span id="cb174-1049"><a href="#cb174-1049" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`boxplot()`</span>: Useful for comparing distributions across groups, highlighting medians, quartiles, and outliers.</span>
+<span id="cb174-1050"><a href="#cb174-1050" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`barplot()`</span>: Creates bar graphs for visualising categorical data.</span>
 <span id="cb174-1051"><a href="#cb174-1051" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1052"><a href="#cb174-1052" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`plot()`</span>: The workhorse of Base R for creating scatter plots, line graphs, and more, with extensive customisation options.</span>
-<span id="cb174-1053"><a href="#cb174-1053" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`hist()`</span>: Generates histograms to explore the distribution of a single continuous variable.</span>
-<span id="cb174-1054"><a href="#cb174-1054" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`boxplot()`</span>: Useful for comparing distributions across groups, highlighting medians, quartiles, and outliers.</span>
-<span id="cb174-1055"><a href="#cb174-1055" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="in">`barplot()`</span>: Creates bar graphs for visualising categorical data.</span>
-<span id="cb174-1056"><a href="#cb174-1056" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1057"><a href="#cb174-1057" aria-hidden="true" tabindex="-1"></a><span class="fu">### Creating a Basic Scatter Plot with Base R</span></span>
-<span id="cb174-1058"><a href="#cb174-1058" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1059"><a href="#cb174-1059" aria-hidden="true" tabindex="-1"></a>Consider simple scatter plot using the data we have just simulated</span>
-<span id="cb174-1060"><a href="#cb174-1060" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1063"><a href="#cb174-1063" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb174-1064"><a href="#cb174-1064" aria-hidden="true" tabindex="-1"></a><span class="co"># basic scatter plot with Base R</span></span>
-<span id="cb174-1065"><a href="#cb174-1065" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(student_data<span class="sc">$</span>Study_Hours, student_data<span class="sc">$</span>Score,</span>
-<span id="cb174-1066"><a href="#cb174-1066" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Scatter Plot of Scores vs. Study Hours"</span>,</span>
-<span id="cb174-1067"><a href="#cb174-1067" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Study Hours"</span>, <span class="at">ylab =</span> <span class="st">"Score"</span>,</span>
-<span id="cb174-1068"><a href="#cb174-1068" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">col =</span> <span class="fu">ifelse</span>(student_data<span class="sc">$</span>Passed <span class="sc">==</span> <span class="st">"Passed"</span>, <span class="st">"blue"</span>, <span class="st">"red"</span>))</span>
-<span id="cb174-1069"><a href="#cb174-1069" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb174-1070"><a href="#cb174-1070" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1071"><a href="#cb174-1071" aria-hidden="true" tabindex="-1"></a>This plot uses the <span class="in">`plot`</span> function to create a scatter plot, with study hours on the x-axis and scores on the y-axis. The <span class="in">`pch`</span> parameter specifies the symbol type, and <span class="in">`col`</span> changes the colour based on whether the student passed or failed.</span>
-<span id="cb174-1072"><a href="#cb174-1072" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1073"><a href="#cb174-1073" aria-hidden="true" tabindex="-1"></a><span class="fu">### Generating a Histogram with Base R</span></span>
-<span id="cb174-1074"><a href="#cb174-1074" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1075"><a href="#cb174-1075" aria-hidden="true" tabindex="-1"></a>To visualise the distribution of student scores:</span>
-<span id="cb174-1076"><a href="#cb174-1076" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1079"><a href="#cb174-1079" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb174-1080"><a href="#cb174-1080" aria-hidden="true" tabindex="-1"></a><span class="co"># Histogram with Base R</span></span>
-<span id="cb174-1081"><a href="#cb174-1081" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(student_data<span class="sc">$</span>Score,</span>
-<span id="cb174-1082"><a href="#cb174-1082" aria-hidden="true" tabindex="-1"></a>     <span class="at">breaks =</span> <span class="dv">5</span>,</span>
-<span id="cb174-1083"><a href="#cb174-1083" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">"skyblue"</span>,</span>
-<span id="cb174-1084"><a href="#cb174-1084" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Histogram of Student Scores"</span>,</span>
-<span id="cb174-1085"><a href="#cb174-1085" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Scores"</span>,</span>
-<span id="cb174-1086"><a href="#cb174-1086" aria-hidden="true" tabindex="-1"></a>     <span class="at">border =</span> <span class="st">"white"</span>)</span>
-<span id="cb174-1087"><a href="#cb174-1087" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb174-1088"><a href="#cb174-1088" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1089"><a href="#cb174-1089" aria-hidden="true" tabindex="-1"></a>This histogram provides a quick overview of the scores' distribution, using the <span class="in">`hist`</span> function with specified <span class="in">`breaks`</span>, <span class="in">`col`</span> for colour, and <span class="in">`border`</span> for the colour of the histogram borders.</span>
-<span id="cb174-1090"><a href="#cb174-1090" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1091"><a href="#cb174-1091" aria-hidden="true" tabindex="-1"></a><span class="fu">### Comparing Distributions with Box Plots</span></span>
-<span id="cb174-1092"><a href="#cb174-1092" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1093"><a href="#cb174-1093" aria-hidden="true" tabindex="-1"></a>Box plots in Base R can compare the score distributions across the pass/fail status:</span>
-<span id="cb174-1094"><a href="#cb174-1094" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1097"><a href="#cb174-1097" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb174-1098"><a href="#cb174-1098" aria-hidden="true" tabindex="-1"></a><span class="co"># Box plot with Base R</span></span>
-<span id="cb174-1099"><a href="#cb174-1099" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(Score <span class="sc">~</span> Passed, <span class="at">data =</span> student_data,</span>
-<span id="cb174-1100"><a href="#cb174-1100" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">"Score Distribution by Pass/Fail Status"</span>,</span>
-<span id="cb174-1101"><a href="#cb174-1101" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">"Status"</span>, <span class="at">ylab =</span> <span class="st">"Scores"</span>,</span>
-<span id="cb174-1102"><a href="#cb174-1102" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>))</span>
-<span id="cb174-1103"><a href="#cb174-1103" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb174-1104"><a href="#cb174-1104" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1105"><a href="#cb174-1105" aria-hidden="true" tabindex="-1"></a>This code uses the <span class="in">`boxplot`</span> function to create box plots for scores, grouped by the pass/fail status, with custom colours for each group.</span>
-<span id="cb174-1106"><a href="#cb174-1106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1052"><a href="#cb174-1052" aria-hidden="true" tabindex="-1"></a><span class="fu">### Creating a Basic Scatter Plot with Base R</span></span>
+<span id="cb174-1053"><a href="#cb174-1053" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1054"><a href="#cb174-1054" aria-hidden="true" tabindex="-1"></a>Consider simple scatter plot using the data we have just simulated</span>
+<span id="cb174-1055"><a href="#cb174-1055" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1058"><a href="#cb174-1058" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb174-1059"><a href="#cb174-1059" aria-hidden="true" tabindex="-1"></a><span class="co"># basic scatter plot with Base R</span></span>
+<span id="cb174-1060"><a href="#cb174-1060" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(student_data<span class="sc">$</span>Study_Hours, student_data<span class="sc">$</span>Score,</span>
+<span id="cb174-1061"><a href="#cb174-1061" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Scatter Plot of Scores vs. Study Hours"</span>,</span>
+<span id="cb174-1062"><a href="#cb174-1062" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Study Hours"</span>, <span class="at">ylab =</span> <span class="st">"Score"</span>,</span>
+<span id="cb174-1063"><a href="#cb174-1063" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">col =</span> <span class="fu">ifelse</span>(student_data<span class="sc">$</span>Passed <span class="sc">==</span> <span class="st">"Passed"</span>, <span class="st">"blue"</span>, <span class="st">"red"</span>))</span>
+<span id="cb174-1064"><a href="#cb174-1064" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb174-1065"><a href="#cb174-1065" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1066"><a href="#cb174-1066" aria-hidden="true" tabindex="-1"></a>This plot uses the <span class="in">`plot`</span> function to create a scatter plot, with study hours on the x-axis and scores on the y-axis. The <span class="in">`pch`</span> parameter specifies the symbol type, and <span class="in">`col`</span> changes the colour based on whether the student passed or failed.</span>
+<span id="cb174-1067"><a href="#cb174-1067" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1068"><a href="#cb174-1068" aria-hidden="true" tabindex="-1"></a><span class="fu">### Generating a Histogram with Base R</span></span>
+<span id="cb174-1069"><a href="#cb174-1069" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1070"><a href="#cb174-1070" aria-hidden="true" tabindex="-1"></a>To visualise the distribution of student scores:</span>
+<span id="cb174-1071"><a href="#cb174-1071" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1074"><a href="#cb174-1074" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb174-1075"><a href="#cb174-1075" aria-hidden="true" tabindex="-1"></a><span class="co"># Histogram with Base R</span></span>
+<span id="cb174-1076"><a href="#cb174-1076" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(student_data<span class="sc">$</span>Score,</span>
+<span id="cb174-1077"><a href="#cb174-1077" aria-hidden="true" tabindex="-1"></a>     <span class="at">breaks =</span> <span class="dv">5</span>,</span>
+<span id="cb174-1078"><a href="#cb174-1078" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">"skyblue"</span>,</span>
+<span id="cb174-1079"><a href="#cb174-1079" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Histogram of Student Scores"</span>,</span>
+<span id="cb174-1080"><a href="#cb174-1080" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Scores"</span>,</span>
+<span id="cb174-1081"><a href="#cb174-1081" aria-hidden="true" tabindex="-1"></a>     <span class="at">border =</span> <span class="st">"white"</span>)</span>
+<span id="cb174-1082"><a href="#cb174-1082" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb174-1083"><a href="#cb174-1083" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1084"><a href="#cb174-1084" aria-hidden="true" tabindex="-1"></a>This histogram provides a quick overview of the scores' distribution, using the <span class="in">`hist`</span> function with specified <span class="in">`breaks`</span>, <span class="in">`col`</span> for colour, and <span class="in">`border`</span> for the colour of the histogram borders.</span>
+<span id="cb174-1085"><a href="#cb174-1085" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1086"><a href="#cb174-1086" aria-hidden="true" tabindex="-1"></a><span class="fu">### Comparing Distributions with Box Plots</span></span>
+<span id="cb174-1087"><a href="#cb174-1087" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1088"><a href="#cb174-1088" aria-hidden="true" tabindex="-1"></a>Box plots in Base R can compare the score distributions across the pass/fail status:</span>
+<span id="cb174-1089"><a href="#cb174-1089" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1092"><a href="#cb174-1092" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb174-1093"><a href="#cb174-1093" aria-hidden="true" tabindex="-1"></a><span class="co"># Box plot with Base R</span></span>
+<span id="cb174-1094"><a href="#cb174-1094" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(Score <span class="sc">~</span> Passed, <span class="at">data =</span> student_data,</span>
+<span id="cb174-1095"><a href="#cb174-1095" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">"Score Distribution by Pass/Fail Status"</span>,</span>
+<span id="cb174-1096"><a href="#cb174-1096" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">"Status"</span>, <span class="at">ylab =</span> <span class="st">"Scores"</span>,</span>
+<span id="cb174-1097"><a href="#cb174-1097" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>))</span>
+<span id="cb174-1098"><a href="#cb174-1098" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb174-1099"><a href="#cb174-1099" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1100"><a href="#cb174-1100" aria-hidden="true" tabindex="-1"></a>This code uses the <span class="in">`boxplot`</span> function to create box plots for scores, grouped by the pass/fail status, with custom colours for each group.</span>
+<span id="cb174-1101"><a href="#cb174-1101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1102"><a href="#cb174-1102" aria-hidden="true" tabindex="-1"></a><span class="fu">## Lab Summary</span></span>
+<span id="cb174-1103"><a href="#cb174-1103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1104"><a href="#cb174-1104" aria-hidden="true" tabindex="-1"></a>Congratulations on completing Lab 1! </span>
+<span id="cb174-1105"><a href="#cb174-1105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1106"><a href="#cb174-1106" aria-hidden="true" tabindex="-1"></a>This session has laid the groundwork. We've covered a lot, but we'll have a good deal of practice throughout the course. </span>
 <span id="cb174-1107"><a href="#cb174-1107" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1108"><a href="#cb174-1108" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1109"><a href="#cb174-1109" aria-hidden="true" tabindex="-1"></a><span class="fu">## Lab Summary</span></span>
-<span id="cb174-1110"><a href="#cb174-1110" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1111"><a href="#cb174-1111" aria-hidden="true" tabindex="-1"></a>Congratulations on completing Lab 1! </span>
-<span id="cb174-1112"><a href="#cb174-1112" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1113"><a href="#cb174-1113" aria-hidden="true" tabindex="-1"></a>This session has laid the groundwork. We've covered a lot, but we'll have a good deal of practice throughout the course. </span>
-<span id="cb174-1114"><a href="#cb174-1114" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1115"><a href="#cb174-1115" aria-hidden="true" tabindex="-1"></a><span class="fu">### What We Have Learned</span></span>
-<span id="cb174-1116"><a href="#cb174-1116" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1117"><a href="#cb174-1117" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**How to install and setup R:** </span>
-<span id="cb174-1118"><a href="#cb174-1118" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1119"><a href="#cb174-1119" aria-hidden="true" tabindex="-1"></a>You've successfully installed R and RStudio, setting up your workstation for statistical analysis.</span>
-<span id="cb174-1120"><a href="#cb174-1120" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb174-1121"><a href="#cb174-1121" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**How to install and use RStudio:** </span>
-<span id="cb174-1122"><a href="#cb174-1122" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1123"><a href="#cb174-1123" aria-hidden="true" tabindex="-1"></a>You've familiarised yourself with the RStudio interface, including the console, source editor, environment tab, and other utilities for effective data analysis.</span>
-<span id="cb174-1124"><a href="#cb174-1124" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb174-1125"><a href="#cb174-1125" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Basic R operations:** </span>
-<span id="cb174-1126"><a href="#cb174-1126" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1127"><a href="#cb174-1127" aria-hidden="true" tabindex="-1"></a>You've practided using R for basic arithmetic operations, understanding how to execute simple commands in the console.</span>
-<span id="cb174-1128"><a href="#cb174-1128" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb174-1129"><a href="#cb174-1129" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Basic R Data Structures such as:** </span>
-<span id="cb174-1130"><a href="#cb174-1130" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1131"><a href="#cb174-1131" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>**Vectors and Matrices:** You have learned to create and manipulate vectors and matrices, the simplest forms of data storage in R, which are crucial for handling numeric, character, and logical data types in a structured manner.</span>
-<span id="cb174-1132"><a href="#cb174-1132" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1133"><a href="#cb174-1133" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>**Data Frames:** You've been introduced to data frames, a key data structure in R for storing tabular data. Data frames accommodate columns of different data types, making them highly versatile for data analysis and manipulation.</span>
-<span id="cb174-1134"><a href="#cb174-1134" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1135"><a href="#cb174-1135" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>**Factors and Ordered Factors:** Understanding factors and ordered factors has provided you with the tools to handle categorical data effectively, including the ability to manage and analyse data involving categorical variables with both unordered and ordered levels.</span>
-<span id="cb174-1136"><a href="#cb174-1136" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1137"><a href="#cb174-1137" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Basics of `ggplot2`:**</span>
+<span id="cb174-1108"><a href="#cb174-1108" aria-hidden="true" tabindex="-1"></a><span class="fu">### What We Have Learned</span></span>
+<span id="cb174-1109"><a href="#cb174-1109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1110"><a href="#cb174-1110" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**How to install and setup R:** </span>
+<span id="cb174-1111"><a href="#cb174-1111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1112"><a href="#cb174-1112" aria-hidden="true" tabindex="-1"></a>You've successfully installed R and RStudio, setting up your workstation for statistical analysis.</span>
+<span id="cb174-1113"><a href="#cb174-1113" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb174-1114"><a href="#cb174-1114" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**How to install and use RStudio:** </span>
+<span id="cb174-1115"><a href="#cb174-1115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1116"><a href="#cb174-1116" aria-hidden="true" tabindex="-1"></a>You've familiarised yourself with the RStudio interface, including the console, source editor, environment tab, and other utilities for effective data analysis.</span>
+<span id="cb174-1117"><a href="#cb174-1117" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb174-1118"><a href="#cb174-1118" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Basic R operations:** </span>
+<span id="cb174-1119"><a href="#cb174-1119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1120"><a href="#cb174-1120" aria-hidden="true" tabindex="-1"></a>You've practided using R for basic arithmetic operations, understanding how to execute simple commands in the console.</span>
+<span id="cb174-1121"><a href="#cb174-1121" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb174-1122"><a href="#cb174-1122" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Basic R Data Structures such as:** </span>
+<span id="cb174-1123"><a href="#cb174-1123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1124"><a href="#cb174-1124" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>**Vectors and Matrices:** You have learned to create and manipulate vectors and matrices, the simplest forms of data storage in R, which are crucial for handling numeric, character, and logical data types in a structured manner.</span>
+<span id="cb174-1125"><a href="#cb174-1125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1126"><a href="#cb174-1126" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>**Data Frames:** You've been introduced to data frames, a key data structure in R for storing tabular data. Data frames accommodate columns of different data types, making them highly versatile for data analysis and manipulation.</span>
+<span id="cb174-1127"><a href="#cb174-1127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1128"><a href="#cb174-1128" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>**Factors and Ordered Factors:** Understanding factors and ordered factors has provided you with the tools to handle categorical data effectively, including the ability to manage and analyse data involving categorical variables with both unordered and ordered levels.</span>
+<span id="cb174-1129"><a href="#cb174-1129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1130"><a href="#cb174-1130" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Basics of `ggplot2`:**</span>
+<span id="cb174-1131"><a href="#cb174-1131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1132"><a href="#cb174-1132" aria-hidden="true" tabindex="-1"></a>You've been equipped with the fundamentals of data visualisation using <span class="in">`ggplot2`</span>, including how to create basic plots like bar charts, scatter plots, and line graphs. You've learned about the importance of aesthetics (<span class="in">`aes`</span>) and geometries (<span class="in">`geom_`</span> functions) in creating visually appealing and informative graphics.</span>
+<span id="cb174-1133"><a href="#cb174-1133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1134"><a href="#cb174-1134" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Customizing Plots:** </span>
+<span id="cb174-1135"><a href="#cb174-1135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1136"><a href="#cb174-1136" aria-hidden="true" tabindex="-1"></a>Techniques for enhancing plots with titles, axis labels, and custom colour schemes have been covered. You've practised making your visualisations more informative and engaging by customising plot aesthetics.</span>
+<span id="cb174-1137"><a href="#cb174-1137" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb174-1138"><a href="#cb174-1138" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1139"><a href="#cb174-1139" aria-hidden="true" tabindex="-1"></a>You've been equipped with the fundamentals of data visualisation using <span class="in">`ggplot2`</span>, including how to create basic plots like bar charts, scatter plots, and line graphs. You've learned about the importance of aesthetics (<span class="in">`aes`</span>) and geometries (<span class="in">`geom_`</span> functions) in creating visually appealing and informative graphics.</span>
+<span id="cb174-1139"><a href="#cb174-1139" aria-hidden="true" tabindex="-1"></a><span class="fu">### How to Build Skills?</span></span>
 <span id="cb174-1140"><a href="#cb174-1140" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1141"><a href="#cb174-1141" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Customizing Plots:** </span>
+<span id="cb174-1141"><a href="#cb174-1141" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Practical Application:** </span>
 <span id="cb174-1142"><a href="#cb174-1142" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1143"><a href="#cb174-1143" aria-hidden="true" tabindex="-1"></a>Techniques for enhancing plots with titles, axis labels, and custom colour schemes have been covered. You've practised making your visualisations more informative and engaging by customising plot aesthetics.</span>
+<span id="cb174-1143"><a href="#cb174-1143" aria-hidden="true" tabindex="-1"></a>Do the hands-on exercises at home. They'll help you apply what you have learned here.</span>
 <span id="cb174-1144"><a href="#cb174-1144" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb174-1145"><a href="#cb174-1145" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1146"><a href="#cb174-1146" aria-hidden="true" tabindex="-1"></a><span class="fu">### How to Build Skills?</span></span>
-<span id="cb174-1147"><a href="#cb174-1147" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1148"><a href="#cb174-1148" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Practical Application:** </span>
-<span id="cb174-1149"><a href="#cb174-1149" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1150"><a href="#cb174-1150" aria-hidden="true" tabindex="-1"></a>Do the hands-on exercises at home. They'll help you apply what you have learned here.</span>
-<span id="cb174-1151"><a href="#cb174-1151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1146"><a href="#cb174-1146" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1147"><a href="#cb174-1147" aria-hidden="true" tabindex="-1"></a><span class="fu">### Where to Get Help</span></span>
+<span id="cb174-1148"><a href="#cb174-1148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1149"><a href="#cb174-1149" aria-hidden="true" tabindex="-1"></a>As sure as night follows day, you will need help coding. Good resources:</span>
+<span id="cb174-1150"><a href="#cb174-1150" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1151"><a href="#cb174-1151" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Large Language Models (LLMs):** OpenAI's premium LLM (GPT-4) outperforms the free version (GPT-3.5) for complex queries. I don't think LLM's are quite ready for science, but they are remarkably helpful for coding, and for learning how to code. So please use them, with caution, but use them. </span>
 <span id="cb174-1152"><a href="#cb174-1152" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1153"><a href="#cb174-1153" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1154"><a href="#cb174-1154" aria-hidden="true" tabindex="-1"></a><span class="fu">### Where to Get Help</span></span>
-<span id="cb174-1155"><a href="#cb174-1155" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1156"><a href="#cb174-1156" aria-hidden="true" tabindex="-1"></a>As sure as night follows day, you will need help coding. Good resources:</span>
-<span id="cb174-1157"><a href="#cb174-1157" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1158"><a href="#cb174-1158" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Large Language Models (LLMs):** OpenAI's premium LLM (GPT-4) outperforms the free version (GPT-3.5) for complex queries. I don't think LLM's are quite ready for science, but they are remarkably helpful for coding, and for learning how to code. So please use them, with caution, but use them. </span>
-<span id="cb174-1159"><a href="#cb174-1159" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1160"><a href="#cb174-1160" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span><span class="co">[</span><span class="ot">**Stack Overflow:**</span><span class="co">](https://stackoverflow.com/questions/tagged/r)</span> a valuable resource for coding advice and solutions.</span>
+<span id="cb174-1153"><a href="#cb174-1153" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span><span class="co">[</span><span class="ot">**Stack Overflow:**</span><span class="co">](https://stackoverflow.com/questions/tagged/r)</span> a valuable resource for coding advice and solutions.</span>
+<span id="cb174-1154"><a href="#cb174-1154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1155"><a href="#cb174-1155" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span><span class="co">[</span><span class="ot">Cross-validated</span><span class="co">](https://stats.stackexchange.com/)</span> is probably the best place to go for stats advice. (LLMs are currently not reliable for statisticis for which there is not much information -- which is most of science.)</span>
+<span id="cb174-1156"><a href="#cb174-1156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1157"><a href="#cb174-1157" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>**Developer Websites and GitHub Pages:** Directly engage with package developers and the community for insights and support.<span class="co">[</span><span class="ot">Parameters package discussion page</span><span class="co">](https://github.com/easystats/parameters/discussions)</span> offers insights and support directly from its developers and user community.</span>
+<span id="cb174-1158"><a href="#cb174-1158" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1159"><a href="#cb174-1159" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>Your tutors and lecturer. We care. We’re here to help you!</span>
+<span id="cb174-1160"><a href="#cb174-1160" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb174-1161"><a href="#cb174-1161" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1162"><a href="#cb174-1162" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span><span class="co">[</span><span class="ot">Cross-validated</span><span class="co">](https://stats.stackexchange.com/)</span> is probably the best place to go for stats advice. (LLMs are currently not reliable for statisticis for which there is not much information -- which is most of science.)</span>
+<span id="cb174-1162"><a href="#cb174-1162" aria-hidden="true" tabindex="-1"></a><span class="fu">### Recommended Reading</span></span>
 <span id="cb174-1163"><a href="#cb174-1163" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1164"><a href="#cb174-1164" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>**Developer Websites and GitHub Pages:** Directly engage with package developers and the community for insights and support.<span class="co">[</span><span class="ot">Parameters package discussion page</span><span class="co">](https://github.com/easystats/parameters/discussions)</span> offers insights and support directly from its developers and user community.</span>
+<span id="cb174-1164"><a href="#cb174-1164" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Wickham, H., &amp; Grolemund, G. (2016). *R for Data Science*. O'Reilly Media. <span class="co">[</span><span class="ot">Available online</span><span class="co">]</span>(https://r4ds.had.co.nz</span>
 <span id="cb174-1165"><a href="#cb174-1165" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1166"><a href="#cb174-1166" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>Your tutors and lecturer. We care. We’re here to help you!</span>
-<span id="cb174-1167"><a href="#cb174-1167" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1166"><a href="#cb174-1166" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1167"><a href="#cb174-1167" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>A helpful resource for learning R is Megan Hall's lecture available at: <span class="co">[</span><span class="ot">https://meghan.rbind.io/talk/neair/</span><span class="co">](https://meghan.rbind.io/talk/neair/)</span>.</span>
 <span id="cb174-1168"><a href="#cb174-1168" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1169"><a href="#cb174-1169" aria-hidden="true" tabindex="-1"></a><span class="fu">### Recommended Reading</span></span>
+<span id="cb174-1169"><a href="#cb174-1169" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>RStudio has compiled numerous accessible materials for learning R, which can be found here: <span class="co">[</span><span class="ot">https://education.rstudio.com/learn/beginner/</span><span class="co">](https://education.rstudio.com/learn/beginner/)</span>.</span>
 <span id="cb174-1170"><a href="#cb174-1170" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1171"><a href="#cb174-1171" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Wickham, H., &amp; Grolemund, G. (2016). *R for Data Science*. O'Reilly Media. <span class="co">[</span><span class="ot">Available online</span><span class="co">]</span>(https://r4ds.had.co.nz</span>
+<span id="cb174-1171"><a href="#cb174-1171" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Materials from a previous course on learning R can be accessed here.  <span class="co">[</span><span class="ot">https://go-bayes.github.io/psych-447/</span><span class="co">](https://education.rstudio.com/learn/beginner/)</span> For now, only lecture 1 would be relevant. It's worth noting that this lecture covers working with GitHub.  GitHub is a useful tool, you should learn how to use it; however, it is not a requirement for the current course.</span>
 <span id="cb174-1172"><a href="#cb174-1172" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb174-1173"><a href="#cb174-1173" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1174"><a href="#cb174-1174" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>A helpful resource for learning R is Megan Hall's lecture available at: <span class="co">[</span><span class="ot">https://meghan.rbind.io/talk/neair/</span><span class="co">](https://meghan.rbind.io/talk/neair/)</span>.</span>
+<span id="cb174-1174"><a href="#cb174-1174" aria-hidden="true" tabindex="-1"></a><span class="fu">### Packages</span></span>
 <span id="cb174-1175"><a href="#cb174-1175" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1176"><a href="#cb174-1176" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>RStudio has compiled numerous accessible materials for learning R, which can be found here: <span class="co">[</span><span class="ot">https://education.rstudio.com/learn/beginner/</span><span class="co">](https://education.rstudio.com/learn/beginner/)</span>.</span>
-<span id="cb174-1177"><a href="#cb174-1177" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1178"><a href="#cb174-1178" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Materials from a previous course on learning R can be accessed here.  <span class="co">[</span><span class="ot">https://go-bayes.github.io/psych-447/</span><span class="co">](https://education.rstudio.com/learn/beginner/)</span> For now, only lecture 1 would be relevant. It's worth noting that this lecture covers working with GitHub.  GitHub is a useful tool, you should learn how to use it; however, it is not a requirement for the current course.</span>
-<span id="cb174-1179"><a href="#cb174-1179" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1180"><a href="#cb174-1180" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1181"><a href="#cb174-1181" aria-hidden="true" tabindex="-1"></a><span class="fu">### Packages</span></span>
+<span id="cb174-1178"><a href="#cb174-1178" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb174-1179"><a href="#cb174-1179" aria-hidden="true" tabindex="-1"></a>report<span class="sc">::</span><span class="fu">cite_packages</span>()</span>
+<span id="cb174-1180"><a href="#cb174-1180" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb174-1181"><a href="#cb174-1181" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb174-1182"><a href="#cb174-1182" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1185"><a href="#cb174-1185" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb174-1186"><a href="#cb174-1186" aria-hidden="true" tabindex="-1"></a>report<span class="sc">::</span><span class="fu">cite_packages</span>()</span>
-<span id="cb174-1187"><a href="#cb174-1187" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb174-1188"><a href="#cb174-1188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1183"><a href="#cb174-1183" aria-hidden="true" tabindex="-1"></a><span class="fu">## Appendix A: At Home Exercises</span></span>
+<span id="cb174-1184"><a href="#cb174-1184" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1185"><a href="#cb174-1185" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1186"><a href="#cb174-1186" aria-hidden="true" tabindex="-1"></a>::: {.callout-note  title="Exercise 2",  icon=false}</span>
+<span id="cb174-1187"><a href="#cb174-1187" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1188"><a href="#cb174-1188" aria-hidden="true" tabindex="-1"></a><span class="fu">### Exercise 2: Install the `parameters` and `report` packages</span></span>
 <span id="cb174-1189"><a href="#cb174-1189" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1190"><a href="#cb174-1190" aria-hidden="true" tabindex="-1"></a><span class="fu">## Appendix A: At Home Exercises</span></span>
+<span id="cb174-1190"><a href="#cb174-1190" aria-hidden="true" tabindex="-1"></a>To install the <span class="in">`parameters`</span> and <span class="in">`report`</span> packages in RStudio, follow these instructions:</span>
 <span id="cb174-1191"><a href="#cb174-1191" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1192"><a href="#cb174-1192" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1193"><a href="#cb174-1193" aria-hidden="true" tabindex="-1"></a>::: {.callout-note  title="Exercise 2",  icon=false}</span>
-<span id="cb174-1194"><a href="#cb174-1194" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1195"><a href="#cb174-1195" aria-hidden="true" tabindex="-1"></a><span class="fu">### Exercise 2: Install the `parameters` and `report` packages</span></span>
+<span id="cb174-1192"><a href="#cb174-1192" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Open RStudio:** start by launching the RStudio application on your computer.</span>
+<span id="cb174-1193"><a href="#cb174-1193" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1194"><a href="#cb174-1194" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Access Package Installation:**</span>
+<span id="cb174-1195"><a href="#cb174-1195" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Go to the RStudio menu bar at the top of the screen and click on <span class="in">`Tools &gt; Install Packages...`</span>. This action opens the Install Packages dialogue box.</span>
 <span id="cb174-1196"><a href="#cb174-1196" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1197"><a href="#cb174-1197" aria-hidden="true" tabindex="-1"></a>To install the <span class="in">`parameters`</span> and <span class="in">`report`</span> packages in RStudio, follow these instructions:</span>
-<span id="cb174-1198"><a href="#cb174-1198" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1199"><a href="#cb174-1199" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Open RStudio:** start by launching the RStudio application on your computer.</span>
-<span id="cb174-1200"><a href="#cb174-1200" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1201"><a href="#cb174-1201" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Access Package Installation:**</span>
-<span id="cb174-1202"><a href="#cb174-1202" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Go to the RStudio menu bar at the top of the screen and click on <span class="in">`Tools &gt; Install Packages...`</span>. This action opens the Install Packages dialogue box.</span>
+<span id="cb174-1197"><a href="#cb174-1197" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**Install `parameters` and `report`:**</span>
+<span id="cb174-1198"><a href="#cb174-1198" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>In the Install Packages dialogue box, locate the field labelled "Packages (separate multiple with space or comma):". Click in this field and type <span class="in">`parameters, report`</span>, separating the package names with a comma.</span>
+<span id="cb174-1199"><a href="#cb174-1199" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Make sure the checkbox for <span class="in">`Install dependencies`</span> is selected. This ensures that any additional packages needed by <span class="in">`parameters`</span> and <span class="in">`report`</span> are also installed.</span>
+<span id="cb174-1200"><a href="#cb174-1200" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Click the <span class="in">`Install`</span> button to initiate the installation of both packages and their dependencies.</span>
+<span id="cb174-1201"><a href="#cb174-1201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1202"><a href="#cb174-1202" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb174-1203"><a href="#cb174-1203" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1204"><a href="#cb174-1204" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**Install `parameters` and `report`:**</span>
-<span id="cb174-1205"><a href="#cb174-1205" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>In the Install Packages dialogue box, locate the field labelled "Packages (separate multiple with space or comma):". Click in this field and type <span class="in">`parameters, report`</span>, separating the package names with a comma.</span>
-<span id="cb174-1206"><a href="#cb174-1206" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Make sure the checkbox for <span class="in">`Install dependencies`</span> is selected. This ensures that any additional packages needed by <span class="in">`parameters`</span> and <span class="in">`report`</span> are also installed.</span>
-<span id="cb174-1207"><a href="#cb174-1207" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Click the <span class="in">`Install`</span> button to initiate the installation of both packages and their dependencies.</span>
-<span id="cb174-1208"><a href="#cb174-1208" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1209"><a href="#cb174-1209" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb174-1210"><a href="#cb174-1210" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1211"><a href="#cb174-1211" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1212"><a href="#cb174-1212" aria-hidden="true" tabindex="-1"></a>::: {.callout-note  title="Exercise 4",  icon=false}</span>
-<span id="cb174-1213"><a href="#cb174-1213" aria-hidden="true" tabindex="-1"></a><span class="fu">### Exercise 4: Basic Operations and Data Structure Manipulation</span></span>
-<span id="cb174-1214"><a href="#cb174-1214" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1215"><a href="#cb174-1215" aria-hidden="true" tabindex="-1"></a>**Objective:** Practice creating vectors and performing basic arithmetic operations.</span>
-<span id="cb174-1216"><a href="#cb174-1216" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1217"><a href="#cb174-1217" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Create two numeric vectors, <span class="in">`vector_a`</span> and <span class="in">`vector_b`</span>, with the following values:</span>
-<span id="cb174-1218"><a href="#cb174-1218" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span><span class="in">`vector_a`</span>: 2, 4, 6, 8</span>
-<span id="cb174-1219"><a href="#cb174-1219" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span><span class="in">`vector_b`</span>: 1, 3, 5, 7</span>
-<span id="cb174-1220"><a href="#cb174-1220" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1221"><a href="#cb174-1221" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Perform the following operations and store the results in new variables:</span>
-<span id="cb174-1222"><a href="#cb174-1222" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Add <span class="in">`vector_a`</span> and <span class="in">`vector_b`</span>.</span>
-<span id="cb174-1223"><a href="#cb174-1223" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Subtract <span class="in">`vector_b`</span> from <span class="in">`vector_a`</span>.</span>
-<span id="cb174-1224"><a href="#cb174-1224" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Multiply <span class="in">`vector_a`</span> by 2.</span>
-<span id="cb174-1225"><a href="#cb174-1225" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Divide <span class="in">`vector_b`</span> by 2.</span>
+<span id="cb174-1204"><a href="#cb174-1204" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1205"><a href="#cb174-1205" aria-hidden="true" tabindex="-1"></a>::: {.callout-note  title="Exercise 4",  icon=false}</span>
+<span id="cb174-1206"><a href="#cb174-1206" aria-hidden="true" tabindex="-1"></a><span class="fu">### Exercise 4: Basic Operations and Data Structure Manipulation</span></span>
+<span id="cb174-1207"><a href="#cb174-1207" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1208"><a href="#cb174-1208" aria-hidden="true" tabindex="-1"></a>**Objective:** Practice creating vectors and performing basic arithmetic operations.</span>
+<span id="cb174-1209"><a href="#cb174-1209" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1210"><a href="#cb174-1210" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Create two numeric vectors, <span class="in">`vector_a`</span> and <span class="in">`vector_b`</span>, with the following values:</span>
+<span id="cb174-1211"><a href="#cb174-1211" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span><span class="in">`vector_a`</span>: 2, 4, 6, 8</span>
+<span id="cb174-1212"><a href="#cb174-1212" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span><span class="in">`vector_b`</span>: 1, 3, 5, 7</span>
+<span id="cb174-1213"><a href="#cb174-1213" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1214"><a href="#cb174-1214" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Perform the following operations and store the results in new variables:</span>
+<span id="cb174-1215"><a href="#cb174-1215" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Add <span class="in">`vector_a`</span> and <span class="in">`vector_b`</span>.</span>
+<span id="cb174-1216"><a href="#cb174-1216" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Subtract <span class="in">`vector_b`</span> from <span class="in">`vector_a`</span>.</span>
+<span id="cb174-1217"><a href="#cb174-1217" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Multiply <span class="in">`vector_a`</span> by 2.</span>
+<span id="cb174-1218"><a href="#cb174-1218" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Divide <span class="in">`vector_b`</span> by 2.</span>
+<span id="cb174-1219"><a href="#cb174-1219" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1220"><a href="#cb174-1220" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Calculate the mean and standard deviation of both <span class="in">`vector_a`</span> and <span class="in">`vector_b`</span>.</span>
+<span id="cb174-1221"><a href="#cb174-1221" aria-hidden="true" tabindex="-1"></a>::: </span>
+<span id="cb174-1222"><a href="#cb174-1222" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1223"><a href="#cb174-1223" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1224"><a href="#cb174-1224" aria-hidden="true" tabindex="-1"></a>::: {.callout-note  title="Exercise 5",  icon=false}</span>
+<span id="cb174-1225"><a href="#cb174-1225" aria-hidden="true" tabindex="-1"></a><span class="fu">### Exercise 5: Working with Data Frames</span></span>
 <span id="cb174-1226"><a href="#cb174-1226" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1227"><a href="#cb174-1227" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Calculate the mean and standard deviation of both <span class="in">`vector_a`</span> and <span class="in">`vector_b`</span>.</span>
-<span id="cb174-1228"><a href="#cb174-1228" aria-hidden="true" tabindex="-1"></a>::: </span>
-<span id="cb174-1229"><a href="#cb174-1229" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1230"><a href="#cb174-1230" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1231"><a href="#cb174-1231" aria-hidden="true" tabindex="-1"></a>::: {.callout-note  title="Exercise 5",  icon=false}</span>
-<span id="cb174-1232"><a href="#cb174-1232" aria-hidden="true" tabindex="-1"></a><span class="fu">### Exercise 5: Working with Data Frames</span></span>
-<span id="cb174-1233"><a href="#cb174-1233" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1234"><a href="#cb174-1234" aria-hidden="true" tabindex="-1"></a>**Objective:** Gain familiarity with data frame creation, manipulation, and basic data exploration functions.</span>
-<span id="cb174-1235"><a href="#cb174-1235" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1236"><a href="#cb174-1236" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Create a data frame <span class="in">`student_data`</span> with the following columns:</span>
-<span id="cb174-1237"><a href="#cb174-1237" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span><span class="in">`ID`</span>: 1, 2, 3, 4</span>
-<span id="cb174-1238"><a href="#cb174-1238" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span><span class="in">`Name`</span>: Alice, Bob, Charlie, Diana</span>
-<span id="cb174-1239"><a href="#cb174-1239" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span><span class="in">`Score`</span>: 88, 92, 85, 95</span>
-<span id="cb174-1240"><a href="#cb174-1240" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Ensure you set <span class="in">`stringsAsFactors = FALSE`</span>.</span>
+<span id="cb174-1227"><a href="#cb174-1227" aria-hidden="true" tabindex="-1"></a>**Objective:** Gain familiarity with data frame creation, manipulation, and basic data exploration functions.</span>
+<span id="cb174-1228"><a href="#cb174-1228" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1229"><a href="#cb174-1229" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Create a data frame <span class="in">`student_data`</span> with the following columns:</span>
+<span id="cb174-1230"><a href="#cb174-1230" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span><span class="in">`ID`</span>: 1, 2, 3, 4</span>
+<span id="cb174-1231"><a href="#cb174-1231" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span><span class="in">`Name`</span>: Alice, Bob, Charlie, Diana</span>
+<span id="cb174-1232"><a href="#cb174-1232" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span><span class="in">`Score`</span>: 88, 92, 85, 95</span>
+<span id="cb174-1233"><a href="#cb174-1233" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Ensure you set <span class="in">`stringsAsFactors = FALSE`</span>.</span>
+<span id="cb174-1234"><a href="#cb174-1234" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1235"><a href="#cb174-1235" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Add a new column <span class="in">`Passed`</span> to <span class="in">`student_data`</span> indicating whether the student passed. Assume a pass mark of 90.</span>
+<span id="cb174-1236"><a href="#cb174-1236" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1237"><a href="#cb174-1237" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Extract the <span class="in">`Name`</span> and <span class="in">`Score`</span> of students who passed into a new data frame.</span>
+<span id="cb174-1238"><a href="#cb174-1238" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1239"><a href="#cb174-1239" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Use <span class="in">`summary()`</span>, <span class="in">`head()`</span>, and <span class="in">`str()`</span> functions to explore <span class="in">`student_data`</span>.</span>
+<span id="cb174-1240"><a href="#cb174-1240" aria-hidden="true" tabindex="-1"></a>::: </span>
 <span id="cb174-1241"><a href="#cb174-1241" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1242"><a href="#cb174-1242" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Add a new column <span class="in">`Passed`</span> to <span class="in">`student_data`</span> indicating whether the student passed. Assume a pass mark of 90.</span>
-<span id="cb174-1243"><a href="#cb174-1243" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1244"><a href="#cb174-1244" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Extract the <span class="in">`Name`</span> and <span class="in">`Score`</span> of students who passed into a new data frame.</span>
+<span id="cb174-1242"><a href="#cb174-1242" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1243"><a href="#cb174-1243" aria-hidden="true" tabindex="-1"></a>::: {.callout-note  title="Exercise 6",  icon=false}</span>
+<span id="cb174-1244"><a href="#cb174-1244" aria-hidden="true" tabindex="-1"></a><span class="fu">### Exercise 6: Logical Operations and Subsetting</span></span>
 <span id="cb174-1245"><a href="#cb174-1245" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1246"><a href="#cb174-1246" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Use <span class="in">`summary()`</span>, <span class="in">`head()`</span>, and <span class="in">`str()`</span> functions to explore <span class="in">`student_data`</span>.</span>
-<span id="cb174-1247"><a href="#cb174-1247" aria-hidden="true" tabindex="-1"></a>::: </span>
-<span id="cb174-1248"><a href="#cb174-1248" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1246"><a href="#cb174-1246" aria-hidden="true" tabindex="-1"></a>**Objective:** Practice using logical operations to subset data frames.</span>
+<span id="cb174-1247"><a href="#cb174-1247" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1248"><a href="#cb174-1248" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Using the <span class="in">`student_data`</span> data frame from Exercise 2, subset the data to find students who scored above the mean score of the class.</span>
 <span id="cb174-1249"><a href="#cb174-1249" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1250"><a href="#cb174-1250" aria-hidden="true" tabindex="-1"></a>::: {.callout-note  title="Exercise 6",  icon=false}</span>
-<span id="cb174-1251"><a href="#cb174-1251" aria-hidden="true" tabindex="-1"></a><span class="fu">### Exercise 6: Logical Operations and Subsetting</span></span>
-<span id="cb174-1252"><a href="#cb174-1252" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1253"><a href="#cb174-1253" aria-hidden="true" tabindex="-1"></a>**Objective:** Practice using logical operations to subset data frames.</span>
+<span id="cb174-1250"><a href="#cb174-1250" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Create a vector <span class="in">`attendance`</span> with values (<span class="in">`Present`</span>, <span class="in">`Absent`</span>, <span class="in">`Present`</span>, <span class="in">`Present`</span>) corresponding to each student's attendance.</span>
+<span id="cb174-1251"><a href="#cb174-1251" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1252"><a href="#cb174-1252" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Add <span class="in">`attendance`</span> as a new column to <span class="in">`student_data`</span> and then subset the data frame to select only the rows where students were present.</span>
+<span id="cb174-1253"><a href="#cb174-1253" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb174-1254"><a href="#cb174-1254" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1255"><a href="#cb174-1255" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Using the <span class="in">`student_data`</span> data frame from Exercise 2, subset the data to find students who scored above the mean score of the class.</span>
-<span id="cb174-1256"><a href="#cb174-1256" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1257"><a href="#cb174-1257" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Create a vector <span class="in">`attendance`</span> with values (<span class="in">`Present`</span>, <span class="in">`Absent`</span>, <span class="in">`Present`</span>, <span class="in">`Present`</span>) corresponding to each student's attendance.</span>
+<span id="cb174-1255"><a href="#cb174-1255" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1256"><a href="#cb174-1256" aria-hidden="true" tabindex="-1"></a>::: {.callout-note  title="Exercise 7",  icon=false}</span>
+<span id="cb174-1257"><a href="#cb174-1257" aria-hidden="true" tabindex="-1"></a><span class="fu">### Exercise 4: Cross-Tabulation and Analysis</span></span>
 <span id="cb174-1258"><a href="#cb174-1258" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1259"><a href="#cb174-1259" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Add <span class="in">`attendance`</span> as a new column to <span class="in">`student_data`</span> and then subset the data frame to select only the rows where students were present.</span>
-<span id="cb174-1260"><a href="#cb174-1260" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb174-1261"><a href="#cb174-1261" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1262"><a href="#cb174-1262" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1263"><a href="#cb174-1263" aria-hidden="true" tabindex="-1"></a>::: {.callout-note  title="Exercise 7",  icon=false}</span>
-<span id="cb174-1264"><a href="#cb174-1264" aria-hidden="true" tabindex="-1"></a><span class="fu">### Exercise 4: Cross-Tabulation and Analysis</span></span>
-<span id="cb174-1265"><a href="#cb174-1265" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1266"><a href="#cb174-1266" aria-hidden="true" tabindex="-1"></a>**Objective:** Understand the use of <span class="in">`table()`</span> function for cross-tabulation and analysis.</span>
-<span id="cb174-1267"><a href="#cb174-1267" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1268"><a href="#cb174-1268" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Create two-factor variables:</span>
-<span id="cb174-1269"><a href="#cb174-1269" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span><span class="in">`Fruit`</span>: Apple, Banana, Apple, Orange, Banana</span>
-<span id="cb174-1270"><a href="#cb174-1270" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span><span class="in">`Color`</span>: Red, Yellow, Green, Orange, Green</span>
+<span id="cb174-1259"><a href="#cb174-1259" aria-hidden="true" tabindex="-1"></a>**Objective:** Understand the use of <span class="in">`table()`</span> function for cross-tabulation and analysis.</span>
+<span id="cb174-1260"><a href="#cb174-1260" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1261"><a href="#cb174-1261" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Create two-factor variables:</span>
+<span id="cb174-1262"><a href="#cb174-1262" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span><span class="in">`Fruit`</span>: Apple, Banana, Apple, Orange, Banana</span>
+<span id="cb174-1263"><a href="#cb174-1263" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span><span class="in">`Color`</span>: Red, Yellow, Green, Orange, Green</span>
+<span id="cb174-1264"><a href="#cb174-1264" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1265"><a href="#cb174-1265" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Convert <span class="in">`Fruit`</span> and <span class="in">`Color`</span> into factors and then into a data frame named <span class="in">`fruit_data`</span>.</span>
+<span id="cb174-1266"><a href="#cb174-1266" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1267"><a href="#cb174-1267" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Use the <span class="in">`table()`</span> function to perform a cross-tabulation of <span class="in">`Fruit`</span> by <span class="in">`Color`</span>.</span>
+<span id="cb174-1268"><a href="#cb174-1268" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1269"><a href="#cb174-1269" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Interpret the results. Which fruit has the most colour variety?</span>
+<span id="cb174-1270"><a href="#cb174-1270" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb174-1271"><a href="#cb174-1271" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1272"><a href="#cb174-1272" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Convert <span class="in">`Fruit`</span> and <span class="in">`Color`</span> into factors and then into a data frame named <span class="in">`fruit_data`</span>.</span>
-<span id="cb174-1273"><a href="#cb174-1273" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1274"><a href="#cb174-1274" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Use the <span class="in">`table()`</span> function to perform a cross-tabulation of <span class="in">`Fruit`</span> by <span class="in">`Color`</span>.</span>
-<span id="cb174-1275"><a href="#cb174-1275" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1276"><a href="#cb174-1276" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Interpret the results. Which fruit has the most colour variety?</span>
-<span id="cb174-1277"><a href="#cb174-1277" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb174-1272"><a href="#cb174-1272" aria-hidden="true" tabindex="-1"></a>::: {.callout-note  title="Exercise 8",  icon=false}</span>
+<span id="cb174-1273"><a href="#cb174-1273" aria-hidden="true" tabindex="-1"></a><span class="fu">### Exercise 8: Visualization with `ggplot2`</span></span>
+<span id="cb174-1274"><a href="#cb174-1274" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1275"><a href="#cb174-1275" aria-hidden="true" tabindex="-1"></a>**Objective:** (If <span class="in">`ggplot2`</span> was introduced) Create a simple plot to visualise the data.</span>
+<span id="cb174-1276"><a href="#cb174-1276" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1277"><a href="#cb174-1277" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Install and load the <span class="in">`ggplot2`</span> package if not already done.</span>
 <span id="cb174-1278"><a href="#cb174-1278" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1279"><a href="#cb174-1279" aria-hidden="true" tabindex="-1"></a>::: {.callout-note  title="Exercise 8",  icon=false}</span>
-<span id="cb174-1280"><a href="#cb174-1280" aria-hidden="true" tabindex="-1"></a><span class="fu">### Exercise 8: Visualization with `ggplot2`</span></span>
-<span id="cb174-1281"><a href="#cb174-1281" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1282"><a href="#cb174-1282" aria-hidden="true" tabindex="-1"></a>**Objective:** (If <span class="in">`ggplot2`</span> was introduced) Create a simple plot to visualise the data.</span>
-<span id="cb174-1283"><a href="#cb174-1283" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1284"><a href="#cb174-1284" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Install and load the <span class="in">`ggplot2`</span> package if not already done.</span>
+<span id="cb174-1279"><a href="#cb174-1279" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Using <span class="in">`student_data`</span>, create a bar plot showing the scores of students. Use <span class="in">`Name`</span> for the x-axis and <span class="in">`Score`</span> for the y-axis.</span>
+<span id="cb174-1280"><a href="#cb174-1280" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1281"><a href="#cb174-1281" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Enhance the plot by adding a title, x and y-axis labels, and use different colours for passed and failed students.</span>
+<span id="cb174-1282"><a href="#cb174-1282" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1283"><a href="#cb174-1283" aria-hidden="true" tabindex="-1"></a>These exercises are designed to be progressively challenging, ensuring that students apply what they've learned about basic operations, data frame manipulation, logical operations, and simple data analysis and visualisation in R.</span>
+<span id="cb174-1284"><a href="#cb174-1284" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb174-1285"><a href="#cb174-1285" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1286"><a href="#cb174-1286" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Using <span class="in">`student_data`</span>, create a bar plot showing the scores of students. Use <span class="in">`Name`</span> for the x-axis and <span class="in">`Score`</span> for the y-axis.</span>
-<span id="cb174-1287"><a href="#cb174-1287" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1288"><a href="#cb174-1288" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Enhance the plot by adding a title, x and y-axis labels, and use different colours for passed and failed students.</span>
-<span id="cb174-1289"><a href="#cb174-1289" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1290"><a href="#cb174-1290" aria-hidden="true" tabindex="-1"></a>These exercises are designed to be progressively challenging, ensuring that students apply what they've learned about basic operations, data frame manipulation, logical operations, and simple data analysis and visualisation in R.</span>
-<span id="cb174-1291"><a href="#cb174-1291" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb174-1286"><a href="#cb174-1286" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1287"><a href="#cb174-1287" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Solutions </span></span>
+<span id="cb174-1288"><a href="#cb174-1288" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1289"><a href="#cb174-1289" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Exercises 1 and 2 have no solutions. Installation worked or it did not! If you have trouble, please see your tutor or instructor. </span>
+<span id="cb174-1290"><a href="#cb174-1290" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1291"><a href="#cb174-1291" aria-hidden="true" tabindex="-1"></a><span class="fu">### Solution Exercise 4: Basic Operations and Data Structure Manipulation</span></span>
 <span id="cb174-1292"><a href="#cb174-1292" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1293"><a href="#cb174-1293" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1294"><a href="#cb174-1294" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Solutions </span></span>
-<span id="cb174-1295"><a href="#cb174-1295" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1296"><a href="#cb174-1296" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Exercises 1 and 2 have no solutions. Installation worked or it did not! If you have trouble, please see your tutor or instructor. </span>
-<span id="cb174-1297"><a href="#cb174-1297" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1298"><a href="#cb174-1298" aria-hidden="true" tabindex="-1"></a><span class="fu">### Solution Exercise 4: Basic Operations and Data Structure Manipulation</span></span>
+<span id="cb174-1295"><a href="#cb174-1295" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb174-1296"><a href="#cb174-1296" aria-hidden="true" tabindex="-1"></a><span class="co"># e.g. create vectors</span></span>
+<span id="cb174-1297"><a href="#cb174-1297" aria-hidden="true" tabindex="-1"></a>vector_a <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>)</span>
+<span id="cb174-1298"><a href="#cb174-1298" aria-hidden="true" tabindex="-1"></a>vector_b <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>)</span>
 <span id="cb174-1299"><a href="#cb174-1299" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1302"><a href="#cb174-1302" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb174-1303"><a href="#cb174-1303" aria-hidden="true" tabindex="-1"></a><span class="co"># e.g. create vectors</span></span>
-<span id="cb174-1304"><a href="#cb174-1304" aria-hidden="true" tabindex="-1"></a>vector_a <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>)</span>
-<span id="cb174-1305"><a href="#cb174-1305" aria-hidden="true" tabindex="-1"></a>vector_b <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>)</span>
-<span id="cb174-1306"><a href="#cb174-1306" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1307"><a href="#cb174-1307" aria-hidden="true" tabindex="-1"></a><span class="co"># operations</span></span>
-<span id="cb174-1308"><a href="#cb174-1308" aria-hidden="true" tabindex="-1"></a>sum_vector <span class="ot">&lt;-</span> vector_a <span class="sc">+</span> vector_b</span>
-<span id="cb174-1309"><a href="#cb174-1309" aria-hidden="true" tabindex="-1"></a>diff_vector <span class="ot">&lt;-</span> vector_a <span class="sc">-</span> vector_b</span>
-<span id="cb174-1310"><a href="#cb174-1310" aria-hidden="true" tabindex="-1"></a>double_vector_a <span class="ot">&lt;-</span> vector_a <span class="sc">*</span> <span class="dv">2</span></span>
-<span id="cb174-1311"><a href="#cb174-1311" aria-hidden="true" tabindex="-1"></a>half_vector_b <span class="ot">&lt;-</span> vector_b <span class="sc">/</span> <span class="dv">2</span></span>
-<span id="cb174-1312"><a href="#cb174-1312" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1313"><a href="#cb174-1313" aria-hidden="true" tabindex="-1"></a><span class="co">#view</span></span>
-<span id="cb174-1314"><a href="#cb174-1314" aria-hidden="true" tabindex="-1"></a>sum_vector</span>
-<span id="cb174-1315"><a href="#cb174-1315" aria-hidden="true" tabindex="-1"></a>diff_vector</span>
-<span id="cb174-1316"><a href="#cb174-1316" aria-hidden="true" tabindex="-1"></a>double_vector_a</span>
-<span id="cb174-1317"><a href="#cb174-1317" aria-hidden="true" tabindex="-1"></a>half_vector_b</span>
-<span id="cb174-1318"><a href="#cb174-1318" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1319"><a href="#cb174-1319" aria-hidden="true" tabindex="-1"></a><span class="co"># Mean and Standard Deviation</span></span>
-<span id="cb174-1320"><a href="#cb174-1320" aria-hidden="true" tabindex="-1"></a>mean_a <span class="ot">&lt;-</span> <span class="fu">mean</span>(vector_a)</span>
-<span id="cb174-1321"><a href="#cb174-1321" aria-hidden="true" tabindex="-1"></a>sd_a <span class="ot">&lt;-</span> <span class="fu">sd</span>(vector_a)</span>
-<span id="cb174-1322"><a href="#cb174-1322" aria-hidden="true" tabindex="-1"></a>mean_b <span class="ot">&lt;-</span> <span class="fu">mean</span>(vector_b)</span>
-<span id="cb174-1323"><a href="#cb174-1323" aria-hidden="true" tabindex="-1"></a>sd_b <span class="ot">&lt;-</span> <span class="fu">sd</span>(vector_b)</span>
+<span id="cb174-1300"><a href="#cb174-1300" aria-hidden="true" tabindex="-1"></a><span class="co"># operations</span></span>
+<span id="cb174-1301"><a href="#cb174-1301" aria-hidden="true" tabindex="-1"></a>sum_vector <span class="ot">&lt;-</span> vector_a <span class="sc">+</span> vector_b</span>
+<span id="cb174-1302"><a href="#cb174-1302" aria-hidden="true" tabindex="-1"></a>diff_vector <span class="ot">&lt;-</span> vector_a <span class="sc">-</span> vector_b</span>
+<span id="cb174-1303"><a href="#cb174-1303" aria-hidden="true" tabindex="-1"></a>double_vector_a <span class="ot">&lt;-</span> vector_a <span class="sc">*</span> <span class="dv">2</span></span>
+<span id="cb174-1304"><a href="#cb174-1304" aria-hidden="true" tabindex="-1"></a>half_vector_b <span class="ot">&lt;-</span> vector_b <span class="sc">/</span> <span class="dv">2</span></span>
+<span id="cb174-1305"><a href="#cb174-1305" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1306"><a href="#cb174-1306" aria-hidden="true" tabindex="-1"></a><span class="co">#view</span></span>
+<span id="cb174-1307"><a href="#cb174-1307" aria-hidden="true" tabindex="-1"></a>sum_vector</span>
+<span id="cb174-1308"><a href="#cb174-1308" aria-hidden="true" tabindex="-1"></a>diff_vector</span>
+<span id="cb174-1309"><a href="#cb174-1309" aria-hidden="true" tabindex="-1"></a>double_vector_a</span>
+<span id="cb174-1310"><a href="#cb174-1310" aria-hidden="true" tabindex="-1"></a>half_vector_b</span>
+<span id="cb174-1311"><a href="#cb174-1311" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1312"><a href="#cb174-1312" aria-hidden="true" tabindex="-1"></a><span class="co"># Mean and Standard Deviation</span></span>
+<span id="cb174-1313"><a href="#cb174-1313" aria-hidden="true" tabindex="-1"></a>mean_a <span class="ot">&lt;-</span> <span class="fu">mean</span>(vector_a)</span>
+<span id="cb174-1314"><a href="#cb174-1314" aria-hidden="true" tabindex="-1"></a>sd_a <span class="ot">&lt;-</span> <span class="fu">sd</span>(vector_a)</span>
+<span id="cb174-1315"><a href="#cb174-1315" aria-hidden="true" tabindex="-1"></a>mean_b <span class="ot">&lt;-</span> <span class="fu">mean</span>(vector_b)</span>
+<span id="cb174-1316"><a href="#cb174-1316" aria-hidden="true" tabindex="-1"></a>sd_b <span class="ot">&lt;-</span> <span class="fu">sd</span>(vector_b)</span>
+<span id="cb174-1317"><a href="#cb174-1317" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1318"><a href="#cb174-1318" aria-hidden="true" tabindex="-1"></a><span class="co"># view</span></span>
+<span id="cb174-1319"><a href="#cb174-1319" aria-hidden="true" tabindex="-1"></a>mean_a</span>
+<span id="cb174-1320"><a href="#cb174-1320" aria-hidden="true" tabindex="-1"></a>sd_a</span>
+<span id="cb174-1321"><a href="#cb174-1321" aria-hidden="true" tabindex="-1"></a>mean_b</span>
+<span id="cb174-1322"><a href="#cb174-1322" aria-hidden="true" tabindex="-1"></a>sd_b</span>
+<span id="cb174-1323"><a href="#cb174-1323" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb174-1324"><a href="#cb174-1324" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1325"><a href="#cb174-1325" aria-hidden="true" tabindex="-1"></a><span class="co"># view</span></span>
-<span id="cb174-1326"><a href="#cb174-1326" aria-hidden="true" tabindex="-1"></a>mean_a</span>
-<span id="cb174-1327"><a href="#cb174-1327" aria-hidden="true" tabindex="-1"></a>sd_a</span>
-<span id="cb174-1328"><a href="#cb174-1328" aria-hidden="true" tabindex="-1"></a>mean_b</span>
-<span id="cb174-1329"><a href="#cb174-1329" aria-hidden="true" tabindex="-1"></a>sd_b</span>
-<span id="cb174-1330"><a href="#cb174-1330" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb174-1331"><a href="#cb174-1331" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1332"><a href="#cb174-1332" aria-hidden="true" tabindex="-1"></a><span class="fu">### Solution 5: Working with Data Frames</span></span>
-<span id="cb174-1333"><a href="#cb174-1333" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1336"><a href="#cb174-1336" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb174-1337"><a href="#cb174-1337" aria-hidden="true" tabindex="-1"></a><span class="co"># create data frame</span></span>
-<span id="cb174-1338"><a href="#cb174-1338" aria-hidden="true" tabindex="-1"></a>student_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb174-1339"><a href="#cb174-1339" aria-hidden="true" tabindex="-1"></a>  <span class="at">ID =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>,</span>
-<span id="cb174-1340"><a href="#cb174-1340" aria-hidden="true" tabindex="-1"></a>  <span class="at">Name =</span> <span class="fu">c</span>(<span class="st">"Alice"</span>, <span class="st">"Bob"</span>, <span class="st">"Charlie"</span>, <span class="st">"Diana"</span>),</span>
-<span id="cb174-1341"><a href="#cb174-1341" aria-hidden="true" tabindex="-1"></a>  <span class="at">Score =</span> <span class="fu">c</span>(<span class="dv">88</span>, <span class="dv">92</span>, <span class="dv">85</span>, <span class="dv">95</span>),</span>
-<span id="cb174-1342"><a href="#cb174-1342" aria-hidden="true" tabindex="-1"></a>  <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span></span>
-<span id="cb174-1343"><a href="#cb174-1343" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb174-1344"><a href="#cb174-1344" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1345"><a href="#cb174-1345" aria-hidden="true" tabindex="-1"></a><span class="co"># add `Passed` column</span></span>
-<span id="cb174-1346"><a href="#cb174-1346" aria-hidden="true" tabindex="-1"></a>student_data<span class="sc">$</span>Passed <span class="ot">&lt;-</span> student_data<span class="sc">$</span>Score <span class="sc">&gt;=</span> <span class="dv">90</span></span>
-<span id="cb174-1347"><a href="#cb174-1347" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1348"><a href="#cb174-1348" aria-hidden="true" tabindex="-1"></a><span class="co"># subset students who passed</span></span>
-<span id="cb174-1349"><a href="#cb174-1349" aria-hidden="true" tabindex="-1"></a>passed_students <span class="ot">&lt;-</span> student_data[student_data<span class="sc">$</span>Passed <span class="sc">==</span> <span class="cn">TRUE</span>, ]</span>
-<span id="cb174-1350"><a href="#cb174-1350" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1351"><a href="#cb174-1351" aria-hidden="true" tabindex="-1"></a><span class="co"># explore data frame</span></span>
-<span id="cb174-1352"><a href="#cb174-1352" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(student_data)</span>
-<span id="cb174-1353"><a href="#cb174-1353" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(student_data)</span>
-<span id="cb174-1354"><a href="#cb174-1354" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(student_data)</span>
-<span id="cb174-1355"><a href="#cb174-1355" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb174-1356"><a href="#cb174-1356" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1357"><a href="#cb174-1357" aria-hidden="true" tabindex="-1"></a><span class="fu">### Solution 6: Logical Operations and Subsetting</span></span>
+<span id="cb174-1325"><a href="#cb174-1325" aria-hidden="true" tabindex="-1"></a><span class="fu">### Solution 5: Working with Data Frames</span></span>
+<span id="cb174-1326"><a href="#cb174-1326" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1329"><a href="#cb174-1329" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb174-1330"><a href="#cb174-1330" aria-hidden="true" tabindex="-1"></a><span class="co"># create data frame</span></span>
+<span id="cb174-1331"><a href="#cb174-1331" aria-hidden="true" tabindex="-1"></a>student_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb174-1332"><a href="#cb174-1332" aria-hidden="true" tabindex="-1"></a>  <span class="at">ID =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>,</span>
+<span id="cb174-1333"><a href="#cb174-1333" aria-hidden="true" tabindex="-1"></a>  <span class="at">Name =</span> <span class="fu">c</span>(<span class="st">"Alice"</span>, <span class="st">"Bob"</span>, <span class="st">"Charlie"</span>, <span class="st">"Diana"</span>),</span>
+<span id="cb174-1334"><a href="#cb174-1334" aria-hidden="true" tabindex="-1"></a>  <span class="at">Score =</span> <span class="fu">c</span>(<span class="dv">88</span>, <span class="dv">92</span>, <span class="dv">85</span>, <span class="dv">95</span>),</span>
+<span id="cb174-1335"><a href="#cb174-1335" aria-hidden="true" tabindex="-1"></a>  <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span></span>
+<span id="cb174-1336"><a href="#cb174-1336" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb174-1337"><a href="#cb174-1337" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1338"><a href="#cb174-1338" aria-hidden="true" tabindex="-1"></a><span class="co"># add `Passed` column</span></span>
+<span id="cb174-1339"><a href="#cb174-1339" aria-hidden="true" tabindex="-1"></a>student_data<span class="sc">$</span>Passed <span class="ot">&lt;-</span> student_data<span class="sc">$</span>Score <span class="sc">&gt;=</span> <span class="dv">90</span></span>
+<span id="cb174-1340"><a href="#cb174-1340" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1341"><a href="#cb174-1341" aria-hidden="true" tabindex="-1"></a><span class="co"># subset students who passed</span></span>
+<span id="cb174-1342"><a href="#cb174-1342" aria-hidden="true" tabindex="-1"></a>passed_students <span class="ot">&lt;-</span> student_data[student_data<span class="sc">$</span>Passed <span class="sc">==</span> <span class="cn">TRUE</span>, ]</span>
+<span id="cb174-1343"><a href="#cb174-1343" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1344"><a href="#cb174-1344" aria-hidden="true" tabindex="-1"></a><span class="co"># explore data frame</span></span>
+<span id="cb174-1345"><a href="#cb174-1345" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(student_data)</span>
+<span id="cb174-1346"><a href="#cb174-1346" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(student_data)</span>
+<span id="cb174-1347"><a href="#cb174-1347" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(student_data)</span>
+<span id="cb174-1348"><a href="#cb174-1348" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb174-1349"><a href="#cb174-1349" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1350"><a href="#cb174-1350" aria-hidden="true" tabindex="-1"></a><span class="fu">### Solution 6: Logical Operations and Subsetting</span></span>
+<span id="cb174-1351"><a href="#cb174-1351" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1354"><a href="#cb174-1354" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb174-1355"><a href="#cb174-1355" aria-hidden="true" tabindex="-1"></a><span class="co"># subset data based on score</span></span>
+<span id="cb174-1356"><a href="#cb174-1356" aria-hidden="true" tabindex="-1"></a>mean_score <span class="ot">&lt;-</span> <span class="fu">mean</span>(student_data<span class="sc">$</span>Score)</span>
+<span id="cb174-1357"><a href="#cb174-1357" aria-hidden="true" tabindex="-1"></a>students_above_mean <span class="ot">&lt;-</span> student_data[student_data<span class="sc">$</span>Score <span class="sc">&gt;</span> mean_score, ]</span>
 <span id="cb174-1358"><a href="#cb174-1358" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1361"><a href="#cb174-1361" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb174-1362"><a href="#cb174-1362" aria-hidden="true" tabindex="-1"></a><span class="co"># subset data based on score</span></span>
-<span id="cb174-1363"><a href="#cb174-1363" aria-hidden="true" tabindex="-1"></a>mean_score <span class="ot">&lt;-</span> <span class="fu">mean</span>(student_data<span class="sc">$</span>Score)</span>
-<span id="cb174-1364"><a href="#cb174-1364" aria-hidden="true" tabindex="-1"></a>students_above_mean <span class="ot">&lt;-</span> student_data[student_data<span class="sc">$</span>Score <span class="sc">&gt;</span> mean_score, ]</span>
-<span id="cb174-1365"><a href="#cb174-1365" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1366"><a href="#cb174-1366" aria-hidden="true" tabindex="-1"></a><span class="co"># add attendance and subset</span></span>
-<span id="cb174-1367"><a href="#cb174-1367" aria-hidden="true" tabindex="-1"></a>attendance <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Present"</span>, <span class="st">"Absent"</span>, <span class="st">"Present"</span>, <span class="st">"Present"</span>)</span>
-<span id="cb174-1368"><a href="#cb174-1368" aria-hidden="true" tabindex="-1"></a>student_data<span class="sc">$</span>Attendance <span class="ot">&lt;-</span> attendance</span>
-<span id="cb174-1369"><a href="#cb174-1369" aria-hidden="true" tabindex="-1"></a>present_students <span class="ot">&lt;-</span> student_data[student_data<span class="sc">$</span>Attendance <span class="sc">==</span> <span class="st">"Present"</span>, ]</span>
-<span id="cb174-1370"><a href="#cb174-1370" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb174-1371"><a href="#cb174-1371" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1372"><a href="#cb174-1372" aria-hidden="true" tabindex="-1"></a><span class="fu">### Solution 7: Cross-Tabulation and Analysis</span></span>
+<span id="cb174-1359"><a href="#cb174-1359" aria-hidden="true" tabindex="-1"></a><span class="co"># add attendance and subset</span></span>
+<span id="cb174-1360"><a href="#cb174-1360" aria-hidden="true" tabindex="-1"></a>attendance <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Present"</span>, <span class="st">"Absent"</span>, <span class="st">"Present"</span>, <span class="st">"Present"</span>)</span>
+<span id="cb174-1361"><a href="#cb174-1361" aria-hidden="true" tabindex="-1"></a>student_data<span class="sc">$</span>Attendance <span class="ot">&lt;-</span> attendance</span>
+<span id="cb174-1362"><a href="#cb174-1362" aria-hidden="true" tabindex="-1"></a>present_students <span class="ot">&lt;-</span> student_data[student_data<span class="sc">$</span>Attendance <span class="sc">==</span> <span class="st">"Present"</span>, ]</span>
+<span id="cb174-1363"><a href="#cb174-1363" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb174-1364"><a href="#cb174-1364" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1365"><a href="#cb174-1365" aria-hidden="true" tabindex="-1"></a><span class="fu">### Solution 7: Cross-Tabulation and Analysis</span></span>
+<span id="cb174-1366"><a href="#cb174-1366" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1369"><a href="#cb174-1369" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb174-1370"><a href="#cb174-1370" aria-hidden="true" tabindex="-1"></a><span class="co"># create factor variables</span></span>
+<span id="cb174-1371"><a href="#cb174-1371" aria-hidden="true" tabindex="-1"></a>Fruit <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">"Apple"</span>, <span class="st">"Banana"</span>, <span class="st">"Apple"</span>, <span class="st">"Orange"</span>, <span class="st">"Banana"</span>))</span>
+<span id="cb174-1372"><a href="#cb174-1372" aria-hidden="true" tabindex="-1"></a>Color <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">"Red"</span>, <span class="st">"Yellow"</span>, <span class="st">"Green"</span>, <span class="st">"Orange"</span>, <span class="st">"Green"</span>))</span>
 <span id="cb174-1373"><a href="#cb174-1373" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1376"><a href="#cb174-1376" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb174-1377"><a href="#cb174-1377" aria-hidden="true" tabindex="-1"></a><span class="co"># create factor variables</span></span>
-<span id="cb174-1378"><a href="#cb174-1378" aria-hidden="true" tabindex="-1"></a>Fruit <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">"Apple"</span>, <span class="st">"Banana"</span>, <span class="st">"Apple"</span>, <span class="st">"Orange"</span>, <span class="st">"Banana"</span>))</span>
-<span id="cb174-1379"><a href="#cb174-1379" aria-hidden="true" tabindex="-1"></a>Color <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">"Red"</span>, <span class="st">"Yellow"</span>, <span class="st">"Green"</span>, <span class="st">"Orange"</span>, <span class="st">"Green"</span>))</span>
+<span id="cb174-1374"><a href="#cb174-1374" aria-hidden="true" tabindex="-1"></a><span class="co"># create data frame</span></span>
+<span id="cb174-1375"><a href="#cb174-1375" aria-hidden="true" tabindex="-1"></a>fruit_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(Fruit, Color)</span>
+<span id="cb174-1376"><a href="#cb174-1376" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1377"><a href="#cb174-1377" aria-hidden="true" tabindex="-1"></a><span class="co"># cross-tabulation</span></span>
+<span id="cb174-1378"><a href="#cb174-1378" aria-hidden="true" tabindex="-1"></a>fruit_color_table <span class="ot">&lt;-</span> <span class="fu">table</span>(fruit_data<span class="sc">$</span>Fruit, fruit_data<span class="sc">$</span>Color)</span>
+<span id="cb174-1379"><a href="#cb174-1379" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(fruit_color_table)</span>
 <span id="cb174-1380"><a href="#cb174-1380" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1381"><a href="#cb174-1381" aria-hidden="true" tabindex="-1"></a><span class="co"># create data frame</span></span>
-<span id="cb174-1382"><a href="#cb174-1382" aria-hidden="true" tabindex="-1"></a>fruit_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(Fruit, Color)</span>
+<span id="cb174-1381"><a href="#cb174-1381" aria-hidden="true" tabindex="-1"></a><span class="co"># interpretation: Apple has the most colour variety with 2 colours (Red, Green).</span></span>
+<span id="cb174-1382"><a href="#cb174-1382" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb174-1383"><a href="#cb174-1383" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1384"><a href="#cb174-1384" aria-hidden="true" tabindex="-1"></a><span class="co"># cross-tabulation</span></span>
-<span id="cb174-1385"><a href="#cb174-1385" aria-hidden="true" tabindex="-1"></a>fruit_color_table <span class="ot">&lt;-</span> <span class="fu">table</span>(fruit_data<span class="sc">$</span>Fruit, fruit_data<span class="sc">$</span>Color)</span>
-<span id="cb174-1386"><a href="#cb174-1386" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(fruit_color_table)</span>
-<span id="cb174-1387"><a href="#cb174-1387" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1388"><a href="#cb174-1388" aria-hidden="true" tabindex="-1"></a><span class="co"># interpretation: Apple has the most colour variety with 2 colours (Red, Green).</span></span>
-<span id="cb174-1389"><a href="#cb174-1389" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb174-1390"><a href="#cb174-1390" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1391"><a href="#cb174-1391" aria-hidden="true" tabindex="-1"></a><span class="fu">### Solution 8: Visualization with `ggplot2`</span></span>
+<span id="cb174-1384"><a href="#cb174-1384" aria-hidden="true" tabindex="-1"></a><span class="fu">### Solution 8: Visualization with `ggplot2`</span></span>
+<span id="cb174-1385"><a href="#cb174-1385" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1388"><a href="#cb174-1388" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb174-1389"><a href="#cb174-1389" aria-hidden="true" tabindex="-1"></a><span class="co"># install and load ggplot2</span></span>
+<span id="cb174-1390"><a href="#cb174-1390" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(ggplot2)) <span class="fu">install.packages</span>(<span class="st">"ggplot2"</span>)</span>
+<span id="cb174-1391"><a href="#cb174-1391" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb174-1392"><a href="#cb174-1392" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1395"><a href="#cb174-1395" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb174-1396"><a href="#cb174-1396" aria-hidden="true" tabindex="-1"></a><span class="co"># install and load ggplot2</span></span>
-<span id="cb174-1397"><a href="#cb174-1397" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(ggplot2)) <span class="fu">install.packages</span>(<span class="st">"ggplot2"</span>)</span>
-<span id="cb174-1398"><a href="#cb174-1398" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb174-1399"><a href="#cb174-1399" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1400"><a href="#cb174-1400" aria-hidden="true" tabindex="-1"></a><span class="co"># create bar plot</span></span>
-<span id="cb174-1401"><a href="#cb174-1401" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(student_data, <span class="fu">aes</span>(<span class="at">x =</span> Name, <span class="at">y =</span> Score, <span class="at">fill =</span> Passed)) <span class="sc">+</span></span>
-<span id="cb174-1402"><a href="#cb174-1402" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
-<span id="cb174-1403"><a href="#cb174-1403" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"TRUE"</span> <span class="ot">=</span> <span class="st">"blue"</span>, <span class="st">"FALSE"</span> <span class="ot">=</span> <span class="st">"red"</span>)) <span class="sc">+</span></span>
-<span id="cb174-1404"><a href="#cb174-1404" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Student Scores"</span>, <span class="at">x =</span> <span class="st">"Name"</span>, <span class="at">y =</span> <span class="st">"Score"</span>) <span class="sc">+</span></span>
-<span id="cb174-1405"><a href="#cb174-1405" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
-<span id="cb174-1406"><a href="#cb174-1406" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb174-1393"><a href="#cb174-1393" aria-hidden="true" tabindex="-1"></a><span class="co"># create bar plot</span></span>
+<span id="cb174-1394"><a href="#cb174-1394" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(student_data, <span class="fu">aes</span>(<span class="at">x =</span> Name, <span class="at">y =</span> Score, <span class="at">fill =</span> Passed)) <span class="sc">+</span></span>
+<span id="cb174-1395"><a href="#cb174-1395" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb174-1396"><a href="#cb174-1396" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"TRUE"</span> <span class="ot">=</span> <span class="st">"blue"</span>, <span class="st">"FALSE"</span> <span class="ot">=</span> <span class="st">"red"</span>)) <span class="sc">+</span></span>
+<span id="cb174-1397"><a href="#cb174-1397" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Student Scores"</span>, <span class="at">x =</span> <span class="st">"Name"</span>, <span class="at">y =</span> <span class="st">"Score"</span>) <span class="sc">+</span></span>
+<span id="cb174-1398"><a href="#cb174-1398" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb174-1399"><a href="#cb174-1399" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb174-1400"><a href="#cb174-1400" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1401"><a href="#cb174-1401" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1402"><a href="#cb174-1402" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1403"><a href="#cb174-1403" aria-hidden="true" tabindex="-1"></a><span class="fu">## Appendix C: Other Data Types You May Encounter</span></span>
+<span id="cb174-1404"><a href="#cb174-1404" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1405"><a href="#cb174-1405" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1406"><a href="#cb174-1406" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Arrays and Matrices</span></span>
 <span id="cb174-1407"><a href="#cb174-1407" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1408"><a href="#cb174-1408" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1408"><a href="#cb174-1408" aria-hidden="true" tabindex="-1"></a>Arrays are multi-dimensional data structures, while matrices are two-dimensional.</span>
 <span id="cb174-1409"><a href="#cb174-1409" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1410"><a href="#cb174-1410" aria-hidden="true" tabindex="-1"></a><span class="fu">## Appendix C: Other Data Types You May Encounter</span></span>
-<span id="cb174-1411"><a href="#cb174-1411" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1412"><a href="#cb174-1412" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1413"><a href="#cb174-1413" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Arrays and Matrices</span></span>
-<span id="cb174-1414"><a href="#cb174-1414" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1415"><a href="#cb174-1415" aria-hidden="true" tabindex="-1"></a>Arrays are multi-dimensional data structures, while matrices are two-dimensional.</span>
+<span id="cb174-1412"><a href="#cb174-1412" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb174-1413"><a href="#cb174-1413" aria-hidden="true" tabindex="-1"></a>matrix_1 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>, <span class="at">nrow =</span> <span class="dv">3</span>) <span class="co"># creates a 3x3 matrix</span></span>
+<span id="cb174-1414"><a href="#cb174-1414" aria-hidden="true" tabindex="-1"></a>array_1 <span class="ot">&lt;-</span> <span class="fu">array</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>, <span class="at">dim =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">2</span>)) <span class="co"># creates a 2x3x2 array</span></span>
+<span id="cb174-1415"><a href="#cb174-1415" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb174-1416"><a href="#cb174-1416" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1419"><a href="#cb174-1419" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb174-1420"><a href="#cb174-1420" aria-hidden="true" tabindex="-1"></a>matrix_1 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>, <span class="at">nrow =</span> <span class="dv">3</span>) <span class="co"># creates a 3x3 matrix</span></span>
-<span id="cb174-1421"><a href="#cb174-1421" aria-hidden="true" tabindex="-1"></a>array_1 <span class="ot">&lt;-</span> <span class="fu">array</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>, <span class="at">dim =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">2</span>)) <span class="co"># creates a 2x3x2 array</span></span>
-<span id="cb174-1422"><a href="#cb174-1422" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb174-1423"><a href="#cb174-1423" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1424"><a href="#cb174-1424" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Convert Matrix to Data Frame</span></span>
-<span id="cb174-1425"><a href="#cb174-1425" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1426"><a href="#cb174-1426" aria-hidden="true" tabindex="-1"></a>A <span class="in">`data.frame`</span> is used for storing tabular data.</span>
-<span id="cb174-1427"><a href="#cb174-1427" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1430"><a href="#cb174-1430" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb174-1431"><a href="#cb174-1431" aria-hidden="true" tabindex="-1"></a><span class="co"># change matrix to array:</span></span>
-<span id="cb174-1432"><a href="#cb174-1432" aria-hidden="true" tabindex="-1"></a>df_matrix_1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>( matrix_1 )</span>
+<span id="cb174-1417"><a href="#cb174-1417" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Convert Matrix to Data Frame</span></span>
+<span id="cb174-1418"><a href="#cb174-1418" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1419"><a href="#cb174-1419" aria-hidden="true" tabindex="-1"></a>A <span class="in">`data.frame`</span> is used for storing tabular data.</span>
+<span id="cb174-1420"><a href="#cb174-1420" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1423"><a href="#cb174-1423" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb174-1424"><a href="#cb174-1424" aria-hidden="true" tabindex="-1"></a><span class="co"># change matrix to array:</span></span>
+<span id="cb174-1425"><a href="#cb174-1425" aria-hidden="true" tabindex="-1"></a>df_matrix_1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>( matrix_1 )</span>
+<span id="cb174-1426"><a href="#cb174-1426" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1427"><a href="#cb174-1427" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df_matrix_1)</span>
+<span id="cb174-1428"><a href="#cb174-1428" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1429"><a href="#cb174-1429" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df_matrix_1)</span>
+<span id="cb174-1430"><a href="#cb174-1430" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1431"><a href="#cb174-1431" aria-hidden="true" tabindex="-1"></a><span class="co"># change colnames</span></span>
+<span id="cb174-1432"><a href="#cb174-1432" aria-hidden="true" tabindex="-1"></a>new_colnames <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"col_1"</span>, <span class="st">"col_2"</span>, <span class="st">"col_3"</span>)</span>
 <span id="cb174-1433"><a href="#cb174-1433" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1434"><a href="#cb174-1434" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df_matrix_1)</span>
+<span id="cb174-1434"><a href="#cb174-1434" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(df_matrix_1)<span class="ot">&lt;-</span> new_colnames</span>
 <span id="cb174-1435"><a href="#cb174-1435" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1436"><a href="#cb174-1436" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df_matrix_1)</span>
-<span id="cb174-1437"><a href="#cb174-1437" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1438"><a href="#cb174-1438" aria-hidden="true" tabindex="-1"></a><span class="co"># change colnames</span></span>
-<span id="cb174-1439"><a href="#cb174-1439" aria-hidden="true" tabindex="-1"></a>new_colnames <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"col_1"</span>, <span class="st">"col_2"</span>, <span class="st">"col_3"</span>)</span>
-<span id="cb174-1440"><a href="#cb174-1440" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1441"><a href="#cb174-1441" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(df_matrix_1)<span class="ot">&lt;-</span> new_colnames</span>
+<span id="cb174-1436"><a href="#cb174-1436" aria-hidden="true" tabindex="-1"></a><span class="co"># check</span></span>
+<span id="cb174-1437"><a href="#cb174-1437" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df_matrix_1)  </span>
+<span id="cb174-1438"><a href="#cb174-1438" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df_matrix_1)</span>
+<span id="cb174-1439"><a href="#cb174-1439" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1440"><a href="#cb174-1440" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb174-1441"><a href="#cb174-1441" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb174-1442"><a href="#cb174-1442" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1443"><a href="#cb174-1443" aria-hidden="true" tabindex="-1"></a><span class="co"># check</span></span>
-<span id="cb174-1444"><a href="#cb174-1444" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df_matrix_1)  </span>
-<span id="cb174-1445"><a href="#cb174-1445" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df_matrix_1)</span>
+<span id="cb174-1443"><a href="#cb174-1443" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1444"><a href="#cb174-1444" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1445"><a href="#cb174-1445" aria-hidden="true" tabindex="-1"></a><span class="fu">### Working with Lists in R</span></span>
 <span id="cb174-1446"><a href="#cb174-1446" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1447"><a href="#cb174-1447" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb174-1447"><a href="#cb174-1447" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Creating lists</span></span>
 <span id="cb174-1448"><a href="#cb174-1448" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1449"><a href="#cb174-1449" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1449"><a href="#cb174-1449" aria-hidden="true" tabindex="-1"></a>To create a list, you use the <span class="in">`list()`</span> function. </span>
 <span id="cb174-1450"><a href="#cb174-1450" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1451"><a href="#cb174-1451" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1452"><a href="#cb174-1452" aria-hidden="true" tabindex="-1"></a><span class="fu">### Working with Lists in R</span></span>
-<span id="cb174-1453"><a href="#cb174-1453" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1454"><a href="#cb174-1454" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Creating lists</span></span>
-<span id="cb174-1455"><a href="#cb174-1455" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1456"><a href="#cb174-1456" aria-hidden="true" tabindex="-1"></a>To create a list, you use the <span class="in">`list()`</span> function. </span>
-<span id="cb174-1457"><a href="#cb174-1457" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1460"><a href="#cb174-1460" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb174-1461"><a href="#cb174-1461" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a simple list</span></span>
-<span id="cb174-1462"><a href="#cb174-1462" aria-hidden="true" tabindex="-1"></a>my_list <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">name =</span> <span class="st">"John Doe"</span>, <span class="at">age =</span> <span class="dv">30</span>, <span class="at">scores =</span> <span class="fu">c</span>(<span class="dv">90</span>, <span class="dv">80</span>, <span class="dv">70</span>))</span>
-<span id="cb174-1463"><a href="#cb174-1463" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1464"><a href="#cb174-1464" aria-hidden="true" tabindex="-1"></a><span class="co"># A list containing various types of elements, including another list</span></span>
-<span id="cb174-1465"><a href="#cb174-1465" aria-hidden="true" tabindex="-1"></a>complex_list <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">id =</span> <span class="dv">1</span>, <span class="at">name =</span> <span class="st">"Jane Doe"</span>, <span class="at">preferences =</span> <span class="fu">list</span>(<span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">hobby =</span> <span class="st">"reading"</span>))</span>
-<span id="cb174-1466"><a href="#cb174-1466" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb174-1467"><a href="#cb174-1467" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1468"><a href="#cb174-1468" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Accessing list elements</span></span>
-<span id="cb174-1469"><a href="#cb174-1469" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1470"><a href="#cb174-1470" aria-hidden="true" tabindex="-1"></a>List elements can be accessed using the <span class="in">`[[ ]]`</span> notation for single elements, or the <span class="in">`$`</span> notation if you're accessing named elements:</span>
-<span id="cb174-1471"><a href="#cb174-1471" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1474"><a href="#cb174-1474" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb174-1475"><a href="#cb174-1475" aria-hidden="true" tabindex="-1"></a><span class="co"># Accessing elements</span></span>
-<span id="cb174-1476"><a href="#cb174-1476" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> my_list<span class="sc">$</span>name  <span class="co"># or my_list[["name"]]</span></span>
+<span id="cb174-1453"><a href="#cb174-1453" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb174-1454"><a href="#cb174-1454" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a simple list</span></span>
+<span id="cb174-1455"><a href="#cb174-1455" aria-hidden="true" tabindex="-1"></a>my_list <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">name =</span> <span class="st">"John Doe"</span>, <span class="at">age =</span> <span class="dv">30</span>, <span class="at">scores =</span> <span class="fu">c</span>(<span class="dv">90</span>, <span class="dv">80</span>, <span class="dv">70</span>))</span>
+<span id="cb174-1456"><a href="#cb174-1456" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1457"><a href="#cb174-1457" aria-hidden="true" tabindex="-1"></a><span class="co"># A list containing various types of elements, including another list</span></span>
+<span id="cb174-1458"><a href="#cb174-1458" aria-hidden="true" tabindex="-1"></a>complex_list <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">id =</span> <span class="dv">1</span>, <span class="at">name =</span> <span class="st">"Jane Doe"</span>, <span class="at">preferences =</span> <span class="fu">list</span>(<span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">hobby =</span> <span class="st">"reading"</span>))</span>
+<span id="cb174-1459"><a href="#cb174-1459" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb174-1460"><a href="#cb174-1460" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1461"><a href="#cb174-1461" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Accessing list elements</span></span>
+<span id="cb174-1462"><a href="#cb174-1462" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1463"><a href="#cb174-1463" aria-hidden="true" tabindex="-1"></a>List elements can be accessed using the <span class="in">`[[ ]]`</span> notation for single elements, or the <span class="in">`$`</span> notation if you're accessing named elements:</span>
+<span id="cb174-1464"><a href="#cb174-1464" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1467"><a href="#cb174-1467" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb174-1468"><a href="#cb174-1468" aria-hidden="true" tabindex="-1"></a><span class="co"># Accessing elements</span></span>
+<span id="cb174-1469"><a href="#cb174-1469" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> my_list<span class="sc">$</span>name  <span class="co"># or my_list[["name"]]</span></span>
+<span id="cb174-1470"><a href="#cb174-1470" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1471"><a href="#cb174-1471" aria-hidden="true" tabindex="-1"></a>preference_color <span class="ot">&lt;-</span> complex_list<span class="sc">$</span>preferences<span class="sc">$</span>color</span>
+<span id="cb174-1472"><a href="#cb174-1472" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb174-1473"><a href="#cb174-1473" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1474"><a href="#cb174-1474" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Modifying lists</span></span>
+<span id="cb174-1475"><a href="#cb174-1475" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1476"><a href="#cb174-1476" aria-hidden="true" tabindex="-1"></a>Lists can be modified by adding new elements, changing existing elements, or removing elements:</span>
 <span id="cb174-1477"><a href="#cb174-1477" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1478"><a href="#cb174-1478" aria-hidden="true" tabindex="-1"></a>preference_color <span class="ot">&lt;-</span> complex_list<span class="sc">$</span>preferences<span class="sc">$</span>color</span>
-<span id="cb174-1479"><a href="#cb174-1479" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb174-1480"><a href="#cb174-1480" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1481"><a href="#cb174-1481" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Modifying lists</span></span>
-<span id="cb174-1482"><a href="#cb174-1482" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1483"><a href="#cb174-1483" aria-hidden="true" tabindex="-1"></a>Lists can be modified by adding new elements, changing existing elements, or removing elements:</span>
-<span id="cb174-1484"><a href="#cb174-1484" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1487"><a href="#cb174-1487" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb174-1488"><a href="#cb174-1488" aria-hidden="true" tabindex="-1"></a><span class="co"># Adding a new element</span></span>
-<span id="cb174-1489"><a href="#cb174-1489" aria-hidden="true" tabindex="-1"></a>my_list<span class="sc">$</span>gender <span class="ot">&lt;-</span> <span class="st">"Male"</span></span>
+<span id="cb174-1480"><a href="#cb174-1480" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb174-1481"><a href="#cb174-1481" aria-hidden="true" tabindex="-1"></a><span class="co"># Adding a new element</span></span>
+<span id="cb174-1482"><a href="#cb174-1482" aria-hidden="true" tabindex="-1"></a>my_list<span class="sc">$</span>gender <span class="ot">&lt;-</span> <span class="st">"Male"</span></span>
+<span id="cb174-1483"><a href="#cb174-1483" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1484"><a href="#cb174-1484" aria-hidden="true" tabindex="-1"></a><span class="co"># Changing an existing element</span></span>
+<span id="cb174-1485"><a href="#cb174-1485" aria-hidden="true" tabindex="-1"></a>my_list<span class="sc">$</span>age <span class="ot">&lt;-</span> <span class="dv">31</span></span>
+<span id="cb174-1486"><a href="#cb174-1486" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1487"><a href="#cb174-1487" aria-hidden="true" tabindex="-1"></a><span class="co"># Removing an element</span></span>
+<span id="cb174-1488"><a href="#cb174-1488" aria-hidden="true" tabindex="-1"></a>my_list<span class="sc">$</span>scores <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb174-1489"><a href="#cb174-1489" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb174-1490"><a href="#cb174-1490" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1491"><a href="#cb174-1491" aria-hidden="true" tabindex="-1"></a><span class="co"># Changing an existing element</span></span>
-<span id="cb174-1492"><a href="#cb174-1492" aria-hidden="true" tabindex="-1"></a>my_list<span class="sc">$</span>age <span class="ot">&lt;-</span> <span class="dv">31</span></span>
-<span id="cb174-1493"><a href="#cb174-1493" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1494"><a href="#cb174-1494" aria-hidden="true" tabindex="-1"></a><span class="co"># Removing an element</span></span>
-<span id="cb174-1495"><a href="#cb174-1495" aria-hidden="true" tabindex="-1"></a>my_list<span class="sc">$</span>scores <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
-<span id="cb174-1496"><a href="#cb174-1496" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb174-1497"><a href="#cb174-1497" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1498"><a href="#cb174-1498" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Lists in Functions</span></span>
-<span id="cb174-1499"><a href="#cb174-1499" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1500"><a href="#cb174-1500" aria-hidden="true" tabindex="-1"></a>Lists are often used as return values for functions that need to provide multiple pieces of data:</span>
-<span id="cb174-1501"><a href="#cb174-1501" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1504"><a href="#cb174-1504" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb174-1505"><a href="#cb174-1505" aria-hidden="true" tabindex="-1"></a><span class="co"># Function returning a list</span></span>
-<span id="cb174-1506"><a href="#cb174-1506" aria-hidden="true" tabindex="-1"></a>calculate_stats <span class="ot">&lt;-</span> <span class="cf">function</span>(numbers) {</span>
-<span id="cb174-1507"><a href="#cb174-1507" aria-hidden="true" tabindex="-1"></a>  mean_val <span class="ot">&lt;-</span> <span class="fu">mean</span>(numbers)</span>
-<span id="cb174-1508"><a href="#cb174-1508" aria-hidden="true" tabindex="-1"></a>  sum_val <span class="ot">&lt;-</span> <span class="fu">sum</span>(numbers)</span>
-<span id="cb174-1509"><a href="#cb174-1509" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">list</span>(<span class="at">mean =</span> mean_val, <span class="at">sum =</span> sum_val))</span>
-<span id="cb174-1510"><a href="#cb174-1510" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb174-1511"><a href="#cb174-1511" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1512"><a href="#cb174-1512" aria-hidden="true" tabindex="-1"></a><span class="co"># Using the function</span></span>
-<span id="cb174-1513"><a href="#cb174-1513" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">calculate_stats</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>))</span>
-<span id="cb174-1514"><a href="#cb174-1514" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb174-1491"><a href="#cb174-1491" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Lists in Functions</span></span>
+<span id="cb174-1492"><a href="#cb174-1492" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1493"><a href="#cb174-1493" aria-hidden="true" tabindex="-1"></a>Lists are often used as return values for functions that need to provide multiple pieces of data:</span>
+<span id="cb174-1494"><a href="#cb174-1494" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1497"><a href="#cb174-1497" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb174-1498"><a href="#cb174-1498" aria-hidden="true" tabindex="-1"></a><span class="co"># Function returning a list</span></span>
+<span id="cb174-1499"><a href="#cb174-1499" aria-hidden="true" tabindex="-1"></a>calculate_stats <span class="ot">&lt;-</span> <span class="cf">function</span>(numbers) {</span>
+<span id="cb174-1500"><a href="#cb174-1500" aria-hidden="true" tabindex="-1"></a>  mean_val <span class="ot">&lt;-</span> <span class="fu">mean</span>(numbers)</span>
+<span id="cb174-1501"><a href="#cb174-1501" aria-hidden="true" tabindex="-1"></a>  sum_val <span class="ot">&lt;-</span> <span class="fu">sum</span>(numbers)</span>
+<span id="cb174-1502"><a href="#cb174-1502" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">list</span>(<span class="at">mean =</span> mean_val, <span class="at">sum =</span> sum_val))</span>
+<span id="cb174-1503"><a href="#cb174-1503" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb174-1504"><a href="#cb174-1504" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1505"><a href="#cb174-1505" aria-hidden="true" tabindex="-1"></a><span class="co"># Using the function</span></span>
+<span id="cb174-1506"><a href="#cb174-1506" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">calculate_stats</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>))</span>
+<span id="cb174-1507"><a href="#cb174-1507" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb174-1508"><a href="#cb174-1508" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1509"><a href="#cb174-1509" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Why Lists are Important</span></span>
+<span id="cb174-1510"><a href="#cb174-1510" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1511"><a href="#cb174-1511" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Flexibility:** lists can contain different types of elements, including other lists, data frames, and functions.</span>
+<span id="cb174-1512"><a href="#cb174-1512" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Function outputs:** many R functions return lists because they can hold multiple types of outputs.</span>
+<span id="cb174-1513"><a href="#cb174-1513" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1514"><a href="#cb174-1514" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb174-1515"><a href="#cb174-1515" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1516"><a href="#cb174-1516" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Why Lists are Important</span></span>
+<span id="cb174-1516"><a href="#cb174-1516" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- ## Appendix C: Sundry --&gt;</span></span>
 <span id="cb174-1517"><a href="#cb174-1517" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1518"><a href="#cb174-1518" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Flexibility:** lists can contain different types of elements, including other lists, data frames, and functions.</span>
-<span id="cb174-1519"><a href="#cb174-1519" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Function outputs:** many R functions return lists because they can hold multiple types of outputs.</span>
-<span id="cb174-1520"><a href="#cb174-1520" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1518"><a href="#cb174-1518" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Using Logical Operators in Conditions --&gt;</span></span>
+<span id="cb174-1519"><a href="#cb174-1519" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1520"><a href="#cb174-1520" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- These operators are often used in conditional statements and loops: --&gt;</span></span>
 <span id="cb174-1521"><a href="#cb174-1521" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1522"><a href="#cb174-1522" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1523"><a href="#cb174-1523" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- ## Appendix C: Sundry --&gt;</span></span>
-<span id="cb174-1524"><a href="#cb174-1524" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1525"><a href="#cb174-1525" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- #### Using Logical Operators in Conditions --&gt;</span></span>
-<span id="cb174-1526"><a href="#cb174-1526" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1527"><a href="#cb174-1527" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- These operators are often used in conditional statements and loops: --&gt;</span></span>
-<span id="cb174-1528"><a href="#cb174-1528" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1529"><a href="#cb174-1529" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- ```{r} --&gt;</span></span>
-<span id="cb174-1530"><a href="#cb174-1530" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- if (x &gt; 0 &amp;&amp; y &gt; 0) { --&gt;</span></span>
-<span id="cb174-1531"><a href="#cb174-1531" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   print("both x and y are positive") --&gt;</span></span>
-<span id="cb174-1532"><a href="#cb174-1532" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- } --&gt;</span></span>
-<span id="cb174-1533"><a href="#cb174-1533" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- z &lt;- c(TRUE, FALSE, TRUE) --&gt;</span></span>
-<span id="cb174-1534"><a href="#cb174-1534" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- w &lt;- c(FALSE, TRUE, TRUE) --&gt;</span></span>
-<span id="cb174-1535"><a href="#cb174-1535" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- combined_logic &lt;- z | w # element-wise OR --&gt;</span></span>
-<span id="cb174-1536"><a href="#cb174-1536" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-1537"><a href="#cb174-1537" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- combined_logic --&gt;</span></span>
-<span id="cb174-1538"><a href="#cb174-1538" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- ``` --&gt;</span></span>
-<span id="cb174-1539"><a href="#cb174-1539" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1522"><a href="#cb174-1522" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- ```{r} --&gt;</span></span>
+<span id="cb174-1523"><a href="#cb174-1523" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- if (x &gt; 0 &amp;&amp; y &gt; 0) { --&gt;</span></span>
+<span id="cb174-1524"><a href="#cb174-1524" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!--   print("both x and y are positive") --&gt;</span></span>
+<span id="cb174-1525"><a href="#cb174-1525" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- } --&gt;</span></span>
+<span id="cb174-1526"><a href="#cb174-1526" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- z &lt;- c(TRUE, FALSE, TRUE) --&gt;</span></span>
+<span id="cb174-1527"><a href="#cb174-1527" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- w &lt;- c(FALSE, TRUE, TRUE) --&gt;</span></span>
+<span id="cb174-1528"><a href="#cb174-1528" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- combined_logic &lt;- z | w # element-wise OR --&gt;</span></span>
+<span id="cb174-1529"><a href="#cb174-1529" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-1530"><a href="#cb174-1530" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- combined_logic --&gt;</span></span>
+<span id="cb174-1531"><a href="#cb174-1531" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- ``` --&gt;</span></span>
+<span id="cb174-1532"><a href="#cb174-1532" aria-hidden="true" tabindex="-1"></a></span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
