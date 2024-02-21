@@ -12,7 +12,7 @@ format:
     error: false
     messages: false
     code-overflow: scroll
-    highlight-style: dracula
+    highlight-style: kate
     code-tools:
       source: true
       toggle: false
@@ -131,7 +131,7 @@ After Downloading R...
 
 ### Step 1: Installing R-Studio
 
-Assume you have downloaded and installed R from the Comprehensive R Archive Network (CRAN).
+If you have already downloaded and installed R from the Comprehensive R Archive Network (CRAN).
 
 1. Go to the RStudio download page at [https://www.rstudio.com/products/rstudio/download/](https://www.rstudio.com/products/rstudio/download/).
 2. Choose the free version of RStudio Desktop, and download it for your operating system.
@@ -388,6 +388,16 @@ Integers are whole numbers without decimal points. In R, integers can be explici
 ```{r}
 # define an integer
 x <- 42L
+
+x
+# check
+str(x) # is integer
+
+# note we use "as.numeric()" not "numeric()" because 
+# we are converting a variable that already exists
+y <- as.numeric(x)
+
+str(y)
 ```
 
 Integers are particularly useful when dealing with counts or indices that do not require fractional values.
@@ -414,7 +424,7 @@ colors <- factor(c("red", "blue", "green"))
 
 Factors can improve efficiency and memory usage when dealing with categorical data, especially in large datasets. And they are useful when dealing with categorical variables (naturally).
 
-### Ordered Factors
+#### Ordered Factors
 
 Ordered factors are a special type of factor where the levels have an inherent order. They are defined similarly to factors but with an additional argument to denote the order.
 
@@ -428,76 +438,53 @@ education_ordered_explicit <- factor(c("High School", "Bachelor", "Master", "Ph.
 
 Ordered factors allow for logical comparisons based on their order, which is particularly useful in analyses where the order of categories matters, such as ordinal regression.
 
-### Operations with Ordered Factors
+
+#### Operations with Ordered Factors
 
 Ordered factors support logical comparisons that consider the order of the levels.
 
+
 ```{r}
-# Comparison of ordered factors
+# comparison of ordered factors
 edu1 <- ordered("Bachelor", levels = c("High School", "Bachelor", "Master", "Ph.D."))
 edu2 <- ordered("Master", levels = c("High School", "Bachelor", "Master", "Ph.D."))
 
-edu2 > edu1 # Returns TRUE
-
-x <- 42L
-
-# check
-str(x)
-
-str(55)
-
-# note we use "as.integer()" not "integer()" because 
-# we are converting a variable that already exists
-y <- as.integer(x)
-
-str(y)
+edu2 > edu1 # returns TRUE
 ```
 
-
-### Ordered Factors
-
-To create an ordered factor, you use the `factor()` function with the `ordered` argument set to `TRUE`, or you can directly use the `ordered()` function. You can also specify the levels in their natural order using the `levels` argument if the default order does not match the natural sequence.
-
-```{r}
-# using factor() function with ordered = TRUE
-education_levels <- c("High School", "Bachelor", "Master", "Ph.D.")
-education_factor <- factor(education_levels, ordered = TRUE)
-
-# alternatively, using ordered() function
-education_ordered <- ordered(education_levels)
-
-# specify levels explicitly
-education_ordered_explicit <- factor(education_levels, levels = c("High School", "Bachelor", "Master", "Ph.D."), ordered = TRUE)
-```
-
-
-
-Ordered factors can be useful in statistical models where the order impacts the model, such as ordinal logistic regression. The order of the factor levels can influence the model's interpretation and coefficients. **We will return to ordered factors and ordered/logistic regression later in the course.**
-
-### Checking Data with Ordered Factors
+#### Checking Data with Ordered Factors
 
 You can view the structure and summary of ordered factors just as with regular factors, but the output will indicate the order.
 
 ```{r}
 # view the structure
-str(education_ordered)
+str(education_ordered_explicit)
 
 # summary to see the distribution
-summary(education_ordered)
+summary(education_ordered_explicit)
 ```
 
-### Modifying Ordered Factors
+#### Modifying Ordered Factors
 
 If you need to change the order of levels or add new levels, you can re-factor the variable using `factor()` or `ordered()` and specify the new levels.
 
 ```{r}
-# add new level and reordering
+# add new level and reorder
+#old factor 
+education_levels
+
+# new levels, add new factor
 new_levels <- c("Primary School", "High School", "Bachelor", "Master", "Ph.D.")
+
+#order explicitly
 education_updated <- factor(education_levels, levels = new_levels, ordered = TRUE)
+
+# check
+str(education_updated)
 ```
 
 
-## Working with Strings
+## Strings
 
 Strings are sequences of characters.
 
@@ -509,7 +496,7 @@ greeting <- paste("Hello,", name) # concatenates strings
 greeting
 ```
 
-## Working with Vectors
+## Vectors
 
 Vectors are one of R's most fundamental data structures, essential for storing and manipulating a sequence of data elements. 
 
@@ -592,9 +579,9 @@ unique_vector
 
 
 
-## Working with Data Frames
+## Data Frames
 
-### Creating Data Frames
+### Create Data Frames
 
 Data frames can be created using the `data.frame()` function, specifying each column and its values. Here's a simple example:
 
@@ -604,7 +591,6 @@ df <- data.frame(
   Age = c(25, 30, 35),
   Gender = c("Female", "Male", "Male")
 )
-
 # check structure
 head(df)
 str(df)
@@ -613,17 +599,17 @@ summary(df)
 
 In this example, `df` is a data frame with three columns (`Name`, `Age`, `Gender`) and three rows, each representing a different individual.
 
-### Accessing Data Frame Elements
+### Access Data Frame Elements
 
 **There are often several ways to do the same thing in R**. You can access the elements of a data frame in several ways:
 
-- **By Column Name:** Use the `$` operator followed by the column name.
+- **By column name:** use the `$` operator followed by the column name.
 
 ```{r}
 names <- df$Name  # extracts the `Name` column
 ```
 
-- **By Row and Column:** Use the `[row, column]` indexing. Rows or columns can be specified by number or name.
+- **By row and column:** Use the `[row, column]` indexing. Rows or columns can be specified by number or name.
 
 ```{r}
 second_person <- df[2, ]  # extracts the second row
@@ -659,7 +645,7 @@ df$Employed <- c(TRUE, TRUE, FALSE)  # adds a new column "Employed"
 head(df)
 ```
 
-- **Adding Rows:** Use the `rbind()` function to add new rows.
+- **Adding rows:** Use the `rbind()` function to add new rows.
 
 ```{r}
 new_person <- data.frame(Name = "Diana", Age = 28, Gender = "Female", Employed = TRUE)
@@ -670,7 +656,7 @@ head(df)
 
 ```
 
-- **Modifying Values:** Access the element or column and assign it a new value.
+- **Modifying values:** Access the element or column and assign it a new value.
 
 ```{r}
 # note double brackets
@@ -682,7 +668,7 @@ df[4, ]
 
 ```
 
-- **Removing Columns or Rows:** Set columns to `NULL` to remove them, or use `-` with row or column indices.
+- **Removing columns or rows:** Set columns to `NULL` to remove them, or use `-` with row or column indices.
 
 ```{r}
 head(df)
@@ -699,7 +685,7 @@ df <- df[-4, ]  # removes the fourth row
 df
 ```
 
-### Viewing Data Structure (`summary()`, `str()`, `head()`, `tail()`)
+### View Data Structure (`summary()`, `str()`, `head()`, `tail()`)
 
 - `summary()`: Provides a summary of an object's structure.
 - `str()`: Displays the structure of an object.
@@ -781,9 +767,9 @@ This produces a contingency table showing the counts at each combination of `fac
 
 
 
-###  Explore Data Frames
+###  Explore Your Data Frames
 
-- **Data Exploration:** Functions like `head()`, `tail()`, and `str()` help you explore the first few rows, last few rows, and the structure of the data frame, respectively.
+Functions such as `head()`, `tail()`, and `str()` help you explore the first few rows, last few rows, and the structure of the data frame, respectively.
 
 ```{r}
 # show
@@ -840,20 +826,15 @@ student_data$Study_Hours <- sample(5:15, 8, replace = TRUE)
 
 
 
-
-
-
-
-
 ### Basic Components of a `ggplot2` Plot
 
-- **Data:** The dataset you want to visualise.
-- **Aesthetics (`aes`):** Defines how data are mapped to colour, size, shape, and other visual properties.
-- **Geometries (`geom_` functions):** The type of plot or layer you want to add (e.g., points, lines, bars).
+- **Data:** the dataset you want to visualise.
+- **Aesthetics (`aes`):** defines how data are mapped to colour, size, shape, and other visual properties.
+- **Geometries (`geom_` functions):** the type of plot or layer you want to add (e.g., points, lines, bars).
 
-#### Creating a Basic Plot
+#### Create a Basic Plot
 
-Let's start by creating a simple bar plot:
+Start by creating a simple bar plot:
 
 ```{r}
 ggplot(student_data, aes(x = Name, y = Score)) +
@@ -882,7 +863,9 @@ ggplot(student_data, aes(x = Name, y = Score, fill = Passed)) +
 
 ### Scatter Plot with `ggplot2`
 
-A scatter plot is useful for examining the relationship between two continuous variables. While our `student_data` doesn't naturally lend itself to a scatter plot, let's simulate a scenario where we're comparing student scores against study hours.
+A scatter plot is useful for examining the relationship between two continuous variables. 
+
+Let's simulate a scenario where we're comparing student scores against study hours.
 
 ```{r}
 # create  scatter plot
@@ -911,7 +894,7 @@ ggplot(student_data, aes(x = Passed, y = Score, fill = Passed)) +
 Histograms are helpful for understanding the distribution of a single continuous variable, such as scores.
 
 ```{r}
-# Create a histogram
+# create a histogram
 ggplot(student_data, aes(x = Score, fill = Passed)) +
   geom_histogram(binwidth = 5, color = "black", alpha = 0.7) +
   labs(title = "Histogram of Scores", x = "Score", y = "Count") +
@@ -999,11 +982,11 @@ boxplot(Score ~ Passed, data = student_data,
 
 This code uses the `boxplot` function to create box plots for scores, grouped by the pass/fail status, with custom colours for each group.
 
-## Lab Summary
+## Summary of Today's Lab
 
 Congratulations on completing Lab 1! 
 
-This session has laid the groundwork. We've covered a lot, but we'll have a good deal of practice throughout the course. 
+This session has laid the groundwork. We have covered a lot, but we'll have a good deal of practice throughout the course to reinforce the learning. 
 
 ### What We Have Learned
 
