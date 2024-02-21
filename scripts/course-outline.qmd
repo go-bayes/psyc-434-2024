@@ -5,6 +5,18 @@ date: "2024-FEB-26"
 bibliography: /Users/joseph/GIT/templates/bib/references.bib
 editor_options: 
   chunk_output_type: console
+format: 
+  html:
+    html-math-method: katex
+    warnings: false
+    error: false
+    messages: false
+    code-overflow: scroll
+    highlight-style: kate
+    code-tools:
+      source: true
+      toggle: false
+      caption: none
 ---
 
 # Course Outline
