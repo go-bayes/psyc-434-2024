@@ -1,0 +1,260 @@
+---
+title:  "Psych 434: Conducting Research Across Cultures"
+subtitle: "Conducting Rsearch About Cultures"
+date: "2024-FEB-26"
+bibliography: /Users/joseph/GIT/templates/bib/references.bib
+editor_options: 
+  chunk_output_type: console
+---
+
+# Course Outline
+
+## Week 1: Feb 26 - Course Introduction - Introduction to R
+
+#### Focus
+
+- Introduce course objectives and outline
+- R setup
+
+#### Lab
+
+- Getting started with R/R-studio: installation and package management
+
+#### No Readings
+
+##### Optional Readings
+
+- [@bulbulia2022]
+
+## Week 2: March 4 - Causal Diagrams: Five Elementary Causal Structures
+
+#### Focus
+
+- Understanding causal diagrams: definitions and applications
+- Introduction to five elementary structures and four rules in causal inference
+- Introduction to R interface and data simulation
+
+#### Readings
+
+- Barrett M (2023). _ggdag: Analyze and Create Elegant Directed Acyclic Graphs_. R package version 0.2.7.9000, <https://github.com/malcolmbarrett/ggdag>
+- "An Introduction to Directed Acyclic Graphs", <https://r-causal.github.io/ggdag/articles/intro-to-dags.html>
+- "Common Structures of Bias", <https://r-causal.github.io/ggdag/articles/bias-structures.html>
+
+#### Lab
+
+- Practical exercises in R: Using the interface and simulating data
+
+## Week 3: March 11 - Causal Diagrams: The Structures of Confounding Bias
+
+#### Focus
+
+- Confounding bias using causal diagrams
+- Application of regression and simulation in R
+
+#### Lab
+
+- Practical exercises in R: simulation and ggdag
+
+
+#### Readings
+
+- [@hernan2024WHATIF] Chapter 6
+
+##### Optional Readings
+- [@suzuki2020]
+- [@bulbulia2023]
+- [@neal2020introduction] Chapter 3
+
+
+
+## Week 4: March 18 - Causal Diagrams: The Structures of Interaction/Effect Modification, Measurement Bias, Selection Bias
+
+#### Focus
+
+- Key concepts of interaction, measurement bias, and selection bias understood through causal diagrams
+- Both External and Internal Validity clarified by Causal Graphs
+- Advanced regression and simulation exercises in R
+
+#### Lab
+
+- Continuation of regression and simulation exercises in R
+
+#### Readings
+
+- [@hernan2024WHATIF] Chapter 6-9
+
+##### Optional Readings
+
+- [@hernan2004STRUCTURAL]
+- [@hernan2017SELECTIONWITHOUTCOLLIDER]
+- [@hernan2009MEASUREMENT]
+- [@vanderweele2012MEASUREMENT]
+
+## Week 5: March 25 - Quiz/Test (25%)
+
+#### Focus
+
+- Assessment covering key terms and concepts taught so far
+
+<!-- - Terms include node, edge, arrow, conditional independence, d-separation, d-connection, confounding, over-adjustment bias, collider bias, the five elemental structural relationships, effect-modification, interaction, measurement error bias, selection bias, collider bias, M-bias, external validity, internal validity, target population, transportability. -->
+
+#### No Lab
+
+
+##   Break: April 1 - 14 
+
+## Week 6: April 15 - Causal Inference: ATE
+
+#### Focus
+
+- Key concepts of Average Treatment Effect (ATE)
+- Application of regression and simulation in R for ATE estimation
+
+#### Readings
+- [@hernan2024WHATIF] Chapters 1-3
+
+##### Extra Readings
+- [@neal2020introduction] Chapter 1-2
+
+
+
+#### Lab
+
+- Regression and simulation exercises in R focussed on ATE
+
+## Week 7: April 22 - Causal Inference and CATE (Effect Modification)
+
+- [@hernan2024WHATIF] Chapters 4-5
+
+##### Optional Readings
+
+- [@vanderweele2009distinction]
+
+#### Focus
+
+- Key concepts of Conditional Average Treatment Effect (CATE)
+- Advanced regression and simulation exercises in R for CATE estimation
+
+#### Lab
+
+- Preparing your report analysis and manuscript: setting up your workflow/ quarto documents
+
+
+## Week 8: April 29 - Causal Inference: Estimation of ATE and CATE 
+
+#### Focus
+
+- Workflow for causal question formulation, population statement, and causal diagram creation
+- Estimation techniques for ATE and CATE using R and documentation with LaTeX
+
+
+#### Readings
+
+- [@vanderweele2020]
+
+##### Optional Readings 
+
+- [@Bulbulia2024PracticalGuide]
+- [@hoffman2023]
+
+#### Lab
+
+- Preparing your report analysis and manuscript: descriptive analysis and reporting
+
+## Week 9: May 6 - Test/Quiz (25%)
+
+#### Focus
+
+- Second assessment covering advanced topics in causal inference
+- Topics include ATE, CATE, fundamental assumptions of causal inference, experiments, and real-world confounding
+
+#### Lab
+
+- Preparing your report analysis and manuscript: causal analysis and reporting
+
+
+## Week 10: May 13 - Measurement Matters
+
+#### Focus
+
+- Factor analysis, confirmatory factor analysis (CFA), multigroup CFA, partial invariance
+- Worked example on configural, metric, and scalar equivalence
+
+#### Readings
+
+- [@fischer2019primer]
+
+##### Optional Readings 
+
+- [@vandevijver2021]
+- [@he2012]
+
+#### Lab
+
+- R exercises focusing on measurement theory applications and graphing
+
+## Week 11: May 20 - Measurement + External Validity in Causal Inference
+
+#### Focus
+
+- Enhancing measurement and external validity in causal inference studies
+- Guidance on writing introduction and method sections for research papers
+
+#### Readings
+
+- [@vanderweele2022] 
+
+#### Lab
+
+- R programming using causal inference to examine failure modes in measurement models
+
+## Week 12: May 27 - Missing Data Workflows.
+
+#### Focus
+
+- Addressing missing data issues in research
+- Creating and managing Quarto documents for research workflows
+
+#### Lab
+
+- Non-parametric causal estimation; inverse probability of censoring weights. 
+- Hands on working with your manuscripts 
+
+#### Suggested readings
+
+- [@bulbulia2023a]
+
+## Week 13: June 3: No Seminar: Comparative Report Due (40%)
+  - You assess a questions: do cultural groups vary in response to interventions on well-beings? 
+
+
+
+## References
+
+<!-- 
+## Appendix Optional Videos
+
+### Johannas Karl on Getting Started In R 
+
+{{< video https://www.youtube.com/embed/haYxa3vWA28 >}}
+
+
+### Richard McElreath on Causal Inference
+
+{{< video https://www.youtube.com/watch?v=KNPYUVmY3NM >}}
+
+
+### Miguel Hernan: How to We learn What Works
+
+{{< video https://www.youtube.com/results?search_query=miguel+hernan  >}}
+
+
+#### Tyler VanderWeele on Measurement Contructs 
+
+{{< video  https://www.youtube.com/watch?v=UA2WvYlT2RE&t=24s  >}}
+
+
+####  Stijn Vansteelandt on the Problem of Mediation Analysis
+
+
+{{< video https://www.youtube.com/watch?v=IgC7R07Qk6A  >}} -->
