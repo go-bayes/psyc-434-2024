@@ -1,10 +1,9 @@
 ---
-title: "Getting started with R"
-date: "2023-MAR-07"
-author:
-    name: Torven Schalk
-    email: torven.schalk@vuw.ac.nz
-    corresponding: yes
+title: "Causal diagrams: Five elementary structures; 4 rules "
+date: "2023-MAR-04"
+bibliography: /Users/joseph/GIT/templates/bib/references.bib
+editor_options: 
+  chunk_output_type: console
 ---
   
   
@@ -13,18 +12,563 @@ author:
 This session is devoted to learning R. There are no required readings. 
 
   
-## Slides
-
-Torven's slides will be on Nuku/Canvas.
 
 
+## Lab -- Regression in R
 
-## OPTIONAL extra material
 
-Proofread version:
 
-(1) A helpful resource for learning R is Megan Hall's lecture available at: [https://meghan.rbind.io/talk/neair/](https://meghan.rbind.io/talk/neair/).
+#### Simulation
 
-(2) RStudio has compiled numerous accessible materials for learning R, which can be found here: [https://education.rstudio.com/learn/beginner/](https://education.rstudio.com/learn/beginner/).
+To simulate more complex datasets, you can introduce relationships between variables. For instance, simulating age and income with a correlation
 
-(3) Materials from a previous course on learning R can be accessed here.  [https://go-bayes.github.io/psych-447/](https://education.rstudio.com/learn/beginner/) For now, only lecture 1 would be relevant. It's worth noting that this lecture covers working with GitHub. While GitHub is a useful tool, it's not a requirement for the current course.
+
+
+
+## Simulating Data in R:  `Outcome ~ Treatment`
+
+
+#### Step 1: Set Up Your R Environment
+
+Ensure R or RStudio is installed and open. 
+
+
+#### Step 2: Set a Seed for Reproducibility
+
+To ensure that your simulated data can be reproduced exactly, it's good practice to set a seed before generating random data. This makes your analyses and simulations replicable.
+
+```{r}
+set.seed(123) # use any number to set the seed
+```
+
+#### Step 3: Simulating Continuous Data
+
+To simulate continuous data, you can use functions like `rnorm()` for normal distributions, `runif()` for uniform distributions, etc. Here we simulate 100 normally distributed data points with a mean of 50 and a standard deviation of 10:
+
+```{r}
+n <- 100 # number of observations
+mean <- 50
+sd <- 10
+data_continuous <- rnorm(n, mean, sd)
+
+# view
+head(data_continuous)
+```
+
+
+#### Step 4: Simulating Categorical Data
+
+Categorical data can be simulated using the `sample()` function. Here, we simulate a binary variable (gender) with two levels for 100 observations. There is equal probability of assignment.
+
+```{r}
+levels <- c("Male", "Female")
+data_categorical <- sample(levels, n, replace = TRUE)
+
+# view
+head(data_categorical)
+
+```
+
+To generate categories with unequal probabilities, you can use the `sample()` function by specifying the `prob` parameter, which defines the probability of selecting each level. This allows for simulating categorical data where the distribution between categories is not uniform. 
+
+Below is an example that modifies your initial code to create a categorical variable with unequal probabilities for "Male" and "Female". Here is an example with unequal probabilities:
+
+```{r}
+#| echo: true
+#| eval: false
+
+# Define levels and number of observations
+levels <- c("Male", "Female")
+n <- 100 # total number of observations
+
+# Generate categorical data with unequal probabilities
+data_categorical_unequal <- sample(levels, n, replace = TRUE, prob = c(0.3, 0.7))
+
+# View the first few elements
+head(data_categorical_unequal)
+```
+
+In this example, the `prob` parameter is set to `c(0.3, 0.7)`, indicating a 30% probability for "Male" and a 70% probability for "Female". This results in a simulated dataset where approximately 30% of the observations are "Male" and 70% are "Female", reflecting the specified unequal probabilities. Adjust the probabilities as needed to fit the scenario you wish to simulate.
+
+
+```{r simulate-data}
+set.seed(123) #  reproducibility
+groupA_scores <- rnorm(100, mean = 100, sd = 15) # simulate scores for group A
+groupB_scores <- rnorm(100, mean = 105, sd = 15) # simulate scores for group B
+
+# ombine into a data frame
+scores_df <- data.frame(Group = rep(c("A", "B"), each = 100), Scores = c(groupA_scores, groupB_scores))
+
+# commands to view data
+str(scores_df)
+
+# summary of columns
+summary(scores_df)
+
+# top rows
+head(scores_df)
+
+# bottom rows
+tail(scores_df)
+```
+
+
+## Visualising simulated data
+
+Understanding your data visually is as important as the statistical analysis itself. Let's create a simple plot to compare the score distributions between the two groups.
+
+```{r visualize-data, fig.cap="Score Distribution by Group"}
+if (!require(ggplot2)) {
+  install.packages("ggplot2")
+  library(ggplot2)
+} else {
+  library(ggplot2)
+}
+
+# plot your data
+ggplot(scores_df, aes(x = Group, y = Scores, fill = Group)) +
+  geom_boxplot() +
+  theme_minimal() +
+  labs(title = "Score Distribution by Group", x = "Group", y = "Scores")
+```
+
+
+## Histogram {#sec-histogram}
+
+```{r}
+library(ggplot2)
+
+# H=histograms for both groups
+ggplot(scores_df, aes(x = Scores, fill = Group)) +
+  geom_histogram(binwidth = 5, color = "black") +
+  labs(title = "Distribution of Scores",
+       x = "Scores",
+       y = "Frequency") +
+  facet_wrap(~Group, ncol = 1)
+
+```
+
+
+## Excercise 3
+
+1. Modify the simulation parameters to change each group's mean and standard deviation. Observe how these changes affect the distribution.
+
+2. Go to the [histogram](#sec-histogram). Experiment with different bin widths. In your own words, how do large and small numbers speak differently to the data? When might you use one histogram and not another. 
+
+
+## Simulating data for familiar statistical tests 
+
+
+```{r}
+# simulate some data
+data <- rnorm(100, mean = 5, sd = 1) # 100 random normal values with mean = 5
+
+# perform one-sample t-test
+# testing if the mean of the data is reliably different from 4
+t.test(data, mu = 4)
+
+```
+
+```{r}
+# simulate data for two groups
+group1 <- rnorm(50, mean = 5, sd = 1) # 50 random normal values, mean = 5
+group2 <- rnorm(50, mean = 5.5, sd = 1) # 50 random normal values, mean = 5.5
+
+# two-sample t-test
+t.test(group1, group2)
+```
+
+```{r}
+# simulate pre-test and post-test scores
+pre_test <- rnorm(30, mean = 80, sd = 10)
+post_test <- rnorm(30, mean =  pre_test + 5, sd = 5) # assume an increase
+
+# perform paired t-test
+t.test(pre_test, post_test, paired = TRUE)
+```
+
+### **Exercise 3: Linear Regression Analysis with Simulated Data**
+
+#### **Task 1: Simulating Continuous Treatment Variable**
+
+```{r}
+#| echo: true
+#| eval: false
+
+# library for enhanced model reporting
+library(parameters)
+
+# set seed for reproducibility
+set.seed(123) # choose a seed number for consistency
+
+# define the number of observations
+n <- 100 # total observations
+
+# simulate continuous treatment variable A
+a <- rnorm(n, mean = 50, sd = 10) # mean = 50, sd = 10 for A
+
+# specify the effect size of A on Y
+beta_a <- 2 # explicit effect size
+
+# simulate outcome variable Y including an error term
+y <- 5 + beta_a * a + rnorm(n, mean = 0, sd = 20) # Y = intercept + beta_a*A + error
+
+# create a dataframe
+df <- data.frame(a = a, y = y)
+
+# view the structure and first few rows of the dataframe
+str(df)
+head(df)
+```
+
+#### **Task 2: Exploring the Simulated Data**
+
+Before moving on to regression analysis, ensure students understand the structure and distribution of the simulated data. Encourage them to use `summary()`, `plot()`, and other exploratory data analysis functions.
+
+#### **Task 3: Regression Analysis of Continuous Treatment Effect**
+
+```{r}
+#| echo: true
+#| eval: false
+
+# perform linear regression of Y on A
+fit <- lm(y ~ a, data = df)
+
+# display the regression model summary
+summary(fit)
+
+# report the model in a reader-friendly format
+report_fit <- report::report(fit)
+print(report_fit)
+
+# optionally, visualize the relationship
+plot(df$a, df$y, main = "Scatterplot of Y vs. A", xlab = "Treatment (A)", ylab = "Outcome (Y)")
+abline(fit, col = "red")
+```
+
+
+
+## Equivalence of ANOVA and Regression
+
+
+We will simulate data in R to show that a one-way ANOVA is a special case of linear regression with categorical predictors. We will give some reasons for preferring regression (in some settings).
+
+## Method
+
+First, we simulate a dataset with one categorical independent variable with three levels (groups) and a continuous outcome (also called a "dependant") variable. This setup allows us to apply both ANOVA and linear regression for comparison.
+
+```{r}
+# nice tables
+if (!require(parameters)) {
+  install.packages("parameters")
+  library(parameters)
+} else {
+  library(parameters)
+}
+
+
+set.seed(321) # reproducibility
+n <- 90 # total number of observations
+k <- 3 # number of groups
+
+# simulate independent variable (grouping factor)
+group <- factor(rep(1:k, each = n/k))
+
+# inspect
+str(group)
+
+# simulate outcome variable
+means <- c(100, 100, 220) # Mean for each group
+sd <- 15 # Standard deviation (same for all groups)
+
+# generate random data
+y <- rnorm(n, mean = rep(means, each = n/k), sd = sd)
+
+
+# make data frame
+df_1 <- cbind.data.frame(y, group)
+
+anova_model <- aov(y ~ group, data = df_1)
+# summary(anova_model)
+table_anova <- model_parameters(anova_model)
+
+# report the model
+report::report(anova_model)
+```
+
+
+Next, we analyse the same data using linear regression. In R, regression models automatically convert categorical variables into dummy variables.
+
+```{r}
+# for tables (just installed)
+library(parameters)
+
+# regression model 
+fit <- lm(y ~ group, data = df_1)
+
+# uncomment if you want an ordinary summary
+# summary(regression_model)
+
+table_fit <- parameters::model_parameters(fit)
+
+# print table
+table_fit
+```
+
+```{r}
+library(parameters)
+library(report)
+
+# report the model
+report_fit <- report_parameters(fit)
+
+#print
+report_fit
+```
+
+
+## Upshot
+
+ANOVA partitions variance into between-group and within-group components, while regression models the mean of the dependent variable as a linear function of the independent (including categorical) variables. For many questions, ANOVA is appropriate, however, when we are comparing groups, we often want a finer-grained interpretation. Regression is built for obtaining this finer grain understanding. We will return to regression over the next few weeks and use regression to hone your skills in R. Later, Along the way, you'll learn more about data visualisation, modelling, and reporting.  
+
+```{r}
+# graph the output of the parameters table
+# visualisation
+plot(table_fit)
+```
+
+### Exercise 3
+
+Perform a linear regression analysis using R. Follow the detailed instructions below to simulate the necessary data, execute the regression, and report your findings:
+
+1. **Simulate Data:**
+   - Generate two continuous variables, `Y` and `A`, with `n = 100` observations each.
+   - The variable `A` should have a mean of `50` and a standard deviation (`sd`) of `10`.
+
+2. **Define the Relationship:**
+   - Simulate the variable `Y` such that it is linearly related to `A` with a specified effect size. The effect size of `A` on `Y` must be explicitly defined as `2`.
+
+3. **Incorporate an Error Term:**
+   - When simulating `Y`, include an error term with a standard deviation (`sd`) of `20` to introduce variability.
+
+4. **Regression Analysis:**
+   - Use the `lm()` function in R to regress `Y` on `A`.
+   - Ensure the regression model captures the specified effect of `A` on `Y`.
+
+5. **Report the Results:**
+   - Output the regression model summary to examine the coefficients, including the effect of `A` on `Y`, and assess the model's overall fit and significance.
+
+
+Here is a template to get you started. Copy the code and paste it into your R script. 
+
+
+
+```{r}
+#| echo: true
+#| eval: false
+
+
+library(parameters)
+#  seed for reproducibility
+set.seed( ) # numbers go in brackets
+
+# number of observations
+n <-   # number goes here
+
+# simulate data for variable A with specified mean and sd
+A <- rnorm(n, 
+           mean = , # set your number here 
+           sd = )# set your number here 
+
+# define the specified effect size of A on Y
+beta_A <-   # define your effect with a number here 
+
+
+# simulate data and make data frame in one step
+
+df_3 <- data.frame(
+  # simulate data for variable A with specified mean and sd
+  A = A, # from above
+  Y = 5 + beta_A * A + rnorm(n, mean = 0, sd = 20) #  effect is intercept + ...
+)
+
+# view
+head(df_3)
+str(df_3)
+
+#  linear regression of Y on A
+fit_3 <- lm(Y ~ A, data = df_3)
+
+#  results (standard code)
+# summary(model)
+
+# time saving reports
+parameters::model_parameters(fit_3)
+report(fit_3)
+
+```
+
+
+
+#### Step 5: Simulating Data Frames
+
+Data frames are used in R to store data tables. To simulate a dataset with both continuous and categorical data, you can combine the above steps:
+
+```{r}
+# create a data frame with simulated data for ID, Gender, Age, and Income
+data_frame <- data.frame(
+  # generate a sequence of IDs from 1 to n
+  ID = 1:n,
+  
+  # randomly assign 'Male' or 'Female' to each observation
+  Gender = sample(c("Male", "Female"), n, replace = TRUE),
+  
+  # simulate 'Age' data: normally distributed with mean 30 and sd 5
+  Age = rnorm(n, mean = 30, sd = 5),
+  
+  # simulate 'Income' data: normally distributed with mean 50000 and sd 10000
+  Income = rnorm(n, mean = 50000, sd = 10000)
+)
+```
+
+
+Note that you can sample probabilistically for your groups
+
+```{r}
+n <- 100 # total number of observations
+
+# sample 'Gender' with a 40/60 proportion for Male/Female
+Gender = sample(c("Male", "Female"), n, replace = TRUE, prob = c(0.4, 0.6))
+```
+
+## More complexity 
+
+```{r}
+# set the number of observations
+n <- 100
+
+# simulate the 'Age' variable
+mean_age <- 30
+sd_age <- 5
+Age <- rnorm(n, mean = mean_age, sd = sd_age)
+
+# define coefficients explicitly
+intercept <- 20000   # Intercept for the income equation
+beta_age <- 1500     # Coefficient for the effect of age on income
+error_sd <- 10000    # Standard deviation of the error term
+
+# simulate 'Income' based on 'Age' and defined coefficients
+Income <- intercept + beta_age * Age + rnorm(n, mean = 0, sd = error_sd)
+
+# create a data frame to hold the simulated data
+data_complex <- data.frame(Age, Income)
+```
+
+#### Step 7: Visualising Simulated Data
+
+Visualising your simulated data can help understand its distribution and relationships. Use the `ggplot2` package for this:
+
+```{r}
+library(ggplot2)
+ggplot(data_complex, aes(x = Age, y = Income)) +
+  geom_point() +
+  theme_minimal() +
+  labs(title = "Simulated Age vs. Income", x = "Age", y = "Income")
+```
+
+
+## Practice
+Simulating data is a powerful method to understand statistical concepts and data manipulation. Let's simulate a simple dataset representing scores from two cultural groups.
+
+
+- **Data simulation:** 
+
+You've learned to simulate datasets in R. This is a foundational skill for exploring statistical concepts and data manipulation techniques. Congratulations! 
+
+
+## Appendix A: Solutions {#appendix-a}
+
+
+### Solution Problem Set 3: simulate data and regression reporting 
+
+
+```{r}
+library(parameters)
+#  seed for reproducibility
+set.seed(12345)
+
+# number of observations
+n <- 100
+
+# simulate data for variable A with specified mean and sd
+A <- rnorm(n, mean = 50, sd = 10)
+
+# define the specified effect size of A on Y
+beta_A <- 2
+
+
+# simulate data and make data frame in one step
+
+df_3 <- data.frame(
+  # simulate data for variable A with specified mean and sd
+  A =  rnorm(n, mean = 50, sd = 10),
+  Y = 5 + beta_A * A + rnorm(n, mean = 0, sd = 20)
+)
+
+# view
+head(df_3)
+str(df_3)
+# Perform linear regression of Y on A
+
+fit_3 <- lm(Y ~ A, data = df_3)
+
+# Report the results of the regression
+# summary(model)
+
+# report
+parameters::model_parameters(fit_3)
+report(fit_3)
+
+
+```
+
+
+
+## What You Have Learned
+
+- **Data simulation:** 
+
+You've learned to simulate datasets in R. This is a foundational skill for exploring statistical concepts and data manipulation techniques. Congratulations! 
+  
+- **Data visualisation:** 
+
+You've begun data visualising data through boxplots and histograms and coefficient plots, which is crucial for analysing and communicating statistical findings.
+  
+- **Statistical tests:** You've conducted basic statistical tests, including t-tests and ANOVA, gaining insights into comparing means across groups.
+  
+- **Understanding ANOVA and regression:** 
+
+You've explored the equivalence of ANOVA and regression analysis, learning how these methods can be applied to analyse and interpret data effectively.
+
+
+
+## Appendix 
+
+
+## Appendix B: I lied
+
+We can get group comparisons with ANOVA, for example:
+
+```{r}
+# Conduct Tukey's HSD test for post-hoc comparisons
+tukey_post_hoc <- TukeyHSD(anova_model)
+
+# Display the results
+print(tukey_post_hoc)
+plot(tukey_post_hoc)
+```
+
+Regression and ANOVA are equivalent
+
+
+

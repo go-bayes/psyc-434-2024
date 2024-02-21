@@ -1,7 +1,6 @@
 ---
-title: "Causal Inference: reconsidering cross-cultural experiments"
+title: "Measurement Matters"
 date: "2023-MAY-23"
-bibliography: references.bib
 format: 
   html:
     html-math-method: katex
@@ -17,15 +16,13 @@ format:
 
 ## Overview
 
-Today, we dive deep into data analysis for causal inference ast it applies to observational cultural psychology. By the end, you will:
+Today, we consider deep into data analysis for causal inference as it applies to observational cultural psychology. By the end, you will:
 
 -   Better understand how to integrate measurement theory with causal inference
 -   Enhance your proficiency in causal analysis using doubly robust methods
 -   Gain insights into the application of sensitivity analysis using E-Values
 
-## Set up your workspace Preparing for the Journey
-
-To kick things off, we will set up our environment. We'll source essential functions, load necessary libraries, and import synthetic data for our exploration.
+## Set up your workspace .
 
 ```{r}
 #| label: load_libraries
@@ -1844,4 +1841,14 @@ dt_new <- nzavs_synth %>%
 
 3.  Take Home: estimate whether exercise causally affects nervousness, using the single item of the kessler 6 score. Briefly write up your results.
 
-*To be reviewed next week.*
+
+
+## Readings
+
+
+[@he2012]
+
+[@vandevijver2021]
+
+[@berry1989]
+
