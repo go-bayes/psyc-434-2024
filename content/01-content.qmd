@@ -16,7 +16,6 @@ format:
     code-tools:
       source: true
       toggle: false
-      caption: none
 ---
 
 
@@ -180,7 +179,6 @@ If you have already downloaded and installed R from the Comprehensive R Archive 
 
 - Before concluding your work, save your workspace or clear it to start fresh in the next session (`Session > Restart R`).
 
-::: {.callout-note  title="Exercise 1",  icon=false}
 
 
 ::: {.callout-tip}
@@ -192,7 +190,8 @@ If you have already downloaded and installed R from the Comprehensive R Archive 
 :::
 
 
-::: {.callout-note  title="Exercise 1",  icon=false}
+::: {.callout-note}
+
 ### Exercise 1: Install the `tidyverse` package
 
 Follow these instructions to install the `tidyverse` package in RStudio:
@@ -1109,8 +1108,7 @@ report::cite_packages()
 ## Appendix A: At Home Exercises
 
 
-::: {.callout-note  title="Exercise 2",  icon=false}
-
+:::{.callout-note}
 ### Exercise 2: Install the `parameters` and `report` packages
 
 To install the `parameters` and `report` packages in RStudio, follow these instructions:
@@ -1128,7 +1126,7 @@ To install the `parameters` and `report` packages in RStudio, follow these instr
 :::
 
 
-::: {.callout-note  title="Exercise 4",  icon=false}
+::: {.callout-note}
 ### Exercise 4: Basic Operations and Data Structure Manipulation
 
 **Objective:** Practice creating vectors and performing basic arithmetic operations.
@@ -1147,7 +1145,7 @@ To install the `parameters` and `report` packages in RStudio, follow these instr
 ::: 
 
 
-::: {.callout-note  title="Exercise 5",  icon=false}
+::: {.callout-note}
 ### Exercise 5: Working with Data Frames
 
 **Objective:** Gain familiarity with data frame creation, manipulation, and basic data exploration functions.
@@ -1166,7 +1164,7 @@ To install the `parameters` and `report` packages in RStudio, follow these instr
 ::: 
 
 
-::: {.callout-note  title="Exercise 6",  icon=false}
+::: {.callout-note}
 ### Exercise 6: Logical Operations and Subsetting
 
 **Objective:** Practice using logical operations to subset data frames.
@@ -1179,7 +1177,7 @@ To install the `parameters` and `report` packages in RStudio, follow these instr
 :::
 
 
-::: {.callout-note  title="Exercise 7",  icon=false}
+::: {.callout-note}
 ### Exercise 4: Cross-Tabulation and Analysis
 
 **Objective:** Understand the use of `table()` function for cross-tabulation and analysis.
@@ -1195,7 +1193,7 @@ To install the `parameters` and `report` packages in RStudio, follow these instr
 4. Interpret the results. Which fruit has the most colour variety?
 :::
 
-::: {.callout-note  title="Exercise 8",  icon=false}
+::: {.callout-note}
 ### Exercise 8: Visualization with `ggplot2`
 
 **Objective:** (If `ggplot2` was introduced) Create a simple plot to visualise the data.
