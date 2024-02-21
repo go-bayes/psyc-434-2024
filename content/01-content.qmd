@@ -105,18 +105,16 @@ Today we discuss these concepts informally. We will define these concepts formal
 Open in browser [here](/slides/01-slides.html){target="_blank"}
 
 
+# Lab 1: Install R and RStudio
 
-
-# Lab 1: Installing R and RStudio
+This session introduces R and R-Studio.
 
 ## Why learn R?
 
-This session introduces R and R-Studio. 
-
-- Essential for your final report.
+- You'll need it for your final report.
 - Supports your psychology coursework.
-- Enhances your coding skills, crucial for navigating AI advancements.
-- Coding can become as enjoyable as music or languages over time.
+- Enhances your coding skills. Presently all buzz is about AI. Amateur coders can greatly accelerate their abilities -- but you still need to have some coding. If you have no coding skills, you will lose out to those that do. 
+- Coding can become as enjoyable as music or languages over time, really!
 
 ## Installing R
 
@@ -126,16 +124,16 @@ This session introduces R and R-Studio.
 
 ## Installing RStudio
 
-After Downloading R...
+After downloading R...
 
-### Step 1: Installing R-Studio
+### Step 1: Install R-Studio
 
-If you have already downloaded and installed R from the Comprehensive R Archive Network (CRAN).
+If you have already downloaded and installed R from the Comprehensive R Archive Network (CRAN):
 
-1. Go to the RStudio download page at [https://www.rstudio.com/products/rstudio/download/](https://www.rstudio.com/products/rstudio/download/).
-2. Choose the free version of RStudio Desktop, and download it for your operating system.
-3. Download and install RStudio Desktop.
-4. Open RStudio to begin setting up your project environment.
+1. go to the RStudio download page at [https://www.rstudio.com/products/rstudio/download/](https://www.rstudio.com/products/rstudio/download/)
+2. choose the free version of RStudio Desktop, and download it for your operating system.
+3. download and install RStudio Desktop.
+4. open RStudio to begin setting up your project environment.
 
 
 ### Step 2: Create a new project
@@ -146,10 +144,23 @@ If you have already downloaded and installed R from the Comprehensive R Archive 
 4. Specify the location where the project folder will be created.
 5. Click `Create Project`.
 
+
+::: {.callout-tip}
+## Order your R-studio/R workflow
+
+- Clear folder structure
+- If you are using GitHub (or similar) create a location on your machine (i.d. *not* dropbox)
+- If you are not using GitHub choose the cloud (Dropbox or similar).
+- When creating new files and scripts, use clear labels that anyone could understand. 
+- That "anyone" will be your future self, trying to make sense.
+:::
+
+
 ### Step 3: Give project structure
 
 1. **Organising Files and Folders:**
-   - Within your project, create folders to organise your scripts and data. Common folder names include `R/` for R scripts, `data/` for datasets, and `doc/` for documentation.
+   - Within your project, create folders to organise your scripts and data. 
+   - Common folder names include `R/` for R scripts, `data/` for datasets, and `doc/` for documentation.
    - You can create these folders using RStudio's `Files` pane or through your operating system's file explorer.
 
 2. **Creating and Managing R Scripts:**
@@ -159,23 +170,23 @@ If you have already downloaded and installed R from the Comprehensive R Archive 
 3. **Version Control:**
    - If you are familiar with version control, you can initialise a Git repository within your project by selecting the `Version Control` option when creating a new project.
    - This allows for better tracking of changes and collaboration if working with others.
-   - If you are not familiar with version control (or have not installed `git` on your machine), do not worry about initialising a Git repository 
+   - If you are not familiar with version control (or have not installed `git` on your machine), do not worry about initialising a Git repository.
 
 ### Step 4: Working with R-scripts
 
-1. **Writing and Executing Code:**
+1. **Writing and executing Code:**
    - Write your R code in the *script editor.* 
    - Execute code by selecting lines and pressing `Ctrl + Enter` (Windows/Linux) or `Cmd + Enter` (Mac).
 
-2. **Commenting and Documentation:**
+2. **Commenting and documentation:**
    - Use comments (preceded by `#`) to document your code for clarity and future reference.
 
-3. **Saving and Organising Scripts:**
+3. **Saving and organising scripts:**
    - Regularly save your scripts (`Ctrl + S` or `Cmd + S`).
    - Organise scripts into folders within your project for different analyses or data processing tasks.
 
 
-### Step 5: Exit R-studio
+### Step 5: When you exit R-studio
 
 - Before concluding your work, save your workspace or clear it to start fresh in the next session (`Session > Restart R`).
 
@@ -183,47 +194,51 @@ If you have already downloaded and installed R from the Comprehensive R Archive 
 
 ::: {.callout-tip}
 ## Order your R-studio/R workflow
-
-- Clear folder structure
-- Clearly defined script names
+- Again, use clearly defined script names
 - Annotate your code
+- Save your scripts often (`Ctrl + S` or `Cmd + S`).
 :::
 
 
 ::: {.callout-note}
-
 ### Exercise 1: Install the `tidyverse` package
 
 Follow these instructions to install the `tidyverse` package in RStudio:
 
-1. **Open RStudio:** Launch the RStudio application on your computer.
+1. **Open RStudio:** launch RStudio on your computer.
 
-2. **Access Package Installation:**
+2. **Access package installation:**
    - Navigate to the menu at the top of RStudio and click on `Tools > Install Packages...`. This opens the Install Packages dialogue box.
 
 3. **Install `tidyverse`:**
    - In the Install Packages dialogue box, you will see a field labelled "Packages (separate multiple with space or comma):". Click in this field and type `tidyverse`.
    - Below the packages field, ensure the checkbox for `Install dependencies` is checked. This ensures all packages that `tidyverse` depends on are also installed.
-   - Click the `Install` button to begin the installation process.
 
 4. **Begin installation:**
-    - Click on the "Install" button to start the installation process.
+    - Click on the `Install` button to start the installation process.
 
-5. **Wait for completion:** The installation might take a few minutes. Monitor the progress in the "Console" pane. Once the installation is complete, you will see a message in the console indicating that the process has finished.
+The installation might take a few minutes. Monitor the progress in the "Console" pane. Once the installation is complete, you will see a message in the console indicating that the process has finished.
 
-6. **Loading `tidyverse`:** After successful installation, you can load the `tidyverse` package into your R session by typing `library(tidyverse)` in the console and pressing `Enter`.
+6. **Load `tidyverse`:** After successful installation, you can load the `tidyverse` package into your R session by typing `library(tidyverse)` in the console and pressing `Enter`.
 :::
 
 
 ## Basic R Commands
 
 ::: {.callout-note}
-Copy R-code from the code blocks by hovering your cursor over the top right of the code panel.
+### How to copy the code on this page
+
+- `R Script > New File > R`
+- Name your new R script and save it in a folder. 
+- Hover your cursor over the top right of the code panel, and click the copy tab.
+- Copy the text into your script.
+- Save: `Ctrl + S` or `Cmd + S`.
 :::
 
 ### Assignment (`<-`)
 
-Assignment in R is done using the `<-` operator. It assigns values to variables.
+Assignment in R is done using the '<-' operator, which on my machine renders `<-`. 
+This operator assigns values to variables:
 
 ```{r}
 x <- 10 # assigns the value 10 to x
@@ -240,12 +255,23 @@ y = 5
 # 10 == 5 # considered below
 ```
 
+
+::: {.callout-note}
+### RStudio Assignment Operator Shortcut
+
+- **For macOS**: `Option` + `-` (minus key) inserts `<-`.
+- **For Windows and Linux**: `Alt` + `-` (minus key) inserts `<-`.
+
+Consult the latest RStudio documentation or access the Keyboard Shortcuts Help (`Tools` -> `Keyboard Shortcuts Help`) for up-to-date shortcuts.
+:::
+
+
 ### Concatenation (`c()`)
 
 The `c()` function combines multiple elements into a vector.
 
 ```{r}
-numbers <- c(1, 2, 3, 4, 5) #  a vector of numbers
+numbers <- c(1, 2, 3, 4, 5) # a vector of numbers
 print(numbers)
 ```
 
@@ -254,6 +280,10 @@ print(numbers)
 Basic arithmetic operations include addition (`+`) and subtraction (`-`).
 
 ```{r}
+# this does the same
+x <-  10
+y <-  5
+
 sum <- x + y # adds x and y
 
 print(sum)
@@ -263,6 +293,11 @@ difference <- x - y # subtracts y from x
 # note we did not need to use the `print()` function 
 difference
 ```
+
+::: {.callout-important}
+### Executing code
+-  `Ctrl + Enter` (Windows/Linux) or `Cmd + Enter` (Mac).
+:::
 
 In addition to assignment, multiplication and division are fundamental arithmetic operations in R that allow you to manipulate numeric data. Here is how you can incorporate these operations into your basic R commands documentation:
 
@@ -335,9 +370,10 @@ Logical operations are fundamental in R for controlling the flow of execution an
 ```{r}
 # element-wise OR
 vector_or <- c(TRUE, FALSE) | c(FALSE, TRUE) # returns c(TRUE, TRUE)
-
+vector_or
 # single OR (only looks at first element)
 single_or <- TRUE || FALSE # returns TRUE
+single_or
 ```
 
 ### AND (`&` and `&&`)
@@ -357,7 +393,7 @@ single_and <- TRUE && FALSE # returns FALSE
 ::: {.callout-tip}
 ## RStudio Workflow Shortcuts
 
-Boost your productivity in RStudio with these essential shortcuts:
+Shortcuts bring order and boost creativity
 
 - **Execute Code Line**: `Cmd` + `Return` (Mac) or `Ctrl` + `Enter` (Windows/Linux)
 - **Insert Section Heading**: `Cmd` + `Shift` + `R` (Mac) or `Ctrl` + `Shift` + `R` (Windows/Linux)
@@ -368,17 +404,13 @@ Boost your productivity in RStudio with these essential shortcuts:
 - **New File**: `Cmd`/`Ctrl` + `Shift` + `N`
 - **Auto-complete**: `Tab`
 
-For more commands, explore the Command Palette available under `Tools` -> `Command Palette` or `Shift` + `Cmd` + `P` (Mac) or `Shift` + `Ctrl` + `P` (Windows/Linux). These shortcuts facilitate efficient code execution, organisation, and formatting.
+For more commands, explore the Command Palette available under `Tools` -> `Command Palette` or `Shift` + `Cmd` + `P` (Mac) or `Shift` + `Ctrl` + `P` (Windows/Linux).
 :::
-
-
-
-
 
 
 ## Data Types in R
 
-Understanding data types in R is crucial for effective data manipulation and analysis. R supports several fundamental data types, including integers, characters, factors, and ordered factors. Each type has its specific use case and functions associated with it.
+Understanding data types in R is essential. R supports several fundamental data types, including integers, characters, factors, and ordered factors. Each type has its specific use case and functions associated with it.
 
 ### Integers
 
@@ -392,8 +424,7 @@ x
 # check
 str(x) # is integer
 
-# note we use "as.numeric()" not "numeric()" because 
-# we are converting a variable that already exists
+# convert to numeric
 y <- as.numeric(x)
 
 str(y)
@@ -431,8 +462,11 @@ Ordered factors are a special type of factor where the levels have an inherent o
 # create an ordered factor using the `ordered` function
 education_levels <- c("High School", "Bachelor", "Master", "Ph.D.")
 education_factor <- factor(education_levels, ordered = TRUE)
+education_factor
+
 # specify levels explicitly
 education_ordered_explicit <- factor(c("High School", "Bachelor", "Master", "Ph.D."), levels = c("High School", "Bachelor", "Master", "Ph.D."), ordered = TRUE)
+education_ordered_explicit
 ```
 
 Ordered factors allow for logical comparisons based on their order, which is particularly useful in analyses where the order of categories matters, such as ordinal regression.
@@ -633,7 +667,7 @@ min(adults$Age)
 
 ### Manipulating Data Frames
 
-Data frames are flexible; they can be manipulated in various ways, such as: 
+Data frames can be manipulated in various ways: 
 
 - **Adding Columns:** You can add new columns using the `$` operator.
 
@@ -667,7 +701,7 @@ df[4, ]
 
 ```
 
-- **Removing columns or rows:** Set columns to `NULL` to remove them, or use `-` with row or column indices.
+- **Removing columns or rows:** set columns to `NULL` to remove them, or use `-` with row or column indices.
 
 ```{r}
 head(df)
@@ -707,6 +741,8 @@ Conversely, the `cbind()` function in R stands for "column bind". It is used to 
 ```{r}
 # example of adding a new column
 df$Occupation <- c("Engineer", "Doctor", "Artist", "Teacher")  # direct assignment
+
+
 # or using cbind for a separate vector
 Occupation_vector <- c("Engineer", "Doctor", "Artist", "Teacher")
 df <- cbind(df, Occupation_vector)
@@ -1108,6 +1144,28 @@ report::cite_packages()
 ## Appendix A: At Home Exercises
 
 
+::: {.callout-note}
+### Exercise 1: Install the `tidyverse` package
+
+Follow these instructions to install the `tidyverse` package in RStudio:
+
+1. **Open RStudio:** launch RStudio on your computer.
+
+2. **Access package installation:**
+   - Navigate to the menu at the top of RStudio and click on `Tools > Install Packages...`. This opens the Install Packages dialogue box.
+
+3. **Install `tidyverse`:**
+   - In the Install Packages dialogue box, you will see a field labelled "Packages (separate multiple with space or comma):". Click in this field and type `tidyverse`.
+   - Below the packages field, ensure the checkbox for `Install dependencies` is checked. This ensures all packages that `tidyverse` depends on are also installed.
+
+4. **Begin installation:**
+    - Click on the `Install` button to start the installation process.
+
+The installation might take a few minutes. Monitor the progress in the "Console" pane. Once the installation is complete, you will see a message in the console indicating that the process has finished.
+
+6. **Load `tidyverse`:** After successful installation, you can load the `tidyverse` package into your R session by typing `library(tidyverse)` in the console and pressing `Enter`.
+:::
+
 :::{.callout-note}
 ### Exercise 2: Install the `parameters` and `report` packages
 
@@ -1127,7 +1185,7 @@ To install the `parameters` and `report` packages in RStudio, follow these instr
 
 
 ::: {.callout-note}
-### Exercise 4: Basic Operations and Data Structure Manipulation
+### Exercise 3: Basic Operations and Data Structure Manipulation
 
 **Objective:** Practice creating vectors and performing basic arithmetic operations.
 
@@ -1146,7 +1204,7 @@ To install the `parameters` and `report` packages in RStudio, follow these instr
 
 
 ::: {.callout-note}
-### Exercise 5: Working with Data Frames
+### Exercise 4: Working with Data Frames
 
 **Objective:** Gain familiarity with data frame creation, manipulation, and basic data exploration functions.
 
@@ -1165,7 +1223,7 @@ To install the `parameters` and `report` packages in RStudio, follow these instr
 
 
 ::: {.callout-note}
-### Exercise 6: Logical Operations and Subsetting
+### Exercise 5 Logical Operations and Subsetting
 
 **Objective:** Practice using logical operations to subset data frames.
 
@@ -1178,7 +1236,7 @@ To install the `parameters` and `report` packages in RStudio, follow these instr
 
 
 ::: {.callout-note}
-### Exercise 4: Cross-Tabulation and Analysis
+### Exercise 6: Cross-Tabulation and Analysis
 
 **Objective:** Understand the use of `table()` function for cross-tabulation and analysis.
 
@@ -1194,7 +1252,7 @@ To install the `parameters` and `report` packages in RStudio, follow these instr
 :::
 
 ::: {.callout-note}
-### Exercise 8: Visualization with `ggplot2`
+### Exercise 7: Visualization with `ggplot2`
 
 **Objective:** (If `ggplot2` was introduced) Create a simple plot to visualise the data.
 
@@ -1212,7 +1270,7 @@ These exercises are designed to be progressively challenging, ensuring that stud
 
 - Exercises 1 and 2 have no solutions. Installation worked or it did not! If you have trouble, please see your tutor or instructor. 
 
-### Solution Exercise 4: Basic Operations and Data Structure Manipulation
+### Solution Exercise 3: Basic Operations and Data Structure Manipulation
 
 ```{r}
 # e.g. create vectors
@@ -1244,7 +1302,7 @@ mean_b
 sd_b
 ```
 
-### Solution 5: Working with Data Frames
+### Solution 4: Working with Data Frames
 
 ```{r}
 # create data frame
@@ -1267,7 +1325,7 @@ head(student_data)
 str(student_data)
 ```
 
-### Solution 6: Logical Operations and Subsetting
+### Solution 5: Logical Operations and Subsetting
 
 ```{r}
 # subset data based on score
@@ -1280,7 +1338,7 @@ student_data$Attendance <- attendance
 present_students <- student_data[student_data$Attendance == "Present", ]
 ```
 
-### Solution 7: Cross-Tabulation and Analysis
+### Solution 6: Cross-Tabulation and Analysis
 
 ```{r}
 # create factor variables
@@ -1297,7 +1355,7 @@ print(fruit_color_table)
 # interpretation: Apple has the most colour variety with 2 colours (Red, Green).
 ```
 
-### Solution 8: Visualization with `ggplot2`
+### Solution 7: Visualization with `ggplot2`
 
 ```{r}
 # install and load ggplot2
@@ -1415,21 +1473,5 @@ results <- calculate_stats(c(1, 2, 3, 4, 5))
 
 
 
-<!-- ## Appendix C: Sundry -->
-
-<!-- #### Using Logical Operators in Conditions -->
-
-<!-- These operators are often used in conditional statements and loops: -->
-
-<!-- ```{r} -->
-<!-- if (x > 0 && y > 0) { -->
-<!--   print("both x and y are positive") -->
-<!-- } -->
-<!-- z <- c(TRUE, FALSE, TRUE) -->
-<!-- w <- c(FALSE, TRUE, TRUE) -->
-<!-- combined_logic <- z | w # element-wise OR -->
-
-<!-- combined_logic -->
-<!-- ``` -->
 
 
