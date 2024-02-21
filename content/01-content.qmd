@@ -283,11 +283,13 @@ quotient
 # element-wise multiplication on vectors
 vector1 <- c(1, 2, 3)
 vector2 <- c(4, 5, 6)
-vector_product <- vector1 * vector2 # multiplies each element of vector1 by the corresponding element of vector2
+# multiplies each element of vector1 by the corresponding element of vector2
+vector_product <- vector1 * vector2
 vector_product
 
 # element-wise division on vectors
-vector_division <- vector1 / vector2 # divides each element of vector1 by the corresponding element of vector2
+# divides each element of vector1 by the corresponding element of vector2
+vector_division <- vector1 / vector2 
 vector_division
 ```
 
@@ -359,7 +361,7 @@ Strings are sequences of characters.
 name <- "world" # assigns a string to name
 greeting <- paste("Hello,", name) # Concatenates strings
 
-#print
+#show
 greeting
 ```
 
@@ -409,7 +411,7 @@ Ordered factors can be useful in statistical models where the order impacts the 
 You can view the structure and summary of ordered factors just as with regular factors, but the output will indicate the order.
 
 ```{r}
-# viewing the structure
+# view the structure
 str(education_ordered)
 
 # summary to see the distribution
@@ -900,9 +902,77 @@ ggplot(study_data, aes(x = Month, y = Study_Hours, group = 1)) +  # Explicitly d
 ```
 
 
-## Summary
 
-Congratulations on completing Lab 1! This session has laid the groundwork. We've covered a lot, but we'll have a good deal of practice throughout the course. 
+## Base R Graphs
+
+Although `ggplot2` is renowned for its flexibility and aesthetic appeal, Base R graphics remain a staple for straightforward and quick visualisations. 
+
+Base R provides a set of plotting functions that are readily available without the need for additional packages. 
+
+### Why Use Base R Graphs?
+
+- **Simplicity:** Base R functions like `plot`, `hist`, `boxplot`, and others are straightforward to use for basic plotting tasks.
+- **Speed:** For small to medium-sized datasets, Base R plots can be generated quickly, making them ideal for initial data exploration.
+- **No Dependencies:** There's no need to install or load additional packages, which is particularly beneficial in environments with limited access to external resources.
+
+### Basic Plotting Functions
+
+- `plot()`: The workhorse of Base R for creating scatter plots, line graphs, and more, with extensive customisation options.
+- `hist()`: Generates histograms to explore the distribution of a single continuous variable.
+- `boxplot()`: Useful for comparing distributions across groups, highlighting medians, quartiles, and outliers.
+- `barplot()`: Creates bar graphs for visualising categorical data.
+
+### Creating a Basic Scatter Plot with Base R
+
+Consider simple scatter plot using the data we have just simulated
+
+```{r}
+# basic scatter plot with Base R
+plot(student_data$Study_Hours, student_data$Score,
+     main = "Scatter Plot of Scores vs. Study Hours",
+     xlab = "Study Hours", ylab = "Score",
+     pch = 19, col = ifelse(student_data$Passed == "Passed", "blue", "red"))
+```
+
+This plot uses the `plot` function to create a scatter plot, with study hours on the x-axis and scores on the y-axis. The `pch` parameter specifies the symbol type, and `col` changes the colour based on whether the student passed or failed.
+
+### Generating a Histogram with Base R
+
+To visualise the distribution of student scores:
+
+```{r}
+# Histogram with Base R
+hist(student_data$Score,
+     breaks = 5,
+     col = "skyblue",
+     main = "Histogram of Student Scores",
+     xlab = "Scores",
+     border = "white")
+```
+
+This histogram provides a quick overview of the scores' distribution, using the `hist` function with specified `breaks`, `col` for colour, and `border` for the colour of the histogram borders.
+
+### Comparing Distributions with Box Plots
+
+Box plots in Base R can compare the score distributions across the pass/fail status:
+
+```{r}
+# Box plot with Base R
+boxplot(Score ~ Passed, data = student_data,
+        main = "Score Distribution by Pass/Fail Status",
+        xlab = "Status", ylab = "Scores",
+        col = c("red", "blue"))
+```
+
+This code uses the `boxplot` function to create box plots for scores, grouped by the pass/fail status, with custom colours for each group.
+
+
+
+## Lab Summary
+
+Congratulations on completing Lab 1! 
+
+This session has laid the groundwork. We've covered a lot, but we'll have a good deal of practice throughout the course. 
 
 ### What We Have Learned
 
