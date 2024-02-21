@@ -19,8 +19,8 @@ editor_options:
 #| echo: false
 # Necessary for using dvisvgm on macOS
 # See https://www.andrewheiss.com/blog/2021/08/27/tikz-knitr-html-svg-fun/
-Sys.setenv(LIBGS = "/usr/local/share/ghostscript/9.53.3/lib/libgs.dylib.9.53")
-font_opts <- list(dvisvgm.opts = "--font-format=woff")
+# Sys.setenv(LIBGS = "/usr/local/share/ghostscript/9.53.3/lib/libgs.dylib.9.53")
+# font_opts <- list(dvisvgm.opts = "--font-format=woff")
 ```
 
 ```{r}
@@ -28,9 +28,22 @@ font_opts <- list(dvisvgm.opts = "--font-format=woff")
 library("tinytex")
 ```
 
-Welcome to the Psych 434 lecture website.
+## Welcome to the Psych 434 lecture website.
 
-**You can access the course lectures by navigating to the "Content" section and selecting the appropriate tab**
+
+::: {.callout-tip}
+## Accessing Lectures and Readings
+
+- To locate the assigned readings and lecture materials, please navigate to the `Content` tab located in the upper right-hand corner of the course platform.
+:::
+
+::: {.callout-tip}
+## Instructor Availability
+
+- Office hour reserved post-lab for meetings.
+- Contact to schedule: [joseph.bulbulia@vuw.ac.nz](mailto:joseph.bulbulia@vuw.ac.nz).
+:::
+
 
 ## Class times and locations
 
@@ -120,6 +133,15 @@ my_data %>%
 
 ### Assessment 2: In-class Tests
 
+::: {.callout-important}
+## Test Guidelines
+
+- Test duration is under an hour. Allocated time is nearly two hours.
+- Each lecture starts and ends with key concept definitions and reviews for the test.
+- R or RStudio knowledge isn't part of the test. R support aims to enhance research report skills.
+- Tests are conducted in the lecture room.
+- Required: pen/pencil. Computers are not allowed.
+:::
 - **First Test (50 minutes, total time allowed: 1 hour 50 minutes)**:
     - Focuses on revising core statistical and methodological concepts.
     - Aims to refresh basic statistical knowledge foundational for later course material.
@@ -128,6 +150,13 @@ my_data %>%
     - Builds upon the first test's concepts, emphasising the application of basic conceptual, statistical, and theoretical knowledge.
 
 ### Assessment 3: Research Report
+
+::: {.callout-important}
+## Research Report Instructions
+- We will supply the data.
+- Lab sessions are designed to support you in this assignment.
+- We assume no statistical background. 
+:::
 
 - **Title**: "Causal Inference in Cultural Psychology: Examining Exposure Effects on Dimensions of Well-being Modified by Cultural or Sociodemographic Categories".
 
