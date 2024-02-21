@@ -28,28 +28,42 @@ editor_options:
 library("tinytex")
 ```
 
-## Welcome to the Psych 434 lecture website.
+# Welcome to the Psych 434 lecture website
 
 
-::: {.callout-tip}
-## Accessing Lectures and Readings
-
-- To locate the assigned readings and lecture materials, please navigate to the `Content` tab located in the upper right-hand corner of the course platform.
-:::
 
 ::: {.callout-tip}
-## Instructor Availability
+### Accessing Lectures and Readings
 
-- Office hour reserved post-lab for meetings.
-- Contact to schedule: [joseph.bulbulia@vuw.ac.nz](mailto:joseph.bulbulia@vuw.ac.nz).
+- **Seminar Time/Location**: Mondays, 11:00-12:50pm **Easterfield Building Room 406**
+
+- **Course Outline**: find a detailed schedule of topics, readings, and assignments in the `Course Outline` tab.
+
+- **Readings**: links to readings are directly within the `Course Outline` tab, essential for lecture preparation.
+
+- **Lecture Materials**: access slides, video recordings, and more under the `Content` tab, organised by week for ease of use.
+
+- **Tests**: in the same room as the seminar
 :::
+
 
 
 ## Class times and locations
 
-**Lectures** Day/Time: Mondays, 11:00-12:50pm
+**Seminar** Day/Time: Mondays, 11:00-12:50pm
 
-**Lecture Location** All classes are in Easterfield Building EA407
+**Seminar Location** Easterfield Building EA406
+
+**Test/Quiz Location** Easterfield Building EA406
+
+## Contents Tab
+
+The `Contents` tab offers direct access to weekly seminar and lab materials, including lecture outlines and lab resources.
+
+- Access it from the top right of the course platform by selecting the appropriate week.
+
+- Lab materials are available one week before the lecture; seminar review materials post-seminar.
+
 
 ```{r .column-body-outset}
 #| echo: false
@@ -65,11 +79,53 @@ leaflet() %>%
 
 **Course Coordinator** Prof Joseph Bulbulia [joseph.bulbulia\@vuw.ac.nz](mailto:joseph.bulbulia@vuw.ac.nz){.email}
 
-**Room** EA324
+**Course Coordinator's Office** EA324
 
-**Lecturers** Dr.Inkuk Kim [inkuk.kim\@vuw.ac.nz](mailto:inkuk.kim@vuw.ac.nz){.email}
+**Teaching Fellow** Dr.Inkuk Kim [inkuk.kim\@vuw.ac.nz](mailto:inkuk.kim@vuw.ac.nz){.email}
 
-**Lecturers** Dr Torven Schalk [torven.schalk\@vuw.ac.nz](mailto:torven.schalk@vuw.ac.nz){.email}
+**Laboratory Assistant** Dr Torven Schalk [torven.schalk\@vuw.ac.nz](mailto:torven.schalk@vuw.ac.nz){.email}
+
+
+
+
+## Assignments and due dates
+
+```{r }
+#| echo: false
+#| code-fold: true
+#| warnings: false
+#| message: false
+
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+
+# create data frame
+my_data <- tibble(
+  Assessment = c(
+    "Class participation",
+    "Test 1",
+    "Test 2",
+    "Research Report"
+  ),
+  CLOs = c("1,2,3", "2", "2", "1,2,3"),
+  Percent = c("10", "25", "25", "40"),
+  Due = c(
+    "Weekly",
+     "25 March (w5)",
+     "6 May (w9)",
+     "3 June (w12)"
+  )
+  
+)
+
+# create table 
+my_data %>%
+  kbl(format = "html") |> 
+  kable_styling("hover")
+
+```
+
 
 ## Course Description
 
