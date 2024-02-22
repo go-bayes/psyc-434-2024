@@ -21,6 +21,13 @@ format:
     bibliography: references.bib
 ---
 
+```{r include=FALSE}
+# Necessary for using dvisvgm on macOS
+# See https://www.andrewheiss.com/blog/2021/08/27/tikz-knitr-html-svg-fun/
+Sys.setenv(LIBGS = "/usr/local/share/ghostscript/9.53.3/lib/libgs.dylib.9.53")
+font_opts <- list(dvisvgm.opts = "--font-format=woff")
+```
+
 
 ## Goals
 
@@ -38,11 +45,11 @@ format:
 3.  A confounder 
 
 
-## Where does psychology start?
+## Where Does Psychology Start?
 
 Psychology starts with a question about how people think or behave.
 
-## Examples of psychological questions?
+## Examples of Psychological Questions?
 
 -   How does early childhood experience affect personality and behaviour?
 
@@ -54,7 +61,7 @@ Psychology starts with a question about how people think or behave.
 
 -   Does marriage make people happy?
 
-## Example of psychological questions in cross-cultural psychology
+## Example of Psychological Questions in Cross-Cultural Psychology
 
 -   How do early childhood experiences differ across cultures, and how do these differences impact personality and behavior development?
 
@@ -66,9 +73,9 @@ Psychology starts with a question about how people think or behave.
 
 -   Are there cultural differences in the factors that contribute to marital satisfaction and happiness, and how do cultural expectations and values surrounding marriage play a role?
 
-## How might psychological scientists answer whether marriage makes people happy?
+## How might Psychological Scientists answer whether marriage makes people happy?
 
-## *Wrong* answers only
+## *Wrong* Answers Only
 
 -   "Ask my married parents if they are happy."
 
@@ -84,7 +91,7 @@ Psychology starts with a question about how people think or behave.
 
 -   Conduct a survey of a large and diverse sample of individuals to assess their happiness levels, as well as their marital status assess the relationship.
 
-## Conduct a literature review of previous research {.incremental}
+## Conduct a Literature Review {.incremental}
 
 -   What would this tell us?
 
@@ -95,7 +102,7 @@ Psychology starts with a question about how people think or behave.
     -   what other researchers have not found.
     -   what other researchers got wrong.
 
-## Conduct a survey of a large and diverse sample of individuals
+## Conduct a Survey with a Large and Diverse Sample of Individuals
 
 -   Where to begin?
 
@@ -120,20 +127,20 @@ How might this go wrong?
     -   in meanings
     -   in constructs themselves
     
-## In survey research
+## In Survey Research
 
 Construct: e.g. Happiness - a subjective experience of positive emotions, such as joy, contentment, and satisfaction with life/
 
-Item: A question or statement used to measure an aspect of happiness. Example: "I feel content with my life."
+**Item**: A question or statement used to measure an aspect of happiness. Example: "I feel content with my life."
 
-Scale: A collection of items designed to measure a construct. Example: a happiness scale might consist of items rated on a Likert-type scale, with an overall score reflecting the level of happiness being measured. Example: 
+**Scale**: A collection of items designed to measure a construct. Example: a happiness scale might consist of items rated on a Likert-type scale, with an overall score reflecting the level of happiness being measured. Example: 
 
 - "In general, how happy do you feel?" (rated on a scale from 1 - not at all happy to 5 - extremely happy)
 - "How often do you feel positive emotions, such as joy or contentment?" (rated on a scale from 1 - very rarely or never to 5 - very often or always)
 - "How satisfied are you with your life as a whole?" (rated on a scale from 1 - very dissatisfied to 5 - very satisfied)
     
 
-## Concept of validity in psychometric research
+## Concept of `Validity` in Psychometric Research
 
 -   Content Validity: The degree an instrument measures what it is intended to measure (the "construct").
 -   Construct Validity: Whether the construct assumed to measure is accurately defined and operationalised.
@@ -165,7 +172,7 @@ Does marriage cause happiness cross culturally?
 
 ### Happiness might *cause* marriage
 
-```{tikz}
+```{tikz engine.opts=font_opts}
 \begin{tikzpicture}
 \node [draw=none, inner sep = 0] (Y) at (0, 0) {H$_1$};
 \node [draw=none, inner sep = 0] (A) at (1, 0) {M$_2$};
@@ -178,7 +185,7 @@ Does marriage cause happiness cross culturally?
 
 ### Age might a common cause of both marriage and happiness
 
-```{tikz}
+```{tikz engine.opts=font_opts}
 \begin{tikzpicture}
 \node [draw=none, inner sep = 0] (A) at (0, 0) {A$_0$};
 \node [draw=none, inner sep = 0] (M) at (1, 0) {M$_1$};
@@ -232,12 +239,40 @@ parameters::pool_parameters(r_lm_B)
 
 - Weeks 2-4: Causal Diagrams
 
+
+
+## Our Approach: 
+
+- To Consider Measurment Validity within classical framework of External and Internal Validity
+
+### External Validity
+
+- **Definition**: the extent to which the findings of a study can be generalised to other situations, people, settings, and time periods.
+
+- **Importance**: we want to know if our findings carry beyond the people in our study
+
+- **Challenges**: how can we know? 
+
+### Internal Validity
+
+- **Definition**: the degree to which a study can demonstrate that a causal relationship exists between the 'independent' and 'dependent' variables, free of confounding.
+
+- We will use the term 'outcome' and 'treatment' in place of independent and dependent.  This is because causality occurs in **time**.
+
+- **Importance**: we cannot interpret the associations we recover if they do not have a causal interpretation.
+
+- **Challenges**: internal validity requires balance in the confounders that might afffect the treatement and outcome, and observational data do not give us ballance.
+
+- **Challenges in Cross-Cultural Research**: in cross-cultural research, we have stronger challengs from *measurement* validity, which, as we shall see, encompasses both external and internal validity.
+
+
+
 ## What have we learned? 
 
 **Key Concepts**
 ::: {.fragment .highlight-red}
 1.  Measurement = quantification
-2.  Validity = accuracy
+2.  Validity = Obtaining Valid Scientific Inference.
 3.  Confounder = interference
 :::
 
