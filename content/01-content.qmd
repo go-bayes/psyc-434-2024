@@ -153,7 +153,7 @@ Open in browser [here](/slides/01-slides-lab.html){target="_blank"}
 - You'll need it for your final report.
 - Supports your psychology coursework.
 - Enhances your coding skills. Presently all buzz is about AI. Amateur coders can greatly accelerate their abilities -- but you still need to have some coding. If you have no coding skills, you will lose out to those that do. 
-- Coding can become as enjoyable as music or languages over time, really!
+- Coding can become as enjoyable as music or languages, really!
 
 ## Installing R
 
@@ -174,10 +174,10 @@ See [Johannes Karl's Video](#section-johannes)
 
 If you have already downloaded and installed R from the Comprehensive R Archive Network (CRAN):
 
-1. go to the RStudio download page at [https://www.rstudio.com/products/rstudio/download/](https://www.rstudio.com/products/rstudio/download/)
-2. choose the free version of RStudio Desktop, and download it for your operating system.
-3. download and install RStudio Desktop.
-4. open RStudio to begin setting up your project environment.
+1. Go to the RStudio download page at [https://www.rstudio.com/products/rstudio/download/](https://www.rstudio.com/products/rstudio/download/)
+2. Choose the free version of RStudio Desktop, and download it for your operating system.
+3. Download and install RStudio Desktop.
+4. Open RStudio to begin setting up your project environment.
 
 
 ### Step 2: Create a new project
