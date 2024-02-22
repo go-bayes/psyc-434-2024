@@ -165,6 +165,11 @@ Open in browser [here](/slides/01-slides-lab.html){target="_blank"}
 
 After downloading R...
 
+
+See [Johannes Karl's Video](#section-johannes)
+
+
+
 ### Step 1: Install R-Studio
 
 If you have already downloaded and installed R from the Comprehensive R Archive Network (CRAN):
@@ -193,6 +198,7 @@ If you have already downloaded and installed R from the Comprehensive R Archive 
 - When creating new files and scripts, use clear labels that anyone could understand. 
 - That "anyone" will be your future self, trying to make sense.
 :::
+
 
 
 ### Step 3: Give project structure
@@ -1210,15 +1216,17 @@ Do the hands-on exercises at home. They'll help you apply what you have learned 
 
 As sure as night follows day, you will need help coding. Good resources:
 
-1. **Large Language Models (LLMs):** OpenAI's premium LLM (GPT-4) outperforms the free version (GPT-3.5) for complex queries. I don't think LLM's are quite ready for science, but they are remarkably helpful for coding, and for learning how to code. So please use them, with caution, but use them. 
+1. **Large Language Models (LLMs):** LLMs are trained on extensive datasets. They are extremely good coding tutors. Open AI's GPT-4 considerably outperforms GPT-3.5.  However GPT 3.5 should be good enough. Gemini has a two-month free trial. LLM's are rapidly evolving. However, presently, to use these tools, and to spot their errors, you will need to know how to code.  Which is fortunate because coding makes you smart!
 
-2. [**Stack Overflow:**](https://stackoverflow.com/questions/tagged/r) a valuable resource for coding advice and solutions.
+**Note:** you will not be assessed for R-code. Help from LLM's for *coding* does not consitute a breach of academic integrity in this course. Your tests are in-class; no LLM's allowed.  For your final report, you will need to cite all sources, and how you used them, including LLMs. 
 
-3. [Cross-validated](https://stats.stackexchange.com/) is probably the best place to go for stats advice. (LLMs are currently not reliable for statisticis for which there is not much information -- which is most of science.)
+2. [**Stack Overflow:**](https://stackoverflow.com/questions/tagged/r): an outstanding resource for most problems. Great community. 
 
-4. **Developer Websites and GitHub Pages:** Directly engage with package developers and the community for insights and support.[Parameters package discussion page](https://github.com/easystats/parameters/discussions) offers insights and support directly from its developers and user community.
+3. [Cross-validated](https://stats.stackexchange.com/) the best place to go for stats advice. (LLM's are only safe for standard statistics. They do not perform well for causal inference.)
 
-4.  Your tutors and lecturer. We care. We’re here to help you!
+4. **Developer Websites and GitHub Pages:** [Tidyverse](https://github.com/tidyverse)
+
+4.  Your tutors and course coordinator. We care. We’re here to help you!
 
 
 ### Recommended Reading
@@ -1230,7 +1238,15 @@ As sure as night follows day, you will need help coding. Good resources:
 
 - RStudio has compiled numerous accessible materials for learning R, which can be found here: [https://education.rstudio.com/learn/beginner/](https://education.rstudio.com/learn/beginner/).
 
-- Materials from a previous course on learning R can be accessed here.  [https://go-bayes.github.io/psych-447/](https://education.rstudio.com/learn/beginner/) For now, only lecture 1 would be relevant. It's worth noting that this lecture covers working with GitHub.  GitHub is a useful tool, you should learn how to use it; however, it is not a requirement for the current course.
+- Materials from a previous course on learning R can be accessed here.  [https://go-bayes.github.io/psych-447/](https://education.rstudio.com/learn/beginner/) 
+
+- Johannes Karl's Video
+
+### Johannas Karl on Getting Started In R {#section-johannes}
+
+{{< video https://www.youtube.com/embed/haYxa3vWA28 >}}
+
+
 
 
 ### Packages
