@@ -531,7 +531,6 @@ ggplot(student_data, aes(x = score, fill = passed)) +
   theme_minimal() +
   scale_fill_manual(values = c("failed" = "red", "passed" = "blue"))
 
-
 # ggplot2 lineplot --------------------------------------------------------
 # monthly study hours over a semester
 months <- factor(month.abb[1:8], levels = month.abb[1:8])
