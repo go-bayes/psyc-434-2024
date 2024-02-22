@@ -125,6 +125,7 @@ Once you have successfully installed R and RStudio:
 Open in browser [here](/slides/01-slides.html){target="_blank"}
 
 
+
 # Lab 1: Install R and RStudio
 
 This session introduces R and R-Studio.
@@ -138,7 +139,7 @@ This session introduces R and R-Studio.
 <div>
 
 ```{=html}
-<iframe class="slide-deck" src="/slides/01-slides.html"></iframe>
+<iframe class="slide-deck" src="/slides/01-slides-lab.html"></iframe>
 ```
 
 </div>
