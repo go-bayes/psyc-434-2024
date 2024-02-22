@@ -91,7 +91,7 @@ Today we discuss these concepts informally. We will define these concepts formal
 ::: {.callout-important}
 ## Dowload your Laboratory R script here:
 
-[Download the R script for Lab 01](./laboratory/01-lab.R)
+[Download the R script for Lab 01](/laboratory/01-lab.R)
 :::
 
 
