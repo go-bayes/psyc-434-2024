@@ -516,11 +516,11 @@ ggplot(student_data, aes(x = passed, y = score, fill = passed)) +
   scale_fill_manual(values = c("failed" = "red", "passed" = "blue"))
 
 # median (Q2/50th percentile): divides the dataset into two halves.
-# first quartile (Q1/25th percentile): lower edge indicating that 25% of the data falls below this value.
-# third quartile (Q3/75th percentile): upper edge of the box represents the third quartile, showing that 75% of the data is below this value.
-# interquartile range (IQR): height of the box represents the IQR: distance between the first and third quartiles (Q3 - Q1) / middle 50% of the data.
-# whiskers: The lines extending from the top and bottom of the box (the "whiskers") indicate the range of the data, typically to the smallest and largest values within 1.5 * IQR from the first and third quartiles, respectively. Points outside this range are often considered outliers and can be plotted individually.
-# outliers: points that lie beyond the whiskers
+# first quartile (Q1/25th percentile): lower edge/ 25% of the data falls below this value.
+# third quartile (Q3/75th percentile): upper edge/ third quartile/ 75% of the data are below this value.
+# interquartile range (IQR): height of the box is IQR: distance between the 1 and 3 quartiles (Q3 - Q1) / middle 50% of the data.
+# whiskers: lines extending from the top and bottom of the box (the "whiskers") indicate the range of the data
+# outliers: points oustide whiskers
 
 # ggplot2 histogram -------------------------------------------------------
 # understanding the distribution of scores
@@ -556,7 +556,7 @@ ggplot(study_data, aes(x = month, y = study_hours, group = 1)) +
 # `barplot()`: visualises categorical data with bar graphs.
 
 
-s
+så
 # base r scatter plot -----------------------------------------------------
 # scatter plot of scores vs. study hours
 plot(student_data$study_hours, student_data$score,
@@ -580,13 +580,6 @@ boxplot(score ~ passed, data = student_data,
         main = "score distribution by pass/fail status",
         xlab = "status", ylab = "scores",
         col = c("red", "blue"))
-
-# median (Q2/50th percentile): divides the dataset into two halves.
-# first quartile (Q1/25th percentile): lower edge indicating that 25% of the data falls below this value.
-# third quartile (Q3/75th percentile): upper edge of the box represents the third quartile, showing that 75% of the data is below this value.
-# interquartile range (IQR): height of the box represents the IQR: distance between the first and third quartiles (Q3 - Q1) / middle 50% of the data.
-# whiskers: The lines extending from the top and bottom of the box (the "whiskers") indicate the range of the data, typically to the smallest and largest values within 1.5 * IQR from the first and third quartiles, respectively. Points outside this range are often considered outliers and can be plotted individually.
-# outliers: points that lie beyond the whiskers
 
 # base r linegraph --------------------------------------------------------
 # clears previous graph
