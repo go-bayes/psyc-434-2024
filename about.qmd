@@ -1,9 +1,7 @@
 ---
-title: "Weekly Readings"
+title: "About"
 ---
 
-About this site
+About this site \[here\]
 
-```{r}
-1 + 1
-```
+

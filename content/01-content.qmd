@@ -8,21 +8,21 @@ editor_options:
 format: 
   html:
     html-math-method: katex
-    warnings: false
-    error: false
-    messages: false
+    warnings: FALSE
+    error: FALSE
+    messages: FALSE
     code-overflow: scroll
     highlight-style: kate
     code-tools:
       source: true
-      toggle: false
+      toggle: FALSE
 ---
 
 
 
 ```{r}
-#| echo: false
-#| warning: false
+#| echo: FALSE
+#| warning: FALSE
 
 # WARNING:  COMMENT THIS OUT. JB DOES THIS FOR WORKING WITHOUT WIFI
 #source("/Users/joseph/GIT/templates/functions/libs2.R")
@@ -46,7 +46,7 @@ loadfonts(device = "all")
 ```
 
 ```{tikz}
-#| echo: false
+#| echo: FALSE
 #| out-width: 60%
 #| caption: "dag"
 #| label: fig-line-plot
@@ -86,6 +86,17 @@ Today we introduce the following topics relevant to the Test(s)
 
 Today we discuss these concepts informally. We will define these concepts formally in technical detail in **week 2**.
 :::
+
+
+::: {.callout-important}
+## Dowload your Laboratory R script here:
+
+[Download the R script for Lab 01](./laboratory/01-lab.R)
+:::
+
+
+
+
 
 
 # Lecture: Introduction to the Course
@@ -346,6 +357,23 @@ integer_division <- 10 %/% 3 # results in 3
 remainder <- 10 %% 3 # results in 1
 ```
 
+### `rm()` Remove Object
+
+```{r}
+# `rm()` remove object ----------------------------------------------------
+devil_number  <- 666 # results in 1
+
+# view
+devil_number
+
+# remove the devil number
+rm(devil_number)
+
+# check
+# devil_number
+```
+
+
 ### Logic (`!`, `!=`, `==`)
 
 Logical operations include NOT (`!`), NOT EQUAL (`!=`), and EQUAL (`==`).
@@ -459,14 +487,18 @@ Factors can improve efficiency and memory usage when dealing with categorical da
 Ordered factors are a special type of factor where the levels have an inherent order. They are defined similarly to factors but with an additional argument to denote the order.
 
 ```{r}
-# create an ordered factor using the `ordered` function
-education_levels <- c("High School", "Bachelor", "Master", "Ph.D.")
+# ordered factors ---------------------------------------------------------
+# factors ordinary
+education_levels <- c("high school", "bachelor", "master", "ph.d.")
+education_factor_no_order <- factor(education_levels, ordered = FALSE)
+str(education_factor_no_order)
+
+# factors with inherent order
 education_factor <- factor(education_levels, ordered = TRUE)
 education_factor
 
-# specify levels explicitly
-education_ordered_explicit <- factor(c("High School", "Bachelor", "Master", "Ph.D."), levels = c("High School", "Bachelor", "Master", "Ph.D."), ordered = TRUE)
-education_ordered_explicit
+# another way to do the same
+education_ordered_explicit <- factor(education_levels, levels = education_levels, ordered = TRUE)
 ```
 
 Ordered factors allow for logical comparisons based on their order, which is particularly useful in analyses where the order of categories matters, such as ordinal regression.
@@ -479,10 +511,14 @@ Ordered factors support logical comparisons that consider the order of the level
 
 ```{r}
 # comparison of ordered factors
-edu1 <- ordered("Bachelor", levels = c("High School", "Bachelor", "Master", "Ph.D."))
-edu2 <- ordered("Master", levels = c("High School", "Bachelor", "Master", "Ph.D."))
+edu1 <- ordered("bachelor", levels = education_levels)
+edu2 <- ordered("master", levels = education_levels)
+edu2 > edu1 # logical comparison
 
-edu2 > edu1 # returns TRUE
+# modifying ordered factors
+new_levels <- c("primary school", "high school", "bachelor", "master", "ph.d.")
+education_updated <- factor(education_levels, levels = new_levels, ordered = TRUE)
+str(education_updated)
 ```
 
 #### Checking Data with Ordered Factors
@@ -502,17 +538,10 @@ summary(education_ordered_explicit)
 If you need to change the order of levels or add new levels, you can re-factor the variable using `factor()` or `ordered()` and specify the new levels.
 
 ```{r}
-# add new level and reorder
-#old factor 
-education_levels
-
-# new levels, add new factor
-new_levels <- c("Primary School", "High School", "Bachelor", "Master", "Ph.D.")
-
-#order explicitly
+# modifying ordered factors
+new_levels <- c("primary school", "high school", "bachelor", "master", "ph.d.")
 education_updated <- factor(education_levels, levels = new_levels, ordered = TRUE)
-
-# check
+str(education_updated)
 str(education_updated)
 ```
 
@@ -522,10 +551,10 @@ str(education_updated)
 Strings are sequences of characters.
 
 ```{r}
-name <- "world" # assigns a string to name
-greeting <- paste("Hello,", name) # concatenates strings
-
-#show
+# sequences of characters
+you <- 'world!'
+greeting <- paste("hello,", you)
+# hello world
 greeting
 ```
 
@@ -619,18 +648,22 @@ unique_vector
 Data frames can be created using the `data.frame()` function, specifying each column and its values. Here's a simple example:
 
 ```{r}
+# clear any previous `df` object 
+rm(df)
 df <- data.frame(
-  Name = c("Alice", "Bob", "Charlie"),
-  Age = c(25, 30, 35),
-  Gender = c("Female", "Male", "Male")
+  name = c("alice", "bob", "charlie"),
+  age = c(25, 30, 35),
+  gender = c("female", "male", "male")
 )
 # check structure
 head(df)
 str(df)
-summary(df)
+table(df$gender)
+table(df$age)
+table(df$name)
 ```
 
-In this example, `df` is a data frame with three columns (`Name`, `Age`, `Gender`) and three rows, each representing a different individual.
+In this example, `df` is a data frame with three columns (`name`, `age`, `gender`) and three rows, each representing a different individual.
 
 ### Access Data Frame Elements
 
@@ -639,30 +672,45 @@ In this example, `df` is a data frame with three columns (`Name`, `Age`, `Gender
 - **By column name:** use the `$` operator followed by the column name.
 
 ```{r}
-names <- df$Name  # extracts the `Name` column
+names <- df$name  # extracts the `name` column
+names
 ```
 
 - **By row and column:** Use the `[row, column]` indexing. Rows or columns can be specified by number or name.
 
 ```{r}
-second_person <- df[2, ]  # extracts the second row
-age_column <- df[, "Age"]  # extracts the `Age` column
+# access data frame elements
+names <- df$name
+names
 
-# show
+second_person <- df[2, ]
 second_person
-age_column
 
+age_column <- df[, "age"]
+age_column
 ```
 
 - **Using `subset()` Function:** To extract subsets of the data frame based on conditions.
 
 ```{r}
-adults <- subset(df, Age > 18)  # extracts rows where `Age` is greater than 18
-
-summary(adults$Age)
-mean(adults$Age)
-min(adults$Age)
+# use subset()
+very_old_people <- subset(df, age > 25)  # extracts rows where `age` is greater than 18
+very_old_people
+summary(very_old_people$age)
+mean(very_old_people$age)
+min(very_old_people$age)
 ```
+
+###  Explore Your Data Frames
+
+Functions such as `head()`, `tail()`, and `str()` help you explore the first few rows, last few rows, and the structure of the data frame, respectively.
+
+```{r}
+head(df)  # first six rows
+tail(df)  # last six rows
+str(df)   # structure of the data frame
+```
+
 
 
 ### Manipulating Data Frames
@@ -672,16 +720,18 @@ Data frames can be manipulated in various ways:
 - **Adding Columns:** You can add new columns using the `$` operator.
 
 ```{r}
-df$Employed <- c(TRUE, TRUE, FALSE)  # adds a new column "Employed"
+# adds a new column "employed"
+df$employed <- c(TRUE, TRUE, FALSE)  
 
 # show
 head(df)
 ```
 
+
 - **Adding rows:** Use the `rbind()` function to add new rows.
 
 ```{r}
-new_person <- data.frame(Name = "Diana", Age = 28, Gender = "Female", Employed = TRUE)
+new_person <- data.frame(name = "diana", age = 28, gender = "female", employed = TRUE)
 df <- rbind(df, new_person)
 
 # show
@@ -692,9 +742,9 @@ head(df)
 - **Modifying values:** Access the element or column and assign it a new value.
 
 ```{r}
-# note double brackets
-
-df[4, "Age"] <- 26  # changes Alice's age to 26
+# note brackets
+ # changes diana's age to 26
+df[4, "age"] <- 26  
 
 # view row
 df[4, ]
@@ -707,9 +757,10 @@ df[4, ]
 head(df)
 
 # remove employed column
-df$Employed <- NULL  # removes the Employed column
+df$employed <- NULL 
 
-head(df)
+# check
+df
 
 # remove fourth row (Diana)
 df <- df[-4, ]  # removes the fourth row
@@ -725,7 +776,7 @@ The `rbind()` function in R stands for "row bind". It is used to combine data fr
 
 ```{r}
 #  adding a new row
-new_person <- data.frame(Name = "Eve", Age = 32, Gender = "Female")
+new_person <- data.frame(name = "eve", age = 32, gender = "female")
 df <- rbind(df, new_person)
 
 # verify the row addition
@@ -740,16 +791,16 @@ Conversely, the `cbind()` function in R stands for "column bind". It is used to 
 
 ```{r}
 # example of adding a new column
-df$Occupation <- c("Engineer", "Doctor", "Artist", "Teacher")  # direct assignment
-
+df$occupation <- c("engineer", "doctor", "artist", "teacher")  # direct assignment
 
 # or using cbind for a separate vector
-Occupation_vector <- c("Engineer", "Doctor", "Artist", "Teacher")
-df <- cbind(df, Occupation_vector)
+occupation_vector <- c("engineer", "doctor", "artist", "teacher")
+df <- cbind(df, occupation_vector)
 
 # verify the column addition
 head(df)
 ```
+
 
 As with `rbind()`, when using `cbind()`, it is crucial that the data frames or vectors being combined have compatible dimensions. For `cbind()`, the number of rows must match.
 
@@ -817,22 +868,24 @@ max(vector)  # maximum value
 ```{r}
 #  seed for reproducibility
 set.seed(12345)
+student_data <- data.frame(
+  name = c("alice", "bob", "charlie", "diana", "ethan", "fiona", "george", "hannah"),
+  score = sample(80:100, 8, replace = TRUE),
+  stringsasfactors = FALSE
+)
 
-#  two categorical variables
-Gender <- sample(c("Male", "Female"), 
-                 size = 100, 
-                 replace = TRUE, 
-                 prob = c(0.5, 0.5))
-Education_Level <- sample(c("High School", "Bachelor", "Master"),
-                          size = 100, 
-                          replace = TRUE, 
-                          prob = c(0.4, 0.4, 0.2))
-# create a data frame
-df_table_example <- data.frame(Gender, Education_Level)
+# determine pass/fail
+student_data$passed <- ifelse(student_data$score >= 90, "passed", "failed")
+# convert 'passed' to factor
+student_data$passed <- factor(student_data$passed, levels = c("failed", "passed"))
 
-# show
-head(df_table_example)
-
+# simulate study hours
+student_data$study_hours <- sample(5:15, 8, replace = TRUE)
+# table for categorical data analysis
+gender <- sample(c("male", "female"), size = 100, replace = TRUE, prob = c(0.5, 0.5))
+education_level <- sample(c("high school", "bachelor", "master"), size = 100, replace = TRUE, prob = c(0.4, 0.4, 0.2))
+df_table_example <- data.frame(gender, education_level)
+table(df_table_example)
 ```
 
 ### Cross-Tabulation with table()
@@ -840,23 +893,11 @@ head(df_table_example)
 - `table()` can also be used for cross-tabulation, providing a way to analyse the relationship between two or more factors.
 
 ```{r}
-table(df_table_example$Gender, df_table_example$Education_Level)  # crosstab
+table(df_table_example$gender, df_table_example$education_level)  # crosstab
 ```
 
 This produces a contingency table showing the counts at each combination of `factor1` and `factor2` levels.
 
-
-
-###  Explore Your Data Frames
-
-Functions such as `head()`, `tail()`, and `str()` help you explore the first few rows, last few rows, and the structure of the data frame, respectively.
-
-```{r}
-# show
-head(df)  # First six rows
-tail(df)  # Last six rows
-str(df)   # Structure of the data frame
-```
 
 ###  Summary Statistics
 
@@ -885,23 +926,23 @@ set.seed(12345)
 
 # simulate student data (more on simulation next week)
 student_data <- data.frame(
-  Name = c("Alice", "Bob", "Charlie", "Diana", "Ethan", "Fiona", "George", "Hannah"),
-  Score = sample(80:100, 8, replace = TRUE), # Random scores between 80 and 100
-  stringsAsFactors = FALSE
+  name = c("alice", "bob", "charlie", "diana", "ethan", "fiona", "george", "hannah"),
+  score = sample(80:100, 8, replace = TRUE), # random scores between 80 and 100
+  stringsasfactors = FALSE
 )
 
 # determine pass/fail based on score
 # we will cover the ifelse() operator in detail in upcoming weeks
-student_data$Passed <- ifelse(student_data$Score >= 90, "Passed", "Failed")
+student_data$passed <- ifelse(student_data$score >= 90, "passed", "failed")
 
-# convert 'Passed' to factor for colour coding in ggplot2
-student_data$Passed <- factor(student_data$Passed, levels = c("Failed", "Passed"))
+# convert 'passed' to factor for colour coding in ggplot2
+student_data$passed <- factor(student_data$passed, levels = c("failed", "passed"))
 
 # view the first few rows of the data frame
 head(student_data)
 
 # simulate study hours
-student_data$Study_Hours <- sample(5:15, 8, replace = TRUE)
+student_data$study_hours <- sample(5:15, 8, replace = TRUE)
 ```
 
 
@@ -917,43 +958,43 @@ student_data$Study_Hours <- sample(5:15, 8, replace = TRUE)
 Start by creating a simple bar plot:
 
 ```{r}
-ggplot(student_data, aes(x = Name, y = Score)) +
+ggplot(student_data, aes(x = name, y = score)) +
   geom_bar(stat = "identity")
 ```
 
-This code plots `Score` for each `Name` in the `student_data` dataframe. The `stat = "identity"` argument tells `ggplot2` to use the `Score` values directly to determine the height of the bars.
+This code plots `score` for each `name` in the `student_data` dataframe. The `stat = "identity"` argument tells `ggplot2` to use the `score` values directly to determine the height of the bars.
 
-#### Customizing the plot
+#### Customising the plot
 
 To enhance your plot, you can add titles, change axis labels, and modify colours:
 
 ```{r}
-ggplot(student_data, aes(x = Name, y = Score, fill = Passed)) +
+ggplot(student_data, aes(x = name, y = score, fill = passed)) +
   geom_bar(stat = "identity") +
-  scale_fill_manual(values = c("TRUE" = "blue", "FALSE" = "red")) +
-  labs(title = "Student Scores", x = "Student Name", y = "Score") +
+  scale_fill_manual(values = c("true" = "blue", "FALSE" = "red")) +
+  labs(title = "student scores", x = "student name", y = "score") +
   theme_minimal()
 ```
 
-- `aes(fill = Passed)`: Maps the `Passed` variable to the colour fill of the bars, allowing for colour differentiation based on whether students passed or failed.
-- `scale_fill_manual()`: Customizes the colours used for the `TRUE` and `FALSE` values of the `Passed` variable.
-- `labs()`: Adds a main title and axis labels.
-- `theme_minimal()`: Applies a minimalistic theme to the plot for a cleaner appearance.
+- `aes(fill = passed)`: maps the `passed` variable to the colour fill of the bars, allowing for colour differentiation based on whether students passed or failed.
+- `scale_fill_manual()`: customizes the colours used for the `true` and `FALSE` values of the `passed` variable.
+- `labs()`: adds a main title and axis labels.
+- `theme_minimal()`: applies a minimalistic theme to the plot for a cleaner appearance.
 
 
 ### Scatter Plot with `ggplot2`
 
 A scatter plot is useful for examining the relationship between two continuous variables. 
 
-Let's simulate a scenario where we're comparing student scores against study hours.
+We next simulate a scenario where we compare student scores against study hours.
 
 ```{r}
-# create  scatter plot
-ggplot(student_data, aes(x = Study_Hours, y = Score, color = Passed)) +
+# create scatter plot
+ggplot(student_data, aes(x = study_hours, y = score, color = passed)) +
   geom_point(size = 4) +
-  labs(title = "Student Scores vs. Study Hours", x = "Study Hours", y = "Score") +
+  labs(title = "student scores vs. study hours", x = "study hours", y = "score") +
   theme_minimal() +
-  scale_color_manual(values = c("Failed" = "red", "Passed" = "blue"))
+  scale_color_manual(values = c("failed" = "red", "passed" = "blue"))
 ```
 
 ### Box Plot with `ggplot2`
@@ -962,11 +1003,11 @@ Box plots are excellent for visualising the distribution of scores by pass/fail 
 
 ```{r}
 # create box plot
-ggplot(student_data, aes(x = Passed, y = Score, fill = Passed)) +
+ggplot(student_data, aes(x = passed, y = score, fill = passed)) +
   geom_boxplot() +
-  labs(title = "Score Distribution by Pass/Fail Status", x = "Status", y = "Score") +
+  labs(title = "score distribution by pass/fail status", x = "status", y = "score") +
   theme_minimal() +
-  scale_fill_manual(values = c("Failed" = "red", "Passed" = "blue"))
+  scale_fill_manual(values = c("failed" = "red", "passed" = "blue"))
 ```
 
 ### Histogram with `ggplot2`
@@ -975,16 +1016,16 @@ Histograms are helpful for understanding the distribution of a single continuous
 
 ```{r}
 # create a histogram
-ggplot(student_data, aes(x = Score, fill = Passed)) +
+ggplot(student_data, aes(x = score, fill = passed)) +
   geom_histogram(binwidth = 5, color = "black", alpha = 0.7) +
-  labs(title = "Histogram of Scores", x = "Score", y = "Count") +
+  labs(title = "histogram of scores", x = "score", y = "count") +
   theme_minimal() +
-  scale_fill_manual(values = c("Failed" = "red", "Passed" = "blue"))
+  scale_fill_manual(values = c("failed" = "red", "passed" = "blue"))
 ```
 
 ### Line Plot with `ggplot2` (Time Series)
 
-For demonstrating a line plot, let's simulate monthly study hours over a semester for a student.
+For demonstrating a line plot, we simulate monthly study hours over a semester for a student.
 
 ```{r}
 # simulate monthly study hours
@@ -992,16 +1033,15 @@ months <- factor(month.abb[1:8], levels = month.abb[1:8])
 study_hours <- c(0, 3, 15, 30, 35, 120, 18, 15)
 
 # make data frame
-study_data <- data.frame(Month = months, Study_Hours = study_hours)
+study_data <- data.frame(month = months, study_hours = study_hours)
 
 # create a line plot
-ggplot(study_data, aes(x = Month, y = Study_Hours, group = 1)) +  # Explicitly define a group
-  geom_line(linewidth = 1, color = "blue") +  # Corrected to use `aes(linewidth = 1)`
+ggplot(study_data, aes(x = month, y = study_hours, group = 1)) +
+  geom_line(linewidth = 1, color = "blue") +
   geom_point(color = "red", size = 1) +
-  labs(title = "Monthly Study Hours", x = "Month", y = "Study Hours") +
+  labs(title = "monthly study hours", x = "month", y = "study hours") +
   theme_minimal()
 ```
-
 
 
 ## Base R Graphs
@@ -1024,10 +1064,10 @@ Consider simple scatter plot using the data we have just simulated
 
 ```{r}
 # basic scatter plot with Base R
-plot(student_data$Study_Hours, student_data$Score,
+plot(student_data$study_hours, student_data$score,
      main = "Scatter Plot of Scores vs. Study Hours",
      xlab = "Study Hours", ylab = "Score",
-     pch = 19, col = ifelse(student_data$Passed == "Passed", "blue", "red"))
+     pch = 19, col = ifelse(student_data$passed == "passed", "blue", "red"))
 ```
 
 This plot uses the `plot` function to create a scatter plot, with study hours on the x-axis and scores on the y-axis. The `pch` parameter specifies the symbol type, and `col` changes the colour based on whether the student passed or failed.
@@ -1038,7 +1078,7 @@ To visualise the distribution of student scores:
 
 ```{r}
 # Histogram with Base R
-hist(student_data$Score,
+hist(student_data$score,
      breaks = 5,
      col = "skyblue",
      main = "Histogram of Student Scores",
@@ -1054,7 +1094,7 @@ Box plots in Base R can compare the score distributions across the pass/fail sta
 
 ```{r}
 # Box plot with Base R
-boxplot(Score ~ Passed, data = student_data,
+boxplot(score ~ passed, data = student_data,
         main = "Score Distribution by Pass/Fail Status",
         xlab = "Status", ylab = "Scores",
         col = c("red", "blue"))
@@ -1209,14 +1249,14 @@ To install the `parameters` and `report` packages in RStudio, follow these instr
 **Objective:** Gain familiarity with data frame creation, manipulation, and basic data exploration functions.
 
 1. Create a data frame `student_data` with the following columns:
-   - `ID`: 1, 2, 3, 4
-   - `Name`: Alice, Bob, Charlie, Diana
-   - `Score`: 88, 92, 85, 95
+   - `id`: 1, 2, 3, 4
+   - `name`: alice, bob, charlie, diana
+   - `score`: 88, 92, 85, 95
    - Ensure you set `stringsAsFactors = FALSE`.
 
-2. Add a new column `Passed` to `student_data` indicating whether the student passed. Assume a pass mark of 90.
+2. Add a new column `passed` to `student_data` indicating whether the student passed. Assume a pass mark of 90.
 
-3. Extract the `Name` and `Score` of students who passed into a new data frame.
+3. Extract the `name` and `score` of students who passed into a new data frame.
 
 4. Use `summary()`, `head()`, and `str()` functions to explore `student_data`.
 ::: 
@@ -1229,7 +1269,7 @@ To install the `parameters` and `report` packages in RStudio, follow these instr
 
 1. Using the `student_data` data frame from Exercise 2, subset the data to find students who scored above the mean score of the class.
 
-2. Create a vector `attendance` with values (`Present`, `Absent`, `Present`, `Present`) corresponding to each student's attendance.
+2. Create a vector `attendance` with values (`present`, `absent`, `present`, `present`) corresponding to each student's attendance.
 
 3. Add `attendance` as a new column to `student_data` and then subset the data frame to select only the rows where students were present.
 :::
@@ -1241,12 +1281,12 @@ To install the `parameters` and `report` packages in RStudio, follow these instr
 **Objective:** Understand the use of `table()` function for cross-tabulation and analysis.
 
 1. Create two-factor variables:
-   - `Fruit`: Apple, Banana, Apple, Orange, Banana
-   - `Color`: Red, Yellow, Green, Orange, Green
+   - `fruit`: apple, banana, apple, orange, banana
+   - `colour`: red, yellow, green, orange, green
 
-2. Convert `Fruit` and `Color` into factors and then into a data frame named `fruit_data`.
+2. Convert `fruit` and `colour` into factors and then into a data frame named `fruit_data`.
 
-3. Use the `table()` function to perform a cross-tabulation of `Fruit` by `Color`.
+3. Use the `table()` function to perform a cross-tabulation of `fruit` by `colour`.
 
 4. Interpret the results. Which fruit has the most colour variety?
 :::
@@ -1258,7 +1298,7 @@ To install the `parameters` and `report` packages in RStudio, follow these instr
 
 1. Install and load the `ggplot2` package if not already done.
 
-2. Using `student_data`, create a bar plot showing the scores of students. Use `Name` for the x-axis and `Score` for the y-axis.
+2. Using `student_data`, create a bar plot showing the scores of students. Use `name` for the x-axis and `score` for the y-axis.
 
 3. Enhance the plot by adding a title, x and y-axis labels, and use different colours for passed and failed students.
 
@@ -1307,17 +1347,17 @@ sd_b
 ```{r}
 # create data frame
 student_data <- data.frame(
-  ID = 1:4,
-  Name = c("Alice", "Bob", "Charlie", "Diana"),
-  Score = c(88, 92, 85, 95),
+  id = 1:4,
+  name = c("alice", "bob", "charlie", "diana"),
+  score = c(88, 92, 85, 95),
   stringsAsFactors = FALSE
 )
 
-# add `Passed` column
-student_data$Passed <- student_data$Score >= 90
+# add `passed` column
+student_data$passed <- student_data$score >= 90
 
 # subset students who passed
-passed_students <- student_data[student_data$Passed == TRUE, ]
+passed_students <- student_data[student_data$passed == TRUE, ]
 
 # explore data frame
 summary(student_data)
@@ -1329,27 +1369,27 @@ str(student_data)
 
 ```{r}
 # subset data based on score
-mean_score <- mean(student_data$Score)
+mean_score <- mean(student_data$score)
 students_above_mean <- student_data[student_data$Score > mean_score, ]
 
 # add attendance and subset
-attendance <- c("Present", "Absent", "Present", "Present")
+attendance <- c("present", "absent", "present", "present")
 student_data$Attendance <- attendance
-present_students <- student_data[student_data$Attendance == "Present", ]
+present_students <- student_data[student_data$Attendance == "present", ]
 ```
 
 ### Solution 6: Cross-Tabulation and Analysis
 
 ```{r}
 # create factor variables
-Fruit <- factor(c("Apple", "Banana", "Apple", "Orange", "Banana"))
-Color <- factor(c("Red", "Yellow", "Green", "Orange", "Green"))
+fruit <- factor(c("apple", "banana", "apple", "orange", "banana"))
+colour <- factor(c("red", "yellow", "green", "orange", "green"))
 
 # create data frame
-fruit_data <- data.frame(Fruit, Color)
+fruit_data <- data.frame(fruit, colour)
 
 # cross-tabulation
-fruit_color_table <- table(fruit_data$Fruit, fruit_data$Color)
+fruit_color_table <- table(fruit_data$fruit, fruit_data$colour)
 print(fruit_color_table)
 
 # interpretation: Apple has the most colour variety with 2 colours (Red, Green).
@@ -1363,7 +1403,7 @@ if (!require(ggplot2)) install.packages("ggplot2")
 library(ggplot2)
 
 # create bar plot
-ggplot(student_data, aes(x = Name, y = Score, fill = Passed)) +
+ggplot(student_data, aes(x = name, y = score, fill = passed)) +
   geom_bar(stat = "identity") +
   scale_fill_manual(values = c("TRUE" = "blue", "FALSE" = "red")) +
   labs(title = "Student Scores", x = "Name", y = "Score") +
