@@ -293,7 +293,7 @@ For an account of the history of measurement in psychological research, see: [@b
 
 For an account of key concepts and current debates in psychometrics, see: [@bandalos2018]
 
-For an account of special measurement problems that arise in cross-cultural research, see: [@vandevijver2021]
+<!-- For an account of special measurement problems that arise in cross-cultural research, see: [@vandevijver2021] -->
 
 For an accessible introduction to causal inference and its history see: [@pearl2018]
 
