@@ -279,9 +279,9 @@ parameters::pool_parameters(r_lm_B)
 
 ::: {.fragment .highlight-red}
 
-1.  Measurement = quantification
-2.  Validity = Obtaining Valid Scientific Inference.
-3.  Confounder = Association in Data is Spurious
+1.  Measurement: attaching magnitudes to features of the world.
+2.  Validity: obtaining *accurate* scientific inference: a complex set of interrelated problems.
+3.  Confounding; association in data is *spurious*
 
 :::
 
