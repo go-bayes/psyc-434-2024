@@ -148,9 +148,6 @@ Construct: e.g. Happiness - a subjective experience of positive emotions, such a
 -   Face Validity: whether an instrument measure what it is intended to measure, as assessed by experts.
 -   Ecological Validity: whether an instrument accurately reflects real-world situations and behavior [@bandalos2018]
 
-## What can we do about it?
-
--Week 10: 
 
 :::{.notes}
 Metric equivalence: Factor loadings are similar across groups.
