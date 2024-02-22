@@ -234,12 +234,11 @@ remainder
 
 # `rm()` remove object ----------------------------------------------------
 
-devil_number  <- 666 # results in 1
-
+devil_number  <- 666 # create object
 # view
 devil_number
 
-# remove the devil number
+# remove the object
 rm(devil_number)
 
 # check
@@ -413,9 +412,9 @@ df[4, "age"] <- 26  # changes diana's age to 26
 df[4, ]
 
 # removing columns or rows
-df$employed <- NULL # removes the employed column
-df <- df[-4, ]  # removes the fourth row
-df
+# df$employed <- NULL # removes the employed column
+# df <- df[-4, ]  # removes the fourth row
+# df
 
 ### add rows with `rbind()`
 
@@ -425,8 +424,11 @@ head(df)
 
 ### adding columns with `cbind()`
 
-df$occupation <- c("engineer", "doctor", "artist", "teacher")  # direct assignment
-occupation_vector <- c("engineer", "doctor", "artist", "teacher")
+new_person <- data.frame(name = "eve", age = 32, gender = "female", employed = TRUE)
+df <- rbind(df, new_person)
+# Add columns with `cbind()`
+occupation_vector <- c("engineer", "doctor", "artist", "teacher","professor", "doctor")
+df <- cbind(df, occupation_vector)
 df <- cbind(df, occupation_vector)
 head(df)
 
@@ -513,6 +515,13 @@ ggplot(student_data, aes(x = passed, y = score, fill = passed)) +
   theme_minimal() +
   scale_fill_manual(values = c("failed" = "red", "passed" = "blue"))
 
+# median (Q2/50th percentile): divides the dataset into two halves.
+# first quartile (Q1/25th percentile): lower edge indicating that 25% of the data falls below this value.
+# third quartile (Q3/75th percentile): upper edge of the box represents the third quartile, showing that 75% of the data is below this value.
+# interquartile range (IQR): height of the box represents the IQR: distance between the first and third quartiles (Q3 - Q1) / middle 50% of the data.
+# whiskers: The lines extending from the top and bottom of the box (the "whiskers") indicate the range of the data, typically to the smallest and largest values within 1.5 * IQR from the first and third quartiles, respectively. Points outside this range are often considered outliers and can be plotted individually.
+# outliers: points that lie beyond the whiskers
+
 # ggplot2 histogram -------------------------------------------------------
 # understanding the distribution of scores
 # experiment with binwidth
@@ -547,7 +556,7 @@ ggplot(study_data, aes(x = month, y = study_hours, group = 1)) +
 # `barplot()`: visualises categorical data with bar graphs.
 
 
-
+s
 # base r scatter plot -----------------------------------------------------
 # scatter plot of scores vs. study hours
 plot(student_data$study_hours, student_data$score,
@@ -572,9 +581,41 @@ boxplot(score ~ passed, data = student_data,
         xlab = "status", ylab = "scores",
         col = c("red", "blue"))
 
+# median (Q2/50th percentile): divides the dataset into two halves.
+# first quartile (Q1/25th percentile): lower edge indicating that 25% of the data falls below this value.
+# third quartile (Q3/75th percentile): upper edge of the box represents the third quartile, showing that 75% of the data is below this value.
+# interquartile range (IQR): height of the box represents the IQR: distance between the first and third quartiles (Q3 - Q1) / middle 50% of the data.
+# whiskers: The lines extending from the top and bottom of the box (the "whiskers") indicate the range of the data, typically to the smallest and largest values within 1.5 * IQR from the first and third quartiles, respectively. Points outside this range are often considered outliers and can be plotted individually.
+# outliers: points that lie beyond the whiskers
 
+# base r linegraph --------------------------------------------------------
+# clears previous graph
+dev.off()
+# must be numeric
+months_num <- 1:length(study_data$month) # Simple numeric sequence
 
+# plot points with suppressed x-axis
+plot(months_num, study_data$study_hours, 
+     type = "p", # Points
+     pch = 19,   # Type of point
+     col = "red", 
+     xlab = "Month", 
+     ylab = "Study Hours", 
+     main = "Monthly Study Hours",
+     xaxt = "n") # Suppress the x-axis
 
+# add lines between points
+lines(months_num, study_data$study_hours, 
+      col = "blue", 
+      lwd = 1) # Line width
+
+# add custom month labels to the x-axis at appropriate positions
+axis(1, at = months_num, labels = study_data$month, las=2) # `las=2` makes labels perpendicular to axis
+
+# Optional: adding a box around the plot for a minimalistic look
+box()
+
+``
 # do your exercises here --------------------------------------------------
 # find them here: https://go-bayes.github.io/psyc-434-2024/content/01-content.html#appendix-a-at-home-exercises
 
@@ -646,4 +687,7 @@ ggplot(student_data, aes(x = name, y = score, fill = as.factor(passed))) +
   labs(title = "student scores", x = "name", y = "score") +
   theme_minimal()
 # end exercise 7
+
+
+
 

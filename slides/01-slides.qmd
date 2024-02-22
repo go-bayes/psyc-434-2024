@@ -21,23 +21,10 @@ format:
     bibliography: references.bib
 ---
 
-##
-
-###
-
-<p>
-```{r, engine = 'tikz'}
-\begin{tikzpicture}
-%\node [draw=none, align=center, font=\small] at (0,1) {\bf Timing};
-\node [draw=none, inner sep = 0] (Y) at (0, 0) {$Y_1$};
-\node [draw=none, inner sep = 0] (A) at (1, 0) {$A_2$};
-\draw [-latex, red] (Y) to (A);
-\end{tikzpicture}
-```
-<p>
-
 
 ## Goals
+
+
 
 ### By the end of this seminar you will be able to:
 
@@ -176,13 +163,31 @@ Does marriage cause happiness cross culturally?
 ## What might go wrong?
 
 
-## Happiness might *cause* marriage
+### Happiness might *cause* marriage
+
+```{tikz}
+\begin{tikzpicture}
+\node [draw=none, inner sep = 0] (Y) at (0, 0) {H$_1$};
+\node [draw=none, inner sep = 0] (A) at (1, 0) {M$_2$};
+\draw [-latex, red] (Y) to (A);
+\end{tikzpicture}
+```
+
+## What else might go wrong?
 
 
+### Age might a common cause of both marriage and happiness
 
-## Age might cause both Marriage and Happiness
+```{tikz}
+\begin{tikzpicture}
+\node [draw=none, inner sep = 0] (A) at (0, 0) {A$_0$};
+\node [draw=none, inner sep = 0] (M) at (1, 0) {M$_1$};
+\node [draw=none, inner sep = 0] (H) at (2, 0) {H$_2$};
+\draw [-latex, red] (A) to (M);
+\draw [-latex, bend left = 30, red] (A) to  (H);
+\end{tikzpicture}
+```
 
-- That is Age might be a *confounder by common cause*
 
 
 ## Many psychologists will simply "control for age"

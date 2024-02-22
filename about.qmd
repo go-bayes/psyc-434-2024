@@ -1,7 +1,1 @@
----
-title: "About"
----
-
-About this site \[here\]
-
 

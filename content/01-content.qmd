@@ -80,21 +80,30 @@ loadfonts(device = "all")
 
 Today we introduce the following topics relevant to the Test(s)
 
-- Confounding  (introduced in week 2)
-- Internal Validity (introduced in week 2)
-- External Validity (introduced in week 3)
+- **Confounding**  (introduced in week 2)
+- **Internal Validity** (introduced in week 2)
+- **External Validity** (introduced in week 3)
 
 Today we discuss these concepts informally. We will define these concepts formally in technical detail in **week 2**.
 :::
 
-
 ::: {.callout-important}
-## Dowload your Laboratory R script here:
+## Download Your Laboratory R Script Here
 
-[Download the R script for Lab 01](/laboratory/01-lab.R)
+Once you have successfully installed R and RStudio:
+
+1. Download the R script for Lab 01 by clicking the link below. This script contains the code you will work with during your laboratory session.
+
+2. After downloading, open RStudio. 
+
+3. In RStudio, create a new R script file by going to `File > New File > R Script`.
+
+4. Copy the contents of the downloaded `.R` file and paste them into the new R script file you created in RStudio.
+
+5. Save the new R script file in your project directory for easy access during the lab.
+
+[Download the R script for Lab 01](https://raw.githubusercontent.com/go-bayes/psyc-434-2024/main/laboratory/01-lab.R)
 :::
-
-
 
 
 
@@ -119,6 +128,24 @@ Open in browser [here](/slides/01-slides.html){target="_blank"}
 # Lab 1: Install R and RStudio
 
 This session introduces R and R-Studio.
+
+## Slide deck:
+
+## Slides
+
+[PREVIEW](/slides/01-slides-lab.html)
+
+<div>
+
+```{=html}
+<iframe class="slide-deck" src="/slides/01-slides.html"></iframe>
+```
+
+</div>
+
+Open in browser [here](/slides/01-slides-lab.html){target="_blank"}
+
+
 
 ## Why learn R?
 
@@ -791,10 +818,10 @@ Conversely, the `cbind()` function in R stands for "column bind". It is used to 
 
 ```{r}
 # example of adding a new column
-df$occupation <- c("engineer", "doctor", "artist", "teacher")  # direct assignment
+df$occupation <- c("engineer", "doctor", "artist", "doctor")  # direct assignment
 
 # or using cbind for a separate vector
-occupation_vector <- c("engineer", "doctor", "artist", "teacher")
+occupation_vector <- c("engineer", "doctor", "artist", "doctor")
 df <- cbind(df, occupation_vector)
 
 # verify the column addition
@@ -1077,7 +1104,7 @@ This plot uses the `plot` function to create a scatter plot, with study hours on
 To visualise the distribution of student scores:
 
 ```{r}
-# Histogram with Base R
+# histogram with Base R
 hist(student_data$score,
      breaks = 5,
      col = "skyblue",
@@ -1087,6 +1114,37 @@ hist(student_data$score,
 ```
 
 This histogram provides a quick overview of the scores' distribution, using the `hist` function with specified `breaks`, `col` for colour, and `border` for the colour of the histogram borders.
+
+### Generate Line Plot with Base R
+
+```{r}
+# must be numeric
+months_num <- 1:length(study_data$month) # Simple numeric sequence
+
+# plot points with suppressed x-axis
+plot(months_num, study_data$study_hours, 
+     type = "p", # Points
+     pch = 19,   # Type of point
+     col = "red", 
+     xlab = "Month", 
+     ylab = "Study Hours", 
+     main = "Monthly Study Hours",
+     xaxt = "n") # Suppress the x-axis
+
+# add lines between points
+lines(months_num, study_data$study_hours, 
+      col = "blue", 
+      lwd = 1) # Line width
+
+# add custom month labels to the x-axis at appropriate positions
+axis(1, at = months_num, labels = study_data$month, las=2) # `las=2` makes labels perpendicular to axis
+
+# Optional: adding a box around the plot for a minimalistic look
+box()
+
+```
+
+
 
 ### Comparing Distributions with Box Plots
 
@@ -1306,7 +1364,9 @@ These exercises are designed to be progressively challenging, ensuring that stud
 :::
 
 
-#### Solutions 
+## Appendix B: Solutions
+
+### Solutions 1 and 2
 
 - Exercises 1 and 2 have no solutions. Installation worked or it did not! If you have trouble, please see your tutor or instructor. 
 
@@ -1412,7 +1472,7 @@ ggplot(student_data, aes(x = name, y = score, fill = passed)) +
 
 
 
-## Appendix C: Other Data Types You May Encounter
+## Appendix B: Other Data Types You May Encounter
 
 
 #### Arrays and Matrices
@@ -1505,13 +1565,6 @@ calculate_stats <- function(numbers) {
 # Using the function
 results <- calculate_stats(c(1, 2, 3, 4, 5))
 ```
-
-#### Why Lists are Important
-
-- **Flexibility:** lists can contain different types of elements, including other lists, data frames, and functions.
-- **Function outputs:** many R functions return lists because they can hold multiple types of outputs.
-
-
 
 
 

@@ -1,0 +1,17 @@
+\documentclass[
+%% TIKZ_CLASSOPTION %%
+tikz
+]{standalone}
+\usepackage{amsmath}
+\usetikzlibrary{matrix}
+%% EXTRA_TIKZ_PREAMBLE_CODE %%
+\begin{document}
+%% TIKZ_CODE %%
+\begin{tikzpicture}
+\node [draw=none, inner sep = 0] (A) at (0, 0) {A$_0$};
+\node [draw=none, inner sep = 0] (M) at (1, 0) {M$_1$};
+\node [draw=none, inner sep = 0] (M) at (2, 0) {H$_2$};
+\draw [-latex, red] (A) to (M);
+\draw [-latex, bend right = 20, red] (A) to  (H);
+\end{tikzpicture}
+\end{document}
