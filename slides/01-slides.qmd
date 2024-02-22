@@ -18,7 +18,7 @@ format:
     auto-stretch: true
     html-math-method: katex
     progress: true
-    bibliography: references.bib
+    bibliography: /Users/joseph/GIT/templates/bib/references.bib
 ---
 
 ```{r include=FALSE}
@@ -200,8 +200,10 @@ Does marriage cause happiness cross culturally?
 ## Many psychologists will simply "control for age"
 
 ::: {.fragment .highlight-red}
-This doesn't work if there is reverse causation: 
-Regression coefficient for Marriage (M) is biased.
+
+- This doesn't work if there is reverse causation: 
+- Regression coefficient for Marriage (M) is biased.
+
 :::
 
 ```{r}
@@ -263,17 +265,27 @@ parameters::pool_parameters(r_lm_B)
 
 - **Challenges**: internal validity requires balance in the confounders that might afffect the treatement and outcome, and observational data do not give us ballance.
 
-- **Challenges in Cross-Cultural Research**: in cross-cultural research, we have stronger challengs from *measurement* validity, which, as we shall see, encompasses both external and internal validity.
+- **Challenges in Cross-Cultural Research**:
+  - The concept of *measurement* itself has **causal** underpinnings [@vanderweele2022].
+  - in cross-cultural research, we have stronger challengs from *measurement* validity, which, as we shall see, encompasses both external and internal validity.
+
+
+## The hope
+
+- There has been tremendous progress in the health and computer sciences in addressing problems of external and internal validity from a causal perspective
+- You will be among the first to apply these methods to questions in cross-cultural psychology. 
+- In doing so, much of what confused in in psychology will be clear. 
 
 
 
 ## What have we learned? 
 
-**Key Concepts**
 ::: {.fragment .highlight-red}
+
 1.  Measurement = quantification
 2.  Validity = Obtaining Valid Scientific Inference.
-3.  Confounder = interference
+3.  Confounder = Association in Data is Spurious
+
 :::
 
 

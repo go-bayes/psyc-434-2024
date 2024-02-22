@@ -19,7 +19,7 @@ format:
     html-math-method: katex
     progress: true
     highlight: kate
-    bibliography: references.bib
+    bibliography: /Users/joseph/GIT/templates/bib/references.bib
 ---
 
 
