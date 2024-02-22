@@ -198,9 +198,9 @@ Does marriage cause happiness cross culturally?
 
 - Simulate data in which happiness and marriage cause income
 - Controlling for income makes it look as though happiness and marriage are **negatively** related.
-- But we simulated data with *no* relationship. 
+- But we simulated data with *no* relationship!
 - This is called 'collider bias', we will consider how it works in the upcoming weeks.
-- Meantime, even if we measure people without error, cross cultural studies might select on people with different incomes, leading to bias in the absence of measurement error (and even if we do not control for income!)
+- Meantime, even if we measure people without error, cross-cultural studies might select people with different incomes, leading to bias **even in the absence of measurement error bias** (and **even if we do not control for income!**)
 
 ```{r}
 #| echo: true
@@ -238,11 +238,7 @@ parameters::pool_parameters(r_lm_B)
 
 - Weeks 2-4: Causal Diagrams
 
-
-
 ## Our Approach: 
-
-- To Consider Measurment Validity within classical framework of External and Internal Validity
 
 ### External Validity
 
@@ -262,16 +258,19 @@ parameters::pool_parameters(r_lm_B)
 
 - **Challenges**: internal validity requires balance in the confounders that might afffect the treatement and outcome, and observational data do not give us ballance.
 
-- **Challenges in Cross-Cultural Research**:
+- **The Special Challenges in Cross-Cultural Research**:
   - The concept of *measurement* itself has **causal** underpinnings [@vanderweele2022].
-  - in cross-cultural research, we have stronger challengs from *measurement* validity, which, as we shall see, encompasses both external and internal validity.
+  - In cross-cultural research, we have stronger challengs from *measurement* validity, which, as we shall see, encompasses both external and internal validity.
+  - We consider measurment validity within classical framework of external and internal validity
+  - Ethical challenges, which science needs to consider.
+  - Foremost among these ethical challenges, I believe, is doing our best to get inference right!
 
 
-## The hope
+## The Hope
 
 - There has been tremendous progress in the health and computer sciences in addressing problems of external and internal validity from a causal perspective
 - You will be among the first to apply these methods to questions in cross-cultural psychology. 
-- In doing so, much of what confused in in psychology will be clear. 
+- In doing so, much of what has been confusing to you about psychological research design, data-analysis, ultimately scientific inference will be clearer.
 
 
 
