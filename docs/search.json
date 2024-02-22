@@ -276,8 +276,8 @@
     "objectID": "slides/01-slides.html#goals",
     "href": "slides/01-slides.html#goals",
     "title": "Asking questions in cross-cultural psychology",
-    "section": "Goals",
-    "text": "Goals\nBy the end of this seminar you will be able to:\n\nUnderstand the special problems that cultural research presents for measurement.\nUnderstand the deeper, and prior concept of confounding.\n\nKey Concepts\n\nMeasurement\nValidity\nA confounder"
+    "section": "",
+    "text": "Understand the special problems that cultural research presents for measurement.\nUnderstand the deeper, and prior concept of confounding.\n\n\n\n\n\nMeasurement\nValidity\nA confounder"
   },
   {
     "objectID": "slides/01-slides.html#group-discussion-ethics-brainstorm",
@@ -340,7 +340,7 @@
     "href": "slides/01-slides.html#measurement",
     "title": "Asking questions in cross-cultural psychology",
     "section": "Measurement",
-    "text": "Measurement\nDefinitions:\n\n“Measurement is the numerical quantifcation of the attributes of an object or event, which can be used to compare with other objects or events” [Conventional]\n“Measurement is the assignment of numerals to objects or events according to rules.” [Psychological]\n“Measurement is the process of experimentally obtaining one or more quantity values that can reasonably be attributed to a quantity.” [Metrological] from (Briggs 2021)"
+    "text": "Measurement\nDefinitions:\n\n“Measurement is the numerical quantifcation of the attributes of an object or event, which can be used to compare with other objects or events” [Conventional]\n“Measurement is the assignment of numerals to objects or events according to rules.” [Psychological]\n“Measurement is the process of experimentally obtaining one or more quantity values that can reasonably be attributed to a quantity.” [Metrological] from [@briggs2021]"
   },
   {
     "objectID": "slides/01-slides.html#on-a-scale-of-1-7-how-happy-are-you",
@@ -361,7 +361,7 @@
     "href": "slides/01-slides.html#concept-of-validity-in-psychometric-research",
     "title": "Asking questions in cross-cultural psychology",
     "section": "Concept of validity in psychometric research",
-    "text": "Concept of validity in psychometric research\n\nContent Validity: The degree an instrument measures what it is intended to measure (the “construct”).\nConstruct Validity: Whether the construct assumed to measure is accurately defined and operationalised.\nCriterion Validity: Whether an instrument accurately predicts performance.\nFace Validity: whether an instrument measure what it is intended to measure, as assessed by experts.\nEcological Validity: whether an instrument accurately reflects real-world situations and behavior (Bandalos 2018)"
+    "text": "Concept of validity in psychometric research\n\nContent Validity: The degree an instrument measures what it is intended to measure (the “construct”).\nConstruct Validity: Whether the construct assumed to measure is accurately defined and operationalised.\nCriterion Validity: Whether an instrument accurately predicts performance.\nFace Validity: whether an instrument measure what it is intended to measure, as assessed by experts.\nEcological Validity: whether an instrument accurately reflects real-world situations and behavior [@bandalos2018]"
   },
   {
     "objectID": "slides/01-slides.html#what-can-we-do-about-it",
@@ -382,7 +382,7 @@
     "href": "slides/01-slides.html#what-might-go-wrong",
     "title": "Asking questions in cross-cultural psychology",
     "section": "What might go wrong?",
-    "text": "What might go wrong?"
+    "text": "What might go wrong?\n\nHappiness might cause marriage"
   },
   {
     "objectID": "slides/01-slides.html#happiness-might-cause-marriage",
@@ -403,7 +403,7 @@
     "href": "slides/01-slides.html#many-psychologists-will-simply-control-for-age",
     "title": "Asking questions in cross-cultural psychology",
     "section": "Many psychologists will simply “control for age”",
-    "text": "Many psychologists will simply “control for age”\n\nThis doesn’t work if there is reverse causation: Regression coefficient for Marriage (M) is biased.\n\n\n\nCode\n## Simulate data \nset.seed(123)\nsim_fun_B = function() {\n  n &lt;- 1000\n  A &lt;- rnorm(n, 1) # simulates age,\n  H &lt;- rnorm(n , A) #  simulates happy as function of age\n  M &lt;- rnorm(n , A) + .2 * H # simulate marriage as a function of age + happiness\n\n  \n# Simulate dataframe from function\nsimdat_B &lt;- data.frame(\n  A = A, \n  H = H,\n  M = M) \n\n#  model in which marriage \"predicts\" happiness controlling for age\nsim_B &lt;- lm(H ~ M + A, data = simdat_B)\nsim_B  # returns output\n}\n\n# Replication 100 times\nr_lm_B &lt;- NA\nr_lm_B = replicate(100, sim_fun_B(), simplify = FALSE )\n\n# print model results\nparameters::pool_parameters(r_lm_B)\n\n\n# Fixed Effects\n\nParameter   | Coefficient |   SE |        95% CI | Statistic |     df |      p\n------------------------------------------------------------------------------\n(Intercept) |    4.12e-03 | 0.06 | [-0.12, 0.13] |      0.07 | 220.99 | 0.947 \nM           |        0.19 | 0.04 | [ 0.10, 0.27] |      4.42 | 234.19 | &lt; .001\nA           |        0.77 | 0.07 | [ 0.64, 0.91] |     11.17 | 211.13 | &lt; .001"
+    "text": "Many psychologists will simply “control for age”\n\nThis doesn’t work if there is reverse causation: Regression coefficient for Marriage (M) is biased.\n\n\n## Simulate data \nset.seed(123)\nsim_fun_B = function() {\n  n &lt;- 1000\n  A &lt;- rnorm(n, 1) # simulates age,\n  H &lt;- rnorm(n , A) #  simulates happy as function of age\n  M &lt;- rnorm(n , A) + .2 * H # simulate marriage as a function of age + happiness\n\n  \n# Simulate dataframe from function\nsimdat_B &lt;- data.frame(\n  A = A, \n  H = H,\n  M = M) \n\n#  model in which marriage \"predicts\" happiness controlling for age\nsim_B &lt;- lm(H ~ M + A, data = simdat_B)\nsim_B  # returns output\n}\n\n# Replication 100 times\nr_lm_B &lt;- NA\nr_lm_B = replicate(100, sim_fun_B(), simplify = FALSE )\n\n# print model results\nparameters::pool_parameters(r_lm_B)\n\n# Fixed Effects\n\nParameter   | Coefficient |   SE |        95% CI | Statistic |     df |      p\n------------------------------------------------------------------------------\n(Intercept) |    4.12e-03 | 0.06 | [-0.12, 0.13] |      0.07 | 220.99 | 0.947 \nM           |        0.19 | 0.04 | [ 0.10, 0.27] |      4.42 | 234.19 | &lt; .001\nA           |        0.77 | 0.07 | [ 0.64, 0.91] |     11.17 | 211.13 | &lt; .001"
   },
   {
     "objectID": "slides/01-slides.html#the-problem-is-confounding-what-can-we-do-about-it",
@@ -431,14 +431,14 @@
     "href": "slides/01-slides.html#references",
     "title": "Asking questions in cross-cultural psychology",
     "section": "References",
-    "text": "References\nFor an account of the history of measurement in psychological research, see: (Briggs 2021)\nFor an account of key concepts and current debates in psychometrics, see: (Bandalos 2018)\nFor an account of special measurement problems that arise in cross-cultural research, see: (Van de Vijver and Leung 2021)\nFor an accessible introduction to causal inference and its history see: (Pearl and Mackenzie 2018)\nBibliography\n\n\n\n\n\n\nBandalos, Deborah L. 2018. Measurement Theory and Applications for the Social Sciences. Guilford Publications.\n\n\nBriggs, Derek C. 2021. Historical and Conceptual Foundations of Measurement in the Human Sciences: Credos and Controversies. Routledge.\n\n\nPearl, Judea, and Dana Mackenzie. 2018. The Book of Why: The New Science of Cause and Effect. Basic books.\n\n\nVan de Vijver, Fons JR, and Kwok Leung. 2021. Methods and Data Analysis for Cross-Cultural Research. Vol. 116. Cambridge University Press."
+    "text": "References\nFor an account of the history of measurement in psychological research, see: [@briggs2021]\nFor an account of key concepts and current debates in psychometrics, see: [@bandalos2018]\nFor an account of special measurement problems that arise in cross-cultural research, see: [@vandevijver2021]\nFor an accessible introduction to causal inference and its history see: [@pearl2018]\n\nBibliography"
   },
   {
     "objectID": "slides/01-slides.html",
     "href": "slides/01-slides.html",
     "title": "Asking questions in cross-cultural psychology",
     "section": "",
-    "text": "Consider ethical problems that cultural research might present.\nUnderstand the special problems that cultural research presents for measurement.\nUnderstand the concept of confounding.\n\n\n\n\n\nMeasurement\nValidity\nA confounder"
+    "text": "Understand the special problems that cultural research presents for measurement.\nUnderstand the deeper, and prior concept of confounding.\n\n\n\n\n\nMeasurement\nValidity\nA confounder"
   },
   {
     "objectID": "content/test.html",
@@ -772,9 +772,9 @@
   {
     "objectID": "about.html",
     "href": "about.html",
-    "title": "About",
+    "title": "PSYC 434 Conducting Research Across Cultures: Trimester 1, 2024",
     "section": "",
-    "text": "About this site [here]\n\n\n\nReuseCC BY-NC-SA 4.0"
+    "text": "ReuseCC BY-NC-SA 4.0"
   },
   {
     "objectID": "content/01-content.html#lecture-introduction-to-the-course",
@@ -1173,7 +1173,7 @@
     "href": "content/01-content.html#appendix-a-at-home-exercises",
     "title": "Asking questions in cross-cultural psychology",
     "section": "Appendix A: At Home Exercises",
-    "text": "Appendix A: At Home Exercises\n\n\n\n\n\n\nExercise 1: Install the tidyverse package\n\n\n\nFollow these instructions to install the tidyverse package in RStudio:\n\nOpen RStudio: launch RStudio on your computer.\nAccess package installation:\n\nNavigate to the menu at the top of RStudio and click on Tools &gt; Install Packages.... This opens the Install Packages dialogue box.\n\nInstall tidyverse:\n\nIn the Install Packages dialogue box, you will see a field labelled “Packages (separate multiple with space or comma):”. Click in this field and type tidyverse.\nBelow the packages field, ensure the checkbox for Install dependencies is checked. This ensures all packages that tidyverse depends on are also installed.\n\nBegin installation:\n\nClick on the Install button to start the installation process.\n\n\nThe installation might take a few minutes. Monitor the progress in the “Console” pane. Once the installation is complete, you will see a message in the console indicating that the process has finished.\n\nLoad tidyverse: After successful installation, you can load the tidyverse package into your R session by typing library(tidyverse) in the console and pressing Enter.\n\n\n\n\n\n\n\n\n\nExercise 2: Install the parameters and report packages\n\n\n\nTo install the parameters and report packages in RStudio, follow these instructions:\n\nOpen RStudio: start by launching the RStudio application on your computer.\nAccess Package Installation:\n\nGo to the RStudio menu bar at the top of the screen and click on Tools &gt; Install Packages.... This action opens the Install Packages dialogue box.\n\nInstall parameters and report:\n\nIn the Install Packages dialogue box, locate the field labelled “Packages (separate multiple with space or comma):”. Click in this field and type parameters, report, separating the package names with a comma.\nMake sure the checkbox for Install dependencies is selected. This ensures that any additional packages needed by parameters and report are also installed.\nClick the Install button to initiate the installation of both packages and their dependencies.\n\n\n\n\n\n\n\n\n\n\nExercise 3: Basic Operations and Data Structure Manipulation\n\n\n\nObjective: Practice creating vectors and performing basic arithmetic operations.\n\nCreate two numeric vectors, vector_a and vector_b, with the following values:\n\nvector_a: 2, 4, 6, 8\nvector_b: 1, 3, 5, 7\n\nPerform the following operations and store the results in new variables:\n\nAdd vector_a and vector_b.\nSubtract vector_b from vector_a.\nMultiply vector_a by 2.\nDivide vector_b by 2.\n\nCalculate the mean and standard deviation of both vector_a and vector_b.\n\n\n\n\n\n\n\n\n\nExercise 4: Working with Data Frames\n\n\n\nObjective: Gain familiarity with data frame creation, manipulation, and basic data exploration functions.\n\nCreate a data frame student_data with the following columns:\n\nid: 1, 2, 3, 4\nname: alice, bob, charlie, diana\nscore: 88, 92, 85, 95\nEnsure you set stringsAsFactors = FALSE.\n\nAdd a new column passed to student_data indicating whether the student passed. Assume a pass mark of 90.\nExtract the name and score of students who passed into a new data frame.\nUse summary(), head(), and str() functions to explore student_data.\n\n\n\n\n\n\n\n\n\nExercise 5 Logical Operations and Subsetting\n\n\n\nObjective: Practice using logical operations to subset data frames.\n\nUsing the student_data data frame from Exercise 2, subset the data to find students who scored above the mean score of the class.\nCreate a vector attendance with values (present, absent, present, present) corresponding to each student’s attendance.\nAdd attendance as a new column to student_data and then subset the data frame to select only the rows where students were present.\n\n\n\n\n\n\n\n\n\nExercise 6: Cross-Tabulation and Analysis\n\n\n\nObjective: Understand the use of table() function for cross-tabulation and analysis.\n\nCreate two-factor variables:\n\nfruit: apple, banana, apple, orange, banana\ncolour: red, yellow, green, orange, green\n\nConvert fruit and colour into factors and then into a data frame named fruit_data.\nUse the table() function to perform a cross-tabulation of fruit by colour.\nInterpret the results. Which fruit has the most colour variety?\n\n\n\n\n\n\n\n\n\nExercise 7: Visualization with ggplot2\n\n\n\nObjective: (If ggplot2 was introduced) Create a simple plot to visualise the data.\n\nInstall and load the ggplot2 package if not already done.\nUsing student_data, create a bar plot showing the scores of students. Use name for the x-axis and score for the y-axis.\nEnhance the plot by adding a title, x and y-axis labels, and use different colours for passed and failed students.\n\nThese exercises are designed to be progressively challenging, ensuring that students apply what they’ve learned about basic operations, data frame manipulation, logical operations, and simple data analysis and visualisation in R.\n\n\n\nSolutions\n\nExercises 1 and 2 have no solutions. Installation worked or it did not! If you have trouble, please see your tutor or instructor.\n\n\n\nSolution Exercise 3: Basic Operations and Data Structure Manipulation\n\n# e.g. create vectors\nvector_a &lt;- c(2, 4, 6, 8)\nvector_b &lt;- c(1, 3, 5, 7)\n\n# operations\nsum_vector &lt;- vector_a + vector_b\ndiff_vector &lt;- vector_a - vector_b\ndouble_vector_a &lt;- vector_a * 2\nhalf_vector_b &lt;- vector_b / 2\n\n#view\nsum_vector\n\n[1]  3  7 11 15\n\ndiff_vector\n\n[1] 1 1 1 1\n\ndouble_vector_a\n\n[1]  4  8 12 16\n\nhalf_vector_b\n\n[1] 0.5 1.5 2.5 3.5\n\n# Mean and Standard Deviation\nmean_a &lt;- mean(vector_a)\nsd_a &lt;- sd(vector_a)\nmean_b &lt;- mean(vector_b)\nsd_b &lt;- sd(vector_b)\n\n# view\nmean_a\n\n[1] 5\n\nsd_a\n\n[1] 2.581989\n\nmean_b\n\n[1] 4\n\nsd_b\n\n[1] 2.581989\n\n\n\n\nSolution 4: Working with Data Frames\n\n# create data frame\nstudent_data &lt;- data.frame(\n  id = 1:4,\n  name = c(\"alice\", \"bob\", \"charlie\", \"diana\"),\n  score = c(88, 92, 85, 95),\n  stringsAsFactors = FALSE\n)\n\n# add `passed` column\nstudent_data$passed &lt;- student_data$score &gt;= 90\n\n# subset students who passed\npassed_students &lt;- student_data[student_data$passed == TRUE, ]\n\n# explore data frame\nsummary(student_data)\n\n       id           name               score         passed       \n Min.   :1.00   Length:4           Min.   :85.00   Mode :logical  \n 1st Qu.:1.75   Class :character   1st Qu.:87.25   FALSE:2        \n Median :2.50   Mode  :character   Median :90.00   TRUE :2        \n Mean   :2.50                      Mean   :90.00                  \n 3rd Qu.:3.25                      3rd Qu.:92.75                  \n Max.   :4.00                      Max.   :95.00                  \n\nhead(student_data)\n\n  id    name score passed\n1  1   alice    88  FALSE\n2  2     bob    92   TRUE\n3  3 charlie    85  FALSE\n4  4   diana    95   TRUE\n\nstr(student_data)\n\n'data.frame':   4 obs. of  4 variables:\n $ id    : int  1 2 3 4\n $ name  : chr  \"alice\" \"bob\" \"charlie\" \"diana\"\n $ score : num  88 92 85 95\n $ passed: logi  FALSE TRUE FALSE TRUE\n\n\n\n\nSolution 5: Logical Operations and Subsetting\n\n# subset data based on score\nmean_score &lt;- mean(student_data$score)\nstudents_above_mean &lt;- student_data[student_data$Score &gt; mean_score, ]\n\n# add attendance and subset\nattendance &lt;- c(\"present\", \"absent\", \"present\", \"present\")\nstudent_data$Attendance &lt;- attendance\npresent_students &lt;- student_data[student_data$Attendance == \"present\", ]\n\n\n\nSolution 6: Cross-Tabulation and Analysis\n\n# create factor variables\nfruit &lt;- factor(c(\"apple\", \"banana\", \"apple\", \"orange\", \"banana\"))\ncolour &lt;- factor(c(\"red\", \"yellow\", \"green\", \"orange\", \"green\"))\n\n# create data frame\nfruit_data &lt;- data.frame(fruit, colour)\n\n# cross-tabulation\nfruit_color_table &lt;- table(fruit_data$fruit, fruit_data$colour)\nprint(fruit_color_table)\n\n        \n         green orange red yellow\n  apple      1      0   1      0\n  banana     1      0   0      1\n  orange     0      1   0      0\n\n# interpretation: Apple has the most colour variety with 2 colours (Red, Green).\n\n\n\nSolution 7: Visualization with ggplot2\n\n# install and load ggplot2\nif (!require(ggplot2)) install.packages(\"ggplot2\")\nlibrary(ggplot2)\n\n# create bar plot\nggplot(student_data, aes(x = name, y = score, fill = passed)) +\n  geom_bar(stat = \"identity\") +\n  scale_fill_manual(values = c(\"TRUE\" = \"blue\", \"FALSE\" = \"red\")) +\n  labs(title = \"Student Scores\", x = \"Name\", y = \"Score\") +\n  theme_minimal()"
+    "text": "Appendix A: At Home Exercises\n\n\n\n\n\n\nExercise 1: Install the tidyverse package\n\n\n\nFollow these instructions to install the tidyverse package in RStudio:\n\nOpen RStudio: launch RStudio on your computer.\nAccess package installation:\n\nNavigate to the menu at the top of RStudio and click on Tools &gt; Install Packages.... This opens the Install Packages dialogue box.\n\nInstall tidyverse:\n\nIn the Install Packages dialogue box, you will see a field labelled “Packages (separate multiple with space or comma):”. Click in this field and type tidyverse.\nBelow the packages field, ensure the checkbox for Install dependencies is checked. This ensures all packages that tidyverse depends on are also installed.\n\nBegin installation:\n\nClick on the Install button to start the installation process.\n\n\nThe installation might take a few minutes. Monitor the progress in the “Console” pane. Once the installation is complete, you will see a message in the console indicating that the process has finished.\n\nLoad tidyverse: After successful installation, you can load the tidyverse package into your R session by typing library(tidyverse) in the console and pressing Enter.\n\n\n\n\n\n\n\n\n\nExercise 2: Install the parameters and report packages\n\n\n\nTo install the parameters and report packages in RStudio, follow these instructions:\n\nOpen RStudio: start by launching the RStudio application on your computer.\nAccess Package Installation:\n\nGo to the RStudio menu bar at the top of the screen and click on Tools &gt; Install Packages.... This action opens the Install Packages dialogue box.\n\nInstall parameters and report:\n\nIn the Install Packages dialogue box, locate the field labelled “Packages (separate multiple with space or comma):”. Click in this field and type parameters, report, separating the package names with a comma.\nMake sure the checkbox for Install dependencies is selected. This ensures that any additional packages needed by parameters and report are also installed.\nClick the Install button to initiate the installation of both packages and their dependencies.\n\n\n\n\n\n\n\n\n\n\nExercise 3: Basic Operations and Data Structure Manipulation\n\n\n\nObjective: Practice creating vectors and performing basic arithmetic operations.\n\nCreate two numeric vectors, vector_a and vector_b, with the following values:\n\nvector_a: 2, 4, 6, 8\nvector_b: 1, 3, 5, 7\n\nPerform the following operations and store the results in new variables:\n\nAdd vector_a and vector_b.\nSubtract vector_b from vector_a.\nMultiply vector_a by 2.\nDivide vector_b by 2.\n\nCalculate the mean and standard deviation of both vector_a and vector_b.\n\n\n\n\n\n\n\n\n\nExercise 4: Working with Data Frames\n\n\n\nObjective: Gain familiarity with data frame creation, manipulation, and basic data exploration functions.\n\nCreate a data frame student_data with the following columns:\n\nid: 1, 2, 3, 4\nname: alice, bob, charlie, diana\nscore: 88, 92, 85, 95\nEnsure you set stringsAsFactors = FALSE.\n\nAdd a new column passed to student_data indicating whether the student passed. Assume a pass mark of 90.\nExtract the name and score of students who passed into a new data frame.\nUse summary(), head(), and str() functions to explore student_data.\n\n\n\n\n\n\n\n\n\nExercise 5 Logical Operations and Subsetting\n\n\n\nObjective: Practice using logical operations to subset data frames.\n\nUsing the student_data data frame from Exercise 2, subset the data to find students who scored above the mean score of the class.\nCreate a vector attendance with values (present, absent, present, present) corresponding to each student’s attendance.\nAdd attendance as a new column to student_data and then subset the data frame to select only the rows where students were present.\n\n\n\n\n\n\n\n\n\nExercise 6: Cross-Tabulation and Analysis\n\n\n\nObjective: Understand the use of table() function for cross-tabulation and analysis.\n\nCreate two-factor variables:\n\nfruit: apple, banana, apple, orange, banana\ncolour: red, yellow, green, orange, green\n\nConvert fruit and colour into factors and then into a data frame named fruit_data.\nUse the table() function to perform a cross-tabulation of fruit by colour.\nInterpret the results. Which fruit has the most colour variety?\n\n\n\n\n\n\n\n\n\nExercise 7: Visualization with ggplot2\n\n\n\nObjective: (If ggplot2 was introduced) Create a simple plot to visualise the data.\n\nInstall and load the ggplot2 package if not already done.\nUsing student_data, create a bar plot showing the scores of students. Use name for the x-axis and score for the y-axis.\nEnhance the plot by adding a title, x and y-axis labels, and use different colours for passed and failed students.\n\nThese exercises are designed to be progressively challenging, ensuring that students apply what they’ve learned about basic operations, data frame manipulation, logical operations, and simple data analysis and visualisation in R."
   },
   {
     "objectID": "content/01-content.html#appendix-c-other-data-types-you-may-encounter",
@@ -1565,7 +1565,7 @@
     "href": "content/01-content.html#base-r-graphs",
     "title": "Asking questions in cross-cultural psychology",
     "section": "Base R Graphs",
-    "text": "Base R Graphs\nAlthough ggplot2 is renowned for its flexibility and aesthetic appeal, Base R graphics remain a staple for straightforward and quick visualisations.\nBase R provides a set of plotting functions that are readily available without the need for additional packages, and it is speedy.\n\nBasic Plotting Functions\n\nplot(): The workhorse of Base R for creating scatter plots, line graphs, and more, with extensive customisation options.\nhist(): Generates histograms to explore the distribution of a single continuous variable.\nboxplot(): Useful for comparing distributions across groups, highlighting medians, quartiles, and outliers.\nbarplot(): Creates bar graphs for visualising categorical data.\n\n\n\nCreating a Basic Scatter Plot with Base R\nConsider simple scatter plot using the data we have just simulated\n\n# basic scatter plot with Base R\nplot(student_data$study_hours, student_data$score,\n     main = \"Scatter Plot of Scores vs. Study Hours\",\n     xlab = \"Study Hours\", ylab = \"Score\",\n     pch = 19, col = ifelse(student_data$passed == \"passed\", \"blue\", \"red\"))\n\n\n\n\n\n\n\n\nThis plot uses the plot function to create a scatter plot, with study hours on the x-axis and scores on the y-axis. The pch parameter specifies the symbol type, and col changes the colour based on whether the student passed or failed.\n\n\nGenerating a Histogram with Base R\nTo visualise the distribution of student scores:\n\n# Histogram with Base R\nhist(student_data$score,\n     breaks = 5,\n     col = \"skyblue\",\n     main = \"Histogram of Student Scores\",\n     xlab = \"Scores\",\n     border = \"white\")\n\n\n\n\n\n\n\n\nThis histogram provides a quick overview of the scores’ distribution, using the hist function with specified breaks, col for colour, and border for the colour of the histogram borders.\n\n\nComparing Distributions with Box Plots\nBox plots in Base R can compare the score distributions across the pass/fail status:\n\n# Box plot with Base R\nboxplot(score ~ passed, data = student_data,\n        main = \"Score Distribution by Pass/Fail Status\",\n        xlab = \"Status\", ylab = \"Scores\",\n        col = c(\"red\", \"blue\"))\n\n\n\n\n\n\n\n\nThis code uses the boxplot function to create box plots for scores, grouped by the pass/fail status, with custom colours for each group."
+    "text": "Base R Graphs\nAlthough ggplot2 is renowned for its flexibility and aesthetic appeal, Base R graphics remain a staple for straightforward and quick visualisations.\nBase R provides a set of plotting functions that are readily available without the need for additional packages, and it is speedy.\n\nBasic Plotting Functions\n\nplot(): The workhorse of Base R for creating scatter plots, line graphs, and more, with extensive customisation options.\nhist(): Generates histograms to explore the distribution of a single continuous variable.\nboxplot(): Useful for comparing distributions across groups, highlighting medians, quartiles, and outliers.\nbarplot(): Creates bar graphs for visualising categorical data.\n\n\n\nCreating a Basic Scatter Plot with Base R\nConsider simple scatter plot using the data we have just simulated\n\n# basic scatter plot with Base R\nplot(student_data$study_hours, student_data$score,\n     main = \"Scatter Plot of Scores vs. Study Hours\",\n     xlab = \"Study Hours\", ylab = \"Score\",\n     pch = 19, col = ifelse(student_data$passed == \"passed\", \"blue\", \"red\"))\n\n\n\n\n\n\n\n\nThis plot uses the plot function to create a scatter plot, with study hours on the x-axis and scores on the y-axis. The pch parameter specifies the symbol type, and col changes the colour based on whether the student passed or failed.\n\n\nGenerating a Histogram with Base R\nTo visualise the distribution of student scores:\n\n# histogram with Base R\nhist(student_data$score,\n     breaks = 5,\n     col = \"skyblue\",\n     main = \"Histogram of Student Scores\",\n     xlab = \"Scores\",\n     border = \"white\")\n\n\n\n\n\n\n\n\nThis histogram provides a quick overview of the scores’ distribution, using the hist function with specified breaks, col for colour, and border for the colour of the histogram borders.\n\n\nGenerate Line Plot with Base R\n\n# must be numeric\nmonths_num &lt;- 1:length(study_data$month) # Simple numeric sequence\n\n# plot points with suppressed x-axis\nplot(months_num, study_data$study_hours, \n     type = \"p\", # Points\n     pch = 19,   # Type of point\n     col = \"red\", \n     xlab = \"Month\", \n     ylab = \"Study Hours\", \n     main = \"Monthly Study Hours\",\n     xaxt = \"n\") # Suppress the x-axis\n\n# add lines between points\nlines(months_num, study_data$study_hours, \n      col = \"blue\", \n      lwd = 1) # Line width\n\n# add custom month labels to the x-axis at appropriate positions\naxis(1, at = months_num, labels = study_data$month, las=2) # `las=2` makes labels perpendicular to axis\n\n# Optional: adding a box around the plot for a minimalistic look\nbox()\n\n\n\n\n\n\n\n\n\n\nComparing Distributions with Box Plots\nBox plots in Base R can compare the score distributions across the pass/fail status:\n\n# Box plot with Base R\nboxplot(score ~ passed, data = student_data,\n        main = \"Score Distribution by Pass/Fail Status\",\n        xlab = \"Status\", ylab = \"Scores\",\n        col = c(\"red\", \"blue\"))\n\n\n\n\n\n\n\n\nThis code uses the boxplot function to create box plots for scores, grouped by the pass/fail status, with custom colours for each group."
   },
   {
     "objectID": "content/01-content.html#lab-summary",
@@ -1607,7 +1607,7 @@
     "href": "content/01-content.html#data-frames",
     "title": "Asking questions in cross-cultural psychology",
     "section": "Data Frames",
-    "text": "Data Frames\n\nCreate Data Frames\nData frames can be created using the data.frame() function, specifying each column and its values. Here’s a simple example:\n\n# clear any previous `df` object \nrm(df)\ndf &lt;- data.frame(\n  name = c(\"alice\", \"bob\", \"charlie\"),\n  age = c(25, 30, 35),\n  gender = c(\"female\", \"male\", \"male\")\n)\n# check structure\nhead(df)\n\n     name age gender\n1   alice  25 female\n2     bob  30   male\n3 charlie  35   male\n\nstr(df)\n\n'data.frame':   3 obs. of  3 variables:\n $ name  : chr  \"alice\" \"bob\" \"charlie\"\n $ age   : num  25 30 35\n $ gender: chr  \"female\" \"male\" \"male\"\n\ntable(df$gender)\n\n\nfemale   male \n     1      2 \n\ntable(df$age)\n\n\n25 30 35 \n 1  1  1 \n\ntable(df$name)\n\n\n  alice     bob charlie \n      1       1       1 \n\n\nIn this example, df is a data frame with three columns (name, age, gender) and three rows, each representing a different individual.\n\n\nAccess Data Frame Elements\nThere are often several ways to do the same thing in R. You can access the elements of a data frame in several ways:\n\nBy column name: use the $ operator followed by the column name.\n\n\nnames &lt;- df$name  # extracts the `name` column\nnames\n\n[1] \"alice\"   \"bob\"     \"charlie\"\n\n\n\nBy row and column: Use the [row, column] indexing. Rows or columns can be specified by number or name.\n\n\n# access data frame elements\nnames &lt;- df$name\nnames\n\n[1] \"alice\"   \"bob\"     \"charlie\"\n\nsecond_person &lt;- df[2, ]\nsecond_person\n\n  name age gender\n2  bob  30   male\n\nage_column &lt;- df[, \"age\"]\nage_column\n\n[1] 25 30 35\n\n\n\nUsing subset() Function: To extract subsets of the data frame based on conditions.\n\n\n# use subset()\nvery_old_people &lt;- subset(df, age &gt; 25)  # extracts rows where `age` is greater than 18\nvery_old_people\n\n     name age gender\n2     bob  30   male\n3 charlie  35   male\n\nsummary(very_old_people$age)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n  30.00   31.25   32.50   32.50   33.75   35.00 \n\nmean(very_old_people$age)\n\n[1] 32.5\n\nmin(very_old_people$age)\n\n[1] 30\n\n\n\n\nExplore Your Data Frames\nFunctions such as head(), tail(), and str() help you explore the first few rows, last few rows, and the structure of the data frame, respectively.\n\nhead(df)  # first six rows\n\n     name age gender\n1   alice  25 female\n2     bob  30   male\n3 charlie  35   male\n\ntail(df)  # last six rows\n\n     name age gender\n1   alice  25 female\n2     bob  30   male\n3 charlie  35   male\n\nstr(df)   # structure of the data frame\n\n'data.frame':   3 obs. of  3 variables:\n $ name  : chr  \"alice\" \"bob\" \"charlie\"\n $ age   : num  25 30 35\n $ gender: chr  \"female\" \"male\" \"male\"\n\n\n\n\nManipulating Data Frames\nData frames can be manipulated in various ways:\n\nAdding Columns: You can add new columns using the $ operator.\n\n\n# adds a new column \"employed\"\ndf$employed &lt;- c(TRUE, TRUE, FALSE)  \n\n# show\nhead(df)\n\n     name age gender employed\n1   alice  25 female     TRUE\n2     bob  30   male     TRUE\n3 charlie  35   male    FALSE\n\n\n\nAdding rows: Use the rbind() function to add new rows.\n\n\nnew_person &lt;- data.frame(name = \"diana\", age = 28, gender = \"female\", employed = TRUE)\ndf &lt;- rbind(df, new_person)\n\n# show\nhead(df)\n\n     name age gender employed\n1   alice  25 female     TRUE\n2     bob  30   male     TRUE\n3 charlie  35   male    FALSE\n4   diana  28 female     TRUE\n\n\n\nModifying values: Access the element or column and assign it a new value.\n\n\n# note brackets\n # changes diana's age to 26\ndf[4, \"age\"] &lt;- 26  \n\n# view row\ndf[4, ]\n\n   name age gender employed\n4 diana  26 female     TRUE\n\n\n\nRemoving columns or rows: set columns to NULL to remove them, or use - with row or column indices.\n\n\nhead(df)\n\n     name age gender employed\n1   alice  25 female     TRUE\n2     bob  30   male     TRUE\n3 charlie  35   male    FALSE\n4   diana  26 female     TRUE\n\n# remove employed column\ndf$employed &lt;- NULL \n\n# check\ndf\n\n     name age gender\n1   alice  25 female\n2     bob  30   male\n3 charlie  35   male\n4   diana  26 female\n\n# remove fourth row (Diana)\ndf &lt;- df[-4, ]  # removes the fourth row\n\n#show  \ndf\n\n     name age gender\n1   alice  25 female\n2     bob  30   male\n3 charlie  35   male\n\n\n\n\nAdd Rows with rbind()\nThe rbind() function in R stands for “row bind”. It is used to combine data frames or matrices by rows. This function is particularly useful when you want to add new observations or records to an existing data frame.\n\n#  adding a new row\nnew_person &lt;- data.frame(name = \"eve\", age = 32, gender = \"female\")\ndf &lt;- rbind(df, new_person)\n\n# verify the row addition\nhead(df)\n\n     name age gender\n1   alice  25 female\n2     bob  30   male\n3 charlie  35   male\n4     eve  32 female\n\n\nWhen using rbind(), ensure that the columns in the data frames being combined match in both name and order. If they do not match, you may encounter errors or unexpected results.\n\n\nAdding Columns with cbind()\nConversely, the cbind() function in R stands for “column bind”. It is used to combine data frames or matrices by columns. This function allows you to add new variables to an existing data frame.\n\n# example of adding a new column\ndf$occupation &lt;- c(\"engineer\", \"doctor\", \"artist\", \"teacher\")  # direct assignment\n\n# or using cbind for a separate vector\noccupation_vector &lt;- c(\"engineer\", \"doctor\", \"artist\", \"teacher\")\ndf &lt;- cbind(df, occupation_vector)\n\n# verify the column addition\nhead(df)\n\n     name age gender occupation occupation_vector\n1   alice  25 female   engineer          engineer\n2     bob  30   male     doctor            doctor\n3 charlie  35   male     artist            artist\n4     eve  32 female    teacher           teacher\n\n\nAs with rbind(), when using cbind(), it is crucial that the data frames or vectors being combined have compatible dimensions. For cbind(), the number of rows must match.\n\n\nConsiderations for rbind() and cbind()\nWhile rbind() and cbind() are straightforward and powerful functions for combining data, they have some limitations:\n\nMatching Column or Row Names: for rbind(), the column names between the data frames need to match exactly. For cbind(), the row numbers must be equal.\nFactor Levels: when binding factors with different levels, R will unify the levels, which can sometimes lead to unexpected results. Be mindful of factor levels when using these functions.\nPerformance: we will use a different approach next week (and following), draing on thedplyr package, which will connect more easily to our workflows.\n\nBy understanding and utilizing rbind() and cbind(), you can efficiently manipulate the structure of your data frames, adding flexibility to your data analysis workflows in R.\n\n\nView Data Structure (summary(), str(), head(), tail())\n\nsummary(): Provides a summary of an object’s structure.\nstr(): Displays the structure of an object.\nhead(): Shows the first few rows of a data frame or the first elements of a vector.\ntail(): Shows the last few rows of a data frame or the last elements of a vector.\n\n\n# iris is a preloaded dataset\nstr(iris) # displays structure of scores_df\n\n'data.frame':   150 obs. of  5 variables:\n $ Sepal.Length: num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...\n $ Sepal.Width : num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...\n $ Petal.Length: num  1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...\n $ Petal.Width : num  0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...\n $ Species     : Factor w/ 3 levels \"setosa\",\"versicolor\",..: 1 1 1 1 1 1 1 1 1 1 ...\n\nsummary(iris) # summary statistics\n\n  Sepal.Length    Sepal.Width     Petal.Length    Petal.Width   \n Min.   :4.300   Min.   :2.000   Min.   :1.000   Min.   :0.100  \n 1st Qu.:5.100   1st Qu.:2.800   1st Qu.:1.600   1st Qu.:0.300  \n Median :5.800   Median :3.000   Median :4.350   Median :1.300  \n Mean   :5.843   Mean   :3.057   Mean   :3.758   Mean   :1.199  \n 3rd Qu.:6.400   3rd Qu.:3.300   3rd Qu.:5.100   3rd Qu.:1.800  \n Max.   :7.900   Max.   :4.400   Max.   :6.900   Max.   :2.500  \n       Species  \n setosa    :50  \n versicolor:50  \n virginica :50  \n                \n                \n                \n\nhead(iris) # first few rows\n\n  Sepal.Length Sepal.Width Petal.Length Petal.Width Species\n1          5.1         3.5          1.4         0.2  setosa\n2          4.9         3.0          1.4         0.2  setosa\n3          4.7         3.2          1.3         0.2  setosa\n4          4.6         3.1          1.5         0.2  setosa\n5          5.0         3.6          1.4         0.2  setosa\n6          5.4         3.9          1.7         0.4  setosa\n\ntail(iris) # last few rows\n\n    Sepal.Length Sepal.Width Petal.Length Petal.Width   Species\n145          6.7         3.3          5.7         2.5 virginica\n146          6.7         3.0          5.2         2.3 virginica\n147          6.3         2.5          5.0         1.9 virginica\n148          6.5         3.0          5.2         2.0 virginica\n149          6.2         3.4          5.4         2.3 virginica\n150          5.9         3.0          5.1         1.8 virginica\n\n\n\n\nmean()\n\nCalculates the arithmetic mean of a numerical object.\n\n\nset.seed(12345)\n\n# we will cover R’s powerful simulation functions like `rnorm()`next week\nvector &lt;- rnorm(n = 40, mean = 0, sd = 1)\nmean(vector)  # note the sampling error here\n\n[1] 0.2401853\n\n\n\n\nsd()\n\nComputes the standard deviation, which measures the amount of variation or dispersion of a set of values.\n\n\nsd(vector)  # replace 'vector' with your numerical vector\n\n[1] 1.038425\n\n\n\n\nmin() and max()\n\nThese functions return a numerical object’s minimum and maximum values, respectively.\n\n\nmin(vector)  # minimum value\n\n[1] -1.817956\n\nmax(vector)  # maximum value\n\n[1] 2.196834\n\n\n\n\ntable()\n\nGenerates a frequency table of an object, useful for categorical data. It counts the number of occurrences of each unique element.\n\n\n#  seed for reproducibility\nset.seed(12345)\nstudent_data &lt;- data.frame(\n  name = c(\"alice\", \"bob\", \"charlie\", \"diana\", \"ethan\", \"fiona\", \"george\", \"hannah\"),\n  score = sample(80:100, 8, replace = TRUE),\n  stringsasfactors = FALSE\n)\n\n# determine pass/fail\nstudent_data$passed &lt;- ifelse(student_data$score &gt;= 90, \"passed\", \"failed\")\n# convert 'passed' to factor\nstudent_data$passed &lt;- factor(student_data$passed, levels = c(\"failed\", \"passed\"))\n\n# simulate study hours\nstudent_data$study_hours &lt;- sample(5:15, 8, replace = TRUE)\n# table for categorical data analysis\ngender &lt;- sample(c(\"male\", \"female\"), size = 100, replace = TRUE, prob = c(0.5, 0.5))\neducation_level &lt;- sample(c(\"high school\", \"bachelor\", \"master\"), size = 100, replace = TRUE, prob = c(0.4, 0.4, 0.2))\ndf_table_example &lt;- data.frame(gender, education_level)\ntable(df_table_example)\n\n        education_level\ngender   bachelor high school master\n  female       14          18     11\n  male         23          20     14\n\n\n\n\nCross-Tabulation with table()\n\ntable() can also be used for cross-tabulation, providing a way to analyse the relationship between two or more factors.\n\n\ntable(df_table_example$gender, df_table_example$education_level)  # crosstab\n\n        \n         bachelor high school master\n  female       14          18     11\n  male         23          20     14\n\n\nThis produces a contingency table showing the counts at each combination of factor1 and factor2 levels.\n\n\nSummary Statistics\nUse summary() to get a summary of each column.\n\n# show\nsummary(df)\n\n     name                age           gender           occupation       \n Length:4           Min.   :25.00   Length:4           Length:4          \n Class :character   1st Qu.:28.75   Class :character   Class :character  \n Mode  :character   Median :31.00   Mode  :character   Mode  :character  \n                    Mean   :30.50                                        \n                    3rd Qu.:32.75                                        \n                    Max.   :35.00                                        \n occupation_vector \n Length:4          \n Class :character  \n Mode  :character"
+    "text": "Data Frames\n\nCreate Data Frames\nData frames can be created using the data.frame() function, specifying each column and its values. Here’s a simple example:\n\n# clear any previous `df` object \nrm(df)\ndf &lt;- data.frame(\n  name = c(\"alice\", \"bob\", \"charlie\"),\n  age = c(25, 30, 35),\n  gender = c(\"female\", \"male\", \"male\")\n)\n# check structure\nhead(df)\n\n     name age gender\n1   alice  25 female\n2     bob  30   male\n3 charlie  35   male\n\nstr(df)\n\n'data.frame':   3 obs. of  3 variables:\n $ name  : chr  \"alice\" \"bob\" \"charlie\"\n $ age   : num  25 30 35\n $ gender: chr  \"female\" \"male\" \"male\"\n\ntable(df$gender)\n\n\nfemale   male \n     1      2 \n\ntable(df$age)\n\n\n25 30 35 \n 1  1  1 \n\ntable(df$name)\n\n\n  alice     bob charlie \n      1       1       1 \n\n\nIn this example, df is a data frame with three columns (name, age, gender) and three rows, each representing a different individual.\n\n\nAccess Data Frame Elements\nThere are often several ways to do the same thing in R. You can access the elements of a data frame in several ways:\n\nBy column name: use the $ operator followed by the column name.\n\n\nnames &lt;- df$name  # extracts the `name` column\nnames\n\n[1] \"alice\"   \"bob\"     \"charlie\"\n\n\n\nBy row and column: Use the [row, column] indexing. Rows or columns can be specified by number or name.\n\n\n# access data frame elements\nnames &lt;- df$name\nnames\n\n[1] \"alice\"   \"bob\"     \"charlie\"\n\nsecond_person &lt;- df[2, ]\nsecond_person\n\n  name age gender\n2  bob  30   male\n\nage_column &lt;- df[, \"age\"]\nage_column\n\n[1] 25 30 35\n\n\n\nUsing subset() Function: To extract subsets of the data frame based on conditions.\n\n\n# use subset()\nvery_old_people &lt;- subset(df, age &gt; 25)  # extracts rows where `age` is greater than 18\nvery_old_people\n\n     name age gender\n2     bob  30   male\n3 charlie  35   male\n\nsummary(very_old_people$age)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n  30.00   31.25   32.50   32.50   33.75   35.00 \n\nmean(very_old_people$age)\n\n[1] 32.5\n\nmin(very_old_people$age)\n\n[1] 30\n\n\n\n\nExplore Your Data Frames\nFunctions such as head(), tail(), and str() help you explore the first few rows, last few rows, and the structure of the data frame, respectively.\n\nhead(df)  # first six rows\n\n     name age gender\n1   alice  25 female\n2     bob  30   male\n3 charlie  35   male\n\ntail(df)  # last six rows\n\n     name age gender\n1   alice  25 female\n2     bob  30   male\n3 charlie  35   male\n\nstr(df)   # structure of the data frame\n\n'data.frame':   3 obs. of  3 variables:\n $ name  : chr  \"alice\" \"bob\" \"charlie\"\n $ age   : num  25 30 35\n $ gender: chr  \"female\" \"male\" \"male\"\n\n\n\n\nManipulating Data Frames\nData frames can be manipulated in various ways:\n\nAdding Columns: You can add new columns using the $ operator.\n\n\n# adds a new column \"employed\"\ndf$employed &lt;- c(TRUE, TRUE, FALSE)  \n\n# show\nhead(df)\n\n     name age gender employed\n1   alice  25 female     TRUE\n2     bob  30   male     TRUE\n3 charlie  35   male    FALSE\n\n\n\nAdding rows: Use the rbind() function to add new rows.\n\n\nnew_person &lt;- data.frame(name = \"diana\", age = 28, gender = \"female\", employed = TRUE)\ndf &lt;- rbind(df, new_person)\n\n# show\nhead(df)\n\n     name age gender employed\n1   alice  25 female     TRUE\n2     bob  30   male     TRUE\n3 charlie  35   male    FALSE\n4   diana  28 female     TRUE\n\n\n\nModifying values: Access the element or column and assign it a new value.\n\n\n# note brackets\n # changes diana's age to 26\ndf[4, \"age\"] &lt;- 26  \n\n# view row\ndf[4, ]\n\n   name age gender employed\n4 diana  26 female     TRUE\n\n\n\nRemoving columns or rows: set columns to NULL to remove them, or use - with row or column indices.\n\n\nhead(df)\n\n     name age gender employed\n1   alice  25 female     TRUE\n2     bob  30   male     TRUE\n3 charlie  35   male    FALSE\n4   diana  26 female     TRUE\n\n# remove employed column\ndf$employed &lt;- NULL \n\n# check\ndf\n\n     name age gender\n1   alice  25 female\n2     bob  30   male\n3 charlie  35   male\n4   diana  26 female\n\n# remove fourth row (Diana)\ndf &lt;- df[-4, ]  # removes the fourth row\n\n#show  \ndf\n\n     name age gender\n1   alice  25 female\n2     bob  30   male\n3 charlie  35   male\n\n\n\n\nAdd Rows with rbind()\nThe rbind() function in R stands for “row bind”. It is used to combine data frames or matrices by rows. This function is particularly useful when you want to add new observations or records to an existing data frame.\n\n#  adding a new row\nnew_person &lt;- data.frame(name = \"eve\", age = 32, gender = \"female\")\ndf &lt;- rbind(df, new_person)\n\n# verify the row addition\nhead(df)\n\n     name age gender\n1   alice  25 female\n2     bob  30   male\n3 charlie  35   male\n4     eve  32 female\n\n\nWhen using rbind(), ensure that the columns in the data frames being combined match in both name and order. If they do not match, you may encounter errors or unexpected results.\n\n\nAdding Columns with cbind()\nConversely, the cbind() function in R stands for “column bind”. It is used to combine data frames or matrices by columns. This function allows you to add new variables to an existing data frame.\n\n# example of adding a new column\ndf$occupation &lt;- c(\"engineer\", \"doctor\", \"artist\", \"doctor\")  # direct assignment\n\n# or using cbind for a separate vector\noccupation_vector &lt;- c(\"engineer\", \"doctor\", \"artist\", \"doctor\")\ndf &lt;- cbind(df, occupation_vector)\n\n# verify the column addition\nhead(df)\n\n     name age gender occupation occupation_vector\n1   alice  25 female   engineer          engineer\n2     bob  30   male     doctor            doctor\n3 charlie  35   male     artist            artist\n4     eve  32 female     doctor            doctor\n\n\nAs with rbind(), when using cbind(), it is crucial that the data frames or vectors being combined have compatible dimensions. For cbind(), the number of rows must match.\n\n\nConsiderations for rbind() and cbind()\nWhile rbind() and cbind() are straightforward and powerful functions for combining data, they have some limitations:\n\nMatching Column or Row Names: for rbind(), the column names between the data frames need to match exactly. For cbind(), the row numbers must be equal.\nFactor Levels: when binding factors with different levels, R will unify the levels, which can sometimes lead to unexpected results. Be mindful of factor levels when using these functions.\nPerformance: we will use a different approach next week (and following), draing on thedplyr package, which will connect more easily to our workflows.\n\nBy understanding and utilizing rbind() and cbind(), you can efficiently manipulate the structure of your data frames, adding flexibility to your data analysis workflows in R.\n\n\nView Data Structure (summary(), str(), head(), tail())\n\nsummary(): Provides a summary of an object’s structure.\nstr(): Displays the structure of an object.\nhead(): Shows the first few rows of a data frame or the first elements of a vector.\ntail(): Shows the last few rows of a data frame or the last elements of a vector.\n\n\n# iris is a preloaded dataset\nstr(iris) # displays structure of scores_df\n\n'data.frame':   150 obs. of  5 variables:\n $ Sepal.Length: num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...\n $ Sepal.Width : num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...\n $ Petal.Length: num  1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...\n $ Petal.Width : num  0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...\n $ Species     : Factor w/ 3 levels \"setosa\",\"versicolor\",..: 1 1 1 1 1 1 1 1 1 1 ...\n\nsummary(iris) # summary statistics\n\n  Sepal.Length    Sepal.Width     Petal.Length    Petal.Width   \n Min.   :4.300   Min.   :2.000   Min.   :1.000   Min.   :0.100  \n 1st Qu.:5.100   1st Qu.:2.800   1st Qu.:1.600   1st Qu.:0.300  \n Median :5.800   Median :3.000   Median :4.350   Median :1.300  \n Mean   :5.843   Mean   :3.057   Mean   :3.758   Mean   :1.199  \n 3rd Qu.:6.400   3rd Qu.:3.300   3rd Qu.:5.100   3rd Qu.:1.800  \n Max.   :7.900   Max.   :4.400   Max.   :6.900   Max.   :2.500  \n       Species  \n setosa    :50  \n versicolor:50  \n virginica :50  \n                \n                \n                \n\nhead(iris) # first few rows\n\n  Sepal.Length Sepal.Width Petal.Length Petal.Width Species\n1          5.1         3.5          1.4         0.2  setosa\n2          4.9         3.0          1.4         0.2  setosa\n3          4.7         3.2          1.3         0.2  setosa\n4          4.6         3.1          1.5         0.2  setosa\n5          5.0         3.6          1.4         0.2  setosa\n6          5.4         3.9          1.7         0.4  setosa\n\ntail(iris) # last few rows\n\n    Sepal.Length Sepal.Width Petal.Length Petal.Width   Species\n145          6.7         3.3          5.7         2.5 virginica\n146          6.7         3.0          5.2         2.3 virginica\n147          6.3         2.5          5.0         1.9 virginica\n148          6.5         3.0          5.2         2.0 virginica\n149          6.2         3.4          5.4         2.3 virginica\n150          5.9         3.0          5.1         1.8 virginica\n\n\n\n\nmean()\n\nCalculates the arithmetic mean of a numerical object.\n\n\nset.seed(12345)\n\n# we will cover R’s powerful simulation functions like `rnorm()`next week\nvector &lt;- rnorm(n = 40, mean = 0, sd = 1)\nmean(vector)  # note the sampling error here\n\n[1] 0.2401853\n\n\n\n\nsd()\n\nComputes the standard deviation, which measures the amount of variation or dispersion of a set of values.\n\n\nsd(vector)  # replace 'vector' with your numerical vector\n\n[1] 1.038425\n\n\n\n\nmin() and max()\n\nThese functions return a numerical object’s minimum and maximum values, respectively.\n\n\nmin(vector)  # minimum value\n\n[1] -1.817956\n\nmax(vector)  # maximum value\n\n[1] 2.196834\n\n\n\n\ntable()\n\nGenerates a frequency table of an object, useful for categorical data. It counts the number of occurrences of each unique element.\n\n\n#  seed for reproducibility\nset.seed(12345)\nstudent_data &lt;- data.frame(\n  name = c(\"alice\", \"bob\", \"charlie\", \"diana\", \"ethan\", \"fiona\", \"george\", \"hannah\"),\n  score = sample(80:100, 8, replace = TRUE),\n  stringsasfactors = FALSE\n)\n\n# determine pass/fail\nstudent_data$passed &lt;- ifelse(student_data$score &gt;= 90, \"passed\", \"failed\")\n# convert 'passed' to factor\nstudent_data$passed &lt;- factor(student_data$passed, levels = c(\"failed\", \"passed\"))\n\n# simulate study hours\nstudent_data$study_hours &lt;- sample(5:15, 8, replace = TRUE)\n# table for categorical data analysis\ngender &lt;- sample(c(\"male\", \"female\"), size = 100, replace = TRUE, prob = c(0.5, 0.5))\neducation_level &lt;- sample(c(\"high school\", \"bachelor\", \"master\"), size = 100, replace = TRUE, prob = c(0.4, 0.4, 0.2))\ndf_table_example &lt;- data.frame(gender, education_level)\ntable(df_table_example)\n\n        education_level\ngender   bachelor high school master\n  female       14          18     11\n  male         23          20     14\n\n\n\n\nCross-Tabulation with table()\n\ntable() can also be used for cross-tabulation, providing a way to analyse the relationship between two or more factors.\n\n\ntable(df_table_example$gender, df_table_example$education_level)  # crosstab\n\n        \n         bachelor high school master\n  female       14          18     11\n  male         23          20     14\n\n\nThis produces a contingency table showing the counts at each combination of factor1 and factor2 levels.\n\n\nSummary Statistics\nUse summary() to get a summary of each column.\n\n# show\nsummary(df)\n\n     name                age           gender           occupation       \n Length:4           Min.   :25.00   Length:4           Length:4          \n Class :character   1st Qu.:28.75   Class :character   Class :character  \n Mode  :character   Median :31.00   Mode  :character   Mode  :character  \n                    Mean   :30.50                                        \n                    3rd Qu.:32.75                                        \n                    Max.   :35.00                                        \n occupation_vector \n Length:4          \n Class :character  \n Mode  :character"
   },
   {
     "objectID": "content/01-content.html#summary-of-todays-lab",
@@ -1629,5 +1629,467 @@
     "title": "PSYC 434 Conducting Research Across Cultures: Trimester 1, 2024",
     "section": "",
     "text": "Structure is as follows:\n\n\n01-lab.R - introduction to R script: intsallation/basic commands/graphing"
+  },
+  {
+    "objectID": "content/01-content.html#appendix-b-solutions",
+    "href": "content/01-content.html#appendix-b-solutions",
+    "title": "Asking questions in cross-cultural psychology",
+    "section": "Appendix B: Solutions",
+    "text": "Appendix B: Solutions\n\nSolutions 1 and 2\n\nExercises 1 and 2 have no solutions. Installation worked or it did not! If you have trouble, please see your tutor or instructor.\n\n\n\nSolution Exercise 3: Basic Operations and Data Structure Manipulation\n\n# e.g. create vectors\nvector_a &lt;- c(2, 4, 6, 8)\nvector_b &lt;- c(1, 3, 5, 7)\n\n# operations\nsum_vector &lt;- vector_a + vector_b\ndiff_vector &lt;- vector_a - vector_b\ndouble_vector_a &lt;- vector_a * 2\nhalf_vector_b &lt;- vector_b / 2\n\n#view\nsum_vector\n\n[1]  3  7 11 15\n\ndiff_vector\n\n[1] 1 1 1 1\n\ndouble_vector_a\n\n[1]  4  8 12 16\n\nhalf_vector_b\n\n[1] 0.5 1.5 2.5 3.5\n\n# Mean and Standard Deviation\nmean_a &lt;- mean(vector_a)\nsd_a &lt;- sd(vector_a)\nmean_b &lt;- mean(vector_b)\nsd_b &lt;- sd(vector_b)\n\n# view\nmean_a\n\n[1] 5\n\nsd_a\n\n[1] 2.581989\n\nmean_b\n\n[1] 4\n\nsd_b\n\n[1] 2.581989\n\n\n\n\nSolution 4: Working with Data Frames\n\n# create data frame\nstudent_data &lt;- data.frame(\n  id = 1:4,\n  name = c(\"alice\", \"bob\", \"charlie\", \"diana\"),\n  score = c(88, 92, 85, 95),\n  stringsAsFactors = FALSE\n)\n\n# add `passed` column\nstudent_data$passed &lt;- student_data$score &gt;= 90\n\n# subset students who passed\npassed_students &lt;- student_data[student_data$passed == TRUE, ]\n\n# explore data frame\nsummary(student_data)\n\n       id           name               score         passed       \n Min.   :1.00   Length:4           Min.   :85.00   Mode :logical  \n 1st Qu.:1.75   Class :character   1st Qu.:87.25   FALSE:2        \n Median :2.50   Mode  :character   Median :90.00   TRUE :2        \n Mean   :2.50                      Mean   :90.00                  \n 3rd Qu.:3.25                      3rd Qu.:92.75                  \n Max.   :4.00                      Max.   :95.00                  \n\nhead(student_data)\n\n  id    name score passed\n1  1   alice    88  FALSE\n2  2     bob    92   TRUE\n3  3 charlie    85  FALSE\n4  4   diana    95   TRUE\n\nstr(student_data)\n\n'data.frame':   4 obs. of  4 variables:\n $ id    : int  1 2 3 4\n $ name  : chr  \"alice\" \"bob\" \"charlie\" \"diana\"\n $ score : num  88 92 85 95\n $ passed: logi  FALSE TRUE FALSE TRUE\n\n\n\n\nSolution 5: Logical Operations and Subsetting\n\n# subset data based on score\nmean_score &lt;- mean(student_data$score)\nstudents_above_mean &lt;- student_data[student_data$Score &gt; mean_score, ]\n\n# add attendance and subset\nattendance &lt;- c(\"present\", \"absent\", \"present\", \"present\")\nstudent_data$Attendance &lt;- attendance\npresent_students &lt;- student_data[student_data$Attendance == \"present\", ]\n\n\n\nSolution 6: Cross-Tabulation and Analysis\n\n# create factor variables\nfruit &lt;- factor(c(\"apple\", \"banana\", \"apple\", \"orange\", \"banana\"))\ncolour &lt;- factor(c(\"red\", \"yellow\", \"green\", \"orange\", \"green\"))\n\n# create data frame\nfruit_data &lt;- data.frame(fruit, colour)\n\n# cross-tabulation\nfruit_color_table &lt;- table(fruit_data$fruit, fruit_data$colour)\nprint(fruit_color_table)\n\n        \n         green orange red yellow\n  apple      1      0   1      0\n  banana     1      0   0      1\n  orange     0      1   0      0\n\n# interpretation: Apple has the most colour variety with 2 colours (Red, Green).\n\n\n\nSolution 7: Visualization with ggplot2\n\n# install and load ggplot2\nif (!require(ggplot2)) install.packages(\"ggplot2\")\nlibrary(ggplot2)\n\n# create bar plot\nggplot(student_data, aes(x = name, y = score, fill = passed)) +\n  geom_bar(stat = \"identity\") +\n  scale_fill_manual(values = c(\"TRUE\" = \"blue\", \"FALSE\" = \"red\")) +\n  labs(title = \"Student Scores\", x = \"Name\", y = \"Score\") +\n  theme_minimal()"
+  },
+  {
+    "objectID": "content/01-content.html#appendix-b-other-data-types-you-may-encounter",
+    "href": "content/01-content.html#appendix-b-other-data-types-you-may-encounter",
+    "title": "Asking questions in cross-cultural psychology",
+    "section": "Appendix B: Other Data Types You May Encounter",
+    "text": "Appendix B: Other Data Types You May Encounter\n\nArrays and Matrices\nArrays are multi-dimensional data structures, while matrices are two-dimensional.\n\nmatrix_1 &lt;- matrix(1:9, nrow = 3) # creates a 3x3 matrix\narray_1 &lt;- array(1:12, dim = c(2, 3, 2)) # creates a 2x3x2 array\n\n\n\nConvert Matrix to Data Frame\nA data.frame is used for storing tabular data.\n\n# change matrix to array:\ndf_matrix_1 &lt;- data.frame( matrix_1 )\n\nstr(df_matrix_1)\n\n'data.frame':   3 obs. of  3 variables:\n $ X1: int  1 2 3\n $ X2: int  4 5 6\n $ X3: int  7 8 9\n\nhead(df_matrix_1)\n\n  X1 X2 X3\n1  1  4  7\n2  2  5  8\n3  3  6  9\n\n# change colnames\nnew_colnames &lt;- c(\"col_1\", \"col_2\", \"col_3\")\n\ncolnames(df_matrix_1)&lt;- new_colnames\n\n# check\nstr(df_matrix_1)  \n\n'data.frame':   3 obs. of  3 variables:\n $ col_1: int  1 2 3\n $ col_2: int  4 5 6\n $ col_3: int  7 8 9\n\nhead(df_matrix_1)\n\n  col_1 col_2 col_3\n1     1     4     7\n2     2     5     8\n3     3     6     9\n\n\n\n\nWorking with Lists in R\n\nCreating lists\nTo create a list, you use the list() function.\n\n# Creating a simple list\nmy_list &lt;- list(name = \"John Doe\", age = 30, scores = c(90, 80, 70))\n\n# A list containing various types of elements, including another list\ncomplex_list &lt;- list(id = 1, name = \"Jane Doe\", preferences = list(color = \"blue\", hobby = \"reading\"))\n\n\n\nAccessing list elements\nList elements can be accessed using the [[ ]] notation for single elements, or the $ notation if you’re accessing named elements:\n\n# Accessing elements\nname &lt;- my_list$name  # or my_list[[\"name\"]]\n\npreference_color &lt;- complex_list$preferences$color\n\n\n\nModifying lists\nLists can be modified by adding new elements, changing existing elements, or removing elements:\n\n# Adding a new element\nmy_list$gender &lt;- \"Male\"\n\n# Changing an existing element\nmy_list$age &lt;- 31\n\n# Removing an element\nmy_list$scores &lt;- NULL\n\n\n\nLists in Functions\nLists are often used as return values for functions that need to provide multiple pieces of data:\n\n# Function returning a list\ncalculate_stats &lt;- function(numbers) {\n  mean_val &lt;- mean(numbers)\n  sum_val &lt;- sum(numbers)\n  return(list(mean = mean_val, sum = sum_val))\n}\n\n# Using the function\nresults &lt;- calculate_stats(c(1, 2, 3, 4, 5))"
+  },
+  {
+    "objectID": "slides/01-slides-lab.html#the-problem-is-confounding-what-can-we-do-about-it",
+    "href": "slides/01-slides-lab.html#the-problem-is-confounding-what-can-we-do-about-it",
+    "title": "Week 1: Intalling and Using R",
+    "section": "The problem is confounding: what can we do about it?",
+    "text": "The problem is confounding: what can we do about it?\n\nWeeks 2-4: Causal Diagrams"
+  },
+  {
+    "objectID": "slides/01-slides-lab.html#what-have-we-learned",
+    "href": "slides/01-slides-lab.html#what-have-we-learned",
+    "title": "Week 1: Intalling and Using R",
+    "section": "What have we learned?",
+    "text": "What have we learned?\nKey Concepts ::: {.fragment .highlight-red} 1. Measurement = quantification 2. Validity = accuracy 3. Confounder = interference :::"
+  },
+  {
+    "objectID": "slides/01-slides-lab.html#references",
+    "href": "slides/01-slides-lab.html#references",
+    "title": "Week 1: Intalling and Using R",
+    "section": "References",
+    "text": "References\n\nBibliography"
+  },
+  {
+    "objectID": "slides/01-slides-lab.html#introduction",
+    "href": "slides/01-slides-lab.html#introduction",
+    "title": "Week 1: Intalling and Using R",
+    "section": "Introduction",
+    "text": "Introduction\n\nWhy learn R?\nYou’ll need it for your final report.\nSupports your psychology coursework.\nEnhances your coding skills."
+  },
+  {
+    "objectID": "slides/01-slides-lab.html#installing-r",
+    "href": "slides/01-slides-lab.html#installing-r",
+    "title": "Week 1: Intalling and Using R",
+    "section": "Installing R",
+    "text": "Installing R\n\nVisit the comprehensive r archive network (cran) at https://cran.r-project.org/\nSelect the version of r suitable for your operating system (windows, mac, or linux)\nDownload and install it by following the on-screen instructions"
+  },
+  {
+    "objectID": "slides/01-slides-lab.html#installing-rstudio",
+    "href": "slides/01-slides-lab.html#installing-rstudio",
+    "title": "Week 1: Intalling and Using R",
+    "section": "Installing RStudio",
+    "text": "Installing RStudio\n\nVisit rstudio download page at https://www.rstudio.com/products/rstudio/download/\nChoose the free version of rstudio desktop,\nDownload it for your operating system\nInstall and open"
+  },
+  {
+    "objectID": "slides/01-slides-lab.html#create-new-project",
+    "href": "slides/01-slides-lab.html#create-new-project",
+    "title": "Week 1: Intalling and Using R",
+    "section": "Create new project",
+    "text": "Create new project\n\nfile &gt; new project\nChoose new directory\nSpecify the location where the project folder will be created\nClick create project"
+  },
+  {
+    "objectID": "slides/01-slides-lab.html#exercise-1-install-tidyverse",
+    "href": "slides/01-slides-lab.html#exercise-1-install-tidyverse",
+    "title": "Week 1: Intalling and Using R",
+    "section": "Exercise 1: Install tidyverse",
+    "text": "Exercise 1: Install tidyverse\n\nOpen rstudio: launch rstudio on your computer\ntools &gt; install packages\nType tidyverse\nClick on the install button\nType library(tidyverse) in the console and press enter"
+  },
+  {
+    "objectID": "slides/01-slides-lab.html#basic-r-commands",
+    "href": "slides/01-slides-lab.html#basic-r-commands",
+    "title": "Week 1: Intalling and Using R",
+    "section": "Basic R commands",
+    "text": "Basic R commands\n\nexecute code\n\nctrl + enter (windows/linux) or cmd + enter (mac).\n\nrstudio assignment operator shortcut:\n\nfor macos: option + - (minus key) inserts &lt;-.\nfor windows and linux: alt + - (minus key) inserts &lt;-.\n\n\n\nx &lt;- 10 # assigns the value 10 to x\ny &lt;- 5 # assigns the value 5 to y\n\n# this does the same\nx = 10\ny = 5\n\n# note what happens when we do this\n# 10 = 5 # not run\n\n# but we can do this\n10 == 5 # considered below\n\n[1] FALSE"
+  },
+  {
+    "objectID": "slides/01-slides-lab.html#else",
+    "href": "slides/01-slides-lab.html#else",
+    "title": "Week 1: Intalling and Using R",
+    "section": "else",
+    "text": "else\n\n## Simulate data \nset.seed(123)\nsim_fun_B = function() {\n  n &lt;- 1000\n  A &lt;- rnorm(n, 1) # simulates age,\n  H &lt;- rnorm(n , A) #  simulates happy as function of age\n  M &lt;- rnorm(n , A) + .2 * H # simulate marriage as a function of age + happiness\n\n  \n# Simulate dataframe from function\nsimdat_B &lt;- data.frame(\n  A = A, \n  H = H,\n  M = M) \n\n#  model in which marriage \"predicts\" happiness controlling for age\nsim_B &lt;- lm(H ~ M + A, data = simdat_B)\nsim_B  # returns output\n}\n\n# Replication 100 times\nr_lm_B &lt;- NA\nr_lm_B = replicate(100, sim_fun_B(), simplify = FALSE )\n\n# print model results\nparameters::pool_parameters(r_lm_B)\n\n# Fixed Effects\n\nParameter   | Coefficient |   SE |        95% CI | Statistic |     df |      p\n------------------------------------------------------------------------------\n(Intercept) |    4.12e-03 | 0.06 | [-0.12, 0.13] |      0.07 | 220.99 | 0.947 \nM           |        0.19 | 0.04 | [ 0.10, 0.27] |      4.42 | 234.19 | &lt; .001\nA           |        0.77 | 0.07 | [ 0.64, 0.91] |     11.17 | 211.13 | &lt; .001"
+  },
+  {
+    "objectID": "slides/01-slides-lab.html#executing-code",
+    "href": "slides/01-slides-lab.html#executing-code",
+    "title": "Week 1: Intalling and Using R",
+    "section": "Executing Code",
+    "text": "Executing Code\n\nTo execute code in RStudio, use Ctrl + Enter (Windows/Linux) or Cmd + Enter (Mac)."
+  },
+  {
+    "objectID": "slides/01-slides-lab.html#assignment-operator",
+    "href": "slides/01-slides-lab.html#assignment-operator",
+    "title": "Week 1: Intalling and Using R",
+    "section": "Assignment Operator",
+    "text": "Assignment Operator\nThe assignment operator in R is &lt;-. This operator assigns values to variables.\n\nx &lt;- 10 # assigns the value 10 to x\ny &lt;- 5  # assigns the value 5 to y\n\nAlternative assignment:\n\nx = 10\ny = 5\n\nComparing values:\n\n10 == 5 # returns FALSE\n\n[1] FALSE"
+  },
+  {
+    "objectID": "slides/01-slides-lab.html#rstudio-assignment-operator-shortcut",
+    "href": "slides/01-slides-lab.html#rstudio-assignment-operator-shortcut",
+    "title": "Week 1: Intalling and Using R",
+    "section": "RStudio Assignment Operator Shortcut",
+    "text": "RStudio Assignment Operator Shortcut\n\nFor macOS: Option + - inserts &lt;-.\nFor Windows and Linux: Alt + - inserts &lt;-."
+  },
+  {
+    "objectID": "slides/01-slides-lab.html#keyboard-shortcuts",
+    "href": "slides/01-slides-lab.html#keyboard-shortcuts",
+    "title": "Week 1: Intalling and Using R",
+    "section": "Keyboard Shortcuts",
+    "text": "Keyboard Shortcuts\nExplore keyboard shortcuts in RStudio through Tools -&gt; Keyboard Shortcuts Help."
+  },
+  {
+    "objectID": "slides/01-slides-lab.html#concatenation",
+    "href": "slides/01-slides-lab.html#concatenation",
+    "title": "Week 1: Intalling and Using R",
+    "section": "Concatenation",
+    "text": "Concatenation\nThe c() function combines multiple elements into a vector.\n\nnumbers &lt;- c(1, 2, 3, 4, 5) # a vector of numbers\nprint(numbers)\n\n[1] 1 2 3 4 5"
+  },
+  {
+    "objectID": "slides/01-slides-lab.html#arithmetic-operations",
+    "href": "slides/01-slides-lab.html#arithmetic-operations",
+    "title": "Week 1: Intalling and Using R",
+    "section": "Arithmetic Operations",
+    "text": "Arithmetic Operations\nAddition and subtraction in R:\n\nsum &lt;- x + y\nprint(sum)\n\n[1] 15\n\ndifference &lt;- x - y\nprint(difference)\n\n[1] 5"
+  },
+  {
+    "objectID": "slides/01-slides-lab.html#multiplication-and-division",
+    "href": "slides/01-slides-lab.html#multiplication-and-division",
+    "title": "Week 1: Intalling and Using R",
+    "section": "Multiplication and Division",
+    "text": "Multiplication and Division\n\n# Scalar operations\nproduct &lt;- x * y\nquotient &lt;- x / y\n\n\n# vector multiplication and division\nvector1 &lt;- c(1, 2, 3)\nvector2 &lt;- c(4, 5, 6)\n\n# Vector operations\nvector_product &lt;- vector1 * vector2\nvector_division &lt;- vector1 / vector2\n\nBe cautious with division by zero:\n\nresult &lt;- 10 / 0 # Inf\nzero_division &lt;- 0 / 0 # NaN\n\nInteger division and modulo operation:\n\ninteger_division &lt;- 10 %/% 3\nremainder &lt;- 10 %% 3"
+  },
+  {
+    "objectID": "slides/01-slides-lab.html#logical-operators",
+    "href": "slides/01-slides-lab.html#logical-operators",
+    "title": "Week 1: Intalling and Using R",
+    "section": "Logical Operators",
+    "text": "Logical Operators\nExamples of NOT, NOT EQUAL, and EQUAL operations:\n\nx_not_y &lt;- x != y\nx_equal_10 &lt;- x == 10\n\nOR and AND operations:\n\nvector_or &lt;- c(TRUE, FALSE) | c(FALSE, TRUE)\nsingle_or &lt;- TRUE || FALSE\n\nvector_and &lt;- c(TRUE, FALSE) & c(FALSE, TRUE)\nsingle_and &lt;- TRUE && FALSE"
+  },
+  {
+    "objectID": "slides/01-slides-lab.html#integers",
+    "href": "slides/01-slides-lab.html#integers",
+    "title": "Week 1: Intalling and Using R",
+    "section": "Integers",
+    "text": "Integers\n\nWhole numbers without decimal points, defined with an L suffix\n\n\nx &lt;- 42L\nstr(x) # check type\n\n int 42\n\n\n\nConversion to numeric\n\n\ny &lt;- as.numeric(x)\nstr(y)\n\n num 42"
+  },
+  {
+    "objectID": "slides/01-slides-lab.html#characters",
+    "href": "slides/01-slides-lab.html#characters",
+    "title": "Week 1: Intalling and Using R",
+    "section": "Characters",
+    "text": "Characters\n\nText strings enclosed in quotes\n\n\nname &lt;- \"alice\""
+  },
+  {
+    "objectID": "slides/01-slides-lab.html#factors",
+    "href": "slides/01-slides-lab.html#factors",
+    "title": "Week 1: Intalling and Using R",
+    "section": "Factors",
+    "text": "Factors\n\nRepresent categorical data with limited values\n\n\ncolors &lt;- factor(c(\"red\", \"blue\", \"green\"))"
+  },
+  {
+    "objectID": "slides/01-slides-lab.html#ordered-factors",
+    "href": "slides/01-slides-lab.html#ordered-factors",
+    "title": "Week 1: Intalling and Using R",
+    "section": "Ordered Factors",
+    "text": "Ordered Factors\n\nFactors with and without inherent order\n\n\neducation_levels &lt;- c(\"high school\", \"bachelor\", \"master\", \"ph.d.\")\neducation_factor_no_order &lt;- factor(education_levels, ordered = FALSE)\neducation_factor &lt;- factor(education_levels, ordered = TRUE)\neducation_ordered_explicit &lt;- factor(education_levels, levels = education_levels, ordered = TRUE)\n\n\nOperations with ordered factors\n\n\nedu1 &lt;- ordered(\"bachelor\", levels = education_levels)\nedu2 &lt;- ordered(\"master\", levels = education_levels)\nedu2 &gt; edu1 # logical comparison\n\n[1] TRUE\n\n\n\nModifying ordered factors\n\n\nnew_levels &lt;- c(\"primary school\", \"high school\", \"bachelor\", \"master\", \"ph.d.\")\neducation_updated &lt;- factor(education_levels, levels = new_levels, ordered = TRUE)\nstr(education_updated)\n\n Ord.factor w/ 5 levels \"primary school\"&lt;..: 2 3 4 5\n\ntable(education_updated)\n\neducation_updated\nprimary school    high school       bachelor         master          ph.d. \n             0              1              1              1              1"
+  },
+  {
+    "objectID": "slides/01-slides-lab.html#strings",
+    "href": "slides/01-slides-lab.html#strings",
+    "title": "Week 1: Intalling and Using R",
+    "section": "Strings",
+    "text": "Strings\n\nSequences of characters\n\n\nyou &lt;- 'world!'\ngreeting &lt;- paste(\"hello,\", you)\n# hello world\ngreeting\n\n[1] \"hello, world!\""
+  },
+  {
+    "objectID": "slides/01-slides-lab.html#vectors",
+    "href": "slides/01-slides-lab.html#vectors",
+    "title": "Week 1: Intalling and Using R",
+    "section": "Vectors",
+    "text": "Vectors\n\nFundamental data structure in R\n\n\nnumeric_vector &lt;- c(1, 2, 3, 4, 5)\ncharacter_vector &lt;- c(\"apple\", \"banana\", \"cherry\")\nlogical_vector &lt;- c(TRUE, FALSE, TRUE, FALSE)\n\n\nManipulating vectors\n\n\nvector_sum &lt;- numeric_vector + 10\nvector_multiplication &lt;- numeric_vector * 2\nvector_greater_than_three &lt;- numeric_vector &gt; 3"
+  },
+  {
+    "objectID": "slides/01-slides-lab.html#table-function",
+    "href": "slides/01-slides-lab.html#table-function",
+    "title": "Week 1: Intalling and Using R",
+    "section": "table() Function",
+    "text": "table() Function\n\nGenerates frequency tables for categorical data\n\n\ntable(vector_greater_than_three)\n\nvector_greater_than_three\nFALSE  TRUE \n    3     2"
+  },
+  {
+    "objectID": "slides/01-slides-lab.html#dataframes",
+    "href": "slides/01-slides-lab.html#dataframes",
+    "title": "Week 1: Intalling and Using R",
+    "section": "Dataframes",
+    "text": "Dataframes\n\nCreating and manipulating data frames\n\n\n# clear previous `df` object (if any)\nrm(df)\ndf &lt;- data.frame(\n  name = c(\"alice\", \"bob\", \"charlie\"),\n  age = c(25, 30, 35),\n  gender = c(\"female\", \"male\", \"male\")\n)\n# look at structure\nhead(df)\n\n     name age gender\n1   alice  25 female\n2     bob  30   male\n3 charlie  35   male\n\nstr(df)\n\n'data.frame':   3 obs. of  3 variables:\n $ name  : chr  \"alice\" \"bob\" \"charlie\"\n $ age   : num  25 30 35\n $ gender: chr  \"female\" \"male\" \"male\"\n\ntable(df$gender)\n\n\nfemale   male \n     1      2 \n\ntable(df$age)\n\n\n25 30 35 \n 1  1  1 \n\ntable(df$name)\n\n\n  alice     bob charlie \n      1       1       1"
+  },
+  {
+    "objectID": "slides/01-slides-lab.html#accessing-data-frame-elements",
+    "href": "slides/01-slides-lab.html#accessing-data-frame-elements",
+    "title": "Week 1: Intalling and Using R",
+    "section": "Accessing Data Frame Elements",
+    "text": "Accessing Data Frame Elements\n\nBy column name and row/column indexing\n\n\n# by column name\nnames &lt;- df$name\n# by row and column\nsecond_person &lt;- df[2, ]\nage_column &lt;- df[, \"age\"]"
+  },
+  {
+    "objectID": "slides/01-slides-lab.html#using-subset-function",
+    "href": "slides/01-slides-lab.html#using-subset-function",
+    "title": "Week 1: Intalling and Using R",
+    "section": "Using subset() Function",
+    "text": "Using subset() Function\n\nExtracting rows based on conditions\n\n\nvery_old_people &lt;- subset(df, age &gt; 25)\nsummary(very_old_people$age)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n  30.00   31.25   32.50   32.50   33.75   35.00 \n\nmean(very_old_people$age)\n\n[1] 32.5\n\nmin(very_old_people$age)\n\n[1] 30"
+  },
+  {
+    "objectID": "slides/01-slides-lab.html#exploring-data-frames",
+    "href": "slides/01-slides-lab.html#exploring-data-frames",
+    "title": "Week 1: Intalling and Using R",
+    "section": "Exploring Data Frames",
+    "text": "Exploring Data Frames\n\nUsing head(), tail(), and str()\n\n\nhead(df)\n\n     name age gender\n1   alice  25 female\n2     bob  30   male\n3 charlie  35   male\n\ntail(df)\n\n     name age gender\n1   alice  25 female\n2     bob  30   male\n3 charlie  35   male\n\nstr(df)\n\n'data.frame':   3 obs. of  3 variables:\n $ name  : chr  \"alice\" \"bob\" \"charlie\"\n $ age   : num  25 30 35\n $ gender: chr  \"female\" \"male\" \"male\""
+  },
+  {
+    "objectID": "slides/01-slides-lab.html#manipulating-data-frames",
+    "href": "slides/01-slides-lab.html#manipulating-data-frames",
+    "title": "Week 1: Intalling and Using R",
+    "section": "Manipulating Data Frames",
+    "text": "Manipulating Data Frames\n\nAdding and modifying columns and rows\n\n\n# Adding columns\ndf$employed &lt;- c(TRUE, TRUE, FALSE)\n# Adding rows\nnew_person &lt;- data.frame(name = \"diana\", age = 28, gender = \"female\", employed = TRUE)\ndf &lt;- rbind(df, new_person)\n# Modifying values\ndf[4, \"age\"] &lt;- 26\ndf\n\n     name age gender employed\n1   alice  25 female     TRUE\n2     bob  30   male     TRUE\n3 charlie  35   male    FALSE\n4   diana  26 female     TRUE"
+  },
+  {
+    "objectID": "slides/01-slides-lab.html#rbind-and-cbind",
+    "href": "slides/01-slides-lab.html#rbind-and-cbind",
+    "title": "Week 1: Intalling and Using R",
+    "section": "rbind() and cbind()",
+    "text": "rbind() and cbind()\n\nAdding rows and columns to data frames\n\n\n# add rows with `rbind()`\nnew_person &lt;- data.frame(name = \"eve\", age = 32, gender = \"female\", employed = TRUE)\ndf &lt;- rbind(df, new_person)\n# add columns with `cbind()`\noccupation_vector &lt;- c(\"engineer\", \"doctor\", \"artist\", \"teacher\", \"doctor\")\ndf &lt;- cbind(df, occupation_vector)\ndf\n\n     name age gender employed occupation_vector\n1   alice  25 female     TRUE          engineer\n2     bob  30   male     TRUE            doctor\n3 charlie  35   male    FALSE            artist\n4   diana  26 female     TRUE           teacher\n5     eve  32 female     TRUE            doctor"
+  },
+  {
+    "objectID": "slides/01-slides-lab.html#data-structure-view",
+    "href": "slides/01-slides-lab.html#data-structure-view",
+    "title": "Week 1: Intalling and Using R",
+    "section": "Data Structure View",
+    "text": "Data Structure View\n\nUsing summary(), str(), head(), and tail()\n\n\nstr(iris)\n\n'data.frame':   150 obs. of  5 variables:\n $ Sepal.Length: num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...\n $ Sepal.Width : num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...\n $ Petal.Length: num  1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...\n $ Petal.Width : num  0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...\n $ Species     : Factor w/ 3 levels \"setosa\",\"versicolor\",..: 1 1 1 1 1 1 1 1 1 1 ...\n\nsummary(iris)\n\n  Sepal.Length    Sepal.Width     Petal.Length    Petal.Width   \n Min.   :4.300   Min.   :2.000   Min.   :1.000   Min.   :0.100  \n 1st Qu.:5.100   1st Qu.:2.800   1st Qu.:1.600   1st Qu.:0.300  \n Median :5.800   Median :3.000   Median :4.350   Median :1.300  \n Mean   :5.843   Mean   :3.057   Mean   :3.758   Mean   :1.199  \n 3rd Qu.:6.400   3rd Qu.:3.300   3rd Qu.:5.100   3rd Qu.:1.800  \n Max.   :7.900   Max.   :4.400   Max.   :6.900   Max.   :2.500  \n       Species  \n setosa    :50  \n versicolor:50  \n virginica :50  \n                \n                \n                \n\nhead(iris)\n\n  Sepal.Length Sepal.Width Petal.Length Petal.Width Species\n1          5.1         3.5          1.4         0.2  setosa\n2          4.9         3.0          1.4         0.2  setosa\n3          4.7         3.2          1.3         0.2  setosa\n4          4.6         3.1          1.5         0.2  setosa\n5          5.0         3.6          1.4         0.2  setosa\n6          5.4         3.9          1.7         0.4  setosa\n\ntail(iris)\n\n    Sepal.Length Sepal.Width Petal.Length Petal.Width   Species\n145          6.7         3.3          5.7         2.5 virginica\n146          6.7         3.0          5.2         2.3 virginica\n147          6.3         2.5          5.0         1.9 virginica\n148          6.5         3.0          5.2         2.0 virginica\n149          6.2         3.4          5.4         2.3 virginica\n150          5.9         3.0          5.1         1.8 virginica"
+  },
+  {
+    "objectID": "slides/01-slides-lab.html#statistical-functions",
+    "href": "slides/01-slides-lab.html#statistical-functions",
+    "title": "Week 1: Intalling and Using R",
+    "section": "Statistical Functions",
+    "text": "Statistical Functions\n\nmean(), sd(), min(), max(), and table()\n\n\n#  seed for reproducibility\nset.seed(12345)\nvector &lt;- rnorm(n = 40, mean = 0, sd = 1)\nmean(vector)  # calculates mean\n\n[1] 0.2401853\n\nsd(vector)  # computes standard deviation\n\n[1] 1.038425\n\nmin(vector)  # finds minimum value\n\n[1] -1.817956\n\nmax(vector)  # finds maximum value\n\n[1] 2.196834"
+  },
+  {
+    "objectID": "slides/01-slides-lab.html#introduction-to-ggplot2",
+    "href": "slides/01-slides-lab.html#introduction-to-ggplot2",
+    "title": "Week 1: Intalling and Using R",
+    "section": "Introduction to ggplot2",
+    "text": "Introduction to ggplot2\n\nVisualizing data with ggplot2\n\n\n#  seed for reproducibility\nset.seed(12345)\n# ensure ggplot2 is installed and loaded\nif (!require(ggplot2)) install.packages(\"ggplot2\")\nlibrary(ggplot2)\n# simulate student data\nstudent_data &lt;- data.frame(\n  name = c(\"alice\", \"bob\", \"charlie\", \"diana\", \"ethan\", \"fiona\", \"george\", \"hannah\"),\n  score = sample(80:100, 8, replace = TRUE),\n  stringsasfactors = FALSE\n)\nstudent_data$passed &lt;- ifelse(student_data$score &gt;= 90, \"passed\", \"failed\")\nstudent_data$passed &lt;- factor(student_data$passed, levels = c(\"failed\", \"passed\"))\nstudent_data$study_hours &lt;- sample(5:15, 8, replace = TRUE)"
+  },
+  {
+    "objectID": "slides/01-slides-lab.html#ggplot2-barplot",
+    "href": "slides/01-slides-lab.html#ggplot2-barplot",
+    "title": "Week 1: Intalling and Using R",
+    "section": "ggplot2 Barplot",
+    "text": "ggplot2 Barplot\n\nbar plot showing score for each name\n\n\nggplot(student_data, aes(x = name, y = score)) +\n  geom_bar(stat = \"identity\")\n\n\n\n\n\n\n\n\n\nenhanced bar plot with titles, axis labels, and modified colours\n\n\nggplot(student_data, aes(x = name, y = score, fill = passed)) +\n  geom_bar(stat = \"identity\") +\n  scale_fill_manual(values = c(\"TRUE\" = \"blue\", \"FALSE\" = \"red\")) +\n  labs(title = \"student scores\", x = \"student name\", y = \"score\") +\n  theme_minimal()"
+  },
+  {
+    "objectID": "slides/01-slides-lab.html#ggplot2-scatterplot",
+    "href": "slides/01-slides-lab.html#ggplot2-scatterplot",
+    "title": "Week 1: Intalling and Using R",
+    "section": "ggplot2 Scatterplot",
+    "text": "ggplot2 Scatterplot\n\ncompare student scores against study hours\n\n\nggplot(student_data, aes(x = study_hours, y = score, color = passed)) +\n  geom_point(size = 4) +\n  labs(title = \"student scores vs. study hours\", x = \"study hours\", y = \"score\") +\n  theme_minimal() +\n  scale_color_manual(values = c(\"failed\" = \"red\", \"passed\" = \"blue\"))"
+  },
+  {
+    "objectID": "slides/01-slides-lab.html#ggplot2-boxplot",
+    "href": "slides/01-slides-lab.html#ggplot2-boxplot",
+    "title": "Week 1: Intalling and Using R",
+    "section": "ggplot2 Boxplot",
+    "text": "ggplot2 Boxplot\n\nvisualise the distribution of scores by pass/fail status\n\n\nggplot(student_data, aes(x = passed, y = score, fill = passed)) +\n  geom_boxplot() +\n  labs(title = \"score distribution by pass/fail status\", x = \"status\", y = \"score\") +\n  theme_minimal() +\n  scale_fill_manual(values = c(\"failed\" = \"red\", \"passed\" = \"blue\"))\n\n# median (Q2/50th percentile): divides the dataset into two halves.\n# first quartile (Q1/25th percentile): lower edge indicating that 25% of the data falls below this value.\n# third quartile (Q3/75th percentile): upper edge of the box represents the third quartile, showing that 75% of the data is below this value.\n# interquartile range (IQR): height of the box represents the IQR: distance between the first and third quartiles (Q3 - Q1) / middle 50% of the data.\n# whiskers: The lines extending from the top and bottom of the box (the \"whiskers\") indicate the range of the data, typically to the smallest and largest values within 1.5 * IQR from the first and third quartiles, respectively. Points outside this range are often considered outliers and can be plotted individually.\n# outliers: points that lie beyond the whiskers"
+  },
+  {
+    "objectID": "slides/01-slides-lab.html#ggplot2-histogram",
+    "href": "slides/01-slides-lab.html#ggplot2-histogram",
+    "title": "Week 1: Intalling and Using R",
+    "section": "ggplot2 Histogram",
+    "text": "ggplot2 Histogram\n\nunderstand the distribution of scores\n\n\nggplot(student_data, aes(x = score, fill = passed)) +\n  geom_histogram(binwidth = 5, color = \"black\", alpha = 0.7) +\n  labs(title = \"histogram of scores\", x = \"score\", y = \"count\") +\n  theme_minimal() +\n  scale_fill_manual(values = c(\"failed\" = \"red\", \"passed\" = \"blue\"))"
+  },
+  {
+    "objectID": "slides/01-slides-lab.html#ggplot2-lineplot",
+    "href": "slides/01-slides-lab.html#ggplot2-lineplot",
+    "title": "Week 1: Intalling and Using R",
+    "section": "ggplot2 Lineplot",
+    "text": "ggplot2 Lineplot\n\n# prep data\nmonths &lt;- factor(month.abb[1:8], levels = month.abb[1:8])\nstudy_hours &lt;- c(0, 3, 15, 30, 35, 120, 18, 15)\nstudy_data &lt;- data.frame(month = months, study_hours = study_hours)\n\n# line plot\nggplot(study_data, aes(x = month, y = study_hours, group = 1)) +\n  geom_line(linewidth = 1, color = \"blue\") +\n  geom_point(color = \"red\", size = 1) +\n  labs(title = \"monthly study hours\", x = \"month\", y = \"study hours\") +\n  theme_minimal()"
+  },
+  {
+    "objectID": "slides/01-slides-lab.html#modifying-data-frames",
+    "href": "slides/01-slides-lab.html#modifying-data-frames",
+    "title": "Week 1: Intalling and Using R",
+    "section": "Modifying Data Frames",
+    "text": "Modifying Data Frames\n\nAdding and modifying columns and rows\n\n\n# add columns\ndf$employed &lt;- c(TRUE, TRUE, FALSE)\n# add rows\nnew_person &lt;- data.frame(name = \"diana\", age = 28, gender = \"female\", employed = TRUE)\ndf &lt;- rbind(df, new_person)\n# modify values\ndf[4, \"age\"] &lt;- 26\ndf\n\n     name age gender employed\n1   alice  25 female     TRUE\n2     bob  30   male     TRUE\n3 charlie  35   male    FALSE\n4   diana  26 female     TRUE"
+  },
+  {
+    "objectID": "slides/01-slides-lab.html#base-r-scatter-plot",
+    "href": "slides/01-slides-lab.html#base-r-scatter-plot",
+    "title": "Week 1: Intalling and Using R",
+    "section": "Base R Scatter Plot",
+    "text": "Base R Scatter Plot\n\nscatter plot of scores vs. study hours\n\n\n# scatter plot\nplot(student_data$study_hours, student_data$score,\n     main = \"scatter plot of scores vs. study hours\",\n     xlab = \"study hours\", ylab = \"score\",\n     pch = 19, col = ifelse(student_data$passed == \"passed\", \"blue\", \"red\"))"
+  },
+  {
+    "objectID": "slides/01-slides-lab.html#base-r-histogram",
+    "href": "slides/01-slides-lab.html#base-r-histogram",
+    "title": "Week 1: Intalling and Using R",
+    "section": "Base R Histogram",
+    "text": "Base R Histogram\n\nhistogram to visualise distribution of student scores\n\n\n# histogram \nhist(student_data$score,\n     breaks = 5,\n     col = \"skyblue\",\n     main = \"histogram of student scores\",\n     xlab = \"scores\",\n     border = \"white\")"
+  },
+  {
+    "objectID": "slides/01-slides-lab.html#base-r-boxplots",
+    "href": "slides/01-slides-lab.html#base-r-boxplots",
+    "title": "Week 1: Intalling and Using R",
+    "section": "Base R Boxplots",
+    "text": "Base R Boxplots\n\nbox plots for score distribution by pass/fail status\n\n\n# boxplot\nboxplot(score ~ passed, data = student_data,\n        main = \"score distribution by pass/fail status\",\n        xlab = \"status\", ylab = \"scores\",\n        col = c(\"red\", \"blue\"))\n\n# median (Q2/50th percentile): divides the dataset into two halves.\n# first quartile (Q1/25th percentile): lower edge indicating that 25% of the data falls below this value.\n# third quartile (Q3/75th percentile): upper edge of the box represents the third quartile, showing that 75% of the data is below this value.\n# interquartile range (IQR): height of the box represents the IQR: distance between the first and third quartiles (Q3 - Q1) / middle 50% of the data.\n# whiskers: The lines extending from the top and bottom of the box (the \"whiskers\") indicate the range of the data, typically to the smallest and largest values within 1.5 * IQR from the first and third quartiles, respectively. Points outside this range are often considered outliers and can be plotted individually.\n# outliers: points that lie beyond the whiskers"
+  },
+  {
+    "objectID": "slides/01-slides-lab.html#base-r-barplot",
+    "href": "slides/01-slides-lab.html#base-r-barplot",
+    "title": "Week 1: Intalling and Using R",
+    "section": "Base R Barplot",
+    "text": "Base R Barplot\n\nbarplot to visualise score distribution\n\n\n# prep data for the barplot\nscores_table &lt;- table(student_data$score)\nbarplot(scores_table,\n        main = \"Barplot of Scores\",\n        xlab = \"Scores\",\n        ylab = \"Frequency\",\n        col = \"skyblue\",\n        border = \"white\")"
+  },
+  {
+    "objectID": "slides/01-slides-lab.html",
+    "href": "slides/01-slides-lab.html",
+    "title": "Week 1: Intalling and Using R",
+    "section": "",
+    "text": "Have R and R-studio Downloaded on your machine\nBe able to use R for basic analysis and graphing"
+  },
+  {
+    "objectID": "slides/01-slides-lab.html#base-r-line-plot",
+    "href": "slides/01-slides-lab.html#base-r-line-plot",
+    "title": "Week 1: Intalling and Using R",
+    "section": "Base R Line Plot",
+    "text": "Base R Line Plot\n\n# convert 'month' to a numeric scale for plotting positions\nmonths_num &lt;- 1:length(study_data$month) # Simple numeric sequence\n\n# Plotting points with suppressed x-axis\nplot(months_num, study_data$study_hours, \n     type = \"p\", # Points\n     pch = 19,   # Type of point\n     col = \"red\", \n     xlab = \"Month\", \n     ylab = \"Study Hours\", \n     main = \"Monthly Study Hours\",\n     xaxt = \"n\") # Suppress the x-axis\n\n# add lines between points\nlines(months_num, study_data$study_hours, \n      col = \"blue\", \n      lwd = 1) # Line width\n\n# add custom month labels to the x-axis at appropriate positions\naxis(1, at = months_num, labels = study_data$month, las=2) # `las=2` makes labels perpendicular to axis"
+  },
+  {
+    "objectID": "slides/01-slides-lab.html#what-have-your-learned",
+    "href": "slides/01-slides-lab.html#what-have-your-learned",
+    "title": "Week 1: Intalling and Using R",
+    "section": "What have your learned?",
+    "text": "What have your learned?\nWhat have you learned? ::: {.fragment .highlight-red} 1. You have Base R and R-studio Downloaded on your machine 2. You are able able to use R for basic analysis and graphing 3. You will need to practice, and will have lots of opporunity. :::"
+  },
+  {
+    "objectID": "slides/01-slides-lab.html#base-r-barplot-score-distributions",
+    "href": "slides/01-slides-lab.html#base-r-barplot-score-distributions",
+    "title": "Week 1: Intalling and Using R",
+    "section": "Base R Barplot: Score Distributions",
+    "text": "Base R Barplot: Score Distributions\n\n# prep data for the barplot\nscores_table &lt;- table(student_data$score)\nbarplot(scores_table,\n        main = \"Barplot of Scores\",\n        xlab = \"Scores\",\n        ylab = \"Frequency\",\n        col = \"skyblue\",\n        border = \"white\")"
+  },
+  {
+    "objectID": "slides/01-slides-lab.html#ggplot2-barplot-score-for-each-name",
+    "href": "slides/01-slides-lab.html#ggplot2-barplot-score-for-each-name",
+    "title": "Week 1: Intalling and Using R",
+    "section": "ggplot2 Barplot: score for each name",
+    "text": "ggplot2 Barplot: score for each name\n\nggplot(student_data, aes(x = name, y = score)) +\n  geom_bar(stat = \"identity\")\n\n\n\n\n\n\n\n\n\nenhanced bar plot with titles, axis labels, and modified colours\n\n\nggplot(student_data, aes(x = name, y = score, fill = passed)) +\n  geom_bar(stat = \"identity\") +\n  scale_fill_manual(values = c(\"TRUE\" = \"blue\", \"FALSE\" = \"red\")) +\n  labs(title = \"student scores\", x = \"student name\", y = \"score\") +\n  theme_minimal()"
+  },
+  {
+    "objectID": "slides/01-slides-lab.html#ggplot2-scatterplot-student-scores-against-study-hours",
+    "href": "slides/01-slides-lab.html#ggplot2-scatterplot-student-scores-against-study-hours",
+    "title": "Week 1: Intalling and Using R",
+    "section": "ggplot2 Scatterplot: student scores against study hours",
+    "text": "ggplot2 Scatterplot: student scores against study hours\n\nggplot(student_data, aes(x = study_hours, y = score, color = passed)) +\n  geom_point(size = 4) +\n  labs(title = \"student scores vs. study hours\", x = \"study hours\", y = \"score\") +\n  theme_minimal() +\n  scale_color_manual(values = c(\"failed\" = \"red\", \"passed\" = \"blue\"))"
+  },
+  {
+    "objectID": "slides/01-slides-lab.html#ggplot2-boxplot-scores-by-passfail-status",
+    "href": "slides/01-slides-lab.html#ggplot2-boxplot-scores-by-passfail-status",
+    "title": "Week 1: Intalling and Using R",
+    "section": "ggplot2 Boxplot: scores by pass/fail status",
+    "text": "ggplot2 Boxplot: scores by pass/fail status\n\nggplot(student_data, aes(x = passed, y = score, fill = passed)) +\n  geom_boxplot() +\n  labs(title = \"score distribution by pass/fail status\", x = \"status\", y = \"score\") +\n  theme_minimal() +\n  scale_fill_manual(values = c(\"failed\" = \"red\", \"passed\" = \"blue\"))"
+  },
+  {
+    "objectID": "slides/01-slides-lab.html#ggplot2-histogram-distribution-of-scores",
+    "href": "slides/01-slides-lab.html#ggplot2-histogram-distribution-of-scores",
+    "title": "Week 1: Intalling and Using R",
+    "section": "ggplot2 Histogram: distribution of scores",
+    "text": "ggplot2 Histogram: distribution of scores\n\nggplot(student_data, aes(x = score, fill = passed)) +\n  geom_histogram(binwidth = 5, color = \"black\", alpha = 0.7) +\n  labs(title = \"histogram of scores\", x = \"score\", y = \"count\") +\n  theme_minimal() +\n  scale_fill_manual(values = c(\"failed\" = \"red\", \"passed\" = \"blue\"))"
+  },
+  {
+    "objectID": "slides/01-slides-lab.html#base-r-scatter-plot-scores-vs.-study-hours",
+    "href": "slides/01-slides-lab.html#base-r-scatter-plot-scores-vs.-study-hours",
+    "title": "Week 1: Intalling and Using R",
+    "section": "Base R Scatter Plot: scores vs. study hours",
+    "text": "Base R Scatter Plot: scores vs. study hours\n\n# scatter plot\nplot(student_data$study_hours, student_data$score,\n     main = \"scatter plot of scores vs. study hours\",\n     xlab = \"study hours\", ylab = \"score\",\n     pch = 19, col = ifelse(student_data$passed == \"passed\", \"blue\", \"red\"))"
+  },
+  {
+    "objectID": "slides/01-slides-lab.html#base-r-boxplots-distribution-by-passfail",
+    "href": "slides/01-slides-lab.html#base-r-boxplots-distribution-by-passfail",
+    "title": "Week 1: Intalling and Using R",
+    "section": "Base R Boxplots: Distribution by Pass/Fail",
+    "text": "Base R Boxplots: Distribution by Pass/Fail\n\n# boxplot\nboxplot(score ~ passed, data = student_data,\n        main = \"score distribution by pass/fail status\",\n        xlab = \"status\", ylab = \"scores\",\n        col = c(\"red\", \"blue\"))"
+  },
+  {
+    "objectID": "slides/01-slides-lab.html#install-r",
+    "href": "slides/01-slides-lab.html#install-r",
+    "title": "Week 1: Intalling and Using R",
+    "section": "Install R",
+    "text": "Install R\n\nVisit the comprehensive r archive network (cran) at https://cran.r-project.org/\nSelect the version of r suitable for your operating system (windows, mac, or linux)\nDownload and install it by following the on-screen instructions"
+  },
+  {
+    "objectID": "slides/01-slides-lab.html#install-rstudio",
+    "href": "slides/01-slides-lab.html#install-rstudio",
+    "title": "Week 1: Intalling and Using R",
+    "section": "Install RStudio",
+    "text": "Install RStudio\n\nVisit rstudio download page at https://www.rstudio.com/products/rstudio/download/\nChoose the free version of rstudio desktop,\nDownload it for your operating system\nInstall and open"
+  },
+  {
+    "objectID": "slides/01-slides-lab.html#execut-code",
+    "href": "slides/01-slides-lab.html#execut-code",
+    "title": "Week 1: Intalling and Using R",
+    "section": "Execut Code",
+    "text": "Execut Code\n\nUse Ctrl + Enter (Windows/Linux) or Cmd + Enter (Mac)."
+  },
+  {
+    "objectID": "slides/01-slides-lab.html#access-data-frame-elements",
+    "href": "slides/01-slides-lab.html#access-data-frame-elements",
+    "title": "Week 1: Intalling and Using R",
+    "section": "Access Data Frame Elements",
+    "text": "Access Data Frame Elements\n\nBy column name and row/column indexing\n\n\n# by column name\nnames &lt;- df$name\n# by row and column\nsecond_person &lt;- df[2, ]\nage_column &lt;- df[, \"age\"]"
+  },
+  {
+    "objectID": "slides/01-slides-lab.html#explore-data-frames",
+    "href": "slides/01-slides-lab.html#explore-data-frames",
+    "title": "Week 1: Intalling and Using R",
+    "section": "Explore Data Frames",
+    "text": "Explore Data Frames\n\nUsing head(), tail(), and str()\n\n\nhead(df)\n\n     name age gender\n1   alice  25 female\n2     bob  30   male\n3 charlie  35   male\n\ntail(df)\n\n     name age gender\n1   alice  25 female\n2     bob  30   male\n3 charlie  35   male\n\nstr(df)\n\n'data.frame':   3 obs. of  3 variables:\n $ name  : chr  \"alice\" \"bob\" \"charlie\"\n $ age   : num  25 30 35\n $ gender: chr  \"female\" \"male\" \"male\""
+  },
+  {
+    "objectID": "slides/01-slides-lab.html#modify-data-frames",
+    "href": "slides/01-slides-lab.html#modify-data-frames",
+    "title": "Week 1: Intalling and Using R",
+    "section": "Modify Data Frames",
+    "text": "Modify Data Frames\n\nAdd and modify columns and rows\n\n\n# add columns\ndf$employed &lt;- c(TRUE, TRUE, FALSE)\n# add rows\nnew_person &lt;- data.frame(name = \"diana\", age = 28, gender = \"female\", employed = TRUE)\ndf &lt;- rbind(df, new_person)\n# modify values\ndf[4, \"age\"] &lt;- 26\ndf\n\n     name age gender employed\n1   alice  25 female     TRUE\n2     bob  30   male     TRUE\n3 charlie  35   male    FALSE\n4   diana  26 female     TRUE"
+  },
+  {
+    "objectID": "slides/01-slides.html#what-might-go-wrong-1",
+    "href": "slides/01-slides.html#what-might-go-wrong-1",
+    "title": "Asking questions in cross-cultural psychology",
+    "section": "What might go wrong?",
+    "text": "What might go wrong?\nAge might a common cause of both marriage and happiness"
+  },
+  {
+    "objectID": "slides/01-slides.html#what-else-might-go-wrong-1",
+    "href": "slides/01-slides.html#what-else-might-go-wrong-1",
+    "title": "Asking questions in cross-cultural psychology",
+    "section": "What else might go wrong?",
+    "text": "What else might go wrong?\n\nAge might a common cause of both marriage and happiness"
+  },
+  {
+    "objectID": "content/01-content.html#slide-deck",
+    "href": "content/01-content.html#slide-deck",
+    "title": "Asking questions in cross-cultural psychology",
+    "section": "Slide deck:",
+    "text": "Slide deck:"
+  },
+  {
+    "objectID": "content/01-content.html#slides-1",
+    "href": "content/01-content.html#slides-1",
+    "title": "Asking questions in cross-cultural psychology",
+    "section": "Slides",
+    "text": "Slides\nPREVIEW\n\n\n\nOpen in browser here"
   }
 ]
