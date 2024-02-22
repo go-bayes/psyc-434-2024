@@ -28,7 +28,7 @@ format:
 1.  Have R and R-studio Downloaded on your machine
 2.  Be able to use R for basic analysis and graphing
 
-### Key Things To Remember
+### Things To Remember
 
 1.  File names and code should be **legible**
 2.  Learn macros to save time and order your code
@@ -43,13 +43,13 @@ format:
 
 ## Install R
 
-- Visit the comprehensive r archive network (cran) at https://cran.r-project.org/
+- Visit the comprehensive r archive network (cran) at [https://cran.r-project.org/](https://cran.r-project.org/)
 - Select the version of r suitable for your operating system (windows, mac, or linux)
 - Download and install it by following the on-screen instructions
 
 
 ## Install RStudio
-- Visit rstudio download page at https://www.rstudio.com/products/rstudio/download/
+- Visit rstudio download page at [https://www.rstudio.com/products/rstudio/download/](https://www.rstudio.com/products/rstudio/download/)
 - Choose the free version of rstudio desktop, 
 - Download it for your operating system
 - Install and open
@@ -553,18 +553,41 @@ axis(1, at = months_num, labels = study_data$month, las=2) # `las=2` makes label
 
 ## What have your learned? 
 
-**What have you learned?**
-::: {.fragment .highlight-red}
+
+
 1.  You have Base R and R-studio Downloaded on your machine
 2.  You are able able to use R for basic analysis and graphing
 3.  You will need to practice, and will have lots of opporunity.
-:::
 
+
+
+
+
+## Where to Get Help
+
+1. **Large Language Models (LLMs):** LLMs are trained on extensive datasets. They are extremely good coding tutors. Open AI's GPT-4 considerably outperforms GPT-3.5.  However GPT 3.5 should be good enough. Gemini has a two-month free trial. LLM's are rapidly evolving. However, presently, to use these tools, and to spot their errors, you will need to know how to code.  Which is fortunate because coding makes you smart!
+
+**Note:** you will not be assessed for R-code. Help from LLM's for *coding* does not consitute a breach of academic integrity in this course. Your tests are in-class; no LLM's allowed.  For your final report, you will need to cite all sources, and how you used them, including LLMs. 
+
+2. [Stack Overflow](https://stackoverflow.com/questions/tagged/r): an outstanding resource for most problems. Great community. 
+
+3. [Cross-validated](https://stats.stackexchange.com/) the best place to go for stats advice. (LLM's are only safe for standard statistics. They do not perform well for causal inference.)
+
+4. **Developer Websites and GitHub Pages:** [Tidyverse](https://github.com/tidyverse)
+
+4.  Your tutors and course coordinator. We care. We’re here to help you!
 
 
 ## References
 
+- Wickham, H., & Grolemund, G. (2016). *R for Data Science*. O'Reilly Media. [Available online](https://r4ds.had.co.nz
 
 
-### Bibliography
+- A helpful resource for learning R is Megan Hall's lecture available at: [https://meghan.rbind.io/talk/neair/](https://meghan.rbind.io/talk/neair/).
+
+- RStudio has compiled numerous accessible materials for learning R, which can be found here: [https://education.rstudio.com/learn/beginner/](https://education.rstudio.com/learn/beginner/).
+
+- Materials from a previous course on learning R can be accessed here.  [https://go-bayes.github.io/psych-447/](https://education.rstudio.com/learn/beginner/) For now, only lecture 1 would be relevant. It's worth noting that this lecture covers working with GitHub.  GitHub is a useful tool, you should learn how to use it; however, it is not a requirement for the current course.
+
+
 
