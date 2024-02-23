@@ -50,7 +50,7 @@ loadfonts(device = "all")
 #| out-width: 60%
 #| caption: "dag"
 #| label: fig-line-plot
-#| fig-cap: "Causal graph: we will refer to this image in the lecture and begin reviewing this tool in Week 2 "
+#| fig-cap: "Causal graph: we will refer to this image in the lecture and begin reviewing causal graphs in Week 2 "
 
 \usetikzlibrary{positioning}
 \usetikzlibrary{shapes.geometric}
