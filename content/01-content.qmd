@@ -60,11 +60,11 @@ loadfonts(device = "all")
 \tikzset{>=latex}
 
 \begin{tikzpicture}[{every node/.append style}=draw]
-  \node [ellipse, draw=white] (Age) at (0, 0) {$A$};
-  \node [rectangle, draw=white] (Marriage) at (2, 0) {$M$};
-  \node [rectangle, draw=white] (Happiness) at (4, 0) {$H$};
-  \draw [-latex, draw=black] (Age) to (Marriage);
-  \draw [-latex, bend left] (Age) to (Happiness);
+  \node [ellipse, draw=white] (A) at (0, 0) {$A$};
+  \node [rectangle, draw=white] (B) at (2, 0) {$B$};
+  \node [rectangle, draw=white] (C) at (4, 0) {$C$};
+  \draw [-latex, red] (A) to (B);
+  \draw [-latex, bend left, red] (A) to (C);
 \end{tikzpicture}
 ```
 
@@ -1216,7 +1216,7 @@ Do the hands-on exercises at home. They'll help you apply what you have learned 
 
 As sure as night follows day, you will need help coding. Good resources:
 
-1. **Large Language Models (LLMs):** LLMs are trained on extensive datasets. They are extremely good coding tutors. Open AI's GPT-4 considerably outperforms GPT-3.5.  However GPT 3.5 should be good enough. Gemini has a two-month free trial. LLM's are rapidly evolving. However, presently, to use these tools, and to spot their errors, you will need to know how to code.  Which is fortunate because coding makes you smart!
+1. **Large Language Models (LLMs):** LLMs are trained on extensive datasets. They are extremely good coding tutors. Open AI's GPT-4 considerably outperforms GPT-3.5.  However GPT 3.5 should be good enough. Gemini has a two-month free trial. LLM's are rapidly evolving. However, presently, to use these tools, and to spot their errors, you will need to know how to code.  Which is fortunate because coding makes you smarter!
 
 **Note:** you will not be assessed for R-code. Help from LLM's for *coding* does not consitute a breach of academic integrity in this course. Your tests are in-class; no LLM's allowed.  For your final report, you will need to cite all sources, and how you used them, including LLMs. 
 
