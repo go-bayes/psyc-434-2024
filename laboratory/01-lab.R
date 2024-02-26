@@ -606,7 +606,7 @@ months_num <- 1:length(study_data$month) # Simple numeric sequence
 
 # plot points with suppressed x-axis
 plot(months_num, study_data$study_hours, 
-     type = "p", # Points
+     type = "p", # Points=
      pch = 19,   # Type of point
      col = "red", 
      xlab = "Month", 
