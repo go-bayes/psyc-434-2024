@@ -482,7 +482,8 @@ library(ggplot2)
 set.seed(12345)
 student_data <- data.frame(
   name = c("alice", "bob", "charlie", "diana", "ethan", "fiona", "george", "hannah"),
-  score = sample(80:100, 8, replace = TRUE)
+  score = sample(80:100, 8, replace = TRUE),
+  stringsasfactors = FALSE
 )
 
 student_data
