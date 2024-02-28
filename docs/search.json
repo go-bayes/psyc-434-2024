@@ -431,7 +431,7 @@
     "href": "slides/01-slides.html#references",
     "title": "Asking questions in cross-cultural psychology",
     "section": "References",
-    "text": "References\nFor an account of the history of measurement in psychological research, see: (Briggs 2021)\nFor an account of key concepts and current debates in psychometrics, see: (Bandalos 2018)\n\nFor an accessible introduction to causal inference and its history see: (Pearl and Mackenzie 2018)\nBibliography\n\n\n\n\n\n\nBandalos, Deborah L. 2018. Measurement Theory and Applications for the Social Sciences. Guilford Publications.\n\n\nBriggs, Derek C. 2021. Historical and Conceptual Foundations of Measurement in the Human Sciences: Credos and Controversies. Routledge.\n\n\nPearl, Judea, and Dana Mackenzie. 2018. The Book of Why: The New Science of Cause and Effect. Basic books.\n\n\nVanderWeele, Tyler J. 2022. “Constructed Measures and Causal Inference: Towards a New Model of Measurement for Psychosocial Constructs.” Epidemiology 33 (1): 141. https://doi.org/10.1097/EDE.0000000000001434."
+    "text": "References\nFor an account of the history of measurement in psychological research, see: (Briggs 2021)\nFor an account of key concepts and current debates in psychometrics, see: (Bandalos 2018)\n\nFor an accessible introduction to causal inference and its history see: (Pearl and Mackenzie 2018)\nBibliography\n\n\n\n\n\n\n\n\nBandalos, Deborah L. 2018. Measurement Theory and Applications for the Social Sciences. Guilford Publications.\n\n\nBriggs, Derek C. 2021. Historical and Conceptual Foundations of Measurement in the Human Sciences: Credos and Controversies. Routledge.\n\n\nPearl, Judea, and Dana Mackenzie. 2018. The Book of Why: The New Science of Cause and Effect. Basic books.\n\n\nVanderWeele, Tyler J. 2022. “Constructed Measures and Causal Inference: Towards a New Model of Measurement for Psychosocial Constructs.” Epidemiology 33 (1): 141. https://doi.org/10.1097/EDE.0000000000001434."
   },
   {
     "objectID": "slides/01-slides.html",
@@ -1038,105 +1038,105 @@
   {
     "objectID": "content/02-content.html",
     "href": "content/02-content.html",
-    "title": "Causal diagrams: Five elementary structures; 4 rules",
+    "title": "Causal diagrams: Five elementary structures",
     "section": "",
-    "text": "This session is devoted to learning R. There are no required readings."
+    "text": "Readings\n\n\n\n\nBarrett M (2023). ggdag: Analyze and Create Elegant Directed Acyclic Graphs. R package version 0.2.7.9000, https://github.com/malcolmbarrett/ggdag\n“An Introduction to Directed Acyclic Graphs”, https://r-causal.github.io/ggdag/articles/intro-to-dags.html\n“Common Structures of Bias”, https://r-causal.github.io/ggdag/articles/bias-structures.html"
   },
   {
     "objectID": "content/02-content.html#overview",
     "href": "content/02-content.html#overview",
-    "title": "Causal diagrams: Five elementary structures; 4 rules",
-    "section": "",
-    "text": "This session is devoted to learning R. There are no required readings."
+    "title": "Causal diagrams: Five elementary structures",
+    "section": "Overview",
+    "text": "Overview\n\nUnderstand basic features of causal diagrams: definitions and applications\nIntroduction to the five elementary causal structures\nLab: data visualisation"
   },
   {
     "objectID": "content/02-content.html#lab-regression-in-r",
     "href": "content/02-content.html#lab-regression-in-r",
-    "title": "Causal diagrams: Five elementary structures; 4 rules",
+    "title": "Causal diagrams: Five elementary structures",
     "section": "Lab – Regression in R",
-    "text": "Lab – Regression in R\n\nSimulation\nTo simulate more complex datasets, you can introduce relationships between variables. For instance, simulating age and income with a correlation"
+    "text": "Lab – Regression in R"
   },
   {
     "objectID": "content/02-content.html#simulating-data-in-r-outcome-treatment",
     "href": "content/02-content.html#simulating-data-in-r-outcome-treatment",
-    "title": "Causal diagrams: Five elementary structures; 4 rules",
+    "title": "Causal diagrams: Five elementary structures",
     "section": "Simulating Data in R: Outcome ~ Treatment",
     "text": "Simulating Data in R: Outcome ~ Treatment\n\nStep 1: Set Up Your R Environment\nEnsure R or RStudio is installed and open.\n\n\nStep 2: Set a Seed for Reproducibility\nTo ensure that your simulated data can be reproduced exactly, it’s good practice to set a seed before generating random data. This makes your analyses and simulations replicable.\n\nset.seed(123) # use any number to set the seed\n\n\n\nStep 3: Simulating Continuous Data\nTo simulate continuous data, you can use functions like rnorm() for normal distributions, runif() for uniform distributions, etc. Here we simulate 100 normally distributed data points with a mean of 50 and a standard deviation of 10:\n\nn &lt;- 100 # number of observations\nmean &lt;- 50\nsd &lt;- 10\ndata_continuous &lt;- rnorm(n, mean, sd)\n\n# view\nhead(data_continuous)\n\n[1] 44.39524 47.69823 65.58708 50.70508 51.29288 67.15065\n\n\n\n\nStep 4: Simulating Categorical Data\nCategorical data can be simulated using the sample() function. Here, we simulate a binary variable (gender) with two levels for 100 observations. There is equal probability of assignment.\n\nlevels &lt;- c(\"Male\", \"Female\")\ndata_categorical &lt;- sample(levels, n, replace = TRUE)\n\n# view\nhead(data_categorical)\n\n[1] \"Female\" \"Female\" \"Female\" \"Male\"   \"Female\" \"Female\"\n\n\nTo generate categories with unequal probabilities, you can use the sample() function by specifying the prob parameter, which defines the probability of selecting each level. This allows for simulating categorical data where the distribution between categories is not uniform.\nBelow is an example that modifies your initial code to create a categorical variable with unequal probabilities for “Male” and “Female”. Here is an example with unequal probabilities:\n\n# Define levels and number of observations\nlevels &lt;- c(\"Male\", \"Female\")\nn &lt;- 100 # total number of observations\n\n# Generate categorical data with unequal probabilities\ndata_categorical_unequal &lt;- sample(levels, n, replace = TRUE, prob = c(0.3, 0.7))\n\n# View the first few elements\nhead(data_categorical_unequal)\n\nIn this example, the prob parameter is set to c(0.3, 0.7), indicating a 30% probability for “Male” and a 70% probability for “Female”. This results in a simulated dataset where approximately 30% of the observations are “Male” and 70% are “Female”, reflecting the specified unequal probabilities. Adjust the probabilities as needed to fit the scenario you wish to simulate.\n\nset.seed(123) #  reproducibility\ngroupA_scores &lt;- rnorm(100, mean = 100, sd = 15) # simulate scores for group A\ngroupB_scores &lt;- rnorm(100, mean = 105, sd = 15) # simulate scores for group B\n\n# ombine into a data frame\nscores_df &lt;- data.frame(Group = rep(c(\"A\", \"B\"), each = 100), Scores = c(groupA_scores, groupB_scores))\n\n# commands to view data\nstr(scores_df)\n\n'data.frame':   200 obs. of  2 variables:\n $ Group : chr  \"A\" \"A\" \"A\" \"A\" ...\n $ Scores: num  91.6 96.5 123.4 101.1 101.9 ...\n\n# summary of columns\nsummary(scores_df)\n\n    Group               Scores      \n Length:200         Min.   : 65.36  \n Class :character   1st Qu.: 92.59  \n Mode  :character   Median :101.38  \n                    Mean   :102.37  \n                    3rd Qu.:111.59  \n                    Max.   :153.62  \n\n# top rows\nhead(scores_df)\n\n  Group    Scores\n1     A  91.59287\n2     A  96.54734\n3     A 123.38062\n4     A 101.05763\n5     A 101.93932\n6     A 125.72597\n\n# bottom rows\ntail(scores_df)\n\n    Group    Scores\n195     B  85.33798\n196     B 134.95820\n197     B 114.01063\n198     B  86.23093\n199     B  95.83251\n200     B  87.21780"
   },
   {
     "objectID": "content/02-content.html#visualising-simulated-data",
     "href": "content/02-content.html#visualising-simulated-data",
-    "title": "Causal diagrams: Five elementary structures; 4 rules",
+    "title": "Causal diagrams: Five elementary structures",
     "section": "Visualising simulated data",
     "text": "Visualising simulated data\nUnderstanding your data visually is as important as the statistical analysis itself. Let’s create a simple plot to compare the score distributions between the two groups.\n\nif (!require(ggplot2)) {\n  install.packages(\"ggplot2\")\n  library(ggplot2)\n} else {\n  library(ggplot2)\n}\n\n# plot your data\nggplot(scores_df, aes(x = Group, y = Scores, fill = Group)) +\n  geom_boxplot() +\n  theme_minimal() +\n  labs(title = \"Score Distribution by Group\", x = \"Group\", y = \"Scores\")\n\n\n\n\nScore Distribution by Group"
   },
   {
     "objectID": "content/02-content.html#sec-histogram",
     "href": "content/02-content.html#sec-histogram",
-    "title": "Causal diagrams: Five elementary structures; 4 rules",
+    "title": "Causal diagrams: Five elementary structures",
     "section": "Histogram",
     "text": "Histogram\n\nlibrary(ggplot2)\n\n# H=histograms for both groups\nggplot(scores_df, aes(x = Scores, fill = Group)) +\n  geom_histogram(binwidth = 5, color = \"black\") +\n  labs(title = \"Distribution of Scores\",\n       x = \"Scores\",\n       y = \"Frequency\") +\n  facet_wrap(~Group, ncol = 1)"
   },
   {
     "objectID": "content/02-content.html#excercise-3",
     "href": "content/02-content.html#excercise-3",
-    "title": "Causal diagrams: Five elementary structures; 4 rules",
+    "title": "Causal diagrams: Five elementary structures",
     "section": "Excercise 3",
     "text": "Excercise 3\n\nModify the simulation parameters to change each group’s mean and standard deviation. Observe how these changes affect the distribution.\nGo to the histogram. Experiment with different bin widths. In your own words, how do large and small numbers speak differently to the data? When might you use one histogram and not another."
   },
   {
     "objectID": "content/02-content.html#simulating-data-for-familiar-statistical-tests",
     "href": "content/02-content.html#simulating-data-for-familiar-statistical-tests",
-    "title": "Causal diagrams: Five elementary structures; 4 rules",
+    "title": "Causal diagrams: Five elementary structures",
     "section": "Simulating data for familiar statistical tests",
     "text": "Simulating data for familiar statistical tests\n\n# simulate some data\ndata &lt;- rnorm(100, mean = 5, sd = 1) # 100 random normal values with mean = 5\n\n# perform one-sample t-test\n# testing if the mean of the data is reliably different from 4\nt.test(data, mu = 4)\n\n\n    One Sample t-test\n\ndata:  data\nt = 11.796, df = 99, p-value &lt; 2.2e-16\nalternative hypothesis: true mean is not equal to 4\n95 percent confidence interval:\n 4.931989 5.308942\nsample estimates:\nmean of x \n 5.120465 \n\n\n\n# simulate data for two groups\ngroup1 &lt;- rnorm(50, mean = 5, sd = 1) # 50 random normal values, mean = 5\ngroup2 &lt;- rnorm(50, mean = 5.5, sd = 1) # 50 random normal values, mean = 5.5\n\n# two-sample t-test\nt.test(group1, group2)\n\n\n    Welch Two Sample t-test\n\ndata:  group1 and group2\nt = -2.0293, df = 97.95, p-value = 0.04514\nalternative hypothesis: true difference in means is not equal to 0\n95 percent confidence interval:\n -0.837548023 -0.009343886\nsample estimates:\nmean of x mean of y \n 5.002054  5.425500 \n\n\n\n# simulate pre-test and post-test scores\npre_test &lt;- rnorm(30, mean = 80, sd = 10)\npost_test &lt;- rnorm(30, mean =  pre_test + 5, sd = 5) # assume an increase\n\n# perform paired t-test\nt.test(pre_test, post_test, paired = TRUE)\n\n\n    Paired t-test\n\ndata:  pre_test and post_test\nt = -4.7761, df = 29, p-value = 4.725e-05\nalternative hypothesis: true mean difference is not equal to 0\n95 percent confidence interval:\n -6.785042 -2.716352\nsample estimates:\nmean difference \n      -4.750697 \n\n\n\nExercise 3: Linear Regression Analysis with Simulated Data\n\nTask 1: Simulating Continuous Treatment Variable\n\n# library for enhanced model reporting\nlibrary(parameters)\n\n# set seed for reproducibility\nset.seed(123) # choose a seed number for consistency\n\n# define the number of observations\nn &lt;- 100 # total observations\n\n# simulate continuous treatment variable A\na &lt;- rnorm(n, mean = 50, sd = 10) # mean = 50, sd = 10 for A\n\n# specify the effect size of A on Y\nbeta_a &lt;- 2 # explicit effect size\n\n# simulate outcome variable Y including an error term\ny &lt;- 5 + beta_a * a + rnorm(n, mean = 0, sd = 20) # Y = intercept + beta_a*A + error\n\n# create a dataframe\ndf &lt;- data.frame(a = a, y = y)\n\n# view the structure and first few rows of the dataframe\nstr(df)\nhead(df)\n\n\n\nTask 2: Exploring the Simulated Data\nBefore moving on to regression analysis, ensure students understand the structure and distribution of the simulated data. Encourage them to use summary(), plot(), and other exploratory data analysis functions.\n\n\nTask 3: Regression Analysis of Continuous Treatment Effect\n\n# perform linear regression of Y on A\nfit &lt;- lm(y ~ a, data = df)\n\n# display the regression model summary\nsummary(fit)\n\n# report the model in a reader-friendly format\nreport_fit &lt;- report::report(fit)\nprint(report_fit)\n\n# optionally, visualize the relationship\nplot(df$a, df$y, main = \"Scatterplot of Y vs. A\", xlab = \"Treatment (A)\", ylab = \"Outcome (Y)\")\nabline(fit, col = \"red\")"
   },
   {
     "objectID": "content/02-content.html#equivalence-of-anova-and-regression",
     "href": "content/02-content.html#equivalence-of-anova-and-regression",
-    "title": "Causal diagrams: Five elementary structures; 4 rules",
+    "title": "Causal diagrams: Five elementary structures",
     "section": "Equivalence of ANOVA and Regression",
     "text": "Equivalence of ANOVA and Regression\nWe will simulate data in R to show that a one-way ANOVA is a special case of linear regression with categorical predictors. We will give some reasons for preferring regression (in some settings)."
   },
   {
     "objectID": "content/02-content.html#method",
     "href": "content/02-content.html#method",
-    "title": "Causal diagrams: Five elementary structures; 4 rules",
+    "title": "Causal diagrams: Five elementary structures",
     "section": "Method",
     "text": "Method\nFirst, we simulate a dataset with one categorical independent variable with three levels (groups) and a continuous outcome (also called a “dependant”) variable. This setup allows us to apply both ANOVA and linear regression for comparison.\n\n# nice tables\nif (!require(parameters)) {\n  install.packages(\"parameters\")\n  library(parameters)\n} else {\n  library(parameters)\n}\n\n\nset.seed(321) # reproducibility\nn &lt;- 90 # total number of observations\nk &lt;- 3 # number of groups\n\n# simulate independent variable (grouping factor)\ngroup &lt;- factor(rep(1:k, each = n/k))\n\n# inspect\nstr(group)\n\n Factor w/ 3 levels \"1\",\"2\",\"3\": 1 1 1 1 1 1 1 1 1 1 ...\n\n# simulate outcome variable\nmeans &lt;- c(100, 100, 220) # Mean for each group\nsd &lt;- 15 # Standard deviation (same for all groups)\n\n# generate random data\ny &lt;- rnorm(n, mean = rep(means, each = n/k), sd = sd)\n\n\n# make data frame\ndf_1 &lt;- cbind.data.frame(y, group)\n\nanova_model &lt;- aov(y ~ group, data = df_1)\n# summary(anova_model)\ntable_anova &lt;- model_parameters(anova_model)\n\n# report the model\nreport::report(anova_model)\n\nThe ANOVA (formula: y ~ group) suggests that:\n\n  - The main effect of group is statistically significant and large (F(2, 87) =\n689.11, p &lt; .001; Eta2 = 0.94, 95% CI [0.92, 1.00])\n\nEffect sizes were labelled following Field's (2013) recommendations.\n\n\nNext, we analyse the same data using linear regression. In R, regression models automatically convert categorical variables into dummy variables.\n\n# for tables (just installed)\nlibrary(parameters)\n\n# regression model \nfit &lt;- lm(y ~ group, data = df_1)\n\n# uncomment if you want an ordinary summary\n# summary(regression_model)\n\ntable_fit &lt;- parameters::model_parameters(fit)\n\n# print table\ntable_fit\n\nParameter   | Coefficient |   SE |           95% CI | t(87) |      p\n--------------------------------------------------------------------\n(Intercept) |      101.22 | 2.60 | [ 96.06, 106.39] | 38.98 | &lt; .001\ngroup [2]   |       -0.80 | 3.67 | [ -8.10,   6.50] | -0.22 | 0.827 \ngroup [3]   |      117.67 | 3.67 | [110.37, 124.97] | 32.04 | &lt; .001\n\n\n\nlibrary(parameters)\nlibrary(report)\n\n# report the model\nreport_fit &lt;- report_parameters(fit)\n\n#print\nreport_fit\n\n  - The intercept is statistically significant and positive (beta = 101.22, 95% CI [96.06, 106.39], t(87) = 38.98, p &lt; .001; Std. beta = -0.68, 95% CI [-0.76, -0.59])\n  - The effect of group [2] is statistically non-significant and negative (beta = -0.80, 95% CI [-8.10, 6.50], t(87) = -0.22, p = 0.827; Std. beta = -0.01, 95% CI [-0.14, 0.11])\n  - The effect of group [3] is statistically significant and positive (beta = 117.67, 95% CI [110.37, 124.97], t(87) = 32.04, p &lt; .001; Std. beta = 2.04, 95% CI [1.91, 2.17])"
   },
   {
     "objectID": "content/02-content.html#upshot",
     "href": "content/02-content.html#upshot",
-    "title": "Causal diagrams: Five elementary structures; 4 rules",
+    "title": "Causal diagrams: Five elementary structures",
     "section": "Upshot",
     "text": "Upshot\nANOVA partitions variance into between-group and within-group components, while regression models the mean of the dependent variable as a linear function of the independent (including categorical) variables. For many questions, ANOVA is appropriate, however, when we are comparing groups, we often want a finer-grained interpretation. Regression is built for obtaining this finer grain understanding. We will return to regression over the next few weeks and use regression to hone your skills in R. Later, Along the way, you’ll learn more about data visualisation, modelling, and reporting.\n\n# graph the output of the parameters table\n# visualisation\nplot(table_fit)\n\n\n\n\n\n\n\n\n\nExercise 3\nPerform a linear regression analysis using R. Follow the detailed instructions below to simulate the necessary data, execute the regression, and report your findings:\n\nSimulate Data:\n\nGenerate two continuous variables, Y and A, with n = 100 observations each.\nThe variable A should have a mean of 50 and a standard deviation (sd) of 10.\n\nDefine the Relationship:\n\nSimulate the variable Y such that it is linearly related to A with a specified effect size. The effect size of A on Y must be explicitly defined as 2.\n\nIncorporate an Error Term:\n\nWhen simulating Y, include an error term with a standard deviation (sd) of 20 to introduce variability.\n\nRegression Analysis:\n\nUse the lm() function in R to regress Y on A.\nEnsure the regression model captures the specified effect of A on Y.\n\nReport the Results:\n\nOutput the regression model summary to examine the coefficients, including the effect of A on Y, and assess the model’s overall fit and significance.\n\n\nHere is a template to get you started. Copy the code and paste it into your R script.\n\nlibrary(parameters)\n#  seed for reproducibility\nset.seed( ) # numbers go in brackets\n\n# number of observations\nn &lt;-   # number goes here\n\n# simulate data for variable A with specified mean and sd\nA &lt;- rnorm(n, \n           mean = , # set your number here \n           sd = )# set your number here \n\n# define the specified effect size of A on Y\nbeta_A &lt;-   # define your effect with a number here \n\n\n# simulate data and make data frame in one step\n\ndf_3 &lt;- data.frame(\n  # simulate data for variable A with specified mean and sd\n  A = A, # from above\n  Y = 5 + beta_A * A + rnorm(n, mean = 0, sd = 20) #  effect is intercept + ...\n)\n\n# view\nhead(df_3)\nstr(df_3)\n\n#  linear regression of Y on A\nfit_3 &lt;- lm(Y ~ A, data = df_3)\n\n#  results (standard code)\n# summary(model)\n\n# time saving reports\nparameters::model_parameters(fit_3)\nreport(fit_3)\n\n\nStep 5: Simulating Data Frames\nData frames are used in R to store data tables. To simulate a dataset with both continuous and categorical data, you can combine the above steps:\n\n# create a data frame with simulated data for ID, Gender, Age, and Income\ndata_frame &lt;- data.frame(\n  # generate a sequence of IDs from 1 to n\n  ID = 1:n,\n  \n  # randomly assign 'Male' or 'Female' to each observation\n  Gender = sample(c(\"Male\", \"Female\"), n, replace = TRUE),\n  \n  # simulate 'Age' data: normally distributed with mean 30 and sd 5\n  Age = rnorm(n, mean = 30, sd = 5),\n  \n  # simulate 'Income' data: normally distributed with mean 50000 and sd 10000\n  Income = rnorm(n, mean = 50000, sd = 10000)\n)\n\nNote that you can sample probabilistically for your groups\n\nn &lt;- 100 # total number of observations\n\n# sample 'Gender' with a 40/60 proportion for Male/Female\nGender = sample(c(\"Male\", \"Female\"), n, replace = TRUE, prob = c(0.4, 0.6))"
   },
   {
     "objectID": "content/02-content.html#more-complexity",
     "href": "content/02-content.html#more-complexity",
-    "title": "Causal diagrams: Five elementary structures; 4 rules",
+    "title": "Causal diagrams: Five elementary structures",
     "section": "More complexity",
     "text": "More complexity\n\n# set the number of observations\nn &lt;- 100\n\n# simulate the 'Age' variable\nmean_age &lt;- 30\nsd_age &lt;- 5\nAge &lt;- rnorm(n, mean = mean_age, sd = sd_age)\n\n# define coefficients explicitly\nintercept &lt;- 20000   # Intercept for the income equation\nbeta_age &lt;- 1500     # Coefficient for the effect of age on income\nerror_sd &lt;- 10000    # Standard deviation of the error term\n\n# simulate 'Income' based on 'Age' and defined coefficients\nIncome &lt;- intercept + beta_age * Age + rnorm(n, mean = 0, sd = error_sd)\n\n# create a data frame to hold the simulated data\ndata_complex &lt;- data.frame(Age, Income)\n\n\nStep 7: Visualising Simulated Data\nVisualising your simulated data can help understand its distribution and relationships. Use the ggplot2 package for this:\n\nlibrary(ggplot2)\nggplot(data_complex, aes(x = Age, y = Income)) +\n  geom_point() +\n  theme_minimal() +\n  labs(title = \"Simulated Age vs. Income\", x = \"Age\", y = \"Income\")"
   },
   {
     "objectID": "content/02-content.html#practice",
     "href": "content/02-content.html#practice",
-    "title": "Causal diagrams: Five elementary structures; 4 rules",
+    "title": "Causal diagrams: Five elementary structures",
     "section": "Practice",
-    "text": "Practice\nSimulating data is a powerful method to understand statistical concepts and data manipulation. Let’s simulate a simple dataset representing scores from two cultural groups."
+    "text": "Practice\nSimulating data is a powerful method to understand statistical concepts and data manipulation. Let’s simulate a simple dataset representing scores from two cultural groups.\n\nData simulation:\n\nYou’ve learned to simulate datasets in R. This is a foundational skill for exploring statistical concepts and data manipulation techniques. Congratulations!"
   },
   {
     "objectID": "content/02-content.html#appendix-a",
     "href": "content/02-content.html#appendix-a",
-    "title": "Causal diagrams: Five elementary structures; 4 rules",
+    "title": "Causal diagrams: Five elementary structures",
     "section": "Appendix A: Solutions",
     "text": "Appendix A: Solutions\n\nSolution Problem Set 3: simulate data and regression reporting\n\nlibrary(parameters)\n#  seed for reproducibility\nset.seed(12345)\n\n# number of observations\nn &lt;- 100\n\n# simulate data for variable A with specified mean and sd\nA &lt;- rnorm(n, mean = 50, sd = 10)\n\n# define the specified effect size of A on Y\nbeta_A &lt;- 2\n\n\n# simulate data and make data frame in one step\n\ndf_3 &lt;- data.frame(\n  # simulate data for variable A with specified mean and sd\n  A =  rnorm(n, mean = 50, sd = 10),\n  Y = 5 + beta_A * A + rnorm(n, mean = 0, sd = 20)\n)\n\n# view\nhead(df_3)\n\n         A         Y\n1 52.23925  87.98766\n2 38.43777 106.60413\n3 54.22419 107.68437\n4 36.75245 117.09730\n5 51.41084 133.74473\n6 44.63952  70.74512\n\nstr(df_3)\n\n'data.frame':   100 obs. of  2 variables:\n $ A: num  52.2 38.4 54.2 36.8 51.4 ...\n $ Y: num  88 107 108 117 134 ...\n\n# Perform linear regression of Y on A\n\nfit_3 &lt;- lm(Y ~ A, data = df_3)\n\n# Report the results of the regression\n# summary(model)\n\n# report\nparameters::model_parameters(fit_3)\n\nParameter   | Coefficient |    SE |          95% CI | t(98) |      p\n--------------------------------------------------------------------\n(Intercept) |      109.17 | 14.62 | [80.17, 138.18] |  7.47 | &lt; .001\nA           |   -3.80e-03 |  0.28 | [-0.57,   0.56] | -0.01 | 0.989 \n\nreport(fit_3)\n\nWe fitted a linear model (estimated using OLS) to predict Y with A (formula: Y\n~ A). The model explains a statistically not significant and very weak\nproportion of variance (R2 = 1.83e-06, F(1, 98) = 1.79e-04, p = 0.989, adj. R2\n= -0.01). The model's intercept, corresponding to A = 0, is at 109.17 (95% CI\n[80.17, 138.18], t(98) = 7.47, p &lt; .001). Within this model:\n\n  - The effect of A is statistically non-significant and negative (beta =\n-3.80e-03, 95% CI [-0.57, 0.56], t(98) = -0.01, p = 0.989; Std. beta =\n-1.35e-03, 95% CI [-0.20, 0.20])\n\nStandardized parameters were obtained by fitting the model on a standardized\nversion of the dataset. 95% Confidence Intervals (CIs) and p-values were\ncomputed using a Wald t-distribution approximation."
   },
   {
     "objectID": "content/02-content.html#what-you-have-learned",
     "href": "content/02-content.html#what-you-have-learned",
-    "title": "Causal diagrams: Five elementary structures; 4 rules",
+    "title": "Causal diagrams: Five elementary structures",
     "section": "What You Have Learned",
     "text": "What You Have Learned\n\nData simulation:\n\nYou’ve learned to simulate datasets in R. This is a foundational skill for exploring statistical concepts and data manipulation techniques. Congratulations!\n\nData visualisation:\n\nYou’ve begun data visualising data through boxplots and histograms and coefficient plots, which is crucial for analysing and communicating statistical findings.\n\nStatistical tests: You’ve conducted basic statistical tests, including t-tests and ANOVA, gaining insights into comparing means across groups.\nUnderstanding ANOVA and regression:\n\nYou’ve explored the equivalence of ANOVA and regression analysis, learning how these methods can be applied to analyse and interpret data effectively."
   },
@@ -2133,5 +2133,54 @@
     "title": "Asking questions in cross-cultural psychology",
     "section": "Many psychologists will simply “control for” income, but what if happiness and marriage cause income?",
     "text": "Many psychologists will simply “control for” income, but what if happiness and marriage cause income?\n\nSimulate data in which happiness and marriage cause income\nControlling for income makes it look as though happiness and marriage are negatively related.\nBut we simulated data with no relationship!\nThis is called ‘collider bias’, we will consider how it works in the upcoming weeks.\nMeantime, even if we measure people without error, cross-cultural studies might select people with different incomes, leading to bias even in the absence of measurement error bias (and even if we do not control for income!)\n\n\n\nCode\n## simulate data \n# reproducability \nset.seed(123)\nsim_fun_B = function() {\n  n &lt;- 10000\n  H &lt;- rnorm(n, 1) # simulates Happiness,\n  M &lt;- rnorm(n , 1) #  simulates Marriage, nothing to do with happiness\n  I &lt;- rnorm(n , .2 * H + .5 * M) # simulate marriage as a function of age + happiness\n\n  \n# simulate dataframe from function\nsimdat_B &lt;- data.frame(\n  H = H, \n  I = I,\n  M = M) \n\n#  model in which marriage \"predicts\" happiness controlling for age\nsim_B &lt;- lm(H ~ M + I, data = simdat_B)\nsim_B  # returns output\n}\n\n# replicate 100 times\nr_lm_B &lt;- NA\nr_lm_B = replicate(100, sim_fun_B(), simplify = FALSE )\n\n# print model results: marriage looks negatively related to happiness!\nparameters::pool_parameters(r_lm_B)\n\n\n# Fixed Effects\n\nParameter   | Coefficient |   SE |         95% CI | Statistic |     df |      p\n-------------------------------------------------------------------------------\n(Intercept) |        0.96 | 0.02 | [ 0.92,  1.00] |     46.96 | 322.51 | &lt; .001\nM           |       -0.10 | 0.02 | [-0.13, -0.07] |     -6.11 | 324.10 | &lt; .001\nI           |        0.19 | 0.01 | [ 0.17,  0.22] |     13.71 | 320.53 | &lt; .001"
+  },
+  {
+    "objectID": "content/02-content.html#causal-diagrams-or-causal-directed-acyclic-graphs",
+    "href": "content/02-content.html#causal-diagrams-or-causal-directed-acyclic-graphs",
+    "title": "Causal diagrams: Five elementary structures",
+    "section": "Causal Diagrams – or “Causal Directed Acyclic Graphs”",
+    "text": "Causal Diagrams – or “Causal Directed Acyclic Graphs”"
+  },
+  {
+    "objectID": "content/02-content.html#for-more-information-about-the-packages-used-here",
+    "href": "content/02-content.html#for-more-information-about-the-packages-used-here",
+    "title": "Causal diagrams: Five elementary structures",
+    "section": "For more information about the packages used here:",
+    "text": "For more information about the packages used here:\n\nggplot2: A system for declaratively creating graphics, based on The Grammar of Graphics.\nParameters package: Provides utilities for processing model parameters and their metrics.\nReport package: Facilitates the automated generation of reports from statistical models."
+  },
+  {
+    "objectID": "content/02-content.html#appendix-a-i-lied",
+    "href": "content/02-content.html#appendix-a-i-lied",
+    "title": "Causal diagrams: Five elementary structures",
+    "section": "Appendix A: I lied",
+    "text": "Appendix A: I lied\nWe can get group comparisons with ANOVA, for example:\n\n# Conduct Tukey's HSD test for post-hoc comparisons\ntukey_post_hoc &lt;- TukeyHSD(anova_model)\n\n# Display the results\nprint(tukey_post_hoc)\n\n  Tukey multiple comparisons of means\n    95% family-wise confidence level\n\nFit: aov(formula = y ~ group, data = df_1)\n\n$group\n           diff        lwr        upr     p adj\n2-1  -0.8030143  -9.560281   7.954253 0.9739971\n3-1 117.6732276 108.915961 126.430495 0.0000000\n3-2 118.4762419 109.718975 127.233509 0.0000000\n\nplot(tukey_post_hoc)\n\n\n\n\n\n\n\n\nRegression and ANOVA are equivalent"
+  },
+  {
+    "objectID": "content/02-content.html#review",
+    "href": "content/02-content.html#review",
+    "title": "Causal diagrams: Five elementary structures",
+    "section": "Review",
+    "text": "Review\n\nPsychological research typically begins with a question. What do we want to know? For whom does this knowledge apply? Before attempting to answer a question, we must first ask it (Hernan and Robins 2024)\nIn psychological research, we typically want to understand the causes and consequences of thought and behaviour - “What if?” questions.\nThe following concepts help us to describe two distinct failure modes in psychological research:\n\n\nExternal Validity: the extent to which the findings of a study can be generalised to other situations, people, settings, and time periods. That is, we want to know if our findings carry beyond the sample population to the target population. We fail when our results do not generalise as we think. More fundamental, we fail when we have not clearly defined our question or our target population.\nInternal Validity: the extent to which the associations we describe between the treatment and outcome reflect causality. In this course, we will use the terms “outcome” and “treatment” in place of “independent” and “dependent”.1\n\n\nOur focus in the the next two weeks: challenges to internal validity from confounding bias.\n\n\nDefinition 1 We say there is bias if the association between the treatment and the outcome does not reflect a causal association.\n\n\nDefinition 2 We say there is confounding-bias if the there is an open back-door path between the treatment and outcome, or if that path between the treatment and outcome is blocked.\n\nCausal Diagrams, also called Causal Graphs, Directed Acyclic Graphs, and Causal Directed Acyclic Graphs, help us to detect confounding, and to develop strategies for addressing it to meet the demands of internal validity: the associations we obtain in our analysis consistently estimate causal associations for the target population."
+  },
+  {
+    "objectID": "content/02-content.html#download-your-laboratory-r-script-here-1",
+    "href": "content/02-content.html#download-your-laboratory-r-script-here-1",
+    "title": "Causal diagrams: Five elementary structures",
+    "section": "Download Your Laboratory R Script Here",
+    "text": "Download Your Laboratory R Script Here\nAssuming you have installed R and RStudio:\n\nDownload the R script for Lab 01 by clicking the link below. This script contains the code you will work with during your laboratory session.\nAfter downloading, open RStudio.\nIn RStudio, create a new R script file by going to File &gt; New File &gt; R Script.\nCopy the contents of the downloaded .R file and paste them into the new R script file you created in RStudio.\nSave the new R script file in your project directory for easy access during the lab.\n\nDownload the R script for Lab 01"
+  },
+  {
+    "objectID": "content/02-content.html#footnotes",
+    "href": "content/02-content.html#footnotes",
+    "title": "Causal diagrams: Five elementary structures",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nWe use the terms “treatment” or “exposure” in place of “dependant variable” and we use “outcome” in place of “independent variable.” We do so because “What if?” questions implicitly invoke the idea of intervening on the world. “If we did this, then what would happen to that…?” Our preferred terminology reflects our interet in the effects of interventions.↩︎"
+  },
+  {
+    "objectID": "content/02-content.html#introduction-to-causal-diagrams-or-causal-directed-acyclic-graphs",
+    "href": "content/02-content.html#introduction-to-causal-diagrams-or-causal-directed-acyclic-graphs",
+    "title": "Causal diagrams: Five elementary structures",
+    "section": "Introduction to Causal Diagrams – or “Causal Directed Acyclic Graphs”",
+    "text": "Introduction to Causal Diagrams – or “Causal Directed Acyclic Graphs”"
   }
 ]

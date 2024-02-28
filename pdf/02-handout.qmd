@@ -1,0 +1,167 @@
+---
+title: "Handout: Causal Directed Acyclic Graphs"
+abstract: |
+authors: 
+  - name: Joseph A Bulbulia
+    orcid: 0000-0002-5861-2056
+    email: joseph.bulbulia@vuw.ac.nz
+    affiliation: 
+      name: Victoria University of Wellington, New Zealand, School of Psychology, Centre for Applied Cross-Cultural Research
+      department: Psychology/Centre for Applied Cross-Cultural Research
+      city: Wellington
+      country: New Zealand
+      url: www.wgtn.ac.nz/cacr
+keywords:
+  - DAGS
+  - Causal Inference
+  - Confounding
+  - Environmental
+  - Psychology
+  - Panel
+format:
+  pdf:
+    sanitize: true
+    keep-tex: true
+    link-citations: true
+    colorlinks: true
+    documentclass: article
+    classoption: [singlecolumn]
+    lof: true
+    lot: true
+    toc: true
+    number-sections: false
+    number-depth: 4
+    highlight-style: github
+    geometry:
+      - top=30mm
+      - left=20mm
+      - heightrounded
+    header-includes:
+      - \input{/Users/joseph/GIT/latex/latex-for-quarto.tex}
+date: last-modified
+execute:
+  echo: false
+  warning: false
+  include: true
+  eval: true
+fontfamily: libertinus
+bibliography: /Users/joseph/GIT/templates/bib/references.bib
+---
+```{r}
+#| echo: FALSE
+#| warning: FALSE
+
+# WARNING:  COMMENT THIS OUT. JB DOES THIS FOR WORKING WITHOUT WIFI
+#source("/Users/joseph/GIT/templates/functions/libs2.R")
+
+# WARNING:  COMMENT THIS OUT. JB DOES THIS FOR WORKING WITHOUT WIFI
+#source("/Users/joseph/GIT/templates/functions/funs.R")
+
+# ALERT: UNCOMMENT THIS AND DOWNLOAD THE FUNCTIONS FROM JB's GITHUB
+# source(
+#   "https://raw.githubusercontent.com/go-bayes/templates/main/functions/experimental_funs.R"
+# )
+
+# source(
+#   "https://raw.githubusercontent.com/go-bayes/templates/main/functions/experimental_funs.R"
+# )
+
+# for making graphs
+library("tinytex")
+library("extrafont")
+loadfonts(device = "all")
+```
+
+## Elements
+
+::: {#tbl-terminology}
+```{=latex}
+\terminologylocalconventions
+```
+Our variable naming conventions
+:::
+
+
+{{< pagebreak >}}
+
+
+::: {#tbl-undirected-graphs}
+
+```{=latex}
+\terminologyundirectedgraphs
+
+```
+Undirected Graphs
+:::
+
+
+{{< pagebreak >}}
+
+
+::: {#tbl-dags}
+
+```{=latex}
+\terminologydirectedgraph
+
+```
+Undirected Graphs
+:::
+
+
+{{< pagebreak >}}
+
+
+::: {#tbl-conventions}
+
+```{=latex}
+\terminologygeneral
+
+```
+Directed Graphs
+:::
+
+{{< pagebreak >}}
+
+
+::: {#tbl-common-interests}
+
+```{=latex}
+\terminologycommoncausalinterests
+
+```
+Common causal interests
+:::
+
+{{< pagebreak >}}
+
+
+::: {#tbl-elementary-confounding}
+
+```{=latex}
+\terminologyelconfounders
+
+```
+Elementary confounding scenarios
+:::
+
+
+
+{{< pagebreak >}}
+
+
+
+::: {#tbl-elementary-confounding-time}
+
+```{=latex}
+\terminologyelconfoundersLONG
+
+```
+Common confounding scenarios with timing
+:::
+
+
+{{< pagebreak >}}
+
+
+
+

@@ -1,9 +1,21 @@
 ---
-title: "Causal diagrams: Five elementary structures; 4 rules "
+title: "Causal diagrams: Five elementary structures"
 date: "2023-MAR-04"
 bibliography: /Users/joseph/GIT/templates/bib/references.bib
 editor_options: 
   chunk_output_type: console
+format:
+  html:
+    warnings: FALSE
+    error: FALSE
+    messages: FALSE
+    code-overflow: scroll
+    highlight-style: kate
+    code-tools:
+      source: true
+      toggle: FALSE
+html-math-method: katex
+
 ---
 
 ```{r}
@@ -30,23 +42,84 @@ library("tinytex")
 library("extrafont")
 loadfonts(device = "all")
 ```
-  
-  
+
+::: {.callout-note}
+## Readings
+- Barrett M (2023). _ggdag: Analyze and Create Elegant Directed Acyclic Graphs_. R package version 0.2.7.9000, <https://github.com/malcolmbarrett/ggdag>
+- "An Introduction to Directed Acyclic Graphs", <https://r-causal.github.io/ggdag/articles/intro-to-dags.html>
+- "Common Structures of Bias", <https://r-causal.github.io/ggdag/articles/bias-structures.html>
+:::
+
+::: {.callout-important}
+## Key concepts for the test(s):
+  - **Confounding**
+  - **Causal Directed Acyclic Graph** 
+  - **Five Elementary Causal Structures**
+  - **d-separation**
+  - **Four Rules of Confounding Control**
+:::
+
+::: {.callout-important}
+## Download Your Laboratory R Script Here
+
+Assuming you have installed R and RStudio:
+
+1. Download the R script for Lab 01 by clicking the link below. This script contains the code you will work with during your laboratory session.
+
+2. After downloading, open RStudio. 
+
+3. In RStudio, create a new R script file by going to `File > New File > R Script`.
+
+4. Copy the contents of the downloaded `.R` file and paste them into the new R script file you created in RStudio.
+
+5. Save the new R script file in your project directory for easy access during the lab -- noting that the script is for the second lab.
+
+[Download the R script for Lab 01](https://raw.githubusercontent.com/go-bayes/psyc-434-2024/main/laboratory/01-lab.R)
+:::
+
+
 ## Overview
 
-This session is devoted to learning R. There are no required readings. 
+- Understand basic features of causal diagrams: definitions and applications
+- Introduction to the five elementary causal structures
 
-  
+- Lab: data visualisation 
+
+
+## Review
+
+1. Psychological research typically begins with a question. What do we want to know? For whom does this knowledge apply?  Before attempting to answer a question, we must first ask it [@hernan2024WHATIF]
+
+2. In psychological research, we typically want to understand the causes and consequences of thought and behaviour - "What if?" questions.
+
+3.  The following concepts help us to describe two distinct failure modes in psychological research:
+
+  - **External Validity**: the extent to which the findings of a study can be generalised to other situations, people, settings, and time periods. That is, we want to know if our findings carry beyond the *sample population* to the *target population*.  We fail when our results do not generalise as we think.  More fundamental, we fail when we have not clearly defined our question or our target population.
+
+  - **Internal Validity**: the extent to which the associations we describe between the treatment and outcome reflect causality. In this course, we will use the terms "outcome" and "treatment" in place of "independent" and "dependent".[^note]
+
+  [^note]: We use the terms "treatment" or "exposure" in place of "dependant variable" and we use "outcome" in place of "independent variable." We do so because "What if?" questions implicitly invoke the idea of intervening on the world. "If we did this, *then* what would happen to that...?" Our preferred terminology reflects our interet in the effects of interventions.
+
+5.  Our focus in the the next two weeks:  challenges to internal validity from **confounding bias.**  
+
+
+::: {#def-bias}
+We say there is bias if the association between the treatment and the outcome does not reflect a causal association. 
+:::
+
+::: {#def-confounding}
+We say there is confounding-bias if the there is an open back-door path between the treatment and outcome, or if that path between the treatment and outcome is blocked.
+:::
+
+
+Causal Diagrams, also called Causal Graphs, Directed Acyclic Graphs, and Causal Directed Acyclic Graphs, help us to detect confounding, and to develop strategies for addressing it to meet the demands of internal validity: the associations we obtain in our analysis consistently estimate causal associations for the target population.
+
+## Introduction to Causal Diagrams -- or "Causal Directed Acyclic Graphs"
+
+
 
 
 ## Lab -- Regression in R
-
-
-
-#### Simulation
-
-To simulate more complex datasets, you can introduce relationships between variables. For instance, simulating age and income with a correlation
-
 
 
 
