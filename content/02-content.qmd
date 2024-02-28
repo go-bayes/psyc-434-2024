@@ -1,5 +1,5 @@
 ---
-title: "Causal diagrams: Five elementary structures"
+title: "Causal diagrams: Five Elementary Structures"
 date: "2023-MAR-04"
 bibliography: /Users/joseph/GIT/templates/bib/references.bib
 editor_options: 
@@ -69,60 +69,94 @@ Assuming you have installed R and RStudio:
 
 3. In RStudio, create a new R script file by going to `File > New File > R Script`.
 
-4. Copy the contents of the downloaded `.R` file and paste them into the new R script file you created in RStudio.
+4. Create a new`.R` file called `02-lab.R` and provide your name, contact, data, and a brief title such as "Rimulating the basic five basic causal structures in R" 
 
-5. Save the new R script file in your project directory for easy access during the lab -- noting that the script is for the second lab.
+Example: 
 
-[Download the R script for Lab 01](https://raw.githubusercontent.com/go-bayes/psyc-434-2024/main/laboratory/01-lab.R)
+```{r}
+#  Bob leBob
+#  29 Feb 2024
+#  bob@lebob.fr
+#. Lab 02 - Simulating The Five Basic Structures of Cauality
+```
+
+
+5. Copy and paste the code chunks below from your computer onto the script during class. 
+
+
+6. Save the new R script file in a clearly defined project directory folder for easy access during the lab.
+
+
+7. Bring your computer to the lab.  
 :::
 
 
-## Overview
+## Part 1: Seminar
+
+
+### Overview 
 
 - Understand basic features of causal diagrams: definitions and applications
 - Introduction to the five elementary causal structures
-
-- Lab: data visualisation 
-
-
-## Review
-
-1. Psychological research typically begins with a question. What do we want to know? For whom does this knowledge apply?  Before attempting to answer a question, we must first ask it [@hernan2024WHATIF]
-
-2. In psychological research, we typically want to understand the causes and consequences of thought and behaviour - "What if?" questions.
-
-3.  The following concepts help us to describe two distinct failure modes in psychological research:
-
-  - **External Validity**: the extent to which the findings of a study can be generalised to other situations, people, settings, and time periods. That is, we want to know if our findings carry beyond the *sample population* to the *target population*.  We fail when our results do not generalise as we think.  More fundamental, we fail when we have not clearly defined our question or our target population.
-
-  - **Internal Validity**: the extent to which the associations we describe between the treatment and outcome reflect causality. In this course, we will use the terms "outcome" and "treatment" in place of "independent" and "dependent".[^note]
-
-  [^note]: We use the terms "treatment" or "exposure" in place of "dependant variable" and we use "outcome" in place of "independent variable." We do so because "What if?" questions implicitly invoke the idea of intervening on the world. "If we did this, *then* what would happen to that...?" Our preferred terminology reflects our interet in the effects of interventions.
-
-5.  Our focus in the the next two weeks:  challenges to internal validity from **confounding bias.**  
+- Lab: Simulation and Regression
 
 
-::: {#def-bias}
-We say there is bias if the association between the treatment and the outcome does not reflect a causal association. 
+### Review
+
+1. Psychological research begins with two questions: 
+
+> 1. What do I want to know? 
+> 2. For which population does this knowledge generalise?  
+
+This course considers how to ask this psychological questions that pertain to populations with different characteristics 
+
+2. In psychological research, we typically ask questions about the causes and consequences of thought and behaviour - "What if?" questions [@hernan2024WHATIF]. 
+
+3. The following concepts help us to describe two distinct failure modes in psychological research when asking "What if?" questions:
+
+  - **The Concept of External Validity**: the extent to which the findings of a study can be generalised to other situations, people, settings, and time periods. That is, we want to know if our findings carry beyond the *sample population* to the *target population*.  We fail when our results do not generalise as we think.  More fundamental, we fail when we have not clearly defined our question or our target population.
+
+  - **The Concept of Internal Validity**: the extent to which the associations we obtain from data reflect causality. In psychological science, we use the terms "independent variable" and "dependent variable." Sometimes we use the terms "exogenous variable" and "endogenous variable."  Sometimes we use the term "predictor variable" to describe the "dependent" or "endogenous" variable. These words are confusing.  When asking "What if?" questions, we want to understand what would happen were we to intervene.  In this course, we will use the term "treatment" or equivalently the term "exposure" to denote the intervention; we will use the term "outcome" to denote the effect of an intervention.[^note]
+
+[^note]: "What if?" questions implicitly invoke the idea of intervening on the world. "If we did *this*, *then* what would happen to *that*...?" Our preferred terminology reflects our interest in the effects of interventions.
+
+5. During the first part of the course, our primary focus will be on challenges to internal validity from **confounding bias.**  
+
+
+## Definitions
+
+::: {#def-internal-validity}
+We say internal validity is compromised if the association between the treatment and outcome in a study does not consistently reflect causality in the sample population as it is defined at baseline.
 :::
+
+::: {#def-external-validity}
+We say external validity is compromised if the association between the treatment and outcome in a study does not consistently reflect causality in the target population as it is defined at baseline.
+:::
+
+The concept of "confounding bias" helps to clarify what it is at stake when evaluating the *internal validity* of a study.  As we shall see, there are several equivalent definitions of "confounding bias," which we will describe during the upcoming weeks. 
+
+The definition of confounding bias that we will examine today is:
 
 ::: {#def-confounding}
-We say there is confounding-bias if the there is an open back-door path between the treatment and outcome, or if that path between the treatment and outcome is blocked.
+We say there is confounding-bias if there is an open back-door path between the treatment and outcome, or if that path between the treatment and outcome is blocked.
 :::
 
-
+Today, our purpose will be to clarify the meaning of each term in this definition.  To that end, we will introduce the five elementary graphical structures and explain the four elementary rules that allow investigators to to move from the causal assumptions encoded in a causal diagram to an assessment of the challenges and opportunities for obtaining internal validity from data.
 
 
 ## Introduction to Causal Diagrams.
 
-Causal Diagrams, also called Causal Graphs, Directed Acyclic Graphs, and Causal Directed Acyclic Graphs, help us to detect confounding, and to develop strategies for addressing it to meet the demands of internal validity: the associations we obtain in our analysis consistently estimate causal associations for the target population.
+Causal diagrams, also called causal graphs, Directed Acyclic Graphs, and Causal Directed Acyclic Graphs, are graphical tools whose primary purpose is to enable investigators to detect confounding biases.
 
+Their primary purpose is to equip investigators with strategies for addressing the demands of internal validity: the associations we obtain in our analysis consistently estimate causal associations for the population of interest.  We will assume that the population of interest -- the target population -- is the sample population at baseline.  We do this to better distinguish between the concepts of internal and external validity. Later, we will relax this assumption.  
+
+
+We begin with by stating variable naming conventions that we will use throughout this course. 
 
 ::: {#fig-conventions}
 ![](terminologylocalconventions.pdf){fig-align="left" height=100% width=100%}
 
-Naming Conventions
-
+Variable naming conventions
 :::
 
 
@@ -155,7 +189,7 @@ Four rules of confounding control
 
 
 
-## Lab -- Regression in R
+## Lab -- Regression in R: Simulate The Five Fundamental Structures of Causality
 
 
 
@@ -169,13 +203,13 @@ Ensure R or RStudio is installed and open.
 
 #### Step 2: Set a Seed for Reproducibility
 
-To ensure that your simulated data can be reproduced exactly, it's good practice to set a seed before generating random data. This makes your analyses and simulations replicable.
+To ensure that your simulated data can be reproduced exactly. Again, it is good practice to set a seed before generating random data. This makes your analyses and simulations replicable.
 
 ```{r}
 set.seed(123) # use any number to set the seed
 ```
 
-#### Step 3: Simulating Continuous Data
+#### Step 3: Simulate Continuous Data: One Variable 
 
 To simulate continuous data, you can use functions like `rnorm()` for normal distributions, `runif()` for uniform distributions, etc. Here we simulate 100 normally distributed data points with a mean of 50 and a standard deviation of 10:
 
@@ -187,6 +221,9 @@ data_continuous <- rnorm(n, mean, sd)
 
 # view
 head(data_continuous)
+
+# view
+hist(data_continuous)
 ```
 
 
@@ -283,7 +320,7 @@ ggplot(scores_df, aes(x = Scores, fill = Group)) +
 ```
 
 
-## Excercise 3
+## Excercise 1
 
 1. Modify the simulation parameters to change each group's mean and standard deviation. Observe how these changes affect the distribution.
 
@@ -471,7 +508,7 @@ ANOVA partitions variance into between-group and within-group components, while 
 plot(table_fit)
 ```
 
-### Exercise 3
+### Exercise 2
 
 Perform a linear regression analysis using R. Follow the detailed instructions below to simulate the necessary data, execute the regression, and report your findings:
 
@@ -623,7 +660,7 @@ You've learned to simulate datasets in R. This is a foundational skill for explo
 ## Appendix A: Solutions {#appendix-a}
 
 
-### Solution Problem Set 3: simulate data and regression reporting 
+### Solution Excercise 2: simulate data and regression reporting 
 
 
 ```{r}
@@ -693,7 +730,7 @@ You've explored the equivalence of ANOVA and regression analysis, learning how t
 
   - [Report package](https://easystats.github.io/report/index.html): Facilitates the automated generation of reports from statistical models.
 
-## Appendix A: I lied
+## Appendix B: How ANOVA can deliever the functionality of Linear Regressions
 
 We can get group comparisons with ANOVA, for example:
 
