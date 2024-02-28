@@ -15,7 +15,6 @@ format:
       source: true
       toggle: FALSE
 html-math-method: katex
-
 ---
 
 ```{r}
@@ -112,10 +111,47 @@ We say there is confounding-bias if the there is an open back-door path between 
 :::
 
 
+
+
+## Introduction to Causal Diagrams.
+
 Causal Diagrams, also called Causal Graphs, Directed Acyclic Graphs, and Causal Directed Acyclic Graphs, help us to detect confounding, and to develop strategies for addressing it to meet the demands of internal validity: the associations we obtain in our analysis consistently estimate causal associations for the target population.
 
-## Introduction to Causal Diagrams -- or "Causal Directed Acyclic Graphs"
 
+::: {#fig-conventions}
+![](terminologylocalconventions.pdf){fig-align="left" height=100% width=100%}
+
+Naming Conventions
+
+:::
+
+
+::: {#fig-general}
+![](terminologygeneral.pdf){fig-align="left" height=100% width=100%}
+
+Nodes, Edges, Conditioning Conventions
+:::
+
+
+
+::: {#fig-directedgraph}
+![](terminologydirectedgraph.pdf){fig-align="left" height=100% width=100%}
+
+Five elementary structures
+
+:::
+
+
+
+
+
+
+::: {#fig-terminologyconfounders}
+![](terminologyelconfounders.pdf){fig-align="left" height=100% width=100%}
+
+Four rules of confounding control
+
+:::
 
 
 
