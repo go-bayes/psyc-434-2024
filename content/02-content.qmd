@@ -94,10 +94,14 @@ Example:
 
 
 7. Bring your computer to the lab.  
+
+
+Note: you may also download the lab here [Download the R script for Lab 02](https://raw.githubusercontent.com/go-bayes/psyc-434-2024/main/laboratory/02-lab.R)
+
 :::
 
 
-## Part 1: Seminar
+# Seminar
 
 
 ### Overview 
@@ -332,7 +336,7 @@ However, we can also use the proxy rule to reduce bias. Return to the earlier ex
 
 
 
-## Lab -- Regression in R, Graphing, and Elements of Simulation 
+# Lab -- Regression in R, Graphing, and Elements of Simulation 
 
 
 
@@ -732,15 +736,68 @@ report_fit
 ```
 
 
+And we can add some graphs
+
+```{r}
+# regression --------------------------------------------------------------
+# graph the output of the parameters table
+# visualisation
+coefficient_plot <- plot(table_fit)
+
+
+# ggeffects plot
+predictive_plot <- plot(
+  ggeffects::ggpredict(fit_regression, terms = "group"),
+  dot_alpha = 0.35,
+  show_data = TRUE,
+  jitter = .1,
+  colors =  "reefs"
+) +
+  scale_y_continuous(limits = c(0, 260)) + # change y axis
+  labs(title = "Predictive Graph", x = "Treatment Group", y = "Response")
+
+# view (uncomment)
+#predictive_plot
+
+# show all color palettes (uncomment)
+# show_pals()
+
+
+# multiple plots
+library(patchwork)
+
+# create a plot
+my_first_combination_plot <- coefficient_plot / predictive_plot  +
+  plot_annotation(title = "Coefficient and Predictive plots",
+                  tag_levels = "A")
+
+# save a plot to your directory, make sure to create one called "figs"
+
+## check directory (uncomments)
+# here::here()
+
+# save (change values if necessary )
+ggsave(
+  my_first_combination_plot,
+  path = here::here("figs"),
+  width = 12,
+  height = 8,
+  units = "in",
+  filename = "my_first_combination_plot.jpeg",
+  device = 'jpeg',
+  limitsize = FALSE,
+  dpi = 600
+)
+
+# view
+my_first_combination_plot
+```
+
+
 ## Upshot
 
 ANOVA partitions variance into between-group and within-group components, while regression models the mean of the dependent variable as a linear function of the independent (including categorical) variables. For many questions, ANOVA is appropriate, however, when comparing groups, we often want a finer-grained interpretation. Regression is built for obtaining this finer grain understanding. We will return to regression over the next few weeks and use regression to hone your skills in R. Later, Along the way, you'll learn more about data visualisation, modelling, and reporting.  
 
-```{r}
-# graph the output of the parameters table
-# visualisation
-plot(table_fit)
-```
 
 ## Exercise 2
 
