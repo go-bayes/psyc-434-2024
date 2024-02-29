@@ -16,6 +16,8 @@ website:
       href: content/course-outline.qmd
     - text: "Content"
       menu:
+        - text: "Glossary"
+          href: content/glossary.pdf
         - text: "Course Outline"
           href: content/course-outline.qmd
         - text: "Week 1: Course Introduction - R (installing packages)"
