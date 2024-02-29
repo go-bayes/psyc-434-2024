@@ -159,6 +159,16 @@ We begin with by stating variable naming conventions that we will use throughout
 Variable naming conventions
 :::
 
+The symbol $X$ generically denotes a variable, without reference to its role.
+
+$A$ denotes the "treatment" or "exposure" variable. This is the variable for which we seek to understand the effect of intervening on it. It is the "cause." 
+
+$Y$ denotes the outcome or response of an intervention. It is the "effect" 
+
+$Y(a)$ denotes the counterfactual or potential state of the outcome $Y$ in response to setting the level of the exposure to a specific level, $A=a$. As we will consider in the second half of the course, to consistently estimate causal effects we will need to evaluate counterfactual or potential states of the world. Don't worry about them for now -- all will become clear!
+
+$L$ denotes a measured confounder or set of confounders is defined as a variable which, if conditioned upon, closes an open back-door path between the treatment $A$ and the outcome $Y$.
+
 
 ::: {#fig-general}
 ![](terminologygeneral.pdf){fig-align="left" height=100% width=100%}
@@ -358,7 +368,7 @@ post_test <- rnorm(30, mean =  pre_test + 5, sd = 5) # assume an increase
 t.test(pre_test, post_test, paired = TRUE)
 ```
 
-### **Exercise 3: Linear Regression Analysis with Simulated Data**
+## **Exercise 2: Linear Regression Analysis with Simulated Data**
 
 #### **Task 1: Simulating Continuous Treatment Variable**
 
@@ -747,3 +757,66 @@ Regression and ANOVA are equivalent
 
 
 
+## Appendix C: Glossary:
+
+Creating a table format for your comprehensive glossary in a markdown document, given the extensive list, it's practical to focus on key terms for brevity and clarity. Here's a condensed table representation:
+
+
+
+| Term                                   | Definition                                                                                                                                                   |
+|----------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Acyclic**                            | In causal diagrams, no variable can be an ancestor or descendant of itself; no feedback loops allowed.                                                       |
+| **Adjustment Set**                     | Variables conditioned to block all backdoor paths between treatment ($A$) and outcome ($Y$), ensuring unbiased causal estimates.                             |
+| **Ancestor (Parent)**                  | A node affecting others downstream in the causal chain, preceding its descendants in time.                                                                   |
+| **Arrow**                              | Represents direct causation in causal DAGs, pointing from cause to effect.                                                                                   |
+| **Average Treatment Effect (ATE)**     | The difference in expected outcomes between treated and untreated units across a population.                                                                 |
+| **Backdoor Path**                      | Paths introducing potential confounding bias between treatment and outcome, requiring blocking for unbiased estimation.                                      |
+| **Causal Contrast**                    | The difference in expected outcomes under different treatment levels across a population.                                                                    |
+| **Causal Contrast Scale**              | The metric for quantifying causal contrasts, chosen based on outcome type and research question.                                                             |
+| **Causal Diagram (Causal DAG)**        | Graphs representing causal relationships; must be acyclic and capture all confounding sources.                                                               |
+| **Causal Estimand**                    | The causal contrast of interest specifying intervention, outcome, contrast scale, and target population; given before analysis.                             |
+| **Causal Path**                        | Asserts a change in the parent node will induce a change in its child.                                                                                       |
+| **Censoring**                          | Incomplete data in longitudinal studies due to unobserved relevant events, sample attrition, including right, left, and interval censoring.                  |
+| **Collider**                           | A variable where two causal paths meet head-to-head, leading to non-causal associations between any unassociated parents.                                    |
+| **Conditional Average Treatment Effect (CATE)** | The treatment effect for specific subgroups, defined by explicit characteristics.                                                                          |
+| **Conditioning**                       | Adjusting for variables in analysis to distinguish causal effects from associations.                                                                         |
+| **Confounding**                        | Treatment and outcome are associated independently of causality or disassociated in the presence of causality.                                               |
+| **Confounder**                         | A variable that, when conditioned upon, reduces or eliminates confounding; its role is relative to the causal question and conditioning strategy.             |
+| **Counterfactual or Potential outcomes** | Hypothetical outcomes under different treatment conditions to be contrasted, only one may be realised for each observed unit.                              |
+| **d-separation**                       | Backdoor paths are blocked, indicating conditional independence.                                                                                             |
+| **Descendant (Child)**                 | A node causally influenced by a prior node (Parent). A child is a direct descendant.                                                                         |
+| **Effect-Measure Modifier/Effect-Modifier** | A variable that affects the magnitude or direction of a causal effect.                                                                                    |
+| **Estimator**                          | Algorithm to compute a statistical estimand from data.                                                                                                       |
+| **External Validity/Target Validity**  | The generalisability of study findings to the prespecified target population; assumes internal validity.                                                     |
+| **Heterogeneous Treatment Effects**    | Variation in treatment effects across subgroups or contexts.                                                                                                 |
+| **Identification Problem**             | Estimating causal effects accurately by adjusting for confounding.                                                                                           |
+| **Incident Exposure Effect**           | Describes the effect of initiating a new treatment.                                                                                                          |
+| **Indirect Effect (Mediated Effect)**  | The effect portion transmitted through a mediator in the causal pathway.                                                                                     |
+| **Instrumental Variable**              | Associated with treatment but affecting the outcome only through the treatment, used for estimating causal effects amidst confounding.                        |
+| **Intention-to-Treat Effect**          | The effect of treatment assignment, analysed based on initial treatment assignment, reflecting real-world effectiveness but possibly obscuring mechanisms.    |
+| **Internal Validity**                  | The extent to which causal associations in the study population are accurately identified.                                                                    |
+| **Inverse Probability of Censoring Weights (IPCW)** | Adjust for bias from attrition in longitudinal studies.                                                                       |
+| **Inverse Probability of Treatment Weights (IPTW)** | Creates a pseudo-population to obtain treatment balance across conditions.                                                                              |
+| **Loss-to-follow-up**                  | Participant attrition.                                                                                                                                       |
+| **Marginal effect**                    | Synonymous with Average Treatment Effect.                                                                                                                    |
+| **Mediator**                           | A variable through which a treatment affects an outcome.                                                                                                     |
+| **Node**                               | Represents a variable in a causal diagram.                                                                                                                   |
+| **Observational Study**                | Research in which treatment assignment is not controlled by the investigator.                                                                                |
+| **Path**                               | Association between variables in a causal diagram.                                                                                                           |
+| **Per-Protocol Effect**                | The causal effect under full-treatment adherence.                                                                                                            |
+| **Prevalent Exposure Effect**          | Describes the effect of current or ongoing exposures.                                                                                                        |
+| **Propensity Score**                   | The probability of receiving treatment based on observed characteristics, used for confounding adjustment in observational studies.                          |
+| **Randomisation**                      | Assigning treatments randomly to balance confounders across treatment conditions.                                                                            |
+| **Randomised Controlled Trial (RCT)**  | The "gold standard" uses random treatment assignment to ensure unbiased causal inference.                                                                    |
+| **Reverse Causation**                  | Cause and effect are mistakenly conflated in analysis.                                                                                                       |
+| **Sample Weights**                     | Adjusts sample data to better represent the target population in analysis.                                                                                   |
+| **Selection Bias**                     | Systematic errors from non-representative study participation or attrition, affecting generalisability.                                                      |
+| **Sequentially ordered causal diagram**| Diagrams where nodes and arrows align with temporal sequence.                                                                                                |
+| **Statistical Estimand**               | The parameter of interest in a statistical model, not necessarily causal.                                                                                    |
+| **Statistical Estimate**               | The value obtained for a statistical estimand from data analysis.                                                                                            |
+| **Statistical Model**                  | Mathematical relationships between dataset variables; does not inherently identify causation without structural assumptions.                                  |
+| **Structural Model**                   | Assumptions about causal relationships encoded in diagrams, essential for causal interpretation beyond mere statistical association.                         |
+| **Study Population**                   | The actual population from which data are collected, also termed "sample population."                                                                       |
+| **Target Population**                  | The broader population to which study results are intended to apply.                                                                                         |
+| **Target Trial**                       | An observational study that attempts to emulate an idealised experiment by pre-specifying a causal estimand, eligibility criteria, and appropriate data ordering.|
+| **Time-Varying Confounding**           | Confounding that changes over time, complicating causal effect estimation with standard methods.                                                             |
