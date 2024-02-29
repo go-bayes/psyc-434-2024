@@ -81,9 +81,7 @@ leaflet() %>%
 
 **Course Coordinator's Office** EA324
 
-**Teaching Fellow** Dr.Inkuk Kim [inkuk.kim\@vuw.ac.nz](mailto:inkuk.kim@vuw.ac.nz){.email}
-
-**Laboratory Assistant** Dr Torven Schalk [torven.schalk\@vuw.ac.nz](mailto:torven.schalk@vuw.ac.nz){.email}
+**R Help from ** Dr.Inkuk Kim [inkuk.kim\@vuw.ac.nz](mailto:inkuk.kim@vuw.ac.nz){.email}
 
 
 

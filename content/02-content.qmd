@@ -305,7 +305,7 @@ Otto Neurath, an Austrian philosopher and a member of the Vienna Circle, famousl
 
 > We are like sailors who on the open sea must reconstruct their ship but are never able to start afresh from the bottom. Where a beam is taken away a new one must at once be put there, and for this the rest of the ship is used as support. In this way, by using the old beams and driftwood the ship can be shaped entirely anew, but only by gradual reconstruction. [@neurath1973]
 
-This quotation emphasises the continuous and iterative process of knowledge development;  new insights are cast from the foundation of existing knowledge. Causal diagrams are at home in Neurath's boat. The tradition of science that believes that knowledge accumulates the results of statistical tests applied to data has done considerable harm and must be resisted. The data alone do not contain the answers we seek.
+This quotation emphasises the continuous and iterative process of knowledge development;  new insights are cast from the foundation of existing knowledge. Causal diagrams are at home in Neurath's boat. The tradition of science that believes that knowledge accumulates from the results of statistical tests applied to data has done considerable harm, and should be resisted. The data alone do not contain the answers we seek.
 
 
 ## The Four Rules of Confounding Control
