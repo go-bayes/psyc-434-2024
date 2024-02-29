@@ -742,7 +742,7 @@ ANOVA partitions variance into between-group and within-group components, while 
 plot(table_fit)
 ```
 
-### Exercise 2
+## Exercise 2
 
 Perform a linear regression analysis using R. Follow the detailed instructions below to simulate the necessary data, execute the regression, and report your findings:
 
