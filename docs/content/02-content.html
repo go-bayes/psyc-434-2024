@@ -305,7 +305,6 @@ window.Quarto = {
   <li><a href="#method" id="toc-method" class="nav-link" data-scroll-target="#method">Method</a></li>
   <li><a href="#upshot" id="toc-upshot" class="nav-link" data-scroll-target="#upshot">Upshot</a></li>
   <li><a href="#exercise-2" id="toc-exercise-2" class="nav-link" data-scroll-target="#exercise-2">Exercise 2</a></li>
-  <li><a href="#more-complexity" id="toc-more-complexity" class="nav-link" data-scroll-target="#more-complexity">More complexity</a></li>
   <li><a href="#what-you-have-learned" id="toc-what-you-have-learned" class="nav-link" data-scroll-target="#what-you-have-learned">What You Have Learned</a></li>
   <li><a href="#for-more-information-about-the-packages-used-here" id="toc-for-more-information-about-the-packages-used-here" class="nav-link" data-scroll-target="#for-more-information-about-the-packages-used-here">For more information about the packages used here:</a></li>
   <li><a href="#appendix-a" id="toc-appendix-a" class="nav-link" data-scroll-target="#appendix-a">Appendix A: Solutions</a>
@@ -313,7 +312,13 @@ window.Quarto = {
   <li><a href="#solution-excercise-2-simulate-data-and-regression-reporting" id="toc-solution-excercise-2-simulate-data-and-regression-reporting" class="nav-link" data-scroll-target="#solution-excercise-2-simulate-data-and-regression-reporting">Solution Excercise 2: simulate data and regression reporting</a></li>
   </ul></li>
   <li><a href="#appendix-b-how-anova-can-deliver-the-functionality-of-linear-regressions" id="toc-appendix-b-how-anova-can-deliver-the-functionality-of-linear-regressions" class="nav-link" data-scroll-target="#appendix-b-how-anova-can-deliver-the-functionality-of-linear-regressions">Appendix B: How ANOVA can deliver the functionality of Linear Regressions</a></li>
-  <li><a href="#appendix-c-glossary" id="toc-appendix-c-glossary" class="nav-link" data-scroll-target="#appendix-c-glossary">Appendix C: Glossary</a></li>
+  <li><a href="#appendix-c-adding-complexity-in-simulation" id="toc-appendix-c-adding-complexity-in-simulation" class="nav-link" data-scroll-target="#appendix-c-adding-complexity-in-simulation">Appendix C: Adding Complexity in Simulation</a>
+  <ul class="collapse">
+  <li><a href="#simulating-data-continued" id="toc-simulating-data-continued" class="nav-link" data-scroll-target="#simulating-data-continued">Simulating Data… Continued</a></li>
+  <li><a href="#more-complexity" id="toc-more-complexity" class="nav-link" data-scroll-target="#more-complexity">More complexity</a></li>
+  <li><a href="#visualising-simulated-data" id="toc-visualising-simulated-data" class="nav-link" data-scroll-target="#visualising-simulated-data">Visualising Simulated Data</a></li>
+  </ul></li>
+  <li><a href="#appendix-d-causal-inference-glossary" id="toc-appendix-d-causal-inference-glossary" class="nav-link" data-scroll-target="#appendix-d-causal-inference-glossary">Appendix D: Causal Inference Glossary</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -956,8 +961,8 @@ Alternative hypothesis: true mean difference is not equal to 0</code></pre>
 <section id="run-linear-model" class="level3">
 <h3 class="anchored" data-anchor-id="run-linear-model">Run Linear Model</h3>
 <p>Before moving on to regression analysis, ensure students understand the structure and distribution of the simulated data. Encourage them to use <code>summary()</code>, <code>plot()</code>, and other exploratory data analysis functions.</p>
-<section id="task-3-regression-analysis-of-continuous-treatment-effect" class="level4">
-<h4 class="anchored" data-anchor-id="task-3-regression-analysis-of-continuous-treatment-effect"><strong>Task 3: Regression Analysis of Continuous Treatment Effect</strong></h4>
+<section id="regression-analysis-of-continuous-treatment-effect" class="level4">
+<h4 class="anchored" data-anchor-id="regression-analysis-of-continuous-treatment-effect">Regression Analysis of Continuous Treatment Effect</h4>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -1204,74 +1209,6 @@ group [3]   |      121.07 | 3.48 | [114.16, 127.98] | 34.83 | &lt; .001</code></
 <span id="cb39-36"><a href="#cb39-36" aria-hidden="true" tabindex="-1"></a>parameters<span class="sc">::</span><span class="fu">model_parameters</span>(fit_3)</span>
 <span id="cb39-37"><a href="#cb39-37" aria-hidden="true" tabindex="-1"></a><span class="fu">report</span>(fit_3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="simulating-data-continued" class="level4">
-<h4 class="anchored" data-anchor-id="simulating-data-continued">Simulating Data Continued</h4>
-<p>Data frames are used in R to store data tables. To simulate a dataset with both continuous and categorical data, you can combine the above steps:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a data frame with simulated data for ID, Gender, Age, and Income</span></span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>data_frame <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># generate a sequence of IDs from 1 to n</span></span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">ID =</span> <span class="dv">1</span><span class="sc">:</span>n,</span>
-<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># randomly assign 'Male' or 'Female' to each observation</span></span>
-<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">Gender =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"Male"</span>, <span class="st">"Female"</span>), n, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># simulate 'Age' data: normally distributed with mean 30 and sd 5</span></span>
-<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">Age =</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">30</span>, <span class="at">sd =</span> <span class="dv">5</span>),</span>
-<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># simulate 'Income' data: normally distributed with mean 50000 and sd 10000</span></span>
-<span id="cb40-13"><a href="#cb40-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">Income =</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">50000</span>, <span class="at">sd =</span> <span class="dv">10000</span>)</span>
-<span id="cb40-14"><a href="#cb40-14" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Note that you can sample probabilistically for your groups</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">100</span> <span class="co"># total number of observations</span></span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="co"># sample 'Gender' with a 40/60 proportion for Male/Female</span></span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>Gender <span class="ot">=</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"Male"</span>, <span class="st">"Female"</span>), n, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.4</span>, <span class="fl">0.6</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-</section>
-<section id="more-complexity" class="level2">
-<h2 class="anchored" data-anchor-id="more-complexity">More complexity</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set the number of observations</span></span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">100</span></span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="co"># simulate the 'Age' variable</span></span>
-<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>mean_age <span class="ot">&lt;-</span> <span class="dv">30</span></span>
-<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>sd_age <span class="ot">&lt;-</span> <span class="dv">5</span></span>
-<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>Age <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> mean_age, <span class="at">sd =</span> sd_age)</span>
-<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a><span class="co"># define coefficients explicitly</span></span>
-<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a>intercept <span class="ot">&lt;-</span> <span class="dv">20000</span>   <span class="co"># Intercept for the income equation</span></span>
-<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a>beta_age <span class="ot">&lt;-</span> <span class="dv">1500</span>     <span class="co"># Coefficient for the effect of age on income</span></span>
-<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a>error_sd <span class="ot">&lt;-</span> <span class="dv">10000</span>    <span class="co"># Standard deviation of the error term</span></span>
-<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-14"><a href="#cb42-14" aria-hidden="true" tabindex="-1"></a><span class="co"># simulate 'Income' based on 'Age' and defined coefficients</span></span>
-<span id="cb42-15"><a href="#cb42-15" aria-hidden="true" tabindex="-1"></a>Income <span class="ot">&lt;-</span> intercept <span class="sc">+</span> beta_age <span class="sc">*</span> Age <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> error_sd)</span>
-<span id="cb42-16"><a href="#cb42-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-17"><a href="#cb42-17" aria-hidden="true" tabindex="-1"></a><span class="co"># create a data frame to hold the simulated data</span></span>
-<span id="cb42-18"><a href="#cb42-18" aria-hidden="true" tabindex="-1"></a>data_complex <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(Age, Income)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<section id="step-7-visualising-simulated-data" class="level4">
-<h4 class="anchored" data-anchor-id="step-7-visualising-simulated-data">Step 7: Visualising Simulated Data</h4>
-<p>Visualising your simulated data can help understand its distribution and relationships. Use the <code>ggplot2</code> package for this:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data_complex, <span class="fu">aes</span>(<span class="at">x =</span> Age, <span class="at">y =</span> Income)) <span class="sc">+</span></span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Simulated Age vs. Income"</span>, <span class="at">x =</span> <span class="st">"Age"</span>, <span class="at">y =</span> <span class="st">"Income"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="02-content_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
 </section>
 <section id="what-you-have-learned" class="level2">
 <h2 class="anchored" data-anchor-id="what-you-have-learned">What You Have Learned</h2>
@@ -1295,6 +1232,7 @@ group [3]   |      121.07 | 3.48 | [114.16, 127.98] | 34.83 | &lt; .001</code></
 <li><p><a href="https://ggplot2.tidyverse.org/">ggplot2</a>: A system for declaratively creating graphics, based on The Grammar of Graphics.</p></li>
 <li><p><a href="https://easystats.github.io/parameters/">Parameters package</a>: Provides utilities for processing model parameters and their metrics.</p></li>
 <li><p><a href="https://easystats.github.io/report/index.html">Report package</a>: Facilitates the automated generation of reports from statistical models.</p></li>
+<li><p><span class="citation" data-cites="montgomery2018">Montgomery, Nyhan, and Torres (<a href="#ref-montgomery2018" role="doc-biblioref">2018</a>)</span> describes confounding in experiments - well worth a read.</p></li>
 </ul>
 </section>
 <section id="appendix-a" class="level2">
@@ -1302,30 +1240,30 @@ group [3]   |      121.07 | 3.48 | [114.16, 127.98] | 34.83 | &lt; .001</code></
 <section id="solution-excercise-2-simulate-data-and-regression-reporting" class="level3">
 <h3 class="anchored" data-anchor-id="solution-excercise-2-simulate-data-and-regression-reporting">Solution Excercise 2: simulate data and regression reporting</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(parameters)</span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="co">#  seed for reproducibility</span></span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">12345</span>)</span>
-<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a><span class="co"># number of observations</span></span>
-<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">100</span></span>
-<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a><span class="co"># simulate data for variable A with specified mean and sd</span></span>
-<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">50</span>, <span class="at">sd =</span> <span class="dv">10</span>)</span>
-<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a><span class="co"># define the specified effect size of A on Y</span></span>
-<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a>beta_A <span class="ot">&lt;-</span> <span class="dv">2</span></span>
-<span id="cb44-13"><a href="#cb44-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-14"><a href="#cb44-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-15"><a href="#cb44-15" aria-hidden="true" tabindex="-1"></a><span class="co"># simulate data and make data frame in one step</span></span>
-<span id="cb44-16"><a href="#cb44-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-17"><a href="#cb44-17" aria-hidden="true" tabindex="-1"></a>df_3 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb44-18"><a href="#cb44-18" aria-hidden="true" tabindex="-1"></a>  <span class="co"># simulate data for variable A with specified mean and sd</span></span>
-<span id="cb44-19"><a href="#cb44-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">A =</span>  <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">50</span>, <span class="at">sd =</span> <span class="dv">10</span>),</span>
-<span id="cb44-20"><a href="#cb44-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">Y =</span> <span class="dv">5</span> <span class="sc">+</span> beta_A <span class="sc">*</span> A <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">20</span>)</span>
-<span id="cb44-21"><a href="#cb44-21" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb44-22"><a href="#cb44-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-23"><a href="#cb44-23" aria-hidden="true" tabindex="-1"></a><span class="co"># view</span></span>
-<span id="cb44-24"><a href="#cb44-24" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df_3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(parameters)</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="co">#  seed for reproducibility</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">12345</span>)</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a><span class="co"># number of observations</span></span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a><span class="co"># simulate data for variable A with specified mean and sd</span></span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">50</span>, <span class="at">sd =</span> <span class="dv">10</span>)</span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a><span class="co"># define the specified effect size of A on Y</span></span>
+<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a>beta_A <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb40-13"><a href="#cb40-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-14"><a href="#cb40-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-15"><a href="#cb40-15" aria-hidden="true" tabindex="-1"></a><span class="co"># simulate data and make data frame in one step</span></span>
+<span id="cb40-16"><a href="#cb40-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-17"><a href="#cb40-17" aria-hidden="true" tabindex="-1"></a>df_3 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb40-18"><a href="#cb40-18" aria-hidden="true" tabindex="-1"></a>  <span class="co"># simulate data for variable A with specified mean and sd</span></span>
+<span id="cb40-19"><a href="#cb40-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">A =</span>  <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">50</span>, <span class="at">sd =</span> <span class="dv">10</span>),</span>
+<span id="cb40-20"><a href="#cb40-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">Y =</span> <span class="dv">5</span> <span class="sc">+</span> beta_A <span class="sc">*</span> A <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">20</span>)</span>
+<span id="cb40-21"><a href="#cb40-21" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb40-22"><a href="#cb40-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-23"><a href="#cb40-23" aria-hidden="true" tabindex="-1"></a><span class="co"># view</span></span>
+<span id="cb40-24"><a href="#cb40-24" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df_3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>         A         Y
 1 52.23925  87.98766
@@ -1335,28 +1273,28 @@ group [3]   |      121.07 | 3.48 | [114.16, 127.98] | 34.83 | &lt; .001</code></
 5 51.41084 133.74473
 6 44.63952  70.74512</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df_3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df_3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>'data.frame':   100 obs. of  2 variables:
  $ A: num  52.2 38.4 54.2 36.8 51.4 ...
  $ Y: num  88 107 108 117 134 ...</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform linear regression of Y on A</span></span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>fit_3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> A, <span class="at">data =</span> df_3)</span>
-<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Report the results of the regression</span></span>
-<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a><span class="co"># summary(model)</span></span>
-<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a><span class="co"># report</span></span>
-<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a>parameters<span class="sc">::</span><span class="fu">model_parameters</span>(fit_3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform linear regression of Y on A</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>fit_3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> A, <span class="at">data =</span> df_3)</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Report the results of the regression</span></span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a><span class="co"># summary(model)</span></span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a><span class="co"># report</span></span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a>parameters<span class="sc">::</span><span class="fu">model_parameters</span>(fit_3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Parameter   | Coefficient |    SE |          95% CI | t(98) |      p
 --------------------------------------------------------------------
 (Intercept) |      109.17 | 14.62 | [80.17, 138.18] |  7.47 | &lt; .001
 A           |   -3.80e-03 |  0.28 | [-0.57,   0.56] | -0.01 | 0.989 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">report</span>(fit_3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">report</span>(fit_3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>We fitted a linear model (estimated using OLS) to predict Y with A (formula: Y
 ~ A). The model explains a statistically not significant and very weak
@@ -1379,11 +1317,11 @@ computed using a Wald t-distribution approximation.</code></pre>
 <h2 class="anchored" data-anchor-id="appendix-b-how-anova-can-deliver-the-functionality-of-linear-regressions">Appendix B: How ANOVA can deliver the functionality of Linear Regressions</h2>
 <p>We can get group comparisons with ANOVA, for example:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Conduct Tukey's HSD test for post hoc comparisons</span></span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>tukey_post_hoc <span class="ot">&lt;-</span> <span class="fu">TukeyHSD</span>(anova_model)</span>
-<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the results</span></span>
-<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(tukey_post_hoc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Conduct Tukey's HSD test for post hoc comparisons</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>tukey_post_hoc <span class="ot">&lt;-</span> <span class="fu">TukeyHSD</span>(anova_model)</span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the results</span></span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(tukey_post_hoc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  Tukey multiple comparisons of means
     95% family-wise confidence level
@@ -1396,7 +1334,78 @@ $group
 3-1 121.072862 112.784607 129.36112 0.0000000
 3-2 117.691231 109.402975 125.97949 0.0000000</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(tukey_post_hoc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(tukey_post_hoc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="02-content_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Regression and ANOVA are equivalent</p>
+</section>
+<section id="appendix-c-adding-complexity-in-simulation" class="level2">
+<h2 class="anchored" data-anchor-id="appendix-c-adding-complexity-in-simulation">Appendix C: Adding Complexity in Simulation</h2>
+<section id="simulating-data-continued" class="level3">
+<h3 class="anchored" data-anchor-id="simulating-data-continued">Simulating Data… Continued</h3>
+<p>Data frames are used in R to store data tables. To simulate a dataset with both continuous and categorical data, you can combine the above steps:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a data frame with simulated data for ID, Gender, Age, and Income</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>data_frame <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># generate a sequence of IDs from 1 to n</span></span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">ID =</span> <span class="dv">1</span><span class="sc">:</span>n,</span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># randomly assign 'Male' or 'Female' to each observation</span></span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">Gender =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"Male"</span>, <span class="st">"Female"</span>), n, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># simulate 'Age' data: normally distributed with mean 30 and sd 5</span></span>
+<span id="cb51-10"><a href="#cb51-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">Age =</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">30</span>, <span class="at">sd =</span> <span class="dv">5</span>),</span>
+<span id="cb51-11"><a href="#cb51-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb51-12"><a href="#cb51-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># simulate 'Income' data: normally distributed with mean 50000 and sd 10000</span></span>
+<span id="cb51-13"><a href="#cb51-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">Income =</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">50000</span>, <span class="at">sd =</span> <span class="dv">10000</span>)</span>
+<span id="cb51-14"><a href="#cb51-14" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Note that you can sample probabilistically for your groups</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">100</span> <span class="co"># total number of observations</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="co"># sample 'Gender' with a 40/60 proportion for Male/Female</span></span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>Gender <span class="ot">=</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"Male"</span>, <span class="st">"Female"</span>), n, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.4</span>, <span class="fl">0.6</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="more-complexity" class="level3">
+<h3 class="anchored" data-anchor-id="more-complexity">More complexity</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set the number of observations</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a><span class="co"># simulate the 'Age' variable</span></span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>mean_age <span class="ot">&lt;-</span> <span class="dv">30</span></span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>sd_age <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a>Age <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> mean_age, <span class="at">sd =</span> sd_age)</span>
+<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a><span class="co"># define coefficients explicitly</span></span>
+<span id="cb53-10"><a href="#cb53-10" aria-hidden="true" tabindex="-1"></a>intercept <span class="ot">&lt;-</span> <span class="dv">20000</span>   <span class="co"># Intercept for the income equation</span></span>
+<span id="cb53-11"><a href="#cb53-11" aria-hidden="true" tabindex="-1"></a>beta_age <span class="ot">&lt;-</span> <span class="dv">1500</span>     <span class="co"># Coefficient for the effect of age on income</span></span>
+<span id="cb53-12"><a href="#cb53-12" aria-hidden="true" tabindex="-1"></a>error_sd <span class="ot">&lt;-</span> <span class="dv">10000</span>    <span class="co"># Standard deviation of the error term</span></span>
+<span id="cb53-13"><a href="#cb53-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-14"><a href="#cb53-14" aria-hidden="true" tabindex="-1"></a><span class="co"># simulate 'Income' based on 'Age' and defined coefficients</span></span>
+<span id="cb53-15"><a href="#cb53-15" aria-hidden="true" tabindex="-1"></a>Income <span class="ot">&lt;-</span> intercept <span class="sc">+</span> beta_age <span class="sc">*</span> Age <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> error_sd)</span>
+<span id="cb53-16"><a href="#cb53-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-17"><a href="#cb53-17" aria-hidden="true" tabindex="-1"></a><span class="co"># create a data frame to hold the simulated data</span></span>
+<span id="cb53-18"><a href="#cb53-18" aria-hidden="true" tabindex="-1"></a>data_complex <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(Age, Income)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="visualising-simulated-data" class="level3">
+<h3 class="anchored" data-anchor-id="visualising-simulated-data">Visualising Simulated Data</h3>
+<p>Visualising your simulated data can help understand its distribution and relationships. Use the <code>ggplot2</code> package for this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data_complex, <span class="fu">aes</span>(<span class="at">x =</span> Age, <span class="at">y =</span> Income)) <span class="sc">+</span></span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Simulated Age vs. Income"</span>, <span class="at">x =</span> <span class="st">"Age"</span>, <span class="at">y =</span> <span class="st">"Income"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -1405,10 +1414,11 @@ $group
 </div>
 </div>
 </div>
-<p>Regression and ANOVA are equivalent</p>
 </section>
-<section id="appendix-c-glossary" class="level2">
-<h2 class="anchored" data-anchor-id="appendix-c-glossary">Appendix C: Glossary</h2>
+</section>
+<section id="appendix-d-causal-inference-glossary" class="level2">
+<h2 class="anchored" data-anchor-id="appendix-d-causal-inference-glossary">Appendix D: Causal Inference Glossary</h2>
+<p>Note, as of yet, we have only encountered several of the terms in this glossary.</p>
 <p><a href="../content/glossary.pdf">Glossary of key terms in causal inference</a></p>
 
 
@@ -1425,6 +1435,9 @@ Bulbulia, J. A. 2023. <span>“Causal Diagrams (Directed Acyclic Graphs): A Prac
 </div>
 <div id="ref-hernan2024WHATIF" class="csl-entry" role="listitem">
 Hernan, M. A., and J. M. Robins. 2024. <em>Causal Inference: What If?</em> Chapman &amp; Hall/CRC Monographs on Statistics &amp; Applied Probab. Taylor &amp; Francis. <a href="https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/">https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/</a>.
+</div>
+<div id="ref-montgomery2018" class="csl-entry" role="listitem">
+Montgomery, Jacob M., Brendan Nyhan, and Michelle Torres. 2018. <span>“How Conditioning on Posttreatment Variables Can Ruin Your Experiment and What to Do about It.”</span> <em>American Journal of Political Science</em> 62 (3): 760–75. <a href="https://doi.org/10.1111/ajps.12357">https://doi.org/10.1111/ajps.12357</a>.
 </div>
 <div id="ref-neurath1973" class="csl-entry" role="listitem">
 Neurath, Otto. 1973. <span>“Anti-Spengler.”</span> In <em>Empiricism and Sociology</em>, edited by Marie Neurath and Robert S. Cohen, 158–213. Dordrecht: Springer Netherlands. <a href="https://doi.org/10.1007/978-94-010-2525-6_6">https://doi.org/10.1007/978-94-010-2525-6_6</a>.
@@ -2533,7 +2546,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb55-655"><a href="#cb55-655" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb55-656"><a href="#cb55-656" aria-hidden="true" tabindex="-1"></a>Before moving on to regression analysis, ensure students understand the structure and distribution of the simulated data. Encourage them to use <span class="in">`summary()`</span>, <span class="in">`plot()`</span>, and other exploratory data analysis functions.</span>
 <span id="cb55-657"><a href="#cb55-657" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-658"><a href="#cb55-658" aria-hidden="true" tabindex="-1"></a><span class="fu">#### **Task 3: Regression Analysis of Continuous Treatment Effect**</span></span>
+<span id="cb55-658"><a href="#cb55-658" aria-hidden="true" tabindex="-1"></a><span class="fu">####  Regression Analysis of Continuous Treatment Effect</span></span>
 <span id="cb55-659"><a href="#cb55-659" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb55-662"><a href="#cb55-662" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb55-663"><a href="#cb55-663" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
@@ -2771,173 +2784,176 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb55-905"><a href="#cb55-905" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb55-906"><a href="#cb55-906" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb55-907"><a href="#cb55-907" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-908"><a href="#cb55-908" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-909"><a href="#cb55-909" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Simulating Data Continued</span></span>
-<span id="cb55-910"><a href="#cb55-910" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-911"><a href="#cb55-911" aria-hidden="true" tabindex="-1"></a>Data frames are used in R to store data tables. To simulate a dataset with both continuous and categorical data, you can combine the above steps:</span>
-<span id="cb55-912"><a href="#cb55-912" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-915"><a href="#cb55-915" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb55-916"><a href="#cb55-916" aria-hidden="true" tabindex="-1"></a><span class="co"># create a data frame with simulated data for ID, Gender, Age, and Income</span></span>
-<span id="cb55-917"><a href="#cb55-917" aria-hidden="true" tabindex="-1"></a>data_frame <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb55-918"><a href="#cb55-918" aria-hidden="true" tabindex="-1"></a>  <span class="co"># generate a sequence of IDs from 1 to n</span></span>
-<span id="cb55-919"><a href="#cb55-919" aria-hidden="true" tabindex="-1"></a>  <span class="at">ID =</span> <span class="dv">1</span><span class="sc">:</span>n,</span>
-<span id="cb55-920"><a href="#cb55-920" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb55-921"><a href="#cb55-921" aria-hidden="true" tabindex="-1"></a>  <span class="co"># randomly assign 'Male' or 'Female' to each observation</span></span>
-<span id="cb55-922"><a href="#cb55-922" aria-hidden="true" tabindex="-1"></a>  <span class="at">Gender =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"Male"</span>, <span class="st">"Female"</span>), n, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb55-923"><a href="#cb55-923" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb55-924"><a href="#cb55-924" aria-hidden="true" tabindex="-1"></a>  <span class="co"># simulate 'Age' data: normally distributed with mean 30 and sd 5</span></span>
-<span id="cb55-925"><a href="#cb55-925" aria-hidden="true" tabindex="-1"></a>  <span class="at">Age =</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">30</span>, <span class="at">sd =</span> <span class="dv">5</span>),</span>
-<span id="cb55-926"><a href="#cb55-926" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb55-927"><a href="#cb55-927" aria-hidden="true" tabindex="-1"></a>  <span class="co"># simulate 'Income' data: normally distributed with mean 50000 and sd 10000</span></span>
-<span id="cb55-928"><a href="#cb55-928" aria-hidden="true" tabindex="-1"></a>  <span class="at">Income =</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">50000</span>, <span class="at">sd =</span> <span class="dv">10000</span>)</span>
-<span id="cb55-929"><a href="#cb55-929" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb55-930"><a href="#cb55-930" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb55-931"><a href="#cb55-931" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-908"><a href="#cb55-908" aria-hidden="true" tabindex="-1"></a><span class="fu">## What You Have Learned</span></span>
+<span id="cb55-909"><a href="#cb55-909" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-910"><a href="#cb55-910" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Data simulation:** </span>
+<span id="cb55-911"><a href="#cb55-911" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-912"><a href="#cb55-912" aria-hidden="true" tabindex="-1"></a>You've learned to simulate datasets in R. This is a important skill for exploring statistical concepts and causal inference. Congratulations! </span>
+<span id="cb55-913"><a href="#cb55-913" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb55-914"><a href="#cb55-914" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Data visualisation:** </span>
+<span id="cb55-915"><a href="#cb55-915" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-916"><a href="#cb55-916" aria-hidden="true" tabindex="-1"></a>You've expanded your capacity for data visualisation.</span>
+<span id="cb55-917"><a href="#cb55-917" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb55-918"><a href="#cb55-918" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Statistical tests:** You've conducted basic statistical tests, including t-tests and ANOVA, and regression.</span>
+<span id="cb55-919"><a href="#cb55-919" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb55-920"><a href="#cb55-920" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Understanding ANOVA and regression:** </span>
+<span id="cb55-921"><a href="#cb55-921" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-922"><a href="#cb55-922" aria-hidden="true" tabindex="-1"></a>You've examined the equivalence of ANOVA and regression analysis</span>
+<span id="cb55-923"><a href="#cb55-923" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-924"><a href="#cb55-924" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-925"><a href="#cb55-925" aria-hidden="true" tabindex="-1"></a><span class="fu">## For more information about the packages used here:</span></span>
+<span id="cb55-926"><a href="#cb55-926" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-927"><a href="#cb55-927" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="co">[</span><span class="ot">ggplot2</span><span class="co">](https://ggplot2.tidyverse.org/)</span>: A system for declaratively creating graphics, based on The Grammar of Graphics.</span>
+<span id="cb55-928"><a href="#cb55-928" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-929"><a href="#cb55-929" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="co">[</span><span class="ot">Parameters package</span><span class="co">](https://easystats.github.io/parameters/)</span>: Provides utilities for processing model parameters and their metrics.</span>
+<span id="cb55-930"><a href="#cb55-930" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-931"><a href="#cb55-931" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="co">[</span><span class="ot">Report package</span><span class="co">](https://easystats.github.io/report/index.html)</span>: Facilitates the automated generation of reports from statistical models.</span>
 <span id="cb55-932"><a href="#cb55-932" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-933"><a href="#cb55-933" aria-hidden="true" tabindex="-1"></a>Note that you can sample probabilistically for your groups</span>
+<span id="cb55-933"><a href="#cb55-933" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span>@montgomery2018 describes confounding in experiments - well worth a read.</span>
 <span id="cb55-934"><a href="#cb55-934" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-937"><a href="#cb55-937" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb55-938"><a href="#cb55-938" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">100</span> <span class="co"># total number of observations</span></span>
-<span id="cb55-939"><a href="#cb55-939" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-940"><a href="#cb55-940" aria-hidden="true" tabindex="-1"></a><span class="co"># sample 'Gender' with a 40/60 proportion for Male/Female</span></span>
-<span id="cb55-941"><a href="#cb55-941" aria-hidden="true" tabindex="-1"></a>Gender <span class="ot">=</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"Male"</span>, <span class="st">"Female"</span>), n, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.4</span>, <span class="fl">0.6</span>))</span>
-<span id="cb55-942"><a href="#cb55-942" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb55-943"><a href="#cb55-943" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-944"><a href="#cb55-944" aria-hidden="true" tabindex="-1"></a><span class="fu">## More complexity </span></span>
-<span id="cb55-945"><a href="#cb55-945" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-948"><a href="#cb55-948" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb55-949"><a href="#cb55-949" aria-hidden="true" tabindex="-1"></a><span class="co"># set the number of observations</span></span>
+<span id="cb55-935"><a href="#cb55-935" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-936"><a href="#cb55-936" aria-hidden="true" tabindex="-1"></a><span class="fu">## Appendix A: Solutions {#appendix-a}</span></span>
+<span id="cb55-937"><a href="#cb55-937" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-938"><a href="#cb55-938" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-939"><a href="#cb55-939" aria-hidden="true" tabindex="-1"></a><span class="fu">### Solution Excercise 2: simulate data and regression reporting </span></span>
+<span id="cb55-940"><a href="#cb55-940" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-941"><a href="#cb55-941" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-944"><a href="#cb55-944" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb55-945"><a href="#cb55-945" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(parameters)</span>
+<span id="cb55-946"><a href="#cb55-946" aria-hidden="true" tabindex="-1"></a><span class="co">#  seed for reproducibility</span></span>
+<span id="cb55-947"><a href="#cb55-947" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">12345</span>)</span>
+<span id="cb55-948"><a href="#cb55-948" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-949"><a href="#cb55-949" aria-hidden="true" tabindex="-1"></a><span class="co"># number of observations</span></span>
 <span id="cb55-950"><a href="#cb55-950" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">100</span></span>
 <span id="cb55-951"><a href="#cb55-951" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-952"><a href="#cb55-952" aria-hidden="true" tabindex="-1"></a><span class="co"># simulate the 'Age' variable</span></span>
-<span id="cb55-953"><a href="#cb55-953" aria-hidden="true" tabindex="-1"></a>mean_age <span class="ot">&lt;-</span> <span class="dv">30</span></span>
-<span id="cb55-954"><a href="#cb55-954" aria-hidden="true" tabindex="-1"></a>sd_age <span class="ot">&lt;-</span> <span class="dv">5</span></span>
-<span id="cb55-955"><a href="#cb55-955" aria-hidden="true" tabindex="-1"></a>Age <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> mean_age, <span class="at">sd =</span> sd_age)</span>
-<span id="cb55-956"><a href="#cb55-956" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-957"><a href="#cb55-957" aria-hidden="true" tabindex="-1"></a><span class="co"># define coefficients explicitly</span></span>
-<span id="cb55-958"><a href="#cb55-958" aria-hidden="true" tabindex="-1"></a>intercept <span class="ot">&lt;-</span> <span class="dv">20000</span>   <span class="co"># Intercept for the income equation</span></span>
-<span id="cb55-959"><a href="#cb55-959" aria-hidden="true" tabindex="-1"></a>beta_age <span class="ot">&lt;-</span> <span class="dv">1500</span>     <span class="co"># Coefficient for the effect of age on income</span></span>
-<span id="cb55-960"><a href="#cb55-960" aria-hidden="true" tabindex="-1"></a>error_sd <span class="ot">&lt;-</span> <span class="dv">10000</span>    <span class="co"># Standard deviation of the error term</span></span>
-<span id="cb55-961"><a href="#cb55-961" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-962"><a href="#cb55-962" aria-hidden="true" tabindex="-1"></a><span class="co"># simulate 'Income' based on 'Age' and defined coefficients</span></span>
-<span id="cb55-963"><a href="#cb55-963" aria-hidden="true" tabindex="-1"></a>Income <span class="ot">&lt;-</span> intercept <span class="sc">+</span> beta_age <span class="sc">*</span> Age <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> error_sd)</span>
-<span id="cb55-964"><a href="#cb55-964" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-965"><a href="#cb55-965" aria-hidden="true" tabindex="-1"></a><span class="co"># create a data frame to hold the simulated data</span></span>
-<span id="cb55-966"><a href="#cb55-966" aria-hidden="true" tabindex="-1"></a>data_complex <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(Age, Income)</span>
-<span id="cb55-967"><a href="#cb55-967" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb55-968"><a href="#cb55-968" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-969"><a href="#cb55-969" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Step 7: Visualising Simulated Data</span></span>
-<span id="cb55-970"><a href="#cb55-970" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-971"><a href="#cb55-971" aria-hidden="true" tabindex="-1"></a>Visualising your simulated data can help understand its distribution and relationships. Use the <span class="in">`ggplot2`</span> package for this:</span>
-<span id="cb55-972"><a href="#cb55-972" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-975"><a href="#cb55-975" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb55-976"><a href="#cb55-976" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb55-977"><a href="#cb55-977" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data_complex, <span class="fu">aes</span>(<span class="at">x =</span> Age, <span class="at">y =</span> Income)) <span class="sc">+</span></span>
-<span id="cb55-978"><a href="#cb55-978" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb55-979"><a href="#cb55-979" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb55-980"><a href="#cb55-980" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Simulated Age vs. Income"</span>, <span class="at">x =</span> <span class="st">"Age"</span>, <span class="at">y =</span> <span class="st">"Income"</span>)</span>
-<span id="cb55-981"><a href="#cb55-981" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb55-982"><a href="#cb55-982" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-952"><a href="#cb55-952" aria-hidden="true" tabindex="-1"></a><span class="co"># simulate data for variable A with specified mean and sd</span></span>
+<span id="cb55-953"><a href="#cb55-953" aria-hidden="true" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">50</span>, <span class="at">sd =</span> <span class="dv">10</span>)</span>
+<span id="cb55-954"><a href="#cb55-954" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-955"><a href="#cb55-955" aria-hidden="true" tabindex="-1"></a><span class="co"># define the specified effect size of A on Y</span></span>
+<span id="cb55-956"><a href="#cb55-956" aria-hidden="true" tabindex="-1"></a>beta_A <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb55-957"><a href="#cb55-957" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-958"><a href="#cb55-958" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-959"><a href="#cb55-959" aria-hidden="true" tabindex="-1"></a><span class="co"># simulate data and make data frame in one step</span></span>
+<span id="cb55-960"><a href="#cb55-960" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-961"><a href="#cb55-961" aria-hidden="true" tabindex="-1"></a>df_3 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb55-962"><a href="#cb55-962" aria-hidden="true" tabindex="-1"></a>  <span class="co"># simulate data for variable A with specified mean and sd</span></span>
+<span id="cb55-963"><a href="#cb55-963" aria-hidden="true" tabindex="-1"></a>  <span class="at">A =</span>  <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">50</span>, <span class="at">sd =</span> <span class="dv">10</span>),</span>
+<span id="cb55-964"><a href="#cb55-964" aria-hidden="true" tabindex="-1"></a>  <span class="at">Y =</span> <span class="dv">5</span> <span class="sc">+</span> beta_A <span class="sc">*</span> A <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">20</span>)</span>
+<span id="cb55-965"><a href="#cb55-965" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb55-966"><a href="#cb55-966" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-967"><a href="#cb55-967" aria-hidden="true" tabindex="-1"></a><span class="co"># view</span></span>
+<span id="cb55-968"><a href="#cb55-968" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df_3)</span>
+<span id="cb55-969"><a href="#cb55-969" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df_3)</span>
+<span id="cb55-970"><a href="#cb55-970" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform linear regression of Y on A</span></span>
+<span id="cb55-971"><a href="#cb55-971" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-972"><a href="#cb55-972" aria-hidden="true" tabindex="-1"></a>fit_3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> A, <span class="at">data =</span> df_3)</span>
+<span id="cb55-973"><a href="#cb55-973" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-974"><a href="#cb55-974" aria-hidden="true" tabindex="-1"></a><span class="co"># Report the results of the regression</span></span>
+<span id="cb55-975"><a href="#cb55-975" aria-hidden="true" tabindex="-1"></a><span class="co"># summary(model)</span></span>
+<span id="cb55-976"><a href="#cb55-976" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-977"><a href="#cb55-977" aria-hidden="true" tabindex="-1"></a><span class="co"># report</span></span>
+<span id="cb55-978"><a href="#cb55-978" aria-hidden="true" tabindex="-1"></a>parameters<span class="sc">::</span><span class="fu">model_parameters</span>(fit_3)</span>
+<span id="cb55-979"><a href="#cb55-979" aria-hidden="true" tabindex="-1"></a><span class="fu">report</span>(fit_3)</span>
+<span id="cb55-980"><a href="#cb55-980" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-981"><a href="#cb55-981" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-982"><a href="#cb55-982" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb55-983"><a href="#cb55-983" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb55-984"><a href="#cb55-984" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-985"><a href="#cb55-985" aria-hidden="true" tabindex="-1"></a><span class="fu">## What You Have Learned</span></span>
+<span id="cb55-985"><a href="#cb55-985" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb55-986"><a href="#cb55-986" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-987"><a href="#cb55-987" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Data simulation:** </span>
+<span id="cb55-987"><a href="#cb55-987" aria-hidden="true" tabindex="-1"></a><span class="fu">## Appendix B: How ANOVA can deliver the functionality of Linear Regressions</span></span>
 <span id="cb55-988"><a href="#cb55-988" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-989"><a href="#cb55-989" aria-hidden="true" tabindex="-1"></a>You've learned to simulate datasets in R. This is a important skill for exploring statistical concepts and causal inference. Congratulations! </span>
-<span id="cb55-990"><a href="#cb55-990" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb55-991"><a href="#cb55-991" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Data visualisation:** </span>
-<span id="cb55-992"><a href="#cb55-992" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-993"><a href="#cb55-993" aria-hidden="true" tabindex="-1"></a>You've expanded your capacity for data visualisation.</span>
-<span id="cb55-994"><a href="#cb55-994" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb55-995"><a href="#cb55-995" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Statistical tests:** You've conducted basic statistical tests, including t-tests and ANOVA, and regression.</span>
-<span id="cb55-996"><a href="#cb55-996" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb55-997"><a href="#cb55-997" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Understanding ANOVA and regression:** </span>
-<span id="cb55-998"><a href="#cb55-998" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-999"><a href="#cb55-999" aria-hidden="true" tabindex="-1"></a>You've examined the equivalence of ANOVA and regression analysis</span>
-<span id="cb55-1000"><a href="#cb55-1000" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-989"><a href="#cb55-989" aria-hidden="true" tabindex="-1"></a>We can get group comparisons with ANOVA, for example:</span>
+<span id="cb55-990"><a href="#cb55-990" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-993"><a href="#cb55-993" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb55-994"><a href="#cb55-994" aria-hidden="true" tabindex="-1"></a><span class="co"># Conduct Tukey's HSD test for post hoc comparisons</span></span>
+<span id="cb55-995"><a href="#cb55-995" aria-hidden="true" tabindex="-1"></a>tukey_post_hoc <span class="ot">&lt;-</span> <span class="fu">TukeyHSD</span>(anova_model)</span>
+<span id="cb55-996"><a href="#cb55-996" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-997"><a href="#cb55-997" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the results</span></span>
+<span id="cb55-998"><a href="#cb55-998" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(tukey_post_hoc)</span>
+<span id="cb55-999"><a href="#cb55-999" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(tukey_post_hoc)</span>
+<span id="cb55-1000"><a href="#cb55-1000" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb55-1001"><a href="#cb55-1001" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-1002"><a href="#cb55-1002" aria-hidden="true" tabindex="-1"></a><span class="fu">## For more information about the packages used here:</span></span>
+<span id="cb55-1002"><a href="#cb55-1002" aria-hidden="true" tabindex="-1"></a>Regression and ANOVA are equivalent</span>
 <span id="cb55-1003"><a href="#cb55-1003" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-1004"><a href="#cb55-1004" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="co">[</span><span class="ot">ggplot2</span><span class="co">](https://ggplot2.tidyverse.org/)</span>: A system for declaratively creating graphics, based on The Grammar of Graphics.</span>
-<span id="cb55-1005"><a href="#cb55-1005" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-1006"><a href="#cb55-1006" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="co">[</span><span class="ot">Parameters package</span><span class="co">](https://easystats.github.io/parameters/)</span>: Provides utilities for processing model parameters and their metrics.</span>
+<span id="cb55-1004"><a href="#cb55-1004" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-1005"><a href="#cb55-1005" aria-hidden="true" tabindex="-1"></a><span class="fu">## Appendix C: Adding Complexity in Simulation</span></span>
+<span id="cb55-1006"><a href="#cb55-1006" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb55-1007"><a href="#cb55-1007" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-1008"><a href="#cb55-1008" aria-hidden="true" tabindex="-1"></a><span class="ss">  - </span><span class="co">[</span><span class="ot">Report package</span><span class="co">](https://easystats.github.io/report/index.html)</span>: Facilitates the automated generation of reports from statistical models.</span>
+<span id="cb55-1008"><a href="#cb55-1008" aria-hidden="true" tabindex="-1"></a><span class="fu">### Simulating Data... Continued</span></span>
 <span id="cb55-1009"><a href="#cb55-1009" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-1010"><a href="#cb55-1010" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-1010"><a href="#cb55-1010" aria-hidden="true" tabindex="-1"></a>Data frames are used in R to store data tables. To simulate a dataset with both continuous and categorical data, you can combine the above steps:</span>
 <span id="cb55-1011"><a href="#cb55-1011" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-1012"><a href="#cb55-1012" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-1013"><a href="#cb55-1013" aria-hidden="true" tabindex="-1"></a><span class="fu">## Appendix A: Solutions {#appendix-a}</span></span>
-<span id="cb55-1014"><a href="#cb55-1014" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-1015"><a href="#cb55-1015" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-1016"><a href="#cb55-1016" aria-hidden="true" tabindex="-1"></a><span class="fu">### Solution Excercise 2: simulate data and regression reporting </span></span>
-<span id="cb55-1017"><a href="#cb55-1017" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-1018"><a href="#cb55-1018" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-1021"><a href="#cb55-1021" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb55-1022"><a href="#cb55-1022" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(parameters)</span>
-<span id="cb55-1023"><a href="#cb55-1023" aria-hidden="true" tabindex="-1"></a><span class="co">#  seed for reproducibility</span></span>
-<span id="cb55-1024"><a href="#cb55-1024" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">12345</span>)</span>
-<span id="cb55-1025"><a href="#cb55-1025" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-1026"><a href="#cb55-1026" aria-hidden="true" tabindex="-1"></a><span class="co"># number of observations</span></span>
-<span id="cb55-1027"><a href="#cb55-1027" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">100</span></span>
-<span id="cb55-1028"><a href="#cb55-1028" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-1029"><a href="#cb55-1029" aria-hidden="true" tabindex="-1"></a><span class="co"># simulate data for variable A with specified mean and sd</span></span>
-<span id="cb55-1030"><a href="#cb55-1030" aria-hidden="true" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">50</span>, <span class="at">sd =</span> <span class="dv">10</span>)</span>
+<span id="cb55-1014"><a href="#cb55-1014" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb55-1015"><a href="#cb55-1015" aria-hidden="true" tabindex="-1"></a><span class="co"># create a data frame with simulated data for ID, Gender, Age, and Income</span></span>
+<span id="cb55-1016"><a href="#cb55-1016" aria-hidden="true" tabindex="-1"></a>data_frame <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb55-1017"><a href="#cb55-1017" aria-hidden="true" tabindex="-1"></a>  <span class="co"># generate a sequence of IDs from 1 to n</span></span>
+<span id="cb55-1018"><a href="#cb55-1018" aria-hidden="true" tabindex="-1"></a>  <span class="at">ID =</span> <span class="dv">1</span><span class="sc">:</span>n,</span>
+<span id="cb55-1019"><a href="#cb55-1019" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb55-1020"><a href="#cb55-1020" aria-hidden="true" tabindex="-1"></a>  <span class="co"># randomly assign 'Male' or 'Female' to each observation</span></span>
+<span id="cb55-1021"><a href="#cb55-1021" aria-hidden="true" tabindex="-1"></a>  <span class="at">Gender =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"Male"</span>, <span class="st">"Female"</span>), n, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb55-1022"><a href="#cb55-1022" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb55-1023"><a href="#cb55-1023" aria-hidden="true" tabindex="-1"></a>  <span class="co"># simulate 'Age' data: normally distributed with mean 30 and sd 5</span></span>
+<span id="cb55-1024"><a href="#cb55-1024" aria-hidden="true" tabindex="-1"></a>  <span class="at">Age =</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">30</span>, <span class="at">sd =</span> <span class="dv">5</span>),</span>
+<span id="cb55-1025"><a href="#cb55-1025" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb55-1026"><a href="#cb55-1026" aria-hidden="true" tabindex="-1"></a>  <span class="co"># simulate 'Income' data: normally distributed with mean 50000 and sd 10000</span></span>
+<span id="cb55-1027"><a href="#cb55-1027" aria-hidden="true" tabindex="-1"></a>  <span class="at">Income =</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">50000</span>, <span class="at">sd =</span> <span class="dv">10000</span>)</span>
+<span id="cb55-1028"><a href="#cb55-1028" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb55-1029"><a href="#cb55-1029" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb55-1030"><a href="#cb55-1030" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb55-1031"><a href="#cb55-1031" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-1032"><a href="#cb55-1032" aria-hidden="true" tabindex="-1"></a><span class="co"># define the specified effect size of A on Y</span></span>
-<span id="cb55-1033"><a href="#cb55-1033" aria-hidden="true" tabindex="-1"></a>beta_A <span class="ot">&lt;-</span> <span class="dv">2</span></span>
-<span id="cb55-1034"><a href="#cb55-1034" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-1035"><a href="#cb55-1035" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-1036"><a href="#cb55-1036" aria-hidden="true" tabindex="-1"></a><span class="co"># simulate data and make data frame in one step</span></span>
-<span id="cb55-1037"><a href="#cb55-1037" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-1038"><a href="#cb55-1038" aria-hidden="true" tabindex="-1"></a>df_3 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb55-1039"><a href="#cb55-1039" aria-hidden="true" tabindex="-1"></a>  <span class="co"># simulate data for variable A with specified mean and sd</span></span>
-<span id="cb55-1040"><a href="#cb55-1040" aria-hidden="true" tabindex="-1"></a>  <span class="at">A =</span>  <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">50</span>, <span class="at">sd =</span> <span class="dv">10</span>),</span>
-<span id="cb55-1041"><a href="#cb55-1041" aria-hidden="true" tabindex="-1"></a>  <span class="at">Y =</span> <span class="dv">5</span> <span class="sc">+</span> beta_A <span class="sc">*</span> A <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">20</span>)</span>
-<span id="cb55-1042"><a href="#cb55-1042" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb55-1043"><a href="#cb55-1043" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-1044"><a href="#cb55-1044" aria-hidden="true" tabindex="-1"></a><span class="co"># view</span></span>
-<span id="cb55-1045"><a href="#cb55-1045" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df_3)</span>
-<span id="cb55-1046"><a href="#cb55-1046" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df_3)</span>
-<span id="cb55-1047"><a href="#cb55-1047" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform linear regression of Y on A</span></span>
-<span id="cb55-1048"><a href="#cb55-1048" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-1049"><a href="#cb55-1049" aria-hidden="true" tabindex="-1"></a>fit_3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> A, <span class="at">data =</span> df_3)</span>
+<span id="cb55-1032"><a href="#cb55-1032" aria-hidden="true" tabindex="-1"></a>Note that you can sample probabilistically for your groups</span>
+<span id="cb55-1033"><a href="#cb55-1033" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-1036"><a href="#cb55-1036" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb55-1037"><a href="#cb55-1037" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">100</span> <span class="co"># total number of observations</span></span>
+<span id="cb55-1038"><a href="#cb55-1038" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-1039"><a href="#cb55-1039" aria-hidden="true" tabindex="-1"></a><span class="co"># sample 'Gender' with a 40/60 proportion for Male/Female</span></span>
+<span id="cb55-1040"><a href="#cb55-1040" aria-hidden="true" tabindex="-1"></a>Gender <span class="ot">=</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"Male"</span>, <span class="st">"Female"</span>), n, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.4</span>, <span class="fl">0.6</span>))</span>
+<span id="cb55-1041"><a href="#cb55-1041" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb55-1042"><a href="#cb55-1042" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-1043"><a href="#cb55-1043" aria-hidden="true" tabindex="-1"></a><span class="fu">### More complexity </span></span>
+<span id="cb55-1044"><a href="#cb55-1044" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-1047"><a href="#cb55-1047" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb55-1048"><a href="#cb55-1048" aria-hidden="true" tabindex="-1"></a><span class="co"># set the number of observations</span></span>
+<span id="cb55-1049"><a href="#cb55-1049" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">100</span></span>
 <span id="cb55-1050"><a href="#cb55-1050" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-1051"><a href="#cb55-1051" aria-hidden="true" tabindex="-1"></a><span class="co"># Report the results of the regression</span></span>
-<span id="cb55-1052"><a href="#cb55-1052" aria-hidden="true" tabindex="-1"></a><span class="co"># summary(model)</span></span>
-<span id="cb55-1053"><a href="#cb55-1053" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-1054"><a href="#cb55-1054" aria-hidden="true" tabindex="-1"></a><span class="co"># report</span></span>
-<span id="cb55-1055"><a href="#cb55-1055" aria-hidden="true" tabindex="-1"></a>parameters<span class="sc">::</span><span class="fu">model_parameters</span>(fit_3)</span>
-<span id="cb55-1056"><a href="#cb55-1056" aria-hidden="true" tabindex="-1"></a><span class="fu">report</span>(fit_3)</span>
-<span id="cb55-1057"><a href="#cb55-1057" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-1058"><a href="#cb55-1058" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-1059"><a href="#cb55-1059" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb55-1051"><a href="#cb55-1051" aria-hidden="true" tabindex="-1"></a><span class="co"># simulate the 'Age' variable</span></span>
+<span id="cb55-1052"><a href="#cb55-1052" aria-hidden="true" tabindex="-1"></a>mean_age <span class="ot">&lt;-</span> <span class="dv">30</span></span>
+<span id="cb55-1053"><a href="#cb55-1053" aria-hidden="true" tabindex="-1"></a>sd_age <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb55-1054"><a href="#cb55-1054" aria-hidden="true" tabindex="-1"></a>Age <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> mean_age, <span class="at">sd =</span> sd_age)</span>
+<span id="cb55-1055"><a href="#cb55-1055" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-1056"><a href="#cb55-1056" aria-hidden="true" tabindex="-1"></a><span class="co"># define coefficients explicitly</span></span>
+<span id="cb55-1057"><a href="#cb55-1057" aria-hidden="true" tabindex="-1"></a>intercept <span class="ot">&lt;-</span> <span class="dv">20000</span>   <span class="co"># Intercept for the income equation</span></span>
+<span id="cb55-1058"><a href="#cb55-1058" aria-hidden="true" tabindex="-1"></a>beta_age <span class="ot">&lt;-</span> <span class="dv">1500</span>     <span class="co"># Coefficient for the effect of age on income</span></span>
+<span id="cb55-1059"><a href="#cb55-1059" aria-hidden="true" tabindex="-1"></a>error_sd <span class="ot">&lt;-</span> <span class="dv">10000</span>    <span class="co"># Standard deviation of the error term</span></span>
 <span id="cb55-1060"><a href="#cb55-1060" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-1061"><a href="#cb55-1061" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-1062"><a href="#cb55-1062" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-1061"><a href="#cb55-1061" aria-hidden="true" tabindex="-1"></a><span class="co"># simulate 'Income' based on 'Age' and defined coefficients</span></span>
+<span id="cb55-1062"><a href="#cb55-1062" aria-hidden="true" tabindex="-1"></a>Income <span class="ot">&lt;-</span> intercept <span class="sc">+</span> beta_age <span class="sc">*</span> Age <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> error_sd)</span>
 <span id="cb55-1063"><a href="#cb55-1063" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-1064"><a href="#cb55-1064" aria-hidden="true" tabindex="-1"></a><span class="fu">## Appendix B: How ANOVA can deliver the functionality of Linear Regressions</span></span>
-<span id="cb55-1065"><a href="#cb55-1065" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-1066"><a href="#cb55-1066" aria-hidden="true" tabindex="-1"></a>We can get group comparisons with ANOVA, for example:</span>
+<span id="cb55-1064"><a href="#cb55-1064" aria-hidden="true" tabindex="-1"></a><span class="co"># create a data frame to hold the simulated data</span></span>
+<span id="cb55-1065"><a href="#cb55-1065" aria-hidden="true" tabindex="-1"></a>data_complex <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(Age, Income)</span>
+<span id="cb55-1066"><a href="#cb55-1066" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb55-1067"><a href="#cb55-1067" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-1070"><a href="#cb55-1070" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb55-1071"><a href="#cb55-1071" aria-hidden="true" tabindex="-1"></a><span class="co"># Conduct Tukey's HSD test for post hoc comparisons</span></span>
-<span id="cb55-1072"><a href="#cb55-1072" aria-hidden="true" tabindex="-1"></a>tukey_post_hoc <span class="ot">&lt;-</span> <span class="fu">TukeyHSD</span>(anova_model)</span>
-<span id="cb55-1073"><a href="#cb55-1073" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-1074"><a href="#cb55-1074" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the results</span></span>
-<span id="cb55-1075"><a href="#cb55-1075" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(tukey_post_hoc)</span>
-<span id="cb55-1076"><a href="#cb55-1076" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(tukey_post_hoc)</span>
-<span id="cb55-1077"><a href="#cb55-1077" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb55-1078"><a href="#cb55-1078" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-1079"><a href="#cb55-1079" aria-hidden="true" tabindex="-1"></a>Regression and ANOVA are equivalent</span>
-<span id="cb55-1080"><a href="#cb55-1080" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-1068"><a href="#cb55-1068" aria-hidden="true" tabindex="-1"></a><span class="fu">### Visualising Simulated Data</span></span>
+<span id="cb55-1069"><a href="#cb55-1069" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-1070"><a href="#cb55-1070" aria-hidden="true" tabindex="-1"></a>Visualising your simulated data can help understand its distribution and relationships. Use the <span class="in">`ggplot2`</span> package for this:</span>
+<span id="cb55-1071"><a href="#cb55-1071" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-1074"><a href="#cb55-1074" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb55-1075"><a href="#cb55-1075" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb55-1076"><a href="#cb55-1076" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data_complex, <span class="fu">aes</span>(<span class="at">x =</span> Age, <span class="at">y =</span> Income)) <span class="sc">+</span></span>
+<span id="cb55-1077"><a href="#cb55-1077" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb55-1078"><a href="#cb55-1078" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb55-1079"><a href="#cb55-1079" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Simulated Age vs. Income"</span>, <span class="at">x =</span> <span class="st">"Age"</span>, <span class="at">y =</span> <span class="st">"Income"</span>)</span>
+<span id="cb55-1080"><a href="#cb55-1080" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb55-1081"><a href="#cb55-1081" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb55-1082"><a href="#cb55-1082" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-1083"><a href="#cb55-1083" aria-hidden="true" tabindex="-1"></a><span class="fu">## Appendix C: Glossary</span></span>
-<span id="cb55-1084"><a href="#cb55-1084" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-1085"><a href="#cb55-1085" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Glossary of key terms in causal inference</span><span class="co">](/content/glossary.pdf)</span></span>
-<span id="cb55-1086"><a href="#cb55-1086" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-1083"><a href="#cb55-1083" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-1084"><a href="#cb55-1084" aria-hidden="true" tabindex="-1"></a><span class="fu">## Appendix D: Causal Inference Glossary</span></span>
+<span id="cb55-1085"><a href="#cb55-1085" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-1086"><a href="#cb55-1086" aria-hidden="true" tabindex="-1"></a>Note, as of yet, we have only encountered several of the terms in this glossary.</span>
+<span id="cb55-1087"><a href="#cb55-1087" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-1088"><a href="#cb55-1088" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Glossary of key terms in causal inference</span><span class="co">](/content/glossary.pdf)</span></span>
+<span id="cb55-1089"><a href="#cb55-1089" aria-hidden="true" tabindex="-1"></a></span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

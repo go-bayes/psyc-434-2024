@@ -633,7 +633,7 @@ head(df)
 
 Before moving on to regression analysis, ensure students understand the structure and distribution of the simulated data. Encourage them to use `summary()`, `plot()`, and other exploratory data analysis functions.
 
-#### **Task 3: Regression Analysis of Continuous Treatment Effect**
+####  Regression Analysis of Continuous Treatment Effect
 
 ```{r}
 #| echo: true
@@ -871,75 +871,6 @@ report(fit_3)
 ```
 
 
-
-#### Simulating Data Continued
-
-Data frames are used in R to store data tables. To simulate a dataset with both continuous and categorical data, you can combine the above steps:
-
-```{r}
-# create a data frame with simulated data for ID, Gender, Age, and Income
-data_frame <- data.frame(
-  # generate a sequence of IDs from 1 to n
-  ID = 1:n,
-  
-  # randomly assign 'Male' or 'Female' to each observation
-  Gender = sample(c("Male", "Female"), n, replace = TRUE),
-  
-  # simulate 'Age' data: normally distributed with mean 30 and sd 5
-  Age = rnorm(n, mean = 30, sd = 5),
-  
-  # simulate 'Income' data: normally distributed with mean 50000 and sd 10000
-  Income = rnorm(n, mean = 50000, sd = 10000)
-)
-```
-
-
-Note that you can sample probabilistically for your groups
-
-```{r}
-n <- 100 # total number of observations
-
-# sample 'Gender' with a 40/60 proportion for Male/Female
-Gender = sample(c("Male", "Female"), n, replace = TRUE, prob = c(0.4, 0.6))
-```
-
-## More complexity 
-
-```{r}
-# set the number of observations
-n <- 100
-
-# simulate the 'Age' variable
-mean_age <- 30
-sd_age <- 5
-Age <- rnorm(n, mean = mean_age, sd = sd_age)
-
-# define coefficients explicitly
-intercept <- 20000   # Intercept for the income equation
-beta_age <- 1500     # Coefficient for the effect of age on income
-error_sd <- 10000    # Standard deviation of the error term
-
-# simulate 'Income' based on 'Age' and defined coefficients
-Income <- intercept + beta_age * Age + rnorm(n, mean = 0, sd = error_sd)
-
-# create a data frame to hold the simulated data
-data_complex <- data.frame(Age, Income)
-```
-
-#### Step 7: Visualising Simulated Data
-
-Visualising your simulated data can help understand its distribution and relationships. Use the `ggplot2` package for this:
-
-```{r}
-library(ggplot2)
-ggplot(data_complex, aes(x = Age, y = Income)) +
-  geom_point() +
-  theme_minimal() +
-  labs(title = "Simulated Age vs. Income", x = "Age", y = "Income")
-```
-
-
-
 ## What You Have Learned
 
 - **Data simulation:** 
@@ -965,7 +896,7 @@ You've examined the equivalence of ANOVA and regression analysis
 
   - [Report package](https://easystats.github.io/report/index.html): Facilitates the automated generation of reports from statistical models.
 
-
+  - @montgomery2018 describes confounding in experiments - well worth a read.
 
 
 ## Appendix A: Solutions {#appendix-a}
@@ -1033,8 +964,80 @@ plot(tukey_post_hoc)
 Regression and ANOVA are equivalent
 
 
+## Appendix C: Adding Complexity in Simulation
 
-## Appendix C: Glossary
+
+### Simulating Data... Continued
+
+Data frames are used in R to store data tables. To simulate a dataset with both continuous and categorical data, you can combine the above steps:
+
+```{r}
+# create a data frame with simulated data for ID, Gender, Age, and Income
+data_frame <- data.frame(
+  # generate a sequence of IDs from 1 to n
+  ID = 1:n,
+  
+  # randomly assign 'Male' or 'Female' to each observation
+  Gender = sample(c("Male", "Female"), n, replace = TRUE),
+  
+  # simulate 'Age' data: normally distributed with mean 30 and sd 5
+  Age = rnorm(n, mean = 30, sd = 5),
+  
+  # simulate 'Income' data: normally distributed with mean 50000 and sd 10000
+  Income = rnorm(n, mean = 50000, sd = 10000)
+)
+```
+
+
+Note that you can sample probabilistically for your groups
+
+```{r}
+n <- 100 # total number of observations
+
+# sample 'Gender' with a 40/60 proportion for Male/Female
+Gender = sample(c("Male", "Female"), n, replace = TRUE, prob = c(0.4, 0.6))
+```
+
+### More complexity 
+
+```{r}
+# set the number of observations
+n <- 100
+
+# simulate the 'Age' variable
+mean_age <- 30
+sd_age <- 5
+Age <- rnorm(n, mean = mean_age, sd = sd_age)
+
+# define coefficients explicitly
+intercept <- 20000   # Intercept for the income equation
+beta_age <- 1500     # Coefficient for the effect of age on income
+error_sd <- 10000    # Standard deviation of the error term
+
+# simulate 'Income' based on 'Age' and defined coefficients
+Income <- intercept + beta_age * Age + rnorm(n, mean = 0, sd = error_sd)
+
+# create a data frame to hold the simulated data
+data_complex <- data.frame(Age, Income)
+```
+
+### Visualising Simulated Data
+
+Visualising your simulated data can help understand its distribution and relationships. Use the `ggplot2` package for this:
+
+```{r}
+library(ggplot2)
+ggplot(data_complex, aes(x = Age, y = Income)) +
+  geom_point() +
+  theme_minimal() +
+  labs(title = "Simulated Age vs. Income", x = "Age", y = "Income")
+```
+
+
+
+## Appendix D: Causal Inference Glossary
+
+Note, as of yet, we have only encountered several of the terms in this glossary.
 
 [Glossary of key terms in causal inference](/content/glossary.pdf)
 
