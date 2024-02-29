@@ -190,10 +190,10 @@ $M$ denotes a mediator or a variable along the path from exposure to outcome. Fo
 
 $\bar{X}$ denotes a sequence of variables, for example, a sequence of treatments.  Imagine we were interested in the causal effect of marriage and remarriage on well-being. In this case, there are two treatments $A_0$ and $A_1$ and four potential contrasts. For the scenario of marriage and remarriage affecting well-being, we denote the potential outcomes as $Y(a_0, a_1)$, where $a_0$ and $a_1$ represent the specific values taken by $A_0$ and $A_1$, respectively. Given two treatments, $A_0$ and $A_1$, four primary contrasts of interest correspond to the different combinations of these treatments. These contrasts allow us to compare the causal effects of being married versus not and remarried versus not on well-being. The potential outcomes under these conditions can be specified as follows:
 
-1. $Y(0, 0)$: The potential outcome when neither marriage nor remarriage occurs.
-2. $Y(1, 0)$: The potential outcome when there is marriage but no remarriage.
-3. $Y(0, 1)$: The potential outcome when there is no initial marriage, but there is remarriage. This condition may require additional clarification, as remarriage implies an initial marriage, suggesting a possible redefinition or clarification of treatment states for logical consistency.
-4. $Y(1, 1)$: The potential outcome when both marriage and remarriage occur.
+1. $Y(0, 0)$: The potential outcome when there is no marriage.
+2. $Y(0, 1)$: The potential outcome when there is marriage. 
+2. $Y(1, 0)$: The potential outcome when there is divorce.
+4. $Y(1, 1)$: The potential outcome from marriage prevalence.
 
 Each of these outcomes allows for a specific contrast to be made, comparing the well-being under different scenarios of marriage and remarriage. Which do we want to contrast?  Note, the question about 'the causal effects of marriage on happiness' is ambiguous because we have not stated the causal contrast we are interested in. 
 
