@@ -560,9 +560,6 @@ axis(1, at = months_num, labels = study_data$month, las=2) # `las=2` makes label
 3.  You will need to practice, and will have lots of opporunity.
 
 
-
-
-
 ## Where to Get Help
 
 1. **Large Language Models (LLMs):** LLMs are trained on extensive datasets. They are extremely good coding tutors. Open AI's GPT-4 considerably outperforms GPT-3.5.  However GPT 3.5 should be good enough. Gemini has a two-month free trial. LLM's are rapidly evolving. However, presently, to use these tools, and to spot their errors, you will need to know how to code.  Which is fortunate because coding makes you smarter!
