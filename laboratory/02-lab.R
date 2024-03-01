@@ -2,11 +2,11 @@
 # 29 Feb 2024
 # lab 02
 
-
-
 # install libraries -------------------------------------------------------
-
 # libraries
+
+# run these lines of code to install packages.  `command + return` (mac)
+
 
 # graphs
 if (!require(ggplot2)) {
@@ -69,8 +69,7 @@ if (!require(here)) {
 
 
 # libraries ---------------------------------------------------------------
-
-
+# libraries should already be loaded. henceforth, just run them `command + return`
 library(tidyverse)
 library(ggplot2)
 library(patchwork)
@@ -86,15 +85,15 @@ set.seed(123) # use any number to set the seed
 n <- 100 # number of observations
 mean <- 50
 sd <- 10
+
 data_continuous <- rnorm(n, mean, sd)
+
 
 # view
 head(data_continuous)
 
 # view using base R histogram
 hist(data_continuous)
-
-
 
 #  simulate categorical data ----------------------------------------------
 
@@ -108,18 +107,13 @@ head(data_categorical)
 table(data_categorical)
 
 
-
 # generate data with unequal probabilities --------------------------------
-
-
-
 # define levels and number of observations
 levels <- c("Male", "Female")
 n <- 100 # total number of observations
 
 # generate categorical data with unequal probabilities
-data_categorical_unequal <-
-  sample(levels, n, replace = TRUE, prob = c(0.3, 0.7))
+data_categorical_unequal <- sample(levels, n, replace = TRUE, prob = c(0.3, 0.7))
 
 # view the first few elements
 # head(data_categorical_unequal)
@@ -131,9 +125,6 @@ table(data_categorical_unequal)
 
 # simulate outcomes for treatments ----------------------------------------
 
-
-
-
 set.seed(123) # reproducibility
 groupA_scores <-
   rnorm(100, mean = 100, sd = 15) # simulate scores for group A
@@ -142,14 +133,16 @@ groupB_scores <-
 
 # ombine into a data frame
 df_scores <-
-  data.frame(group = rep(c("A", "B"), each = 100),
-             scores = c(groupA_scores, groupB_scores))
+  data.frame(
+    group = rep(c("A", "B"), each = 100),
+    scores = c(groupA_scores, groupB_scores)
+  )
 
 # commands to view data
-#str(df_scores)
+# str(df_scores)
 
 # summary of columns
-#summary(df_scores)
+# summary(df_scores)
 
 # top rows (uncomment)
 # head(df_scores)
@@ -166,7 +159,6 @@ df_scores_1 <- df_scores |>
   mutate(group = as.factor(group))
 
 head(df_scores_1)
-
 
 
 
@@ -187,10 +179,13 @@ library(ggplot2)
 # H=histograms for both groups
 ggplot(df_scores_1, aes(x = scores, fill = group)) +
   geom_histogram(binwidth = 5, color = "black") +
-  labs(title = "Distribution of Scores by Group",
-       x = "Scores",
-       y = "Frequency") +
-  facet_wrap( ~ group, ncol = 1) +   theme_minimal()
+  labs(
+    title = "Distribution of Scores by Group",
+    x = "Scores",
+    y = "Frequency"
+  ) +
+  facet_wrap(~group, ncol = 1) +
+  theme_minimal()
 
 
 
@@ -253,7 +248,7 @@ set.seed(123)
 
 pre_test <- rnorm(30, mean = 80, sd = 10)
 post_test <-
-  rnorm(30, mean =  pre_test + 5, sd = 5) # assume an increase
+  rnorm(30, mean = pre_test + 5, sd = 5) # assume an increase
 
 # perform paired t-test
 mod_pre_post <- t.test(pre_test, post_test, paired = TRUE)
@@ -319,7 +314,8 @@ print(report_fit)
 library(ggeffects)
 
 predicted_values <- ggeffects::ggemmeans(fit,
-                                         terms = c("treatment"))
+  terms = c("treatment")
+)
 
 # plot see
 plot(
@@ -401,13 +397,13 @@ predictive_plot <- plot(
   dot_alpha = 0.35,
   show_data = TRUE,
   jitter = .1,
-  colors =  "reefs"
+  colors = "reefs"
 ) +
   scale_y_continuous(limits = c(0, 260)) + # change y axis
   labs(title = "Predictive Graph", x = "Treatment Group", y = "Response")
 
 # view (uncomment)
-#predictive_plot
+# predictive_plot
 
 # show all color palettes (uncomment)
 # show_pals()
@@ -417,9 +413,11 @@ predictive_plot <- plot(
 library(patchwork)
 
 # create a plot
-my_first_combination_plot <- coefficient_plot / predictive_plot  +
-  plot_annotation(title = "Coefficient and Predictive plots",
-                  tag_levels = "A")
+my_first_combination_plot <- coefficient_plot / predictive_plot +
+  plot_annotation(
+    title = "Coefficient and Predictive plots",
+    tag_levels = "A"
+  )
 
 # view
 my_first_combination_plot
@@ -438,8 +436,7 @@ ggsave(
   height = 8,
   units = "in",
   filename = "my_first_combination_plot.jpeg",
-  device = 'jpeg',
+  device = "jpeg",
   limitsize = FALSE,
   dpi = 600
 )
-

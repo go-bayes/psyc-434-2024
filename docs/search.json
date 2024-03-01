@@ -276,8 +276,8 @@
     "objectID": "slides/01-slides.html#goals",
     "href": "slides/01-slides.html#goals",
     "title": "Asking questions in cross-cultural psychology",
-    "section": "",
-    "text": "Understand the special problems that cultural research presents for measurement.\nUnderstand the deeper, and prior concept of confounding.\n\n\n\n\n\nMeasurement\nValidity\nA confounder"
+    "section": "Goals",
+    "text": "Goals\nBy the end of this seminar you will be able to:\n\nUnderstand the special problems that cultural research presents for measurement.\nUnderstand the deeper, and prior concept of confounding.\n\nKey Concepts\n\nMeasurement\nValidity\nA confounder"
   },
   {
     "objectID": "slides/01-slides.html#group-discussion-ethics-brainstorm",
@@ -340,7 +340,7 @@
     "href": "slides/01-slides.html#measurement",
     "title": "Asking questions in cross-cultural psychology",
     "section": "Measurement",
-    "text": "Measurement\nDefinitions:\n\n“Measurement is the numerical quantifcation of the attributes of an object or event, which can be used to compare with other objects or events” [Conventional]\n“Measurement is the assignment of numerals to objects or events according to rules.” [Psychological]\n“Measurement is the process of experimentally obtaining one or more quantity values that can reasonably be attributed to a quantity.” [Metrological] from [@briggs2021]"
+    "text": "Measurement\nDefinitions:\n\n“Measurement is the numerical quantifcation of the attributes of an object or event, which can be used to compare with other objects or events” [Conventional]\n“Measurement is the assignment of numerals to objects or events according to rules.” [Psychological]\n“Measurement is the process of experimentally obtaining one or more quantity values that can reasonably be attributed to a quantity.” [Metrological] from (Briggs 2021)"
   },
   {
     "objectID": "slides/01-slides.html#on-a-scale-of-1-7-how-happy-are-you",
@@ -361,7 +361,7 @@
     "href": "slides/01-slides.html#concept-of-validity-in-psychometric-research",
     "title": "Asking questions in cross-cultural psychology",
     "section": "Concept of Validity in Psychometric Research",
-    "text": "Concept of Validity in Psychometric Research\n\nContent Validity: The degree an instrument measures what it is intended to measure (the “construct”).\nConstruct Validity: Whether the construct assumed to measure is accurately defined and operationalised.\nCriterion Validity: Whether an instrument accurately predicts performance.\nFace Validity: whether an instrument measure what it is intended to measure, as assessed by experts.\nEcological Validity: whether an instrument accurately reflects real-world situations and behavior [@bandalos2018]\n\n\nMetric equivalence: Factor loadings are similar across groups. Configural equivalence: The factor structure is the same across groups in a multi-group confirmatory factor analysis. Scalar equivalence: Values/Means are also equivalent across groups."
+    "text": "Concept of Validity in Psychometric Research\n\nContent Validity: The degree an instrument measures what it is intended to measure (the “construct”).\nConstruct Validity: Whether the construct assumed to measure is accurately defined and operationalised.\nCriterion Validity: Whether an instrument accurately predicts performance.\nFace Validity: whether an instrument measure what it is intended to measure, as assessed by experts.\nEcological Validity: whether an instrument accurately reflects real-world situations and behavior (Bandalos 2018)\n\n\nMetric equivalence: Factor loadings are similar across groups. Configural equivalence: The factor structure is the same across groups in a multi-group confirmatory factor analysis. Scalar equivalence: Values/Means are also equivalent across groups."
   },
   {
     "objectID": "slides/01-slides.html#what-can-we-do-about-it",
@@ -382,7 +382,7 @@
     "href": "slides/01-slides.html#what-might-go-wrong",
     "title": "Asking questions in cross-cultural psychology",
     "section": "What might go wrong?",
-    "text": "What might go wrong?\n\nHappiness might cause marriage"
+    "text": "What might go wrong?\nHappiness might cause marriage"
   },
   {
     "objectID": "slides/01-slides.html#happiness-might-cause-marriage",
@@ -431,7 +431,7 @@
     "href": "slides/01-slides.html#references",
     "title": "Asking questions in cross-cultural psychology",
     "section": "References",
-    "text": "References\nFor an account of the history of measurement in psychological research, see: [@briggs2021]\nFor an account of key concepts and current debates in psychometrics, see: [@bandalos2018]\n\nFor an accessible introduction to causal inference and its history see: [@pearl2018]\n\nBibliography"
+    "text": "References\nFor an account of the history of measurement in psychological research, see: (Briggs 2021)\nFor an account of key concepts and current debates in psychometrics, see: (Bandalos 2018)\n\nFor an accessible introduction to causal inference and its history see: (Pearl and Mackenzie 2018)\nBibliography\n\n\n\n\n\n\n\n\nBandalos, Deborah L. 2018. Measurement Theory and Applications for the Social Sciences. Guilford Publications.\n\n\nBriggs, Derek C. 2021. Historical and Conceptual Foundations of Measurement in the Human Sciences: Credos and Controversies. Routledge.\n\n\nPearl, Judea, and Dana Mackenzie. 2018. The Book of Why: The New Science of Cause and Effect. Basic books.\n\n\nVanderWeele, Tyler J. 2022. “Constructed Measures and Causal Inference: Towards a New Model of Measurement for Psychosocial Constructs.” Epidemiology 33 (1): 141. https://doi.org/10.1097/EDE.0000000000001434."
   },
   {
     "objectID": "slides/01-slides.html",
@@ -1824,7 +1824,7 @@
     "href": "slides/01-slides-lab.html#dataframes",
     "title": "Week 1: Intalling and Using R",
     "section": "Dataframes",
-    "text": "Dataframes\n\nCreating and manipulating data frames\n\n\n# clear previous `df` object (if any)\nrm(df)\ndf &lt;- data.frame(\n  name = c(\"alice\", \"bob\", \"charlie\"),\n  age = c(25, 30, 35),\n  gender = c(\"female\", \"male\", \"male\")\n)\n# look at structure\nhead(df)\n\n     name age gender\n1   alice  25 female\n2     bob  30   male\n3 charlie  35   male\n\nstr(df)\n\n'data.frame':   3 obs. of  3 variables:\n $ name  : chr  \"alice\" \"bob\" \"charlie\"\n $ age   : num  25 30 35\n $ gender: chr  \"female\" \"male\" \"male\"\n\ntable(df$gender)\n\n\nfemale   male \n     1      2 \n\ntable(df$age)\n\n\n25 30 35 \n 1  1  1 \n\ntable(df$name)\n\n\n  alice     bob charlie \n      1       1       1"
+    "text": "Dataframes\n\nCreating and manipulating data frames\n\n\n# clear previous `df` object (if any)\nrm(df)\n\nWarning in rm(df): object 'df' not found\n\ndf &lt;- data.frame(\n  name = c(\"alice\", \"bob\", \"charlie\"),\n  age = c(25, 30, 35),\n  gender = c(\"female\", \"male\", \"male\")\n)\n# look at structure\nhead(df)\n\n     name age gender\n1   alice  25 female\n2     bob  30   male\n3 charlie  35   male\n\nstr(df)\n\n'data.frame':   3 obs. of  3 variables:\n $ name  : chr  \"alice\" \"bob\" \"charlie\"\n $ age   : num  25 30 35\n $ gender: chr  \"female\" \"male\" \"male\"\n\ntable(df$gender)\n\n\nfemale   male \n     1      2 \n\ntable(df$age)\n\n\n25 30 35 \n 1  1  1 \n\ntable(df$name)\n\n\n  alice     bob charlie \n      1       1       1"
   },
   {
     "objectID": "slides/01-slides-lab.html#accessing-data-frame-elements",
@@ -1880,7 +1880,7 @@
     "href": "slides/01-slides-lab.html#introduction-to-ggplot2",
     "title": "Week 1: Intalling and Using R",
     "section": "Introduction to ggplot2",
-    "text": "Introduction to ggplot2\n\nVisualizing data with ggplot2\n\n\n#  seed for reproducibility\nset.seed(12345)\n# ensure ggplot2 is installed and loaded\nif (!require(ggplot2)) install.packages(\"ggplot2\")\nlibrary(ggplot2)\n# simulate student data\nstudent_data &lt;- data.frame(\n  name = c(\"alice\", \"bob\", \"charlie\", \"diana\", \"ethan\", \"fiona\", \"george\", \"hannah\"),\n  score = sample(80:100, 8, replace = TRUE),\n  stringsasfactors = FALSE\n)\nstudent_data$passed &lt;- ifelse(student_data$score &gt;= 90, \"passed\", \"failed\")\nstudent_data$passed &lt;- factor(student_data$passed, levels = c(\"failed\", \"passed\"))\nstudent_data$study_hours &lt;- sample(5:15, 8, replace = TRUE)"
+    "text": "Introduction to ggplot2\n\nVisualizing data with ggplot2\n\n\n#  seed for reproducibility\nset.seed(12345)\n# ensure ggplot2 is installed and loaded\nif (!require(ggplot2)) install.packages(\"ggplot2\")\n\nLoading required package: ggplot2\n\nlibrary(ggplot2)\n# simulate student data\nstudent_data &lt;- data.frame(\n  name = c(\"alice\", \"bob\", \"charlie\", \"diana\", \"ethan\", \"fiona\", \"george\", \"hannah\"),\n  score = sample(80:100, 8, replace = TRUE),\n  stringsasfactors = FALSE\n)\nstudent_data$passed &lt;- ifelse(student_data$score &gt;= 90, \"passed\", \"failed\")\nstudent_data$passed &lt;- factor(student_data$passed, levels = c(\"failed\", \"passed\"))\nstudent_data$study_hours &lt;- sample(5:15, 8, replace = TRUE)"
   },
   {
     "objectID": "slides/01-slides-lab.html#ggplot2-barplot",
@@ -2076,7 +2076,7 @@
     "href": "slides/01-slides.html#what-else-might-go-wrong-1",
     "title": "Asking questions in cross-cultural psychology",
     "section": "What else might go wrong?",
-    "text": "What else might go wrong?\n\nAge might a common cause of both marriage and happiness"
+    "text": "What else might go wrong?\nAge might a common cause of both marriage and happiness"
   },
   {
     "objectID": "content/01-content.html#slide-deck",
@@ -2111,7 +2111,7 @@
     "href": "slides/01-slides.html#our-approach",
     "title": "Asking questions in cross-cultural psychology",
     "section": "Our Approach:",
-    "text": "Our Approach:\n\nExternal Validity\n\nDefinition: the extent to which the findings of a study can be generalised to other situations, people, settings, and time periods.\nImportance: we want to know if our findings carry beyond the people in our study\nChallenges: how can we know?\n\n\n\nInternal Validity\n\nDefinition: the degree to which a study can demonstrate that a causal relationship exists between the ‘independent’ and ‘dependent’ variables, free of confounding.\nWe will use the term ‘outcome’ and ‘treatment’ in place of independent and dependent. This is because causality occurs in time.\nImportance: we cannot interpret the associations we recover if they do not have a causal interpretation.\nChallenges: internal validity requires balance in the confounders that might afffect the treatement and outcome, and observational data do not give us ballance.\nThe Special Challenges in Cross-Cultural Research:\n\nThe concept of measurement itself has causal underpinnings [@vanderweele2022].\nIn cross-cultural research, we have stronger challengs from measurement validity, which, as we shall see, encompasses both external and internal validity.\nWe consider measurment validity within classical framework of external and internal validity\nEthical challenges, which science needs to consider.\nForemost among these ethical challenges, I believe, is doing our best to get inference right!"
+    "text": "Our Approach:\nExternal Validity\n\nDefinition: the extent to which the findings of a study can be generalised to other situations, people, settings, and time periods.\nImportance: we want to know if our findings carry beyond the people in our study\nChallenges: how can we know?\n\nInternal Validity\n\nDefinition: the degree to which a study can demonstrate that a causal relationship exists between the ‘independent’ and ‘dependent’ variables, free of confounding.\nWe will use the term ‘outcome’ and ‘treatment’ in place of independent and dependent. This is because causality occurs in time.\nImportance: we cannot interpret the associations we recover if they do not have a causal interpretation.\nChallenges: internal validity requires balance in the confounders that might afffect the treatement and outcome, and observational data do not give us ballance.\nThe Special Challenges in Cross-Cultural Research:\n\nThe concept of measurement itself has causal underpinnings (VanderWeele 2022).\nIn cross-cultural research, we have stronger challengs from measurement validity, which, as we shall see, encompasses both external and internal validity.\nWe consider measurment validity within classical framework of external and internal validity\nEthical challenges, which science needs to consider.\nForemost among these ethical challenges, I believe, is doing our best to get inference right!"
   },
   {
     "objectID": "slides/01-slides.html#the-hope",
@@ -2132,7 +2132,7 @@
     "href": "slides/01-slides.html#many-psychologists-will-simply-control-for-income-but-what-if-happiness-and-marriage-cause-income",
     "title": "Asking questions in cross-cultural psychology",
     "section": "Many psychologists will simply “control for” income, but what if happiness and marriage cause income?",
-    "text": "Many psychologists will simply “control for” income, but what if happiness and marriage cause income?\n\nSimulate data in which happiness and marriage cause income\nControlling for income makes it look as though happiness and marriage are negatively related.\nBut we simulated data with no relationship!\nThis is called ‘collider bias’, we will consider how it works in the upcoming weeks.\nMeantime, even if we measure people without error, cross-cultural studies might select people with different incomes, leading to bias even in the absence of measurement error bias (and even if we do not control for income!)\n\n\n## simulate data \n# reproducability \nset.seed(123)\nsim_fun_B = function() {\n  n &lt;- 10000\n  H &lt;- rnorm(n, 1) # simulates Happiness,\n  M &lt;- rnorm(n , 1) #  simulates Marriage, nothing to do with happiness\n  I &lt;- rnorm(n , .2 * H + .5 * M) # simulate marriage as a function of age + happiness\n\n  \n# simulate dataframe from function\nsimdat_B &lt;- data.frame(\n  H = H, \n  I = I,\n  M = M) \n\n#  model in which marriage \"predicts\" happiness controlling for age\nsim_B &lt;- lm(H ~ M + I, data = simdat_B)\nsim_B  # returns output\n}\n\n# replicate 100 times\nr_lm_B &lt;- NA\nr_lm_B = replicate(100, sim_fun_B(), simplify = FALSE )\n\n# print model results: marriage looks negatively related to happiness!\nparameters::pool_parameters(r_lm_B)\n\n# Fixed Effects\n\nParameter   | Coefficient |   SE |         95% CI | Statistic |     df |      p\n-------------------------------------------------------------------------------\n(Intercept) |        0.96 | 0.02 | [ 0.92,  1.00] |     46.96 | 322.51 | &lt; .001\nM           |       -0.10 | 0.02 | [-0.13, -0.07] |     -6.11 | 324.10 | &lt; .001\nI           |        0.19 | 0.01 | [ 0.17,  0.22] |     13.71 | 320.53 | &lt; .001"
+    "text": "Many psychologists will simply “control for” income, but what if happiness and marriage cause income?\n\nSimulate data in which happiness and marriage cause income\nControlling for income makes it look as though happiness and marriage are negatively related.\nBut we simulated data with no relationship!\nThis is called ‘collider bias’, we will consider how it works in the upcoming weeks.\nMeantime, even if we measure people without error, cross-cultural studies might select people with different incomes, leading to bias even in the absence of measurement error bias (and even if we do not control for income!)\n\n\n\nCode\n## simulate data \n# reproducability \nset.seed(123)\nsim_fun_B = function() {\n  n &lt;- 10000\n  H &lt;- rnorm(n, 1) # simulates Happiness,\n  M &lt;- rnorm(n , 1) #  simulates Marriage, nothing to do with happiness\n  I &lt;- rnorm(n , .2 * H + .5 * M) # simulate marriage as a function of age + happiness\n\n  \n# simulate dataframe from function\nsimdat_B &lt;- data.frame(\n  H = H, \n  I = I,\n  M = M) \n\n#  model in which marriage \"predicts\" happiness controlling for age\nsim_B &lt;- lm(H ~ M + I, data = simdat_B)\nsim_B  # returns output\n}\n\n# replicate 100 times\nr_lm_B &lt;- NA\nr_lm_B = replicate(100, sim_fun_B(), simplify = FALSE )\n\n# print model results: marriage looks negatively related to happiness!\nparameters::pool_parameters(r_lm_B)\n\n\n# Fixed Effects\n\nParameter   | Coefficient |   SE |         95% CI | Statistic |     df |      p\n-------------------------------------------------------------------------------\n(Intercept) |        0.96 | 0.02 | [ 0.92,  1.00] |     46.96 | 322.51 | &lt; .001\nM           |       -0.10 | 0.02 | [-0.13, -0.07] |     -6.11 | 324.10 | &lt; .001\nI           |        0.19 | 0.01 | [ 0.17,  0.22] |     13.71 | 320.53 | &lt; .001"
   },
   {
     "objectID": "content/02-content.html#causal-diagrams-or-causal-directed-acyclic-graphs",
