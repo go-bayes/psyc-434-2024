@@ -16,6 +16,8 @@ format:
     code-tools:
       source: true
       toggle: FALSE
+reference-location: margin
+citation-location: margin
 ---
 
 
@@ -25,10 +27,10 @@ format:
 #| warning: FALSE
 
 # WARNING:  COMMENT THIS OUT. JB DOES THIS FOR WORKING WITHOUT WIFI
-#source("/Users/joseph/GIT/templates/functions/libs2.R")
+# source("/Users/joseph/GIT/templates/functions/libs2.R")
 
 # WARNING:  COMMENT THIS OUT. JB DOES THIS FOR WORKING WITHOUT WIFI
-#source("/Users/joseph/GIT/templates/functions/funs.R")
+# source("/Users/joseph/GIT/templates/functions/funs.R")
 
 # ALERT: UNCOMMENT THIS AND DOWNLOAD THE FUNCTIONS FROM JB's GITHUB
 # source(
@@ -290,8 +292,8 @@ x <- 10 # assigns the value 10 to x
 y <- 5 # assigns the value 5 to y
 
 # this does the same
-x = 10
-y = 5
+x <- 10
+y <- 5
 
 # note what happens when we do this
 # 10 = 5 # not run
@@ -326,8 +328,8 @@ Basic arithmetic operations include addition (`+`) and subtraction (`-`).
 
 ```{r}
 # this does the same
-x <-  10
-y <-  5
+x <- 10
+y <- 5
 
 sum <- x + y # adds x and y
 
@@ -335,7 +337,7 @@ print(sum)
 
 difference <- x - y # subtracts y from x
 
-# note we did not need to use the `print()` function 
+# note we did not need to use the `print()` function
 difference
 ```
 
@@ -368,7 +370,7 @@ vector_product
 
 # element-wise division on vectors
 # divides each element of vector1 by the corresponding element of vector2
-vector_division <- vector1 / vector2 
+vector_division <- vector1 / vector2
 vector_division
 ```
 
@@ -395,7 +397,7 @@ remainder <- 10 %% 3 # results in 1
 
 ```{r}
 # `rm()` remove object ----------------------------------------------------
-devil_number  <- 666 # results in 1
+devil_number <- 666 # results in 1
 
 # view
 devil_number
@@ -426,7 +428,7 @@ Logical operations are fundamental in R for controlling the flow of execution an
 ### OR (`|` and `||`)
 
 - The `|` operator performs element-wise logical OR operation. It evaluates each pair of elements in two logical vectors to see if at least one is `TRUE`.
-- The `||` operator performs a logical OR operation but only evaluates the first element of each vector. It's mainly used in if statements and not for vectorised operations.
+- The `||` operator performs a logical OR operation but only evaluates the first element of each vector -- mainly used in if statements and not for vectorised operations.
 
 
 ```{r}
@@ -441,7 +443,7 @@ single_or
 ### AND (`&` and `&&`)
 
 - The `&` operator performs element-wise logical AND operations. It checks if both elements in the corresponding positions of two logical vectors are `TRUE`.
-- The `&&` operator performs a logical AND operation but only evaluates the first element of each vector. Like `||`, it's used in conditions that do not require vectorised operations.
+- The `&&` operator performs a logical AND operation but only evaluates the first element of each vector. Like `||`, used in conditions that do not require vectorised operations.
 
 ```{r}
 # element-wise AND
@@ -586,7 +588,7 @@ Strings are sequences of characters.
 
 ```{r}
 # sequences of characters
-you <- 'world!'
+you <- "world!"
 greeting <- paste("hello,", you)
 # hello world
 greeting
@@ -619,19 +621,19 @@ R allows you to perform operations on vectors in a very intuitive way. Operation
 
 ```{r}
 # arithmetic operations
-vector_sum <- numeric_vector + 10  # Adds 10 to each element
-#show
+vector_sum <- numeric_vector + 10 # Adds 10 to each element
+# show
 vector_sum
 
 # vector mutliplication
-vector_multiplication <- numeric_vector * 2  # Multiplies each element by 2
-#show
+vector_multiplication <- numeric_vector * 2 # Multiplies each element by 2
+# show
 vector_multiplication
 
 # logical operations
-vector_greater_than_three <- numeric_vector > 3  # Returns a logical vector
+vector_greater_than_three <- numeric_vector > 3 # Returns a logical vector
 
-#show
+# show
 vector_greater_than_three
 ```
 
@@ -642,12 +644,12 @@ You can access elements of a vector by using square brackets `[ ]` with an index
 #  the first element of numeric_vector
 first_element <- numeric_vector[1]
 
-#show
+# show
 first_element
 # multiple elements
-some_elements <- numeric_vector[c(2, 4)]  # Gets the 2nd and 4th elements
+some_elements <- numeric_vector[c(2, 4)] # Gets the 2nd and 4th elements
 
-#show
+# show
 first_element
 ```
 
@@ -682,12 +684,12 @@ unique_vector
 Data frames can be created using the `data.frame()` function, specifying each column and its values. Here's a simple example:
 
 ```{r}
-# clear any previous `df` object 
+# clear any previous `df` object
 rm(df)
 df <- data.frame(
-  name = c("alice", "bob", "charlie"),
-  age = c(25, 30, 35),
-  gender = c("female", "male", "male")
+    name = c("alice", "bob", "charlie"),
+    age = c(25, 30, 35),
+    gender = c("female", "male", "male")
 )
 # check structure
 head(df)
@@ -706,7 +708,7 @@ In this example, `df` is a data frame with three columns (`name`, `age`, `gender
 - **By column name:** use the `$` operator followed by the column name.
 
 ```{r}
-names <- df$name  # extracts the `name` column
+names <- df$name # extracts the `name` column
 names
 ```
 
@@ -728,7 +730,7 @@ age_column
 
 ```{r}
 # use subset()
-very_old_people <- subset(df, age > 25)  # extracts rows where `age` is greater than 18
+very_old_people <- subset(df, age > 25) # extracts rows where `age` is greater than 18
 very_old_people
 summary(very_old_people$age)
 mean(very_old_people$age)
@@ -740,9 +742,9 @@ min(very_old_people$age)
 Functions such as `head()`, `tail()`, and `str()` help you explore the first few rows, last few rows, and the structure of the data frame, respectively.
 
 ```{r}
-head(df)  # first six rows
-tail(df)  # last six rows
-str(df)   # structure of the data frame
+head(df) # first six rows
+tail(df) # last six rows
+str(df) # structure of the data frame
 ```
 
 
@@ -755,7 +757,7 @@ Data frames can be manipulated in various ways:
 
 ```{r}
 # adds a new column "employed"
-df$employed <- c(TRUE, TRUE, FALSE)  
+df$employed <- c(TRUE, TRUE, FALSE)
 
 # show
 head(df)
@@ -777,8 +779,8 @@ head(df)
 
 ```{r}
 # note brackets
- # changes diana's age to 26
-df[4, "age"] <- 26  
+# changes diana's age to 26
+df[4, "age"] <- 26
 
 # view row
 df[4, ]
@@ -791,15 +793,15 @@ df[4, ]
 head(df)
 
 # remove employed column
-df$employed <- NULL 
+df$employed <- NULL
 
 # check
 df
 
 # remove fourth row (Diana)
-df <- df[-4, ]  # removes the fourth row
+df <- df[-4, ] # removes the fourth row
 
-#show  
+# show
 df
 ```
 
@@ -825,7 +827,7 @@ Conversely, the `cbind()` function in R stands for "column bind". It is used to 
 
 ```{r}
 # example of adding a new column
-df$occupation <- c("engineer", "doctor", "artist", "doctor")  # direct assignment
+df$occupation <- c("engineer", "doctor", "artist", "doctor") # direct assignment
 
 # or using cbind for a separate vector
 occupation_vector <- c("engineer", "doctor", "artist", "doctor")
@@ -874,7 +876,7 @@ set.seed(12345)
 
 # we will cover R’s powerful simulation functions like `rnorm()`next week
 vector <- rnorm(n = 40, mean = 0, sd = 1)
-mean(vector)  # note the sampling error here
+mean(vector) # note the sampling error here
 
 ```
 
@@ -883,7 +885,7 @@ mean(vector)  # note the sampling error here
 - Computes the standard deviation, which measures the amount of variation or dispersion of a set of values.
 
 ```{r}
-sd(vector)  # replace 'vector' with your numerical vector
+sd(vector) # replace 'vector' with your numerical vector
 ```
 
 ### min() and max()
@@ -891,8 +893,8 @@ sd(vector)  # replace 'vector' with your numerical vector
 - These functions return a numerical object's minimum and maximum values, respectively.
 
 ```{r}
-min(vector)  # minimum value
-max(vector)  # maximum value
+min(vector) # minimum value
+max(vector) # maximum value
 ```
 
 ### table()
@@ -903,9 +905,9 @@ max(vector)  # maximum value
 #  seed for reproducibility
 set.seed(12345)
 student_data <- data.frame(
-  name = c("alice", "bob", "charlie", "diana", "ethan", "fiona", "george", "hannah"),
-  score = sample(80:100, 8, replace = TRUE),
-  stringsasfactors = FALSE
+    name = c("alice", "bob", "charlie", "diana", "ethan", "fiona", "george", "hannah"),
+    score = sample(80:100, 8, replace = TRUE),
+    stringsasfactors = FALSE
 )
 
 # determine pass/fail
@@ -927,7 +929,7 @@ table(df_table_example)
 - `table()` can also be used for cross-tabulation, providing a way to analyse the relationship between two or more factors.
 
 ```{r}
-table(df_table_example$gender, df_table_example$education_level)  # crosstab
+table(df_table_example$gender, df_table_example$education_level) # crosstab
 ```
 
 This produces a contingency table showing the counts at each combination of `factor1` and `factor2` levels.
@@ -948,7 +950,7 @@ summary(df)
 
 #### Installing and Loading `ggplot2`
 
-Before using `ggplot2`, ensure it's installed and loaded into your R session:
+Before using `ggplot2`, ensure the package is installed and loaded into your R session:
 
 ```{r}
 # load ggplot2
@@ -960,9 +962,9 @@ set.seed(12345)
 
 # simulate student data (more on simulation next week)
 student_data <- data.frame(
-  name = c("alice", "bob", "charlie", "diana", "ethan", "fiona", "george", "hannah"),
-  score = sample(80:100, 8, replace = TRUE), # random scores between 80 and 100
-  stringsasfactors = FALSE
+    name = c("alice", "bob", "charlie", "diana", "ethan", "fiona", "george", "hannah"),
+    score = sample(80:100, 8, replace = TRUE), # random scores between 80 and 100
+    stringsasfactors = FALSE
 )
 
 # determine pass/fail based on score
@@ -993,7 +995,7 @@ Start by creating a simple bar plot:
 
 ```{r}
 ggplot(student_data, aes(x = name, y = score)) +
-  geom_bar(stat = "identity")
+    geom_bar(stat = "identity")
 ```
 
 This code plots `score` for each `name` in the `student_data` dataframe. The `stat = "identity"` argument tells `ggplot2` to use the `score` values directly to determine the height of the bars.
@@ -1004,10 +1006,10 @@ To enhance your plot, you can add titles, change axis labels, and modify colours
 
 ```{r}
 ggplot(student_data, aes(x = name, y = score, fill = passed)) +
-  geom_bar(stat = "identity") +
-  scale_fill_manual(values = c("true" = "blue", "FALSE" = "red")) +
-  labs(title = "student scores", x = "student name", y = "score") +
-  theme_minimal()
+    geom_bar(stat = "identity") +
+    scale_fill_manual(values = c("true" = "blue", "FALSE" = "red")) +
+    labs(title = "student scores", x = "student name", y = "score") +
+    theme_minimal()
 ```
 
 - `aes(fill = passed)`: maps the `passed` variable to the colour fill of the bars, allowing for colour differentiation based on whether students passed or failed.
@@ -1025,23 +1027,23 @@ We next simulate a scenario where we compare student scores against study hours.
 ```{r}
 # create scatter plot
 ggplot(student_data, aes(x = study_hours, y = score, color = passed)) +
-  geom_point(size = 4) +
-  labs(title = "student scores vs. study hours", x = "study hours", y = "score") +
-  theme_minimal() +
-  scale_color_manual(values = c("failed" = "red", "passed" = "blue"))
+    geom_point(size = 4) +
+    labs(title = "student scores vs. study hours", x = "study hours", y = "score") +
+    theme_minimal() +
+    scale_color_manual(values = c("failed" = "red", "passed" = "blue"))
 ```
 
 ### Box Plot with `ggplot2`
 
-Box plots are excellent for visualising the distribution of scores by pass/fail status, highlighting medians, quartiles, and potential outliers.
+Box plots are excellent for visualising the distribution of scores by pass/fail status, showing medians, quartiles, and potential outliers.
 
 ```{r}
 # create box plot
 ggplot(student_data, aes(x = passed, y = score, fill = passed)) +
-  geom_boxplot() +
-  labs(title = "score distribution by pass/fail status", x = "status", y = "score") +
-  theme_minimal() +
-  scale_fill_manual(values = c("failed" = "red", "passed" = "blue"))
+    geom_boxplot() +
+    labs(title = "score distribution by pass/fail status", x = "status", y = "score") +
+    theme_minimal() +
+    scale_fill_manual(values = c("failed" = "red", "passed" = "blue"))
 ```
 
 ### Histogram with `ggplot2`
@@ -1051,10 +1053,10 @@ Histograms are helpful for understanding the distribution of a single continuous
 ```{r}
 # create a histogram
 ggplot(student_data, aes(x = score, fill = passed)) +
-  geom_histogram(binwidth = 5, color = "black", alpha = 0.7) +
-  labs(title = "histogram of scores", x = "score", y = "count") +
-  theme_minimal() +
-  scale_fill_manual(values = c("failed" = "red", "passed" = "blue"))
+    geom_histogram(binwidth = 5, color = "black", alpha = 0.7) +
+    labs(title = "histogram of scores", x = "score", y = "count") +
+    theme_minimal() +
+    scale_fill_manual(values = c("failed" = "red", "passed" = "blue"))
 ```
 
 ### Line Plot with `ggplot2` (Time Series)
@@ -1071,10 +1073,10 @@ study_data <- data.frame(month = months, study_hours = study_hours)
 
 # create a line plot
 ggplot(study_data, aes(x = month, y = study_hours, group = 1)) +
-  geom_line(linewidth = 1, color = "blue") +
-  geom_point(color = "red", size = 1) +
-  labs(title = "monthly study hours", x = "month", y = "study hours") +
-  theme_minimal()
+    geom_line(linewidth = 1, color = "blue") +
+    geom_point(color = "red", size = 1) +
+    labs(title = "monthly study hours", x = "month", y = "study hours") +
+    theme_minimal()
 ```
 
 
@@ -1087,9 +1089,9 @@ Base R provides a set of plotting functions that are readily available without t
 
 ### Basic Plotting Functions
 
-- `plot()`: The workhorse of Base R for creating scatter plots, line graphs, and more, with extensive customisation options.
-- `hist()`: Generates histograms to explore the distribution of a single continuous variable.
-- `boxplot()`: Useful for comparing distributions across groups, highlighting medians, quartiles, and outliers.
+- `plot()`: the workhorse of Base R for creating scatter plots, line graphs, and more, with extensive customisation options.
+- `hist()`: generates histograms to explore the distribution of a single continuous variable.
+- `boxplot()`: useful for comparing distributions across groups, showing medians, quartiles, and outliers.
 - `barplot()`: Creates bar graphs for visualising categorical data.
 
 ### Creating a Basic Scatter Plot with Base R
@@ -1099,9 +1101,10 @@ Consider simple scatter plot using the data we have just simulated
 ```{r}
 # basic scatter plot with Base R
 plot(student_data$study_hours, student_data$score,
-     main = "Scatter Plot of Scores vs. Study Hours",
-     xlab = "Study Hours", ylab = "Score",
-     pch = 19, col = ifelse(student_data$passed == "passed", "blue", "red"))
+    main = "Scatter Plot of Scores vs. Study Hours",
+    xlab = "Study Hours", ylab = "Score",
+    pch = 19, col = ifelse(student_data$passed == "passed", "blue", "red")
+)
 ```
 
 This plot uses the `plot` function to create a scatter plot, with study hours on the x-axis and scores on the y-axis. The `pch` parameter specifies the symbol type, and `col` changes the colour based on whether the student passed or failed.
@@ -1113,11 +1116,12 @@ To visualise the distribution of student scores:
 ```{r}
 # histogram with Base R
 hist(student_data$score,
-     breaks = 5,
-     col = "skyblue",
-     main = "Histogram of Student Scores",
-     xlab = "Scores",
-     border = "white")
+    breaks = 5,
+    col = "skyblue",
+    main = "Histogram of Student Scores",
+    xlab = "Scores",
+    border = "white"
+)
 ```
 
 This histogram provides a quick overview of the scores' distribution, using the `hist` function with specified `breaks`, `col` for colour, and `border` for the colour of the histogram borders.
@@ -1129,28 +1133,29 @@ This histogram provides a quick overview of the scores' distribution, using the 
 months_num <- 1:length(study_data$month) # Simple numeric sequence
 
 # plot points with suppressed x-axis
-plot(months_num, study_data$study_hours, 
-     type = "p", # Points
-     pch = 19,   # Type of point
-     col = "red", 
-     xlab = "Month", 
-     ylab = "Study Hours", 
-     main = "Monthly Study Hours",
-     xaxt = "n") # Suppress the x-axis
+plot(months_num, study_data$study_hours,
+    type = "p", # Points
+    pch = 19, # Type of point
+    col = "red",
+    xlab = "Month",
+    ylab = "Study Hours",
+    main = "Monthly Study Hours",
+    xaxt = "n"
+) # Suppress the x-axis
 
 # add lines between points
-lines(months_num, study_data$study_hours, 
-      col = "blue", 
-      lwd = 1) # Line width
+lines(months_num, study_data$study_hours,
+    col = "blue",
+    lwd = 1
+) # Line width
 
 # add custom month labels to the x-axis at appropriate positions
-axis(1, at = months_num, labels = study_data$month, las=2) # `las=2` makes labels perpendicular to axis
+axis(1, at = months_num, labels = study_data$month, las = 2) # `las=2` makes labels perpendicular to axis
 
 # Optional: adding a box around the plot for a minimalistic look
 box()
 
 ```
-
 
 
 ### Comparing Distributions with Box Plots
@@ -1159,10 +1164,12 @@ Box plots in Base R can compare the score distributions across the pass/fail sta
 
 ```{r}
 # Box plot with Base R
-boxplot(score ~ passed, data = student_data,
-        main = "Score Distribution by Pass/Fail Status",
-        xlab = "Status", ylab = "Scores",
-        col = c("red", "blue"))
+boxplot(score ~ passed,
+    data = student_data,
+    main = "Score Distribution by Pass/Fail Status",
+    xlab = "Status", ylab = "Scores",
+    col = c("red", "blue")
+)
 ```
 
 This code uses the `boxplot` function to create box plots for scores, grouped by the pass/fail status, with custom colours for each group.
@@ -1179,7 +1186,7 @@ This session has laid the groundwork. We have covered a lot, but we'll have a go
 
 You've successfully installed R and RStudio, setting up your workstation for statistical analysis.
   
-- **How to install and use RStudio:** 
+- **How to install and use R-Studio:** 
 
 You've familiarised yourself with the RStudio interface, including the console, source editor, environment tab, and other utilities for effective data analysis.
   
@@ -1400,7 +1407,7 @@ diff_vector <- vector_a - vector_b
 double_vector_a <- vector_a * 2
 half_vector_b <- vector_b / 2
 
-#view
+# view
 sum_vector
 diff_vector
 double_vector_a
@@ -1424,10 +1431,10 @@ sd_b
 ```{r}
 # create data frame
 student_data <- data.frame(
-  id = 1:4,
-  name = c("alice", "bob", "charlie", "diana"),
-  score = c(88, 92, 85, 95),
-  stringsAsFactors = FALSE
+    id = 1:4,
+    name = c("alice", "bob", "charlie", "diana"),
+    score = c(88, 92, 85, 95),
+    stringsAsFactors = FALSE
 )
 
 # add `passed` column
@@ -1481,10 +1488,10 @@ library(ggplot2)
 
 # create bar plot
 ggplot(student_data, aes(x = name, y = score, fill = passed)) +
-  geom_bar(stat = "identity") +
-  scale_fill_manual(values = c("TRUE" = "blue", "FALSE" = "red")) +
-  labs(title = "Student Scores", x = "Name", y = "Score") +
-  theme_minimal()
+    geom_bar(stat = "identity") +
+    scale_fill_manual(values = c("TRUE" = "blue", "FALSE" = "red")) +
+    labs(title = "Student Scores", x = "Name", y = "Score") +
+    theme_minimal()
 ```
 
 
@@ -1507,7 +1514,7 @@ A `data.frame` is used for storing tabular data.
 
 ```{r}
 # change matrix to array:
-df_matrix_1 <- data.frame( matrix_1 )
+df_matrix_1 <- data.frame(matrix_1)
 
 str(df_matrix_1)
 
@@ -1516,10 +1523,10 @@ head(df_matrix_1)
 # change colnames
 new_colnames <- c("col_1", "col_2", "col_3")
 
-colnames(df_matrix_1)<- new_colnames
+colnames(df_matrix_1) <- new_colnames
 
 # check
-str(df_matrix_1)  
+str(df_matrix_1)
 head(df_matrix_1)
 
 ```
@@ -1547,7 +1554,7 @@ List elements can be accessed using the `[[ ]]` notation for single elements, or
 
 ```{r}
 # Accessing elements
-name <- my_list$name  # or my_list[["name"]]
+name <- my_list$name # or my_list[["name"]]
 
 preference_color <- complex_list$preferences$color
 ```
@@ -1574,9 +1581,9 @@ Lists are often used as return values for functions that need to provide multipl
 ```{r}
 # Function returning a list
 calculate_stats <- function(numbers) {
-  mean_val <- mean(numbers)
-  sum_val <- sum(numbers)
-  return(list(mean = mean_val, sum = sum_val))
+    mean_val <- mean(numbers)
+    sum_val <- sum(numbers)
+    return(list(mean = mean_val, sum = sum_val))
 }
 
 # Using the function

@@ -152,7 +152,7 @@ df_scores <-
 
 # check structure of data  (uncomment)
 # str(df_scores)
-
+str(mtcars)
 
 # make group a factor
 df_scores_1 <- df_scores |>
@@ -160,6 +160,8 @@ df_scores_1 <- df_scores |>
 
 head(df_scores_1)
 
+
+# this is vs code section heading  ----------------------
 
 
 # visualising simulated data ----------------------------------------------
@@ -187,12 +189,12 @@ ggplot(df_scores_1, aes(x = scores, fill = group)) +
   facet_wrap(~group, ncol = 1) +
   theme_minimal()
 
-
-
 # EXERCISE ----------------------------------------------------------------
 
-# Excercise 1
-# Modify the simulation parameters to change each group’s mean and standard deviation. Observe how these changes affect the distribution.
+## Exercise 1 -----------------------
+
+# Modify the simulation parameters to change each group’s mean and standard deviation.
+# Observe how these changes affect the distribution.
 
 # Go to the histogram. Experiment with different bin widths. In your own words, how do large and small numbers speak differently to the data? When might you use one histogram and not another.
 
@@ -282,8 +284,8 @@ treatment <- rnorm(n, mean = 50, sd = 10) # mean = 50, sd = 10 for A
 beta_a <- 2 # explicit effect size
 
 # simulate outcome variable Y including an error term
-outcome <-
-  5 + beta_a * treatment + rnorm(n, mean = 0, sd = 20) # Y = intercept + beta_a*A + error
+# Y = intercept + beta_a*A + error
+outcome <- 5 + beta_a * treatment + rnorm(n, mean = 0, sd = 20)
 
 # create a dataframe
 df <- data.frame(treatment = treatment, outcome = outcome)
@@ -291,8 +293,6 @@ df <- data.frame(treatment = treatment, outcome = outcome)
 # view the structure and first few rows of the data frame
 str(df)
 head(df)
-
-
 
 
 # regression analysis of continuous treatment -----------------------------
@@ -325,9 +325,7 @@ plot(
   jitter = .1
 )
 
-
-
-
+hist(df_test$mpg)
 # equivalence of anova and regression -------------------------------------
 
 # nice tables
