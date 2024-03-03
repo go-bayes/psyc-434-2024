@@ -1337,11 +1337,12 @@ Montgomery, Jacob M., Brendan Nyhan, and Michelle Torres. 2018. <span>“How Con
 <span id="cb45-17"><a href="#cb45-17" aria-hidden="true" tabindex="-1"></a>df_3 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
 <span id="cb45-18"><a href="#cb45-18" aria-hidden="true" tabindex="-1"></a>  <span class="co"># simulate data for variable A with specified mean and sd</span></span>
 <span id="cb45-19"><a href="#cb45-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">A =</span>  <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">50</span>, <span class="at">sd =</span> <span class="dv">10</span>),</span>
-<span id="cb45-20"><a href="#cb45-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">Y =</span> <span class="dv">5</span> <span class="sc">+</span> beta_A <span class="sc">*</span> A <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">20</span>)</span>
-<span id="cb45-21"><a href="#cb45-21" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb45-22"><a href="#cb45-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-23"><a href="#cb45-23" aria-hidden="true" tabindex="-1"></a><span class="co"># view</span></span>
-<span id="cb45-24"><a href="#cb45-24" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df_3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb45-20"><a href="#cb45-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">Y =</span> <span class="dv">5</span> <span class="sc">+</span>  <span class="co"># intercept (optional)</span></span>
+<span id="cb45-21"><a href="#cb45-21" aria-hidden="true" tabindex="-1"></a>    beta_A <span class="sc">*</span> A <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">20</span>)</span>
+<span id="cb45-22"><a href="#cb45-22" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb45-23"><a href="#cb45-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-24"><a href="#cb45-24" aria-hidden="true" tabindex="-1"></a><span class="co"># view</span></span>
+<span id="cb45-25"><a href="#cb45-25" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df_3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>         A         Y
 1 52.23925  87.98766
@@ -1357,14 +1358,14 @@ Montgomery, Jacob M., Brendan Nyhan, and Michelle Torres. 2018. <span>“How Con
  $ A: num  52.2 38.4 54.2 36.8 51.4 ...
  $ Y: num  88 107 108 117 134 ...</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform linear regression of Y on A</span></span>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># linear regression of Y on A</span></span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>fit_3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> A, <span class="at">data =</span> df_3)</span>
 <span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Report the results of the regression</span></span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a><span class="co"># results </span></span>
 <span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a><span class="co"># summary(model)</span></span>
 <span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a><span class="co"># report</span></span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a><span class="co"># nicer report</span></span>
 <span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a>parameters<span class="sc">::</span><span class="fu">model_parameters</span>(fit_3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Parameter   | Coefficient |    SE |          95% CI | t(98) |      p
@@ -2920,24 +2921,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb60-988"><a href="#cb60-988" aria-hidden="true" tabindex="-1"></a>df_3 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
 <span id="cb60-989"><a href="#cb60-989" aria-hidden="true" tabindex="-1"></a>  <span class="co"># simulate data for variable A with specified mean and sd</span></span>
 <span id="cb60-990"><a href="#cb60-990" aria-hidden="true" tabindex="-1"></a>  <span class="at">A =</span>  <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">50</span>, <span class="at">sd =</span> <span class="dv">10</span>),</span>
-<span id="cb60-991"><a href="#cb60-991" aria-hidden="true" tabindex="-1"></a>  <span class="at">Y =</span> <span class="dv">5</span> <span class="sc">+</span> beta_A <span class="sc">*</span> A <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">20</span>)</span>
-<span id="cb60-992"><a href="#cb60-992" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb60-993"><a href="#cb60-993" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb60-994"><a href="#cb60-994" aria-hidden="true" tabindex="-1"></a><span class="co"># view</span></span>
-<span id="cb60-995"><a href="#cb60-995" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df_3)</span>
-<span id="cb60-996"><a href="#cb60-996" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df_3)</span>
-<span id="cb60-997"><a href="#cb60-997" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform linear regression of Y on A</span></span>
+<span id="cb60-991"><a href="#cb60-991" aria-hidden="true" tabindex="-1"></a>  <span class="at">Y =</span> <span class="dv">5</span> <span class="sc">+</span>  <span class="co"># intercept (optional)</span></span>
+<span id="cb60-992"><a href="#cb60-992" aria-hidden="true" tabindex="-1"></a>    beta_A <span class="sc">*</span> A <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">20</span>)</span>
+<span id="cb60-993"><a href="#cb60-993" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb60-994"><a href="#cb60-994" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-995"><a href="#cb60-995" aria-hidden="true" tabindex="-1"></a><span class="co"># view</span></span>
+<span id="cb60-996"><a href="#cb60-996" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df_3)</span>
+<span id="cb60-997"><a href="#cb60-997" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df_3)</span>
 <span id="cb60-998"><a href="#cb60-998" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb60-999"><a href="#cb60-999" aria-hidden="true" tabindex="-1"></a>fit_3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> A, <span class="at">data =</span> df_3)</span>
+<span id="cb60-999"><a href="#cb60-999" aria-hidden="true" tabindex="-1"></a><span class="co"># linear regression of Y on A</span></span>
 <span id="cb60-1000"><a href="#cb60-1000" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb60-1001"><a href="#cb60-1001" aria-hidden="true" tabindex="-1"></a><span class="co"># Report the results of the regression</span></span>
-<span id="cb60-1002"><a href="#cb60-1002" aria-hidden="true" tabindex="-1"></a><span class="co"># summary(model)</span></span>
-<span id="cb60-1003"><a href="#cb60-1003" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb60-1004"><a href="#cb60-1004" aria-hidden="true" tabindex="-1"></a><span class="co"># report</span></span>
-<span id="cb60-1005"><a href="#cb60-1005" aria-hidden="true" tabindex="-1"></a>parameters<span class="sc">::</span><span class="fu">model_parameters</span>(fit_3)</span>
-<span id="cb60-1006"><a href="#cb60-1006" aria-hidden="true" tabindex="-1"></a><span class="fu">report</span>(fit_3)</span>
-<span id="cb60-1007"><a href="#cb60-1007" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb60-1008"><a href="#cb60-1008" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-1001"><a href="#cb60-1001" aria-hidden="true" tabindex="-1"></a>fit_3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> A, <span class="at">data =</span> df_3)</span>
+<span id="cb60-1002"><a href="#cb60-1002" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-1003"><a href="#cb60-1003" aria-hidden="true" tabindex="-1"></a><span class="co"># results </span></span>
+<span id="cb60-1004"><a href="#cb60-1004" aria-hidden="true" tabindex="-1"></a><span class="co"># summary(model)</span></span>
+<span id="cb60-1005"><a href="#cb60-1005" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-1006"><a href="#cb60-1006" aria-hidden="true" tabindex="-1"></a><span class="co"># nicer report</span></span>
+<span id="cb60-1007"><a href="#cb60-1007" aria-hidden="true" tabindex="-1"></a>parameters<span class="sc">::</span><span class="fu">model_parameters</span>(fit_3)</span>
+<span id="cb60-1008"><a href="#cb60-1008" aria-hidden="true" tabindex="-1"></a><span class="fu">report</span>(fit_3)</span>
 <span id="cb60-1009"><a href="#cb60-1009" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb60-1010"><a href="#cb60-1010" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb60-1011"><a href="#cb60-1011" aria-hidden="true" tabindex="-1"></a></span>
