@@ -950,24 +950,24 @@ beta_A <- 2
 df_3 <- data.frame(
   # simulate data for variable A with specified mean and sd
   A =  rnorm(n, mean = 50, sd = 10),
-  Y = 5 + beta_A * A + rnorm(n, mean = 0, sd = 20)
+  Y = 5 +  # intercept (optional)
+    beta_A * A + rnorm(n, mean = 0, sd = 20)
 )
 
 # view
 head(df_3)
 str(df_3)
-# Perform linear regression of Y on A
+
+# linear regression of Y on A
 
 fit_3 <- lm(Y ~ A, data = df_3)
 
-# Report the results of the regression
+# results 
 # summary(model)
 
-# report
+# nicer report
 parameters::model_parameters(fit_3)
 report(fit_3)
-
-
 ```
 
 
