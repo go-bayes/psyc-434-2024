@@ -220,8 +220,6 @@ parameters::parameters(mod_first_test)
 report::report(mod_first_test)
 
 
-
-
 # simulate data for two groups --------------------------------------------
 
 # simulate data for two groups
@@ -325,7 +323,6 @@ plot(
   jitter = .1
 )
 
-hist(df_test$mpg)
 # equivalence of anova and regression -------------------------------------
 
 # nice tables
@@ -348,13 +345,10 @@ sd <- 15 # Standard deviation (same for all groups)
 # generate random data
 y <- rnorm(n, mean = rep(means, each = n / k), sd = sd)
 
-
 # make data frame
 df_1 <- cbind.data.frame(y, group)
 
-
 # anova -------------------------------------------------------------------
-
 anova_model <- aov(y ~ group, data = df_1)
 # summary(anova_model)
 table_anova <- model_parameters(anova_model)
@@ -401,10 +395,10 @@ predictive_plot <- plot(
   labs(title = "Predictive Graph", x = "Treatment Group", y = "Response")
 
 # view (uncomment)
-# predictive_plot
+predictive_plot
 
 # show all color palettes (uncomment)
-# show_pals()
+show_pals()
 
 
 # multiple plots
