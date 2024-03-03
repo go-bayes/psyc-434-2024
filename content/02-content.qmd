@@ -10,11 +10,15 @@ format:
     error: FALSE
     messages: FALSE
     code-overflow: scroll
-    highlight-style: kate
+    highlight-style: oblivion
     code-tools:
       source: true
       toggle: FALSE
 html-math-method: katex
+reference-location: margin
+citation-location: margin
+cap-location: margin
+code-block-border-left: true
 ---
 
 ```{r}
@@ -303,7 +307,7 @@ You might wonder, "If not from the data, where do our assumptions about causalit
 
 Otto Neurath, an Austrian philosopher and a member of the Vienna Circle, famously used the metaphor of a ship that must be rebuilt at sea to describe the process of scientific theory and knowledge development. 
 
-> We are like sailors who on the open sea must reconstruct their ship but are never able to start afresh from the bottom. Where a beam is taken away a new one must at once be put there, and for this the rest of the ship is used as support. In this way, by using the old beams and driftwood the ship can be shaped entirely anew, but only by gradual reconstruction. [@neurath1973]
+> Duhem has shown ... that every statement about any happening is saturated with hypotheses of all sorts and that these in the end are derived from our whole world-view. We are like sailors who on the open sea must reconstruct their ship but are never able to start afresh from the bottom. Where a beam is taken away a new one must at once be put there, and for this the rest of the ship is used as support. In this way, by using the old beams and driftwood, the ship can be shaped entirely anew, but only by gradual reconstruction. [@neurath1973, p.199]
 
 This quotation emphasises the iterative process that accumulates scientific knowledge;  new insights are cast from the foundation of existing knowledge. Causal diagrams are at home in Neurath's boat. The tradition of science that believes that knowledge develops from the results of statistical tests applied to data should be resisted. The data alone typically do not contain the answers we seek.
 
@@ -361,6 +365,8 @@ set.seed(123) # use any number to set the seed
 To simulate continuous data, you can use functions like `rnorm()` for normal distributions, `runif()` for uniform distributions, etc. Here we simulate 100 normally distributed data points with a mean of 50 and a standard deviation of 10:
 
 ```{r}
+#| column: margin
+
 n <- 100 # number of observations
 mean <- 50
 sd <- 10
@@ -419,8 +425,11 @@ In this example, the `prob` parameter is set to `c(0.3, 0.7)`, indicating a 30% 
 
 
 ```{r simulate-data}
+#|fig-cap: "Box plot of simulated scores by groups."
+# note: running this code will do no harm if the libraries are already installed.
+# install (if necessary) libraries
+# load libraries
 # libraries
-
 # graphs
 if (!require(ggplot2)) {
   install.packages("ggplot2")
@@ -470,7 +479,7 @@ if (!require(patchwork)) {
   library(patchwork)
 }
 
-
+# if libraries are already install, start here
 library(tidyverse)
 library(ggplot2)
 library(patchwork)
@@ -501,12 +510,11 @@ df_scores <- data.frame(group = rep(c("A", "B"), each = 100), scores = c(groupA_
 # str(df_scores)
 
 
-# make group a factor
+# make group a factor (not strictly necessary here, but useful in outher applications)
 df_scores_1 <- df_scores |> 
   mutate(group = as.factor(group))
 
 head(df_scores_1)
-
 ```
 
 ## Visualising Our Simulated Data
@@ -525,6 +533,7 @@ ggplot(df_scores_1, aes(x = group, y = scores, fill = group)) +
 ## Histogram {#sec-histogram}
 
 ```{r}
+#fig-cap: "Histogram of simulated scores, by group, using facet_wrap()"
 library(ggplot2)
 
 # H=histograms for both groups
@@ -548,6 +557,7 @@ ggplot(df_scores_1, aes(x = scores, fill = group)) +
 
 
 ```{r}
+# tbl-caption: "results of a one-sample t-test."
 # simulate some data
 set.seed(123)
 data <- rnorm(100, mean = 5, sd = 1) # 100 random normal values with mean = 5
@@ -558,10 +568,16 @@ mod_first_test<- t.test(data, mu = 4)
 
 # table
 parameters::parameters(mod_first_test)
+```
 
-# report
+We can automatically report these results using the `report` package: 
+
+
+```{r}
+# report results automatically
 report::report(mod_first_test)
 ```
+
 
 ```{r}
 # simulate data for two groups
@@ -597,7 +613,7 @@ parameters::parameters(mod_pre_post)
 
 ```{r}
 #| echo: true
-#| eval: false
+#| eval: true
 
 # library for enhanced model reporting
 set.seed(123)
@@ -636,8 +652,9 @@ Before moving on to regression analysis, ensure students understand the structur
 ####  Regression Analysis of Continuous Treatment Effect
 
 ```{r}
+#| fig-cap: "Graph of regression line showing uncertainty."
 #| echo: true
-#| eval: false
+#| eval: true
 set.seed(123)
 
 # perform linear regression of Y on A
@@ -648,7 +665,10 @@ summary(fit)
 
 # report the model in a reader-friendly format
 report_fit <- report::report(fit)
-print(report_fit)
+
+
+# uncomment to print the model report
+# print(report_fit)
 
 # use ggeffects to view predicted values
 library(ggeffects)
@@ -708,6 +728,7 @@ report::report(anova_model)
 
 Next, we analyse the same data using linear regression. In R, regression models automatically convert categorical variables into dummy variables.
 
+
 ```{r}
 # for tables (just installed)
 library(parameters)
@@ -735,17 +756,22 @@ report_fit <- report_parameters(fit_regression)
 report_fit
 ```
 
+## Combination Plots
 
-And we can add some graphs
+We can create and combine individual plots, as showin in @fig-coefplot, as follows: 
 
 ```{r}
+#| label: fig-coefplot
+#| fig-cap: "This is a combined plot"
+#| fig-column: page-inset-right
+
 # regression --------------------------------------------------------------
-# graph the output of the parameters table
-# visualisation
+# graph the output of the parameters table and assign to object
 coefficient_plot <- plot(table_fit)
 
 
-# ggeffects plot
+# ggeffects plot - create predictive plot.
+# this gives the expected values by group 
 predictive_plot <- plot(
   ggeffects::ggpredict(fit_regression, terms = "group"),
   dot_alpha = 0.35,
@@ -756,19 +782,19 @@ predictive_plot <- plot(
   scale_y_continuous(limits = c(0, 260)) + # change y axis
   labs(title = "Predictive Graph", x = "Treatment Group", y = "Response")
 
-# view (uncomment)
+# view (uncomment to see it alone)
 #predictive_plot
 
-# show all color palettes (uncomment)
+# show all color palettes (uncomment to see colour options)
 # show_pals()
 
 
-# multiple plots
+# multiple plots using `patchwork`
 library(patchwork)
 
 # create a plot
 my_first_combination_plot <- coefficient_plot / predictive_plot  +
-  plot_annotation(title = "Coefficient and Predictive plots",
+  plot_annotation(title = "Coefficient and Predictive plots with two panels ",
                   tag_levels = "A")
 
 # save a plot to your directory, make sure to create one called "figs"
@@ -793,10 +819,9 @@ ggsave(
 my_first_combination_plot
 ```
 
-
 ## Upshot
 
-ANOVA partitions variance into between-group and within-group components, while regression models the mean of the dependent variable as a linear function of the independent (including categorical) variables. For many questions, ANOVA is appropriate, however, when comparing groups, we often want a finer-grained interpretation. Regression is built for obtaining this finer grain understanding. We will return to regression over the next few weeks and use regression to hone your skills in R. Later, Along the way, you'll learn more about data visualisation, modelling, and reporting.  
+ANOVA partitions variance into between-group and within-group components. Regression analysis estimates the mean of the `dependent variable` as a linear function of the `independent (including categorical)` variables. For many questions, ANOVA is appropriate, however, when comparing groups, we often want a finer-grained interpretation. Regression is built for obtaining this finer grain comparisons. Note: comparisons do not establish causality. We will return to regression over the next few weeks and use regression to hone your skills in R. Later, along the way, you'll learn more about data visualisation, modelling, and reporting. These skills are essential for your final report. They are also skills that you will serve you beyond this course. 
 
 
 ## Exercise 2
