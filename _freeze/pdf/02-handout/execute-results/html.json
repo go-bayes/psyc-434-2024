@@ -1,0 +1,17 @@
+{
+  "hash": "c6f553b378e4c9d911429a768e19305e",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Handout: Causal Directed Acyclic Graphs\"\nabstract: |\nauthors: \n  - name: Joseph A Bulbulia\n    orcid: 0000-0002-5861-2056\n    email: joseph.bulbulia@vuw.ac.nz\n    affiliation: \n      name: Victoria University of Wellington, New Zealand, School of Psychology, Centre for Applied Cross-Cultural Research\n      department: Psychology/Centre for Applied Cross-Cultural Research\n      city: Wellington\n      country: New Zealand\n      url: www.wgtn.ac.nz/cacr\nkeywords:\n  - DAGS\n  - Causal Inference\n  - Confounding\n  - Environmental\n  - Psychology\n  - Panel\nformat:\n  pdf:\n    sanitize: true\n    keep-tex: true\n    link-citations: true\n    colorlinks: true\n    documentclass: article\n    classoption: [singlecolumn]\n    lof: true\n    lot: true\n    toc: true\n    number-sections: false\n    number-depth: 4\n    highlight-style: github\n    geometry:\n      - top=30mm\n      - left=20mm\n      - heightrounded\n    header-includes:\n      - \\input{/Users/joseph/GIT/latex/latex-for-quarto.tex}\ndate: last-modified\nexecute:\n  echo: false\n  warning: false\n  include: true\n  eval: true\nfontfamily: libertinus\nbibliography: /Users/joseph/GIT/templates/bib/references.bib\n---\n\n::: {.cell}\n\n:::\n\n\n\n\n\n\n## Elements\n\n::: {#tbl-terminology}\n\n\n\n\n\n```{=latex}\n\\terminologylocalconventions\n```\n\n\n\n\n\nOur variable naming conventions\n:::\n\n\n\n\n\n\n\n{{< pagebreak >}}\n\n\n\n\n\n\n\n\n\n\n\n::: {#tbl-undirected-graphs}\n\n\n\n\n\n\n```{=latex}\n\\terminologyundirectedgraphs\n\n```\n\n\n\n\n\nUndirected Graphs\n:::\n\n\n\n\n\n\n\n{{< pagebreak >}}\n\n\n\n\n\n\n\n\n\n\n\n::: {#tbl-dags}\n\n\n\n\n\n\n```{=latex}\n\\terminologydirectedgraph\n\n```\n\n\n\n\n\nUndirected Graphs\n:::\n\n\n\n\n\n\n\n{{< pagebreak >}}\n\n\n\n\n\n\n\n\n\n\n\n::: {#tbl-conventions}\n\n\n\n\n\n\n```{=latex}\n\\terminologygeneral\n\n```\n\n\n\n\n\nDirected Graphs\n:::\n\n\n\n\n\n\n{{< pagebreak >}}\n\n\n\n\n\n\n\n\n\n\n\n::: {#tbl-common-interests}\n\n\n\n\n\n\n```{=latex}\n\\terminologycommoncausalinterests\n\n```\n\n\n\n\n\nCommon causal interests\n:::\n\n\n\n\n\n\n{{< pagebreak >}}\n\n\n\n\n\n\n\n\n\n\n\n::: {#tbl-elementary-confounding}\n\n\n\n\n\n\n```{=latex}\n\\terminologyelconfounders\n\n```\n\n\n\n\n\nElementary confounding scenarios\n:::\n\n\n\n\n\n\n\n\n{{< pagebreak >}}\n\n\n\n\n\n\n\n\n\n\n\n\n::: {#tbl-elementary-confounding-time}\n\n\n\n\n\n\n```{=latex}\n\\terminologyelconfoundersLONG\n\n```\n\n\n\n\n\nCommon confounding scenarios with timing\n:::\n\n\n\n\n\n\n\n{{< pagebreak >}}\n\n",
+    "supporting": [
+      "02-handout_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

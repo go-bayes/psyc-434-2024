@@ -53,7 +53,7 @@ editor_options:
 
 #### Lab
 
-- Practical exercises in R: simulation and ggdag
+- Practical exercises in R: regression and ggdag
 
 
 #### Readings
