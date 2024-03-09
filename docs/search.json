@@ -3315,7 +3315,7 @@
     "href": "content/03-content.html#confounding-problems-not-resolved-by-time-series-data-alone",
     "title": "Causal Diagrams: The Structures of Confounding Bias",
     "section": "Confounding problems not resolved by time-series data alone",
-    "text": "Confounding problems not resolved by time-series data alone\nFigure 2 presents six examples of time-series data that are not resolved by longitudinal data collection. Explain why time series data are insufficient to address confounding in the scenarios described.\n\n\n\n\n\n\nFigure 2: This figure is adapted from (Bulbulia 2023)\n\nBulbulia, J. A. 2023. “Causal Diagrams (Directed Acyclic Graphs): A Practical Guide.”"
+    "text": "Confounding problems not resolved by time-series data alone\nFigure 2 presents six examples of time-series data that are not resolved by longitudinal data collection. Before seminar, consider why time series data are insufficient to address confounding in each of the six scenarios described in this figure.\n\n\n\n\n\n\nFigure 2: This figure is adapted from (Bulbulia 2023)\n\nBulbulia, J. A. 2023. “Causal Diagrams (Directed Acyclic Graphs): A Practical Guide.”"
   },
   {
     "objectID": "content/03-content.html#causal-mediation-the-problem",

@@ -96,7 +96,7 @@ This figure is adapted from [@bulbulia2023]
 
 ## Confounding problems not resolved by time-series data alone
 
-@fig-time-not-solved presents six examples of time-series data that are not resolved by longitudinal data collection. Explain why time series data are insufficient to address confounding in the scenarios described. 
+@fig-time-not-solved presents six examples of time-series data that are not resolved by longitudinal data collection. **Before seminar, consider why time series data are insufficient to address confounding in each of the six scenarios described in this figure.**
 
 ::: {#fig-time-not-solved}
 ![](dag-time-series-not-resolved.pdf){fig-align="left" height=100% width=100%}
