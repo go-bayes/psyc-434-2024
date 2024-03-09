@@ -25,6 +25,7 @@ website:
         - text: "Week 2: Causal Diagrams - Elementary Structures and Rules - R (using the interface)"
           href: content/02-content.qmd
         - text: "Week 3: Causal Diagrams - Confounding Bias - R (regression/simulation)"
+          href: content/03-content.qmd
         - text: "Week 4: Causal Diagrams - Interaction, Measurement Bias, Selection Bias - R (regression/simulation)"
         - text: "Week 5: Quiz - R (regression/simulation/reporting)"
         - text: "Week 6: Causal Inference - Key Concepts ATE - R (regression/simulation: ATE)"
