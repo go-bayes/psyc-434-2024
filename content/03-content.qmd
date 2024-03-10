@@ -85,7 +85,7 @@ loadfonts(device = "all")
 
 ## Confounding problems resolved by time-series data 
 
-@fig-time-solved presents the structural features of seven confounding problems.  We shall discuss examples of each, and how longitudinal data collection resolves each problem.  
+@fig-time-solved presents the structural features of **seven** confounding problems. We shall discuss examples of each, and how longitudinal data collection resolves each problem.  
 
 
 ::: {#fig-time-solved}
