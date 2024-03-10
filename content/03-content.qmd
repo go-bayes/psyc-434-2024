@@ -12,7 +12,7 @@ format:
     code-overflow: scroll
     highlight-style: gruvbox
     code-tools:
-      source: true
+      source: TRUE
       toggle: FALSE
 html-math-method: katex
 reference-location: margin
@@ -129,7 +129,7 @@ library("margot")
 library("margot")
 # List all datasets available in the package
 # data(package = "margot")
-data("df_nz", package = "margot")
+#data("df_nz", package = "margot")
 
 # for equations 
 # if (!require(devtools, quietly = TRUE)) {
@@ -393,7 +393,7 @@ Do mothers’s heights *predict* daughter height? If so, what is the magnitude o
 
 Francis Galton is credited with inventing regression analysis. Galton observed that offspring’s heights tend to fall between parental height and the population average, which Galton termed "regression to the mean." Galton sought a method for educated guessing about heights, and this led to fitting a line of regression by a method called "least squares" (For a history, see: [here](https://rss.onlinelibrary.wiley.com/doi/full/10.1111/j.1740-9713.2011.00509.x)).
 
-The following dataset is from "The heredity of height" by Karl Pearson and Alice Lee (1903)[@pearson1903]. I obtained it from [@gelman2020]. Let's use this dataset to investigate the relationship between mothers' and daughters' heights.
+The following dataset is from "The heredity of height" by Karl Pearson and Alice Lee (1903)[@pearson1903]. I obtained it from [@gelman_regression_2020]. Let's use this dataset to investigate the relationship between mothers' and daughters' heights.
 
 ```{r}
 #| label: pearson_lee_data
@@ -461,24 +461,34 @@ plot(t_m1) +
   ylab("Daughter's height") 
 ```
 
-<!-- ## How do we interpret the regression model? -->
-<!-- Let's write the equation out in mathematics. How do we read this? [^2] -->
-<!-- [^2]: Later, we'll prefer a different way of writing regression equations in math. (Note: writing math isn't math - it's just encoding the model that we've written). -->
-<!-- ```{r} -->
-<!-- #| echo: false -->
-<!-- library("equatiomatic") -->
-<!-- # extract equation  -->
-<!-- extract_eq(m1, use_coefs = FALSE) -->
-<!-- ``` -->
-<!-- The math says that the expected daughter's height in a population is predicted by the average height of the population when mothers’ heights are set to zero units (note, this is impossible - we'll come back to this) plus $\beta ~\times$ units of daughter's height (inches) for each additional unit of mother's height (inches) -->
+## How do we interpret the regression model?
+Let's write the equation out in mathematics. How do we read this? [^2]
+[^2]: Later, we'll prefer a different way of writing regression equations in math. (Note: writing math isn't math - it's just encoding the model that we've written).
 
-<!-- We can plug the output of the model directly into the equation as follows: -->
+```{r}
+library("equatiomatic")
+# extract equation
+#extract_eq(m1, use_coefs = FALSE)
+```
 
-<!-- ```{r} -->
-<!-- #| echo = false -->
-<!-- # extract equation  -->
-<!-- extract_eq(m1, use_coefs = TRUE) -->
-<!-- ``` -->
+$$
+\operatorname{daughter\_height} = \alpha + \beta_{1}(\operatorname{mother\_height}) + \epsilon
+$$
+
+
+The math says that the expected daughter's height in a population is predicted by the average height of the population when mothers’ heights are set to zero units (note, this is impossible - we'll come back to this) plus $\beta ~\times$ units of daughter's height (inches) for each additional unit of mother's height (inches)
+
+We can plug the output of the model directly into the equation as follows:
+
+```{r}
+# extract equation
+#extract_eq(m1, use_coefs = TRUE)
+```
+
+$$
+\operatorname{\widehat{daughter\_height}} = 29.8 + 0.54(\operatorname{mother\_height})
+$$
+
 
 ### Graph the relationship between mother's and daughter's heights
 
@@ -721,23 +731,23 @@ From Gelman and Hill [@gelman2006]
 
 1.  **Validity**
 
-    > The most important is that the data you are analyzing should map to the research question you are trying to answer [@gelman2020, p.152]
+    > The most important is that the data you are analyzing should map to the research question you are trying to answer [@gelman_regression_2020, p.152]
 
 2.  **Representativeness**
 
-    > A regression model is fit to data and is used to make inferences about a larger population, hence the implicit assumption in interpreting regression coefficients is that the sample is representative of the population. [@gelman2020, p.153]\
+    > A regression model is fit to data and is used to make inferences about a larger population, hence the implicit assumption in interpreting regression coefficients is that the sample is representative of the population. [@gelman_regression_2020, p.153]\
 
 3.  **Linearity**
 
-    > The most important mathematical assumption of the linear regression model is that its deterministic component is a linear function of the separate predictors: y = β0 + β1x1 + β2x2 +···. If additivity is violated, it might make sense to transform the data (for example, if y = abc, then log y = log a + log b + log c) or to add interactions. If linearity is violated, perhaps a predictor should be put in as 1/x or log(x) instead of simply linearly. Or a more complicated relationship could be expressed using a nonlinear function such as a spline or Gaussian process, [@gelman2020, p.153]
+    > The most important mathematical assumption of the linear regression model is that its deterministic component is a linear function of the separate predictors: y = β0 + β1x1 + β2x2 +···. If additivity is violated, it might make sense to transform the data (for example, if y = abc, then log y = log a + log b + log c) or to add interactions. If linearity is violated, perhaps a predictor should be put in as 1/x or log(x) instead of simply linearly. Or a more complicated relationship could be expressed using a nonlinear function such as a spline or Gaussian process, [@gelman_regression_2020, p.153]
 
 4.  **Independence of errors**
 
-    > The simple regression model assumes that the errors from the prediction line are independent, an assumption that is violated in time series, spatial, and multilevel settings [@gelman2020, p.153]
+    > The simple regression model assumes that the errors from the prediction line are independent, an assumption that is violated in time series, spatial, and multilevel settings [@gelman_regression_2020, p.153]
 
 5.  **Equal variance of errors**
 
-> ...unequal variance does not affect the most important aspect of a regression model, which is the form of the predictors [@gelman2020, p.153]
+> ...unequal variance does not affect the most important aspect of a regression model, which is the form of the predictors [@gelman_regression_2020, p.153]
 
 5.  **Normality of errors (statistical independence)**
 
@@ -963,7 +973,7 @@ In this simulation, we discovered that if we assess "effect" by "model fit", we 
 ## Resources on Regression that Do Not Perpetuate The Causality Crisis
 
 1.  **Statistical Rethinking** [@mcelreath2020]
-2.  **Regression and Other Stories** [@gelman2020]
+2.  **Regression and Other Stories** [@gelman_regression_2020]
 
 ## Setup 
 
