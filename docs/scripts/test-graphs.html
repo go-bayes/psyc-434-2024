@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.23">
+<meta name="generator" content="quarto-1.5.24">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -114,7 +114,10 @@ ul.task-list li input[type="checkbox"] {
     <a class="dropdown-item" href="../content/02-content.html">
  <span class="dropdown-text">Week 2: Causal Diagrams - Elementary Structures and Rules - R (using the interface)</span></a>
   </li>  
-        <li class="dropdown-header">Week 3: Causal Diagrams - Confounding Bias - R (regression/simulation)</li>
+        <li>
+    <a class="dropdown-item" href="../content/03-content.html">
+ <span class="dropdown-text">Week 3: Causal Diagrams - Confounding Bias - R (regression/simulation)</span></a>
+  </li>  
         <li class="dropdown-header">Week 4: Causal Diagrams - Interaction, Measurement Bias, Selection Bias - R (regression/simulation)</li>
         <li class="dropdown-header">Week 5: Quiz - R (regression/simulation/reporting)</li>
         <li class="dropdown-header">Week 6: Causal Inference - Key Concepts ATE - R (regression/simulation: ATE)</li>
@@ -473,7 +476,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
