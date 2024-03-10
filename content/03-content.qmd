@@ -751,15 +751,15 @@ From Gelman and Hill [@gelman2006]
 
 **People use the work "effect", but that is not what regression gives us, by default.**
 
-#### "Normality assumption"
+#### "Normality Assumption"
 
 Gelman and Hill note that the "normality" assumption is the least important. The assumption pertains to the normality of residuals.
 
-#### Statistical independence
+#### Statistical Independence
 
 This is the motivation for doing multi-level modelling: to condition on dependencies in the data. However, multi-level modelling can produce new problems if the error terms in the model are not independent of the outcome. 
 
-#### External validity (wrong population)
+#### External Validity (wrong population)
 
 We sample from undergraduates, but infer about the human population.
 
@@ -767,7 +767,7 @@ We sample from undergraduates, but infer about the human population.
 **NOTE**: The concept of “better model fit” is relative to our interests and purposes.  A better (lower) AIC statistic does not tell us whether a model is better for better causal inference. We must assess whether a model satisfies the assumptions necessary for valid causal inference.
 :::
 
-## Simulation Demonstration: Why Regression Does not Give Us “Effect”
+## Simulation Demonstration 1: How Regression Coefficients Mislead
 
 #### Methodology
 
@@ -791,7 +791,7 @@ We sample from undergraduates, but infer about the human population.
 ```{r}
 #| label: simulation_cross_sectional
 #| tbl-cap: "Code for a simulation of a data generating process in which the effect of exercise (L) fully mediates the effect of greenspace (A) on happiness (Y)."
-#| out-width: 80%
+#| out-width: 100%
 #| echo: true
 #| eval: true
 
@@ -800,8 +800,8 @@ set.seed(123) #  reproducibility
 
 # define the parameters 
 n = 1000 # Number of observations
-p = 0.5  # Probability of A = 1 (access to greenspace)
-alpha = 0 # Intercept for L (exercise)
+p = 0.5  # Probability of A = 1 
+alpha = 0 # Intercept for L 
 beta = 2  # Effect of A on L 
 gamma = 1 # Intercept for Y 
 delta = 1.5 # Effect of L on Y
@@ -831,19 +831,19 @@ table2 <- gtsummary::tbl_regression(example_fit_2)
 # merge the tables for comparison
 table_comparison <- gtsummary::tbl_merge(
   list(table1, table2),
-  tab_spanner = c("Model: Exercise assumed confounder", 
-                  "Model: Exercise assumed to be a mediator")
+  tab_spanner = c("Model: Wealth assumed confounder", 
+                  "Model: Wealth assumed to be a mediator")
 )
 # make latex table (for publication)
 markdown_table_0 <- as_kable_extra(table_comparison, 
                                    format = "markdown", 
                                    booktabs = TRUE)
-# print latex table (note, you might prefer "markdown" or another format)                                
+# print markdown table (note, you might prefer "latex" or another format)                                
 markdown_table_0
 ```
 
 
-### Compare fits of models
+### Compare model fits
 
 
 #### By all metrics, model 1 fits better but it is confounded
@@ -851,6 +851,7 @@ markdown_table_0
 performance::compare_performance(example_fit_1, example_fit_2)
 ```
 
+Model 1 exhibits mediator bias, but it has a considerably higher $R^2$, and a lower BIC
 
 ##### Focussing on the BIC (lower is better) Model 1 fits better, but it is confounded.
 ```{r}
@@ -858,21 +859,111 @@ BIC(example_fit_1) - BIC(example_fit_2)
 ```
 
 
-
 ::: {.callout-important}
-In this simulation, we discovered that if we assess "effect" by "model fit" we will get the wrong *sign* for the coefficient of interest. The use of model fit perpetuates the *causality crisis* in psychological science. Few are presently aware of this crisis!
+In this simulation, we discovered that if we assess "effect" by "model fit" we will get the wrong *sign* for the coefficient of interest. The use of model fit perpetuates the *causality crisis* in psychological science [@bulbulia2022]. Few are presently aware of this crisis. Causal diagrams show us how we can do better.
 :::
 
 
+## Simulation Demonstration 2: How Regression Coefficients Mislead
 
-## Resources.
+#### Methodology
 
-1.  Richard Mcelreath's Statistical Rethinking [@mcelreath2020]
-2.  Regression and other stories [@gelman2020]
+1. **Data Generation**:  simulate a dataset for 1,000 individuals, where religious service attendance ($A$) affects wealth ($L$),and chartitable donations charitable donations ($Y$) also affects wealth $L$, but $A$ and $Y$ are not causally related
+
+2. **Parameter Definitions**:
+   - The probability of religious service ($A$) is set at 0.5.
+   - $Y$ is has a mean $0$ and sd = $1$, and is independent of $A$.
+   - $L$ is a linear function of $A$ and $Y$.
+
+3. **Model Specifications**:
+   - **Model 1** (Correct Assumption): do not control for $L$
+   - **Model 2** (Correct model): control for $L$
+
+4. **Analysis and Comparison**: compare models. 
+
+5. **Presentation**: a table.
 
 
+```{r}
+#| label: simulation_cross_sectional_2
+#| tbl-cap: "L is a collider of A and Y."
+#| out-width: 100%
+#| echo: true
+#| eval: true
+
+# simulation seed
+set.seed(123) #  reproducibility
+
+# define parameters 
+n = 1000 # Number of observations
+p = 0.5  # Probability of A = 1 
+alpha = 0 # Intercept for L
+
+# simulate the data
+A_1 = rbinom(n, 1, p) # binary exposure variable
+Y_1 = rnorm(n, 0, 1) # Y affected only by L,
+L_2 = rnorm(n, A + Y)
+# make the data frame
+data_collider = data.frame(A = A_1, L = L_2, Y = Y_1)
+
+# fit regression in which L is assumed to be a mediator
+# (cross-sectional data is consistent with this model)
+collider_example_fit_1 <- lm( Y ~ A + L, data = data_collider)
+
+# fit regression in which L is assumed to be a mediator
+# (cross-sectional data is also consistent with this model)
+collider_example_fit_2 <- lm( Y ~ A, data = data_collider)
+
+# create gtsummary tables for each regression model
+collider_table1 <- gtsummary::tbl_regression(collider_example_fit_1)
+collider_table2 <- gtsummary::tbl_regression(collider_example_fit_2)
+
+# merge the tables for comparison
+collider_table_comparison <- gtsummary::tbl_merge(
+  list(collider_table1, collider_table2),
+  tab_spanner = c("Model: Wealth assumed confounder", 
+                  "Model: Wealth not assumed to be a mediator")
+)
+# make latex table (for publication)
+markdown_table_1 <- as_kable_extra(collider_table_comparison, 
+                                   format = "markdown", 
+                                   booktabs = TRUE)
+# print markdown table (note, you might prefer "latex" or another format)                                
+collider_table_comparison
+```
 
 
+### Compare model fits
+
+
+#### By all metrics, model 1 fits better but it is confounded. 
+
+$A$ is not causally associated with $Y$. We generated the data so we know.  However, the confounded model shows a better fit, and in this model the coefficient for $A$ is significant (and negative). 
+
+
+```{r}
+performance::compare_performance(collider_example_fit_1, collider_example_fit_2)
+```
+
+
+##### Again, the BIC for (lower is better) Model 1 fits better, but it is entirely confounded.
+
+```{r}
+BIC(collider_example_fit_1) - BIC(collider_example_fit_2)
+```
+
+How does collider bias work? If we know that someone is *not* attending church, if they are charitable then we can *predict* they are wealthy. Similarly if we know someone is not wealthy but charitable, we can *predict* they attend religious service. 
+
+However,  in this simulation, we know the religion and wealth are *not* casually associated because we have simulated the data.
+
+::: {.callout-important}
+In this simulation, we discovered that if we assess "effect" by "model fit", we get the **wrong scientific inference*. The use of model fit perpetuates the *causality crisis* in psychological science [@bulbulia2022]. Let's do better. 
+:::
+
+## Resources on Regression that Do Not Perpetuate The Causality Crisis
+
+1.  **Statistical Rethinking** [@mcelreath2020]
+2.  **Regression and Other Stories** [@gelman2020]
 
 ## Setup 
 
@@ -932,14 +1023,7 @@ Create a descriptive table and graph these two variables
 Annotate your workflow (at each step, describe what you are doing and why).
 
 
-## Q2. Write up a sample summary of the `hlth_height` and `hlth_weight` variables in the `nz` dataset in APA style. 
-
-**Using the analysis in Q1, describe Height and Weight in the `df_nz` dataset. Write brief APA methods summary for these two variables.  Note: *if useful, use the 'male' variable to clarify interesting or puzzling features of the `hlth_weight` and `hlth_height` responses.**
-
-[NZAVS data dictionary](https://www.dropbox.com/s/e7krce01taya8a1/Copy%20of%20NZAVS-Technical-Documents-e02-Data-Dictionary.xlsx?dl=0)
-
-
-## Q3. Regression height ~ weight and report results
+## Q2. Regression height ~ weight and report results
 
 Using the `df_nz` dataset, write a regression model for height as predicted by weight. 
 
@@ -950,8 +1034,7 @@ Create a graphs/graphs to clarify the results of your regression model.
 Briefly report your results. 
 
 
-## Q4. Regress height ~ male and report results
-
+## Q3. Regress height ~ male and report results
 
 Using the `df_nz` dataset, write a regression model for height as predicted by `male` 
 
@@ -962,14 +1045,12 @@ Create a graphs/graphs to clarify the results of your regression model.
 Briefly report your results. 
 
 
-## Q5. Regression to predict
+## Q4. Regression to predict
 
-Using the regression coefficients from the Pearson and Lee 1903 dataset
-
-Predict the heights of daughters of women in the `df_nz` dataset. 
+Using the regression coefficients from the Pearson and Lee 1903 dataset, predict the heights of daughters of women in the `df_nz` dataset. 
 
 
-## Q6. Bonus
+## Q5. Bonus
 
 On average, how much taller or shorter are women in New Zealand as sampled in 2019 `df_nz` dataset compared with women in 1903 as sampled in the Pearson and Lee dataset. 
 
@@ -1018,7 +1099,7 @@ df_pearson_lee <- df_pearson_lee|>
 ```
 
 
-## Solution: Q1 descriptive table
+## Solution Q1 descriptive table
 
 
 ```{r}
@@ -1106,22 +1187,7 @@ height_density
 weight_density / height_density + plot_annotation(tag_levels = 'a')
 ```
 
-## Solution Q2. Write up a sample summary of the `hlth_weight` and `hlth_height` variables in the `nz` dataset in APA style. 
-
-Using the analysis in Q1, describe Height and Weight in the `nz` dataset
-
-Write brief APA methods summary for these two variables. 
-
-Note: *if useful, use the 'male' variable to clarify interesting or puzzling features of the `hlth_weight` and `hlth_height` responses.
-
-[NZAVS data dictionary](https://www.dropbox.com/s/zimc507q96gwzpi/NZAVS-Technical-Documents-e02-Data-Dictionary.xlsx?dl=1)
-
-
-## Solution Q2 Different Approach
-
-Why aren't the distributions of height and weight normal? Likely there is a hidden co-variate. 
-
-Let's assess whether there might be differences in these parameters that might owe to sex.
+Here's a density plot:
 
 ```{r}
 #| label: density_plot
@@ -1138,7 +1204,7 @@ ggplot2::ggplot(data = df_nzdat1, aes(x = weight, fill = as.factor(male))) +
 ```
 
 
-## Solution Q3. Regress height ~ weight and report results
+## Solution Q2. Regress height ~ weight and report results
 
 **Using the `nz` dataset, write a regression model for height as predicted by weight.  Create a table for your results.  Create a graphs/graphs to clarify the results of your regression model.  Briefly report your results.**
 
@@ -1156,12 +1222,16 @@ Table:
 
 ```{r}
 #| label: regression_height_nz_table
-
+library(parameters)
 #table of model
-sjPlot::tab_model(fit_1)
+parameters::model_parameters( fit_1) |> 
+  print_html(  digits = 2,  # options
+               select = "{coef}{stars}|({ci})",
+               column_labels = c("Estimate", "95% CI")
+) 
 ```
 
-Prediction
+Prediction:
 
 ```{r}
 #| label: regression_height_nz_prediction
@@ -1184,7 +1254,7 @@ Briefly report your results. (note: please replace "significant" with "statistic
 report::report(fit_1)
 ```
 
-## Solution Q4. Regress height ~ male and report results
+## Solution Q3. Regress height ~ male and report results
 
 
 **Using the `df_nz` dataset, write a regression model for height as predicted by `male`  Create a table for your results.  Create a graph/graphs to clarify the results of your regression model. Briefly report your results.**
@@ -1221,7 +1291,7 @@ report::report(fit_2)
 ```
 
 
-## Solution Q5. Regression to predict
+## Solution Q4. Regression to predict
 
 **Using the regression coefficients from the Pearson and Lee 1903 dataset, predict the heights of daughters of women in the `nz` dataset.** 
 ```{r}
@@ -1388,7 +1458,7 @@ fit_4
 
 
 
-## Appendix 2: Conceptual Background
+## Appendix 1 Conceptual Background
 
 Some preliminaries about science.
 
