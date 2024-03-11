@@ -906,6 +906,7 @@ n = 1000 # Number of observations
 p = 0.5  # Probability of A = 1 
 alpha = 0 # Intercept for L
 
+
 # simulate the data
 A_1 = rbinom(n, 1, p) # binary exposure variable
 Y_1 = rnorm(n, 0, 1) # Y affected only by L,
