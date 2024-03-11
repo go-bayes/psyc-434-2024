@@ -139,7 +139,6 @@ library("margot")
 # remotes::install_github("datalorax/equatiomatic")
 # 
 # library("equatiomatic")
-
 # data wrangling
 if (!require(tidyverse, quietly = TRUE)) {
   install.packages("tidyverse")
@@ -282,7 +281,7 @@ Today we will discuss the "normal" or "Gaussian distribution." A large number of
 
 Let's consider some examples of randomly generated samples, which we will obtain using R's `rnorm` function.
 
-#### 100-person sample of heights
+#### 10-person sample of heights
 
 ```{r}
 #| label: draws_10 
@@ -297,7 +296,7 @@ draws_10 <- rnorm(10, mean = 170, sd = 20)
 ggplot2::qplot(draws_10, binwidth = 2)
 ```
 
-#### 10-person sample of heights
+#### 100-person sample of heights
 
 ```{r}
 #| label: draws_100 
@@ -350,9 +349,7 @@ N = 10 random draws
 
 ```{r}
 #| label: draws_10_tab
-
 #|code-fold: false
-
 
 #write the model and get a nice table for it
 sjPlot::tab_model(lm(draws_10 ~ 1))
@@ -912,7 +909,8 @@ alpha = 0 # Intercept for L
 # simulate the data
 A_1 = rbinom(n, 1, p) # binary exposure variable
 Y_1 = rnorm(n, 0, 1) # Y affected only by L,
-L_2 = rnorm(n, A + Y)
+L_2 = rnorm(n, A_1 + Y_1)
+
 # make the data frame
 data_collider = data.frame(A = A_1, L = L_2, Y = Y_1)
 
@@ -923,7 +921,7 @@ collider_example_fit_1 <- lm( Y ~ A + L, data = data_collider)
 # fit regression in which L is assumed to be a mediator
 # (cross-sectional data is also consistent with this model)
 collider_example_fit_2 <- lm( Y ~ A, data = data_collider)
-
+summary(collider_example_fit_1)
 # create gtsummary tables for each regression model
 collider_table1 <- gtsummary::tbl_regression(collider_example_fit_1)
 collider_table2 <- gtsummary::tbl_regression(collider_example_fit_2)
