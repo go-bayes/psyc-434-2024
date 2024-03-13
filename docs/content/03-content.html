@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.23">
+<meta name="generator" content="quarto-1.5.24">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -881,10 +881,8 @@ Figure&nbsp;3: This figure is adapted from <span class="citation" data-cites="bu
 <h3 class="anchored" data-anchor-id="regression-with-a-single-co-variate">Regression with a single co-variate</h3>
 <p>Do mothers’s heights <em>predict</em> daughter height? If so, what is the magnitude of the relationship?</p>
 <p>Francis Galton is credited with inventing regression analysis. Galton observed that offspring’s heights tend to fall between parental height and the population average, which Galton termed “regression to the mean.” Galton sought a method for educated guessing about heights, and this led to fitting a line of regression by a method called “least squares” (For a history, see: <a href="https://rss.onlinelibrary.wiley.com/doi/full/10.1111/j.1740-9713.2011.00509.x">here</a>).</p>
-<p>The following dataset is from “The heredity of height” by Karl Pearson and Alice Lee (1903)<span class="citation" data-cites="pearson1903">(<a href="#ref-pearson1903" role="doc-biblioref">Pearson and Lee 1903</a>)</span>. I obtained it from <span class="citation" data-cites="gelman_regression_2020">(<a href="#ref-gelman_regression_2020" role="doc-biblioref"><strong>gelman_regression_2020?</strong></a>)</span>. Let’s use this dataset to investigate the relationship between mothers’ and daughters’ heights.</p>
-<div class="no-row-height column-margin column-container"><div id="ref-pearson1903" class="csl-entry" role="listitem">
-Pearson, Karl, and Alice Lee. 1903. <span>“On the Laws of Inheritance in Man: I. Inheritance of Physical Characters.”</span> <em>Biometrika</em> 2 (4): 357–462.
-</div></div><div class="cell">
+<p>The following dataset is from “The heredity of height” by Karl Pearson and Alice Lee (1903)<span class="citation" data-cites="pearson1903">(<a href="#ref-pearson1903" role="doc-biblioref"><strong>pearson1903?</strong></a>)</span>. I obtained it from <span class="citation" data-cites="gelman_regression_2020">(<a href="#ref-gelman_regression_2020" role="doc-biblioref">Gelman, Hill, and Vehtari 2020</a>)</span>. Let’s use this dataset to investigate the relationship between mothers’ and daughters’ heights.</p>
+<div class="no-row-height column-margin column-container"></div><div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import data</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>df_pearson_lee <span class="ot">&lt;-</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(<span class="fu">read.table</span>(</span>
@@ -1102,16 +1100,16 @@ Pearson, Karl, and Alice Lee. 1903. <span>“On the Laws of Inheritance in Man: 
 <div class="cell-output cell-output-stdout">
 <pre><code># Predicted values of daughter_height
 
-mother_height | Predicted |       95% CI
-----------------------------------------
-        52.50 |     58.41 | 58.15, 58.66
-        54.50 |     59.50 | 59.29, 59.70
-        57.50 |     61.13 | 60.99, 61.27
-        59.50 |     62.22 | 62.13, 62.32
-        61.50 |     63.31 | 63.25, 63.38
-        63.50 |     64.40 | 64.34, 64.47
-        65.50 |     65.49 | 65.40, 65.59
-        70.50 |     68.22 | 68.01, 68.42</code></pre>
+mother_height | Predicted |         95% CI
+------------------------------------------
+        52.50 |     58.41 | [58.15, 58.66]
+        54.50 |     59.50 | [59.29, 59.70]
+        57.50 |     61.13 | [60.99, 61.27]
+        59.50 |     62.22 | [62.13, 62.32]
+        61.50 |     63.31 | [63.25, 63.38]
+        63.50 |     64.40 | [64.34, 64.47]
+        65.50 |     65.49 | [65.40, 65.59]
+        70.50 |     68.22 | [68.01, 68.42]</code></pre>
 </div>
 </div>
 </section>
@@ -1367,26 +1365,26 @@ beta = 0.54, 95% CI [0.52, 0.57], t(5522) = 43.12, p &lt; .001; Std. beta = 0.50
 <div class="no-row-height column-margin column-container"></div><ol type="1">
 <li><p><strong>Validity</strong></p>
 <blockquote class="blockquote">
-<p>The most important is that the data you are analyzing should map to the research question you are trying to answer <span class="citation" data-cites="gelman_regression_2020">(<a href="#ref-gelman_regression_2020" role="doc-biblioref"><strong>gelman_regression_2020?</strong></a>)</span></p>
+<p>The most important is that the data you are analyzing should map to the research question you are trying to answer <span class="citation" data-cites="gelman_regression_2020">(<a href="#ref-gelman_regression_2020" role="doc-biblioref">Gelman, Hill, and Vehtari 2020, 152</a>)</span></p>
 </blockquote></li>
 <li><p><strong>Representativeness</strong></p>
 <blockquote class="blockquote">
-<p>A regression model is fit to data and is used to make inferences about a larger population, hence the implicit assumption in interpreting regression coefficients is that the sample is representative of the population. <span class="citation" data-cites="gelman_regression_2020">(<a href="#ref-gelman_regression_2020" role="doc-biblioref"><strong>gelman_regression_2020?</strong></a>)</span><br>
+<p>A regression model is fit to data and is used to make inferences about a larger population, hence the implicit assumption in interpreting regression coefficients is that the sample is representative of the population. <span class="citation" data-cites="gelman_regression_2020">(<a href="#ref-gelman_regression_2020" role="doc-biblioref">Gelman, Hill, and Vehtari 2020, 153</a>)</span><br>
 </p>
 </blockquote></li>
 <li><p><strong>Linearity</strong></p>
 <blockquote class="blockquote">
-<p>The most important mathematical assumption of the linear regression model is that its deterministic component is a linear function of the separate predictors: y = β0 + β1x1 + β2x2 +···. If additivity is violated, it might make sense to transform the data (for example, if y = abc, then log y = log a + log b + log c) or to add interactions. If linearity is violated, perhaps a predictor should be put in as 1/x or log(x) instead of simply linearly. Or a more complicated relationship could be expressed using a nonlinear function such as a spline or Gaussian process, <span class="citation" data-cites="gelman_regression_2020">(<a href="#ref-gelman_regression_2020" role="doc-biblioref"><strong>gelman_regression_2020?</strong></a>)</span></p>
+<p>The most important mathematical assumption of the linear regression model is that its deterministic component is a linear function of the separate predictors: y = β0 + β1x1 + β2x2 +···. If additivity is violated, it might make sense to transform the data (for example, if y = abc, then log y = log a + log b + log c) or to add interactions. If linearity is violated, perhaps a predictor should be put in as 1/x or log(x) instead of simply linearly. Or a more complicated relationship could be expressed using a nonlinear function such as a spline or Gaussian process, <span class="citation" data-cites="gelman_regression_2020">(<a href="#ref-gelman_regression_2020" role="doc-biblioref">Gelman, Hill, and Vehtari 2020, 153</a>)</span></p>
 </blockquote></li>
 <li><p><strong>Independence of errors</strong></p>
 <blockquote class="blockquote">
-<p>The simple regression model assumes that the errors from the prediction line are independent, an assumption that is violated in time series, spatial, and multilevel settings <span class="citation" data-cites="gelman_regression_2020">(<a href="#ref-gelman_regression_2020" role="doc-biblioref"><strong>gelman_regression_2020?</strong></a>)</span></p>
+<p>The simple regression model assumes that the errors from the prediction line are independent, an assumption that is violated in time series, spatial, and multilevel settings <span class="citation" data-cites="gelman_regression_2020">(<a href="#ref-gelman_regression_2020" role="doc-biblioref">Gelman, Hill, and Vehtari 2020, 153</a>)</span></p>
 </blockquote></li>
 <li><p><strong>Equal variance of errors</strong></p></li>
 </ol>
-<blockquote class="blockquote">
-<p>…unequal variance does not affect the most important aspect of a regression model, which is the form of the predictors <span class="citation" data-cites="gelman_regression_2020">(<a href="#ref-gelman_regression_2020" role="doc-biblioref"><strong>gelman_regression_2020?</strong></a>)</span></p>
-</blockquote>
+<div class="no-row-height column-margin column-container"></div><div class="page-columns page-full"><blockquote class="blockquote">
+<p>…unequal variance does not affect the most important aspect of a regression model, which is the form of the predictors <span class="citation" data-cites="gelman_regression_2020">(<a href="#ref-gelman_regression_2020" role="doc-biblioref">Gelman, Hill, and Vehtari 2020, 153</a>)</span></p>
+</blockquote><div class="no-row-height column-margin column-container"></div></div>
 <ol start="5" type="1">
 <li><strong>Normality of errors (statistical independence)</strong></li>
 </ol>
@@ -1639,22 +1637,23 @@ Important
 <span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>p <span class="ot">=</span> <span class="fl">0.5</span>  <span class="co"># Probability of A = 1 </span></span>
 <span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">=</span> <span class="dv">0</span> <span class="co"># Intercept for L</span></span>
 <span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a><span class="co"># simulate the data</span></span>
-<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a>A_1 <span class="ot">=</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, p) <span class="co"># binary exposure variable</span></span>
-<span id="cb43-11"><a href="#cb43-11" aria-hidden="true" tabindex="-1"></a>Y_1 <span class="ot">=</span> <span class="fu">rnorm</span>(n, <span class="dv">0</span>, <span class="dv">1</span>) <span class="co"># Y affected only by L,</span></span>
-<span id="cb43-12"><a href="#cb43-12" aria-hidden="true" tabindex="-1"></a>L_2 <span class="ot">=</span> <span class="fu">rnorm</span>(n, A_1 <span class="sc">+</span> Y_1)</span>
-<span id="cb43-13"><a href="#cb43-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-14"><a href="#cb43-14" aria-hidden="true" tabindex="-1"></a><span class="co"># make the data frame</span></span>
-<span id="cb43-15"><a href="#cb43-15" aria-hidden="true" tabindex="-1"></a>data_collider <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">A =</span> A_1, <span class="at">L =</span> L_2, <span class="at">Y =</span> Y_1)</span>
-<span id="cb43-16"><a href="#cb43-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-17"><a href="#cb43-17" aria-hidden="true" tabindex="-1"></a><span class="co"># fit regression in which L is assumed to be a mediator</span></span>
-<span id="cb43-18"><a href="#cb43-18" aria-hidden="true" tabindex="-1"></a><span class="co"># (cross-sectional data is consistent with this model)</span></span>
-<span id="cb43-19"><a href="#cb43-19" aria-hidden="true" tabindex="-1"></a>collider_example_fit_1 <span class="ot">&lt;-</span> <span class="fu">lm</span>( Y <span class="sc">~</span> A <span class="sc">+</span> L, <span class="at">data =</span> data_collider)</span>
-<span id="cb43-20"><a href="#cb43-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-21"><a href="#cb43-21" aria-hidden="true" tabindex="-1"></a><span class="co"># fit regression in which L is assumed to be a mediator</span></span>
-<span id="cb43-22"><a href="#cb43-22" aria-hidden="true" tabindex="-1"></a><span class="co"># (cross-sectional data is also consistent with this model)</span></span>
-<span id="cb43-23"><a href="#cb43-23" aria-hidden="true" tabindex="-1"></a>collider_example_fit_2 <span class="ot">&lt;-</span> <span class="fu">lm</span>( Y <span class="sc">~</span> A, <span class="at">data =</span> data_collider)</span>
-<span id="cb43-24"><a href="#cb43-24" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(collider_example_fit_1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a><span class="co"># simulate the data</span></span>
+<span id="cb43-11"><a href="#cb43-11" aria-hidden="true" tabindex="-1"></a>A_1 <span class="ot">=</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, p) <span class="co"># binary exposure variable</span></span>
+<span id="cb43-12"><a href="#cb43-12" aria-hidden="true" tabindex="-1"></a>Y_1 <span class="ot">=</span> <span class="fu">rnorm</span>(n, <span class="dv">0</span>, <span class="dv">1</span>) <span class="co"># Y affected only by L,</span></span>
+<span id="cb43-13"><a href="#cb43-13" aria-hidden="true" tabindex="-1"></a>L_2 <span class="ot">=</span> <span class="fu">rnorm</span>(n, A_1 <span class="sc">+</span> Y_1)</span>
+<span id="cb43-14"><a href="#cb43-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-15"><a href="#cb43-15" aria-hidden="true" tabindex="-1"></a><span class="co"># make the data frame</span></span>
+<span id="cb43-16"><a href="#cb43-16" aria-hidden="true" tabindex="-1"></a>data_collider <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">A =</span> A_1, <span class="at">L =</span> L_2, <span class="at">Y =</span> Y_1)</span>
+<span id="cb43-17"><a href="#cb43-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-18"><a href="#cb43-18" aria-hidden="true" tabindex="-1"></a><span class="co"># fit regression in which L is assumed to be a mediator</span></span>
+<span id="cb43-19"><a href="#cb43-19" aria-hidden="true" tabindex="-1"></a><span class="co"># (cross-sectional data is consistent with this model)</span></span>
+<span id="cb43-20"><a href="#cb43-20" aria-hidden="true" tabindex="-1"></a>collider_example_fit_1 <span class="ot">&lt;-</span> <span class="fu">lm</span>( Y <span class="sc">~</span> A <span class="sc">+</span> L, <span class="at">data =</span> data_collider)</span>
+<span id="cb43-21"><a href="#cb43-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-22"><a href="#cb43-22" aria-hidden="true" tabindex="-1"></a><span class="co"># fit regression in which L is assumed to be a mediator</span></span>
+<span id="cb43-23"><a href="#cb43-23" aria-hidden="true" tabindex="-1"></a><span class="co"># (cross-sectional data is also consistent with this model)</span></span>
+<span id="cb43-24"><a href="#cb43-24" aria-hidden="true" tabindex="-1"></a>collider_example_fit_2 <span class="ot">&lt;-</span> <span class="fu">lm</span>( Y <span class="sc">~</span> A, <span class="at">data =</span> data_collider)</span>
+<span id="cb43-25"><a href="#cb43-25" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(collider_example_fit_1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -2245,10 +2244,12 @@ Bulbulia, J. A. 2022. <span>“A Workflow for Causal Inference in Cross-Cultural
 <h2 class="anchored" data-anchor-id="resources-on-regression-that-do-not-perpetuate-the-causality-crisis">Resources on Regression that Do Not Perpetuate The Causality Crisis</h2>
 <ol type="1">
 <li><strong>Statistical Rethinking</strong> <span class="citation" data-cites="mcelreath2020">(<a href="#ref-mcelreath2020" role="doc-biblioref">McElreath 2020</a>)</span></li>
-<li><strong>Regression and Other Stories</strong> <span class="citation" data-cites="gelman_regression_2020">(<a href="#ref-gelman_regression_2020" role="doc-biblioref"><strong>gelman_regression_2020?</strong></a>)</span></li>
+<li><strong>Regression and Other Stories</strong> <span class="citation" data-cites="gelman_regression_2020">(<a href="#ref-gelman_regression_2020" role="doc-biblioref">Gelman, Hill, and Vehtari 2020</a>)</span></li>
 </ol>
 <div class="no-row-height column-margin column-container"><div id="ref-mcelreath2020" class="csl-entry" role="listitem">
 McElreath, Richard. 2020. <em>Statistical Rethinking: A <span>B</span>ayesian Course with Examples in r and Stan</em>. CRC press.
+</div><div id="ref-gelman_regression_2020" class="csl-entry" role="listitem">
+Gelman, Andrew, Jennifer Hill, and Aki Vehtari. 2020. <em>Regression and Other Stories</em>. Cambridge University Press.
 </div></div></section>
 <section id="setup" class="level2">
 <h2 class="anchored" data-anchor-id="setup">Setup</h2>
@@ -3848,10 +3849,10 @@ computed using a Wald t-distribution approximation.</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code># Predicted values of f_height
 
-year_is | Predicted |       95% CI
-----------------------------------
-1903    |     63.18 | 63.12, 63.23
-2019    |     65.00 | 64.94, 65.06</code></pre>
+year_is | Predicted |         95% CI
+------------------------------------
+1903    |     63.18 | [63.12, 63.23]
+2019    |     65.00 | [64.94, 65.06]</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="co"># graph with predicted values based on the model</span></span>
 <span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(</span>
@@ -4059,7 +4060,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
@@ -5290,606 +5291,607 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb88-962"><a href="#cb88-962" aria-hidden="true" tabindex="-1"></a>p <span class="ot">=</span> <span class="fl">0.5</span>  <span class="co"># Probability of A = 1 </span></span>
 <span id="cb88-963"><a href="#cb88-963" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">=</span> <span class="dv">0</span> <span class="co"># Intercept for L</span></span>
 <span id="cb88-964"><a href="#cb88-964" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-965"><a href="#cb88-965" aria-hidden="true" tabindex="-1"></a><span class="co"># simulate the data</span></span>
-<span id="cb88-966"><a href="#cb88-966" aria-hidden="true" tabindex="-1"></a>A_1 <span class="ot">=</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, p) <span class="co"># binary exposure variable</span></span>
-<span id="cb88-967"><a href="#cb88-967" aria-hidden="true" tabindex="-1"></a>Y_1 <span class="ot">=</span> <span class="fu">rnorm</span>(n, <span class="dv">0</span>, <span class="dv">1</span>) <span class="co"># Y affected only by L,</span></span>
-<span id="cb88-968"><a href="#cb88-968" aria-hidden="true" tabindex="-1"></a>L_2 <span class="ot">=</span> <span class="fu">rnorm</span>(n, A_1 <span class="sc">+</span> Y_1)</span>
-<span id="cb88-969"><a href="#cb88-969" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-970"><a href="#cb88-970" aria-hidden="true" tabindex="-1"></a><span class="co"># make the data frame</span></span>
-<span id="cb88-971"><a href="#cb88-971" aria-hidden="true" tabindex="-1"></a>data_collider <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">A =</span> A_1, <span class="at">L =</span> L_2, <span class="at">Y =</span> Y_1)</span>
-<span id="cb88-972"><a href="#cb88-972" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-973"><a href="#cb88-973" aria-hidden="true" tabindex="-1"></a><span class="co"># fit regression in which L is assumed to be a mediator</span></span>
-<span id="cb88-974"><a href="#cb88-974" aria-hidden="true" tabindex="-1"></a><span class="co"># (cross-sectional data is consistent with this model)</span></span>
-<span id="cb88-975"><a href="#cb88-975" aria-hidden="true" tabindex="-1"></a>collider_example_fit_1 <span class="ot">&lt;-</span> <span class="fu">lm</span>( Y <span class="sc">~</span> A <span class="sc">+</span> L, <span class="at">data =</span> data_collider)</span>
-<span id="cb88-976"><a href="#cb88-976" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-977"><a href="#cb88-977" aria-hidden="true" tabindex="-1"></a><span class="co"># fit regression in which L is assumed to be a mediator</span></span>
-<span id="cb88-978"><a href="#cb88-978" aria-hidden="true" tabindex="-1"></a><span class="co"># (cross-sectional data is also consistent with this model)</span></span>
-<span id="cb88-979"><a href="#cb88-979" aria-hidden="true" tabindex="-1"></a>collider_example_fit_2 <span class="ot">&lt;-</span> <span class="fu">lm</span>( Y <span class="sc">~</span> A, <span class="at">data =</span> data_collider)</span>
-<span id="cb88-980"><a href="#cb88-980" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(collider_example_fit_1)</span>
-<span id="cb88-981"><a href="#cb88-981" aria-hidden="true" tabindex="-1"></a><span class="co"># create gtsummary tables for each regression model</span></span>
-<span id="cb88-982"><a href="#cb88-982" aria-hidden="true" tabindex="-1"></a>collider_table1 <span class="ot">&lt;-</span> gtsummary<span class="sc">::</span><span class="fu">tbl_regression</span>(collider_example_fit_1)</span>
-<span id="cb88-983"><a href="#cb88-983" aria-hidden="true" tabindex="-1"></a>collider_table2 <span class="ot">&lt;-</span> gtsummary<span class="sc">::</span><span class="fu">tbl_regression</span>(collider_example_fit_2)</span>
-<span id="cb88-984"><a href="#cb88-984" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-985"><a href="#cb88-985" aria-hidden="true" tabindex="-1"></a><span class="co"># merge the tables for comparison</span></span>
-<span id="cb88-986"><a href="#cb88-986" aria-hidden="true" tabindex="-1"></a>collider_table_comparison <span class="ot">&lt;-</span> gtsummary<span class="sc">::</span><span class="fu">tbl_merge</span>(</span>
-<span id="cb88-987"><a href="#cb88-987" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(collider_table1, collider_table2),</span>
-<span id="cb88-988"><a href="#cb88-988" aria-hidden="true" tabindex="-1"></a>  <span class="at">tab_spanner =</span> <span class="fu">c</span>(<span class="st">"Model: Wealth assumed confounder"</span>, </span>
-<span id="cb88-989"><a href="#cb88-989" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"Model: Wealth not assumed to be a mediator"</span>)</span>
-<span id="cb88-990"><a href="#cb88-990" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb88-991"><a href="#cb88-991" aria-hidden="true" tabindex="-1"></a><span class="co"># make latex table (for publication)</span></span>
-<span id="cb88-992"><a href="#cb88-992" aria-hidden="true" tabindex="-1"></a>markdown_table_1 <span class="ot">&lt;-</span> <span class="fu">as_kable_extra</span>(collider_table_comparison, </span>
-<span id="cb88-993"><a href="#cb88-993" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">format =</span> <span class="st">"markdown"</span>, </span>
-<span id="cb88-994"><a href="#cb88-994" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">booktabs =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb88-995"><a href="#cb88-995" aria-hidden="true" tabindex="-1"></a><span class="co"># print markdown table (note, you might prefer "latex" or another format)                                </span></span>
-<span id="cb88-996"><a href="#cb88-996" aria-hidden="true" tabindex="-1"></a>collider_table_comparison</span>
-<span id="cb88-997"><a href="#cb88-997" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb88-998"><a href="#cb88-998" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-965"><a href="#cb88-965" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-966"><a href="#cb88-966" aria-hidden="true" tabindex="-1"></a><span class="co"># simulate the data</span></span>
+<span id="cb88-967"><a href="#cb88-967" aria-hidden="true" tabindex="-1"></a>A_1 <span class="ot">=</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, p) <span class="co"># binary exposure variable</span></span>
+<span id="cb88-968"><a href="#cb88-968" aria-hidden="true" tabindex="-1"></a>Y_1 <span class="ot">=</span> <span class="fu">rnorm</span>(n, <span class="dv">0</span>, <span class="dv">1</span>) <span class="co"># Y affected only by L,</span></span>
+<span id="cb88-969"><a href="#cb88-969" aria-hidden="true" tabindex="-1"></a>L_2 <span class="ot">=</span> <span class="fu">rnorm</span>(n, A_1 <span class="sc">+</span> Y_1)</span>
+<span id="cb88-970"><a href="#cb88-970" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-971"><a href="#cb88-971" aria-hidden="true" tabindex="-1"></a><span class="co"># make the data frame</span></span>
+<span id="cb88-972"><a href="#cb88-972" aria-hidden="true" tabindex="-1"></a>data_collider <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">A =</span> A_1, <span class="at">L =</span> L_2, <span class="at">Y =</span> Y_1)</span>
+<span id="cb88-973"><a href="#cb88-973" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-974"><a href="#cb88-974" aria-hidden="true" tabindex="-1"></a><span class="co"># fit regression in which L is assumed to be a mediator</span></span>
+<span id="cb88-975"><a href="#cb88-975" aria-hidden="true" tabindex="-1"></a><span class="co"># (cross-sectional data is consistent with this model)</span></span>
+<span id="cb88-976"><a href="#cb88-976" aria-hidden="true" tabindex="-1"></a>collider_example_fit_1 <span class="ot">&lt;-</span> <span class="fu">lm</span>( Y <span class="sc">~</span> A <span class="sc">+</span> L, <span class="at">data =</span> data_collider)</span>
+<span id="cb88-977"><a href="#cb88-977" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-978"><a href="#cb88-978" aria-hidden="true" tabindex="-1"></a><span class="co"># fit regression in which L is assumed to be a mediator</span></span>
+<span id="cb88-979"><a href="#cb88-979" aria-hidden="true" tabindex="-1"></a><span class="co"># (cross-sectional data is also consistent with this model)</span></span>
+<span id="cb88-980"><a href="#cb88-980" aria-hidden="true" tabindex="-1"></a>collider_example_fit_2 <span class="ot">&lt;-</span> <span class="fu">lm</span>( Y <span class="sc">~</span> A, <span class="at">data =</span> data_collider)</span>
+<span id="cb88-981"><a href="#cb88-981" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(collider_example_fit_1)</span>
+<span id="cb88-982"><a href="#cb88-982" aria-hidden="true" tabindex="-1"></a><span class="co"># create gtsummary tables for each regression model</span></span>
+<span id="cb88-983"><a href="#cb88-983" aria-hidden="true" tabindex="-1"></a>collider_table1 <span class="ot">&lt;-</span> gtsummary<span class="sc">::</span><span class="fu">tbl_regression</span>(collider_example_fit_1)</span>
+<span id="cb88-984"><a href="#cb88-984" aria-hidden="true" tabindex="-1"></a>collider_table2 <span class="ot">&lt;-</span> gtsummary<span class="sc">::</span><span class="fu">tbl_regression</span>(collider_example_fit_2)</span>
+<span id="cb88-985"><a href="#cb88-985" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-986"><a href="#cb88-986" aria-hidden="true" tabindex="-1"></a><span class="co"># merge the tables for comparison</span></span>
+<span id="cb88-987"><a href="#cb88-987" aria-hidden="true" tabindex="-1"></a>collider_table_comparison <span class="ot">&lt;-</span> gtsummary<span class="sc">::</span><span class="fu">tbl_merge</span>(</span>
+<span id="cb88-988"><a href="#cb88-988" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(collider_table1, collider_table2),</span>
+<span id="cb88-989"><a href="#cb88-989" aria-hidden="true" tabindex="-1"></a>  <span class="at">tab_spanner =</span> <span class="fu">c</span>(<span class="st">"Model: Wealth assumed confounder"</span>, </span>
+<span id="cb88-990"><a href="#cb88-990" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"Model: Wealth not assumed to be a mediator"</span>)</span>
+<span id="cb88-991"><a href="#cb88-991" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb88-992"><a href="#cb88-992" aria-hidden="true" tabindex="-1"></a><span class="co"># make latex table (for publication)</span></span>
+<span id="cb88-993"><a href="#cb88-993" aria-hidden="true" tabindex="-1"></a>markdown_table_1 <span class="ot">&lt;-</span> <span class="fu">as_kable_extra</span>(collider_table_comparison, </span>
+<span id="cb88-994"><a href="#cb88-994" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">format =</span> <span class="st">"markdown"</span>, </span>
+<span id="cb88-995"><a href="#cb88-995" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">booktabs =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb88-996"><a href="#cb88-996" aria-hidden="true" tabindex="-1"></a><span class="co"># print markdown table (note, you might prefer "latex" or another format)                                </span></span>
+<span id="cb88-997"><a href="#cb88-997" aria-hidden="true" tabindex="-1"></a>collider_table_comparison</span>
+<span id="cb88-998"><a href="#cb88-998" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb88-999"><a href="#cb88-999" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1000"><a href="#cb88-1000" aria-hidden="true" tabindex="-1"></a><span class="fu">### Compare model fits</span></span>
-<span id="cb88-1001"><a href="#cb88-1001" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1000"><a href="#cb88-1000" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1001"><a href="#cb88-1001" aria-hidden="true" tabindex="-1"></a><span class="fu">### Compare model fits</span></span>
 <span id="cb88-1002"><a href="#cb88-1002" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1003"><a href="#cb88-1003" aria-hidden="true" tabindex="-1"></a><span class="fu">#### By all metrics, model 1 fits better but it is confounded. </span></span>
-<span id="cb88-1004"><a href="#cb88-1004" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1005"><a href="#cb88-1005" aria-hidden="true" tabindex="-1"></a>$A$ is not causally associated with $Y$. We generated the data so we know.  However, the confounded model shows a better fit, and in this model the coefficient for $A$ is significant (and negative). </span>
-<span id="cb88-1006"><a href="#cb88-1006" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1003"><a href="#cb88-1003" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1004"><a href="#cb88-1004" aria-hidden="true" tabindex="-1"></a><span class="fu">#### By all metrics, model 1 fits better but it is confounded. </span></span>
+<span id="cb88-1005"><a href="#cb88-1005" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1006"><a href="#cb88-1006" aria-hidden="true" tabindex="-1"></a>$A$ is not causally associated with $Y$. We generated the data so we know.  However, the confounded model shows a better fit, and in this model the coefficient for $A$ is significant (and negative). </span>
 <span id="cb88-1007"><a href="#cb88-1007" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1010"><a href="#cb88-1010" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb88-1011"><a href="#cb88-1011" aria-hidden="true" tabindex="-1"></a>performance<span class="sc">::</span><span class="fu">compare_performance</span>(collider_example_fit_1, collider_example_fit_2)</span>
-<span id="cb88-1012"><a href="#cb88-1012" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb88-1013"><a href="#cb88-1013" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1008"><a href="#cb88-1008" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1011"><a href="#cb88-1011" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb88-1012"><a href="#cb88-1012" aria-hidden="true" tabindex="-1"></a>performance<span class="sc">::</span><span class="fu">compare_performance</span>(collider_example_fit_1, collider_example_fit_2)</span>
+<span id="cb88-1013"><a href="#cb88-1013" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb88-1014"><a href="#cb88-1014" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1015"><a href="#cb88-1015" aria-hidden="true" tabindex="-1"></a><span class="fu">##### Again, the BIC for (lower is better) Model 1 fits better, but it is entirely confounded.</span></span>
-<span id="cb88-1016"><a href="#cb88-1016" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1019"><a href="#cb88-1019" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb88-1020"><a href="#cb88-1020" aria-hidden="true" tabindex="-1"></a><span class="fu">BIC</span>(collider_example_fit_1) <span class="sc">-</span> <span class="fu">BIC</span>(collider_example_fit_2)</span>
-<span id="cb88-1021"><a href="#cb88-1021" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb88-1022"><a href="#cb88-1022" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1023"><a href="#cb88-1023" aria-hidden="true" tabindex="-1"></a>How does collider bias work? If we know that someone is *not* attending church, if they are charitable then we can *predict* they are wealthy. Similarly if we know someone is not wealthy but charitable, we can *predict* they attend religious service. </span>
-<span id="cb88-1024"><a href="#cb88-1024" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1025"><a href="#cb88-1025" aria-hidden="true" tabindex="-1"></a>However,  in this simulation, we know the religion and wealth are *not* casually associated because we have simulated the data.</span>
-<span id="cb88-1026"><a href="#cb88-1026" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1027"><a href="#cb88-1027" aria-hidden="true" tabindex="-1"></a>::: {.callout-important}</span>
-<span id="cb88-1028"><a href="#cb88-1028" aria-hidden="true" tabindex="-1"></a>In this simulation, we discovered that if we assess "effect" by "model fit", we get the **wrong scientific inference*. The use of model fit perpetuates the *causality crisis* in psychological science <span class="co">[</span><span class="ot">@bulbulia2022</span><span class="co">]</span>. Let's do better. </span>
-<span id="cb88-1029"><a href="#cb88-1029" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb88-1030"><a href="#cb88-1030" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1031"><a href="#cb88-1031" aria-hidden="true" tabindex="-1"></a><span class="fu">## Resources on Regression that Do Not Perpetuate The Causality Crisis</span></span>
-<span id="cb88-1032"><a href="#cb88-1032" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1033"><a href="#cb88-1033" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>**Statistical Rethinking** <span class="co">[</span><span class="ot">@mcelreath2020</span><span class="co">]</span></span>
-<span id="cb88-1034"><a href="#cb88-1034" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>**Regression and Other Stories** <span class="co">[</span><span class="ot">@gelman_regression_2020</span><span class="co">]</span></span>
-<span id="cb88-1035"><a href="#cb88-1035" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1036"><a href="#cb88-1036" aria-hidden="true" tabindex="-1"></a><span class="fu">## Setup </span></span>
-<span id="cb88-1037"><a href="#cb88-1037" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1038"><a href="#cb88-1038" aria-hidden="true" tabindex="-1"></a><span class="fu">### Libraries</span></span>
-<span id="cb88-1041"><a href="#cb88-1041" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb88-1042"><a href="#cb88-1042" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb88-1043"><a href="#cb88-1043" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
-<span id="cb88-1044"><a href="#cb88-1044" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
-<span id="cb88-1045"><a href="#cb88-1045" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
-<span id="cb88-1046"><a href="#cb88-1046" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtsummary)</span>
-<span id="cb88-1047"><a href="#cb88-1047" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb88-1048"><a href="#cb88-1048" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1049"><a href="#cb88-1049" aria-hidden="true" tabindex="-1"></a><span class="fu">### Get data</span></span>
-<span id="cb88-1050"><a href="#cb88-1050" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1053"><a href="#cb88-1053" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb88-1054"><a href="#cb88-1054" aria-hidden="true" tabindex="-1"></a><span class="co"># package with data</span></span>
-<span id="cb88-1055"><a href="#cb88-1055" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(margot)</span>
-<span id="cb88-1056"><a href="#cb88-1056" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1057"><a href="#cb88-1057" aria-hidden="true" tabindex="-1"></a><span class="co"># load data</span></span>
-<span id="cb88-1058"><a href="#cb88-1058" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"df_nz"</span>)</span>
-<span id="cb88-1059"><a href="#cb88-1059" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb88-1060"><a href="#cb88-1060" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1061"><a href="#cb88-1061" aria-hidden="true" tabindex="-1"></a><span class="fu">### Import `Pearson and Lee` mother's and daughters data</span></span>
-<span id="cb88-1062"><a href="#cb88-1062" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1065"><a href="#cb88-1065" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb88-1066"><a href="#cb88-1066" aria-hidden="true" tabindex="-1"></a>df_pearson_lee <span class="ot">&lt;-</span></span>
-<span id="cb88-1067"><a href="#cb88-1067" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(<span class="fu">read.table</span>(</span>
-<span id="cb88-1068"><a href="#cb88-1068" aria-hidden="true" tabindex="-1"></a>    <span class="fu">url</span>(</span>
-<span id="cb88-1069"><a href="#cb88-1069" aria-hidden="true" tabindex="-1"></a>      <span class="st">"https://raw.githubusercontent.com/avehtari/ROS-Examples/master/PearsonLee/data/MotherDaughterHeights.txt"</span></span>
-<span id="cb88-1070"><a href="#cb88-1070" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb88-1071"><a href="#cb88-1071" aria-hidden="true" tabindex="-1"></a>    <span class="at">header =</span> <span class="cn">TRUE</span></span>
-<span id="cb88-1072"><a href="#cb88-1072" aria-hidden="true" tabindex="-1"></a>  ))</span>
-<span id="cb88-1073"><a href="#cb88-1073" aria-hidden="true" tabindex="-1"></a><span class="co"># Center mother's height for later example</span></span>
-<span id="cb88-1074"><a href="#cb88-1074" aria-hidden="true" tabindex="-1"></a>df_pearson_lee <span class="ot">&lt;-</span> df_pearson_lee<span class="sc">|&gt;</span></span>
-<span id="cb88-1075"><a href="#cb88-1075" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">mother_height_c =</span> <span class="fu">as.numeric</span>(<span class="fu">scale</span>(</span>
-<span id="cb88-1076"><a href="#cb88-1076" aria-hidden="true" tabindex="-1"></a>    mother_height, <span class="at">center =</span> <span class="cn">TRUE</span>, <span class="at">scale =</span> <span class="cn">FALSE</span></span>
-<span id="cb88-1077"><a href="#cb88-1077" aria-hidden="true" tabindex="-1"></a>  )))</span>
-<span id="cb88-1078"><a href="#cb88-1078" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1079"><a href="#cb88-1079" aria-hidden="true" tabindex="-1"></a><span class="co"># dplyr::glimpse(df_pearson_lee)</span></span>
-<span id="cb88-1080"><a href="#cb88-1080" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1081"><a href="#cb88-1081" aria-hidden="true" tabindex="-1"></a><span class="co"># In 1903, Pearson and Lee collected 5,524 observations from mother/daughter height pairs. See lecture 5 for details</span></span>
-<span id="cb88-1082"><a href="#cb88-1082" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb88-1083"><a href="#cb88-1083" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1084"><a href="#cb88-1084" aria-hidden="true" tabindex="-1"></a><span class="fu">### Note</span></span>
-<span id="cb88-1085"><a href="#cb88-1085" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1086"><a href="#cb88-1086" aria-hidden="true" tabindex="-1"></a>**For all exercises below, use only the 2018 wave of the `df_nz` dataset.**</span>
-<span id="cb88-1087"><a href="#cb88-1087" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1088"><a href="#cb88-1088" aria-hidden="true" tabindex="-1"></a>colnames(df_nz)</span>
-<span id="cb88-1089"><a href="#cb88-1089" aria-hidden="true" tabindex="-1"></a><span class="fu">## Q1. Create a descriptive table and a descriptive graph for the `hlth_weight` and `hlth_height` variables in the `df_nz` dataset</span></span>
-<span id="cb88-1090"><a href="#cb88-1090" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1091"><a href="#cb88-1091" aria-hidden="true" tabindex="-1"></a>Select <span class="in">`hlth_height`</span>, <span class="in">`hlth_weight`</span> from the nz dataset. </span>
-<span id="cb88-1092"><a href="#cb88-1092" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1093"><a href="#cb88-1093" aria-hidden="true" tabindex="-1"></a>Filter only the 2018 wave.</span>
-<span id="cb88-1094"><a href="#cb88-1094" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1095"><a href="#cb88-1095" aria-hidden="true" tabindex="-1"></a>Create a descriptive table and graph these two variables</span>
-<span id="cb88-1096"><a href="#cb88-1096" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1097"><a href="#cb88-1097" aria-hidden="true" tabindex="-1"></a>Annotate your workflow (at each step, describe what you are doing and why).</span>
-<span id="cb88-1098"><a href="#cb88-1098" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1015"><a href="#cb88-1015" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1016"><a href="#cb88-1016" aria-hidden="true" tabindex="-1"></a><span class="fu">##### Again, the BIC for (lower is better) Model 1 fits better, but it is entirely confounded.</span></span>
+<span id="cb88-1017"><a href="#cb88-1017" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1020"><a href="#cb88-1020" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb88-1021"><a href="#cb88-1021" aria-hidden="true" tabindex="-1"></a><span class="fu">BIC</span>(collider_example_fit_1) <span class="sc">-</span> <span class="fu">BIC</span>(collider_example_fit_2)</span>
+<span id="cb88-1022"><a href="#cb88-1022" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb88-1023"><a href="#cb88-1023" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1024"><a href="#cb88-1024" aria-hidden="true" tabindex="-1"></a>How does collider bias work? If we know that someone is *not* attending church, if they are charitable then we can *predict* they are wealthy. Similarly if we know someone is not wealthy but charitable, we can *predict* they attend religious service. </span>
+<span id="cb88-1025"><a href="#cb88-1025" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1026"><a href="#cb88-1026" aria-hidden="true" tabindex="-1"></a>However,  in this simulation, we know the religion and wealth are *not* casually associated because we have simulated the data.</span>
+<span id="cb88-1027"><a href="#cb88-1027" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1028"><a href="#cb88-1028" aria-hidden="true" tabindex="-1"></a>::: {.callout-important}</span>
+<span id="cb88-1029"><a href="#cb88-1029" aria-hidden="true" tabindex="-1"></a>In this simulation, we discovered that if we assess "effect" by "model fit", we get the **wrong scientific inference*. The use of model fit perpetuates the *causality crisis* in psychological science <span class="co">[</span><span class="ot">@bulbulia2022</span><span class="co">]</span>. Let's do better. </span>
+<span id="cb88-1030"><a href="#cb88-1030" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb88-1031"><a href="#cb88-1031" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1032"><a href="#cb88-1032" aria-hidden="true" tabindex="-1"></a><span class="fu">## Resources on Regression that Do Not Perpetuate The Causality Crisis</span></span>
+<span id="cb88-1033"><a href="#cb88-1033" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1034"><a href="#cb88-1034" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>**Statistical Rethinking** <span class="co">[</span><span class="ot">@mcelreath2020</span><span class="co">]</span></span>
+<span id="cb88-1035"><a href="#cb88-1035" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>**Regression and Other Stories** <span class="co">[</span><span class="ot">@gelman_regression_2020</span><span class="co">]</span></span>
+<span id="cb88-1036"><a href="#cb88-1036" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1037"><a href="#cb88-1037" aria-hidden="true" tabindex="-1"></a><span class="fu">## Setup </span></span>
+<span id="cb88-1038"><a href="#cb88-1038" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1039"><a href="#cb88-1039" aria-hidden="true" tabindex="-1"></a><span class="fu">### Libraries</span></span>
+<span id="cb88-1042"><a href="#cb88-1042" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb88-1043"><a href="#cb88-1043" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb88-1044"><a href="#cb88-1044" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb88-1045"><a href="#cb88-1045" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb88-1046"><a href="#cb88-1046" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
+<span id="cb88-1047"><a href="#cb88-1047" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtsummary)</span>
+<span id="cb88-1048"><a href="#cb88-1048" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb88-1049"><a href="#cb88-1049" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1050"><a href="#cb88-1050" aria-hidden="true" tabindex="-1"></a><span class="fu">### Get data</span></span>
+<span id="cb88-1051"><a href="#cb88-1051" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1054"><a href="#cb88-1054" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb88-1055"><a href="#cb88-1055" aria-hidden="true" tabindex="-1"></a><span class="co"># package with data</span></span>
+<span id="cb88-1056"><a href="#cb88-1056" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(margot)</span>
+<span id="cb88-1057"><a href="#cb88-1057" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1058"><a href="#cb88-1058" aria-hidden="true" tabindex="-1"></a><span class="co"># load data</span></span>
+<span id="cb88-1059"><a href="#cb88-1059" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"df_nz"</span>)</span>
+<span id="cb88-1060"><a href="#cb88-1060" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb88-1061"><a href="#cb88-1061" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1062"><a href="#cb88-1062" aria-hidden="true" tabindex="-1"></a><span class="fu">### Import `Pearson and Lee` mother's and daughters data</span></span>
+<span id="cb88-1063"><a href="#cb88-1063" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1066"><a href="#cb88-1066" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb88-1067"><a href="#cb88-1067" aria-hidden="true" tabindex="-1"></a>df_pearson_lee <span class="ot">&lt;-</span></span>
+<span id="cb88-1068"><a href="#cb88-1068" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(<span class="fu">read.table</span>(</span>
+<span id="cb88-1069"><a href="#cb88-1069" aria-hidden="true" tabindex="-1"></a>    <span class="fu">url</span>(</span>
+<span id="cb88-1070"><a href="#cb88-1070" aria-hidden="true" tabindex="-1"></a>      <span class="st">"https://raw.githubusercontent.com/avehtari/ROS-Examples/master/PearsonLee/data/MotherDaughterHeights.txt"</span></span>
+<span id="cb88-1071"><a href="#cb88-1071" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb88-1072"><a href="#cb88-1072" aria-hidden="true" tabindex="-1"></a>    <span class="at">header =</span> <span class="cn">TRUE</span></span>
+<span id="cb88-1073"><a href="#cb88-1073" aria-hidden="true" tabindex="-1"></a>  ))</span>
+<span id="cb88-1074"><a href="#cb88-1074" aria-hidden="true" tabindex="-1"></a><span class="co"># Center mother's height for later example</span></span>
+<span id="cb88-1075"><a href="#cb88-1075" aria-hidden="true" tabindex="-1"></a>df_pearson_lee <span class="ot">&lt;-</span> df_pearson_lee<span class="sc">|&gt;</span></span>
+<span id="cb88-1076"><a href="#cb88-1076" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">mother_height_c =</span> <span class="fu">as.numeric</span>(<span class="fu">scale</span>(</span>
+<span id="cb88-1077"><a href="#cb88-1077" aria-hidden="true" tabindex="-1"></a>    mother_height, <span class="at">center =</span> <span class="cn">TRUE</span>, <span class="at">scale =</span> <span class="cn">FALSE</span></span>
+<span id="cb88-1078"><a href="#cb88-1078" aria-hidden="true" tabindex="-1"></a>  )))</span>
+<span id="cb88-1079"><a href="#cb88-1079" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1080"><a href="#cb88-1080" aria-hidden="true" tabindex="-1"></a><span class="co"># dplyr::glimpse(df_pearson_lee)</span></span>
+<span id="cb88-1081"><a href="#cb88-1081" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1082"><a href="#cb88-1082" aria-hidden="true" tabindex="-1"></a><span class="co"># In 1903, Pearson and Lee collected 5,524 observations from mother/daughter height pairs. See lecture 5 for details</span></span>
+<span id="cb88-1083"><a href="#cb88-1083" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb88-1084"><a href="#cb88-1084" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1085"><a href="#cb88-1085" aria-hidden="true" tabindex="-1"></a><span class="fu">### Note</span></span>
+<span id="cb88-1086"><a href="#cb88-1086" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1087"><a href="#cb88-1087" aria-hidden="true" tabindex="-1"></a>**For all exercises below, use only the 2018 wave of the `df_nz` dataset.**</span>
+<span id="cb88-1088"><a href="#cb88-1088" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1089"><a href="#cb88-1089" aria-hidden="true" tabindex="-1"></a>colnames(df_nz)</span>
+<span id="cb88-1090"><a href="#cb88-1090" aria-hidden="true" tabindex="-1"></a><span class="fu">## Q1. Create a descriptive table and a descriptive graph for the `hlth_weight` and `hlth_height` variables in the `df_nz` dataset</span></span>
+<span id="cb88-1091"><a href="#cb88-1091" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1092"><a href="#cb88-1092" aria-hidden="true" tabindex="-1"></a>Select <span class="in">`hlth_height`</span>, <span class="in">`hlth_weight`</span> from the nz dataset. </span>
+<span id="cb88-1093"><a href="#cb88-1093" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1094"><a href="#cb88-1094" aria-hidden="true" tabindex="-1"></a>Filter only the 2018 wave.</span>
+<span id="cb88-1095"><a href="#cb88-1095" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1096"><a href="#cb88-1096" aria-hidden="true" tabindex="-1"></a>Create a descriptive table and graph these two variables</span>
+<span id="cb88-1097"><a href="#cb88-1097" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1098"><a href="#cb88-1098" aria-hidden="true" tabindex="-1"></a>Annotate your workflow (at each step, describe what you are doing and why).</span>
 <span id="cb88-1099"><a href="#cb88-1099" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1100"><a href="#cb88-1100" aria-hidden="true" tabindex="-1"></a><span class="fu">## Q2. Regression height ~ weight and report results</span></span>
-<span id="cb88-1101"><a href="#cb88-1101" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1102"><a href="#cb88-1102" aria-hidden="true" tabindex="-1"></a>Using the <span class="in">`df_nz`</span> dataset, write a regression model for height as predicted by weight. </span>
-<span id="cb88-1103"><a href="#cb88-1103" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1104"><a href="#cb88-1104" aria-hidden="true" tabindex="-1"></a>Create a table for your results. </span>
-<span id="cb88-1105"><a href="#cb88-1105" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1106"><a href="#cb88-1106" aria-hidden="true" tabindex="-1"></a>Create a graphs/graphs to clarify the results of your regression model. </span>
-<span id="cb88-1107"><a href="#cb88-1107" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1108"><a href="#cb88-1108" aria-hidden="true" tabindex="-1"></a>Briefly report your results. </span>
-<span id="cb88-1109"><a href="#cb88-1109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1100"><a href="#cb88-1100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1101"><a href="#cb88-1101" aria-hidden="true" tabindex="-1"></a><span class="fu">## Q2. Regression height ~ weight and report results</span></span>
+<span id="cb88-1102"><a href="#cb88-1102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1103"><a href="#cb88-1103" aria-hidden="true" tabindex="-1"></a>Using the <span class="in">`df_nz`</span> dataset, write a regression model for height as predicted by weight. </span>
+<span id="cb88-1104"><a href="#cb88-1104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1105"><a href="#cb88-1105" aria-hidden="true" tabindex="-1"></a>Create a table for your results. </span>
+<span id="cb88-1106"><a href="#cb88-1106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1107"><a href="#cb88-1107" aria-hidden="true" tabindex="-1"></a>Create a graphs/graphs to clarify the results of your regression model. </span>
+<span id="cb88-1108"><a href="#cb88-1108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1109"><a href="#cb88-1109" aria-hidden="true" tabindex="-1"></a>Briefly report your results. </span>
 <span id="cb88-1110"><a href="#cb88-1110" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1111"><a href="#cb88-1111" aria-hidden="true" tabindex="-1"></a><span class="fu">## Q3. Regress height ~ male and report results</span></span>
-<span id="cb88-1112"><a href="#cb88-1112" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1113"><a href="#cb88-1113" aria-hidden="true" tabindex="-1"></a>Using the <span class="in">`df_nz`</span> dataset, write a regression model for height as predicted by <span class="in">`male`</span> </span>
-<span id="cb88-1114"><a href="#cb88-1114" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1115"><a href="#cb88-1115" aria-hidden="true" tabindex="-1"></a>Create a table for your results. </span>
-<span id="cb88-1116"><a href="#cb88-1116" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1117"><a href="#cb88-1117" aria-hidden="true" tabindex="-1"></a>Create a graphs/graphs to clarify the results of your regression model. </span>
-<span id="cb88-1118"><a href="#cb88-1118" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1119"><a href="#cb88-1119" aria-hidden="true" tabindex="-1"></a>Briefly report your results. </span>
-<span id="cb88-1120"><a href="#cb88-1120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1111"><a href="#cb88-1111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1112"><a href="#cb88-1112" aria-hidden="true" tabindex="-1"></a><span class="fu">## Q3. Regress height ~ male and report results</span></span>
+<span id="cb88-1113"><a href="#cb88-1113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1114"><a href="#cb88-1114" aria-hidden="true" tabindex="-1"></a>Using the <span class="in">`df_nz`</span> dataset, write a regression model for height as predicted by <span class="in">`male`</span> </span>
+<span id="cb88-1115"><a href="#cb88-1115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1116"><a href="#cb88-1116" aria-hidden="true" tabindex="-1"></a>Create a table for your results. </span>
+<span id="cb88-1117"><a href="#cb88-1117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1118"><a href="#cb88-1118" aria-hidden="true" tabindex="-1"></a>Create a graphs/graphs to clarify the results of your regression model. </span>
+<span id="cb88-1119"><a href="#cb88-1119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1120"><a href="#cb88-1120" aria-hidden="true" tabindex="-1"></a>Briefly report your results. </span>
 <span id="cb88-1121"><a href="#cb88-1121" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1122"><a href="#cb88-1122" aria-hidden="true" tabindex="-1"></a><span class="fu">## Q4. Regression to predict</span></span>
-<span id="cb88-1123"><a href="#cb88-1123" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1124"><a href="#cb88-1124" aria-hidden="true" tabindex="-1"></a>Using the regression coefficients from the Pearson and Lee 1903 dataset, predict the heights of daughters of women in the <span class="in">`df_nz`</span> dataset. </span>
-<span id="cb88-1125"><a href="#cb88-1125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1122"><a href="#cb88-1122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1123"><a href="#cb88-1123" aria-hidden="true" tabindex="-1"></a><span class="fu">## Q4. Regression to predict</span></span>
+<span id="cb88-1124"><a href="#cb88-1124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1125"><a href="#cb88-1125" aria-hidden="true" tabindex="-1"></a>Using the regression coefficients from the Pearson and Lee 1903 dataset, predict the heights of daughters of women in the <span class="in">`df_nz`</span> dataset. </span>
 <span id="cb88-1126"><a href="#cb88-1126" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1127"><a href="#cb88-1127" aria-hidden="true" tabindex="-1"></a><span class="fu">## Q5. Bonus</span></span>
-<span id="cb88-1128"><a href="#cb88-1128" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1129"><a href="#cb88-1129" aria-hidden="true" tabindex="-1"></a>On average, how much taller or shorter are women in New Zealand as sampled in 2019 <span class="in">`df_nz`</span> dataset compared with women in 1903 as sampled in the Pearson and Lee dataset. </span>
-<span id="cb88-1130"><a href="#cb88-1130" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1131"><a href="#cb88-1131" aria-hidden="true" tabindex="-1"></a>Clarify your inference.</span>
-<span id="cb88-1132"><a href="#cb88-1132" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1133"><a href="#cb88-1133" aria-hidden="true" tabindex="-1"></a><span class="fu">## Solutions: Set Up</span></span>
-<span id="cb88-1134"><a href="#cb88-1134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1127"><a href="#cb88-1127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1128"><a href="#cb88-1128" aria-hidden="true" tabindex="-1"></a><span class="fu">## Q5. Bonus</span></span>
+<span id="cb88-1129"><a href="#cb88-1129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1130"><a href="#cb88-1130" aria-hidden="true" tabindex="-1"></a>On average, how much taller or shorter are women in New Zealand as sampled in 2019 <span class="in">`df_nz`</span> dataset compared with women in 1903 as sampled in the Pearson and Lee dataset. </span>
+<span id="cb88-1131"><a href="#cb88-1131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1132"><a href="#cb88-1132" aria-hidden="true" tabindex="-1"></a>Clarify your inference.</span>
+<span id="cb88-1133"><a href="#cb88-1133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1134"><a href="#cb88-1134" aria-hidden="true" tabindex="-1"></a><span class="fu">## Solutions: Set Up</span></span>
 <span id="cb88-1135"><a href="#cb88-1135" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1136"><a href="#cb88-1136" aria-hidden="true" tabindex="-1"></a><span class="in">```{r  libraries}</span></span>
-<span id="cb88-1137"><a href="#cb88-1137" aria-hidden="true" tabindex="-1"></a><span class="in">#| label: libs_for_problemset</span></span>
-<span id="cb88-1138"><a href="#cb88-1138" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1139"><a href="#cb88-1139" aria-hidden="true" tabindex="-1"></a><span class="in">### libraries</span></span>
-<span id="cb88-1140"><a href="#cb88-1140" aria-hidden="true" tabindex="-1"></a><span class="in">library("tidyverse")</span></span>
-<span id="cb88-1141"><a href="#cb88-1141" aria-hidden="true" tabindex="-1"></a><span class="in">library("patchwork")</span></span>
-<span id="cb88-1142"><a href="#cb88-1142" aria-hidden="true" tabindex="-1"></a><span class="in">library("lubridate")</span></span>
-<span id="cb88-1143"><a href="#cb88-1143" aria-hidden="true" tabindex="-1"></a><span class="in">library("kableExtra")</span></span>
-<span id="cb88-1144"><a href="#cb88-1144" aria-hidden="true" tabindex="-1"></a><span class="in">library("gtsummary")</span></span>
-<span id="cb88-1145"><a href="#cb88-1145" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb88-1146"><a href="#cb88-1146" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1149"><a href="#cb88-1149" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb88-1150"><a href="#cb88-1150" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: problem_set_get_data</span></span>
-<span id="cb88-1151"><a href="#cb88-1151" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1152"><a href="#cb88-1152" aria-hidden="true" tabindex="-1"></a><span class="co"># get data</span></span>
-<span id="cb88-1153"><a href="#cb88-1153" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"margot"</span>)</span>
-<span id="cb88-1154"><a href="#cb88-1154" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"df_nz"</span>)</span>
-<span id="cb88-1155"><a href="#cb88-1155" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb88-1158"><a href="#cb88-1158" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb88-1159"><a href="#cb88-1159" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: problem_set_get_pearsonleedata</span></span>
-<span id="cb88-1160"><a href="#cb88-1160" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1161"><a href="#cb88-1161" aria-hidden="true" tabindex="-1"></a><span class="co"># Import `Pearson and Lee` mother's and daughters data</span></span>
-<span id="cb88-1162"><a href="#cb88-1162" aria-hidden="true" tabindex="-1"></a><span class="co"># In 1903, Pearson and Lee collected 5,524 observations from mother/daughter height pairs. </span></span>
-<span id="cb88-1163"><a href="#cb88-1163" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1164"><a href="#cb88-1164" aria-hidden="true" tabindex="-1"></a>df_pearson_lee <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">read.table</span>(</span>
-<span id="cb88-1165"><a href="#cb88-1165" aria-hidden="true" tabindex="-1"></a>  <span class="fu">url</span>(</span>
-<span id="cb88-1166"><a href="#cb88-1166" aria-hidden="true" tabindex="-1"></a>    <span class="st">"https://raw.githubusercontent.com/avehtari/ROS-Examples/master/PearsonLee/data/MotherDaughterHeights.txt"</span></span>
-<span id="cb88-1167"><a href="#cb88-1167" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb88-1168"><a href="#cb88-1168" aria-hidden="true" tabindex="-1"></a>  <span class="at">header =</span> <span class="cn">TRUE</span></span>
-<span id="cb88-1169"><a href="#cb88-1169" aria-hidden="true" tabindex="-1"></a>))</span>
-<span id="cb88-1170"><a href="#cb88-1170" aria-hidden="true" tabindex="-1"></a><span class="co"># Center mother's height for later example</span></span>
-<span id="cb88-1171"><a href="#cb88-1171" aria-hidden="true" tabindex="-1"></a>df_pearson_lee <span class="ot">&lt;-</span> df_pearson_lee<span class="sc">|&gt;</span></span>
-<span id="cb88-1172"><a href="#cb88-1172" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">mother_height_c =</span> <span class="fu">as.numeric</span>(<span class="fu">scale</span>(</span>
-<span id="cb88-1173"><a href="#cb88-1173" aria-hidden="true" tabindex="-1"></a>    mother_height, <span class="at">center =</span> <span class="cn">TRUE</span>, <span class="at">scale =</span> <span class="cn">FALSE</span></span>
-<span id="cb88-1174"><a href="#cb88-1174" aria-hidden="true" tabindex="-1"></a>  )))</span>
-<span id="cb88-1175"><a href="#cb88-1175" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1176"><a href="#cb88-1176" aria-hidden="true" tabindex="-1"></a><span class="co"># dplyr::glimpse(df_pearson_lee)</span></span>
-<span id="cb88-1177"><a href="#cb88-1177" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb88-1178"><a href="#cb88-1178" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1136"><a href="#cb88-1136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1137"><a href="#cb88-1137" aria-hidden="true" tabindex="-1"></a><span class="in">```{r  libraries}</span></span>
+<span id="cb88-1138"><a href="#cb88-1138" aria-hidden="true" tabindex="-1"></a><span class="in">#| label: libs_for_problemset</span></span>
+<span id="cb88-1139"><a href="#cb88-1139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1140"><a href="#cb88-1140" aria-hidden="true" tabindex="-1"></a><span class="in">### libraries</span></span>
+<span id="cb88-1141"><a href="#cb88-1141" aria-hidden="true" tabindex="-1"></a><span class="in">library("tidyverse")</span></span>
+<span id="cb88-1142"><a href="#cb88-1142" aria-hidden="true" tabindex="-1"></a><span class="in">library("patchwork")</span></span>
+<span id="cb88-1143"><a href="#cb88-1143" aria-hidden="true" tabindex="-1"></a><span class="in">library("lubridate")</span></span>
+<span id="cb88-1144"><a href="#cb88-1144" aria-hidden="true" tabindex="-1"></a><span class="in">library("kableExtra")</span></span>
+<span id="cb88-1145"><a href="#cb88-1145" aria-hidden="true" tabindex="-1"></a><span class="in">library("gtsummary")</span></span>
+<span id="cb88-1146"><a href="#cb88-1146" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb88-1147"><a href="#cb88-1147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1150"><a href="#cb88-1150" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb88-1151"><a href="#cb88-1151" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: problem_set_get_data</span></span>
+<span id="cb88-1152"><a href="#cb88-1152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1153"><a href="#cb88-1153" aria-hidden="true" tabindex="-1"></a><span class="co"># get data</span></span>
+<span id="cb88-1154"><a href="#cb88-1154" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"margot"</span>)</span>
+<span id="cb88-1155"><a href="#cb88-1155" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"df_nz"</span>)</span>
+<span id="cb88-1156"><a href="#cb88-1156" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb88-1159"><a href="#cb88-1159" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb88-1160"><a href="#cb88-1160" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: problem_set_get_pearsonleedata</span></span>
+<span id="cb88-1161"><a href="#cb88-1161" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1162"><a href="#cb88-1162" aria-hidden="true" tabindex="-1"></a><span class="co"># Import `Pearson and Lee` mother's and daughters data</span></span>
+<span id="cb88-1163"><a href="#cb88-1163" aria-hidden="true" tabindex="-1"></a><span class="co"># In 1903, Pearson and Lee collected 5,524 observations from mother/daughter height pairs. </span></span>
+<span id="cb88-1164"><a href="#cb88-1164" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1165"><a href="#cb88-1165" aria-hidden="true" tabindex="-1"></a>df_pearson_lee <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">read.table</span>(</span>
+<span id="cb88-1166"><a href="#cb88-1166" aria-hidden="true" tabindex="-1"></a>  <span class="fu">url</span>(</span>
+<span id="cb88-1167"><a href="#cb88-1167" aria-hidden="true" tabindex="-1"></a>    <span class="st">"https://raw.githubusercontent.com/avehtari/ROS-Examples/master/PearsonLee/data/MotherDaughterHeights.txt"</span></span>
+<span id="cb88-1168"><a href="#cb88-1168" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb88-1169"><a href="#cb88-1169" aria-hidden="true" tabindex="-1"></a>  <span class="at">header =</span> <span class="cn">TRUE</span></span>
+<span id="cb88-1170"><a href="#cb88-1170" aria-hidden="true" tabindex="-1"></a>))</span>
+<span id="cb88-1171"><a href="#cb88-1171" aria-hidden="true" tabindex="-1"></a><span class="co"># Center mother's height for later example</span></span>
+<span id="cb88-1172"><a href="#cb88-1172" aria-hidden="true" tabindex="-1"></a>df_pearson_lee <span class="ot">&lt;-</span> df_pearson_lee<span class="sc">|&gt;</span></span>
+<span id="cb88-1173"><a href="#cb88-1173" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">mother_height_c =</span> <span class="fu">as.numeric</span>(<span class="fu">scale</span>(</span>
+<span id="cb88-1174"><a href="#cb88-1174" aria-hidden="true" tabindex="-1"></a>    mother_height, <span class="at">center =</span> <span class="cn">TRUE</span>, <span class="at">scale =</span> <span class="cn">FALSE</span></span>
+<span id="cb88-1175"><a href="#cb88-1175" aria-hidden="true" tabindex="-1"></a>  )))</span>
+<span id="cb88-1176"><a href="#cb88-1176" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1177"><a href="#cb88-1177" aria-hidden="true" tabindex="-1"></a><span class="co"># dplyr::glimpse(df_pearson_lee)</span></span>
+<span id="cb88-1178"><a href="#cb88-1178" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb88-1179"><a href="#cb88-1179" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1180"><a href="#cb88-1180" aria-hidden="true" tabindex="-1"></a><span class="fu">## Solution Q1 descriptive table</span></span>
-<span id="cb88-1181"><a href="#cb88-1181" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1180"><a href="#cb88-1180" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1181"><a href="#cb88-1181" aria-hidden="true" tabindex="-1"></a><span class="fu">## Solution Q1 descriptive table</span></span>
 <span id="cb88-1182"><a href="#cb88-1182" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1185"><a href="#cb88-1185" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb88-1186"><a href="#cb88-1186" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl_tables</span></span>
-<span id="cb88-1187"><a href="#cb88-1187" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1188"><a href="#cb88-1188" aria-hidden="true" tabindex="-1"></a><span class="co"># required libraries</span></span>
-<span id="cb88-1189"><a href="#cb88-1189" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtsummary)</span>
-<span id="cb88-1190"><a href="#cb88-1190" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb88-1191"><a href="#cb88-1191" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(margot)</span>
-<span id="cb88-1192"><a href="#cb88-1192" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1193"><a href="#cb88-1193" aria-hidden="true" tabindex="-1"></a><span class="co"># select focal variables and rename them for clarity</span></span>
-<span id="cb88-1194"><a href="#cb88-1194" aria-hidden="true" tabindex="-1"></a>df_nzdat <span class="ot">&lt;-</span> df_nz  <span class="sc">|&gt;</span></span>
-<span id="cb88-1195"><a href="#cb88-1195" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(wave <span class="sc">==</span> <span class="dv">2019</span>) <span class="sc">|&gt;</span></span>
-<span id="cb88-1196"><a href="#cb88-1196" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(hlth_weight, hlth_height, male) <span class="sc">|&gt;</span></span>
-<span id="cb88-1197"><a href="#cb88-1197" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">rename</span>(<span class="at">weight =</span> hlth_weight,</span>
-<span id="cb88-1198"><a href="#cb88-1198" aria-hidden="true" tabindex="-1"></a>                <span class="at">height =</span> hlth_height) <span class="sc">|&gt;</span></span>
-<span id="cb88-1199"><a href="#cb88-1199" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(weight, height, male) <span class="sc">|&gt;</span></span>
-<span id="cb88-1200"><a href="#cb88-1200" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">weight_c =</span> <span class="fu">as.numeric</span>(<span class="fu">scale</span>(</span>
-<span id="cb88-1201"><a href="#cb88-1201" aria-hidden="true" tabindex="-1"></a>    weight, <span class="at">scale =</span> F, <span class="at">center =</span> <span class="cn">TRUE</span></span>
-<span id="cb88-1202"><a href="#cb88-1202" aria-hidden="true" tabindex="-1"></a>  )))</span>
-<span id="cb88-1203"><a href="#cb88-1203" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1183"><a href="#cb88-1183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1186"><a href="#cb88-1186" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb88-1187"><a href="#cb88-1187" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl_tables</span></span>
+<span id="cb88-1188"><a href="#cb88-1188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1189"><a href="#cb88-1189" aria-hidden="true" tabindex="-1"></a><span class="co"># required libraries</span></span>
+<span id="cb88-1190"><a href="#cb88-1190" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtsummary)</span>
+<span id="cb88-1191"><a href="#cb88-1191" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb88-1192"><a href="#cb88-1192" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(margot)</span>
+<span id="cb88-1193"><a href="#cb88-1193" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1194"><a href="#cb88-1194" aria-hidden="true" tabindex="-1"></a><span class="co"># select focal variables and rename them for clarity</span></span>
+<span id="cb88-1195"><a href="#cb88-1195" aria-hidden="true" tabindex="-1"></a>df_nzdat <span class="ot">&lt;-</span> df_nz  <span class="sc">|&gt;</span></span>
+<span id="cb88-1196"><a href="#cb88-1196" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(wave <span class="sc">==</span> <span class="dv">2019</span>) <span class="sc">|&gt;</span></span>
+<span id="cb88-1197"><a href="#cb88-1197" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(hlth_weight, hlth_height, male) <span class="sc">|&gt;</span></span>
+<span id="cb88-1198"><a href="#cb88-1198" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">rename</span>(<span class="at">weight =</span> hlth_weight,</span>
+<span id="cb88-1199"><a href="#cb88-1199" aria-hidden="true" tabindex="-1"></a>                <span class="at">height =</span> hlth_height) <span class="sc">|&gt;</span></span>
+<span id="cb88-1200"><a href="#cb88-1200" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(weight, height, male) <span class="sc">|&gt;</span></span>
+<span id="cb88-1201"><a href="#cb88-1201" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">weight_c =</span> <span class="fu">as.numeric</span>(<span class="fu">scale</span>(</span>
+<span id="cb88-1202"><a href="#cb88-1202" aria-hidden="true" tabindex="-1"></a>    weight, <span class="at">scale =</span> F, <span class="at">center =</span> <span class="cn">TRUE</span></span>
+<span id="cb88-1203"><a href="#cb88-1203" aria-hidden="true" tabindex="-1"></a>  )))</span>
 <span id="cb88-1204"><a href="#cb88-1204" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1205"><a href="#cb88-1205" aria-hidden="true" tabindex="-1"></a><span class="co"># create table</span></span>
-<span id="cb88-1206"><a href="#cb88-1206" aria-hidden="true" tabindex="-1"></a>df_nzdat <span class="sc">|&gt;</span> </span>
-<span id="cb88-1207"><a href="#cb88-1207" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(weight,</span>
-<span id="cb88-1208"><a href="#cb88-1208" aria-hidden="true" tabindex="-1"></a>                height) <span class="sc">|&gt;</span> </span>
-<span id="cb88-1209"><a href="#cb88-1209" aria-hidden="true" tabindex="-1"></a>  gtsummary<span class="sc">::</span><span class="fu">tbl_summary</span>(</span>
-<span id="cb88-1210"><a href="#cb88-1210" aria-hidden="true" tabindex="-1"></a>    <span class="co">#by = wave,</span></span>
-<span id="cb88-1211"><a href="#cb88-1211" aria-hidden="true" tabindex="-1"></a>    <span class="at">statistic =</span> <span class="fu">list</span>(</span>
-<span id="cb88-1212"><a href="#cb88-1212" aria-hidden="true" tabindex="-1"></a>      <span class="fu">all_continuous</span>() <span class="sc">~</span> <span class="st">"{mean} ({sd})"</span>,</span>
-<span id="cb88-1213"><a href="#cb88-1213" aria-hidden="true" tabindex="-1"></a>      <span class="fu">all_categorical</span>() <span class="sc">~</span> <span class="st">"{n} / {N} ({p}%)"</span></span>
-<span id="cb88-1214"><a href="#cb88-1214" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb88-1215"><a href="#cb88-1215" aria-hidden="true" tabindex="-1"></a>    <span class="at">digits =</span> <span class="fu">all_continuous</span>() <span class="sc">~</span> <span class="dv">2</span>,</span>
-<span id="cb88-1216"><a href="#cb88-1216" aria-hidden="true" tabindex="-1"></a>    <span class="at">missing_text =</span> <span class="st">"(Missing)"</span></span>
-<span id="cb88-1217"><a href="#cb88-1217" aria-hidden="true" tabindex="-1"></a>  )<span class="sc">|&gt;</span></span>
-<span id="cb88-1218"><a href="#cb88-1218" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bold_labels</span>() </span>
-<span id="cb88-1219"><a href="#cb88-1219" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb88-1220"><a href="#cb88-1220" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1205"><a href="#cb88-1205" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1206"><a href="#cb88-1206" aria-hidden="true" tabindex="-1"></a><span class="co"># create table</span></span>
+<span id="cb88-1207"><a href="#cb88-1207" aria-hidden="true" tabindex="-1"></a>df_nzdat <span class="sc">|&gt;</span> </span>
+<span id="cb88-1208"><a href="#cb88-1208" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(weight,</span>
+<span id="cb88-1209"><a href="#cb88-1209" aria-hidden="true" tabindex="-1"></a>                height) <span class="sc">|&gt;</span> </span>
+<span id="cb88-1210"><a href="#cb88-1210" aria-hidden="true" tabindex="-1"></a>  gtsummary<span class="sc">::</span><span class="fu">tbl_summary</span>(</span>
+<span id="cb88-1211"><a href="#cb88-1211" aria-hidden="true" tabindex="-1"></a>    <span class="co">#by = wave,</span></span>
+<span id="cb88-1212"><a href="#cb88-1212" aria-hidden="true" tabindex="-1"></a>    <span class="at">statistic =</span> <span class="fu">list</span>(</span>
+<span id="cb88-1213"><a href="#cb88-1213" aria-hidden="true" tabindex="-1"></a>      <span class="fu">all_continuous</span>() <span class="sc">~</span> <span class="st">"{mean} ({sd})"</span>,</span>
+<span id="cb88-1214"><a href="#cb88-1214" aria-hidden="true" tabindex="-1"></a>      <span class="fu">all_categorical</span>() <span class="sc">~</span> <span class="st">"{n} / {N} ({p}%)"</span></span>
+<span id="cb88-1215"><a href="#cb88-1215" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb88-1216"><a href="#cb88-1216" aria-hidden="true" tabindex="-1"></a>    <span class="at">digits =</span> <span class="fu">all_continuous</span>() <span class="sc">~</span> <span class="dv">2</span>,</span>
+<span id="cb88-1217"><a href="#cb88-1217" aria-hidden="true" tabindex="-1"></a>    <span class="at">missing_text =</span> <span class="st">"(Missing)"</span></span>
+<span id="cb88-1218"><a href="#cb88-1218" aria-hidden="true" tabindex="-1"></a>  )<span class="sc">|&gt;</span></span>
+<span id="cb88-1219"><a href="#cb88-1219" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bold_labels</span>() </span>
+<span id="cb88-1220"><a href="#cb88-1220" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb88-1221"><a href="#cb88-1221" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb88-1222"><a href="#cb88-1222" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1223"><a href="#cb88-1223" aria-hidden="true" tabindex="-1"></a>Here's another approach:</span>
-<span id="cb88-1224"><a href="#cb88-1224" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1223"><a href="#cb88-1223" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1224"><a href="#cb88-1224" aria-hidden="true" tabindex="-1"></a>Here's another approach:</span>
 <span id="cb88-1225"><a href="#cb88-1225" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1228"><a href="#cb88-1228" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb88-1229"><a href="#cb88-1229" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: second_table</span></span>
-<span id="cb88-1230"><a href="#cb88-1230" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1231"><a href="#cb88-1231" aria-hidden="true" tabindex="-1"></a><span class="co"># libs we need</span></span>
-<span id="cb88-1232"><a href="#cb88-1232" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(table1)</span>
-<span id="cb88-1233"><a href="#cb88-1233" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb88-1234"><a href="#cb88-1234" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
-<span id="cb88-1235"><a href="#cb88-1235" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(margot)</span>
-<span id="cb88-1236"><a href="#cb88-1236" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1237"><a href="#cb88-1237" aria-hidden="true" tabindex="-1"></a><span class="co"># filter 2019 wave</span></span>
-<span id="cb88-1238"><a href="#cb88-1238" aria-hidden="true" tabindex="-1"></a>df_nz_1 <span class="ot">&lt;-</span> df_nz<span class="sc">|&gt;</span></span>
-<span id="cb88-1239"><a href="#cb88-1239" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(wave <span class="sc">==</span> <span class="dv">2019</span>)</span>
-<span id="cb88-1240"><a href="#cb88-1240" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1241"><a href="#cb88-1241" aria-hidden="true" tabindex="-1"></a><span class="co"># nicer labels</span></span>
-<span id="cb88-1242"><a href="#cb88-1242" aria-hidden="true" tabindex="-1"></a>table1<span class="sc">::</span><span class="fu">label</span>(df_nz_1<span class="sc">$</span>hlth_weight)     <span class="ot">&lt;-</span> <span class="st">"Weight"</span></span>
-<span id="cb88-1243"><a href="#cb88-1243" aria-hidden="true" tabindex="-1"></a>table1<span class="sc">::</span><span class="fu">label</span>(df_nz_1<span class="sc">$</span>hlth_height)     <span class="ot">&lt;-</span> <span class="st">"Height"</span></span>
-<span id="cb88-1244"><a href="#cb88-1244" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1245"><a href="#cb88-1245" aria-hidden="true" tabindex="-1"></a><span class="co"># table</span></span>
-<span id="cb88-1246"><a href="#cb88-1246" aria-hidden="true" tabindex="-1"></a>table1<span class="sc">::</span><span class="fu">table1</span>(<span class="sc">~</span> hlth_weight <span class="sc">+</span> hlth_height, <span class="at">data =</span> df_nz_1)     </span>
-<span id="cb88-1247"><a href="#cb88-1247" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb88-1248"><a href="#cb88-1248" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1249"><a href="#cb88-1249" aria-hidden="true" tabindex="-1"></a>Create graph</span>
-<span id="cb88-1250"><a href="#cb88-1250" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1253"><a href="#cb88-1253" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb88-1254"><a href="#cb88-1254" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: shape_data</span></span>
-<span id="cb88-1255"><a href="#cb88-1255" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1256"><a href="#cb88-1256" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"patchwork"</span>)</span>
-<span id="cb88-1257"><a href="#cb88-1257" aria-hidden="true" tabindex="-1"></a><span class="co"># create data set where filtering na vals</span></span>
-<span id="cb88-1258"><a href="#cb88-1258" aria-hidden="true" tabindex="-1"></a>df_nzdat1 <span class="ot">&lt;-</span> df_nzdat <span class="sc">|&gt;</span> </span>
-<span id="cb88-1259"><a href="#cb88-1259" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(weight),</span>
-<span id="cb88-1260"><a href="#cb88-1260" aria-hidden="true" tabindex="-1"></a>                  <span class="sc">!</span><span class="fu">is.na</span>(height),</span>
-<span id="cb88-1261"><a href="#cb88-1261" aria-hidden="true" tabindex="-1"></a>                  <span class="sc">!</span><span class="fu">is.na</span>(male)) <span class="co"># filter na's for density plots</span></span>
-<span id="cb88-1262"><a href="#cb88-1262" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb88-1263"><a href="#cb88-1263" aria-hidden="true" tabindex="-1"></a>weight_density <span class="ot">&lt;-</span>ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(<span class="at">data =</span> df_nzdat1, <span class="fu">aes</span>(<span class="at">x =</span> weight)) <span class="sc">+</span> <span class="fu">geom_density</span>(<span class="at">fill =</span> <span class="st">"chocolate2"</span>) <span class="sc">+</span> </span>
-<span id="cb88-1264"><a href="#cb88-1264" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Density plot of weight of NZ sample years 2019/2020"</span>) <span class="sc">+</span> <span class="fu">theme_classic</span>()</span>
-<span id="cb88-1265"><a href="#cb88-1265" aria-hidden="true" tabindex="-1"></a>weight_density</span>
-<span id="cb88-1266"><a href="#cb88-1266" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1267"><a href="#cb88-1267" aria-hidden="true" tabindex="-1"></a>height_density <span class="ot">&lt;-</span>ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(<span class="at">data =</span> df_nzdat1, <span class="fu">aes</span>(<span class="at">x =</span> height)) <span class="sc">+</span> <span class="fu">geom_density</span>(<span class="at">fill =</span><span class="st">"blue2"</span>) <span class="sc">+</span> </span>
-<span id="cb88-1268"><a href="#cb88-1268" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Density plot of height of NZ sample years 2019/2020"</span>) <span class="sc">+</span> <span class="fu">theme_classic</span>()</span>
-<span id="cb88-1269"><a href="#cb88-1269" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1270"><a href="#cb88-1270" aria-hidden="true" tabindex="-1"></a>height_density</span>
-<span id="cb88-1271"><a href="#cb88-1271" aria-hidden="true" tabindex="-1"></a>weight_density <span class="sc">/</span> height_density <span class="sc">+</span> <span class="fu">plot_annotation</span>(<span class="at">tag_levels =</span> <span class="st">'a'</span>)</span>
-<span id="cb88-1272"><a href="#cb88-1272" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb88-1273"><a href="#cb88-1273" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1274"><a href="#cb88-1274" aria-hidden="true" tabindex="-1"></a>Here's a density plot:</span>
-<span id="cb88-1275"><a href="#cb88-1275" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1278"><a href="#cb88-1278" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb88-1279"><a href="#cb88-1279" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: density_plot</span></span>
-<span id="cb88-1280"><a href="#cb88-1280" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1281"><a href="#cb88-1281" aria-hidden="true" tabindex="-1"></a><span class="co"># library</span></span>
-<span id="cb88-1282"><a href="#cb88-1282" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb88-1283"><a href="#cb88-1283" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1226"><a href="#cb88-1226" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1229"><a href="#cb88-1229" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb88-1230"><a href="#cb88-1230" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: second_table</span></span>
+<span id="cb88-1231"><a href="#cb88-1231" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1232"><a href="#cb88-1232" aria-hidden="true" tabindex="-1"></a><span class="co"># libs we need</span></span>
+<span id="cb88-1233"><a href="#cb88-1233" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(table1)</span>
+<span id="cb88-1234"><a href="#cb88-1234" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb88-1235"><a href="#cb88-1235" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb88-1236"><a href="#cb88-1236" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(margot)</span>
+<span id="cb88-1237"><a href="#cb88-1237" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1238"><a href="#cb88-1238" aria-hidden="true" tabindex="-1"></a><span class="co"># filter 2019 wave</span></span>
+<span id="cb88-1239"><a href="#cb88-1239" aria-hidden="true" tabindex="-1"></a>df_nz_1 <span class="ot">&lt;-</span> df_nz<span class="sc">|&gt;</span></span>
+<span id="cb88-1240"><a href="#cb88-1240" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(wave <span class="sc">==</span> <span class="dv">2019</span>)</span>
+<span id="cb88-1241"><a href="#cb88-1241" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1242"><a href="#cb88-1242" aria-hidden="true" tabindex="-1"></a><span class="co"># nicer labels</span></span>
+<span id="cb88-1243"><a href="#cb88-1243" aria-hidden="true" tabindex="-1"></a>table1<span class="sc">::</span><span class="fu">label</span>(df_nz_1<span class="sc">$</span>hlth_weight)     <span class="ot">&lt;-</span> <span class="st">"Weight"</span></span>
+<span id="cb88-1244"><a href="#cb88-1244" aria-hidden="true" tabindex="-1"></a>table1<span class="sc">::</span><span class="fu">label</span>(df_nz_1<span class="sc">$</span>hlth_height)     <span class="ot">&lt;-</span> <span class="st">"Height"</span></span>
+<span id="cb88-1245"><a href="#cb88-1245" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1246"><a href="#cb88-1246" aria-hidden="true" tabindex="-1"></a><span class="co"># table</span></span>
+<span id="cb88-1247"><a href="#cb88-1247" aria-hidden="true" tabindex="-1"></a>table1<span class="sc">::</span><span class="fu">table1</span>(<span class="sc">~</span> hlth_weight <span class="sc">+</span> hlth_height, <span class="at">data =</span> df_nz_1)     </span>
+<span id="cb88-1248"><a href="#cb88-1248" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb88-1249"><a href="#cb88-1249" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1250"><a href="#cb88-1250" aria-hidden="true" tabindex="-1"></a>Create graph</span>
+<span id="cb88-1251"><a href="#cb88-1251" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1254"><a href="#cb88-1254" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb88-1255"><a href="#cb88-1255" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: shape_data</span></span>
+<span id="cb88-1256"><a href="#cb88-1256" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1257"><a href="#cb88-1257" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"patchwork"</span>)</span>
+<span id="cb88-1258"><a href="#cb88-1258" aria-hidden="true" tabindex="-1"></a><span class="co"># create data set where filtering na vals</span></span>
+<span id="cb88-1259"><a href="#cb88-1259" aria-hidden="true" tabindex="-1"></a>df_nzdat1 <span class="ot">&lt;-</span> df_nzdat <span class="sc">|&gt;</span> </span>
+<span id="cb88-1260"><a href="#cb88-1260" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(weight),</span>
+<span id="cb88-1261"><a href="#cb88-1261" aria-hidden="true" tabindex="-1"></a>                  <span class="sc">!</span><span class="fu">is.na</span>(height),</span>
+<span id="cb88-1262"><a href="#cb88-1262" aria-hidden="true" tabindex="-1"></a>                  <span class="sc">!</span><span class="fu">is.na</span>(male)) <span class="co"># filter na's for density plots</span></span>
+<span id="cb88-1263"><a href="#cb88-1263" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb88-1264"><a href="#cb88-1264" aria-hidden="true" tabindex="-1"></a>weight_density <span class="ot">&lt;-</span>ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(<span class="at">data =</span> df_nzdat1, <span class="fu">aes</span>(<span class="at">x =</span> weight)) <span class="sc">+</span> <span class="fu">geom_density</span>(<span class="at">fill =</span> <span class="st">"chocolate2"</span>) <span class="sc">+</span> </span>
+<span id="cb88-1265"><a href="#cb88-1265" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Density plot of weight of NZ sample years 2019/2020"</span>) <span class="sc">+</span> <span class="fu">theme_classic</span>()</span>
+<span id="cb88-1266"><a href="#cb88-1266" aria-hidden="true" tabindex="-1"></a>weight_density</span>
+<span id="cb88-1267"><a href="#cb88-1267" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1268"><a href="#cb88-1268" aria-hidden="true" tabindex="-1"></a>height_density <span class="ot">&lt;-</span>ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(<span class="at">data =</span> df_nzdat1, <span class="fu">aes</span>(<span class="at">x =</span> height)) <span class="sc">+</span> <span class="fu">geom_density</span>(<span class="at">fill =</span><span class="st">"blue2"</span>) <span class="sc">+</span> </span>
+<span id="cb88-1269"><a href="#cb88-1269" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Density plot of height of NZ sample years 2019/2020"</span>) <span class="sc">+</span> <span class="fu">theme_classic</span>()</span>
+<span id="cb88-1270"><a href="#cb88-1270" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1271"><a href="#cb88-1271" aria-hidden="true" tabindex="-1"></a>height_density</span>
+<span id="cb88-1272"><a href="#cb88-1272" aria-hidden="true" tabindex="-1"></a>weight_density <span class="sc">/</span> height_density <span class="sc">+</span> <span class="fu">plot_annotation</span>(<span class="at">tag_levels =</span> <span class="st">'a'</span>)</span>
+<span id="cb88-1273"><a href="#cb88-1273" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb88-1274"><a href="#cb88-1274" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1275"><a href="#cb88-1275" aria-hidden="true" tabindex="-1"></a>Here's a density plot:</span>
+<span id="cb88-1276"><a href="#cb88-1276" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1279"><a href="#cb88-1279" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb88-1280"><a href="#cb88-1280" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: density_plot</span></span>
+<span id="cb88-1281"><a href="#cb88-1281" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1282"><a href="#cb88-1282" aria-hidden="true" tabindex="-1"></a><span class="co"># library</span></span>
+<span id="cb88-1283"><a href="#cb88-1283" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb88-1284"><a href="#cb88-1284" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1285"><a href="#cb88-1285" aria-hidden="true" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(<span class="at">data =</span> df_nzdat1, <span class="fu">aes</span>(<span class="at">x =</span> weight, <span class="at">fill =</span> <span class="fu">as.factor</span>(male))) <span class="sc">+</span></span>
-<span id="cb88-1286"><a href="#cb88-1286" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>() <span class="sc">+</span> </span>
-<span id="cb88-1287"><a href="#cb88-1287" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Density plot of weight of NZ sample years 2019/2020"</span>) <span class="sc">+</span></span>
-<span id="cb88-1288"><a href="#cb88-1288" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span> </span>
-<span id="cb88-1289"><a href="#cb88-1289" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_d</span>() <span class="co"># nicer colour</span></span>
-<span id="cb88-1290"><a href="#cb88-1290" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb88-1291"><a href="#cb88-1291" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1285"><a href="#cb88-1285" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1286"><a href="#cb88-1286" aria-hidden="true" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(<span class="at">data =</span> df_nzdat1, <span class="fu">aes</span>(<span class="at">x =</span> weight, <span class="at">fill =</span> <span class="fu">as.factor</span>(male))) <span class="sc">+</span></span>
+<span id="cb88-1287"><a href="#cb88-1287" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>() <span class="sc">+</span> </span>
+<span id="cb88-1288"><a href="#cb88-1288" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Density plot of weight of NZ sample years 2019/2020"</span>) <span class="sc">+</span></span>
+<span id="cb88-1289"><a href="#cb88-1289" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span> </span>
+<span id="cb88-1290"><a href="#cb88-1290" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_d</span>() <span class="co"># nicer colour</span></span>
+<span id="cb88-1291"><a href="#cb88-1291" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb88-1292"><a href="#cb88-1292" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1293"><a href="#cb88-1293" aria-hidden="true" tabindex="-1"></a><span class="fu">## Solution Q2. Regress height ~ weight and report results</span></span>
-<span id="cb88-1294"><a href="#cb88-1294" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1295"><a href="#cb88-1295" aria-hidden="true" tabindex="-1"></a>**Using the `nz` dataset, write a regression model for height as predicted by weight.  Create a table for your results.  Create a graphs/graphs to clarify the results of your regression model.  Briefly report your results.**</span>
-<span id="cb88-1296"><a href="#cb88-1296" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1293"><a href="#cb88-1293" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1294"><a href="#cb88-1294" aria-hidden="true" tabindex="-1"></a><span class="fu">## Solution Q2. Regress height ~ weight and report results</span></span>
+<span id="cb88-1295"><a href="#cb88-1295" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1296"><a href="#cb88-1296" aria-hidden="true" tabindex="-1"></a>**Using the `nz` dataset, write a regression model for height as predicted by weight.  Create a table for your results.  Create a graphs/graphs to clarify the results of your regression model.  Briefly report your results.**</span>
 <span id="cb88-1297"><a href="#cb88-1297" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1298"><a href="#cb88-1298" aria-hidden="true" tabindex="-1"></a>Model:</span>
-<span id="cb88-1299"><a href="#cb88-1299" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1302"><a href="#cb88-1302" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb88-1303"><a href="#cb88-1303" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: regression_height_nz</span></span>
-<span id="cb88-1304"><a href="#cb88-1304" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1305"><a href="#cb88-1305" aria-hidden="true" tabindex="-1"></a><span class="co"># regression of height ~ weight</span></span>
-<span id="cb88-1306"><a href="#cb88-1306" aria-hidden="true" tabindex="-1"></a>fit_1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(height <span class="sc">~</span> weight_c, <span class="at">data =</span> df_nzdat)</span>
-<span id="cb88-1307"><a href="#cb88-1307" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb88-1308"><a href="#cb88-1308" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1309"><a href="#cb88-1309" aria-hidden="true" tabindex="-1"></a>Table:</span>
-<span id="cb88-1310"><a href="#cb88-1310" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1313"><a href="#cb88-1313" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb88-1314"><a href="#cb88-1314" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: regression_height_nz_table</span></span>
-<span id="cb88-1315"><a href="#cb88-1315" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(parameters)</span>
-<span id="cb88-1316"><a href="#cb88-1316" aria-hidden="true" tabindex="-1"></a><span class="co">#table of model</span></span>
-<span id="cb88-1317"><a href="#cb88-1317" aria-hidden="true" tabindex="-1"></a>parameters<span class="sc">::</span><span class="fu">model_parameters</span>( fit_1) <span class="sc">|&gt;</span> </span>
-<span id="cb88-1318"><a href="#cb88-1318" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print_html</span>(  <span class="at">digits =</span> <span class="dv">2</span>,  <span class="co"># options</span></span>
-<span id="cb88-1319"><a href="#cb88-1319" aria-hidden="true" tabindex="-1"></a>               <span class="at">select =</span> <span class="st">"{coef}{stars}|({ci})"</span>,</span>
-<span id="cb88-1320"><a href="#cb88-1320" aria-hidden="true" tabindex="-1"></a>               <span class="at">column_labels =</span> <span class="fu">c</span>(<span class="st">"Estimate"</span>, <span class="st">"95% CI"</span>)</span>
-<span id="cb88-1321"><a href="#cb88-1321" aria-hidden="true" tabindex="-1"></a>) </span>
-<span id="cb88-1322"><a href="#cb88-1322" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb88-1323"><a href="#cb88-1323" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1324"><a href="#cb88-1324" aria-hidden="true" tabindex="-1"></a>Prediction:</span>
-<span id="cb88-1325"><a href="#cb88-1325" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1328"><a href="#cb88-1328" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb88-1329"><a href="#cb88-1329" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: regression_height_nz_prediction</span></span>
-<span id="cb88-1330"><a href="#cb88-1330" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1331"><a href="#cb88-1331" aria-hidden="true" tabindex="-1"></a><span class="co"># Ensure necessary libraries are loaded</span></span>
-<span id="cb88-1332"><a href="#cb88-1332" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggeffects)</span>
-<span id="cb88-1333"><a href="#cb88-1333" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb88-1334"><a href="#cb88-1334" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1335"><a href="#cb88-1335" aria-hidden="true" tabindex="-1"></a><span class="co"># generate the plot with adjusted y-scale</span></span>
-<span id="cb88-1336"><a href="#cb88-1336" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ggeffects<span class="sc">::</span><span class="fu">ggpredict</span>(fit_1, <span class="at">terms =</span> <span class="st">"weight_c"</span>)) </span>
-<span id="cb88-1337"><a href="#cb88-1337" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1338"><a href="#cb88-1338" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb88-1339"><a href="#cb88-1339" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1298"><a href="#cb88-1298" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1299"><a href="#cb88-1299" aria-hidden="true" tabindex="-1"></a>Model:</span>
+<span id="cb88-1300"><a href="#cb88-1300" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1303"><a href="#cb88-1303" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb88-1304"><a href="#cb88-1304" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: regression_height_nz</span></span>
+<span id="cb88-1305"><a href="#cb88-1305" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1306"><a href="#cb88-1306" aria-hidden="true" tabindex="-1"></a><span class="co"># regression of height ~ weight</span></span>
+<span id="cb88-1307"><a href="#cb88-1307" aria-hidden="true" tabindex="-1"></a>fit_1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(height <span class="sc">~</span> weight_c, <span class="at">data =</span> df_nzdat)</span>
+<span id="cb88-1308"><a href="#cb88-1308" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb88-1309"><a href="#cb88-1309" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1310"><a href="#cb88-1310" aria-hidden="true" tabindex="-1"></a>Table:</span>
+<span id="cb88-1311"><a href="#cb88-1311" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1314"><a href="#cb88-1314" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb88-1315"><a href="#cb88-1315" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: regression_height_nz_table</span></span>
+<span id="cb88-1316"><a href="#cb88-1316" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(parameters)</span>
+<span id="cb88-1317"><a href="#cb88-1317" aria-hidden="true" tabindex="-1"></a><span class="co">#table of model</span></span>
+<span id="cb88-1318"><a href="#cb88-1318" aria-hidden="true" tabindex="-1"></a>parameters<span class="sc">::</span><span class="fu">model_parameters</span>( fit_1) <span class="sc">|&gt;</span> </span>
+<span id="cb88-1319"><a href="#cb88-1319" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print_html</span>(  <span class="at">digits =</span> <span class="dv">2</span>,  <span class="co"># options</span></span>
+<span id="cb88-1320"><a href="#cb88-1320" aria-hidden="true" tabindex="-1"></a>               <span class="at">select =</span> <span class="st">"{coef}{stars}|({ci})"</span>,</span>
+<span id="cb88-1321"><a href="#cb88-1321" aria-hidden="true" tabindex="-1"></a>               <span class="at">column_labels =</span> <span class="fu">c</span>(<span class="st">"Estimate"</span>, <span class="st">"95% CI"</span>)</span>
+<span id="cb88-1322"><a href="#cb88-1322" aria-hidden="true" tabindex="-1"></a>) </span>
+<span id="cb88-1323"><a href="#cb88-1323" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb88-1324"><a href="#cb88-1324" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1325"><a href="#cb88-1325" aria-hidden="true" tabindex="-1"></a>Prediction:</span>
+<span id="cb88-1326"><a href="#cb88-1326" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1329"><a href="#cb88-1329" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb88-1330"><a href="#cb88-1330" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: regression_height_nz_prediction</span></span>
+<span id="cb88-1331"><a href="#cb88-1331" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1332"><a href="#cb88-1332" aria-hidden="true" tabindex="-1"></a><span class="co"># Ensure necessary libraries are loaded</span></span>
+<span id="cb88-1333"><a href="#cb88-1333" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggeffects)</span>
+<span id="cb88-1334"><a href="#cb88-1334" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb88-1335"><a href="#cb88-1335" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1336"><a href="#cb88-1336" aria-hidden="true" tabindex="-1"></a><span class="co"># generate the plot with adjusted y-scale</span></span>
+<span id="cb88-1337"><a href="#cb88-1337" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ggeffects<span class="sc">::</span><span class="fu">ggpredict</span>(fit_1, <span class="at">terms =</span> <span class="st">"weight_c"</span>)) </span>
+<span id="cb88-1338"><a href="#cb88-1338" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1339"><a href="#cb88-1339" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb88-1340"><a href="#cb88-1340" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1341"><a href="#cb88-1341" aria-hidden="true" tabindex="-1"></a>Briefly report your results. (note: please replace "significant" with "statistically significant.)</span>
-<span id="cb88-1342"><a href="#cb88-1342" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1345"><a href="#cb88-1345" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb88-1346"><a href="#cb88-1346" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: regression_height_nz_report</span></span>
-<span id="cb88-1347"><a href="#cb88-1347" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1348"><a href="#cb88-1348" aria-hidden="true" tabindex="-1"></a>report<span class="sc">::</span><span class="fu">report</span>(fit_1)</span>
-<span id="cb88-1349"><a href="#cb88-1349" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb88-1350"><a href="#cb88-1350" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1351"><a href="#cb88-1351" aria-hidden="true" tabindex="-1"></a><span class="fu">## Solution Q3. Regress height ~ male and report results</span></span>
-<span id="cb88-1352"><a href="#cb88-1352" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1341"><a href="#cb88-1341" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1342"><a href="#cb88-1342" aria-hidden="true" tabindex="-1"></a>Briefly report your results. (note: please replace "significant" with "statistically significant.)</span>
+<span id="cb88-1343"><a href="#cb88-1343" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1346"><a href="#cb88-1346" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb88-1347"><a href="#cb88-1347" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: regression_height_nz_report</span></span>
+<span id="cb88-1348"><a href="#cb88-1348" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1349"><a href="#cb88-1349" aria-hidden="true" tabindex="-1"></a>report<span class="sc">::</span><span class="fu">report</span>(fit_1)</span>
+<span id="cb88-1350"><a href="#cb88-1350" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb88-1351"><a href="#cb88-1351" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1352"><a href="#cb88-1352" aria-hidden="true" tabindex="-1"></a><span class="fu">## Solution Q3. Regress height ~ male and report results</span></span>
 <span id="cb88-1353"><a href="#cb88-1353" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1354"><a href="#cb88-1354" aria-hidden="true" tabindex="-1"></a>**Using the `df_nz` dataset, write a regression model for height as predicted by `male`  Create a table for your results.  Create a graph/graphs to clarify the results of your regression model. Briefly report your results.**</span>
-<span id="cb88-1355"><a href="#cb88-1355" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1354"><a href="#cb88-1354" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1355"><a href="#cb88-1355" aria-hidden="true" tabindex="-1"></a>**Using the `df_nz` dataset, write a regression model for height as predicted by `male`  Create a table for your results.  Create a graph/graphs to clarify the results of your regression model. Briefly report your results.**</span>
 <span id="cb88-1356"><a href="#cb88-1356" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1357"><a href="#cb88-1357" aria-hidden="true" tabindex="-1"></a>Model and table:</span>
-<span id="cb88-1358"><a href="#cb88-1358" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1361"><a href="#cb88-1361" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb88-1362"><a href="#cb88-1362" aria-hidden="true" tabindex="-1"></a><span class="co"># regression of height ~ weight</span></span>
-<span id="cb88-1363"><a href="#cb88-1363" aria-hidden="true" tabindex="-1"></a>fit_2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(height <span class="sc">~</span> male, <span class="at">data =</span> df_nzdat)</span>
-<span id="cb88-1364"><a href="#cb88-1364" aria-hidden="true" tabindex="-1"></a>sjPlot<span class="sc">::</span><span class="fu">tab_model</span>(fit_2)</span>
-<span id="cb88-1365"><a href="#cb88-1365" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb88-1366"><a href="#cb88-1366" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1367"><a href="#cb88-1367" aria-hidden="true" tabindex="-1"></a>Graph:</span>
-<span id="cb88-1368"><a href="#cb88-1368" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1371"><a href="#cb88-1371" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb88-1372"><a href="#cb88-1372" aria-hidden="true" tabindex="-1"></a><span class="co"># plot over the range of the data</span></span>
-<span id="cb88-1373"><a href="#cb88-1373" aria-hidden="true" tabindex="-1"></a>plot_fit_2 <span class="ot">&lt;-</span> <span class="fu">plot</span>(</span>
-<span id="cb88-1374"><a href="#cb88-1374" aria-hidden="true" tabindex="-1"></a>  ggeffects<span class="sc">::</span><span class="fu">ggpredict</span>(fit_2, <span class="at">terms =</span> <span class="st">"male [all]"</span>),</span>
-<span id="cb88-1375"><a href="#cb88-1375" aria-hidden="true" tabindex="-1"></a>  <span class="at">add.data =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb88-1376"><a href="#cb88-1376" aria-hidden="true" tabindex="-1"></a>  <span class="at">dot.alpha =</span> .<span class="dv">2</span>,</span>
-<span id="cb88-1377"><a href="#cb88-1377" aria-hidden="true" tabindex="-1"></a>  <span class="at">jitter =</span> .<span class="dv">1</span></span>
-<span id="cb88-1378"><a href="#cb88-1378" aria-hidden="true" tabindex="-1"></a>) </span>
-<span id="cb88-1379"><a href="#cb88-1379" aria-hidden="true" tabindex="-1"></a>plot_fit_2 <span class="sc">+</span> </span>
-<span id="cb88-1380"><a href="#cb88-1380" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="fl">1.2</span>, <span class="fl">2.1</span>))</span>
-<span id="cb88-1381"><a href="#cb88-1381" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb88-1382"><a href="#cb88-1382" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1357"><a href="#cb88-1357" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1358"><a href="#cb88-1358" aria-hidden="true" tabindex="-1"></a>Model and table:</span>
+<span id="cb88-1359"><a href="#cb88-1359" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1362"><a href="#cb88-1362" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb88-1363"><a href="#cb88-1363" aria-hidden="true" tabindex="-1"></a><span class="co"># regression of height ~ weight</span></span>
+<span id="cb88-1364"><a href="#cb88-1364" aria-hidden="true" tabindex="-1"></a>fit_2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(height <span class="sc">~</span> male, <span class="at">data =</span> df_nzdat)</span>
+<span id="cb88-1365"><a href="#cb88-1365" aria-hidden="true" tabindex="-1"></a>sjPlot<span class="sc">::</span><span class="fu">tab_model</span>(fit_2)</span>
+<span id="cb88-1366"><a href="#cb88-1366" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb88-1367"><a href="#cb88-1367" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1368"><a href="#cb88-1368" aria-hidden="true" tabindex="-1"></a>Graph:</span>
+<span id="cb88-1369"><a href="#cb88-1369" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1372"><a href="#cb88-1372" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb88-1373"><a href="#cb88-1373" aria-hidden="true" tabindex="-1"></a><span class="co"># plot over the range of the data</span></span>
+<span id="cb88-1374"><a href="#cb88-1374" aria-hidden="true" tabindex="-1"></a>plot_fit_2 <span class="ot">&lt;-</span> <span class="fu">plot</span>(</span>
+<span id="cb88-1375"><a href="#cb88-1375" aria-hidden="true" tabindex="-1"></a>  ggeffects<span class="sc">::</span><span class="fu">ggpredict</span>(fit_2, <span class="at">terms =</span> <span class="st">"male [all]"</span>),</span>
+<span id="cb88-1376"><a href="#cb88-1376" aria-hidden="true" tabindex="-1"></a>  <span class="at">add.data =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb88-1377"><a href="#cb88-1377" aria-hidden="true" tabindex="-1"></a>  <span class="at">dot.alpha =</span> .<span class="dv">2</span>,</span>
+<span id="cb88-1378"><a href="#cb88-1378" aria-hidden="true" tabindex="-1"></a>  <span class="at">jitter =</span> .<span class="dv">1</span></span>
+<span id="cb88-1379"><a href="#cb88-1379" aria-hidden="true" tabindex="-1"></a>) </span>
+<span id="cb88-1380"><a href="#cb88-1380" aria-hidden="true" tabindex="-1"></a>plot_fit_2 <span class="sc">+</span> </span>
+<span id="cb88-1381"><a href="#cb88-1381" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="fl">1.2</span>, <span class="fl">2.1</span>))</span>
+<span id="cb88-1382"><a href="#cb88-1382" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb88-1383"><a href="#cb88-1383" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1384"><a href="#cb88-1384" aria-hidden="true" tabindex="-1"></a>Report</span>
-<span id="cb88-1385"><a href="#cb88-1385" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1388"><a href="#cb88-1388" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb88-1389"><a href="#cb88-1389" aria-hidden="true" tabindex="-1"></a><span class="co"># report</span></span>
-<span id="cb88-1390"><a href="#cb88-1390" aria-hidden="true" tabindex="-1"></a>report<span class="sc">::</span><span class="fu">report</span>(fit_2)</span>
-<span id="cb88-1391"><a href="#cb88-1391" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb88-1392"><a href="#cb88-1392" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1384"><a href="#cb88-1384" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1385"><a href="#cb88-1385" aria-hidden="true" tabindex="-1"></a>Report</span>
+<span id="cb88-1386"><a href="#cb88-1386" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1389"><a href="#cb88-1389" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb88-1390"><a href="#cb88-1390" aria-hidden="true" tabindex="-1"></a><span class="co"># report</span></span>
+<span id="cb88-1391"><a href="#cb88-1391" aria-hidden="true" tabindex="-1"></a>report<span class="sc">::</span><span class="fu">report</span>(fit_2)</span>
+<span id="cb88-1392"><a href="#cb88-1392" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb88-1393"><a href="#cb88-1393" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1394"><a href="#cb88-1394" aria-hidden="true" tabindex="-1"></a><span class="fu">## Solution Q4. Regression to predict</span></span>
-<span id="cb88-1395"><a href="#cb88-1395" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1396"><a href="#cb88-1396" aria-hidden="true" tabindex="-1"></a>**Using the regression coefficients from the Pearson and Lee 1903 dataset, predict the heights of daughters of women in the `nz` dataset.** </span>
-<span id="cb88-1399"><a href="#cb88-1399" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb88-1400"><a href="#cb88-1400" aria-hidden="true" tabindex="-1"></a><span class="co"># model for daughter height from mother height</span></span>
-<span id="cb88-1401"><a href="#cb88-1401" aria-hidden="true" tabindex="-1"></a>fit_3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(daughter_height <span class="sc">~</span> mother_height, <span class="at">data =</span> df_pearson_lee)</span>
-<span id="cb88-1402"><a href="#cb88-1402" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1403"><a href="#cb88-1403" aria-hidden="true" tabindex="-1"></a><span class="co"># create data frame of not_male's in 2019</span></span>
-<span id="cb88-1404"><a href="#cb88-1404" aria-hidden="true" tabindex="-1"></a><span class="co"># notice problem. not_male != woman</span></span>
-<span id="cb88-1405"><a href="#cb88-1405" aria-hidden="true" tabindex="-1"></a><span class="co"># additionally, woman != mother!</span></span>
-<span id="cb88-1406"><a href="#cb88-1406" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1407"><a href="#cb88-1407" aria-hidden="true" tabindex="-1"></a>df_nz_2 <span class="ot">&lt;-</span> df_nzdat<span class="sc">|&gt;</span></span>
-<span id="cb88-1408"><a href="#cb88-1408" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(male <span class="sc">==</span> <span class="dv">1</span>)<span class="sc">|&gt;</span> <span class="co"># not_males</span></span>
-<span id="cb88-1409"><a href="#cb88-1409" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(height)<span class="sc">|&gt;</span> <span class="co"># variable of interest</span></span>
-<span id="cb88-1410"><a href="#cb88-1410" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">mother_height =</span> height <span class="sc">*</span> <span class="fl">39.36</span>)<span class="sc">|&gt;</span> <span class="co"># Convert meters to inches</span></span>
-<span id="cb88-1411"><a href="#cb88-1411" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(mother_height)<span class="sc">|&gt;</span></span>
-<span id="cb88-1412"><a href="#cb88-1412" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>((mother_height))</span>
-<span id="cb88-1413"><a href="#cb88-1413" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1414"><a href="#cb88-1414" aria-hidden="true" tabindex="-1"></a><span class="co"># find min and max heights, store as objects</span></span>
-<span id="cb88-1415"><a href="#cb88-1415" aria-hidden="true" tabindex="-1"></a>min_mother_height <span class="ot">&lt;-</span> <span class="fu">min</span>(df_nz_2<span class="sc">$</span>mother_height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb88-1416"><a href="#cb88-1416" aria-hidden="true" tabindex="-1"></a>max_mother_height <span class="ot">&lt;-</span> <span class="fu">max</span>(df_nz_2<span class="sc">$</span>mother_height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb88-1417"><a href="#cb88-1417" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1418"><a href="#cb88-1418" aria-hidden="true" tabindex="-1"></a><span class="co"># expand grid, use stored objects to define boundaries.</span></span>
-<span id="cb88-1419"><a href="#cb88-1419" aria-hidden="true" tabindex="-1"></a>df_expand_grid_nz_2 <span class="ot">&lt;-</span></span>
-<span id="cb88-1420"><a href="#cb88-1420" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expand.grid</span>(<span class="at">mother_height =</span> <span class="fu">seq</span>(</span>
-<span id="cb88-1421"><a href="#cb88-1421" aria-hidden="true" tabindex="-1"></a>    <span class="at">from =</span> min_mother_height,</span>
-<span id="cb88-1422"><a href="#cb88-1422" aria-hidden="true" tabindex="-1"></a>    <span class="at">to =</span> max_mother_height,</span>
-<span id="cb88-1423"><a href="#cb88-1423" aria-hidden="true" tabindex="-1"></a>    <span class="at">length.out =</span> <span class="dv">200</span></span>
-<span id="cb88-1424"><a href="#cb88-1424" aria-hidden="true" tabindex="-1"></a>  ))</span>
-<span id="cb88-1425"><a href="#cb88-1425" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1426"><a href="#cb88-1426" aria-hidden="true" tabindex="-1"></a><span class="co"># use the `predict` function to create a new response using the pearson and fox regression model</span></span>
-<span id="cb88-1427"><a href="#cb88-1427" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1428"><a href="#cb88-1428" aria-hidden="true" tabindex="-1"></a>predict_fit_3 <span class="ot">&lt;-</span></span>
-<span id="cb88-1429"><a href="#cb88-1429" aria-hidden="true" tabindex="-1"></a>  <span class="fu">predict</span>(fit_3,</span>
-<span id="cb88-1430"><a href="#cb88-1430" aria-hidden="true" tabindex="-1"></a>          <span class="at">type =</span> <span class="st">"response"</span>,</span>
-<span id="cb88-1431"><a href="#cb88-1431" aria-hidden="true" tabindex="-1"></a>          <span class="at">interval =</span> <span class="st">"confidence"</span>,</span>
-<span id="cb88-1432"><a href="#cb88-1432" aria-hidden="true" tabindex="-1"></a>          <span class="at">newdata =</span> df_expand_grid_nz_2)</span>
-<span id="cb88-1433"><a href="#cb88-1433" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1434"><a href="#cb88-1434" aria-hidden="true" tabindex="-1"></a><span class="co"># create a new dataframe for the response variables, following the method in lecture 5</span></span>
-<span id="cb88-1435"><a href="#cb88-1435" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1436"><a href="#cb88-1436" aria-hidden="true" tabindex="-1"></a><span class="co"># combine variables into a data frame</span></span>
-<span id="cb88-1437"><a href="#cb88-1437" aria-hidden="true" tabindex="-1"></a>df_expand_grid_nz_2_predict_fit_3 <span class="ot">&lt;-</span></span>
-<span id="cb88-1438"><a href="#cb88-1438" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(df_expand_grid_nz_2, predict_fit_3)</span>
-<span id="cb88-1439"><a href="#cb88-1439" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1440"><a href="#cb88-1440" aria-hidden="true" tabindex="-1"></a><span class="co"># graph the expected average hypothetical heights of "daughters"</span></span>
-<span id="cb88-1441"><a href="#cb88-1441" aria-hidden="true" tabindex="-1"></a>predplot2 <span class="ot">&lt;-</span></span>
-<span id="cb88-1442"><a href="#cb88-1442" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> df_expand_grid_nz_2_predict_fit_3,</span>
-<span id="cb88-1443"><a href="#cb88-1443" aria-hidden="true" tabindex="-1"></a>         <span class="fu">aes</span>(<span class="at">x =</span> mother_height,</span>
-<span id="cb88-1444"><a href="#cb88-1444" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> fit))  <span class="sc">+</span></span>
-<span id="cb88-1445"><a href="#cb88-1445" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">colour =</span> <span class="st">"cadetblue"</span>)  <span class="sc">+</span>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> lwr, <span class="at">ymax =</span> upr), <span class="at">width =</span> .<span class="dv">1</span>) <span class="sc">+</span> <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">50</span>, <span class="dv">75</span>)) <span class="sc">+</span> <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">50</span>, <span class="dv">75</span>)) <span class="sc">+</span> <span class="fu">theme_classic</span>()  <span class="sc">+</span></span>
-<span id="cb88-1446"><a href="#cb88-1446" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"NZ 2019 female population"</span>) <span class="sc">+</span></span>
-<span id="cb88-1447"><a href="#cb88-1447" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"predicted daughter heights in inches"</span>) <span class="sc">+</span></span>
-<span id="cb88-1448"><a href="#cb88-1448" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Regression prediction for hypothetical daughter heights of NZ population in 2019 "</span>)</span>
-<span id="cb88-1449"><a href="#cb88-1449" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1450"><a href="#cb88-1450" aria-hidden="true" tabindex="-1"></a><span class="co"># plot</span></span>
-<span id="cb88-1451"><a href="#cb88-1451" aria-hidden="true" tabindex="-1"></a>predplot2</span>
-<span id="cb88-1452"><a href="#cb88-1452" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb88-1453"><a href="#cb88-1453" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1454"><a href="#cb88-1454" aria-hidden="true" tabindex="-1"></a><span class="fu">## Solution Q6. Bonus</span></span>
-<span id="cb88-1455"><a href="#cb88-1455" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1456"><a href="#cb88-1456" aria-hidden="true" tabindex="-1"></a>**On average, how much taller or shorter are women in New Zealand as sampled in 2019 `nz` dataset compared with women in 1903 as sampled in the Pearson and Lee dataset.**</span>
-<span id="cb88-1457"><a href="#cb88-1457" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1394"><a href="#cb88-1394" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1395"><a href="#cb88-1395" aria-hidden="true" tabindex="-1"></a><span class="fu">## Solution Q4. Regression to predict</span></span>
+<span id="cb88-1396"><a href="#cb88-1396" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1397"><a href="#cb88-1397" aria-hidden="true" tabindex="-1"></a>**Using the regression coefficients from the Pearson and Lee 1903 dataset, predict the heights of daughters of women in the `nz` dataset.** </span>
+<span id="cb88-1400"><a href="#cb88-1400" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb88-1401"><a href="#cb88-1401" aria-hidden="true" tabindex="-1"></a><span class="co"># model for daughter height from mother height</span></span>
+<span id="cb88-1402"><a href="#cb88-1402" aria-hidden="true" tabindex="-1"></a>fit_3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(daughter_height <span class="sc">~</span> mother_height, <span class="at">data =</span> df_pearson_lee)</span>
+<span id="cb88-1403"><a href="#cb88-1403" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1404"><a href="#cb88-1404" aria-hidden="true" tabindex="-1"></a><span class="co"># create data frame of not_male's in 2019</span></span>
+<span id="cb88-1405"><a href="#cb88-1405" aria-hidden="true" tabindex="-1"></a><span class="co"># notice problem. not_male != woman</span></span>
+<span id="cb88-1406"><a href="#cb88-1406" aria-hidden="true" tabindex="-1"></a><span class="co"># additionally, woman != mother!</span></span>
+<span id="cb88-1407"><a href="#cb88-1407" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1408"><a href="#cb88-1408" aria-hidden="true" tabindex="-1"></a>df_nz_2 <span class="ot">&lt;-</span> df_nzdat<span class="sc">|&gt;</span></span>
+<span id="cb88-1409"><a href="#cb88-1409" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(male <span class="sc">==</span> <span class="dv">1</span>)<span class="sc">|&gt;</span> <span class="co"># not_males</span></span>
+<span id="cb88-1410"><a href="#cb88-1410" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(height)<span class="sc">|&gt;</span> <span class="co"># variable of interest</span></span>
+<span id="cb88-1411"><a href="#cb88-1411" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">mother_height =</span> height <span class="sc">*</span> <span class="fl">39.36</span>)<span class="sc">|&gt;</span> <span class="co"># Convert meters to inches</span></span>
+<span id="cb88-1412"><a href="#cb88-1412" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(mother_height)<span class="sc">|&gt;</span></span>
+<span id="cb88-1413"><a href="#cb88-1413" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>((mother_height))</span>
+<span id="cb88-1414"><a href="#cb88-1414" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1415"><a href="#cb88-1415" aria-hidden="true" tabindex="-1"></a><span class="co"># find min and max heights, store as objects</span></span>
+<span id="cb88-1416"><a href="#cb88-1416" aria-hidden="true" tabindex="-1"></a>min_mother_height <span class="ot">&lt;-</span> <span class="fu">min</span>(df_nz_2<span class="sc">$</span>mother_height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb88-1417"><a href="#cb88-1417" aria-hidden="true" tabindex="-1"></a>max_mother_height <span class="ot">&lt;-</span> <span class="fu">max</span>(df_nz_2<span class="sc">$</span>mother_height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb88-1418"><a href="#cb88-1418" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1419"><a href="#cb88-1419" aria-hidden="true" tabindex="-1"></a><span class="co"># expand grid, use stored objects to define boundaries.</span></span>
+<span id="cb88-1420"><a href="#cb88-1420" aria-hidden="true" tabindex="-1"></a>df_expand_grid_nz_2 <span class="ot">&lt;-</span></span>
+<span id="cb88-1421"><a href="#cb88-1421" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expand.grid</span>(<span class="at">mother_height =</span> <span class="fu">seq</span>(</span>
+<span id="cb88-1422"><a href="#cb88-1422" aria-hidden="true" tabindex="-1"></a>    <span class="at">from =</span> min_mother_height,</span>
+<span id="cb88-1423"><a href="#cb88-1423" aria-hidden="true" tabindex="-1"></a>    <span class="at">to =</span> max_mother_height,</span>
+<span id="cb88-1424"><a href="#cb88-1424" aria-hidden="true" tabindex="-1"></a>    <span class="at">length.out =</span> <span class="dv">200</span></span>
+<span id="cb88-1425"><a href="#cb88-1425" aria-hidden="true" tabindex="-1"></a>  ))</span>
+<span id="cb88-1426"><a href="#cb88-1426" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1427"><a href="#cb88-1427" aria-hidden="true" tabindex="-1"></a><span class="co"># use the `predict` function to create a new response using the pearson and fox regression model</span></span>
+<span id="cb88-1428"><a href="#cb88-1428" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1429"><a href="#cb88-1429" aria-hidden="true" tabindex="-1"></a>predict_fit_3 <span class="ot">&lt;-</span></span>
+<span id="cb88-1430"><a href="#cb88-1430" aria-hidden="true" tabindex="-1"></a>  <span class="fu">predict</span>(fit_3,</span>
+<span id="cb88-1431"><a href="#cb88-1431" aria-hidden="true" tabindex="-1"></a>          <span class="at">type =</span> <span class="st">"response"</span>,</span>
+<span id="cb88-1432"><a href="#cb88-1432" aria-hidden="true" tabindex="-1"></a>          <span class="at">interval =</span> <span class="st">"confidence"</span>,</span>
+<span id="cb88-1433"><a href="#cb88-1433" aria-hidden="true" tabindex="-1"></a>          <span class="at">newdata =</span> df_expand_grid_nz_2)</span>
+<span id="cb88-1434"><a href="#cb88-1434" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1435"><a href="#cb88-1435" aria-hidden="true" tabindex="-1"></a><span class="co"># create a new dataframe for the response variables, following the method in lecture 5</span></span>
+<span id="cb88-1436"><a href="#cb88-1436" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1437"><a href="#cb88-1437" aria-hidden="true" tabindex="-1"></a><span class="co"># combine variables into a data frame</span></span>
+<span id="cb88-1438"><a href="#cb88-1438" aria-hidden="true" tabindex="-1"></a>df_expand_grid_nz_2_predict_fit_3 <span class="ot">&lt;-</span></span>
+<span id="cb88-1439"><a href="#cb88-1439" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(df_expand_grid_nz_2, predict_fit_3)</span>
+<span id="cb88-1440"><a href="#cb88-1440" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1441"><a href="#cb88-1441" aria-hidden="true" tabindex="-1"></a><span class="co"># graph the expected average hypothetical heights of "daughters"</span></span>
+<span id="cb88-1442"><a href="#cb88-1442" aria-hidden="true" tabindex="-1"></a>predplot2 <span class="ot">&lt;-</span></span>
+<span id="cb88-1443"><a href="#cb88-1443" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">data =</span> df_expand_grid_nz_2_predict_fit_3,</span>
+<span id="cb88-1444"><a href="#cb88-1444" aria-hidden="true" tabindex="-1"></a>         <span class="fu">aes</span>(<span class="at">x =</span> mother_height,</span>
+<span id="cb88-1445"><a href="#cb88-1445" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> fit))  <span class="sc">+</span></span>
+<span id="cb88-1446"><a href="#cb88-1446" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">colour =</span> <span class="st">"cadetblue"</span>)  <span class="sc">+</span>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> lwr, <span class="at">ymax =</span> upr), <span class="at">width =</span> .<span class="dv">1</span>) <span class="sc">+</span> <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">50</span>, <span class="dv">75</span>)) <span class="sc">+</span> <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">50</span>, <span class="dv">75</span>)) <span class="sc">+</span> <span class="fu">theme_classic</span>()  <span class="sc">+</span></span>
+<span id="cb88-1447"><a href="#cb88-1447" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"NZ 2019 female population"</span>) <span class="sc">+</span></span>
+<span id="cb88-1448"><a href="#cb88-1448" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"predicted daughter heights in inches"</span>) <span class="sc">+</span></span>
+<span id="cb88-1449"><a href="#cb88-1449" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Regression prediction for hypothetical daughter heights of NZ population in 2019 "</span>)</span>
+<span id="cb88-1450"><a href="#cb88-1450" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1451"><a href="#cb88-1451" aria-hidden="true" tabindex="-1"></a><span class="co"># plot</span></span>
+<span id="cb88-1452"><a href="#cb88-1452" aria-hidden="true" tabindex="-1"></a>predplot2</span>
+<span id="cb88-1453"><a href="#cb88-1453" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb88-1454"><a href="#cb88-1454" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1455"><a href="#cb88-1455" aria-hidden="true" tabindex="-1"></a><span class="fu">## Solution Q6. Bonus</span></span>
+<span id="cb88-1456"><a href="#cb88-1456" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1457"><a href="#cb88-1457" aria-hidden="true" tabindex="-1"></a>**On average, how much taller or shorter are women in New Zealand as sampled in 2019 `nz` dataset compared with women in 1903 as sampled in the Pearson and Lee dataset.**</span>
 <span id="cb88-1458"><a href="#cb88-1458" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1461"><a href="#cb88-1461" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb88-1462"><a href="#cb88-1462" aria-hidden="true" tabindex="-1"></a><span class="co"># create var for 1903 dataset</span></span>
-<span id="cb88-1463"><a href="#cb88-1463" aria-hidden="true" tabindex="-1"></a><span class="co"># For the historical dataset (assuming year 1903 for df_pearson_lee_2)</span></span>
-<span id="cb88-1464"><a href="#cb88-1464" aria-hidden="true" tabindex="-1"></a>df_pearson_lee_2 <span class="ot">&lt;-</span> df_pearson_lee <span class="sc">|&gt;</span></span>
-<span id="cb88-1465"><a href="#cb88-1465" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(mother_height, daughter_height) <span class="sc">|&gt;</span></span>
-<span id="cb88-1466"><a href="#cb88-1466" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(<span class="fu">everything</span>(), <span class="at">names_to =</span> <span class="st">"relation"</span>, <span class="at">values_to =</span> <span class="st">"f_height"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb88-1467"><a href="#cb88-1467" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">year_is =</span> <span class="fu">factor</span>(<span class="st">"1903"</span>))</span>
-<span id="cb88-1468"><a href="#cb88-1468" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1469"><a href="#cb88-1469" aria-hidden="true" tabindex="-1"></a><span class="co"># create var the 2019 dataset</span></span>
-<span id="cb88-1470"><a href="#cb88-1470" aria-hidden="true" tabindex="-1"></a>df_nz_combine_pearson_lee <span class="ot">&lt;-</span> df_nz_2 <span class="sc">|&gt;</span></span>
-<span id="cb88-1471"><a href="#cb88-1471" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">rename</span>(<span class="at">f_height =</span> mother_height) <span class="sc">|&gt;</span></span>
-<span id="cb88-1472"><a href="#cb88-1472" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">year_is =</span> <span class="fu">factor</span>(<span class="st">"2019"</span>),</span>
-<span id="cb88-1473"><a href="#cb88-1473" aria-hidden="true" tabindex="-1"></a>                <span class="at">relation =</span> <span class="fu">factor</span>(<span class="st">"mother"</span>))</span>
-<span id="cb88-1474"><a href="#cb88-1474" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1475"><a href="#cb88-1475" aria-hidden="true" tabindex="-1"></a><span class="co"># both dataframes have the `year_is` column but with different factor levels</span></span>
-<span id="cb88-1476"><a href="#cb88-1476" aria-hidden="true" tabindex="-1"></a><span class="co"># check</span></span>
-<span id="cb88-1477"><a href="#cb88-1477" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df_nz_combine_pearson_lee)</span>
-<span id="cb88-1478"><a href="#cb88-1478" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1459"><a href="#cb88-1459" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1462"><a href="#cb88-1462" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb88-1463"><a href="#cb88-1463" aria-hidden="true" tabindex="-1"></a><span class="co"># create var for 1903 dataset</span></span>
+<span id="cb88-1464"><a href="#cb88-1464" aria-hidden="true" tabindex="-1"></a><span class="co"># For the historical dataset (assuming year 1903 for df_pearson_lee_2)</span></span>
+<span id="cb88-1465"><a href="#cb88-1465" aria-hidden="true" tabindex="-1"></a>df_pearson_lee_2 <span class="ot">&lt;-</span> df_pearson_lee <span class="sc">|&gt;</span></span>
+<span id="cb88-1466"><a href="#cb88-1466" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(mother_height, daughter_height) <span class="sc">|&gt;</span></span>
+<span id="cb88-1467"><a href="#cb88-1467" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(<span class="fu">everything</span>(), <span class="at">names_to =</span> <span class="st">"relation"</span>, <span class="at">values_to =</span> <span class="st">"f_height"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb88-1468"><a href="#cb88-1468" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">year_is =</span> <span class="fu">factor</span>(<span class="st">"1903"</span>))</span>
+<span id="cb88-1469"><a href="#cb88-1469" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1470"><a href="#cb88-1470" aria-hidden="true" tabindex="-1"></a><span class="co"># create var the 2019 dataset</span></span>
+<span id="cb88-1471"><a href="#cb88-1471" aria-hidden="true" tabindex="-1"></a>df_nz_combine_pearson_lee <span class="ot">&lt;-</span> df_nz_2 <span class="sc">|&gt;</span></span>
+<span id="cb88-1472"><a href="#cb88-1472" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">rename</span>(<span class="at">f_height =</span> mother_height) <span class="sc">|&gt;</span></span>
+<span id="cb88-1473"><a href="#cb88-1473" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">year_is =</span> <span class="fu">factor</span>(<span class="st">"2019"</span>),</span>
+<span id="cb88-1474"><a href="#cb88-1474" aria-hidden="true" tabindex="-1"></a>                <span class="at">relation =</span> <span class="fu">factor</span>(<span class="st">"mother"</span>))</span>
+<span id="cb88-1475"><a href="#cb88-1475" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1476"><a href="#cb88-1476" aria-hidden="true" tabindex="-1"></a><span class="co"># both dataframes have the `year_is` column but with different factor levels</span></span>
+<span id="cb88-1477"><a href="#cb88-1477" aria-hidden="true" tabindex="-1"></a><span class="co"># check</span></span>
+<span id="cb88-1478"><a href="#cb88-1478" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df_nz_combine_pearson_lee)</span>
 <span id="cb88-1479"><a href="#cb88-1479" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1480"><a href="#cb88-1480" aria-hidden="true" tabindex="-1"></a><span class="co"># combine data frames row-wise</span></span>
-<span id="cb88-1481"><a href="#cb88-1481" aria-hidden="true" tabindex="-1"></a>df_nz_combine_pearson_lee_1 <span class="ot">&lt;-</span> <span class="fu">rbind</span>(df_pearson_lee_2, df_nz_combine_pearson_lee)</span>
-<span id="cb88-1482"><a href="#cb88-1482" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1480"><a href="#cb88-1480" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1481"><a href="#cb88-1481" aria-hidden="true" tabindex="-1"></a><span class="co"># combine data frames row-wise</span></span>
+<span id="cb88-1482"><a href="#cb88-1482" aria-hidden="true" tabindex="-1"></a>df_nz_combine_pearson_lee_1 <span class="ot">&lt;-</span> <span class="fu">rbind</span>(df_pearson_lee_2, df_nz_combine_pearson_lee)</span>
 <span id="cb88-1483"><a href="#cb88-1483" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1484"><a href="#cb88-1484" aria-hidden="true" tabindex="-1"></a><span class="co"># look at data structure</span></span>
-<span id="cb88-1485"><a href="#cb88-1485" aria-hidden="true" tabindex="-1"></a><span class="co">#dplyr::glimpse(df_nz_combine_pearson_lee_1)</span></span>
-<span id="cb88-1486"><a href="#cb88-1486" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb88-1487"><a href="#cb88-1487" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1488"><a href="#cb88-1488" aria-hidden="true" tabindex="-1"></a>Look at heights in sample </span>
-<span id="cb88-1489"><a href="#cb88-1489" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1492"><a href="#cb88-1492" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb88-1493"><a href="#cb88-1493" aria-hidden="true" tabindex="-1"></a><span class="co"># get min and max heights for graph range</span></span>
-<span id="cb88-1494"><a href="#cb88-1494" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(df_nz_combine_pearson_lee_1<span class="sc">$</span>year_is)</span>
-<span id="cb88-1495"><a href="#cb88-1495" aria-hidden="true" tabindex="-1"></a><span class="co"># box plot</span></span>
-<span id="cb88-1496"><a href="#cb88-1496" aria-hidden="true" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(<span class="at">data =</span></span>
-<span id="cb88-1497"><a href="#cb88-1497" aria-hidden="true" tabindex="-1"></a>                  df_nz_combine_pearson_lee_1,</span>
-<span id="cb88-1498"><a href="#cb88-1498" aria-hidden="true" tabindex="-1"></a>                <span class="fu">aes</span>(<span class="at">x =</span> year_is, <span class="at">y =</span> f_height, <span class="at">fill =</span> year_is)) <span class="sc">+</span></span>
-<span id="cb88-1499"><a href="#cb88-1499" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">notch =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
-<span id="cb88-1500"><a href="#cb88-1500" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Comparison of female height 1903/2019"</span>) <span class="sc">+</span></span>
-<span id="cb88-1501"><a href="#cb88-1501" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span> <span class="fu">scale_fill_viridis_d</span>()</span>
-<span id="cb88-1502"><a href="#cb88-1502" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb88-1503"><a href="#cb88-1503" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1484"><a href="#cb88-1484" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1485"><a href="#cb88-1485" aria-hidden="true" tabindex="-1"></a><span class="co"># look at data structure</span></span>
+<span id="cb88-1486"><a href="#cb88-1486" aria-hidden="true" tabindex="-1"></a><span class="co">#dplyr::glimpse(df_nz_combine_pearson_lee_1)</span></span>
+<span id="cb88-1487"><a href="#cb88-1487" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb88-1488"><a href="#cb88-1488" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1489"><a href="#cb88-1489" aria-hidden="true" tabindex="-1"></a>Look at heights in sample </span>
+<span id="cb88-1490"><a href="#cb88-1490" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1493"><a href="#cb88-1493" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb88-1494"><a href="#cb88-1494" aria-hidden="true" tabindex="-1"></a><span class="co"># get min and max heights for graph range</span></span>
+<span id="cb88-1495"><a href="#cb88-1495" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(df_nz_combine_pearson_lee_1<span class="sc">$</span>year_is)</span>
+<span id="cb88-1496"><a href="#cb88-1496" aria-hidden="true" tabindex="-1"></a><span class="co"># box plot</span></span>
+<span id="cb88-1497"><a href="#cb88-1497" aria-hidden="true" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(<span class="at">data =</span></span>
+<span id="cb88-1498"><a href="#cb88-1498" aria-hidden="true" tabindex="-1"></a>                  df_nz_combine_pearson_lee_1,</span>
+<span id="cb88-1499"><a href="#cb88-1499" aria-hidden="true" tabindex="-1"></a>                <span class="fu">aes</span>(<span class="at">x =</span> year_is, <span class="at">y =</span> f_height, <span class="at">fill =</span> year_is)) <span class="sc">+</span></span>
+<span id="cb88-1500"><a href="#cb88-1500" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">notch =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb88-1501"><a href="#cb88-1501" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Comparison of female height 1903/2019"</span>) <span class="sc">+</span></span>
+<span id="cb88-1502"><a href="#cb88-1502" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span> <span class="fu">scale_fill_viridis_d</span>()</span>
+<span id="cb88-1503"><a href="#cb88-1503" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb88-1504"><a href="#cb88-1504" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1505"><a href="#cb88-1505" aria-hidden="true" tabindex="-1"></a>Predict heights out of sample</span>
-<span id="cb88-1506"><a href="#cb88-1506" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1509"><a href="#cb88-1509" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb88-1510"><a href="#cb88-1510" aria-hidden="true" tabindex="-1"></a><span class="co"># regression model</span></span>
-<span id="cb88-1511"><a href="#cb88-1511" aria-hidden="true" tabindex="-1"></a>fit_4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(f_height <span class="sc">~</span> year_is, <span class="at">data =</span> df_nz_combine_pearson_lee_1)</span>
-<span id="cb88-1512"><a href="#cb88-1512" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1513"><a href="#cb88-1513" aria-hidden="true" tabindex="-1"></a><span class="co"># table</span></span>
-<span id="cb88-1514"><a href="#cb88-1514" aria-hidden="true" tabindex="-1"></a>sjPlot<span class="sc">::</span><span class="fu">tab_model</span>(fit_4)</span>
-<span id="cb88-1515"><a href="#cb88-1515" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb88-1516"><a href="#cb88-1516" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1517"><a href="#cb88-1517" aria-hidden="true" tabindex="-1"></a>Women in 2019 are taller</span>
-<span id="cb88-1518"><a href="#cb88-1518" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1521"><a href="#cb88-1521" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb88-1522"><a href="#cb88-1522" aria-hidden="true" tabindex="-1"></a>report<span class="sc">::</span><span class="fu">report</span>(fit_4)</span>
-<span id="cb88-1523"><a href="#cb88-1523" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb88-1524"><a href="#cb88-1524" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1505"><a href="#cb88-1505" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1506"><a href="#cb88-1506" aria-hidden="true" tabindex="-1"></a>Predict heights out of sample</span>
+<span id="cb88-1507"><a href="#cb88-1507" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1510"><a href="#cb88-1510" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb88-1511"><a href="#cb88-1511" aria-hidden="true" tabindex="-1"></a><span class="co"># regression model</span></span>
+<span id="cb88-1512"><a href="#cb88-1512" aria-hidden="true" tabindex="-1"></a>fit_4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(f_height <span class="sc">~</span> year_is, <span class="at">data =</span> df_nz_combine_pearson_lee_1)</span>
+<span id="cb88-1513"><a href="#cb88-1513" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1514"><a href="#cb88-1514" aria-hidden="true" tabindex="-1"></a><span class="co"># table</span></span>
+<span id="cb88-1515"><a href="#cb88-1515" aria-hidden="true" tabindex="-1"></a>sjPlot<span class="sc">::</span><span class="fu">tab_model</span>(fit_4)</span>
+<span id="cb88-1516"><a href="#cb88-1516" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb88-1517"><a href="#cb88-1517" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1518"><a href="#cb88-1518" aria-hidden="true" tabindex="-1"></a>Women in 2019 are taller</span>
+<span id="cb88-1519"><a href="#cb88-1519" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1522"><a href="#cb88-1522" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb88-1523"><a href="#cb88-1523" aria-hidden="true" tabindex="-1"></a>report<span class="sc">::</span><span class="fu">report</span>(fit_4)</span>
+<span id="cb88-1524"><a href="#cb88-1524" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb88-1525"><a href="#cb88-1525" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1526"><a href="#cb88-1526" aria-hidden="true" tabindex="-1"></a>Graph:</span>
-<span id="cb88-1527"><a href="#cb88-1527" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1530"><a href="#cb88-1530" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb88-1531"><a href="#cb88-1531" aria-hidden="true" tabindex="-1"></a><span class="co"># get meaningful values for the y access range</span></span>
-<span id="cb88-1532"><a href="#cb88-1532" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1533"><a href="#cb88-1533" aria-hidden="true" tabindex="-1"></a><span class="co"># min</span></span>
-<span id="cb88-1534"><a href="#cb88-1534" aria-hidden="true" tabindex="-1"></a>min_mother_height_for_range <span class="ot">&lt;-</span> <span class="fu">min</span>(df_nz_combine_pearson_lee_1<span class="sc">$</span>f_height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb88-1535"><a href="#cb88-1535" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1536"><a href="#cb88-1536" aria-hidden="true" tabindex="-1"></a><span class="co"># max</span></span>
-<span id="cb88-1537"><a href="#cb88-1537" aria-hidden="true" tabindex="-1"></a>max_mother_height_for_range <span class="ot">&lt;-</span> <span class="fu">max</span>(df_nz_combine_pearson_lee_1<span class="sc">$</span>f_height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb88-1538"><a href="#cb88-1538" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1539"><a href="#cb88-1539" aria-hidden="true" tabindex="-1"></a><span class="co"># make graph </span></span>
-<span id="cb88-1540"><a href="#cb88-1540" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(</span>
-<span id="cb88-1541"><a href="#cb88-1541" aria-hidden="true" tabindex="-1"></a>  ggeffects<span class="sc">::</span><span class="fu">ggpredict</span>(fit_4, <span class="at">terms =</span> <span class="st">"year_is"</span>),</span>
-<span id="cb88-1542"><a href="#cb88-1542" aria-hidden="true" tabindex="-1"></a>  <span class="at">add.data =</span> F,</span>
-<span id="cb88-1543"><a href="#cb88-1543" aria-hidden="true" tabindex="-1"></a>  <span class="at">dot.alpha =</span> .<span class="dv">2</span></span>
-<span id="cb88-1544"><a href="#cb88-1544" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Predicted difference in female heights 1903/2019"</span>) <span class="sc">+</span> </span>
-<span id="cb88-1545"><a href="#cb88-1545" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Study year"</span>) <span class="sc">+</span> </span>
-<span id="cb88-1546"><a href="#cb88-1546" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span> (<span class="st">"Predicted femal height (inches)"</span>) <span class="sc">+</span>   <span class="fu">scale_y_continuous</span>(</span>
-<span id="cb88-1547"><a href="#cb88-1547" aria-hidden="true" tabindex="-1"></a>    <span class="at">limits =</span> <span class="fu">c</span>(min_mother_height_for_range,max_mother_height_for_range))</span>
-<span id="cb88-1548"><a href="#cb88-1548" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1549"><a href="#cb88-1549" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb88-1550"><a href="#cb88-1550" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1551"><a href="#cb88-1551" aria-hidden="true" tabindex="-1"></a>Graph with predicted points:</span>
-<span id="cb88-1552"><a href="#cb88-1552" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1555"><a href="#cb88-1555" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb88-1556"><a href="#cb88-1556" aria-hidden="true" tabindex="-1"></a>ggeffects<span class="sc">::</span><span class="fu">ggpredict</span>(fit_4, <span class="at">terms =</span> <span class="st">"year_is"</span>)</span>
-<span id="cb88-1557"><a href="#cb88-1557" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1558"><a href="#cb88-1558" aria-hidden="true" tabindex="-1"></a><span class="co"># graph with predicted values based on the model</span></span>
-<span id="cb88-1559"><a href="#cb88-1559" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(</span>
-<span id="cb88-1560"><a href="#cb88-1560" aria-hidden="true" tabindex="-1"></a>  ggeffects<span class="sc">::</span><span class="fu">ggpredict</span>(fit_4, <span class="at">terms =</span> <span class="st">"year_is"</span>),</span>
-<span id="cb88-1561"><a href="#cb88-1561" aria-hidden="true" tabindex="-1"></a>  <span class="at">add.data =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb88-1562"><a href="#cb88-1562" aria-hidden="true" tabindex="-1"></a>  <span class="at">dot.alpha =</span> .<span class="dv">01</span>,</span>
-<span id="cb88-1563"><a href="#cb88-1563" aria-hidden="true" tabindex="-1"></a>   <span class="at">colors =</span> <span class="st">"us"</span>, <span class="co"># see colour pallet options </span></span>
-<span id="cb88-1564"><a href="#cb88-1564" aria-hidden="true" tabindex="-1"></a>  <span class="at">jitter =</span>.<span class="dv">5</span>) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Predicted difference in female heights 1903/2019"</span>) <span class="sc">+</span></span>
-<span id="cb88-1565"><a href="#cb88-1565" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Study year"</span>) <span class="sc">+</span></span>
-<span id="cb88-1566"><a href="#cb88-1566" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span> (<span class="st">"Predicted femal height (inches)"</span>) <span class="sc">+</span></span>
-<span id="cb88-1567"><a href="#cb88-1567" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(min_mother_height_for_range, max_mother_height_for_range))</span>
-<span id="cb88-1568"><a href="#cb88-1568" aria-hidden="true" tabindex="-1"></a>fit_4</span>
-<span id="cb88-1569"><a href="#cb88-1569" aria-hidden="true" tabindex="-1"></a><span class="co"># show all color palettes</span></span>
-<span id="cb88-1570"><a href="#cb88-1570" aria-hidden="true" tabindex="-1"></a><span class="co">#show_pals()</span></span>
-<span id="cb88-1571"><a href="#cb88-1571" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb88-1572"><a href="#cb88-1572" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1526"><a href="#cb88-1526" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1527"><a href="#cb88-1527" aria-hidden="true" tabindex="-1"></a>Graph:</span>
+<span id="cb88-1528"><a href="#cb88-1528" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1531"><a href="#cb88-1531" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb88-1532"><a href="#cb88-1532" aria-hidden="true" tabindex="-1"></a><span class="co"># get meaningful values for the y access range</span></span>
+<span id="cb88-1533"><a href="#cb88-1533" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1534"><a href="#cb88-1534" aria-hidden="true" tabindex="-1"></a><span class="co"># min</span></span>
+<span id="cb88-1535"><a href="#cb88-1535" aria-hidden="true" tabindex="-1"></a>min_mother_height_for_range <span class="ot">&lt;-</span> <span class="fu">min</span>(df_nz_combine_pearson_lee_1<span class="sc">$</span>f_height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb88-1536"><a href="#cb88-1536" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1537"><a href="#cb88-1537" aria-hidden="true" tabindex="-1"></a><span class="co"># max</span></span>
+<span id="cb88-1538"><a href="#cb88-1538" aria-hidden="true" tabindex="-1"></a>max_mother_height_for_range <span class="ot">&lt;-</span> <span class="fu">max</span>(df_nz_combine_pearson_lee_1<span class="sc">$</span>f_height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb88-1539"><a href="#cb88-1539" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1540"><a href="#cb88-1540" aria-hidden="true" tabindex="-1"></a><span class="co"># make graph </span></span>
+<span id="cb88-1541"><a href="#cb88-1541" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(</span>
+<span id="cb88-1542"><a href="#cb88-1542" aria-hidden="true" tabindex="-1"></a>  ggeffects<span class="sc">::</span><span class="fu">ggpredict</span>(fit_4, <span class="at">terms =</span> <span class="st">"year_is"</span>),</span>
+<span id="cb88-1543"><a href="#cb88-1543" aria-hidden="true" tabindex="-1"></a>  <span class="at">add.data =</span> F,</span>
+<span id="cb88-1544"><a href="#cb88-1544" aria-hidden="true" tabindex="-1"></a>  <span class="at">dot.alpha =</span> .<span class="dv">2</span></span>
+<span id="cb88-1545"><a href="#cb88-1545" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Predicted difference in female heights 1903/2019"</span>) <span class="sc">+</span> </span>
+<span id="cb88-1546"><a href="#cb88-1546" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Study year"</span>) <span class="sc">+</span> </span>
+<span id="cb88-1547"><a href="#cb88-1547" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span> (<span class="st">"Predicted femal height (inches)"</span>) <span class="sc">+</span>   <span class="fu">scale_y_continuous</span>(</span>
+<span id="cb88-1548"><a href="#cb88-1548" aria-hidden="true" tabindex="-1"></a>    <span class="at">limits =</span> <span class="fu">c</span>(min_mother_height_for_range,max_mother_height_for_range))</span>
+<span id="cb88-1549"><a href="#cb88-1549" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1550"><a href="#cb88-1550" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb88-1551"><a href="#cb88-1551" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1552"><a href="#cb88-1552" aria-hidden="true" tabindex="-1"></a>Graph with predicted points:</span>
+<span id="cb88-1553"><a href="#cb88-1553" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1556"><a href="#cb88-1556" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb88-1557"><a href="#cb88-1557" aria-hidden="true" tabindex="-1"></a>ggeffects<span class="sc">::</span><span class="fu">ggpredict</span>(fit_4, <span class="at">terms =</span> <span class="st">"year_is"</span>)</span>
+<span id="cb88-1558"><a href="#cb88-1558" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1559"><a href="#cb88-1559" aria-hidden="true" tabindex="-1"></a><span class="co"># graph with predicted values based on the model</span></span>
+<span id="cb88-1560"><a href="#cb88-1560" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(</span>
+<span id="cb88-1561"><a href="#cb88-1561" aria-hidden="true" tabindex="-1"></a>  ggeffects<span class="sc">::</span><span class="fu">ggpredict</span>(fit_4, <span class="at">terms =</span> <span class="st">"year_is"</span>),</span>
+<span id="cb88-1562"><a href="#cb88-1562" aria-hidden="true" tabindex="-1"></a>  <span class="at">add.data =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb88-1563"><a href="#cb88-1563" aria-hidden="true" tabindex="-1"></a>  <span class="at">dot.alpha =</span> .<span class="dv">01</span>,</span>
+<span id="cb88-1564"><a href="#cb88-1564" aria-hidden="true" tabindex="-1"></a>   <span class="at">colors =</span> <span class="st">"us"</span>, <span class="co"># see colour pallet options </span></span>
+<span id="cb88-1565"><a href="#cb88-1565" aria-hidden="true" tabindex="-1"></a>  <span class="at">jitter =</span>.<span class="dv">5</span>) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Predicted difference in female heights 1903/2019"</span>) <span class="sc">+</span></span>
+<span id="cb88-1566"><a href="#cb88-1566" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Study year"</span>) <span class="sc">+</span></span>
+<span id="cb88-1567"><a href="#cb88-1567" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span> (<span class="st">"Predicted femal height (inches)"</span>) <span class="sc">+</span></span>
+<span id="cb88-1568"><a href="#cb88-1568" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(min_mother_height_for_range, max_mother_height_for_range))</span>
+<span id="cb88-1569"><a href="#cb88-1569" aria-hidden="true" tabindex="-1"></a>fit_4</span>
+<span id="cb88-1570"><a href="#cb88-1570" aria-hidden="true" tabindex="-1"></a><span class="co"># show all color palettes</span></span>
+<span id="cb88-1571"><a href="#cb88-1571" aria-hidden="true" tabindex="-1"></a><span class="co">#show_pals()</span></span>
+<span id="cb88-1572"><a href="#cb88-1572" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb88-1573"><a href="#cb88-1573" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb88-1574"><a href="#cb88-1574" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1575"><a href="#cb88-1575" aria-hidden="true" tabindex="-1"></a><span class="fu">## Appendix 1 Conceptual Background</span></span>
-<span id="cb88-1576"><a href="#cb88-1576" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1577"><a href="#cb88-1577" aria-hidden="true" tabindex="-1"></a>Some preliminaries about science.</span>
-<span id="cb88-1578"><a href="#cb88-1578" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1579"><a href="#cb88-1579" aria-hidden="true" tabindex="-1"></a><span class="fu">### Science begins with a question</span></span>
-<span id="cb88-1580"><a href="#cb88-1580" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1581"><a href="#cb88-1581" aria-hidden="true" tabindex="-1"></a>Science begins with a question about the world. The first step in science, then, is to clarify what you want to know.</span>
-<span id="cb88-1582"><a href="#cb88-1582" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1583"><a href="#cb88-1583" aria-hidden="true" tabindex="-1"></a>Because science is a social practice, you will also need to clarify why your question is interesting: so what?</span>
-<span id="cb88-1584"><a href="#cb88-1584" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1585"><a href="#cb88-1585" aria-hidden="true" tabindex="-1"></a>In short, know your question.</span>
-<span id="cb88-1586"><a href="#cb88-1586" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1587"><a href="#cb88-1587" aria-hidden="true" tabindex="-1"></a><span class="fu">### Scientific model (or theory)</span></span>
-<span id="cb88-1588"><a href="#cb88-1588" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1589"><a href="#cb88-1589" aria-hidden="true" tabindex="-1"></a>Sometimes, scientists are interested in specific features of the world: how did virus x originate? Such a question might have a forensic interest: what constellation of events gave rise to a novel infectious disease?</span>
-<span id="cb88-1590"><a href="#cb88-1590" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1591"><a href="#cb88-1591" aria-hidden="true" tabindex="-1"></a>Scientists typically seek generalisations. How do infectious diseases evolve? How do biological organisms evolve? Such questions have applied interests. How can we better prevent infectious diseases? How did life originate?</span>
-<span id="cb88-1592"><a href="#cb88-1592" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1593"><a href="#cb88-1593" aria-hidden="true" tabindex="-1"></a>A scientific model proposes how nature is structured (and unstructured). For example, the theory of evolution by natural selection proposes that life emerges from variation, inheritance, and differential reproduction/survival.</span>
-<span id="cb88-1594"><a href="#cb88-1594" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1595"><a href="#cb88-1595" aria-hidden="true" tabindex="-1"></a>To evaluate a scientific model, scientists must make generalisations beyond individual cases. This is where statistics shines.</span>
-<span id="cb88-1596"><a href="#cb88-1596" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1597"><a href="#cb88-1597" aria-hidden="true" tabindex="-1"></a><span class="fu">### What is statistics?</span></span>
-<span id="cb88-1598"><a href="#cb88-1598" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1599"><a href="#cb88-1599" aria-hidden="true" tabindex="-1"></a>Mathematics is a logic of certainty.</span>
-<span id="cb88-1600"><a href="#cb88-1600" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1601"><a href="#cb88-1601" aria-hidden="true" tabindex="-1"></a>Statistics is a logic of uncertainty.</span>
-<span id="cb88-1602"><a href="#cb88-1602" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1603"><a href="#cb88-1603" aria-hidden="true" tabindex="-1"></a>A statistical model uses the logic of probability to make better guesses.</span>
-<span id="cb88-1604"><a href="#cb88-1604" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1605"><a href="#cb88-1605" aria-hidden="true" tabindex="-1"></a><span class="fu">### Applications of statistical models in science</span></span>
-<span id="cb88-1606"><a href="#cb88-1606" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1607"><a href="#cb88-1607" aria-hidden="true" tabindex="-1"></a>Scientific models seek to explain how nature is structured. Where scientific models conflict, we can combine statistical models with data collection to evaluate the credibility of of one theoretical model over others. To do this, a scientific model must make distinct, non-trivial predictions about the world.</span>
-<span id="cb88-1608"><a href="#cb88-1608" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1609"><a href="#cb88-1609" aria-hidden="true" tabindex="-1"></a>If the predictions are not distinct, the observations will not enable a shift in credibility for one theory over another. Consider the theory that predicts any observation. Such a theory would be better classified as a conspiracy theory; it is compatible with any evidence.</span>
-<span id="cb88-1610"><a href="#cb88-1610" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-1611"><a href="#cb88-1611" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Sometimes the processes of empirical testing is called "hypothesis testing." In the weeks ahead, we will distinguish the intellectually excellent concept of "hypothesis testing" from "Null Hypothesis Significance Testing (NHST)." Although there is is nothing inherently flawed with NHST, it's misunderstandings have been an abomination. --&gt;</span></span>
-<span id="cb88-1612"><a href="#cb88-1612" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1575"><a href="#cb88-1575" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1576"><a href="#cb88-1576" aria-hidden="true" tabindex="-1"></a><span class="fu">## Appendix 1 Conceptual Background</span></span>
+<span id="cb88-1577"><a href="#cb88-1577" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1578"><a href="#cb88-1578" aria-hidden="true" tabindex="-1"></a>Some preliminaries about science.</span>
+<span id="cb88-1579"><a href="#cb88-1579" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1580"><a href="#cb88-1580" aria-hidden="true" tabindex="-1"></a><span class="fu">### Science begins with a question</span></span>
+<span id="cb88-1581"><a href="#cb88-1581" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1582"><a href="#cb88-1582" aria-hidden="true" tabindex="-1"></a>Science begins with a question about the world. The first step in science, then, is to clarify what you want to know.</span>
+<span id="cb88-1583"><a href="#cb88-1583" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1584"><a href="#cb88-1584" aria-hidden="true" tabindex="-1"></a>Because science is a social practice, you will also need to clarify why your question is interesting: so what?</span>
+<span id="cb88-1585"><a href="#cb88-1585" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1586"><a href="#cb88-1586" aria-hidden="true" tabindex="-1"></a>In short, know your question.</span>
+<span id="cb88-1587"><a href="#cb88-1587" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1588"><a href="#cb88-1588" aria-hidden="true" tabindex="-1"></a><span class="fu">### Scientific model (or theory)</span></span>
+<span id="cb88-1589"><a href="#cb88-1589" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1590"><a href="#cb88-1590" aria-hidden="true" tabindex="-1"></a>Sometimes, scientists are interested in specific features of the world: how did virus x originate? Such a question might have a forensic interest: what constellation of events gave rise to a novel infectious disease?</span>
+<span id="cb88-1591"><a href="#cb88-1591" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1592"><a href="#cb88-1592" aria-hidden="true" tabindex="-1"></a>Scientists typically seek generalisations. How do infectious diseases evolve? How do biological organisms evolve? Such questions have applied interests. How can we better prevent infectious diseases? How did life originate?</span>
+<span id="cb88-1593"><a href="#cb88-1593" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1594"><a href="#cb88-1594" aria-hidden="true" tabindex="-1"></a>A scientific model proposes how nature is structured (and unstructured). For example, the theory of evolution by natural selection proposes that life emerges from variation, inheritance, and differential reproduction/survival.</span>
+<span id="cb88-1595"><a href="#cb88-1595" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1596"><a href="#cb88-1596" aria-hidden="true" tabindex="-1"></a>To evaluate a scientific model, scientists must make generalisations beyond individual cases. This is where statistics shines.</span>
+<span id="cb88-1597"><a href="#cb88-1597" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1598"><a href="#cb88-1598" aria-hidden="true" tabindex="-1"></a><span class="fu">### What is statistics?</span></span>
+<span id="cb88-1599"><a href="#cb88-1599" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1600"><a href="#cb88-1600" aria-hidden="true" tabindex="-1"></a>Mathematics is a logic of certainty.</span>
+<span id="cb88-1601"><a href="#cb88-1601" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1602"><a href="#cb88-1602" aria-hidden="true" tabindex="-1"></a>Statistics is a logic of uncertainty.</span>
+<span id="cb88-1603"><a href="#cb88-1603" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1604"><a href="#cb88-1604" aria-hidden="true" tabindex="-1"></a>A statistical model uses the logic of probability to make better guesses.</span>
+<span id="cb88-1605"><a href="#cb88-1605" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1606"><a href="#cb88-1606" aria-hidden="true" tabindex="-1"></a><span class="fu">### Applications of statistical models in science</span></span>
+<span id="cb88-1607"><a href="#cb88-1607" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1608"><a href="#cb88-1608" aria-hidden="true" tabindex="-1"></a>Scientific models seek to explain how nature is structured. Where scientific models conflict, we can combine statistical models with data collection to evaluate the credibility of of one theoretical model over others. To do this, a scientific model must make distinct, non-trivial predictions about the world.</span>
+<span id="cb88-1609"><a href="#cb88-1609" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1610"><a href="#cb88-1610" aria-hidden="true" tabindex="-1"></a>If the predictions are not distinct, the observations will not enable a shift in credibility for one theory over another. Consider the theory that predicts any observation. Such a theory would be better classified as a conspiracy theory; it is compatible with any evidence.</span>
+<span id="cb88-1611"><a href="#cb88-1611" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1612"><a href="#cb88-1612" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Sometimes the processes of empirical testing is called "hypothesis testing." In the weeks ahead, we will distinguish the intellectually excellent concept of "hypothesis testing" from "Null Hypothesis Significance Testing (NHST)." Although there is is nothing inherently flawed with NHST, it's misunderstandings have been an abomination. --&gt;</span></span>
 <span id="cb88-1613"><a href="#cb88-1613" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb88-1614"><a href="#cb88-1614" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb88-1615"><a href="#cb88-1615" aria-hidden="true" tabindex="-1"></a></span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
