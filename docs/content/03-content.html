@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.24">
+<meta name="generator" content="quarto-1.5.23">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -219,7 +219,10 @@ window.Quarto = {
     <a class="dropdown-item" href="../content/03-content.html">
  <span class="dropdown-text">Week 3: Causal Diagrams - Confounding Bias - R (regression/simulation)</span></a>
   </li>  
-        <li class="dropdown-header">Week 4: Causal Diagrams - Interaction, Measurement Bias, Selection Bias - R (regression/simulation)</li>
+        <li>
+    <a class="dropdown-item" href="../content/03-content.html">
+ <span class="dropdown-text">Week 4: Causal Diagrams - Interaction, Measurement Bias, Selection Bias - R (regression/simulation)</span></a>
+  </li>  
         <li class="dropdown-header">Week 5: Quiz - R (regression/simulation/reporting)</li>
         <li class="dropdown-header">Week 6: Causal Inference - Key Concepts ATE - R (regression/simulation: ATE)</li>
         <li class="dropdown-header">Week 7: Causal Inference - Key Concept CATE - R (regression/simulation: ATE)</li>
@@ -881,8 +884,10 @@ Figure&nbsp;3: This figure is adapted from <span class="citation" data-cites="bu
 <h3 class="anchored" data-anchor-id="regression-with-a-single-co-variate">Regression with a single co-variate</h3>
 <p>Do mothers’s heights <em>predict</em> daughter height? If so, what is the magnitude of the relationship?</p>
 <p>Francis Galton is credited with inventing regression analysis. Galton observed that offspring’s heights tend to fall between parental height and the population average, which Galton termed “regression to the mean.” Galton sought a method for educated guessing about heights, and this led to fitting a line of regression by a method called “least squares” (For a history, see: <a href="https://rss.onlinelibrary.wiley.com/doi/full/10.1111/j.1740-9713.2011.00509.x">here</a>).</p>
-<p>The following dataset is from “The heredity of height” by Karl Pearson and Alice Lee (1903)<span class="citation" data-cites="pearson1903">(<a href="#ref-pearson1903" role="doc-biblioref"><strong>pearson1903?</strong></a>)</span>. I obtained it from <span class="citation" data-cites="gelman_regression_2020">(<a href="#ref-gelman_regression_2020" role="doc-biblioref">Gelman, Hill, and Vehtari 2020</a>)</span>. Let’s use this dataset to investigate the relationship between mothers’ and daughters’ heights.</p>
-<div class="no-row-height column-margin column-container"></div><div class="cell">
+<p>The following dataset is from “The heredity of height” by Karl Pearson and Alice Lee (1903)<span class="citation" data-cites="pearson1903">(<a href="#ref-pearson1903" role="doc-biblioref">Pearson and Lee 1903</a>)</span>. I obtained it from <span class="citation" data-cites="gelman2020">(<a href="#ref-gelman2020" role="doc-biblioref">Gelman, Hill, and Vehtari 2020</a>)</span>. Let’s use this dataset to investigate the relationship between mothers’ and daughters’ heights.</p>
+<div class="no-row-height column-margin column-container"><div id="ref-pearson1903" class="csl-entry" role="listitem">
+Pearson, Karl, and Alice Lee. 1903. <span>“On the Laws of Inheritance in Man: I. Inheritance of Physical Characters.”</span> <em>Biometrika</em> 2 (4): 357–462.
+</div></div><div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import data</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>df_pearson_lee <span class="ot">&lt;-</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(<span class="fu">read.table</span>(</span>
@@ -1100,16 +1105,16 @@ Figure&nbsp;3: This figure is adapted from <span class="citation" data-cites="bu
 <div class="cell-output cell-output-stdout">
 <pre><code># Predicted values of daughter_height
 
-mother_height | Predicted |         95% CI
-------------------------------------------
-        52.50 |     58.41 | [58.15, 58.66]
-        54.50 |     59.50 | [59.29, 59.70]
-        57.50 |     61.13 | [60.99, 61.27]
-        59.50 |     62.22 | [62.13, 62.32]
-        61.50 |     63.31 | [63.25, 63.38]
-        63.50 |     64.40 | [64.34, 64.47]
-        65.50 |     65.49 | [65.40, 65.59]
-        70.50 |     68.22 | [68.01, 68.42]</code></pre>
+mother_height | Predicted |       95% CI
+----------------------------------------
+        52.50 |     58.41 | 58.15, 58.66
+        54.50 |     59.50 | 59.29, 59.70
+        57.50 |     61.13 | 60.99, 61.27
+        59.50 |     62.22 | 62.13, 62.32
+        61.50 |     63.31 | 63.25, 63.38
+        63.50 |     64.40 | 64.34, 64.47
+        65.50 |     65.49 | 65.40, 65.59
+        70.50 |     68.22 | 68.01, 68.42</code></pre>
 </div>
 </div>
 </section>
@@ -1365,25 +1370,25 @@ beta = 0.54, 95% CI [0.52, 0.57], t(5522) = 43.12, p &lt; .001; Std. beta = 0.50
 <div class="no-row-height column-margin column-container"></div><ol type="1">
 <li><p><strong>Validity</strong></p>
 <blockquote class="blockquote">
-<p>The most important is that the data you are analyzing should map to the research question you are trying to answer <span class="citation" data-cites="gelman_regression_2020">(<a href="#ref-gelman_regression_2020" role="doc-biblioref">Gelman, Hill, and Vehtari 2020, 152</a>)</span></p>
+<p>The most important is that the data you are analyzing should map to the research question you are trying to answer <span class="citation" data-cites="gelman2020">(<a href="#ref-gelman2020" role="doc-biblioref">Gelman, Hill, and Vehtari 2020, 152</a>)</span></p>
 </blockquote></li>
 <li><p><strong>Representativeness</strong></p>
 <blockquote class="blockquote">
-<p>A regression model is fit to data and is used to make inferences about a larger population, hence the implicit assumption in interpreting regression coefficients is that the sample is representative of the population. <span class="citation" data-cites="gelman_regression_2020">(<a href="#ref-gelman_regression_2020" role="doc-biblioref">Gelman, Hill, and Vehtari 2020, 153</a>)</span><br>
+<p>A regression model is fit to data and is used to make inferences about a larger population, hence the implicit assumption in interpreting regression coefficients is that the sample is representative of the population. <span class="citation" data-cites="gelman2020">(<a href="#ref-gelman2020" role="doc-biblioref">Gelman, Hill, and Vehtari 2020, 153</a>)</span><br>
 </p>
 </blockquote></li>
 <li><p><strong>Linearity</strong></p>
 <blockquote class="blockquote">
-<p>The most important mathematical assumption of the linear regression model is that its deterministic component is a linear function of the separate predictors: y = β0 + β1x1 + β2x2 +···. If additivity is violated, it might make sense to transform the data (for example, if y = abc, then log y = log a + log b + log c) or to add interactions. If linearity is violated, perhaps a predictor should be put in as 1/x or log(x) instead of simply linearly. Or a more complicated relationship could be expressed using a nonlinear function such as a spline or Gaussian process, <span class="citation" data-cites="gelman_regression_2020">(<a href="#ref-gelman_regression_2020" role="doc-biblioref">Gelman, Hill, and Vehtari 2020, 153</a>)</span></p>
+<p>The most important mathematical assumption of the linear regression model is that its deterministic component is a linear function of the separate predictors: y = β0 + β1x1 + β2x2 +···. If additivity is violated, it might make sense to transform the data (for example, if y = abc, then log y = log a + log b + log c) or to add interactions. If linearity is violated, perhaps a predictor should be put in as 1/x or log(x) instead of simply linearly. Or a more complicated relationship could be expressed using a nonlinear function such as a spline or Gaussian process, <span class="citation" data-cites="gelman2020">(<a href="#ref-gelman2020" role="doc-biblioref">Gelman, Hill, and Vehtari 2020, 153</a>)</span></p>
 </blockquote></li>
 <li><p><strong>Independence of errors</strong></p>
 <blockquote class="blockquote">
-<p>The simple regression model assumes that the errors from the prediction line are independent, an assumption that is violated in time series, spatial, and multilevel settings <span class="citation" data-cites="gelman_regression_2020">(<a href="#ref-gelman_regression_2020" role="doc-biblioref">Gelman, Hill, and Vehtari 2020, 153</a>)</span></p>
+<p>The simple regression model assumes that the errors from the prediction line are independent, an assumption that is violated in time series, spatial, and multilevel settings <span class="citation" data-cites="gelman2020">(<a href="#ref-gelman2020" role="doc-biblioref">Gelman, Hill, and Vehtari 2020, 153</a>)</span></p>
 </blockquote></li>
 <li><p><strong>Equal variance of errors</strong></p></li>
 </ol>
 <div class="no-row-height column-margin column-container"></div><div class="page-columns page-full"><blockquote class="blockquote">
-<p>…unequal variance does not affect the most important aspect of a regression model, which is the form of the predictors <span class="citation" data-cites="gelman_regression_2020">(<a href="#ref-gelman_regression_2020" role="doc-biblioref">Gelman, Hill, and Vehtari 2020, 153</a>)</span></p>
+<p>…unequal variance does not affect the most important aspect of a regression model, which is the form of the predictors <span class="citation" data-cites="gelman2020">(<a href="#ref-gelman2020" role="doc-biblioref">Gelman, Hill, and Vehtari 2020, 153</a>)</span></p>
 </blockquote><div class="no-row-height column-margin column-container"></div></div>
 <ol start="5" type="1">
 <li><strong>Normality of errors (statistical independence)</strong></li>
@@ -2244,11 +2249,11 @@ Bulbulia, J. A. 2022. <span>“A Workflow for Causal Inference in Cross-Cultural
 <h2 class="anchored" data-anchor-id="resources-on-regression-that-do-not-perpetuate-the-causality-crisis">Resources on Regression that Do Not Perpetuate The Causality Crisis</h2>
 <ol type="1">
 <li><strong>Statistical Rethinking</strong> <span class="citation" data-cites="mcelreath2020">(<a href="#ref-mcelreath2020" role="doc-biblioref">McElreath 2020</a>)</span></li>
-<li><strong>Regression and Other Stories</strong> <span class="citation" data-cites="gelman_regression_2020">(<a href="#ref-gelman_regression_2020" role="doc-biblioref">Gelman, Hill, and Vehtari 2020</a>)</span></li>
+<li><strong>Regression and Other Stories</strong> <span class="citation" data-cites="gelman2020">(<a href="#ref-gelman2020" role="doc-biblioref">Gelman, Hill, and Vehtari 2020</a>)</span></li>
 </ol>
 <div class="no-row-height column-margin column-container"><div id="ref-mcelreath2020" class="csl-entry" role="listitem">
 McElreath, Richard. 2020. <em>Statistical Rethinking: A <span>B</span>ayesian Course with Examples in r and Stan</em>. CRC press.
-</div><div id="ref-gelman_regression_2020" class="csl-entry" role="listitem">
+</div><div id="ref-gelman2020" class="csl-entry" role="listitem">
 Gelman, Andrew, Jennifer Hill, and Aki Vehtari. 2020. <em>Regression and Other Stories</em>. Cambridge University Press.
 </div></div></section>
 <section id="setup" class="level2">
@@ -3849,10 +3854,10 @@ computed using a Wald t-distribution approximation.</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code># Predicted values of f_height
 
-year_is | Predicted |         95% CI
-------------------------------------
-1903    |     63.18 | [63.12, 63.23]
-2019    |     65.00 | [64.94, 65.06]</code></pre>
+year_is | Predicted |       95% CI
+----------------------------------
+1903    |     63.18 | 63.12, 63.23
+2019    |     65.00 | 64.94, 65.06</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="co"># graph with predicted values based on the model</span></span>
 <span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(</span>
@@ -4060,7 +4065,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
@@ -4775,7 +4780,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb88-410"><a href="#cb88-410" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb88-411"><a href="#cb88-411" aria-hidden="true" tabindex="-1"></a>Francis Galton is credited with inventing regression analysis. Galton observed that offspring’s heights tend to fall between parental height and the population average, which Galton termed "regression to the mean." Galton sought a method for educated guessing about heights, and this led to fitting a line of regression by a method called "least squares" (For a history, see: <span class="co">[</span><span class="ot">here</span><span class="co">](https://rss.onlinelibrary.wiley.com/doi/full/10.1111/j.1740-9713.2011.00509.x)</span>).</span>
 <span id="cb88-412"><a href="#cb88-412" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-413"><a href="#cb88-413" aria-hidden="true" tabindex="-1"></a>The following dataset is from "The heredity of height" by Karl Pearson and Alice Lee (1903)<span class="co">[</span><span class="ot">@pearson1903</span><span class="co">]</span>. I obtained it from <span class="co">[</span><span class="ot">@gelman_regression_2020</span><span class="co">]</span>. Let's use this dataset to investigate the relationship between mothers' and daughters' heights.</span>
+<span id="cb88-413"><a href="#cb88-413" aria-hidden="true" tabindex="-1"></a>The following dataset is from "The heredity of height" by Karl Pearson and Alice Lee (1903)<span class="co">[</span><span class="ot">@pearson1903</span><span class="co">]</span>. I obtained it from <span class="co">[</span><span class="ot">@gelman2020</span><span class="co">]</span>. Let's use this dataset to investigate the relationship between mothers' and daughters' heights.</span>
 <span id="cb88-414"><a href="#cb88-414" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb88-417"><a href="#cb88-417" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb88-418"><a href="#cb88-418" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: pearson_lee_data</span></span>
@@ -5113,23 +5118,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb88-776"><a href="#cb88-776" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb88-777"><a href="#cb88-777" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>**Validity**</span>
 <span id="cb88-778"><a href="#cb88-778" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-779"><a href="#cb88-779" aria-hidden="true" tabindex="-1"></a><span class="at">    &gt; The most important is that the data you are analyzing should map to the research question you are trying to answer </span><span class="co">[</span><span class="ot">@gelman_regression_2020, p.152</span><span class="co">]</span></span>
+<span id="cb88-779"><a href="#cb88-779" aria-hidden="true" tabindex="-1"></a><span class="at">    &gt; The most important is that the data you are analyzing should map to the research question you are trying to answer </span><span class="co">[</span><span class="ot">@gelman2020, p.152</span><span class="co">]</span></span>
 <span id="cb88-780"><a href="#cb88-780" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb88-781"><a href="#cb88-781" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>**Representativeness**</span>
 <span id="cb88-782"><a href="#cb88-782" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-783"><a href="#cb88-783" aria-hidden="true" tabindex="-1"></a><span class="at">    &gt; A regression model is fit to data and is used to make inferences about a larger population, hence the implicit assumption in interpreting regression coefficients is that the sample is representative of the population. </span><span class="co">[</span><span class="ot">@gelman_regression_2020, p.153</span><span class="co">]</span><span class="at">\</span></span>
+<span id="cb88-783"><a href="#cb88-783" aria-hidden="true" tabindex="-1"></a><span class="at">    &gt; A regression model is fit to data and is used to make inferences about a larger population, hence the implicit assumption in interpreting regression coefficients is that the sample is representative of the population. </span><span class="co">[</span><span class="ot">@gelman2020, p.153</span><span class="co">]</span><span class="at">\</span></span>
 <span id="cb88-784"><a href="#cb88-784" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb88-785"><a href="#cb88-785" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>**Linearity**</span>
 <span id="cb88-786"><a href="#cb88-786" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-787"><a href="#cb88-787" aria-hidden="true" tabindex="-1"></a><span class="at">    &gt; The most important mathematical assumption of the linear regression model is that its deterministic component is a linear function of the separate predictors: y = β0 + β1x1 + β2x2 +···. If additivity is violated, it might make sense to transform the data (for example, if y = abc, then log y = log a + log b + log c) or to add interactions. If linearity is violated, perhaps a predictor should be put in as 1/x or log(x) instead of simply linearly. Or a more complicated relationship could be expressed using a nonlinear function such as a spline or Gaussian process, </span><span class="co">[</span><span class="ot">@gelman_regression_2020, p.153</span><span class="co">]</span></span>
+<span id="cb88-787"><a href="#cb88-787" aria-hidden="true" tabindex="-1"></a><span class="at">    &gt; The most important mathematical assumption of the linear regression model is that its deterministic component is a linear function of the separate predictors: y = β0 + β1x1 + β2x2 +···. If additivity is violated, it might make sense to transform the data (for example, if y = abc, then log y = log a + log b + log c) or to add interactions. If linearity is violated, perhaps a predictor should be put in as 1/x or log(x) instead of simply linearly. Or a more complicated relationship could be expressed using a nonlinear function such as a spline or Gaussian process, </span><span class="co">[</span><span class="ot">@gelman2020, p.153</span><span class="co">]</span></span>
 <span id="cb88-788"><a href="#cb88-788" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb88-789"><a href="#cb88-789" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>**Independence of errors**</span>
 <span id="cb88-790"><a href="#cb88-790" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-791"><a href="#cb88-791" aria-hidden="true" tabindex="-1"></a><span class="at">    &gt; The simple regression model assumes that the errors from the prediction line are independent, an assumption that is violated in time series, spatial, and multilevel settings </span><span class="co">[</span><span class="ot">@gelman_regression_2020, p.153</span><span class="co">]</span></span>
+<span id="cb88-791"><a href="#cb88-791" aria-hidden="true" tabindex="-1"></a><span class="at">    &gt; The simple regression model assumes that the errors from the prediction line are independent, an assumption that is violated in time series, spatial, and multilevel settings </span><span class="co">[</span><span class="ot">@gelman2020, p.153</span><span class="co">]</span></span>
 <span id="cb88-792"><a href="#cb88-792" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb88-793"><a href="#cb88-793" aria-hidden="true" tabindex="-1"></a><span class="ss">5.  </span>**Equal variance of errors**</span>
 <span id="cb88-794"><a href="#cb88-794" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-795"><a href="#cb88-795" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; ...unequal variance does not affect the most important aspect of a regression model, which is the form of the predictors </span><span class="co">[</span><span class="ot">@gelman_regression_2020, p.153</span><span class="co">]</span></span>
+<span id="cb88-795"><a href="#cb88-795" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; ...unequal variance does not affect the most important aspect of a regression model, which is the form of the predictors </span><span class="co">[</span><span class="ot">@gelman2020, p.153</span><span class="co">]</span></span>
 <span id="cb88-796"><a href="#cb88-796" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb88-797"><a href="#cb88-797" aria-hidden="true" tabindex="-1"></a><span class="ss">5.  </span>**Normality of errors (statistical independence)**</span>
 <span id="cb88-798"><a href="#cb88-798" aria-hidden="true" tabindex="-1"></a></span>
@@ -5357,7 +5362,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb88-1032"><a href="#cb88-1032" aria-hidden="true" tabindex="-1"></a><span class="fu">## Resources on Regression that Do Not Perpetuate The Causality Crisis</span></span>
 <span id="cb88-1033"><a href="#cb88-1033" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb88-1034"><a href="#cb88-1034" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>**Statistical Rethinking** <span class="co">[</span><span class="ot">@mcelreath2020</span><span class="co">]</span></span>
-<span id="cb88-1035"><a href="#cb88-1035" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>**Regression and Other Stories** <span class="co">[</span><span class="ot">@gelman_regression_2020</span><span class="co">]</span></span>
+<span id="cb88-1035"><a href="#cb88-1035" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>**Regression and Other Stories** <span class="co">[</span><span class="ot">@gelman2020</span><span class="co">]</span></span>
 <span id="cb88-1036"><a href="#cb88-1036" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb88-1037"><a href="#cb88-1037" aria-hidden="true" tabindex="-1"></a><span class="fu">## Setup </span></span>
 <span id="cb88-1038"><a href="#cb88-1038" aria-hidden="true" tabindex="-1"></a></span>
