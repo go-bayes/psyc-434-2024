@@ -2649,8 +2649,8 @@
     "objectID": "slides/index.html#where-do-we-meet",
     "href": "slides/index.html#where-do-we-meet",
     "title": "Preliminaries",
-    "section": "",
-    "text": "Class times and locations Lectures Day/Time: Tuesday, 1:10-3:00pm\nLecture Location: Easterfield Building EA407"
+    "section": "Where do we meet?",
+    "text": "Where do we meet?\n\nClass times and locations Lectures Day/Time: Tuesday, 1:10-3:00pm\nLecture Location: Easterfield Building EA407"
   },
   {
     "objectID": "slides/index.html#course-learning-objectives",
@@ -2748,14 +2748,14 @@
     "href": "slides/index.html#help",
     "title": "Preliminaries",
     "section": "Help",
-    "text": "Help\nDr.Inkuk Kim inkuk.kim@vuw.ac.nz\n\n\n\n\n\n\n\n\n\nDr. In Kuk Kim\n\n\n\n\n\nTorven Schalk torven.schalk@vuw.ac.nz\n\n\n\n\n\n\n\n\n\nTorven Schalk\n\n\n\n\n\nJoseph Bulbulia joseph.bulbulia@vuw.ac.nz\n\n\n\n\n\n\n\n\n\nJoseph Bulbulia"
+    "text": "Help\nDr.Inkuk Kim inkuk.kim@vuw.ac.nz\n\n\n\n\n\n\nDr. In Kuk Kim\n\n\n\n\n\nTorven Schalk torven.schalk@vuw.ac.nz\n\n\n\n\n\n\nTorven Schalk\n\n\n\n\n\nJoseph Bulbulia joseph.bulbulia@vuw.ac.nz\n\n\n\n\n\n\nJoseph Bulbulia"
   },
   {
     "objectID": "slides/index.html#thanks-to-johannes-karl-and-ron-fischer",
     "href": "slides/index.html#thanks-to-johannes-karl-and-ron-fischer",
     "title": "Preliminaries",
     "section": "Thanks to Johannes Karl and Ron Fischer",
-    "text": "Thanks to Johannes Karl and Ron Fischer\nFor developing measurement components of the course\n\n\n\n\n\n\n\n\n\nJohannes Karl\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nRonald Fischer"
+    "text": "Thanks to Johannes Karl and Ron Fischer\nFor developing measurement components of the course\n\n\n\n\n\n\nJohannes Karl\n\n\n\n\n\n\n\n\n\n\n\nRonald Fischer"
   },
   {
     "objectID": "slides/extra-slides.html",
@@ -3610,5 +3610,12 @@
     "title": "Causal Diagrams: The Structures of Interaction/Effect Modification, Measurement Bias, Selection Bias",
     "section": "Summary",
     "text": "Summary\n\nWe control for variables to avoid omitted variable bias\nOmitted variable bias is real, but also commonplace is included variable bias\nIncluded variable biases arise from “pipes”, “colliders”, and conditioning on descendant of colliders.\nThe ggdag package can help you to obtain causal inference, but it relies on assumptions that are not part of your data.\nClarify your assumption."
+  },
+  {
+    "objectID": "content/index.html#slides",
+    "href": "content/index.html#slides",
+    "title": "Preliminaries",
+    "section": "Slides",
+    "text": "Slides\nPREVIEW\n\n\n\nOpen in browser here"
   }
 ]
