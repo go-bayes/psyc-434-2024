@@ -1,10 +1,6 @@
 ---
-title: "Dealing with Data (Multi-Group CFA)"
-date: "2023-MAR-28"
-author:
-    name: Inkuk Kim
-    email: inkuk.kim@vuw.ac.nz
-    corresponding: yes
+title: "Quiz"
+date: "2023-MAR-26"
 ---
   
   
