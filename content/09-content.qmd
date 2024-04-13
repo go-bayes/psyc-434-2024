@@ -51,7 +51,7 @@ The order is as follows:
 2. **Checklist For Causal Estimation in Three Wave Longitudinal Designs**
 3. **Explanation of the the Checklist**
 
-Let's dive in!
+Condsider...
 
 
 ## Motivations for a Three-Wave Longitudinal Design for Observational Causal Inference. 
@@ -60,8 +60,6 @@ REVIEW:
 Causal Diagrammes (DAGS) are a remarkably powerful and simple tool for understanding confounding [https://go-bayes.github.io/psych-434-2023/content/common_graphs.html](https://go-bayes.github.io/psych-434-2023/content/common_graphs.html) 
 
 ### Common cause of exposure and outcome.
-
-
 
 Our question: does visiting a clinical psychologist reduce the 10 year incidence of heart attacks?
 
