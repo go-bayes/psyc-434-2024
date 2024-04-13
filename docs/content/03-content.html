@@ -224,7 +224,10 @@ window.Quarto = {
  <span class="dropdown-text">Week 4: Causal Diagrams - Interaction, Measurement Bias, Selection Bias - R (regression/simulation)</span></a>
   </li>  
         <li class="dropdown-header">Week 5: Quiz - R (regression/simulation/reporting)</li>
-        <li class="dropdown-header">Week 6: Causal Inference - Key Concepts ATE - R (regression/simulation: ATE)</li>
+        <li>
+    <a class="dropdown-item" href="../content/04-content.html">
+ <span class="dropdown-text">Week 6: Causal Inference - Key Concepts ATE - R (regression/simulation: ATE)</span></a>
+  </li>  
         <li class="dropdown-header">Week 7: Causal Inference - Key Concept CATE - R (regression/simulation: ATE)</li>
         <li class="dropdown-header">Week 8: Causal Inference - Estimation of ATE and CATE - R and LaTeX</li>
         <li class="dropdown-header">Week 9: Quiz - R</li>
@@ -2935,11 +2938,11 @@ Gelman, Andrew, Jennifer Hill, and Aki Vehtari. 2020. <em>Regression and Other S
 </tr>
 <tr class="even">
 <td class="rowlabel">Mean (SD)</td>
-<td>1.70 (0.101)</td>
+<td>1.70 (0.100)</td>
 </tr>
 <tr class="odd">
 <td class="rowlabel">Median [Min, Max]</td>
-<td>1.69 [1.26, 2.06]</td>
+<td>1.69 [1.26, 2.04]</td>
 </tr>
 <tr class="even">
 <td class="rowlabel lastrow">Missing</td>
@@ -3488,7 +3491,7 @@ Gelman, Andrew, Jennifer Hill, and Aki Vehtari. 2020. <em>Regression and Other S
 <tr class="even">
 <td class="gt_row gt_left" headers="Parameter" style="border-right-width: 1px; border-right-style: solid; border-right-color: #d3d3d3">weight c</td>
 <td class="gt_row gt_center" headers="Estimate">2.23e-03***</td>
-<td class="gt_row gt_center" headers="(ci)">(2.15e-03, 2.32e-03)</td>
+<td class="gt_row gt_center" headers="(ci)">(2.15e-03, 2.31e-03)</td>
 </tr>
 </tbody><tfoot class="gt_sourcenotes">
 <tr class="odd">
@@ -3524,12 +3527,12 @@ Gelman, Andrew, Jennifer Hill, and Aki Vehtari. 2020. <em>Regression and Other S
 <div class="cell-output cell-output-stdout">
 <pre><code>We fitted a linear model (estimated using OLS) to predict height with weight_c
 (formula: height ~ weight_c). The model explains a statistically significant
-and moderate proportion of variance (R2 = 0.17, F(1, 14286) = 2853.14, p &lt;
+and moderate proportion of variance (R2 = 0.17, F(1, 14286) = 2858.73, p &lt;
 .001, adj. R2 = 0.17). The model's intercept, corresponding to weight_c = 0, is
-at 1.70 (95% CI [1.70, 1.70], t(14286) = 2205.37, p &lt; .001). Within this model:
+at 1.70 (95% CI [1.70, 1.70], t(14286) = 2213.51, p &lt; .001). Within this model:
 
   - The effect of weight c is statistically significant and positive (beta =
-2.23e-03, 95% CI [2.15e-03, 2.32e-03], t(14286) = 53.41, p &lt; .001; Std. beta =
+2.23e-03, 95% CI [2.15e-03, 2.31e-03], t(14286) = 53.47, p &lt; .001; Std. beta =
 0.41, 95% CI [0.39, 0.42])
 
 Standardized parameters were obtained by fitting the model on a standardized
@@ -3562,14 +3565,14 @@ computed using a Wald t-distribution approximation.</code></pre>
 </tr>
 <tr class="odd">
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">(Intercept)</td>
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.78</td>
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.78&nbsp;–&nbsp;1.78</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.65</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.65&nbsp;–&nbsp;1.65</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;"><strong>&lt;0.001</strong></td>
 </tr>
 <tr class="even">
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">male</td>
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.13</td>
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.13&nbsp;–&nbsp;-0.13</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.13</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.13&nbsp;–&nbsp;0.13</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;"><strong>&lt;0.001</strong></td>
 </tr>
 <tr class="odd">
@@ -3578,7 +3581,7 @@ computed using a Wald t-distribution approximation.</code></pre>
 </tr>
 <tr class="even">
 <td style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">R<sup>2</sup> / R<sup>2</sup> adjusted</td>
-<td colspan="3" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">0.387 / 0.387</td>
+<td colspan="3" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">0.388 / 0.388</td>
 </tr>
 </tbody>
 </table>
@@ -3613,13 +3616,13 @@ computed using a Wald t-distribution approximation.</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>We fitted a linear model (estimated using OLS) to predict height with male
 (formula: height ~ male). The model explains a statistically significant and
-substantial proportion of variance (R2 = 0.39, F(1, 14343) = 9049.77, p &lt; .001,
-adj. R2 = 0.39). The model's intercept, corresponding to male = 0, is at 1.78
-(95% CI [1.78, 1.78], t(14343) = 1629.39, p &lt; .001). Within this model:
+substantial proportion of variance (R2 = 0.39, F(1, 14343) = 9082.32, p &lt; .001,
+adj. R2 = 0.39). The model's intercept, corresponding to male = 0, is at 1.65
+(95% CI [1.65, 1.65], t(14343) = 2006.32, p &lt; .001). Within this model:
 
-  - The effect of male is statistically significant and negative (beta = -0.13,
-95% CI [-0.13, -0.13], t(14343) = -95.13, p &lt; .001; Std. beta = -0.62, 95% CI
-[-0.63, -0.61])
+  - The effect of male is statistically significant and positive (beta = 0.13,
+95% CI [0.13, 0.13], t(14343) = 95.30, p &lt; .001; Std. beta = 0.62, 95% CI
+[0.61, 0.64])
 
 Standardized parameters were obtained by fitting the model on a standardized
 version of the dataset. 95% Confidence Intervals (CIs) and p-values were
@@ -3713,15 +3716,13 @@ computed using a Wald t-distribution approximation.</code></pre>
 <span id="cb72-15"><a href="#cb72-15" aria-hidden="true" tabindex="-1"></a><span class="co"># check</span></span>
 <span id="cb72-16"><a href="#cb72-16" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df_nz_combine_pearson_lee)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 3
-  f_height year_is relation
-     &lt;dbl&gt; &lt;fct&gt;   &lt;fct&gt;   
-1     49.6 2019    mother  
-2     49.6 2019    mother  
-3     53.7 2019    mother  
-4     54.5 2019    mother  
-5     54.7 2019    mother  
-6     54.9 2019    mother  </code></pre>
+<pre><code>  f_height year_is relation
+1 51.21146    2019   mother
+2 53.22973    2019   mother
+3 56.64973    2019   mother
+4 58.34531    2019   mother
+5 58.50502    2019   mother
+6 58.63270    2019   mother</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="co"># combine data frames row-wise</span></span>
 <span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>df_nz_combine_pearson_lee_1 <span class="ot">&lt;-</span> <span class="fu">rbind</span>(df_pearson_lee_2, df_nz_combine_pearson_lee)</span>
@@ -3737,7 +3738,7 @@ computed using a Wald t-distribution approximation.</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>
  1903  2019 
-11048 12574 </code></pre>
+11048  7426 </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="co"># box plot</span></span>
 <span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(<span class="at">data =</span></span>
@@ -3778,22 +3779,22 @@ computed using a Wald t-distribution approximation.</code></pre>
 <tr class="odd">
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">(Intercept)</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">63.18</td>
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">63.12&nbsp;–&nbsp;63.23</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">63.13&nbsp;–&nbsp;63.23</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;"><strong>&lt;0.001</strong></td>
 </tr>
 <tr class="even">
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">year is [2019]</td>
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.82</td>
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.75&nbsp;–&nbsp;1.90</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">6.94</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">6.85&nbsp;–&nbsp;7.03</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;"><strong>&lt;0.001</strong></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">Observations</td>
-<td colspan="3" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">20176</td>
+<td colspan="3" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">16265</td>
 </tr>
 <tr class="even">
 <td style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">R<sup>2</sup> / R<sup>2</sup> adjusted</td>
-<td colspan="3" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">0.093 / 0.093</td>
+<td colspan="3" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">0.574 / 0.574</td>
 </tr>
 </tbody>
 </table>
@@ -3808,13 +3809,14 @@ computed using a Wald t-distribution approximation.</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>We fitted a linear model (estimated using OLS) to predict f_height with year_is
 (formula: f_height ~ year_is). The model explains a statistically significant
-and weak proportion of variance (R2 = 0.09, F(1, 20174) = 2080.54, p &lt; .001,
-adj. R2 = 0.09). The model's intercept, corresponding to year_is = 1903, is at
-63.18 (95% CI [63.12, 63.23], t(20174) = 2347.94, p &lt; .001). Within this model:
+and substantial proportion of variance (R2 = 0.57, F(1, 16263) = 21893.51, p &lt;
+.001, adj. R2 = 0.57). The model's intercept, corresponding to year_is = 1903,
+is at 63.18 (95% CI [63.13, 63.23], t(16263) = 2377.73, p &lt; .001). Within this
+model:
 
   - The effect of year is [2019] is statistically significant and positive (beta
-= 1.82, 95% CI [1.75, 1.90], t(20174) = 45.61, p &lt; .001; Std. beta = 0.61, 95%
-CI [0.59, 0.64])
+= 6.94, 95% CI [6.85, 7.03], t(16263) = 147.96, p &lt; .001; Std. beta = 1.62, 95%
+CI [1.60, 1.64])
 
 Standardized parameters were obtained by fitting the model on a standardized
 version of the dataset. 95% Confidence Intervals (CIs) and p-values were
@@ -3856,8 +3858,8 @@ computed using a Wald t-distribution approximation.</code></pre>
 
 year_is | Predicted |       95% CI
 ----------------------------------
-1903    |     63.18 | 63.12, 63.23
-2019    |     65.00 | 64.94, 65.06</code></pre>
+1903    |     63.18 | 63.13, 63.23
+2019    |     70.12 | 70.04, 70.20</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="co"># graph with predicted values based on the model</span></span>
 <span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(</span>
@@ -3884,7 +3886,7 @@ lm(formula = f_height ~ year_is, data = df_nz_combine_pearson_lee_1)
 
 Coefficients:
 (Intercept)  year_is2019  
-     63.177        1.825  </code></pre>
+     63.177        6.942  </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="co"># show all color palettes</span></span>
 <span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a><span class="co">#show_pals()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
