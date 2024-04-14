@@ -1,6 +1,6 @@
 ---
 title: "Causal Inference: Average (Marginal) Treatment Effects"
-date: "2023-MAR-28"
+date: "2024-APR-15"
 bibliography: /Users/joseph/GIT/templates/bib/references.bib
 editor_options: 
   chunk_output_type: console
@@ -23,8 +23,8 @@ code-block-border-left: true
 
 
 ```{r}
-#| echo: FALSE
-#| warning: FALSE
+#| echo: false
+#| warning: false
 
 # WARNING:  COMMENT THIS OUT. JB DOES THIS FOR WORKING WITHOUT WIFI
 #source("/Users/joseph/GIT/templates/functions/libs2.R")
@@ -131,13 +131,14 @@ How can we know?  Each child might respond as the traveller in Frost's poem:
 
 ## Part 1: The Fundamental Problem of Causal Inference as a Missing Data Problem 
 
-Humans think in images, words, and songs -- sometimes dance. I believe that every inclination to write out ideas in math should be presumed guilty until proven innocent.
+Humans think in images, words, and songs -- sometimes dance. However, a little mathematical notation helps to clarify the key concepts in causal inference.
 
-However, I have found that a little mathematical notation helps to clarify the concepts.
+To understand **the fundamental problem of causal inference,** we first define two potential outcomes for each individual in our study:
 
-To understand the fundamental problem of causal inference, we first define two potential outcomes for each individual in our study:
+Let $Y$ and $A$ denote random variables. 
 
-Let $Y$ and $A$ denote random variables. Mathmatically, we formulate a causal question by asking whether assigment to treatment $A = a$ will lead to a difference to the outcome $Y$.  
+
+Mathematically, we formulate a causal question by asking whether assignment to treatment $A = a$ will lead to a difference to the outcome $Y$.  
 
 Let $A = 1$ denote getting the "bilingual" treatment, and $A = 0$ denote getting the monolingual treatment. Assume these are the only two treatments of interest. 
 
@@ -158,13 +159,12 @@ $$
 Y_i(1) - Y_i(0)  \neq 0
 $$
 
-Writing out our contrast of interest this way makes it clear that we cannot compute this contrast directly from any data we may observe because individuals experience only **one** treatment condition:
+Writing out our contrast of interest this way makes it clear that, because individuals experience only **one** treatment condition, we cannot compute this contrast directly from any data we may observe.  We call the missing observation "counterfactual."
 
 $$
 Y_i|A_i = 1 \implies Y_i(0)|A_i = 1~ \text{is counterfactual}
 $$
-and:
-
+Furthermore:
 
 $$
 Y_i|A_i = 0 \implies Y_i(1)|A_i = 1~ \text{is counterfactual}
@@ -172,7 +172,7 @@ $$
 
 
 ::: footer
-"**And sorry I could not travel both. And be one traveller, long I stood** $\dots$"
+"**And sorry I could not travel both And be one traveller, long I stood** $\dots$"
 :::
 
 
@@ -180,34 +180,124 @@ $$
 ### Average Treatment Effect in randomised controlled experiments work from assumptions
 
 
+Consider inherently missing observations in an experiment:
 
 $$
-\text{Average Treatment Effect} = \left[ \begin{aligned}
-&\left( \underbrace{\mathbb{E}[Y(1)|A = 1]}_{\text{observed}} + \textcolor{cyan}{\underbrace{\mathbb{E}[Y(1)|A = 0]}_{\text{unobserved}}} \right) \\
-&- \left( \underbrace{\mathbb{E}[Y(0)|A = 0]}_{\text{observed}} + \textcolor{cyan}{\underbrace{\mathbb{E}[Y(0)|A = 1]}_{\text{unobserved}}} \right)
+\text{ATE} = \left[ \begin{aligned}
+&\left( \underbrace{\mathbb{E}[Y(1)|A = 1]}_{\text{observed}} + \textcolor{red}{\underbrace{\mathbb{E}[Y(1)|A = 0]}_{\text{unobserved}}} \right) \\
+&- \left( \underbrace{\mathbb{E}[Y(0)|A = 0]}_{\text{observed}} + \textcolor{red}{\underbrace{\mathbb{E}[Y(0)|A = 1]}_{\text{unobserved}}} \right)
 \end{aligned} \right]
 $$
 
 
 In this expression, $\mathbb{E}[Y(1)|A = 1]$ represents the average outcome when the treatment is given, which is observable. However, $\mathbb{E}[Y(1)|A = 0]$ represents the average outcome if the treatment had been given to those who were untreated, which remains unobservable. Similarly, the quantity $\mathbb{E}[Y(0)|A = 1]$ also remains unobservable.  Note that the problem isn't merely one of statistical analysis on the data. **The problem is that the relevant data to identify individual causal effects are missing.** Thus, it is evident that the fundamental problem of causal inference is an ever-present concern even in experiments!
 
-All the data we require for invidual causal inferences are missing, nevertheless, because the treatments have been randomised, the data we observe from randomised controlled experiments can allow us to infer what would happen, **on average** if the treatment were applied to the population from which the participants were sampled. 
+All the data we require for causal inferences at the individual level are missing, Nevertheless, because the treatments have been randomised, the data we observe from randomised controlled experiments can allow us to infer what would happen, **on average** if the treatment were applied to the population from which the participants were sampled. 
 
-We may call this causal affect the "Average Treatment Effect" or equivalently, the "Marginal Effect of the Treatment." 
+We call this causal affect the "Average Treatment Effect" or equivalently, the "Marginal Effect of the Treatment." 
 
 
-### How do We Obtain Average Treatment Effects From Non-Randomised Observational Data?
+### How do we obtain Average Treatment Effects from non-randomised observational data?
 
 Under stronger assumptions, we may sometimes infer causal effects from associations in data, even if the treatment variable $A$ has not been randomised. 
 
 
 $$
-\text{ATE} = \sum_{l} \left( \mathbb{E}[Y|A=1, \textcolor{cyan}{L=l}] - \mathbb{E}[Y|A=0, \textcolor{cyan}{L=l}] \right) \times \textcolor{cyan}{\Pr(L=l)}
+\text{ATE} = \sum_{l} \large( \mathbb{E}[Y|A=1, \textcolor{blue}{L=l}] - \mathbb{E}[Y|A=0, \textcolor{blue}{L=l}] \large) \times \textcolor{blue}{\Pr(L=l)}
 $$
 
-Where $L$ denotes the set of measured covariates such that $A\coprod Y(a)|L$
+Where $L$ denotes a set of measured covariates, we can express this principle of "no confounding" mathematically in two complementary ways. Recall our notation: $A \coprod B$ signifies that $A$ is independent of $B$, and vice versa:
 
 
+1. **Potential Outcomes Independent of Treatment (given L):** $Y(a) \coprod A \mid L$
+2. **Treatment Assignment Independent of Potential Outcomes (given L):** $A \coprod Y(a) \mid L$
+
+These formulations are crucial when working with causal diagrams, which visually encode these principles. The key idea is straightforward: ensuring a balance of confounders across treatment groups is fundamental to experimental and observational causal inference strategies. 
+
+With sufficiently large numbers of individuals, **randomisation facilitates this balance, achieving $A \coprod Y(a)$***
+
+
+
+### The Three Fundamental Assumptions of Causal Inference.
+
+Reviewing causal inference in experimental settings highlights three core assumptions essential for causal analysis.
+
+#### Fundamental Assumption 1: Conditional Exchangeability
+
+We say that conditional exchangability holds if the potential outcomes and treatment assignments are statistically independent, considering all measured confounders. This principle enables us to attribute observed group differences directly to the treatment. Randomisation provides *unconditional* exchangeability, simplifying the analytical process.
+
+
+Many experiments, such as child-hood bilingualism, cannot be performed.
+
+
+##### Challenge in Satisfying Conditional Exchangeability in Observational Settings
+
+Achieving conditional exchangability is challenging in observational studies. This condition requires the groups being compared to be similar in every aspect except for the treatment. Consider bilingualism. In real-world data, individuals with access to green spaces may differ from those without access in several ways:
+
+- **Socioeconomic status**: the economic capacity of individuals often determines their opportunities for education and language learning, thereby affecting cognitive development.
+- **Age demographics**: language development is not even throughout childhood; when one learns a second language may make a difference.
+- **Lifestyle choices**: Children who learn different language 
+- **Personal values and social connections**: environmental values and community ties may influence both the choice of residence and the utilisation of green spaces.
+
+These and other unmeasured factors can introduce biases, complicating the interpretation of causal relationships in observational studies.
+
+
+#### Fundamental Assumption 2: Causal Consistency
+
+We say that causal consistency holds if there is no heterogeneity in the treatments that would prevent us from assuming that the observed outcomes under treatments correspond to their potential outcomes. For an individual 'i', we must be able to assume:
+
+$$
+\begin{aligned}
+Y_{i}(1) &= (Y_{i}|A_{i} = 1) \quad \text{(Potential outcome if treated)} \\
+Y_{i}(0) &= (Y_{i}|A_{i} = 0) \quad \text{(Potential outcome if untreated)}
+\end{aligned}
+$$
+
+If this assumption holds, as well as the assumptions of conditional exchangeability and positivity (reviewed below), we can calculate the Average Treatment Effect (ATE) from observed data as:
+
+$$
+\begin{aligned}
+\text{ATE} &= \mathbb{E}[Y(1)] - \mathbb{E}[Y(0)] \\
+&= \mathbb{E}(Y|A=1) - \mathbb{E}(Y|A=0)
+\end{aligned}
+$$
+
+This contrast assumes that the potential outcome under treatment is observable when the treatment is administered, setting $Y_i(a)$ to $Y_i|A_i=a$. 
+
+
+##### Challenges in Satisfying the Causal Consistency Assumption in Observational Settings
+
+The standardisation of treatments in randomised controlled experiments generally ensures the validity of the causal consistency assumption, which is seldom disputed. However, in observational settings, we cannot typically control the treatments that people receive. This fact imposes considerable challenges for satisfying this assumption. For example:
+
+- **Cultures**: the language one starts with, and the language one learns next, and the order of learning, may affect cognitive development.
+- **Parents**: the way in which one learns languages, either at schools or at home environments, may affect cognitive development.
+- **Language**: language impose different demands, consider the demands of a sign language (body-brain), a highly tonal language, the demands of different writing systems, the cognitive demands that arise in cultures with no written scripts...  
+
+
+Put another ways, causal inference does not merely require *randomisation*, it also requires *control*. 
+
+
+#### Fundamental Assumption 3: Positivity
+
+We must assume that there is a non-zero probability of receiving each treatment level within covariate-defined subgroups.
+
+$$
+P(A = a | L= l) > 0
+$$
+
+This assumption is also met by the *control* that experimentalists exert over randomised controlled experiments and is rarely stated explicitly. However, in observational settings, this condition must be verified to avoid extrapolating results beyond observed data.  
+
+##### Challenges in Satisfying The Positivity Assumption in Observational Settings: The Relevant Treatments Do Not Exist in The Data
+
+Positivity demands that each individual has the possibility of experiencing *every* level of the treatment to be compared. However, real-world constraints, such as the availability of bilingualism within different cultural settings, may preclude some groups from accessing bilinual learning. Where the treatments of interest are absent or scarcely represented in our dataset, the resulting causal inferences will lack empirical support. Consequently, any coefficients derived will represent extrapolations from statistical models, challenging the validity of our causal inferences [@westreich2010; @hernan2023].
+
+
+
+### Summary 
+
+We described the fundamental problem of causal inference, focusing on the critical distinction between correlation -- associations in the data, and causation -- the contrast between potential outcomes only one of which, at most, can be observed. We discussed how controlled experiments facilitate the estimation of average treatment effects (ATE) by systematically manipulating the variable of interest, allowing for the distribution of variables that might affect the outcome to be balanced across the treatment conditions. Our discussion then shifted to observational data, emphasising the challenges inherent in extracting causal relationships from data without the benefit of controlled interventions. We underscored the need to satisfy three key assumptions —- conditional exchangeability, causal consistency, and positivity—for inferring average treatment effects from observational data. These assumptions ensure that the treatment groups are comparable, the treatment effect is consistent across the population, and every individual has a non-zero probability of receiving each treatment level, respectively. 
+
+**A note on causal diagrams**: we have seen that causal diagrams are graphical tools offer a systematic approach to identifying and controlling for confounding variables -- for helping to understand the conditions in which the assumption of "no unmeasured confounding" or equivalently  of "balance in the confounders across treatments" may be satisfied. Causal diagrams, however, do not obviate the need for these assumptions; instead, they provide a framework for evaluating whether and how the first of the three assumptions -- conditional exchangeability -- may be satisfied in a given study.
 
 
 
@@ -216,11 +306,286 @@ Where $L$ denotes the set of measured covariates such that $A\coprod Y(a)|L$
 
 
   
-## Overview
+## Part 2: Lab
+
+
+#### Setting up your file
+
+
+First, reinstall the `margot` package:  https://go-bayes.github.io/margot/
+
+Then check that you have the simulated data:
+
+```{r}
+#| label: install
+#| echo: true
+#| eval: true
+# functions explained here: https://go-bayes.github.io/margot/
+
+# installation
+if (!require(devtools, quietly = TRUE)) {
+  install.packages("devtools")
+  library(devtools)
+}
+
+# reinstall the `margot` packagewith updates
+devtools::install_github("go-bayes/margot", quietly = TRUE)
+
+# call package
+library("margot")
+library("tidyverse")
+library("parameters")
+library("skimr")
+library("haven")
+library("stdReg")
+# uncomment and check simulated data
+# head(df_nz)
+```
+
+
+#### Download a copy of the data directory from the NZAVS OSF website
+
+Find it the data directory here: https://osf.io/75snb/
+
+The variables in the simulated data correspond to a subset of the variables in this directory
+
+
+
+#### Check N
+
+```{r}
+#| echo: true
+#| eval: true
+# check total n in data
+# total nzavs participants
+n_total <- skimr::n_unique(df_nz$id)
+print(n_total)
+```
+
+
+
+#### Get data into shape for analysis
+
+
+```{r}
+#### Data wrangling: select columns and transpose the data from long to wide
+library(tidyverse)
+
+# filter the original dataset for these IDs three waves
+df_nz <- as.data.frame(df_nz)
+df_nz <- haven::zap_formats(df_nz)
+df_nz <- haven::zap_label(df_nz)
+df_nz <- haven::zap_widths(df_nz)
+
+name_exposure <-  "perfectionism"
+
+# Obtain IDs for individuals who participated in 2018 and have no missing baseline exposure
+ids_2018 <- df_nz %>%
+   dplyr::filter(year_measured == 1, wave == 2018) %>%
+   dplyr::filter(!is.na(!!sym(name_exposure))) |> # criteria, no missing
+  pull(id)
+
+# Obtain IDs for individuals who participated in 2019
+ids_2019 <- df_nz %>%
+   dplyr::filter(year_measured == 1, wave == 2019) %>%
+   dplyr::filter(!is.na(!!sym(name_exposure))) |> # criteria, no missing
+  pull(id)
+
+# Intersect IDs from 2018 and 2019 to ensure participation in both years
+ids_2018_2019 <- intersect(ids_2018, ids_2019)
+
+dat_long <- df_nz |>
+  dplyr::filter(id %in% ids_2018_2019 &
+                  wave %in% c(2018, 2019, 2020)) |>
+  arrange(id, wave) |>
+  select(
+    "id",
+    "wave",
+    "year_measured",
+    "age",
+    "male",
+    "born_nz",
+    "eth_cat",
+    #factor(EthCat, labels = c("Euro", "Maori", "Pacific", "Asian")),
+    "employed",
+    # Are you currently employed? (this includes self-employment or casual work)
+
+    "edu",
+    "kessler6_sum",
+    # "gen_cohort",
+    "household_inc",
+    "partner",
+    # 0 = no, 1 = yes
+    "parent",
+    # 0 = no, 1 = yes
+    "political_conservative",
+    "hours_exercise",
+    "agreeableness",
+    # Mini-IPIP6 Agreeableness (also modelled as empathy facet)
+    # Sympathize with others' feelings.
+    # Am not interested in other people's problems.
+    # Feel others' emotions.
+    # Am not really interested in others.
+    "conscientiousness",
+    # see mini ipip6
+    # Get chores done right away.
+    # Like order.
+    # Make a mess of things.
+    # Often forget to put things back in their proper place.
+    "extraversion",
+    # Mini-IPIP6 Extraversion
+    # Am the life of the party.
+    # Don't talk a lot.
+    # Keep in the background.
+    # Talk to a lot of different people at parties.
+    "honesty_humility",
+    # see mini ipip6
+    # Would like to be seen driving around in a very expensive car.
+    # Would get a lot of pleasure from owning expensive luxury goods.
+    # Feel entitled to more of everything.
+    # Deserve more things in life.
+    "openness",
+    # see mini ipip6
+    # Have a vivid imagination.
+    # Have difficulty understanding abstract ideas.
+    # Do not have a good imagination.
+    # Am not interested in abstract ideas.
+    "neuroticism",
+    # see mini ipip6
+    # Have frequent mood swings.
+    # Am relaxed most of the time.
+    # Get upset easily.
+    # Seldom feel blue.
+    "modesty",
+    # # see mini ipip6
+    # # I want people to know that I am an important person of high status,
+    # # I am an ordinary person who is no better than others.
+    # # I wouldn’t want people to treat me as though I were superior to them.
+    # # I think that I am entitled to more respect than the average person is
+    #"w_gend_age_ethnic",
+    "sample_weights",
+    "neighbourhood_community",
+    # #I feel a sense of community with others in my local neighbourhood.
+    "belong",
+    "rural_gch_2018_l",
+    "support",
+    # "support_help",
+    # # 'There are people I can depend on to help me if I really need it.
+    # "support_turnto",
+    # # There is no one I can turn to for guidance in times of stress.
+    # "support_rnoguidance",
+    #There is no one I can turn to for guidance in times of stress.
+    "perfectionism",
+    "kessler6_sum"
+  ) |>
+  mutate(
+    #initialize 'censored'
+    censored = ifelse(lead(year_measured) == 1, 1, 0),
+    
+    # modify 'censored' based on the condition; no need to check for NA here as 'censored' is already defined in the previous step
+    censored =  ifelse(is.na(censored) &
+                         year_measured == 1, 1, censored)
+    
+    # # Apply the case_when condition for setting 'censored' based on 'wave' and the dynamic column specified by 'nzavs_exposure'
+    # censored = case_when(
+    #   # Add this condition to keep previous modifications unless the specific condition is met!is.na(censored) ~ censored,
+    #
+    #   # Then check if 'wave' is 2019 and the specified exposure is NA, adjusting the condition to reflect the accurate logic
+    #   wave == 2019 & !is.na(!!sym(nzavs_exposure)) ~ 1,
+    #
+    #   # Default case if none of the above apply; might not be necessary if all possibilities are covered
+    #   TRUE ~ 0
+    # )
+  ) |>
+  select(-year_measured) |>
+  dplyr::mutate(
+    household_inc_log = log(household_inc + 1),
+    hours_exercise_log = log(hours_exercise + 1)  ) |>
+  dplyr::select(
+    -c(
+      household_inc,
+      hours_exercise
+    )
+  ) |>
+  droplevels() |>
+  # dplyr::rename(sample_weights = w_gend_age_ethnic,
+  #               sample_origin =  sample_origin_names_combined) |>
+  arrange(id, wave) |>
+  droplevels() |>
+  data.frame() |>
+  droplevels() |>
+  arrange(id, wave) |>
+  mutate(
+  rural_gch_2018_l = as.numeric(as.character(rural_gch_2018_l)),
+  #   parent = as.numeric(as.character(parent)),
+  partner = as.numeric(as.character(partner)),
+  born_nz = as.numeric(as.character(born_nz)),
+  censored = as.numeric(as.character(censored)),
+  employed = as.numeric(as.character(employed))
+  ) |>
+  droplevels() |>
+  arrange(id, wave) |>
+  data.frame()
+
+#check
+# head(dat_long)
+
+```
+
+
+
+#### Make data wide
+
+```{r}
+# baseline variables
+
+baseline_vars = c("age", "male", "edu", "partner", "employed")
+exposure_var = c("perfectionism", "censored")
+outcome_vars = c("kessler6_sum")
+
+
+# function will add exposure and outcome to baseline
+dat_long_wide <- margot::margot_wide(dat_long, baseline_vars = baseline_vars, exposure_var = exposure_var, outcome_vars =outcome_vars)
+
+# check
+head(dat_long_wide)
+
+# scale vars
+dt <- dat_long_wide |> 
+  dplyr::mutate(
+    t0_age_z = scale(t0_age),
+    t0_edu_z = scale(t0_edu),
+    t0_kessler6_sum_z =  scale(t0_kessler6_sum),
+    t0_perfectionism_z = scale(t0_perfectionism),
+    t1_perfectionism_z = scale(t1_perfectionism),
+    t2_kessler6_sum_z = scale(t2_kessler6_sum))
+
+dt<- remove_numeric_attributes(dt)
   
+```
+
+#### Ordinary regression to obtain conditional average treatment effect
+
+```{r}
+fit_1 <- lm(t2_kessler6_sum_z  ~ t1_perfectionism_z + t0_age_z +  t0_edu_z + t0_kessler6_sum_z + t0_perfectionism_z, data = dt)
+parameters::model_parameters(fit_1)
+```
+
+#### Average treatment effect
+
+```{r}
+#| label: check-n
+#| echo: true
+#| eval: false
+fit_ate <- stdReg::stdGlm(fit_1, data = dt, X = "t1_perfectionism_z")
+
+summary(fit_std_sample, 
+contrast = "difference", 
+reference = 0)
+```
+
   
-  
-## Notes
+## Appendix A
 
 Consider that in the causal inference literature, we may write this contrast two potential outcomes under treatment as:
 
