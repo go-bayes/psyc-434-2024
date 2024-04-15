@@ -30,7 +30,7 @@ website:
           href: content/04-content.qmd
         - text: "Week 5: Quiz - R (regression/simulation/reporting)"
         - text: "Week 6: Causal Inference - Key Concepts ATE - R (regression/simulation: ATE)"
-          href: content/04-content.qmd
+          href: content/06-content.qmd
         - text: "Week 7: Causal Inference - Key Concept CATE - R (regression/simulation: ATE)"
         - text: "Week 8: Causal Inference - Estimation of ATE and CATE - R and LaTeX"
         - text: "Week 9: Quiz - R"

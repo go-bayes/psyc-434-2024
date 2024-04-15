@@ -222,7 +222,7 @@ window.Quarto = {
   </li>  
         <li class="dropdown-header">Week 5: Quiz - R (regression/simulation/reporting)</li>
         <li>
-    <a class="dropdown-item" href="../content/04-content.html">
+    <a class="dropdown-item" href="../content/06-content.html">
  <span class="dropdown-text">Week 6: Causal Inference - Key Concepts ATE - R (regression/simulation: ATE)</span></a>
   </li>  
         <li class="dropdown-header">Week 7: Causal Inference - Key Concept CATE - R (regression/simulation: ATE)</li>
@@ -1869,52 +1869,53 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb11-570"><a href="#cb11-570" aria-hidden="true" tabindex="-1"></a>    <span class="at">t1_perfectionism_z =</span> <span class="fu">scale</span>(t1_perfectionism),</span>
 <span id="cb11-571"><a href="#cb11-571" aria-hidden="true" tabindex="-1"></a>    <span class="at">t2_kessler6_sum_z =</span> <span class="fu">scale</span>(t2_kessler6_sum))</span>
 <span id="cb11-572"><a href="#cb11-572" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-573"><a href="#cb11-573" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb11-574"><a href="#cb11-574" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb11-575"><a href="#cb11-575" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-576"><a href="#cb11-576" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Ordinary regression to obtain conditional average treatment effect</span></span>
-<span id="cb11-577"><a href="#cb11-577" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-580"><a href="#cb11-580" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb11-581"><a href="#cb11-581" aria-hidden="true" tabindex="-1"></a>fit_1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(t2_kessler6_sum_z  <span class="sc">~</span> t1_perfectionism_z <span class="sc">+</span> t0_age_z <span class="sc">+</span>  t0_edu_z <span class="sc">+</span> t0_kessler6_sum_z <span class="sc">+</span> t0_perfectionism_z, <span class="at">data =</span> dt)</span>
-<span id="cb11-582"><a href="#cb11-582" aria-hidden="true" tabindex="-1"></a>parameters<span class="sc">::</span><span class="fu">model_parameters</span>(fit_1)</span>
-<span id="cb11-583"><a href="#cb11-583" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb11-584"><a href="#cb11-584" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-585"><a href="#cb11-585" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Average treatment effect</span></span>
-<span id="cb11-586"><a href="#cb11-586" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-589"><a href="#cb11-589" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb11-590"><a href="#cb11-590" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: check-n</span></span>
-<span id="cb11-591"><a href="#cb11-591" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
-<span id="cb11-592"><a href="#cb11-592" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb11-593"><a href="#cb11-593" aria-hidden="true" tabindex="-1"></a>fit_ate <span class="ot">&lt;-</span> stdReg<span class="sc">::</span><span class="fu">stdGlm</span>(fit_1, <span class="at">data =</span> dt, <span class="at">X =</span> <span class="st">"t1_perfectionism_z"</span>)</span>
-<span id="cb11-594"><a href="#cb11-594" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-595"><a href="#cb11-595" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit_std_sample, </span>
-<span id="cb11-596"><a href="#cb11-596" aria-hidden="true" tabindex="-1"></a><span class="at">contrast =</span> <span class="st">"difference"</span>, </span>
-<span id="cb11-597"><a href="#cb11-597" aria-hidden="true" tabindex="-1"></a><span class="at">reference =</span> <span class="dv">0</span>)</span>
-<span id="cb11-598"><a href="#cb11-598" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb11-599"><a href="#cb11-599" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-600"><a href="#cb11-600" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb11-601"><a href="#cb11-601" aria-hidden="true" tabindex="-1"></a><span class="fu">## Appendix A</span></span>
-<span id="cb11-602"><a href="#cb11-602" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-603"><a href="#cb11-603" aria-hidden="true" tabindex="-1"></a>Consider that in the causal inference literature, we may write this contrast two potential outcomes under treatment as:</span>
-<span id="cb11-604"><a href="#cb11-604" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-573"><a href="#cb11-573" aria-hidden="true" tabindex="-1"></a>dt<span class="ot">&lt;-</span> <span class="fu">remove_numeric_attributes</span>(dt)</span>
+<span id="cb11-574"><a href="#cb11-574" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb11-575"><a href="#cb11-575" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-576"><a href="#cb11-576" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-577"><a href="#cb11-577" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Ordinary regression to obtain conditional average treatment effect</span></span>
+<span id="cb11-578"><a href="#cb11-578" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-581"><a href="#cb11-581" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb11-582"><a href="#cb11-582" aria-hidden="true" tabindex="-1"></a>fit_1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(t2_kessler6_sum_z  <span class="sc">~</span> t1_perfectionism_z <span class="sc">+</span> t0_age_z <span class="sc">+</span>  t0_edu_z <span class="sc">+</span> t0_kessler6_sum_z <span class="sc">+</span> t0_perfectionism_z, <span class="at">data =</span> dt)</span>
+<span id="cb11-583"><a href="#cb11-583" aria-hidden="true" tabindex="-1"></a>parameters<span class="sc">::</span><span class="fu">model_parameters</span>(fit_1)</span>
+<span id="cb11-584"><a href="#cb11-584" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-585"><a href="#cb11-585" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-586"><a href="#cb11-586" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Average treatment effect</span></span>
+<span id="cb11-587"><a href="#cb11-587" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-590"><a href="#cb11-590" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb11-591"><a href="#cb11-591" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: check-n</span></span>
+<span id="cb11-592"><a href="#cb11-592" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb11-593"><a href="#cb11-593" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb11-594"><a href="#cb11-594" aria-hidden="true" tabindex="-1"></a>fit_ate <span class="ot">&lt;-</span> stdReg<span class="sc">::</span><span class="fu">stdGlm</span>(fit_1, <span class="at">data =</span> dt, <span class="at">X =</span> <span class="st">"t1_perfectionism_z"</span>)</span>
+<span id="cb11-595"><a href="#cb11-595" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-596"><a href="#cb11-596" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit_std_sample, </span>
+<span id="cb11-597"><a href="#cb11-597" aria-hidden="true" tabindex="-1"></a><span class="at">contrast =</span> <span class="st">"difference"</span>, </span>
+<span id="cb11-598"><a href="#cb11-598" aria-hidden="true" tabindex="-1"></a><span class="at">reference =</span> <span class="dv">0</span>)</span>
+<span id="cb11-599"><a href="#cb11-599" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb11-600"><a href="#cb11-600" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-601"><a href="#cb11-601" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb11-602"><a href="#cb11-602" aria-hidden="true" tabindex="-1"></a><span class="fu">## Appendix A</span></span>
+<span id="cb11-603"><a href="#cb11-603" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-604"><a href="#cb11-604" aria-hidden="true" tabindex="-1"></a>Consider that in the causal inference literature, we may write this contrast two potential outcomes under treatment as:</span>
 <span id="cb11-605"><a href="#cb11-605" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-606"><a href="#cb11-606" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb11-607"><a href="#cb11-607" aria-hidden="true" tabindex="-1"></a>\text{Causal Effect}_i = Y_i^{a=1} - Y_i^{a=0} </span>
-<span id="cb11-608"><a href="#cb11-608" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb11-609"><a href="#cb11-609" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-610"><a href="#cb11-610" aria-hidden="true" tabindex="-1"></a>or</span>
-<span id="cb11-611"><a href="#cb11-611" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-612"><a href="#cb11-612" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb11-613"><a href="#cb11-613" aria-hidden="true" tabindex="-1"></a>\text{Causal Effect}_i = Y_i^{1} - Y_i^{0} </span>
-<span id="cb11-614"><a href="#cb11-614" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb11-615"><a href="#cb11-615" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-616"><a href="#cb11-616" aria-hidden="true" tabindex="-1"></a>or:</span>
-<span id="cb11-617"><a href="#cb11-617" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-606"><a href="#cb11-606" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-607"><a href="#cb11-607" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb11-608"><a href="#cb11-608" aria-hidden="true" tabindex="-1"></a>\text{Causal Effect}_i = Y_i^{a=1} - Y_i^{a=0} </span>
+<span id="cb11-609"><a href="#cb11-609" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb11-610"><a href="#cb11-610" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-611"><a href="#cb11-611" aria-hidden="true" tabindex="-1"></a>or</span>
+<span id="cb11-612"><a href="#cb11-612" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-613"><a href="#cb11-613" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb11-614"><a href="#cb11-614" aria-hidden="true" tabindex="-1"></a>\text{Causal Effect}_i = Y_i^{1} - Y_i^{0} </span>
+<span id="cb11-615"><a href="#cb11-615" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb11-616"><a href="#cb11-616" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-617"><a href="#cb11-617" aria-hidden="true" tabindex="-1"></a>or:</span>
 <span id="cb11-618"><a href="#cb11-618" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-619"><a href="#cb11-619" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb11-620"><a href="#cb11-620" aria-hidden="true" tabindex="-1"></a>\text{Causal Effect}_i = Y_{1} - Y_0 </span>
-<span id="cb11-621"><a href="#cb11-621" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb11-622"><a href="#cb11-622" aria-hidden="true" tabindex="-1"></a>Where subscripts are dropped.  You will soon encounter that many </span>
+<span id="cb11-619"><a href="#cb11-619" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-620"><a href="#cb11-620" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb11-621"><a href="#cb11-621" aria-hidden="true" tabindex="-1"></a>\text{Causal Effect}_i = Y_{1} - Y_0 </span>
+<span id="cb11-622"><a href="#cb11-622" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb11-623"><a href="#cb11-623" aria-hidden="true" tabindex="-1"></a>Where subscripts are dropped.  You will soon encounter that many </span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
