@@ -111,11 +111,6 @@ And that has made all the difference.
 -- The Road Not Taken
 
 
-At the heart of Frost's poem is the sad poignancy:
-
-**“And sorry I could not travel both. And be one traveller$\dots$”**  
-
-
 ## Introduction: Motivating Example
 
 Consider the following cross-cultural question: 
@@ -171,9 +166,9 @@ Y_i|A_i = 0 \implies Y_i(1)|A_i = 1~ \text{is counterfactual}
 $$
 
 
-::: footer
-"**And sorry I could not travel both And be one traveller, long I stood** $\dots$"
-:::
+
+**And sorry I could not travel both And be one traveller, long I stood** $\dots$
+
 
 
 
@@ -182,15 +177,19 @@ $$
 
 Consider inherently missing observations in an experiment:
 
+
+
+::: {#tbl-01}
+
 $$
 \text{ATE} = \left[ \begin{aligned}
 &\left( \underbrace{\mathbb{E}[Y(1)|A = 1]}_{\text{observed}} + \textcolor{red}{\underbrace{\mathbb{E}[Y(1)|A = 0]}_{\text{unobserved}}} \right) \\
 &- \left( \underbrace{\mathbb{E}[Y(0)|A = 0]}_{\text{observed}} + \textcolor{red}{\underbrace{\mathbb{E}[Y(0)|A = 1]}_{\text{unobserved}}} \right)
 \end{aligned} \right]
 $$
+::: 
 
-
-In this expression, $\mathbb{E}[Y(1)|A = 1]$ represents the average outcome when the treatment is given, which is observable. However, $\mathbb{E}[Y(1)|A = 0]$ represents the average outcome if the treatment had been given to those who were untreated, which remains unobservable. Similarly, the quantity $\mathbb{E}[Y(0)|A = 1]$ also remains unobservable.  Note that the problem isn't merely one of statistical analysis on the data. **The problem is that the relevant data to identify individual causal effects are missing.** Thus, it is evident that the fundamental problem of causal inference is an ever-present concern even in experiments!
+In @tbl-01, the expression, $\mathbb{E}[Y(1)|A = 1]$ represents the average outcome when the treatment is given, which is observable. However, $\mathbb{E}[Y(1)|A = 0]$ represents the average outcome if the treatment had been given to those who were untreated, which remains unobservable. Similarly, the quantity $\mathbb{E}[Y(0)|A = 1]$ also remains unobservable.  Note that the problem isn't merely one of statistical analysis on the data. **The problem is that the relevant data to identify individual causal effects are missing.** Thus, it is evident that the fundamental problem of causal inference is an ever-present concern even in experiments!
 
 All the data we require for causal inferences at the individual level are missing, Nevertheless, because the treatments have been randomised, the data we observe from randomised controlled experiments can allow us to infer what would happen, **on average** if the treatment were applied to the population from which the participants were sampled. 
 
@@ -301,20 +300,19 @@ We described the fundamental problem of causal inference, focusing on the critic
 
 
 
-#### Focus
-- Application of regression and simulation in R for ATE estimation
 
 
   
 ## Part 2: Lab
 
+#### Focus
+- Application of regression and simulation in R for ATE estimation
 
-#### Setting up your file
+
+#### Setting up your r script.
 
 
 First, reinstall the `margot` package:  https://go-bayes.github.io/margot/
-
-Then check that you have the simulated data:
 
 ```{r}
 #| label: install
@@ -329,7 +327,7 @@ if (!require(devtools, quietly = TRUE)) {
 }
 
 # reinstall the `margot` packagewith updates
-devtools::install_github("go-bayes/margot", quietly = TRUE)
+# devtools::install_github("go-bayes/margot", quietly = TRUE)
 
 # call package
 library("margot")
@@ -338,6 +336,9 @@ library("parameters")
 library("skimr")
 library("haven")
 library("stdReg")
+library('mice')
+library("clarify")
+
 # uncomment and check simulated data
 # head(df_nz)
 ```
@@ -347,7 +348,7 @@ library("stdReg")
 
 Find it the data directory here: https://osf.io/75snb/
 
-The variables in the simulated data correspond to a subset of the variables in this directory
+The variables in the simulated data `df_nz` correspond to a subset of the variables in this directory.
 
 
 
@@ -379,21 +380,23 @@ df_nz <- haven::zap_widths(df_nz)
 
 name_exposure <-  "perfectionism"
 
-# Obtain IDs for individuals who participated in 2018 and have no missing baseline exposure
+# obtain ids for individuals who participated in 2018 and have no missing baseline exposure
 ids_2018 <- df_nz %>%
    dplyr::filter(year_measured == 1, wave == 2018) %>%
    dplyr::filter(!is.na(!!sym(name_exposure))) |> # criteria, no missing
   pull(id)
 
-# Obtain IDs for individuals who participated in 2019
+# obtain ids for individuals who participated in 2019
 ids_2019 <- df_nz %>%
    dplyr::filter(year_measured == 1, wave == 2019) %>%
    dplyr::filter(!is.na(!!sym(name_exposure))) |> # criteria, no missing
   pull(id)
 
-# Intersect IDs from 2018 and 2019 to ensure participation in both years
+# intersect IDs from 2018 and 2019 to ensure participation in both years
 ids_2018_2019 <- intersect(ids_2018, ids_2019)
 
+
+# data wrangling
 dat_long <- df_nz |>
   dplyr::filter(id %in% ids_2018_2019 &
                   wave %in% c(2018, 2019, 2020)) |>
@@ -527,30 +530,32 @@ dat_long <- df_nz |>
   arrange(id, wave) |>
   data.frame()
 
-#check
-# head(dat_long)
+# check n in this sample
+skimr::n_unique(dat_long$id)
 
+#check
+#head(dat_long)
 ```
 
 
 
-#### Make data wide
+#### Convert data from long to wide and impute baseline values
 
 ```{r}
+#| label: convert
 # baseline variables
-
 baseline_vars = c("age", "male", "edu", "partner", "employed")
-exposure_var = c("perfectionism", "censored")
+exposure_var = c("perfectionism", "censored") # we will use the censored variable later
 outcome_vars = c("kessler6_sum")
 
 
 # function will add exposure and outcome to baseline
-dat_long_wide <- margot::margot_wide(dat_long, baseline_vars = baseline_vars, exposure_var = exposure_var, outcome_vars =outcome_vars)
+dat_long_wide <- margot::margot_wide_impute_baseline(dat_long, baseline_vars = baseline_vars, exposure_var = exposure_var, outcome_vars =outcome_vars)
 
 # check
 head(dat_long_wide)
 
-# scale vars
+# standardise vars
 dt <- dat_long_wide |> 
   dplyr::mutate(
     t0_age_z = scale(t0_age),
@@ -558,31 +563,109 @@ dt <- dat_long_wide |>
     t0_kessler6_sum_z =  scale(t0_kessler6_sum),
     t0_perfectionism_z = scale(t0_perfectionism),
     t1_perfectionism_z = scale(t1_perfectionism),
-    t2_kessler6_sum_z = scale(t2_kessler6_sum))
+    t2_kessler6_sum_z = scale(t2_kessler6_sum)) |> 
+  data.frame()
 
-dt<- remove_numeric_attributes(dt)
-  
+# we are not handling missing data well, and this will throw bugs down stream
+# to avoid this problem we remove attributes
+dt<- margot::remove_numeric_attributes(dt)
 ```
 
-#### Ordinary regression to obtain conditional average treatment effect
+
+#### Use regression to obtain *conditional average treatment* effect
+
+
 
 ```{r}
-fit_1 <- lm(t2_kessler6_sum_z  ~ t1_perfectionism_z + t0_age_z +  t0_edu_z + t0_kessler6_sum_z + t0_perfectionism_z, data = dt)
-parameters::model_parameters(fit_1)
+# note that we are not handling missing data appropriately here
+
+# take interaction of treatment and baseline vars
+fit_1 <- glm(t2_kessler6_sum_z  ~ t1_perfectionism_z * (t0_age_z +  t0_edu_z + t0_kessler6_sum_z + t0_perfectionism_z), data = dt)
+
+# summarise
+regression_table  <- parameters::model_parameters(fit_1)
+
 ```
 
-#### Average treatment effect
+This regression coefficient has a *causal* interpretation (it is the ate, at the value when all variables in the model are set to zero)
+
+```{r}
+regression_table[2, ]
+```
+
+
+
+#### Average Treatment Effect
+
+First we'll use the `stdReg` package: 
 
 ```{r}
 #| label: check-n
 #| echo: true
 #| eval: false
-fit_ate <- stdReg::stdGlm(fit_1, data = dt, X = "t1_perfectionism_z")
 
-summary(fit_std_sample, 
-contrast = "difference", 
-reference = 0)
+# fit the ate
+fit_ate <- stdReg::stdGlm(fit_1,data = dt, X = "t1_perfectionism_z", x=seq(0,1))
+print(summary(fit_ate))
+
+# summarise the ate
+ate_stdreg_method <- summary(fit_ate,  contrast = "difference",  reference = 0)
+
+print( ate_stdreg_method )
+# graph ate using stdReg method
+plot(ate_stdreg_method)
 ```
+
+
+##### Obtain ATE by hand using g-computation
+
+
+
+```{r}
+# recall our fit
+fit_1 <- glm(t2_kessler6_sum_z ~ t1_perfectionism_z + t0_age_z + t0_edu_z + t0_kessler6_sum_z + t0_perfectionism_z, data = dt, family = gaussian())
+
+# step 2: create a new dataset where everyone receives the treatment
+dt_treated <- dt
+dt_treated$t1_perfectionism_z <- mean(dt$t1_perfectionism_z)  # setting treatment to the mean can be adjusted as needed
+
+# step 3: predict outcomes under the treatment scenario
+dt_treated$predicted_outcome <- predict(fit_1, newdata = dt_treated, type = "response")
+
+# step 4: calculate the mean outcome under this treatment scenario
+mean_outcome_treated <- mean(dt_treated$predicted_outcome)
+
+# repeat Steps 2-4 for control or another treatment level
+dt_control <- dt
+dt_control$t1_perfectionism_z <- 1  # one sd increase in perfectionism
+
+dt_control$predicted_outcome <- predict(fit_1, newdata = dt_control, type = "response")
+mean_outcome_control <- mean(dt_control$predicted_outcome)
+
+# step 5: calculate the average treatment effect
+ate_gcomp <- round( mean_outcome_treated - mean_outcome_control, 2)
+print(paste("Average Treatment Effect (ATE) of t1_perfectionism_z using g-computation: ", ate_gcomp))
+
+```
+
+##### Next obtain the ATE and standard errors by simulation using `clarify` 
+
+
+```{r}
+library("clarify")
+
+# setup simulation with clarify to manipulate the treatment variable and predict outcomes
+set.seed(123)
+sim_coefs <- sim(fit_1)
+
+# compute ate
+sim_est <- sim_ame(sim_coefs, contrast = "diff", var =  "t1_perfectionism_z")
+
+# summarise
+summary(sim_est)
+```
+
+
 
   
 ## Appendix A
