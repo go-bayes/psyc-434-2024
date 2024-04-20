@@ -123,7 +123,7 @@ editor_options:
 
 - Regression and simulation exercises in R focussed on ATE
 
-## Week 7: April 22 - Causal Inference and CATE (Effect Modification)
+## Week 7: April 22 - Causal Inference and Effect Modification
 
 - [@hernan2024WHATIF] Chapters 4-5 [link](https://www.dropbox.com/scl/fi/9hy6xw1g1o4yz94ip8cvd/hernanrobins_WhatIf_2jan24.pdf?rlkey=8eaw6lqhmes7ddepuriwk5xk9&dl=0)
 
@@ -134,8 +134,9 @@ editor_options:
 
 #### Focus
 
-- Key concepts of Conditional Average Treatment Effect (CATE)
-- Advanced regression and simulation exercises in R for CATE estimation
+- Effect Modification: Definining the Causal Estimand
+- Distinguishing *Cultural Effect-Modification* from the confused and conflated concepts of "Moderation", "Mediation", "Interaction."
+- Brief Detour into Causal Mediation
 
 #### Lab
 
@@ -147,7 +148,7 @@ editor_options:
 #### Focus
 
 - Workflow for causal question formulation, population statement, and causal diagram creation
-- Estimation techniques for ATE and CATE using R and documentation with LaTeX
+- Estimation techniques evaluating evidence for cultural-effect modification using R and documentation with LaTeX
 
 
 #### Readings
@@ -168,7 +169,7 @@ editor_options:
 #### Focus
 
 - Second assessment covering advanced topics in causal inference
-- Topics include ATE, CATE, fundamental assumptions of causal inference, experiments, and real-world confounding
+- Topics include ATE, Effect-Modification, fundamental assumptions of causal inference, experiments, and real-world confounding
 
 #### Lab
 
@@ -240,7 +241,7 @@ editor_options:
 
 ## References
 
-<!-- 
+
 ## Appendix Optional Videos
 
 ### Johannas Karl on Getting Started In R 
@@ -266,4 +267,4 @@ editor_options:
 ####  Stijn Vansteelandt on the Problem of Mediation Analysis
 
 
-{{< video https://www.youtube.com/watch?v=IgC7R07Qk6A  >}} -->
+{{< video https://www.youtube.com/watch?v=IgC7R07Qk6A  >}} 
