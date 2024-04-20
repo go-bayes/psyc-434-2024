@@ -2,14 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.523">
+<meta name="generator" content="quarto-1.5.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Joseph Bulbulia">
-<meta name="dcterms.date" content="2023-05-09">
+<meta name="dcterms.date" content="2023-04-22">
 
-<title>PSYC 434 Conducting Research Across Cultures: Trimester 1, 2024 - Introduction to Causal Inference: Definitions, Assumptions, Causal Graphs</title>
+<title>PSYC 434 Conducting Research Across Cultures: Trimester 1, 2024 – Causal Inference: Effect-Modification and Interaction</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,7 +22,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -68,8 +88,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script src="../site_libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 
   <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
   <script>document.addEventListener("DOMContentLoaded", function () {
@@ -87,6 +105,33 @@ ul.task-list li input[type="checkbox"] {
 }}});
   </script>
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -108,21 +153,48 @@ ul.task-list li input[type="checkbox"] {
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../content/course-outline.html"> 
+<span class="menu-text">Course Outline</span></a>
+  </li>  
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-content" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Content</span>
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-content">    
         <li>
+    <a class="dropdown-item" href="../content/glossary.pdf">
+ <span class="dropdown-text">Glossary</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../content/course-outline.html">
+ <span class="dropdown-text">Course Outline</span></a>
+  </li>  
+        <li>
     <a class="dropdown-item" href="../content/01-content.html">
  <span class="dropdown-text">Week 1: Course Introduction - R (installing packages)</span></a>
   </li>  
-        <li class="dropdown-header">Week 2: Causal Diagrams - Elementary Structures and Rules - R (using the interface/simulating data)</li>
-        <li class="dropdown-header">Week 3: Causal Diagrams - Confounding Bias - R (regression/simulation)</li>
-        <li class="dropdown-header">Week 4: Causal Diagrams - Interaction, Measurement Bias, Selection Bias - R (regression/simulation)</li>
+        <li>
+    <a class="dropdown-item" href="../content/02-content.html">
+ <span class="dropdown-text">Week 2: Causal Diagrams - Elementary Structures and Rules - R (using the interface)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../content/03-content.html">
+ <span class="dropdown-text">Week 3: Causal Diagrams - Confounding Bias - R (regression/simulation)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../content/04-content.html">
+ <span class="dropdown-text">Week 4: Causal Diagrams - Interaction, Measurement Bias, Selection Bias - R (regression/simulation)</span></a>
+  </li>  
         <li class="dropdown-header">Week 5: Quiz - R (regression/simulation/reporting)</li>
-        <li class="dropdown-header">Week 6: Causal Inference - Key Concepts ATE - R (regression/simulation: ATE)</li>
-        <li class="dropdown-header">Week 7: Causal Inference - Key Concept CATE - R (regression/simulation: ATE)</li>
+        <li>
+    <a class="dropdown-item" href="../content/06-content.html">
+ <span class="dropdown-text">Week 6: Causal Inference - Key Concepts ATE - R (regression/simulation: ATE)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../content/06-content.html">
+ <span class="dropdown-text">Week 7: Causal Inference - Key Concept CATE - R (regression/simulation: ATE)</span></a>
+  </li>  
         <li class="dropdown-header">Week 8: Causal Inference - Estimation of ATE and CATE - R and LaTeX</li>
         <li class="dropdown-header">Week 9: Quiz - R</li>
         <li class="dropdown-header">Week 10: Measurement Matters - Factor Analysis, CFA, MultiGroup CFA, Partial Invariance - R</li>
@@ -132,7 +204,7 @@ ul.task-list li input[type="checkbox"] {
   </li>
 </ul>
           </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
+            <div class="quarto-navbar-tools">
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -141,7 +213,7 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Introduction to Causal Inference: Definitions, Assumptions, Causal Graphs</h1>
+      <h1 class="title">Causal Inference: Effect-Modification and Interaction</h1>
                       </div>
   </div>
     
@@ -165,7 +237,7 @@ ul.task-list li input[type="checkbox"] {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">May 9, 2023</p>
+        <p class="date">April 22, 2023</p>
       </div>
     </div>
     
@@ -181,25 +253,13 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#slides" id="toc-slides" class="nav-link active" data-scroll-target="#slides">Slides</a></li>
-  <li><a href="#excercises" id="toc-excercises" class="nav-link" data-scroll-target="#excercises">Excercises</a></li>
-  <li><a href="#downloads" id="toc-downloads" class="nav-link" data-scroll-target="#downloads">Downloads</a></li>
-  <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#introduction-motivating-example" id="toc-introduction-motivating-example" class="nav-link" data-scroll-target="#introduction-motivating-example">Introduction: Motivating Example</a></li>
-  <li><a href="#part-1-the-fundamental-problem-of-causal-inference-as-a-missing-data-problem" id="toc-part-1-the-fundamental-problem-of-causal-inference-as-a-missing-data-problem" class="nav-link" data-scroll-target="#part-1-the-fundamental-problem-of-causal-inference-as-a-missing-data-problem">Part 1: The Fundamental Problem of Causal Inference as a Missing Data Problem</a></li>
-  <li><a href="#part-2-fundamental-assumptions-of-causal-inference" id="toc-part-2-fundamental-assumptions-of-causal-inference" class="nav-link" data-scroll-target="#part-2-fundamental-assumptions-of-causal-inference">Part 2: Fundamental Assumptions of Causal Inference</a></li>
-  <li><a href="#assumptions-required-for-estimating-causal-effects-from-data" id="toc-assumptions-required-for-estimating-causal-effects-from-data" class="nav-link" data-scroll-target="#assumptions-required-for-estimating-causal-effects-from-data">Assumptions Required for Estimating Causal Effects From Data</a>
+  <li><a href="#review" id="toc-review" class="nav-link active" data-scroll-target="#review">Review</a></li>
+  <li><a href="#concepts" id="toc-concepts" class="nav-link" data-scroll-target="#concepts">Concepts</a></li>
+  <li><a href="#old-material" id="toc-old-material" class="nav-link" data-scroll-target="#old-material">OLD MATERIAL</a></li>
+  <li><a href="#what-is-interaction" id="toc-what-is-interaction" class="nav-link" data-scroll-target="#what-is-interaction">What is interaction?</a>
   <ul class="collapse">
-  <li><a href="#causal-consistency" id="toc-causal-consistency" class="nav-link" data-scroll-target="#causal-consistency">Causal Consistency</a></li>
-  <li><a href="#positivity" id="toc-positivity" class="nav-link" data-scroll-target="#positivity">Positivity</a></li>
-  <li><a href="#conditional-exchangeablity" id="toc-conditional-exchangeablity" class="nav-link" data-scroll-target="#conditional-exchangeablity">Conditional exchangeablity</a></li>
-  <li><a href="#positivity-1" id="toc-positivity-1" class="nav-link" data-scroll-target="#positivity-1">Positivity</a></li>
+  <li><a href="#what-is-it-to-compare-causal-effects-in-groups" id="toc-what-is-it-to-compare-causal-effects-in-groups" class="nav-link" data-scroll-target="#what-is-it-to-compare-causal-effects-in-groups">What is it to compare causal effects in groups?</a></li>
   </ul></li>
-  <li><a href="#part-3-causal-inference-from-randomized-experiments" id="toc-part-3-causal-inference-from-randomized-experiments" class="nav-link" data-scroll-target="#part-3-causal-inference-from-randomized-experiments">Part 3: Causal Inference from Randomized Experiments</a></li>
-  <li><a href="#part-4-causal-graphs-and-directed-acyclic-graphs-dags" id="toc-part-4-causal-graphs-and-directed-acyclic-graphs-dags" class="nav-link" data-scroll-target="#part-4-causal-graphs-and-directed-acyclic-graphs-dags">Part 4: Causal Graphs and Directed Acyclic Graphs (DAGs)</a></li>
-  <li><a href="#clear-advice-for-drawing-causal-graphs" id="toc-clear-advice-for-drawing-causal-graphs" class="nav-link" data-scroll-target="#clear-advice-for-drawing-causal-graphs">Clear Advice for Drawing Causal Graphs</a></li>
-  <li><a href="#summary-drawing-causal-graphs-dags" id="toc-summary-drawing-causal-graphs-dags" class="nav-link" data-scroll-target="#summary-drawing-causal-graphs-dags">Summary: Drawing Causal Graphs (DAGs)</a></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
   </ul>
 </nav>
     </div>
@@ -210,258 +270,234 @@ ul.task-list li input[type="checkbox"] {
 
 
 
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Required</strong> - <span class="citation" data-cites="hernan2024WHATIF">(<a href="#ref-hernan2024WHATIF" role="doc-biblioref">Hernan and Robins 2024</a>)</span> Chapters 4-5 <a href="https://www.dropbox.com/scl/fi/9hy6xw1g1o4yz94ip8cvd/hernanrobins_WhatIf_2jan24.pdf?rlkey=8eaw6lqhmes7ddepuriwk5xk9&amp;dl=0">link</a></p>
+<p><strong>Optional</strong> - <span class="citation" data-cites="vanderweele2007FOURTYPESOFEFFECT">(<a href="#ref-vanderweele2007FOURTYPESOFEFFECT" role="doc-biblioref">Tyler J. VanderWeele and Robins 2007a</a>)</span> <a href="https://www.dropbox.com/scl/fi/drytp2ui2b8o9jplh4bm9/four_types_of_effect_modification__a.6.pdf?rlkey=mb9nl599v93m6kyyo69iv5nz1&amp;dl=0">link</a> - <span class="citation" data-cites="vanderweele2009distinction">(<a href="#ref-vanderweele2009distinction" role="doc-biblioref">Tyler J. VanderWeele 2009</a>)</span> <a href="https://www.dropbox.com/scl/fi/srpynr0dvjcndveplcydn/OutcomeWide_StatisticalScience.pdf?rlkey=h4fv32oyjegdfl3jq9u1fifc3&amp;dl=0">link</a></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Key concepts for the test(s):
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Effect Modification</strong></li>
+<li><strong>Interaction/Moderation</strong></li>
+<li><strong>Heterogeneous Treatment Effects</strong></li>
+<li><strong>Causal Mediation</strong></li>
+</ul>
+</div>
+</div>
+<section id="review" class="level2">
+<h2 class="anchored" data-anchor-id="review">Review</h2>
+</section>
+<section id="concepts" class="level2">
+<h2 class="anchored" data-anchor-id="concepts">Concepts</h2>
+<section id="interaction-as-a-joint-intervention" class="level4">
+<h4 class="anchored" data-anchor-id="interaction-as-a-joint-intervention">Interaction as a joint intervention</h4>
+<p>This form of interaction occurs when the combined effect of two interventions (or treatments) is different from what would be expected based on their individual effects.</p>
+<p>Consider two treatments, denoted as <span class="math inline">A</span> and <span class="math inline">B</span>, and their outcome as <span class="math inline">Y</span>. A joint intervention causal interaction implies that the effect of <span class="math inline">A</span> and <span class="math inline">B</span> together on <span class="math inline">Y</span> (denoted as <span class="math inline">Y(A,B)</span>) is not merely the sum of their individual effects.</p>
+<p>For instance, consider the effect of beliefs in Big Gods (exposure <span class="math inline">A</span>) on social complexity (outcome <span class="math inline">Y</span>), potentially influenced by a culture’s monumental architecture (exposure <span class="math inline">B</span>). To assess the individual and combined effects of <span class="math inline">A</span> and <span class="math inline">B</span>, we look for evidence of causal interaction on the difference scale. Evidence for interaction would be present if the following inequality were to hold:</p>
+<p><span class="math display">\bigg(\underbrace{\mathbb{E}[Y(1,1)]}_{\text{joint exposure}} - \underbrace{\mathbb{E}[Y(0,0)]}_{\text{neither exposed}}\bigg) - \bigg[ \bigg(\underbrace{\mathbb{E}[Y(1,0)]}_{\text{only A exposed}} - \underbrace{\mathbb{E}[Y(0,0)]}_{\text{neither exposed}}\bigg) + \bigg(\underbrace{\mathbb{E}[Y(0,1)]}_{\text{only B exposed}} - \underbrace{\mathbb{E}[Y(0,0)]}_{\text{neither exposed}} \bigg)\bigg] \neq 0 </span></p>
+<p>This equation simplifies to</p>
+<p><span class="math display"> \underbrace{\mathbb{E}[Y(1,1)]}_{\text{joint exposure}} - \underbrace{\mathbb{E}[Y(1,0)]}_{\text{only A exposed}} - \underbrace{\mathbb{E}[Y(0,1)]}_{\text{only B exposed}} + \underbrace{\mathbb{E}[Y(0,0)]}_{\text{neither exposed}} \neq 0 </span></p>
+<p>A positive value would indicate evidence for additive interaction. A negative value would indicate evidence for sub-additive interaction. A value near zero would imply no reliable evidence for interaction.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-dag" class="quarto-figure quarto-figure-center anchored" width="80%">
+<div id="fig-dag-interaction" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-dag-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="07-content_files/figure-html/fig-dag-1.png" class="img-fluid figure-img" style="width:80.0%">
+<div aria-describedby="fig-dag-interaction-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="07-content_files/figure-html/fig-dag-interaction-1.png" class="img-fluid figure-img" style="width:80.0%">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dag-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Causal graph shows potential for selection bias from loss to follow up or non-response. To address this, we multiply impute missing values on the assumption that missing values are random conditional on the imputation model (MAR).
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dag-interaction-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: This diagram presents the individual and joint effects of two exposures, A and B, on outcome Y. We assume that A and B are causally independent. If either exposure affects the other, then we may conduct effect-modification analysis or mediation analysis, but we should avoid causal interaction analysis. The diagram includes confounders L and W. Control for these confounders is necessary to close the backdoor paths that relate each exposure, A and B, to the outcome. Each exposure has equal status in our model: Y(a,b) = Y(b,a). The red path denotes paths of confounding.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<section id="slides" class="level2">
-<h2 class="anchored" data-anchor-id="slides">Slides</h2>
-<p><a href="../slides/07-slides.html">PREVIEW</a></p>
-<div>
-<iframe class="slide-deck" src="../slides/07-slides.html"></iframe>
-</div>
-<p>Open in browser <a href="../slides/07-slides.html" target="_blank">here</a></p>
-</section>
-<section id="excercises" class="level2">
-<h2 class="anchored" data-anchor-id="excercises">Excercises</h2>
-<p><a href="../slides/07-exercise.html">PREVIEW</a></p>
-<div>
-<iframe class="slide-deck" src="../slides/07-exercise.html"></iframe>
-</div>
-<p>Open in browser <a href="../slides/07-exercise.html" target="_blank">here</a></p>
-</section>
-<section id="downloads" class="level2">
-<h2 class="anchored" data-anchor-id="downloads">Downloads</h2>
-<p>Below is a link to the R script that will allow you to download the data and exercises. Copy the contents on your screen to a new R script, and run the script from the begging. Before class, it will be useful for you to:</p>
-<ol type="1">
-<li>Run “source()” file.</li>
-<li>Download the synthetic data.</li>
-<li>Create a folder in your Rstudio project called “data”</li>
-<li>Place the downloaded file in your data folder.</li>
-</ol>
-<p><a href="https://raw.githubusercontent.com/go-bayes/psych-434-2023/ab93ccac0b03c9ae46ab310f37d32951b77e406d/scripts/434-intro-causal-inference-week-7.R">link to script for this week</a></p>
-</section>
-<section id="overview" class="level2">
-<h2 class="anchored" data-anchor-id="overview">Overview</h2>
-</section>
-<section id="introduction-motivating-example" class="level2">
-<h2 class="anchored" data-anchor-id="introduction-motivating-example">Introduction: Motivating Example</h2>
-<p>Consider the following cross-cultural question:</p>
-<blockquote class="blockquote">
-<p>Does bilingualism improve cognitive abilities in children?</p>
-</blockquote>
-<p>There is evidence that bilingual children perform better oat cognitive tasks, but is learning more than one language a confounding factors?</p>
-<p>In this lecture, we will discuss the fundamental problem of causal inference, its assumptions, and how we can address this issue in both experimental and observational settings.</p>
-</section>
-<section id="part-1-the-fundamental-problem-of-causal-inference-as-a-missing-data-problem" class="level2">
-<h2 class="anchored" data-anchor-id="part-1-the-fundamental-problem-of-causal-inference-as-a-missing-data-problem">Part 1: The Fundamental Problem of Causal Inference as a Missing Data Problem</h2>
-<p>To understand the fundamental problem of causal inference, let’s first define two potential outcomes for each individual in our study:</p>
-<ul>
-<li><span class="math inline">Y_i^{a = 1}</span>: The cognitive ability of child <span class="math inline">i</span> if they were bilingual. This is the counterfactual outcome when A = 1.</li>
-<li><span class="math inline">Y_i^{a = 0}</span>:: The cognitive ability of child <span class="math inline">i</span> if they were monolingual. This is the counterfactual outcome when A = 0.</li>
-</ul>
-<p>The causal effect of bilingualism on cognitive ability for individual <span class="math inline">i</span> is then defined as the difference between these potential outcomes:</p>
-<p><span class="math display">
-\text{Causal Effect}_i = Y^{a=1} - Y^{a=0}
-</span></p>
-<p>Note that sometimes we will write this contrast as:</p>
-<p><span class="math display">
-\text{Causal Effect}_i = Y(1) - Y(0)
-</span></p>
-<p>or</p>
-<p><span class="math display">
-\text{Causal Effect}_i = Y^{1} - Y^{0}
-</span></p>
-<p>We say there is a causal effect if:</p>
-<p><span class="math display">
-Y_i^{a=1} - Y_i^{a=0}  \neq 0
-</span></p>
-<p>The Philosopher David Hume defines causation in the following way:</p>
-<blockquote class="blockquote">
-<p>“We may define a cause to be an object followed by another, and where all the objects, similar to the first, are followed by objects similar to the second [definition 1]. Or, in other words, where, if the first object had not been, the second never would have existed [definition 2].”&nbsp; - Enquiries Concerning Human Understanding, and Concerning the Principles of Morals</p>
-</blockquote>
-<p>This is a contrast between two states of the world. One in which a child recieves bi-lingual exposure and one in which a child does not.</p>
-<p>However, consider that we can only observe one of the potential outcomes for each child. The contrast we require for identifying a causal effect is typically not observed.</p>
-<p>Robert Frost writes,</p>
-<blockquote class="blockquote">
-<p>Two roads diverged in a yellow wood, And sorry I could not travel both And be one traveler, long I stood And looked down one as far as I could To where it bent in the undergrowth;</p>
-</blockquote>
-<blockquote class="blockquote">
-<p>Then took the other, as just as fair, And having perhaps the better claim, Because it was grassy and wanted wear; Though as for that the passing there Had worn them really about the same,  And both that morning equally lay In leaves no step had trodden black. Oh, I kept the first for another day! Yet knowing how way leads on to way, I doubted if I should ever come back.</p>
-</blockquote>
-<blockquote class="blockquote">
-<p>I shall be telling this with a sigh Somewhere ages and ages hence: Two roads diverged in a wood, and I— I took the one less traveled by, And that has made all the difference. – The Road Not Taken</p>
-</blockquote>
-<p><strong>“And sorry I could not travel both. And be one traveller<span class="math inline">\dots</span>”</strong></p>
-<p>The fact that causal contrasts are not observed on individuals is called “The fundamental problem of causal inference.”</p>
-<p>We will discuss how this missing data problem arises in different research designs and explore strategies for addressing it.</p>
-<p>For now, note that the problem isn’t merely one of statistical analysis on the data. <strong>The problem is that the relevant data to identify individual causal effects are missing.</strong></p>
-</section>
-<section id="part-2-fundamental-assumptions-of-causal-inference" class="level2">
-<h2 class="anchored" data-anchor-id="part-2-fundamental-assumptions-of-causal-inference">Part 2: Fundamental Assumptions of Causal Inference</h2>
-<p>Although we typically cannot observe individual causal effects, under certain assumptions we can obtain average causal effects.</p>
-<p><span class="math display">\begin{align}
-E(\delta) = E(Y^{a=1} - Y^{a=0})\\
-          ~  = E(Y^{a=1}) - E(Y^{a=0}) \\
-          ~  = ATE
-\end{align}</span></p>
-</section>
-<section id="assumptions-required-for-estimating-causal-effects-from-data" class="level2">
-<h2 class="anchored" data-anchor-id="assumptions-required-for-estimating-causal-effects-from-data">Assumptions Required for Estimating Causal Effects From Data</h2>
-<ul>
-<li>Causal Consistency: The values of exposure under comparisons correspond to well-defined interventions that, in turn, correspond to the versions of treatment in the data.(see: Chatton, Hernan &amp; Robbins)</li>
-<li>Positivity: The probability of receiving every value of the exposure within all strata of co-variates is greater than zero</li>
-<li>Exchangeablility: The conditional probability of receiving every value of an exposure level, though not decided by the investigators, depends only on the measured covariates (see: Chatton, Hernan &amp; Robbins)</li>
-</ul>
-<section id="causal-consistency" class="level3">
-<h3 class="anchored" data-anchor-id="causal-consistency">Causal Consistency</h3>
-<p>The fundamental problem of causal inference is that an individual cannot receive two different exposures at the same time. For a binary exposure, an observed outcome under an exposure can be can be expressed:</p>
-<p><span class="math display">Y^{observed} = AY^{a=1} + (1-A)Y^{a=0}</span></p>
-<p>Table <a href="#tbl-consistency" class="quarto-xref">Table&nbsp;1</a> expresses the relationship between observable outcomes and counterfactual outcomes as a contingency table.</p>
-<div class="cell" data-warnings="false">
-<div id="tbl-consistency" class="cell anchored" data-warnings="false">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-consistency-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;1: Causal Consistency
-</figcaption>
-<div aria-describedby="tbl-consistency-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<p><a href="#fig-dag-interaction" class="quarto-xref">Figure&nbsp;1</a> clarifies the need to evaluate two sources of counfounding, one for each intervention (<span class="math inline">A</span> and <span class="math inline">B</span>). The graph resembles others we have considered. By adjusting for <span class="math inline">L_{0}</span> we obtain an unbiased estimate of the <span class="math inline">A\to Y</span> path. By adjusting for <span class="math inline">W_{0}</span> we obtain an unbiased estimate of the <span class="math inline">B\to Y</span> path. As indicated in <a href="#fig-dag-interaction-solved" class="quarto-xref">Figure&nbsp;2</a>, we must condition on both <span class="math inline">L_{0}</span> and <span class="math inline">W_{0}</span> to identify causal interaction conceived as a joint interaction.</p>
+<p>An important complication is that evidence for causal interaction may differ depending on the measurement scale one chooses to assess it <span class="citation" data-cites="vanderweele2014">Tyler J. VanderWeele (<a href="#ref-vanderweele2012" role="doc-biblioref">2012</a>)</span>. Evidence for the strength of a causal effect estimate for interaction in the presence of effect-modification will differ depending on whether the effect is measured on the ratio scale as opposed to the difference scale (see: <span class="citation" data-cites="vanderweele2014">Tyler J. VanderWeele and Knol (<a href="#ref-vanderweele2014" role="doc-biblioref">2014</a>)</span>, who recommends using the causal difference scale for most policy settings.)</p>
+<div class="cell">
 <div class="cell-output-display">
-<table class="table table-hover cell table-sm table-striped small" data-quarto-postprocess="true">
-<thead>
-<tr class="header">
-<th style="text-align: left;" data-quarto-table-cell-role="th">Group</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">Exposure_A_1</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">No_Exposure_A_0</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Y(1)</td>
-<td style="text-align: left;">Observable</td>
-<td style="text-align: left;">Counterfactual</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Y(0)</td>
-<td style="text-align: left;">Counterfactual</td>
-<td style="text-align: left;">Observable</td>
-</tr>
-</tbody>
-</table>
-
-
+<div id="fig-dag-interaction-solved" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-dag-interaction-solved-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="07-content_files/figure-html/fig-dag-interaction-solved-1.png" class="img-fluid figure-img" style="width:80.0%">
 </div>
-</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dag-interaction-solved-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: We adjust for confounding in causal interaction analysis by adjusting for all confounders of the A to Y path as well as all for the B to Y path. The box over the confounders indicates the biasing paths are closed.
+</figcaption>
 </figure>
 </div>
 </div>
-<p>When the counterfactual consistency theorem holds, and individuals observed outcome under an exposure is equal to their counterfactual outcome under that exposure:</p>
-<p><span class="math display">
-Y_i = Y_i^1 ~\text{if}~ A_i = 1
-</span></p>
-<p>and</p>
-<p><span class="math display">
-Y_i = Y_i^0 ~\text{if}~  A_i = 0
-</span></p>
+</div>
+<p>Again we arrange <a href="#fig-dag-interaction-solved" class="quarto-xref">Figure&nbsp;2</a> to follow the assumed sequence of causation. Doing so better clarifies demands for data quality – the timing of the events must be ensured. Data collection should also draw on expert knowledge about how <span class="math inline">A</span> and <span class="math inline">B</span> may be related over time; measurements of <span class="math inline">A</span> and <span class="math inline">B</span> should be taken within intervals in which <span class="math inline">A</span> and <span class="math inline">B</span> are unlikely to affect each other.</p>
 </section>
-<section id="positivity" class="level3">
-<h3 class="anchored" data-anchor-id="positivity">Positivity</h3>
-<p>The probability of receiving every value of the exposure within all strata of co-variates is greater than zero</p>
-<p><span class="math display">\begin{equation}
-0 &lt; \Pr(A=a|L)&lt;1, ~ \forall a \in A, ~ \forall a \in L
-\end{equation}</span></p>
-<p>There are two types of positivity violations - Random non-positivity: the casual effect of aging with observations missing at ages 40-41 (we use parametric models as a work around.) - Deterministic non-positivity: the causal effect of hysterectomy in biological males (assumption violated).</p>
-</section>
-<section id="conditional-exchangeablity" class="level3">
-<h3 class="anchored" data-anchor-id="conditional-exchangeablity">Conditional exchangeablity</h3>
-<p>Given the observed covariates, the treatment assignment is independent of the potential outcomes. Mathematically, this can be expressed as.</p>
-<p><span class="math display">Y^a\coprod A \text{ for all }a</span></p>
-<p>or with strata of confounding covarates:</p>
-<p><span class="math display">Y^a\coprod  A \text{ for all }a|L</span></p>
-<p>When conditional exchangability holds:</p>
-<p><span class="math display">
-\begin{aligned}
-ATE = E[Y^{a=1}|L = l] - E[Y^{a=0}|L = l] ~ \text{for any value}~l
-\end{aligned}
-</span></p>
-<blockquote class="blockquote">
-<p>“We say that a set L of measured non-descendants of L is a sufficient set for confounding adjustment when conditioning on L blocks all backdoor paths–that is, the treated and the untreated are exchangeable within levels of L” (Hernan &amp; Robins, What IF p.&nbsp;86)</p>
-</blockquote>
-</section>
-<section id="positivity-1" class="level3">
-<h3 class="anchored" data-anchor-id="positivity-1">Positivity</h3>
-<p>There is a non-zero probability of receiving each treatment level for all strata of the observed covariates. This means that every individual has some chance of being in either treatment or control group.</p>
-</section>
-</section>
-<section id="part-3-causal-inference-from-randomized-experiments" class="level2">
-<h2 class="anchored" data-anchor-id="part-3-causal-inference-from-randomized-experiments">Part 3: Causal Inference from Randomized Experiments</h2>
-<p>Randomized experiments can help us overcome the the fundamental problem of causal inference. By randomly assigning individuals to treatment (bilingual) or control (monolingual) groups, we create comparable groups that allow us to estimate causal effects.</p>
-<p>Random assignment ensures that all observed and unobserved confounders are balanced between the treatment and control groups on average, satisfying the conditionally exchangeable assumption.</p>
-<p>The key benefits of randomized experiments are:</p>
+<section id="interaction-as-effect-modification-of-a-single-intervention" class="level4">
+<h4 class="anchored" data-anchor-id="interaction-as-effect-modification-of-a-single-intervention">3.1.4 Interaction as effect-modification of a single intervention</h4>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-dag-effect-modification" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-dag-effect-modification-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="07-content_files/figure-html/fig-dag-effect-modification-1.png" class="img-fluid figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dag-effect-modification-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: A simple sequentially ordered graph depicting effect-modification. We are interested in G as an effect-modifier of A on Y. A must not affect G (although G may affect A, we do not suppose such an effect). The blue path indicates effect-modification of A by G. The red path indicates an open backdoor path. We draw a box around G to indicate that we are conditioning on G in our model. We are interested in estimating the effect of A on Y. We must close all backdoor paths between A and Y, in this case, by conditioning on L. We are not interested in the effect of double intervention of G and A. Hence, we do not need to condition on Z to close the backdoor path from G to Y.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>It is often scientifically interesting to consider whether treatment effects vary over levels of other variable without imagining a double intervention. We call a variable over which the treatment effect varies, an ‘effect-modifier’ or an ‘effect-measure modifier.’ We call the phenomenon of variation in the effect of the exposure over levels of a covariate, ‘effect-modification,’ or ‘effect-measure modification’ or ’treatment effect heterogeneity. The counterfactual contrasts required to estimate effect-modification differ from those of a joint intervention. Suppose <span class="math inline">A</span> is the treatment, <span class="math inline">G</span> is the modifier, and <span class="math inline">Y</span> is the outcome. effect-modification assesses whether the effect of <span class="math inline">A</span> on <span class="math inline">Y</span> is different across levels of <span class="math inline">G</span> (i.e., whether the effect of <span class="math inline">A</span> on <span class="math inline">Y</span> is different when <span class="math inline">G = g1</span> compared to when <span class="math inline">G = g2</span>).</p>
+<p><a href="#fig-dag-effect-modification" class="quarto-xref">Figure&nbsp;3</a> consider whether effect-modification of <span class="math inline">A</span> on <span class="math inline">Y</span> across levels of <span class="math inline">G</span>. Because we are not interested in the causal effect of <span class="math inline">G</span> as such, but rather, how the effect of <span class="math inline">A</span> varies across <span class="math inline">G</span>, we would not need to adjust <span class="math inline">G</span> by <span class="math inline">Z</span>. However, as we shall consider in the next section, the presence and absence of effect-modification may depend on other variables in a causal network, as well as on which other variables investigators condition on in their models. To foreshadow, we suppose that <span class="math inline">Z</span>, a parent of <span class="math inline">G</span>, is an effect-modifier of <span class="math inline">A</span> on <span class="math inline">Y</span>. Were we to include <span class="math inline">Z</span> in the model, the effect estimate for <span class="math inline">G</span> on <span class="math inline">Y</span> may be attenuated or erased. There is here no clear fact of the matter about whether and how much <span class="math inline">G</span> is an effect-modifier outside of researcher modelling decisions. I remind readers: <em>with absolute power comes absolute responsibility.</em></p>
+<p>To better understand the interest of effect-modification, again consider a study investigating whether beliefs in big Gods affect social complexity. Suppose we compare two distinct geographical groups: North American societies (<span class="math inline">G=1</span>) and Continental societies (<span class="math inline">G=2</span>). Suppose we want to examine the causal effect of changing the exposure from <span class="math inline">A = 0</span> to <span class="math inline">A = 1</span> within each group and then compare these effects across the groups. The relevant causal contrasts are given as follows:</p>
 <ol type="1">
-<li>Unbiased estimation of average treatment effects.</li>
-<li>Control of both observed and unobserved confounding.</li>
-<li>Facilitated interpretation of causal effects.</li>
+<li><strong>Causal effect within North American societies (</strong><span class="math inline">G=1</span>): <span class="math display">\hat{\tau}_{g1} = \hat{\mathbb{E}}[Y(1)|G=1] - \hat{\mathbb{E}}[Y(0)|G=1]</span></li>
 </ol>
-<p>Notice that the results of an experiment recover Average Treatment Effects, not individual causal effects. Although a treament might be beneficial for the majority of people, it might not be benefitial for you.</p>
-<p>This consideration may be extended to subgroups. Although a treatment might be beneficial, on average, for the majority of a population, it might not be benefitial for a sub-population. However, unlike individual causal effects, we may obtain causal effect estimates within sub-populations. We will will return to this topic next week.</p>
-</section>
-<section id="part-4-causal-graphs-and-directed-acyclic-graphs-dags" class="level2">
-<h2 class="anchored" data-anchor-id="part-4-causal-graphs-and-directed-acyclic-graphs-dags">Part 4: Causal Graphs and Directed Acyclic Graphs (DAGs)</h2>
-<p>Causal graphs, also known as directed acyclic graphs (DAGs), provide a powerful way to represent causal relationships between variables. In a DAG, nodes represent variables, and directed edges represent causal relationships between them.</p>
-<p>See this week’s lectures slides where we cover:</p>
-<ol type="1">
-<li>DAG basics: How to construct and interpret DAGs, including the concepts of parents, children, ancestors, and descendants.</li>
-<li>D-separation and conditional independence: Understanding when variables are conditionally independent given a set of conditioning variables in a DAG, and how this relates to the concept of d-separation.</li>
-<li>Identifying confounders: Using DAGs to identify confounders that must be controlled for in order to estimate causal effects.</li>
-<li>Collider bias and conditioning: Understanding how conditioning on colliders can induce bias in causal estimates, and how to avoid this issue.</li>
-<li>Mediation and direct/indirect effects: if we are interested in total effects, we should not condition on a mediator.</li>
+<p>Here, <span class="math inline">\hat{\tau}_{g1}</span> represents the estimated causal effect of changing the exposure from <span class="math inline">A = 0</span> to <span class="math inline">A = 1</span> within the North American societies.</p>
+<ol start="2" type="1">
+<li><p><strong>Causal effect within Continental societies (</strong><span class="math inline">G=2</span>):</p>
+<p><span class="math display">\hat{\tau}_{g2} = \hat{\mathbb{E}}[Y(1)|G=2] - \hat{\mathbb{E}}[Y(0)|G=2]</span></p>
+<p>Similarly, <span class="math inline">\hat{\tau}_{g2}</span> denotes the estimated causal effect for the Continental societies.</p></li>
+<li><p><strong>Comparing causal effects across groups</strong>:</p>
+<p><span class="math display">\hat{\gamma} = \hat{\tau}_{g1} - \hat{\tau}_{g2}</span></p></li>
 </ol>
+<p>The estimated quantity <span class="math inline">\hat{\gamma}</span> computes the difference in the causal estimands between the two groups. A nonzero <span class="math inline">\hat{\gamma}</span> indicates effect-modification, suggesting that the effect of changing the exposure differs between the two groups. If we were to observe that <span class="math inline">\hat{\gamma} \neq 0</span>, this would provide evidence for variability in the effect of the exposure on the outcome in different groups. Note that the causal effect for one group might be indistinguishable from zero, and yet we might nevertheless find evidence for effect-modification if the comparison group exhibits reliably different responses from the contrast group that is indistinguishable from zero.</p>
 </section>
-<section id="clear-advice-for-drawing-causal-graphs" class="level2">
-<h2 class="anchored" data-anchor-id="clear-advice-for-drawing-causal-graphs">Clear Advice for Drawing Causal Graphs</h2>
-<ul>
-<li>Ensure that causes come before effects. Assign time indices to your variables.</li>
-<li>Organize your variables chronologically.</li>
-<li>Simplify your graph by removing unnecessary nodes that don’t impact the assessment of bias between an exposure and an outcome.</li>
-<li>Keep in mind that Directed Acyclic Graphs (DAGs) are qualitative tools. They don’t represent non-linear associations or interactions.</li>
-<li>Avoid depicting interactions by crossing arrows.</li>
-<li>Remember that DAGs are distinct from graphs used in Structural Equation Modeling (SEM). Be cautious of SEM literature, as it often overlooks the assumptions needed for causal inference.</li>
-</ul>
+<section id="evidence-for-effect-modification-is-relative-to-inclusion-of-other-variables-in-the-model" class="level4">
+<h4 class="anchored" data-anchor-id="evidence-for-effect-modification-is-relative-to-inclusion-of-other-variables-in-the-model">3.1.5 Evidence for effect-modification is relative to inclusion of other variables in the model</h4>
+<p>The ‘sharp-null hypothesis’ states there is no effect of the exposure on the outcome for any unit in the target population. Unless the ‘sharp-null hypothesis’ is false, there may be effect-modification. For any study worth conducting, we cannot evaluate whether the sharp-null hypothesis is false. If we could the experiment would be otiose. Therefore, we must assume the possibility of effect-modification. Notably, whether a variable is an effect-modifier also depends on which other variables are included in the model. That is, just as for the concept of a ‘confounder’, where a variable is an ‘effect-modifier’ cannot be stated without reference to an assumed causal order and an explicit statement about which other variables will be included in the model <span class="citation" data-cites="vanderweele2012">(<a href="#ref-vanderweele2012" role="doc-biblioref">Tyler J. VanderWeele 2012</a>)</span>.</p>
+<p><a href="#fig-eff-mod-rel" class="quarto-xref">Figure&nbsp;4</a> presents a scenario in which the marginal association between <span class="math inline">A</span> and <span class="math inline">Y</span> is unbiased. The exposure <span class="math inline">A</span> is unconditionally associated with <span class="math inline">Y</span>. Recall our convention <span class="math inline">\boxedblue{G}</span> denotes effect-modification with conditioning and <span class="math inline">\circleblue{Z}</span> indicates effect-modification without conditioning. This graph states that the conditional association of <span class="math inline">A</span> on <span class="math inline">Y</span> varies within levels of <span class="math inline">\boxedblue{G}</span> (which is conditioned on), and furthermore that <span class="math inline">G</span> is an <em>effect-modifier by proxy</em> <span class="citation" data-cites="vanderweele2009distinction">(<a href="#ref-vanderweele2009distinction" role="doc-biblioref">Tyler J. VanderWeele 2009</a>)</span>. Here, <span class="math inline">\circleblue{Z}</span> fully mediates the association of <span class="math inline">G</span> and <span class="math inline">Y</span>. That is <span class="math inline">\circleblue{Z}</span> causes both <span class="math inline">G</span> and <span class="math inline">Y</span>, and <span class="math inline">G</span> has no causal effect on <span class="math inline">Y</span>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-eff-mod-rel" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-eff-mod-rel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="07-content_files/figure-html/fig-eff-mod-rel-1.png" class="img-fluid figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-eff-mod-rel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Consider a randomised experiment. There is no confounding. Here, the marginal association between A and Y provides an unbiased estimate for the causal effect of A on Y. Does the conditional association of A on Y vary within levels of G? The causal diagram allows for a classification of G as an effect modifier of A on Y by proxy. G modifies A’s effect on Y in virtue of G’s relationship to Z, which, according to this graph, is a direct effect modifier for the effect of A on Y.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><a href="#fig-dag-effect-modification-4" class="quarto-xref">Figure&nbsp;5</a> presents the same a randomised experiment as in the previous causal diagram. We again assume that there is no confounding of the marginal association between the exposure, <span class="math inline">A</span>, and the outcome, <span class="math inline">Y</span>. However, suppose we were to adjust for <span class="math inline">Z</span> and ask, does the conditional association of <span class="math inline">A</span> on <span class="math inline">Y</span> vary within levels of <span class="math inline">G</span>, after adjusting for <span class="math inline">Z</span>? That is, does <span class="math inline">G</span> remain an effect-modifier of the exposure on the outcome? <span class="citation" data-cites="vanderweele2007">Tyler J. VanderWeele and Robins (<a href="#ref-vanderweele2007" role="doc-biblioref">2007b</a>)</span> proved that for effect-modification to occur, at least one other arrow besides the treatment must enter into the outcome. According to <a href="#fig-dag-effect-modification-4" class="quarto-xref">Figure&nbsp;5</a>, the only arrow into <span class="math inline">Y</span> other than <span class="math inline">A</span> arrives from <span class="math inline">Z</span>. Because <span class="math inline">Y</span> is independent of <span class="math inline">G</span> conditional on <span class="math inline">Z</span> we may infer that <span class="math inline">G</span> is no longer an effect modifier for the effect of <span class="math inline">A</span> on <span class="math inline">Y</span>. Viewed another way, <span class="math inline">G</span> no longer co-varies with <span class="math inline">Y</span> conditional on <span class="math inline">Z</span> and so cannot act as an effect-modifier.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-dag-effect-modification-4" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-dag-effect-modification-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="07-content_files/figure-html/fig-dag-effect-modification-4-1.png" class="img-fluid figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dag-effect-modification-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: Conditioning on Z renders G independent of Y. G is no longer an effect modifier after conditioning on Z because G is independent of Y. Although Z is an unconditional effect modifier, G is not.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><a href="#fig-dag-effect-modification-5" class="quarto-xref">Figure&nbsp;6</a> presents the same a randomised experiment as in the previous graph. If we do not condition on <span class="math inline">B</span>, then <span class="math inline">G</span> will not modify the effect of <span class="math inline">A</span> on <span class="math inline">Y</span> because <span class="math inline">G</span> will not be associated with <span class="math inline">Y</span>. However, if we were to condition on <span class="math inline">B</span>, then both <span class="math inline">B</span> (an effect modifier by proxy) and <span class="math inline">G</span> may become effect-modifiers for the causal effect of <span class="math inline">A</span> on <span class="math inline">Y</span>. In this setting, both <span class="math inline">B</span> and <span class="math inline">G</span> are conditional effect-modifiers.</p>
+<p>Note that casual graphs help us to evaluate classifications of conditional and unconditional effect modifiers. They may also help to clarify conditions in which conditioning on unconditional effect-modifiers may remove conditional effect-modification. However we cannot not tell from a causal diagram whether the ancestors of an unconditional effect-modifier will be conditional effect-modifiers for the effect of the exposure on the outcome; see: <span class="citation" data-cites="vanderweele2007">Tyler J. VanderWeele and Robins (<a href="#ref-vanderweele2007" role="doc-biblioref">2007b</a>)</span>, also <span class="citation" data-cites="suzuki2013counterfactual">Suzuki et al. (<a href="#ref-suzuki2013counterfactual" role="doc-biblioref">2013</a>)</span>. Causal diagrams express non-parametric relations. I have adopted an off-label colouring convention to denote instances of effect-modification to highlight possible pathways for effect-modification, which may be relative to other variables in a model.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-dag-effect-modification-5" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-dag-effect-modification-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="07-content_files/figure-html/fig-dag-effect-modification-5-1.png" class="img-fluid figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dag-effect-modification-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6: Blue path denotes effect-modification for G by conditioning on B. Both B and G are conditional effect modifiers.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><a href="#fig-dag-effect-modification-5b" class="quarto-xref">Figure&nbsp;7</a> reveals the relativity of effect-modification. If investigators do not condition on <span class="math inline">B</span>, then <span class="math inline">G</span> cannot be a conditional effect-modifier because <span class="math inline">G</span> would then be independent of <span class="math inline">Z</span> because <span class="math inline">B</span> is a collider. However, as we observed in <a href="#fig-dag-effect-modification-5" class="quarto-xref">Figure&nbsp;6</a>, conditioning on <span class="math inline">B</span>, a collider, may open a path for effect-modification of <span class="math inline">G</span> by <span class="math inline">Z</span>. Both <span class="math inline">B</span> and <span class="math inline">G</span> are conditional effect modifiers.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-dag-effect-modification-5b" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-dag-effect-modification-5b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="07-content_files/figure-html/fig-dag-effect-modification-5b-1.png" class="img-fluid figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dag-effect-modification-5b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7: Blue path denotes effect-modification. Here G is not an effect modifier because B, a common effect (collider) of G and Z, is not conditioned on. Any conditional effect modification for G would require conditioning on B, and not-conditioning on G. Otherwise G will be d-separated from Y.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-dag-effect-modification-5c" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-dag-effect-modification-5c-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="07-content_files/figure-html/fig-dag-effect-modification-5c-1.png" class="img-fluid figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dag-effect-modification-5c-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8: Blue path denotes effect-modification. Neither, G nor B are unconditional effect-modifiers for the effect of A on Y after Z is conditioned upon. If investigators condition on Z, the causal diagram implies they will not find evidence for effect-modification by B or G, which are conditionally independent of Y once Z is conditioned upon.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><a href="#fig-dag-effect-modification-5c" class="quarto-xref">Figure&nbsp;8</a> considers the implications of conditioning on <span class="math inline">Z</span>, which is the only unconditional effect-modifier on the graph. If <span class="math inline">Z</span> is measured, conditioning on <span class="math inline">Z</span> will remove effect-modification for <span class="math inline">B</span> and <span class="math inline">G</span> because <span class="math inline">B,G\coprod Y |Z</span>. This examples again reveals the context dependency of effect-modification. Here, causal diagrams are useful for clarifying features of dependent and independent effect modification. For further discussion, see: <span class="citation" data-cites="suzuki2013counterfactual">Suzuki et al. (<a href="#ref-suzuki2013counterfactual" role="doc-biblioref">2013</a>)</span>; <span class="citation" data-cites="vanderweele2009distinction">Tyler J. VanderWeele (<a href="#ref-vanderweele2009distinction" role="doc-biblioref">2009</a>)</span>.</p>
 </section>
-<section id="summary-drawing-causal-graphs-dags" class="level2">
-<h2 class="anchored" data-anchor-id="summary-drawing-causal-graphs-dags">Summary: Drawing Causal Graphs (DAGs)</h2>
-<ul>
-<li><p>Directed Acyclic Graphs (DAGs) help visualize sources of bias.</p></li>
-<li><p>There are five main sources of bias:</p>
-<ol type="1">
-<li>Temporal order ambiguity: Uncertainty about whether causes precede effects. Solution: Collect time series data or clarify assumptions when unavailable.</li>
-<li>Common causes of exposure and outcome: Address this by including common causes in your statistical model (e.g., using regression).</li>
-<li>Conditioning on a mediator: Avoid this unless mediation is of interest.</li>
-<li>Conditioning on a collider: Refrain from doing this.</li>
-<li>Bias induced by conditioning on a confounder’s descendant: Draw your DAG and follow guidelines for points 1-4.</li>
-</ol></li>
-<li><p>Important Note 1: In observational studies, it’s impossible to guarantee complete control for confounding. Always conduct sensitivity analyses. Techniques for sensitivity analyses will be discussed next week.</p></li>
-<li><p>Important Note 2: Methods for computing causal effects for group comparisons will be covered in the following week’s lecture.</p></li>
-</ul>
 </section>
-<section id="conclusion" class="level2">
-<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
-<p>In this lecture, we discussed the fundamental problem of causal inference, its assumptions, the role of randomized experiments in estimating causal effects, the challenges in identifying causal effects from observational data, and the use of causal graphs to represent and analyze causal relationships. You have learned how to use causal graphs to identify sources of bias. In the weeks ahead, we will apply this knowledge to address questions in cross-cultural psychology.</p>
+<section id="old-material" class="level2">
+<h2 class="anchored" data-anchor-id="old-material">OLD MATERIAL</h2>
+</section>
+<section id="what-is-interaction" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-interaction">What is interaction?</h2>
+<section id="what-is-it-to-compare-causal-effects-in-groups" class="level3">
+<h3 class="anchored" data-anchor-id="what-is-it-to-compare-causal-effects-in-groups">What is it to compare causal effects in groups?</h3>
+<p><span class="math display">\hat{\gamma} = \overbrace{\big( \hat{E}[Y(a)|G=g] - \hat{E}[Y(a^{\prime})|G=g] \big)}^{\hat{\delta_g}} - \overbrace{\big(\hat{E}[Y(a^{\prime})|G=g^{\prime}]- \hat{E}[Y(a)|G=g^{\prime}]\big)}^{\hat{\delta_{g^{\prime}}}}</span></p>
 
 
+
+</section>
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></div></div></section></div></main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-hernan2024WHATIF" class="csl-entry" role="listitem">
+Hernan, M. A., and J. M. Robins. 2024. <em>Causal Inference: What If?</em> Chapman &amp; Hall/CRC Monographs on Statistics &amp; Applied Probab. Taylor &amp; Francis. <a href="https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/">https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/</a>.
+</div>
+<div id="ref-suzuki2013counterfactual" class="csl-entry" role="listitem">
+Suzuki, Etsuji, Toshiharu Mitsuhashi, Toshihide Tsuda, and Eiji Yamamoto. 2013. <span>“A Counterfactual Approach to Bias and Effect Modification in Terms of Response Types.”</span> <em>BMC Medical Research Methodology</em> 13 (1): 1–17.
+</div>
+<div id="ref-vanderweele2009distinction" class="csl-entry" role="listitem">
+VanderWeele, Tyler J. 2009. <span>“On the Distinction Between Interaction and Effect Modification.”</span> <em>Epidemiology</em>, 863–71.
+</div>
+<div id="ref-vanderweele2012" class="csl-entry" role="listitem">
+VanderWeele, Tyler J. 2012. <span>“Confounding and Effect Modification: Distribution and Measure.”</span> <em>Epidemiologic Methods</em> 1 (1): 55–82. <a href="https://doi.org/10.1515/2161-962X.1004">https://doi.org/10.1515/2161-962X.1004</a>.
+</div>
+<div id="ref-vanderweele2014" class="csl-entry" role="listitem">
+VanderWeele, Tyler J, and Mirjam J Knol. 2014. <span>“A Tutorial on Interaction.”</span> <em>Epidemiologic Methods</em> 3 (1): 3372.
+</div>
+<div id="ref-vanderweele2007" class="csl-entry" role="listitem">
+VanderWeele, Tyler J., and James M. Robins. 2007b. <span>“Four types of effect modification: a classification based on directed acyclic graphs.”</span> <em>Epidemiology (Cambridge, Mass.)</em> 18 (5): 561–68. <a href="https://doi.org/10.1097/EDE.0b013e318127181b">https://doi.org/10.1097/EDE.0b013e318127181b</a>.
+</div>
+<div id="ref-vanderweele2007FOURTYPESOFEFFECT" class="csl-entry" role="listitem">
+———. 2007a. <span>“Four types of effect modification: a classification based on directed acyclic graphs.”</span> <em>Epidemiology (Cambridge, Mass.)</em> 18 (5): 561–68. <a href="https://doi.org/10.1097/EDE.0b013e318127181b">https://doi.org/10.1097/EDE.0b013e318127181b</a>.
+</div>
+</div></section><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -497,18 +533,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -540,7 +565,47 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -575,7 +640,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');
@@ -590,27 +659,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
     }
     stripColumnClz(note)
-    const typesetMath = (el) => {
-      if (window.MathJax) {
-        // MathJax Typeset
-        window.MathJax.typeset([el]);
-      } else if (window.katex) {
-        // KaTeX Render
-        var mathElements = el.getElementsByClassName("math");
-        var macros = [];
-        for (var i = 0; i < mathElements.length; i++) {
-          var texText = mathElements[i].firstChild;
-          if (mathElements[i].tagName == "SPAN") {
-            window.katex.render(texText.data, mathElements[i], {
-              displayMode: mathElements[i].classList.contains('display'),
-              throwOnError: false,
-              macros: macros,
-              fleqn: false
-            });
-          }
-        }
-      }
-    }
     if (id === null || id.startsWith('sec-')) {
       // Special case sections, only their first couple elements
       const container = document.createElement("div");
@@ -625,10 +673,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             break;
           }
         }
-        typesetMath(container);
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
         return container.innerHTML
       } else {
-        typesetMath(note);
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
         return note.innerHTML;
       }
     } else {
@@ -637,8 +689,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (anchorLink) {
         anchorLink.remove();
       }
-      typesetMath(note);
-      return note.innerHTML;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
     }
   }
   for (var i=0; i<xrefs.length; i++) {
