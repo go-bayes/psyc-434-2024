@@ -61,8 +61,6 @@ div.csl-indent {
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
-<script src="../site_libs/quarto-contrib/videojs/video.min.js"></script>
-<link href="../site_libs/quarto-contrib/videojs/video-js.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -151,7 +149,7 @@ div.csl-indent {
  <span class="dropdown-text">Week 6: Causal Inference - Key Concepts ATE - R (regression/simulation: ATE)</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../content/06-content.html">
+    <a class="dropdown-item" href="../content/07-content.html">
  <span class="dropdown-text">Week 7: Causal Inference - Key Concept CATE - R (regression/simulation: ATE)</span></a>
   </li>  
         <li class="dropdown-header">Week 8: Causal Inference - Estimation of ATE and CATE - R and LaTeX</li>
@@ -222,7 +220,7 @@ div.csl-indent {
   <li><a href="#week-5-march-25---quiztest-25" id="toc-week-5-march-25---quiztest-25" class="nav-link" data-scroll-target="#week-5-march-25---quiztest-25">Week 5: March 25 - Quiz/Test (25%)</a></li>
   <li><a href="#break-april-1---14" id="toc-break-april-1---14" class="nav-link" data-scroll-target="#break-april-1---14">Break: April 1 - 14</a></li>
   <li><a href="#week-6-april-15---causal-inference-ate" id="toc-week-6-april-15---causal-inference-ate" class="nav-link" data-scroll-target="#week-6-april-15---causal-inference-ate">Week 6: April 15 - Causal Inference: ATE</a></li>
-  <li><a href="#week-7-april-22---causal-inference-and-cate-effect-modification" id="toc-week-7-april-22---causal-inference-and-cate-effect-modification" class="nav-link" data-scroll-target="#week-7-april-22---causal-inference-and-cate-effect-modification">Week 7: April 22 - Causal Inference and CATE (Effect Modification)</a></li>
+  <li><a href="#week-7-april-22---causal-inference-and-effect-modification" id="toc-week-7-april-22---causal-inference-and-effect-modification" class="nav-link" data-scroll-target="#week-7-april-22---causal-inference-and-effect-modification">Week 7: April 22 - Causal Inference and Effect Modification</a></li>
   <li><a href="#week-8-april-29---causal-inference-estimation-of-ate-and-cate" id="toc-week-8-april-29---causal-inference-estimation-of-ate-and-cate" class="nav-link" data-scroll-target="#week-8-april-29---causal-inference-estimation-of-ate-and-cate">Week 8: April 29 - Causal Inference: Estimation of ATE and CATE</a></li>
   <li><a href="#week-9-may-6---testquiz-25" id="toc-week-9-may-6---testquiz-25" class="nav-link" data-scroll-target="#week-9-may-6---testquiz-25">Week 9: May 6 - Test/Quiz (25%)</a></li>
   <li><a href="#week-10-may-13---measurement-matters" id="toc-week-10-may-13---measurement-matters" class="nav-link" data-scroll-target="#week-10-may-13---measurement-matters">Week 10: May 13 - Measurement Matters</a></li>
@@ -405,8 +403,8 @@ div.csl-indent {
 </ul>
 </section>
 </section>
-<section id="week-7-april-22---causal-inference-and-cate-effect-modification" class="level2">
-<h2 class="anchored" data-anchor-id="week-7-april-22---causal-inference-and-cate-effect-modification">Week 7: April 22 - Causal Inference and CATE (Effect Modification)</h2>
+<section id="week-7-april-22---causal-inference-and-effect-modification" class="level2">
+<h2 class="anchored" data-anchor-id="week-7-april-22---causal-inference-and-effect-modification">Week 7: April 22 - Causal Inference and Effect Modification</h2>
 <ul>
 <li><span class="citation" data-cites="hernan2024WHATIF">(<a href="#ref-hernan2024WHATIF" role="doc-biblioref">Hernan and Robins 2024</a>)</span> Chapters 4-5 <a href="https://www.dropbox.com/scl/fi/9hy6xw1g1o4yz94ip8cvd/hernanrobins_WhatIf_2jan24.pdf?rlkey=8eaw6lqhmes7ddepuriwk5xk9&amp;dl=0">link</a></li>
 </ul>
@@ -420,8 +418,9 @@ div.csl-indent {
 <section id="focus-6" class="level4">
 <h4 class="anchored" data-anchor-id="focus-6">Focus</h4>
 <ul>
-<li>Key concepts of Conditional Average Treatment Effect (CATE)</li>
-<li>Advanced regression and simulation exercises in R for CATE estimation</li>
+<li>Effect Modification: Definining the Causal Estimand</li>
+<li>Distinguishing <em>Cultural Effect-Modification</em> from the confused and conflated concepts of “Moderation”, “Mediation”, “Interaction.”</li>
+<li>Brief Detour into Causal Mediation</li>
 </ul>
 </section>
 <section id="lab-5" class="level4">
@@ -437,7 +436,7 @@ div.csl-indent {
 <h4 class="anchored" data-anchor-id="focus-7">Focus</h4>
 <ul>
 <li>Workflow for causal question formulation, population statement, and causal diagram creation</li>
-<li>Estimation techniques for ATE and CATE using R and documentation with LaTeX</li>
+<li>Estimation techniques evaluating evidence for cultural-effect modification using R and documentation with LaTeX</li>
 </ul>
 </section>
 <section id="readings-4" class="level4">
@@ -466,7 +465,7 @@ div.csl-indent {
 <h4 class="anchored" data-anchor-id="focus-8">Focus</h4>
 <ul>
 <li>Second assessment covering advanced topics in causal inference</li>
-<li>Topics include ATE, CATE, fundamental assumptions of causal inference, experiments, and real-world confounding</li>
+<li>Topics include ATE, Effect-Modification, fundamental assumptions of causal inference, experiments, and real-world confounding</li>
 </ul>
 </section>
 <section id="lab-7" class="level4">
@@ -578,7 +577,7 @@ div.csl-indent {
 </section>
 <section id="miguel-hernan-how-to-we-learn-what-works" class="level3">
 <h3 class="anchored" data-anchor-id="miguel-hernan-how-to-we-learn-what-works">Miguel Hernan: How to We learn What Works</h3>
-<div class="quarto-video"><video id="video_shortcode_videojs_video1" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="https://www.youtube.com/results?search_query=miguel+hernan"></video></div>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/bspMnt3ujYA" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
 <section id="tyler-vanderweele-on-measurement-contructs" class="level4">
 <h4 class="anchored" data-anchor-id="tyler-vanderweele-on-measurement-contructs">Tyler VanderWeele on Measurement Contructs</h4>
 <div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/UA2WvYlT2RE" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
@@ -623,7 +622,7 @@ He, Jia, and Fons van de Vijver. 2012. <span>“Bias and Equivalence in Cross-Cu
 Hernan, M. A., and J. M. Robins. 2024. <em>Causal Inference: What If?</em> Chapman &amp; Hall/CRC Monographs on Statistics &amp; Applied Probab. Taylor &amp; Francis. <a href="https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/">https://www.hsph.harvard.edu/miguel-hernan/causal-inference-book/</a>.
 </div>
 <div id="ref-hernan2017SELECTIONWITHOUTCOLLIDER" class="csl-entry" role="listitem">
-Hernán, M. A. 2017. <span>“Invited Commentary: Selection Bias Without Colliders | American Journal of Epidemiology | Oxford Academic.”</span> <em>American Journal of Epidemiology</em> 185 (11): 10481050. <a href="https://doi.org/10.1093/aje/kwx077">https://doi.org/10.1093/aje/kwx077</a>.
+Hernán, M. A. 2017. <span>“Invited Commentary: Selection Bias Without Colliders | American Journal of Epidemiology | Oxford Academic.”</span> <em>American Journal of Epidemiology</em> 185 (11): 1048–50. <a href="https://doi.org/10.1093/aje/kwx077">https://doi.org/10.1093/aje/kwx077</a>.
 </div>
 <div id="ref-hernan2009MEASUREMENT" class="csl-entry" role="listitem">
 Hernán, Miguel A., and Stephen R. Cole. 2009. <span>“Invited Commentary: Causal Diagrams and Measurement Bias.”</span> <em>American Journal of Epidemiology</em> 170 (8): 959–62. <a href="https://doi.org/10.1093/aje/kwp293">https://doi.org/10.1093/aje/kwp293</a>.
@@ -1080,7 +1079,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
-<script>videojs(video_shortcode_videojs_video1);</script>
 
 
 

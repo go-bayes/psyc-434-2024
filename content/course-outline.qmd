@@ -251,12 +251,12 @@ editor_options:
 
 ### Richard McElreath on Causal Inference
 
-{{< video https://www.youtube.com/watch?v=KNPYUVmY3NM >}}
+{{< video https://www.youtube.com/watch?v=KNPYUVmY3NM>}}
 
 
 ### Miguel Hernan: How to We learn What Works
 
-{{< video https://www.youtube.com/results?search_query=miguel+hernan  >}}
+{{< video https://www.youtube.com/watch?v=bspMnt3ujYA&t=1499s>}}
 
 
 #### Tyler VanderWeele on Measurement Contructs 

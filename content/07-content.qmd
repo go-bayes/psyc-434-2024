@@ -428,7 +428,7 @@ Here, $\delta_{g_2}$ represents the estimated causal effect of changing the expo
 The quantity ${\gamma}$ defines the difference in the causal estimands between the two groups. A nonzero $\hat{\gamma}$ indicates effect-modification, suggesting that the effect of changing the exposure differs between the two groups. If we were to observe that $\hat{\gamma} \neq 0$, this would provide evidence for variability in the effect of the exposure on the outcome in different groups. Note that the causal effect for one group might be indistinguishable from zero, and yet we might nevertheless find evidence for effect-modification if the comparison group exhibits reliably different responses from the contrast group that is indistinguishable from zero.
 
 
-## Lab: Setting up your data
+## Lab Part 1: Setting up your data
 
 
 
@@ -444,6 +444,7 @@ library("here")
 library("skimr")
 if (!require(gtsummary)) install.packages("gtsummary")
 ```
+
 
 
 
@@ -466,13 +467,21 @@ push_mods
 
 ### Initial Data Wrangling to select the study sample
 
+#### Where to find variable names information
 
-Think, what are my eligibility criteria? 
+Find it the data directory here: <https://osf.io/75snb/>
+
+Also see here: <https://github.com/go-bayes/templates/tree/main/method>
+
+
+#### Think, what are my eligibility criteria? 
 
 - Participated in at baseline
 - Participated at treatment wave
 - May have been lost to follow up at the end of the study
 - Full information on the treatment variable (think about this...)
+
+
 
 ```{r}
 # eliminate haven labels
@@ -909,7 +918,7 @@ transition_table$explanation
 
 
 
-## Lab Part 2: Simulation to Clarify Why The Distribution of Effect Modifiers Matter For Estimating Treatment Effects
+## Lab Part 2: Simulation to Clarify Why The Distribution of Effect Modifiers Matter For Estimating Treatment Effects 
 
 
 First, we load the `stdReg` library, which obtains marginal effect estimates by simulating counterfactuals under different levels of treatment [@sjölander2016]. If a treatment is continuous, the levels can be specified. 
