@@ -108,9 +108,9 @@ Where:
 - **$\mathbb{E}[Y(a^*) \mid L]$**: is the expected value (mean) of the outcome variable $Y$ when the treatment $a^*$ is applied, given the confounders $L$.
 - **$\mathbb{E}[Y(a) \mid L]$**: is the expected value of $Y$ when the treatment $a$ is applied, given $L$.
 - **$\mathbb{E}[Y(a^*) \mid L] - \mathbb{E}[Y(a) \mid L]$**: is the difference in the expected treatments, controlling for $L$.
-- **$\int (...) dP(L)$**: the integral over $dP(L)$ indicates the treatment effect is computed over all the probability distribution of $L$ in the population.
+- **$\int (...) dP(L)$**: $dP(L)$ is an integral (remember high school math?). Integrals give us areas under curves. Here the area is a distribution of probabilities. To obtain valid inference, the treatment effect is computed over all the probability distribution of $L$ in the population.
 
-### In the Simplest Possible Terms
+### So, in the simplest possible terms
 
 Understanding causal inference is fundamentally about comparing what happened with what could have happened *an average* under different conditions or treatments *in some population*, while carefully accounting for factors that might confound or distort the comparison that interests us (i.e. that might give a false answer to the question we asked).
 
@@ -118,39 +118,43 @@ Understanding causal inference is fundamentally about comparing what happened wi
 ##  What do the words "Moderation" and "Interaction" mean? 
 
 
-We here these words used freely in psychology.  What do they mean? 
+We here these words used freely in psychology.  What do they mean?   Causal inference allows us to be precise. 
 
 
-This term *moderation* invites confusion. Let's set this to the side, and focus on two concepts: 
+Let's set the term *moderation* to the side, and in its place consider "effect-modification." Our task today is to use counterfactual notation to distinguish between two concepts: 
 
 1. Interaction
 2. Effect-modification
 
-and let's define these concepts
 
 
-### An interaction is a joint intervention
+## Interaction
 
-An "interaction" occurs is the combined effect of two interventions (or equivalently two treatments).  
+
+An interaction is a **joint intervention**
+
+When assessing "interaction" we are interested in  the combined effect of two interventions (two "treatments" or "exposures").  
 
 Call these treatments, $A$ and $B$.  Call the outcome $Y$.
 
-In potential outcomes terminology, we defined the potential outcome under treatment $A = \tilde{a}$:
+Recall that in potential outcomes terminology, we defined the potential outcome under treatment $A = \tilde{a}$:
 
 $$
 Y(\tilde{a})
 $$
 
-And we identify $Y(\tilde{a})$ from data using the consistency assumption: $Y_i(\tilde{a}) = (Y_i |A_i = \tilde{a})$, assuming that $Y_i(\tilde{a})\coprod A|L$, where $L$ donotes a set of measured covariates sufficient to insure no confounding (no common causes), or equivalently, no open backdoor path between $A$ and $Y$.
+And we identify $Y(\tilde{a})$ from data using the consistency assumption: $Y_i(\tilde{a}) = (Y_i |A_i = \tilde{a})$, assuming that $Y_i(\tilde{a})\coprod A|L$, where, again, $L$ donotes a set of measured covariates sufficient to insure no confounding (no common causes), or equivalently, no open backdoor path between $A$ and $Y$.
 
 
-Interaction denotes a joint intervention of two treatments, call them $A$ and $B$, which may act on $Y$. The concept of a joint intervention requires that we extend our notation to:
+A joint intervention of two treatments, call them $A$ and $B$, which may act on $Y$, requires that we extend our notation:
 
 $$
 Y(\tilde{a}, \tilde{b})
 $$
+This is the effect on $Y$ when $A$ is set to $\tilde{a}$ amd $B$ is set to $\tilde{b}$.
 
-In addition to requiring $Y_i(\tilde{a}) = (Y_i \mid A_i = \tilde{a})$, assuming that $Y_i(\tilde{a}) \coprod A \mid L$, we also assume both that $Y_i(\tilde{b}) = (Y_i \mid B_i = \tilde{b})$, and that $Y_i(\tilde{b}) \coprod B \mid Q$, where $Q$ denotes a set of confounders sufficient to ensure no confounding for the effect of $B$ on $Y$. 
+
+In addition to requiring $Y_i(\tilde{a}) = (Y_i \mid A_i = \tilde{a})$, assuming that $Y_i(\tilde{a}) \coprod A \mid L$, we require that for all $i \in 1\dots N$ individuals in the target population, both $Y_i(\tilde{b}) = (Y_i \mid B_i = \tilde{b})$, and that $Y_i(\tilde{b}) \coprod B \mid Q$, where $Q$ denotes a set of confounders sufficient to ensure no confounding for the effect of $B$ on $Y$. 
 
 Notably, the sets $L$ and $Q$ may have overlapping variables, which in set notation we write: 
 
@@ -158,14 +162,14 @@ $$
 L \cap Q \not\equiv \emptyset
 $$
 
-That is the union of $L$ and $Q$ does not imply the empty set. 
+That is the union of $L$ and $Q$ does not imply the empty set,  which implies that identification may be harder when there are interactions.  Statistical estimation is more difficult too, but we'll ignore that. 
 
 
 
 ### How do we define such a contrast between two interventions of equal status in our model? 
 
 
-Consider the effect of beliefs in Big Gods (treatment, denoted  $A$) on social complexity (outcome, denoted$Y$), potentially influenced by a culture's monumental architecture (treatment, denoted $B$). Let's say we wish to assess the individual and combined effects of $A$ and $B$ on the difference scale.  Let assume the treatments are binary variables.
+Consider the effect of beliefs in Big Gods (treatment, denoted  $A$) on social complexity (outcome, denoted$Y$), potentially influenced by a culture's monumental architecture (treatment, denoted $B$). Suppose we wish to assess the individual and combined effects of $A$ and $B$ on the difference scale.  Let assume the treatments are binary variables.
 
 
 In the counterfactual framework, we say there is evidence for interaction only if the following inequality were to hold:
@@ -246,10 +250,14 @@ Here, @fig-dag-interaction clarifies the need to evaluate two sources of counfou
 
 By adjusting for $L_{0}$ we obtain an unbiased estimate of the $A\to Y$ path. 
 
-By adjusting for $Q_{0}$ we obtain an unbiased estimate of the $B\to Y$ path. As indicated in @fig-dag-interaction-solved, we must condition on both $L_{0}$ and $Q_{0}$ to identify causal interaction conceived as a joint interaction. [^noteinteraction]
+By adjusting for $Q_{0}$ we obtain an unbiased estimate of the $B\to Y$ path. As indicated in @fig-dag-interaction-solved, we must condition on both $L_{0}$ and $Q_{0}$ to identify causal interaction conceived as a joint interaction. 
 
- [^noteinteraction]: An important complication is that evidence for causal interaction may differ depending on the measurement scale one chooses to assess it [@vanderweele2014; @vanderweele2012; @vanderweele2014]. For most applications in psychological science we would use the the causal difference scale (refer to @vanderweele2014 for discussion).  We set this complication to the side, noting that investigators must state the scale of causal contrast on which there study focusses. 
- 
+
+<!-- [^noteinteraction] -->
+
+<!--  [^noteinteraction]: An important complication is that evidence for causal interaction may differ depending on the measurement scale one chooses to assess it [@vanderweele2014; @vanderweele2012; @vanderweele2014]. For most applications in psychological science we would use the the causal difference scale (refer to @vanderweele2014 for discussion).  We set this complication to the side, noting that investigators must state the scale of causal contrast on which there study focusses.  -->
+
+
 
 ```{tikz}
 #| label: fig-dag-interaction-solved
@@ -287,7 +295,7 @@ By adjusting for $Q_{0}$ we obtain an unbiased estimate of the $B\to Y$ path. As
 ```
 
 
-What might these variables be? 
+Consider the following set of plausible confounders:
 
 **L**: variables in $L$ that might confound the relationship between beliefs in Big Gods and social complexity:
 
@@ -323,45 +331,51 @@ $$
 However, the set of control variables are larger, and note, we are assuming that monumental architecture and big God beliefs do not affect each other. 
 
 
-### Heterogeneous Treatment Effects
+## Effect Modification
 
 **It is often scientifically interesting to consider whether treatment effects vary over levels of other variable without imagining a double intervention.** 
+Broadly, we will think of "effect-modification" as a set of related and overlapping concepts pertaining to the understanding variability of a single effect within a population.  
 
 
-Heterogeneous Treatment Effects (HTE) refer to settings where treatment effects vary across individuals or subgroups within a study population. This variability can arise from differences in baseline characteristics, environmental conditions, and potentially unmeasured covariates. 
-
-**Appendix A** discusses the challenges in identifying HTE.  
+### Heterogeneous Treatment Effects -- a broad concept of effect-modification
 
 
-For now, let us focus on the concept of heterogenous treatment effects as they apply to groups. 
+Heterogeneous Treatment Effects (HTE) refer to settings where treatment effects vary across individuals or subgroups within a study population. This variability can arise from differences in baseline characteristics, environmental conditions, histories, .... much of which is unmeasured. 
+
+**Appendix A** discusses the challenges in identifying HTE from data, but we already know that individual causal effects are not typically identifiable, and so heteroeneous treatment effects, at the limit of individual causal effects, are elusive. 
 
 
-### Conditional Average Treatment Effect (CATE)
 
-If we are interested in estimating the causal effects in groups, we 
+### Conditional Average Treatment Effect (CATE) -- a narrower concept of effect-modification.
 
-- **Focus**: Estimation of the average treatment effect conditional on a specific level of a covariate or set of covariates.
-- **Estimand**: $\text{CATE}(x) = E[Y(1) - Y(0) | X = x]$, where $X = x$, where $X$ denotes the subgroup characteristics.
+We might be interested estimating average treatment effects within specific levels of measured covariates
 
-Question, how does the causal effect vary within levels of stratum $X=x$ 
+When our focus is estimation of the average treatment effect conditional on a specific level of a covariate or set of covariates. Our causal estimand is often written:
 
+ $$\text{CATE}(x) = E[Y(1) - Y(0) | X = x]$$ 
+ 
+ where $X = x$, where $X$ denotes the level of a measured covariate or covariates of interest. 
 
-### Effect-Modification
-
-
-Effect Modification occurs when the effect of a treatment or intervention on an outcome varies across levels of a third variable, known as the effect-modifier. This third variable modifies the effect of the treatment, which can be observed by different effects in different subgroups defined by this modifier.  Again, it is scientifically interesting to consider whether treatment effects vary across levels of other variables without assuming a double intervention. 
+The question: how does a causal effect vary within the population defined by levels of stratum $X=x$ 
 
 
-We might be interested in the following causal quantity (estimand), which compares two conditional average treatment effects
+### Comparing Heterogenity in Groups. 
+
+
+
+We might be interested in the following causal quantity (estimand), which compares two conditional average treatment effects between levels defined by $G = \tilde{g}$:
+
 
 $$\hat{\gamma} = \overbrace{\big( \hat{E}[Y(a^*)|G=g] - \hat{E}[Y(a)|G=g] \big)}^{\hat{\delta_g}} - \overbrace{\big(\hat{E}[Y(a^*)|G=g^{\prime}]- \hat{E}[Y(a)|G=g']\big)}^{\hat{\delta_{g^{\prime}}}}$$
 
 
-Suppose $A$ is the treatment, $G$ is the effect-modifier, and $Y$ is the outcome. Effect-modification assesses whether the effect of $A$ on $Y$ is different across levels of $G$ (i.e., whether the effect of $A$ on $Y$ is different when $G = g_1$ compared to when $G = g_2$).
+Suppose $A$ is the treatment, $G$ is the effect-modifier, and $Y$ is the outcome. The analysis of effect-modification assesses whether the effect of $A$ on $Y$ is different across levels of $G$ (i.e., whether the effect of $A$ on $Y$ is different when $G = g_1$ compared to when $G = g_2$).
 
-@fig-dag-effect-modification consider whether effect-modification of $A$ on $Y$ across levels of $G$. Because we are not interested in the causal effect of $G$ as such, but rather, how the effect of $A$ varies across $G$, we would not need to adjust $G$ by $Q$.  
+What do we need to identify such effects?  Note that $G$ here is not an intervention variable. It might not be coherent to imagine that $G$ *can* be intervened upon. 
 
-However if we were to include either $Q$ or $Z$ in the model, we would attenuate the effect modification of $A$ by $G$.  Can you tell why? 
+@fig-dag-effect-modification consider whether effect-modification of $A$ on $Y$ across levels of $G$. Because we are not interested in the causal effect of $G$ as such, but rather, how the effect of $A$ varies across $G$, we would *not* adjust by $Q$.  
+
+Consider, if we were to include either $Q$ or $Z$ in the model, we would attenuate the effect modification of $A$ by $G$.  Can you tell why? 
 
 
 ```{tikz}
@@ -405,19 +419,19 @@ However if we were to include either $Q$ or $Z$ in the model, we would attenuate
 
 
 
-We may obtain causal effects by restricting to one level of a population. Where $G$ denotes a society, consider:
+Often, it is useful to obtain causal effects by restricting to one level of a population. Where $G$ denotes a society, consider:
 
 
 
 
 1.  **Causal effect within North American societies (**$G=1$):
-    $$\delta_{g_1} = \mathbb{E}[Y(1)|g=1] - \mathbb{E}[Y(0)|g=1]$$ 
+    $$\delta_{g_1} = \mathbb{E}[Y(1)|G=1] - \mathbb{E}[Y(0)|G = 1]$$ 
     
 Here, $\delta_{g_2}$ represents the estimated causal effect of changing the exposure from $A = 0$ to $A = 1$ within the North American societies.
 
 2.  **Causal effect within Continental societies (**$G=2$):
 
-    $$\delta_{g2} = \mathbb{E}[Y(1)|g=2] - \mathbb{E}[Y(0)|g=2]$$
+    $$\delta_{g2} = \mathbb{E}[Y(1)|G=2] - \mathbb{E}[Y(0)|G=2]$$
 
     Similarly, ${\delta}_{g_2}$ denotes the estimated causal effect for the Continental societies.
 
@@ -428,10 +442,19 @@ Here, $\delta_{g_2}$ represents the estimated causal effect of changing the expo
 The quantity ${\gamma}$ defines the difference in the causal estimands between the two groups. A nonzero $\hat{\gamma}$ indicates effect-modification, suggesting that the effect of changing the exposure differs between the two groups. If we were to observe that $\hat{\gamma} \neq 0$, this would provide evidence for variability in the effect of the exposure on the outcome in different groups. Note that the causal effect for one group might be indistinguishable from zero, and yet we might nevertheless find evidence for effect-modification if the comparison group exhibits reliably different responses from the contrast group that is indistinguishable from zero.
 
 
+
+That's it, we now know our causal quantity of interest.  Next week, we'll develop our statistical estimands, estimators, and begin evaluating effect-modification by groups. 
+
+
+### Summary of what we learned
+
+- Interaction targets a joint intervention in a population
+- Effect modificiation targets how a single intervention varies by groups within a population
+
+Note, to obtain the group-wise contrasts, we must be able to imagine the groups as belonging to a larger population. When thinking of people, we all belong Later we shall consider how measurement complicates this assumption, even if all humans belong to the same species...
+
+
 ## Lab Part 1: Setting up your data
-
-
-
 
 
 ### Set up your libraries
@@ -1108,7 +1131,7 @@ summary(fit_std_weighted_sample_weights,
 We find that we obtain the population-level causal effect estimate with accurate coverage by weighting the sample to the target population. So with appropriate weights, our results generalise from the sample to the target population.
 
 
-## Lessons
+## Lessons from Lab 2
 
 - Regression coefficients do not clarify the problem of sample/target population mismatch -- or selection bias as discussed in this manuscript.
 - The correct advice to investigators is that they should not rely on regression coefficients when evaluating the biases that arise from sample attrition. This advice applies to both methods that the authors use to investigate threats of bias. That is, to implement this advice, the authors must first take it.
