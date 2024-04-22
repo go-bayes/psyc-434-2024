@@ -51,6 +51,10 @@ library("tinytex")
 library(extrafont)
 loadfonts(device = "win")
 
+# fix G = 1
+# fix hats
+# fix examples
+
 # read functions
 #source("/Users/joseph/GIT/templates/functions/funs.R")
 ```
@@ -359,28 +363,27 @@ When our focus is estimation of the average treatment effect conditional on a sp
 The question: how does a causal effect vary within the population defined by levels of stratum $X=x$ 
 
 
-### Comparing Heterogenity in Groups. 
+### Comparing Effect Heterogenity in Groups. 
 
 
 
 We might be interested in the following causal quantity (estimand), which compares two conditional average treatment effects between levels defined by $G = \tilde{g}$:
 
 
-$$\hat{\gamma} = \overbrace{\big( \hat{E}[Y(a^*)|G=g] - \hat{E}[Y(a)|G=g] \big)}^{\hat{\delta_g}} - \overbrace{\big(\hat{E}[Y(a^*)|G=g^{\prime}]- \hat{E}[Y(a)|G=g']\big)}^{\hat{\delta_{g^{\prime}}}}$$
+$${\gamma} = \overbrace{\big( \mathbb{E}[Y(a^*)|G=g] - \mathbb{E}[Y(a)|G=g] \big)}^{{\delta_g}} - \overbrace{\big(\mathbb{E}[Y(a^*)|G=g^{\prime}]- \mathbb{E}[Y(a)|G=g']\big)}^{{\delta_{g^{\prime}}}}$$
 
 
 Suppose $A$ is the treatment, $G$ is the effect-modifier, and $Y$ is the outcome. The analysis of effect-modification assesses whether the effect of $A$ on $Y$ is different across levels of $G$ (i.e., whether the effect of $A$ on $Y$ is different when $G = g_1$ compared to when $G = g_2$).
 
 What do we need to identify such effects?  Note that $G$ here is not an intervention variable. It might not be coherent to imagine that $G$ *can* be intervened upon. 
 
-@fig-dag-effect-modification consider whether effect-modification of $A$ on $Y$ across levels of $G$. Because we are not interested in the causal effect of $G$ as such, but rather, how the effect of $A$ varies across $G$, we would *not* adjust by $Q$.  
+@fig-dag-effect-modification is a causal diagram. Imagine we are intereste in whether the effect of $A$ on $Y$ differs across levels of $G$. Because we are not interested in the causal effect of $G$ as such, but rather, how the effect of $A$ varies across $G$, we need *not* adjust by $Q$.  However, which variables shall we include in our model?  What will happen if we assess the $G$ by examining a regression coefficient?  Suppose $L$ were not a confounder of $A$ to $Y$.  How then should we interpret our model?  
 
-Consider, if we were to include either $Q$ or $Z$ in the model, we would attenuate the effect modification of $A$ by $G$.  Can you tell why? 
 
 
 ```{tikz}
 #| label: fig-dag-effect-modification
-#| fig-cap: "Imagine A is an experiment. There is no confounding, and there is an effect of A on Y in at least one stratum of the population.  Here, the marginal association between A and Y provides an unbiased estimate for the causal effect of A on Y. Does the conditional association of A on Y vary within levels of G? Yes, however G does not cause Y. Let us assume Q causes Y. What would be the effect of conditioning on Q if we are interested in assessing how A varies within levels of G?  What would happen if we were to condition on Z?"
+#| fig-cap: "Imagine A is an experiment. How shall we investigate effect modification of A on Y by Z? Can you see why regression coefficients will not work?"
 #| out-width: 80%
 #| echo: false
 
@@ -397,23 +400,22 @@ Consider, if we were to include either $Q$ or $Z$ in the model, we would attenua
 
 \begin{tikzpicture}
 
-%\node [rectangle, draw=red, thick] (L) at (-4,0) {L};
-\node [rectangle, draw=white, thick] (Q) at (-3,-1) {Q};
-\node [rectangle, draw=white, thick] (A) at (-1,0) {A$_{1}$};
+\node [rectangle, draw=white, thick] (Q) at (-4,0) {Q};
+\node [black] (G) at (-2,0) {G};
+\node [rectangle, draw=black,thick] (L) at (0,0) {L$_{0}$};
+\node [rectangle, draw=white, thick] (A) at (2,0) {A$_{1}$};
 
-\node [emoddot] (Z) at (1, -1) {Z};
-\node [black] (G) at (-1,-1) {G};
+\node [emoddot] (Z) at (0, -1) {Z};
 
-\node [rectangle, draw=none, thick] (Y) at (3,0) {Y$_{2}$};
+\node [rectangle, draw=white, thick] (Y) at (4,0) {Y$_{2}$};
 
-
-%\draw[Arrow, draw=red] (L) to (A);
-%\draw[Arrow, draw=red, bend left = 30] (L) to (Y);
-\draw[Arrow, draw=black]   (G) to (Z);
-\draw[Arrow, draw=black]   (Q) to (G);
+\draw[Arrow, draw=black] (Q) to (G);
+\draw[Arrow, draw=black] (G) to (L);
+\draw[Arrow, draw=black] (L) to (A);
+\draw[Arrow, draw=black, bend left = 30] (L) to (Y);
 \draw[Arrow, draw=black, bend right = 40] (Q) to (Y);
 \draw [-latex, draw=black] (A) to (Y);
-\draw[-{Circle[open, fill=none]}, line width=0.25pt, draw=blue] (Z) -- (Y); % Circle-ended arrow
+\draw[-{Circle[open, fill=none]}, line width=0.25pt, draw=blue, bend right = 10] (Z) to (Y); Circle-ended arrow
 \end{tikzpicture}
 ```
 
@@ -425,13 +427,13 @@ Often, it is useful to obtain causal effects by restricting to one level of a po
 
 
 1.  **Causal effect within North American societies (**$G=1$):
-    $$\delta_{g_1} = \mathbb{E}[Y(1)|G=1] - \mathbb{E}[Y(0)|G = 1]$$ 
+    $$\delta_{g_1} = \mathbb{E}[Y(1)|G= g_1] - \mathbb{E}[Y(0)|G = g_1]$$ 
     
 Here, $\delta_{g_2}$ represents the estimated causal effect of changing the exposure from $A = 0$ to $A = 1$ within the North American societies.
 
-2.  **Causal effect within Continental societies (**$G=2$):
+2.  **Causal effect within Continental societies (**$G=g_2$):
 
-    $$\delta_{g2} = \mathbb{E}[Y(1)|G=2] - \mathbb{E}[Y(0)|G=2]$$
+    $$\delta_{g2} = \mathbb{E}[Y(1)|G=g_2] - \mathbb{E}[Y(0)|G=g_2]$$
 
     Similarly, ${\delta}_{g_2}$ denotes the estimated causal effect for the Continental societies.
 
@@ -466,6 +468,12 @@ library("ggplot2")
 library("here")
 library("skimr")
 if (!require(gtsummary)) install.packages("gtsummary")
+if (!require(janitor)) install.packages("janitor")
+
+
+# if you need to update the margot package, uncomment and do this
+# devtools::install_github("go-bayes/margot")
+#devtools::install_github("go-bayes/margot")
 ```
 
 
@@ -480,10 +488,14 @@ This will allow you to save the outputs of models and other information, which w
 ### Set up a path to a folder in your directory 
 
 # create a folder called saved and make a path like this
-push_mods <- here::here("saved")
+push_mods <- here::here( "saved" )
 
 # view it (will be different for you)
 push_mods
+
+# another option
+# saveRDS(object, here::here(push_mods, "object"))
+
 ```
 
 
@@ -507,6 +519,7 @@ Also see here: <https://github.com/go-bayes/templates/tree/main/method>
 
 
 ```{r}
+
 # eliminate haven labels
 df_nz <- as.data.frame(df_nz)
 df_nz <- haven::zap_formats(df_nz)
@@ -531,7 +544,6 @@ ids_2019 <- df_nz %>%
 
 # intersect IDs from 2018 and 2019 to ensure participation in both years
 ids_2018_2019 <- intersect(ids_2018, ids_2019)
-
 
 # data wrangling
 dat_long <- df_nz |>
@@ -642,10 +654,6 @@ dat_long <- df_nz |>
   # dplyr::rename(sample_weights = w_gend_age_ethnic,
   #               sample_origin =  sample_origin_names_combined) |>
   arrange(id, wave) |>
-  droplevels() |>
-  data.frame() |>
-  droplevels() |>
-  arrange(id, wave) |>
   mutate(
   rural_gch_2018_l = as.numeric(as.character(rural_gch_2018_l)),
   #   parent = as.numeric(as.character(parent)),
@@ -655,11 +663,14 @@ dat_long <- df_nz |>
   employed = as.numeric(as.character(employed))
   ) |>
   droplevels() |>
+  data.frame() |>
+  droplevels() |>
   arrange(id, wave) |>
   data.frame()
 
 # check n in this sample
 n_participants <- skimr::n_unique(dat_long$id)
+
 
 # make number pretty
 n_participants<- prettyNum(n_participants,big.mark=",")
@@ -672,9 +683,10 @@ margot::here_save(n_participants, "n_participants")
 n_participants_did_it_work_question_mark <- margot::here_read("n_participants")
 
 # view
-n_participants_did_it_work_question_mark
+# n_participants_did_it_work_question_mark
 ```
 
+There are N = `r n_participants_did_it_work_question_mark` participants.
 
 ### Define your baseline covariates, treatment (exposure), and outcome
 
@@ -683,7 +695,7 @@ n_participants_did_it_work_question_mark
 
 # for example 
 baseline_vars = c("age", "male", "edu", "eth_cat", "partner", "employed", "born_nz", "neighbourhood_community", "household_inc_log",
-    "partner","parent", "religion_religious", "rural_gch_2018_l","sample_weights", "employed", "alert_level_combined_lead")
+"parent", "religion_religious", "rural_gch_2018_l","sample_weights", "employed", "alert_level_combined_lead")
 
 # treatment
 exposure_var = c("perfectionism", "censored") # we will use the censored variable later
@@ -701,6 +713,7 @@ library(gtsummary)
 base_var <-
   setdiff(baseline_vars, c("censored", "sample_weights", "alert_level_combined_lead", outcome_vars))
 
+
 #  we only want the data at baseline 
 
 # select only baseline wave
@@ -713,13 +726,31 @@ selected_base_cols <-
   dt_18 |> select(all_of(base_var))
 
 #check
-colnames(selected_base_cols)
+colnames_use <- colnames(selected_base_cols)
+colnames_use
 
-#chck
-#selected_base_cols <- setdiff(selected_base_cols)
+# # aside to get different names in lists
+# everything_better_cols <- c(colnames_use, "inkuk")
+# everything_better_cols
+# 
+# # get rid of name
+# everything_worse_cols <- setdiff(everything_better_cols, "inkuk")
+
 # baseline table
-
 library(gtsummary)
+
+
+# this is just a demo of another package, which can be useful for quick tables, less for your manuscripts
+no_miss_df <- df_nz |> 
+  drop_na()
+
+table1::table1( ~ perfectionism  | wave * eth_cat ,
+                data = no_miss_df,
+                overall = FALSE)
+
+
+
+
 table_baseline <- selected_base_cols |> 
   janitor::clean_names(case = "title") |> 
   tbl_summary(
@@ -738,7 +769,7 @@ table_baseline <- selected_base_cols |>
   bold_labels() 
 
 
-
+# baseline
 table_baseline
 
 # save your baseline table
@@ -767,7 +798,7 @@ selected_exposure_cols <-
   )
 
 # check
-str(selected_exposure_cols)
+#str(selected_exposure_cols)
 
 
 library(gtsummary)
@@ -802,7 +833,6 @@ dt_18_20 <- dat_long |>
   dplyr::filter(wave == 2018 | wave == 2020) |> 
   droplevels()
 
-
 names_outcomes_tab <- setdiff(outcome_vars, dt_18_20)
 names_outcomes_sorted <- sort(names_outcomes_tab)
 names_outcomes_final <- names_outcomes_sorted # consistent workflow
@@ -811,7 +841,7 @@ names_outcomes_final <- names_outcomes_sorted # consistent workflow
 selected_outcome_cols <-
   dt_18_20 %>% select(all_of(names_outcomes_final),
                       wave) 
-# |>. # example if you want to rename your variables for the table
+# |> # example if you want to rename your variables for the table
 #   rename(
 #     Social_belonging = belong,
 #     Annual_charity = charity_donate,
@@ -831,8 +861,8 @@ selected_outcome_cols <- selected_outcome_cols %>%
   select(sort(names(selected_outcome_cols)))
 
 # checks
-str(selected_outcome_cols)
-colnames(selected_outcome_cols)
+# str(selected_outcome_cols)
+# colnames(selected_outcome_cols)
 
 table_outcomes <- selected_outcome_cols %>%
   janitor::clean_names(case = "title") %>% 
@@ -893,7 +923,7 @@ margot::here_save(graph_density_of_exposure_up, "graph_density_of_exposure_up")
 ### Another Graph: Shift Interventions Up
 
 ```{r}
-coloured_histogram(
+margot::coloured_histogram(
   dt_19,
   col_name = "perfectionism",
   binwidth = .25,
@@ -921,7 +951,6 @@ out <-margot::create_transition_matrix(data = dt_18_19_positivity, state_var = "
 
 # t_tab_2_labels <- c("< weekly", ">= weekly")
 # transition table
-
 transition_table  <- margot::transition_table(out)
 
 # for import later
