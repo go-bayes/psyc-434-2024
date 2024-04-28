@@ -6,6 +6,8 @@ execute:
 format: 
  html:      
   html-math-method: katex
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r}
@@ -184,10 +186,6 @@ We again will use simulation-based inference methods to compute standard errors 
 
 Do not worry! All will be explained next week.
 
-
-
-
-
 ## Doubly Robust Estimation
 
 We can combine regression based estimation and doubly robust estimation. I will walk you through the steps in today's exercises. The TL;DR is this: doubly robust estimation leads to lower reliance on correct model specification. If either the PS model or the regression model is correctly specified, the model will be unbiased -- if the other assumptions of causal inference are met.
@@ -199,3 +197,1013 @@ In today's workbook, you will learn how to conduct doubly robust subgroup analys
 ## Readings:
 
 Noah Griefer's Software and Blogs: [https://ngreifer.github.io/blog/subgroup-analysis-psm/](https://ngreifer.github.io/blog/)
+
+
+## Lab
+
+
+Today we estimate causal effects
+
+```{r}
+
+# uncomment, update the margot package
+# devtools::install_github("go-bayes/margot")
+
+# load packages
+library(tidyverse)
+library(margot)
+library(skimr)
+library(naniar)
+library(WeightIt)
+library(clarify)
+library(MatchThem)
+library(cobalt)
+library(MatchIt)
+library(kableExtra)
+#library(SuperLearner)
+#library(ranger)
+#library(nnls)
+#library(polspline)
+# create a folder names saved (you should have done this last week).
+# set your path to this folder
+
+push_mods <- here::here("saved")
+
+# check it is correct
+# uncomment, check
+#push_mods
+
+# set seed for reproducability
+set.seed(123)
+
+
+# eliminate haven labels
+df_nz <- as.data.frame(df_nz)
+df_nz <- haven::zap_formats(df_nz)
+df_nz <- haven::zap_label(df_nz)
+df_nz <- haven::zap_widths(df_nz)
+
+# read functions
+# source("/Users/joseph/GIT/templates/functions/funs.R")
+
+# experimental functions (more functions)
+# source(
+#   "https://raw.githubusercontent.com/go-bayes/templates/main/functions/experimental_funs.R"
+# )
+# # set exposure name
+
+name_exposure <-  "perfectionism"
+
+# check missing values
+skimr::skim(df_nz) |> arrange(n_missing)
+
+# obtain ids for individuals who participated in 2018 and have no missing baseline exposure
+ids_2018 <- df_nz |>
+  dplyr::filter(year_measured == 1, wave == 2018) |>
+  dplyr::filter(!is.na(!!sym(name_exposure))) |> # criteria, no missing
+  dplyr::filter(!is.na(eth_cat)) |> # criteria, no missing
+  pull(id)
+
+
+# obtain ids for individuals who participated in 2019
+ids_2019 <- df_nz |>
+  dplyr::filter(year_measured == 1, wave == 2019) |>
+  dplyr::filter(!is.na(!!sym(name_exposure))) |> # criteria, no missing
+  pull(id)
+
+# intersect IDs from 2018 and 2019 to ensure participation in both years
+ids_2018_2019 <- intersect(ids_2018, ids_2019)
+
+# data wrangling
+dat_long <- df_nz |>
+  dplyr::filter(id %in% ids_2018_2019 &
+                  wave %in% c(2018, 2019, 2020)) |>
+  arrange(id, wave) |>
+  select(
+    "id",
+    "wave",
+    "year_measured",
+    "age",
+    "male",
+    "born_nz",
+    "eth_cat",
+    #factor(EthCat, labels = c("Euro", "Maori", "Pacific", "Asian")),
+    "employed",
+    # are you currently employed? (this includes self-employment or casual work)
+    "edu",
+    # "gen_cohort",
+    "household_inc",
+    "partner",
+    # 0 = no, 1 = yes
+    "parent",
+    "alert_level_combined_lead", # see bibliography
+    # 0 = no, 1 = yes
+    "political_conservative", # see nzavs sheet
+    "hours_exercise", # see nzavs sheet
+    "agreeableness", 
+    # Mini-IPIP6 Agreeableness (also modelled as empathy facet)
+    # Sympathize with others' feelings.
+    # Am not interested in other people's problems.
+    # Feel others' emotions.
+    # Am not really interested in others.
+    "conscientiousness",
+    # see mini ipip6
+    # Get chores done right away.
+    # Like order.
+    # Make a mess of things.
+    # Often forget to put things back in their proper place.
+    "extraversion",
+    # Mini-IPIP6 Extraversion
+    # Am the life of the party.
+    # Don't talk a lot.
+    # Keep in the background.
+    # Talk to a lot of different people at parties.
+    "honesty_humility",
+    # see mini ipip6
+    # Would like to be seen driving around in a very expensive car.
+    # Would get a lot of pleasure from owning expensive luxury goods.
+    # Feel entitled to more of everything.
+    # Deserve more things in life.
+    "openness",
+    # see mini ipip6
+    # Have a vivid imagination.
+    # Have difficulty understanding abstract ideas.
+    # Do not have a good imagination.
+    # Am not interested in abstract ideas.
+    "neuroticism",
+    # see mini ipip6
+    # Have frequent mood swings.
+    # Am relaxed most of the time.
+    # Get upset easily.
+    # Seldom feel blue.
+    "modesty",
+    # # see mini ipip6
+    # # I want people to know that I am an important person of high status,
+    # # I am an ordinary person who is no better than others.
+    # # I wouldn’t want people to treat me as though I were superior to them.
+    # # I think that I am entitled to more respect than the average person is
+    #"w_gend_age_ethnic",
+    "neighbourhood_community",
+    # #I feel a sense of community with others in my local neighbourhood.
+    "belong", # see nzavs sheet
+    "rural_gch_2018_l",# see nzavs sheet
+    "support",
+    # "support_help",
+    # # 'There are people I can depend on to help me if I really need it.
+    # "support_turnto",
+    # # There is no one I can turn to for guidance in times of stress.
+    # "support_rnoguidance",
+    #There is no one I can turn to for guidance in times of stress.
+    "perfectionism",
+    "religion_religious",
+    "kessler_latent_depression",
+    "kessler_latent_anxiety"
+  ) |>
+  mutate(
+    #initialize 'censored'
+    censored = ifelse(lead(year_measured) == 1, 1, 0),
+    
+    # modify 'censored' based on the condition; no need to check for NA here as 'censored' is already defined in the previous step
+    censored =  ifelse(is.na(censored) &
+                         year_measured == 1, 1, censored),
+    # create urban binary variable
+    
+    urban = ifelse(rural_gch_2018_l == 1, 1, 0)
+    
+  ) |>
+  select(-c(year_measured, rural_gch_2018_l) )|>
+  dplyr::mutate(
+    # rescale these variables, to get all variables on a similar scale
+    # otherwise your models can blow up, or become uninterpretable. 
+    household_inc_log = log(household_inc + 1),
+    hours_exercise_log = log(hours_exercise + 1)  ) |>
+  dplyr::select(
+    -c(
+      household_inc,
+      hours_exercise)
+  ) |>
+  droplevels() |>
+  # dplyr::rename(sample_weights = w_gend_age_ethnic,
+  #               sample_origin =  sample_origin_names_combined) |>
+  arrange(id, wave) |>
+  mutate(
+    urban = as.numeric(as.character(urban)),
+    #   parent = as.numeric(as.character(parent)),
+    partner = as.numeric(as.character(partner)),
+    born_nz = as.numeric(as.character(born_nz)),
+    censored = as.numeric(as.character(censored)),
+    employed = as.numeric(as.character(employed))
+  ) |>
+  droplevels() |>
+  arrange(id, wave) |>
+  data.frame()
+
+
+# inspect data
+glimpse(dat_long)
+
+# more thorough view
+#skimr::skim(dat_long)
+```
+
+
+Next let's insure that we obtain 50/50 representation of gender within our estimation.  
+
+
+```{r}
+# balance on gender weights
+# calculate gender weights assuming male is coded as 1 and female as 0
+prop_male_population <- 0.5  # target proportion of males in the population
+prop_female_population <- 0.5  # target proportion of females in the population
+
+prop_male_sample <- mean(dat_long$male)
+prop_female_sample <- 1 - prop_male_sample
+
+gender_weight_male <- prop_male_population / prop_male_sample
+gender_weight_female <- prop_female_population / prop_female_sample
+
+dat_long$sample_weights <- ifelse(dat_long$male == 1, gender_weight_male, gender_weight_female)
+
+# we will upweight males and down weight non-males to obtain a balance of gender in the *target* population
+table(dat_long$sample_weights)
+```
+Next let's get our data into shape.  Today we're going to consider a 'treatment' of perfectionism in which we shift people by different quantiles of perfectionism: 
+
+
+
+
+```{r}
+dat_long <- create_ordered_variable(dat_long, "perfectionism", n_divisions = 4) #
+
+# view scale 
+# uncommend to see break points
+# print(quantile(dat_long$perfectionism, probs = seq(0, 1, 1/4), na.rm = TRUE))
+
+# n by groups
+table(dat_long$perfectionism_4tile)
+
+# obtain labels if useful later
+labels <- levels( dat_long$perfectionism_4tile )
+```
+
+### Set variables
+
+Next lets set our baseline variables
+
+```{r}
+baseline_vars = c("age", "male", "edu", "eth_cat", "partner", "employed", "born_nz", "neighbourhood_community", "household_inc_log", "parent", "religion_religious", "urban", "employed", "alert_level_combined_lead", "sample_weights")
+
+# treatment
+exposure_vars = c("perfectionism_4tile") 
+
+# outcome, can be many
+outcome_vars = c("kessler_latent_anxiety", "kessler_latent_depression")
+```
+
+
+In our first analysis we will not merely impute baseline values. Rather we will impute baseline and outcome values within quantiles of the exposure.  Consider, why should we impute within the treatments to be compared?  What are the lingering dangers of this approach? 
+
+
+```{r}
+# make long data wide
+prep_dat_wide <- margot_wide(dat_long, 
+                             baseline_vars = baseline_vars, 
+                             exposure_var = exposure_vars,
+                             outcome_vars = outcome_vars)
+
+
+# filter data, so that we impute within quartiles
+list_filtered_df <-
+  margot::margot_filter(prep_dat_wide, exposure_vars = "t1_perfectionism_4tile", sort_var = "id")
+
+# check that these add up to the total data set
+a <- nrow( list_filtered_df$tile_1)
+b <- nrow( list_filtered_df$tile_2)
+c <- nrow( list_filtered_df$tile_3)
+d <-nrow( list_filtered_df$tile_4)
+
+# must sum to equal
+a + b + c + d == nrow(prep_dat_wide)
+```
+
+
+Visualise missing values
+
+```{r}
+# visually inspect missingness
+naniar::vis_miss(prep_dat_wide, warn_large_data = FALSE)
+
+# check for collinear vars
+mice:::find.collinear(prep_dat_wide)
+```
+
+Next we impute by quartile.  Save this output in your folder. 
+
+```{r}
+#| label: imputation
+#| eval: false
+#| include: true
+#| echo: true
+
+# impute by quartile
+mice_health <- margot::impute_and_combine(list_filtered_df,  m = 5 )
+
+margot::here_save(mice_health, "mice_health")
+
+````
+
+```{r}
+#| label: read-imputation
+#| eval: false
+#| echo: true
+
+# read data if you are not running the imputation again
+mice_health <- here_read("mice_health")
+
+# post-imputation arrange
+mice_health_mids <- mice_health |>
+  arrange(.imp, id) |>
+  rename(sample_weights = t0_sample_weights) |>
+dplyr::mutate(
+  across(
+    where(is.numeric) & !t0_alert_level_combined_lead &
+      !sample_weights,
+    ~ scale(.x),
+    .names = "{col}_z"
+  )
+) |>
+  select(-.imp_z, -.id_z) |>
+  select(where(is.factor),
+         sample_weights,
+         ends_with("_z"),
+         .imp,
+         .id) |>
+  relocate(sample_weights, .before = starts_with("t1_"))  |>
+  relocate(id, .before = sample_weights)  |>
+  relocate(starts_with("t0_"), .before = starts_with("t1_"))  |>
+  relocate(starts_with("t2_"), .after = starts_with("t1_"))  |>
+  arrange(.imp, id) |>
+  droplevels() |>
+  mutate_if(is.matrix, as.vector) |>
+  as.mids()
+
+# create long version
+mice_health_long <-mice::complete(mice_health_mids, "long", inc = TRUE)
+
+# create
+# save
+# this is how you save without the margot package
+saveRDS(mice_health_mids, here::here("saved", "mice_health_mids"))
+saveRDS(mice_health_long, here::here("saved", "mice_health_long"))
+```
+
+Compute propensity scores for IPTW
+
+
+```{r}
+#| label: propensity-scores
+#| eval: false
+#| echo: true
+
+# this is how you read saved files without the margot package
+mice_health_mids <- readRDS(here::here("saved", "mice_health_mids"))
+mice_health_long <- readRDS(here::here("saved", "mice_health_long"))
+# propensity scors --------------------------------------------------------
+
+
+# set exposure
+X = "t1_perfectionism_4tile"
+
+#
+estimand = "ATE"
+
+baseline_vars_models = mice_health_long |>
+  dplyr::select(starts_with("t0"))|> colnames() # note, we earlier change name of `t0_sample_weights` to `sample weights`
+
+# obtain propensity scores
+match_ebal_ate <- margot::match_mi_general(data = mice_health_mids, 
+                                      X = X, 
+                                      baseline_vars = baseline_vars_models, 
+                                      estimand = estimand,  
+                                   #   focal = "tile_3", #for ATT
+                                      method = "ebal", 
+                                      sample_weights = "sample_weights")
+
+# save output
+margot::here_save(match_ebal_ate, "match_ebal_ate")
+
+
+# hack for g-comp model
+```
+
+
+```{r}
+#| label: vis_matching_ate
+#| eval: true
+#| echo: true
+
+# read output
+match_ebal_ate <- margot::here_read("match_ebal_ate")
+# check balance
+bal.tab(match_ebal_ate)
+
+# visualise imbalance
+love.plot(match_ebal_ate, binary = "std", thresholds = c(m = .1),
+          wrap = 50, position = "bottom", size =3)
+```
+
+
+```{r}
+# consider results 
+sum_ebal_match_ebal_ate <- summary(match_ebal_ate)
+
+# summarise
+sum_ebal_match_ebal_ate
+
+# visualise
+plot(sum_ebal_match_ebal_ate)
+
+```
+
+Some extreme weights.  We can trip weights as follows. (Note there is no hard and fast rule about how much to trim weights by.)
+
+```{r}
+# trimmed weights
+match_ebal_ate_trim <- WeightIt::trim(match_ebal_ate, at = .99)
+
+# check balanc
+bal.tab(match_ebal_ate_trim)
+
+# summary
+summary_match_ebal_ate_trim <- summary(match_ebal_ate_trim)
+
+# check - extreme weights gone
+plot(summary_match_ebal_att_trim)
+
+# plot for balance
+love.plot(match_ebal_ate_trim, binary = "std", thresholds = c(m = .1),
+          wrap = 50, position = "bottom", size =2, limits = list(m = c(-.5, .5)))
+```
+
+Estimation
+
+```{r}
+#| label: vis_matching_ate
+#| eval: false
+#| echo: true
+# here_save(match_ebal_ate_trim, "match_ebal_ate_trim")
+# match_ebal_ate_trim <- here_read( "match_ebal_ate_trim")
+# 
+# set data frame; output of match_mi_general model
+df_ate = match_ebal_ate_trim
+
+# remind self of levels
+# levels(mice_health_long$t1_perfectionism_4tile)
+
+# set treatment level
+treat_0 = "tile_1" # lowest quartile
+treat_1 = "tile_3" # third quartile
+
+# bootstrap simulations ( generally use 1000)
+nsims <- 1000
+
+# cores
+cl =  parallel::detectCores () 
+
+estimand = "ATE"
+
+# as specified
+vcov = "HC2" # robust standard errors. 
+
+# cores
+cores = parallel::detectCores () # use all course
+
+# Example call to the function
+
+
+# propensity score only model
+propensity_mod_fit_t2_kessler_latent_anxiety_z <-margot::double_robust_marginal(
+  df = df_ate,
+  Y = "t2_kessler_latent_anxiety_z",
+  X = X, 
+  baseline_vars = 1, # we are not regressing with any covariates
+  treat_1 = treat_1,
+  treat_0 = treat_0,
+  nsims = 1000,
+  cores = cores,
+  family = "gaussian",
+  weights = TRUE,
+  continuous_X = FALSE,
+  splines = FALSE,
+  estimand = "ATE",
+  type_causal = "RD",  
+  type_tab = "RD",    
+  vcov = vcov,         
+  new_name = "Kessler Anxiety (PR)",
+  delta = 1,
+  sd = 1
+)
+
+here_save(propensity_mod_fit_t2_kessler_latent_anxiety_z, "propensity_mod_fit_t2_kessler_latent_anxiety_z")
+
+propensity_mod_fit_t2_kessler_latent_depression_z <-margot::double_robust_marginal(
+  df = df_ate,
+  Y = "t2_kessler_latent_depression_z",
+  X = X,  
+  baseline_vars = 1, #no covariates, only the propensity scores
+  treat_1 = treat_1,
+  treat_0 = treat_0,
+  nsims = 1000,
+  cores = cores,
+  family = "gaussian",
+  weights = TRUE,
+  continuous_X = FALSE,
+  splines = FALSE,
+  estimand = "ATE",
+  type_causal = "RD",  
+  type_tab = "RD",    
+  vcov = vcov,         
+  new_name = "Kessler Depression (PR)",
+  delta = 1,
+  sd = 1
+)
+
+
+here_save(propensity_mod_fit_t2_kessler_latent_depression_z, "propensity_mod_fit_t2_kessler_latent_depression_z")
+
+
+
+## Doubly robust
+mod_fit_t2_kessler_latent_anxiety_z <-margot::double_robust_marginal(
+  df = df_ate,
+  Y = "t2_kessler_latent_anxiety_z",
+  X = X,
+  baseline_vars = baseline_vars_models, # no covariates, only the propensity scores
+  treat_1 = treat_1,
+  treat_0 = treat_0,
+  nsims = 1000,
+  cores = cores,
+  family = "gaussian",
+  weights = TRUE,
+  continuous_X = FALSE,
+  splines = FALSE,
+  estimand = "ATE",
+  type_causal = "RD",  
+  type_tab = "RD",    
+  vcov = vcov,         
+  new_name = "Kessler Anxiety (DR)",
+  delta = 1,
+  sd = 1
+)
+
+here_save(propensity_mod_fit_t2_kessler_latent_anxiety_z, "propensity_mod_fit_t2_kessler_latent_anxiety_z")
+
+X
+
+mod_fit_t2_kessler_latent_depression_z <-margot::double_robust_marginal(
+  df = df_ate,
+  Y = "t2_kessler_latent_depression_z",
+  X = X,
+  baseline_vars = baseline_vars_models,
+  treat_1 = treat_1,
+  treat_0 = treat_0,
+  nsims = 1000,
+  cores = cores,
+  family = "gaussian",
+  weights = TRUE,
+  continuous_X = FALSE,
+  splines = FALSE,
+  estimand = "ATE",
+  type_causal = "RD",  
+  type_tab = "RD",    
+  vcov = vcov,         
+  new_name = "Kessler Depression (DR)",
+  delta = 1,
+  sd = 1
+)
+
+here_save(mod_fit_t2_kessler_latent_depression_z, "mod_fit_t2_kessler_latent_depression_z")
+```
+
+
+```{r}
+#| eval: false
+#| echo: true
+# to save time, we do not run the models, 
+# recover saved models 
+mod_fit_t2_kessler_latent_depression_z<- here_read("mod_fit_t2_kessler_latent_depression_z")
+mod_fit_t2_kessler_latent_anxiety_z<- here_read("mod_fit_t2_kessler_latent_anxiety_z")
+
+propensity_mod_fit_t2_kessler_latent_depression_z<- here_read("propensity_mod_fit_t2_kessler_latent_depression_z")
+propensity_mod_fit_t2_kessler_latent_anxiety_z<- here_read("propensity_mod_fit_t2_kessler_latent_anxiety_z")
+
+library(kableExtra)
+
+# proprensity only 
+tab_double_pr <- rbind(propensity_mod_fit_t2_kessler_latent_depression_z$tab_results,
+      propensity_mod_fit_t2_kessler_latent_anxiety_z$tab_results)
+# bind results in a table
+tab_double_robust <- rbind(mod_fit_t2_kessler_latent_depression_z$tab_results,
+      mod_fit_t2_kessler_latent_anxiety_z$tab_results)
+
+
+# combine the individual results
+tab_combo <- rbind(tab_double_pr,tab_double_robust)
+
+
+# table
+tab_combo |> 
+  kbl(format = "markdown")
+```
+
+
+We see that the doubly robust estimator leads to lower overall effect sizes
+
+
+
+### Subgroup estimation 
+
+```{r}
+#| label: impute_subgroup_baseline
+# let's take a different approach
+# this time we include the censored variable 
+
+exposure_vars <- c("perfectionism_4tile", "censored")
+baseline_vars<-setdiff(baseline_vars, "sample_weights")
+
+# here we imput the baseline 
+df_impute_base<- margot_wide_impute_baseline(dat_long, baseline_vars = baseline_vars, 
+                                             exposure_var = exposure_vars, outcome_vars = outcome_vars)
+
+# save
+
+# get sample weights
+dt_18 <- dat_long |> filter(wave == 2018)
+
+# add sample weights
+df_impute_base$t0_sample_weights = dt_18$sample_weights
+
+# save
+here_save(df_impute_base, "df_impute_base")
+```
+
+Read model
+
+```{r}
+df_impute_base <- here_read("df_impute_base")
+df_impute_base$t1_perfectionism_4tile
+# get correct censoring 
+t0_na_condition <-
+  rowSums(is.na(select(df_impute_base, starts_with("t1_")))) > 0
+t1_na_condition <-
+  rowSums(is.na(select(df_impute_base, starts_with("t2_")))) > 0
+
+
+rm(df_clean)
+str(df_impute_base$t1_perfectionism_4tile)
+# tidy your data
+df_clean <- df_impute_base |>
+  mutate(t0_censored = ifelse(t0_na_condition, 0, t0_censored)) |>
+  mutate(t1_censored = ifelse(t1_na_condition, 0, t1_censored))|>
+  mutate(across(starts_with("t1_"), ~ ifelse(t0_censored == 0, NA_real_, .)),
+         across(starts_with("t2_"), ~ ifelse(t0_censored == 0, NA_real_, .))) |>
+  mutate(across(starts_with("t2_"), ~ ifelse(t1_censored == 0, NA_real_, .))) |>
+  # select variables
+  dplyr::mutate(
+    across(
+      .cols = where(is.numeric) &
+        !t0_censored &
+        !t0_sample_weights & 
+        !t0_alert_level_combined_lead &
+        !t1_perfectionism_4tile &
+        !t1_censored,
+      .fns = ~ scale(.),
+      .names = "{.col}_z"
+    )
+  ) |>
+  # select(-t0_charity_donate,
+  #        -t0_hours_charity) |>
+  select(
+    where(is.factor),
+    t0_sample_weights,
+    t0_alert_level_combined_lead,
+    t0_sample_weights,
+    t0_censored,
+    t1_perfectionism_4tile,
+    t1_censored,
+    ends_with("_z")
+  ) |>
+  mutate(t0_lost = 1 - t1_censored) |> 
+  mutate(t1_lost = 1 - t1_censored) |> 
+  mutate(t1_perfectionism_4tile = factor(t1_perfectionism_4tile, ordered = TRUE, labels = c("tile_1", "tile_2", "tile_3", "tile_4")) )|> 
+  relocate(starts_with("t0_"), .before = starts_with("t1_")) |> # make a factor
+  relocate("t0_censored", .before = starts_with("t1_"))  |>
+  relocate("t1_censored", .before = starts_with("t2_")) 
+
+
+
+# we'll have a variable for "lost" 
+# this is the usual meanin of "censored"
+table(df_clean$t1_lost)
+table(df_clean$t1_censored)
+str(df_clean$t1_perfectionism_4tile)
+
+
+# 
+# df_impute_base$t1_perfectionism_z = scale(df_impute_base$t1_perfectionism)
+
+# get rid of attributes
+df_clean <- margot::remove_numeric_attributes(df_clean)
+
+
+
+
+
+# censoring ---------------------------------------------------------------
+baseline_vars_models = df_clean |>  # post process of impute and combine
+  dplyr::select(starts_with("t0"), - t0_alert_level_combined_lead,-t0_censored, -t0_lost, -t0_sample_weights)|> colnames() # note, we ear
+
+baseline_vars_models
+# fit proptensity score model 
+match_censoring <- margot::match_mi_general(data = df_clean, 
+                                      X = "t1_lost", 
+                                      baseline_vars = baseline_vars_models, 
+                                      estimand = "ATE",  
+                                      # focal = "< >", for ATT
+                                      method = "cbps", 
+                                      sample_weights = "sample_weights")
+
+# save output
+here_save( match_censoring, "match_censoring") 
+```
+
+
+```{r}
+#| label: vis_matching_censoring
+#| eval: true
+#| echo: true
+
+# read output
+match_censoring <- margot::here_read("match_censoring")
+# check balance
+bal.tab(match_censoring)
+
+# visualise imbalance
+love.plot(match_censoring, binary = "std", thresholds = c(m = .1),
+          wrap = 50, position = "bottom", size =3)
+```
+```{r}
+# let's create 
+# df_clean_filtered<- df_clean_filtered |> 
+#   mutate(t1_perfectionism_high = ifelse(t1_perfectionism_z >= 1, 1, 0))
+
+
+# get censoring weights
+lost_prob <- match_censoring$weights
+
+# check
+summary(lost_prob)
+
+# rename sample weights # multiply censoring weights by sample weights 
+df_clean$sample_weights <- (match_censoring$weights * df_clean$t0_sample_weights)
+
+summary(df_clean$sample_weights )
+
+# next filter only those who were not lost
+df_clean_filtered<- df_clean |> 
+  filter(t1_censored == 1)
+
+df_clean_filtered <- df_clean_filtered |>
+  relocate("sample_weights", .before = starts_with("t0_")) |>
+  relocate(starts_with("t0_"), .before = starts_with("t1_")) |>
+  relocate("t0_censored", .before = starts_with("t1_"))  |>
+  relocate("t1_censored", .before = starts_with("t2_"))
+
+
+
+nrow(df_clean_filtered)
+
+hist(df_clean_filtered$sample_weights)
+
+# next propensity scores by groups 
+
+levels(df_clean_filtered$t0_eth_cat)
+levels(df_clean_filtered$t1_perfectionism_4tile)
+# 
+
+df_subgroup <-df_clean_filtered |> filter(t0_eth_cat == "maori" | t0_eth_cat == "euro") |> droplevels()
+levels(df_subgroup$t0_eth_cat)
+table(df_subgroup$t0_eth_cat)
+
+baseline_vars_models_sans_eth <- setdiff(baseline_vars_models, "t0_eth_cat")
+
+
+## 
+string <- formula_str <- as.formula(paste("t1_perfectionism_4tile", "~", paste(baseline_vars_models, collapse = "+")))
+
+string_sans <- formula_str <- as.formula(paste("t1_perfectionism_4tile", "~", paste(baseline_vars_models_sans_eth, collapse = "+")))
+baseline_vars_models_sans_eth
+
+
+W1 <- weightit(
+  string,
+  method = "ipt",
+  estimand = "ATT",
+  weights = "sample_weights",
+  focal = "tile_3",
+  # super = TRUE,
+  #SL.library = c("SL.ranger", "SL.glmnet", "SL.polymars", "SL.xgboost"),
+  #super = TRUE,
+  data = df_subgroup
+)
+summary(W1)
+
+# save model
+here_save(W1, "W1")
+
+W2 <- weightit(
+  string_sans,
+  method = "ipt",
+  estimand = "ATT",
+  weights = "sample_weights",
+  by = "t0_eth_cat",
+  weights = "sample_weights",
+  focal = "tile_3",
+#  super = TRUE,
+#  SL.library = c("SL.ranger", "SL.glmnet", "SL.polymars", "SL.xgboost"),
+  data = df_subgroup
+)
+
+summary(W2)
+
+# save model
+here_save(W2, "W2")
+
+# test diff
+
+#S <- sbps(W1, W2)
+# warnings()
+# S
+```
+
+
+```{r}
+bal.tab(W1, un = TRUE)
+love.plot(W1, binary = "std", thresholds = c(m = .1),
+          wrap = 50, position = "bottom", size =2)
+
+# this method has better effective samples
+bal.tab(W1)
+
+
+# this method has better balance
+bal.tab(W2, cluster = "t0_eth_cat")
+
+# graph by cluster
+love.plot(W2,  cluster = "t0_eth_cat", binary = "std", thresholds = c(m = .1),
+          wrap = 50, position = "bottom", size =2)
+```
+
+
+
+```{r}
+
+# prepare data
+dt_ref_all$combo_weights = W1$weights * dt_ref_all$t0_sample_weights
+
+
+# Let's calculate the ATE for the entire group, ignoring the subclasses.
+# let's make the contrasts between low and high perfectionism.
+baseline_vars_models_sans_eth
+
+df_clean_filtered$t2_kessler_latent_anxiety_z
+#  GENERAL ATE (Not adjusting for subgroups)
+
+# ATE. we will cover "evalues" next week
+
+
+dt_ref_all$t2_kessler_latent_depression_z
+### SUBGROUP analysis
+df = dt_ref_all
+Y_anxiety = "t2_kessler_latent_anxiety_z"
+Y_depression = "t2_kessler_latent_depression_z"
+
+X = "t1_perfectionism_4tile"
+baseline_vars_models_sans_eth
+treat_0 = "tile_1"
+treat_1 = "tile_3"
+estimand = "ATT"
+scale = "RD"
+nsims = 1000
+family = "gaussian"
+continuous_X = FALSE
+splines = FALSE
+cores = parallel::detectCores()
+S = "t0_eth_cat"
+
+# not we interact the subclass X treatment X covariates
+
+formula_str_anxiety <-
+  paste(
+    Y_anxiety,
+    "~",
+    S,
+    "*",
+    "(",
+    X ,
+    "*",
+    "(",
+    paste(baseline_vars_models_sans_eth, collapse = "+"),
+    ")",
+    ")"
+  )
+
+formula_str_depression <-
+  paste(
+    Y_depression,
+    "~",
+    S,
+    "*",
+    "(",
+    X ,
+    "*",
+    "(",
+    paste(baseline_vars_models_sans_eth, collapse = "+"),
+    ")",
+    ")"
+  )
+
+formula_str_anxiety
+formula_str_depression
+
+# fit model
+fit_all_all_anxiety  <- glm(
+  as.formula(formula_str_anxiety),
+  weights = combo_weights,
+  # weights = if (!is.null(weight_var)) weight_var else NULL,
+  family = family,
+  data = df
+)
+
+#summary(fit_all_all_anxiety)
+
+fit_all_all_depression  <- glm(
+  as.formula(formula_str_depression),
+  weights = combo_weights,
+  # weights = if (!is.null(weight_var)) weight_var else NULL,
+  family = family,
+  data = df
+)
+
+#summary(fit_all_all_depression)
+
+
+# coefs <- coef(fit_all_all_anxiety)
+# table(is.na(coefs))#     t0_eth_catmāori:t1_perfectionism_coarsen.Q:t0_gen_cohort.C
+
+# #FALSE  TRUE
+# 344     4
+# 
+# insight::get_varcov(fit_all_all_anxiety)
+
+# simulate coefficients
+sim_model_all <- sim(fit_all_all_anxiety, n = nsims, vcov = "HC2")
+
+
+# simulate effect as modified in europeans
+sim_estimand_all <- sim_ame(
+  sim_model_all,
+  var = X,
+  cl = cores,
+  by = "t0_eth_cat",
+  verbose = FALSE
+)
+
+summary(sim_estimand_all)
+
+# sim_ame()
+# 
+# # simulate effect as modified in māori
+# sim_estimand_all_m <- sim_ame(
+#   sim_model_all,
+#   var = X,
+#   cl = cores,
+#   subset = t0_eth_cat == "maori",
+#   verbose = FALSE
+# )
+# 
+# est_all <- transform(sim_estimand_all, `RD_m - RD_e` = RD_m - RD_e)
+# 
+# 
+
+# combine
+sim_estimand_all_tab <-
+  transform(sim_estimand_all, RD_euro = `E[Y(tile_3)|euro]` - `E[Y(tile_1)|euro]`,
+            RD_maori =  `E[Y(tile_3)|maori]` - `E[Y(tile_1)|maori]`,
+            gamma_hat = (`E[Y(tile_3)|euro]` - `E[Y(tile_1)|euro]`) - (`E[Y(tile_3)|maori]` - `E[Y(tile_1)|maori]`))
+
+summary(sim_estimand_all_tab)
+```
+
+
+
