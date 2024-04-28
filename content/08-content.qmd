@@ -1,13 +1,21 @@
 ---
-title: "Causal Inference: Propensity Scores & Subgroup Analysis"
-date: "2023-MAY-09"
-execute:
-  warning: false
-format: 
- html:      
-  html-math-method: katex
-editor_options: 
-  chunk_output_type: console
+title: "Causal Inference: Estimation of ATE and CATE"
+date: "2023-APR-28"
+format:
+  html:
+    warnings: FALSE
+    error: FALSE
+    messages: FALSE
+    code-overflow: scroll
+    highlight-style: oblivion
+    code-tools:
+      source: true
+      toggle: FALSE
+html-math-method: katex
+reference-location: margin
+citation-location: margin
+cap-location: margin
+code-block-border-left: true
 ---
 
 ```{r}
@@ -23,33 +31,56 @@ loadfonts(device = "win")
 #source("/Users/joseph/GIT/templates/functions/funs.R")
 ```
 
-## Downloads
 
-Below is a link to the R script that will allow you to download the data and exercises. Copy the contents on your screen to a new R script, and run the script from the begging. Before class, it will be useful for you to:
+::: {.callout-note}
+**Required**
+- [@vanderweele2020] [link](https://www.dropbox.com/scl/fi/srpynr0dvjcndveplcydn/OutcomeWide_StatisticalScience.pdf?rlkey=h4fv32oyjegdfl3jq9u1fifc3&dl=0)
 
-1.  Run "source()" file.
-2.  Last we you should have downloaded the synthetic data, and placed the dataset in a folder in your R project called "data."
-3.  If you are stuck with this step, let us know.
 
-[link to script for this week](https://github.com/go-bayes/psych-434-2023/blob/main/scripts/workbook-8.R)
+**Optional**
+- [@suzuki2020] [link](https://www.dropbox.com/scl/fi/4midxwr9ltg9oce02e0ss/suzuki-causal-diagrams.pdf?rlkey=uktzf3nurtgpbj8m4h0xz82dn&dl=0)
+- [@Bulbulia2024PracticalGuide] [link](https://osf.io/preprints/psyarxiv/uyg3d)
+- [@hoffman2023] [link](https://arxiv.org/pdf/2304.09460.pdf)
+:::
 
-## Overview
+::: {.callout-important}
+## Key concepts for the test(s):
+  - **Counfounding vs Confounder**
+  - **Causal Estimand, Statistical Estimand, Statistical Estimator**
+  - **Inverse probabilitiy of treatment weights using propensity scores: modelling the exposure or treatment, not the outcome.**
+  - **Subgroup analysis using propensity scores**
+:::
 
-### Goals
+::: {.callout-important}
+## For the lab, copy and paste code chunks following the "LAB" section.
+:::
 
-By the end of this lecture, you will understand the following concepts
 
-1.  Propensity-score weighting: modelling the exposure or treatment, not the outcome.
-2.  Doubly robust estimation: model both the treatment and the outcome.
-3.  Subgroup analysis by doubly-robust estimation.
+# Seminar
 
-### Why is this important?
+## Learning Outcomes
 
-Recall that in psychology our task is to answer some question about how people think and behave. In cross-cultural psychology these questions are typically comparative.
+<!-- - You will learn how to state a causal question in a three-wave panel -->
+<!-- - You will learn how to identify causal effects in a three-waves of panel data. -->
+<!-- - How to do Propensity-score weighting: modelling the exposure or treatment, not the outcome. -->
+<!-- - Outcome modelling: modelling the outcome, with the treatment included in the model -->
+<!-- - Doubly robust estimation: model both the treatment and the outcome.** -->
+<!-- - Subgroup analysis by doubly-robust estimation -->
 
-Our first task is clearly define that question. Our second task is to answer that question.
 
-The methods you will learn today will help you to define and answer comparative questions in psychology.
+#### Lab
+
+<!-- - You will learn how to write a report statement that formulates a causal question, names a population of interest, and constructs a causal diagram that explains whether and how to identify a causal effect from data.  -->
+
+
+### Why is this lesson important?
+
+<!-- Recall that in psychology, our task is to answer some questions about how people think and behave. In cross-cultural psychology, these questions are typically comparative. -->
+
+<!-- Our first task is clearly define that question. Our second task is to answer that question. -->
+
+<!-- The methods you will learn today will help you to define and answer comparative questions in psychology. -->
+
 
 ## Review: The Fundamental Problem of Causal Inference as a Missing Data Problem
 
@@ -72,9 +103,9 @@ $$
 
 However, we only observe one of the potential outcomes for each child. The other outcome is not observed because physics prevents a child from both receiving and not receiving bilingual exposure.
 
-The fact that causal contrasts are not observed on individuals is called "The fundamental problem of causal inference."
+The fact that causal contrasts are not observed in individuals is called "The fundamental problem of causal inference."
 
-Although we typically cannot observe individual causal effects, under certain assumptions we can obtain average causal effects.
+Although we typically cannot observe individual causal effects, we can obtain average causal effects when certain assumptions are satisfied.
 
 ```{=tex}
 \begin{align}
@@ -85,121 +116,311 @@ E(\delta) = E(Y^{a=1} - Y^{a=0})\\
 ```
 We may identify average causal effects from the data when the following assumptions are met:
 
--   Causal Consistency: The values of exposure under comparisons correspond to well-defined interventions that, in turn, correspond to the versions of treatment in the data.(see: Chatton, Hernan & Robbins)
--   Positivity: The probability of receiving every value of the exposure within all strata of co-variates is greater than zero
--   Exchangeablility: The conditional probability of receiving every value of an exposure level, though not decided by the investigators, depends only on the measured covariates (see: Chatton, Hernan & Robbins)
+-   Causal Consistency: The exposure values under comparisons correspond to well-defined interventions that, in turn, correspond to the treatment versions in the data.[]
+-   Positivity: The probability of receiving every value of the exposure within all strata of co-variates is greater than zero []
+-   Exchangeability: The conditional probability of receiving every value of an exposure level, though not decided by the investigators, depends only on the measured covariates []
 
 Further assumptions:
 
--   No Interference: also known as the Stable Unit Treatment Value Assumption (SUTVA), requires that the treatment given to one unit (e.g., person, group, organization) does not interfere with the potential outcomes of another unit. Put differently, there are no "spillover" effects. Note: this assumption may be thought to be part of causal consistency, namely individual has only one potential outcome under each treatment condition.
--   Correctly specified model: the requirement that the underlying statistical model used to estimate causal effects accurately represents the true relationships between the variables of interest. We say the model should be able to capture "the functional form" of the relationship between the treatment, the outcome, and any covariates. The functional form of the model should be flexible enough to capture the true underlying relationship. If the model's functional form is incorrect, the estimated causal effects may be biased. Additionally, the model must handle omitted variable bias by including all relevant confounders and should correctly handle missing data. We will return to the bias arising from missing data in the weeks ahead. For now, it is important to note that an assumption of causal inference is that our model is correctly specified.
+-   No Interference, also known as the Stable Unit Treatment Value Assumption (SUTVA), requires that the treatment given to one unit (e.g., person, group, organization) does not interfere with the potential outcomes of another unit. Put differently, there are no "spillover" effects. Note: this assumption may be thought to be part of causal consistency, namely individual has only one potential outcome under each treatment condition.
+-   Correctly specified model: the requirement that the underlying statistical model used to estimate causal effects accurately represents the true relationships between the variables of interest. We say the model should be able to capture "the functional form" of the relationship between the treatment, the outcome, and any covariates. The model's functional form should be flexible enough to capture the true underlying relationship. The estimated causal effects may be biased if the model's functional form is incorrect. Additionally, the model must handle omitted variable bias by including all relevant confounders and should correctly handle missing data. We will return to the bias arising from missing data in the weeks ahead. For now, it is important to note that causal inference assumes that our model is correctly specified.
 
 
 ## Subgroup analysis
 
-In causal inference, these two concepts are related but have distinct meanings.
+<!-- In causal inference, these two concepts are related but have distinct meanings. -->
 
-Let $Y_{a}$ denote the counterfactual outcome Y when the experimental intervention $A$ is set to level $a$. Let $Y_{r}$ denote the counterfactual outcome $Y$ when another experimental intervention $R$ is set to level $r$. Following VanderWeele (2009), we can define interaction and effect modification as follows:
+<!-- Let $Y_{a}$ denote the counterfactual outcome Y when the experimental intervention $A$ is set to level $a$. Let $Y_{r}$ denote the counterfactual outcome $Y$ when another experimental intervention $R$ is set to level $r$. Following VanderWeele (2009), we can define interaction and effect modification as follows: -->
 
-1.  Interaction (causal interaction) on the difference scale, conditional on confounders $L$, occurs when:
+<!-- 1.  Interaction (causal interaction) on the difference scale, conditional on confounders $L$, occurs when: -->
 
-$$E(Y^{a1,r1}|L=l) - E(Y^{a0,r1}|L=l) \neq E(Y^{a1,r0}|L=l) - E(Y^{a0,r0}|L=l)$$
+<!-- $$E(Y^{a1,r1}|L=l) - E(Y^{a0,r1}|L=l) \neq E(Y^{a1,r0}|L=l) - E(Y^{a0,r0}|L=l)$$ -->
 
-In this case, we are considering a double intervention, and interaction occurs when the combined effect of interventions $A$ and $R$ is not equal to the sum of their individual effects.
+<!-- In this case, we are considering a double intervention, and interaction occurs when the combined effect of interventions $A$ and $R$ is not equal to the sum of their individual effects. -->
 
-2.  Effect Modification (also known as "heterogeneity of treatment effects") occurs when the causal effect of intervention $A$ varies across different levels of another variable $R$:
+Redcall, **Effect Modification** (also known as "heterogeneity of treatment effects", and "Effect-measure modification") occurs when the causal effect of intervention $A$ varies across different levels of another variable $R$:
 
-$$E(Y^{a=1}|R=r_1, L=l) - E(Y^{a=0}|R=r_1, L=l) \neq E(Y^{a=1}|R=r_2, L=l) - E(Y^{a=0}|R=r_2, L=l)$$
+$$E(Y^{a=1}|G=g_1, L=l) - E(Y^{a=0}|G=g_1, L=l) \neq E(Y^{a=1}|G=g_2, L=l) - E(Y^{a=0}|G=g_2, L=l)$$
 
-Effect modification indicates that the magnitude of the causal effect of intervention $A$ depends on the level of the modifier variable $R$. It is important to note that effect modification can be observed even when there is no direct causal interaction between the treatment and the modifier variable.
-
-Thus, interaction in causal inference refers to a situation where the combined effect of two interventions is not equal to the sum of their individual effects. Effect modification, on the other hand, occurs when the causal effect of one intervention varies across different levels of another variable.
-
-By clearly distinguishing between these two concepts, researchers can better ask and answer questions about human thinking and behaviour. For comparative research, we are typically interested in effect-modification which requires subgroup analysis.
+Effect modification indicates that the magnitude of the causal effect of intervention $A$ is related to the modifier variable $G$ level. As discussed last week, effect modification can be observed even when there is no direct causal interaction between the treatment and the modifier variable. We noted that **interaction in causal inference refers to a situation where the combined effect of two interventions is not equal to the sum of their individual effects**. **Effect modification, on the other hand, occurs when the causal effect of one intervention varies across different levels of another variable.**
 
 
-## Calculating exposure weights (propensity scores) and confounding control (generally)
+We also noted that 
 
-Recall that last week, we considered confounding control by regression adjustment.
+> **For comparative research, we are typically interested in effect-modification, which requires subgroup analysis.**
+
+
+### Causal Estimand, Statistical Estimand, Statistical Estimator
+
+Let's set subgroup analysis to the side for a moment and begin focussing on statistical estimation.  
+
+Suppose a researcher wants to understand the causal effect of marriage on individual happiness. Participants in the study are surveyed for their marital status ("married" or "not married") and their self-reported happiness on a scale from 1 to 10.
+
+#### Causal Estimand
+
+- **Definition**: The causal estimand is the specific quantity or parameter that we aim to estimate to understand the causal effect of an intervention or treatment on an outcome.
+
+- **Example**: Here, the **Causal Estimand** would be the Average Treatment Effect (ATE) of being married on happiness. Specifically, we define the ATE as the difference in the potential outcomes of happiness if all individuals were married versus if no individuals were married:
+
+  $$
+  \text{ATE} = E[Y^{a=1} - Y^{a=0}]
+  $$
+
+
+  Here, $Y^{a=1}$ represents the potential happiness score if an individual is married, and $Y^{a=0}$ if they are not married.
+
+
+#### Next step: Are Causal Assumptions Met? 
+
+- Identification (Exchangeability): balance in the confounders across the treatments to be compared
+
+- Consistency: well-defined interventions
+
+- Positivity: treatments occur within levels of covariates $L$
+
+
+#### Statistical Estimand (next step)
+
+- **The problem**: how do we bridge the gap between potential outcomes and data? 
+
+- **Definition**: the statistical estimand is the parameter or function that summarises the relationship between variables as described by a statistical model applied to data. 
+
+- **Example**: for our study, the **Statistical Estimand** might be the mean difference in happiness scores between individuals who are married and those who are not, as derived from a linear regression model:
+
+  $$
+  \text{Happiness} = \beta_0 + \beta_1 \times \text{Married} + \epsilon
+  $$
+
+  In this equation, $\beta_1$ represents the estimated difference in happiness scores between the married and non-married groups.
+
+#### Statistical Estimator
+
+- **Definition**: a statistical estimator is a rule or method by which a numerical estimate of a statistical estimand is calculated from the data.
+
+- **Example**: in our marriage study, the **Statistical Estimator** for $\beta_1$ is the ordinary least squares (OLS) estimator. This estimator is used to calculate $\beta_1$ from the sample data provided by the survey. It provides an estimate of the impact of being married on happiness, calculated using:
+  $$
+  \hat{\beta}_1 = \frac{\sum_{i=1}^n (X_i - \bar{X})(Y_i - \bar{Y})}{\sum_{i=1}^n (X_i - \bar{X})^2}
+  $$
+  where $X_i$ is a binary indicator for being married (1 for married, 0 for not married), $Y_i$ is the observed happiness score, and $\bar{X}$, $\bar{Y}$ are the sample means of $X$ and $Y$, respectively.
+
+
+(Note: you will not need to know this equation for the quiz)
+
+
+The upshot, we anchor our causal inquiries within a mult-step framework of data analysis. This involves: 
+
+1. clearly defining our causal estimand within a specified target population, 
+2. clarifying assumptions, & especially identification assumptions, 
+3. describing a statistical strategy for extracting this estimand from the data, and then 
+4. applying an algorithm that embodies this statistical method.
+
+
+## Methods for Statistical Estimation in Causal Inference: Inverse Probability of Treatment Weights Using Propensity Scores
+
+Last week, we discussed confounding control using regression adjustment. Recall the formula for the average treatment effect (ATE) when conditioning on a set of covariates $L$:
 
 $$
 \begin{aligned}
-ATE = E[Y^{a=1}|L = l] - E[Y^{a=0}|L = l] ~ \text{for any value}~l
+\text{ATE} = E[Y^{a=1} \mid L = l] - E[Y^{a=0} \mid L = l] \quad \text{for any value of } l
 \end{aligned}
 $$
 
-> "We say that a set L of measured non-descendants of L is a sufficient set for confounding adjustment when conditioning on L blocks all backdoor paths--that is, the treated and the untreated are exchangeable within levels of L" (Hernan & Robins, What IF p. 86)
+> "We say that a set $L$ of measured non-descendants of $L$ is a sufficient set for confounding adjustment when conditioning on $L$ blocks all backdoor paths—that is, the treated and the untreated are exchangeable within levels of $L$" (Hernán & Robins, *Causal Inference*, p. 86).
 
-The equation you provided represents the average treatment effect (ATE) when conditioning on a set of covariates `L`:
+This formula calculates the expected outcome difference between treated ($a=1$) and untreated ($a=0$) groups, given a specific value of the covariates $l$.
 
-$$
-\begin{aligned}
-ATE = E[Y^{a=1}|L = l] - E[Y^{a=0}|L = l] ~ \text{for any value}~l
-\end{aligned}
-$$
+Inverse Probability of Treatment Weighting (IPTW) takes a different approach. We create a pseudo-population where the treatment assignment is independent of the observed covariates by assigning weights to each individual based on their propensity scores.
 
-This formula calculates the expected difference in outcomes between treated (a=1) and untreated (a=0) groups, given a specific value of the covariates `l`.
+**We do this by modelling the treatment**
 
-Inverse probability of treatment weighting (IPTW) is a technique used in causal inference to estimate the average treatment effect (ATE) when comparing two groups in observational studies. The idea is to create a pseudo-population where the treatment assignment is independent of the observed covariates by assigning weights to each individual based on their propensity scores (i.e., the probability of receiving the treatment given their covariates).
-
-Let's denote the treatment indicator by $A$, where $A = 1$ if an individual receives treatment and $A = 0$otherwise. Let $L$ represent the vector of observed covariates, and $Y^a$ be the potential outcomes. The propensity score, $e(L)$, is defined as the probability of receiving treatment given the observed covariates:
-
-$$e(L) = P(A = 1 \mid L)$$
-
-To estimate the ATE using IPTW, we first compute the inverse probability of treatment weights, which are defined as:
-
-$$v_i = \frac{A_i}{e(L_i)} + \frac{1 - A_i}{1 - e(L_i)}$$
-
-where $v_i$ is the IPTW weight for individual $i$, $A_i$ is the treatment indicator for individual $i$, and $e(L_i)$ is the propensity score for individual $i$.
-
-
-## Calculating exposure weights (propensity scores) and confounding control in subgroups
-
-When conducting weighted analyses in subgroups, we should estimate propensity scores *within* subgroups. The propensity score $e(L, G)$ is the conditional probability of the exposure $A = 1$, given the covariates $L$ and subgroup indicator $G$. This can be modelled using a statistical model, such as logistic regression, or one of the many other methods for obtaining balance (see Greifer's work, described next week).
-
-We may say hat:
-
-$$\hat{e} = P(A = 1 | L, G) = f_A(L, G; \theta_A)$$
-
-Here, $f_A(L, G; \theta_A)$ is a function (statistical model) over $Y$ that estimates the probability of the exposure $A = 1$ given covariates $L$ and subgroup $G$. Then, we calculate the weights for each individual, denoted as $v$, using the estimated propensity score:
+Denote the treatment indicator by $A$, where $A = 1$ if an individual receives treatment and $A = 0$ otherwise. $L$ represents the vector of observed covariates, and $Y^a$ the potential outcomes. The propensity score, $e(L)$, is defined as the probability of receiving the treatment given the observed covariates:
 
 $$
-v = 
+\hat{e}(L) = P(A = 1 \mid L)
+$$
+
+To obtain IPTW weights, compute the inverse probability of treatment:
+
+$$
+v_i = \frac{A_i}{\hat{e}(L_i)} + \frac{1 - A_i}{1 - \hat{e}(L_i)}
+$$
+
+Which simplifies to 
+
+$$
+v_i = 
 \begin{cases} 
-\frac{1}{e} & \text{if } A = 1 \\
-\frac{1}{1-e} & \text{if } A = 0 
+\frac{1}{\hat{e}} & \text{if } A_i = 1 \\
+\frac{1}{1-\hat{e}} & \text{if } A_i = 0 
 \end{cases}
 $$
 
+where $v_i$ is the IPTW weight for individual $i$, $A_i$ is the treatment indicator for individual $i$, and $\hat{e}(L_i)$ is the estimated propensity score for individual $i$.   
 
-Thus, $v$ depends on $A$, and is calculated as the inverse of the propensity score for exposed individuals and as the inverse of $1-e$ for unexposed individuals.
-
-Note again that that we estimate propensity scores *separately* within strata of the subgroup for whom we are interested in effect modification. $v$ is the weight for each individual in a given subgroup $G$.  To foreshadow our work next week, we will fit models such that we may estimate contrast for the causal effects within groups ($\hat{\delta_{g}}, \hat{\delta_{g^{\prime}}}\dots$); having obtained the group-level estimands, we may then obtain estimates for group-wise differences: ($\hat{\gamma}$)
-
-Such that,
+How might we use these weights to obtain causal effect estimates?
 
 
-$$\hat{\gamma} = \overbrace{\big( \hat{E}[Y(a)|G=g] - \hat{E}[Y(a^{\prime})|G=g] \big)}^{\hat{\delta_g}} - \overbrace{\big(\hat{E}[Y(a^{\prime})|G=g^{\prime}]- \hat{E}[Y(a)|G=g^{\prime}]\big)}^{\hat{\delta_{g^{\prime}}}}$$
+
+### Marginal Structural Models (MSMs)
+
+Marginal Structural Models (MSMs) estimate causal effects without requiring an "outcome model" that stratifies on covariates. Rather, MSMs employ weights derived from the inverse probability of treatment weighting (IPTW) to create a pseudo-population in which the distribution of covariates is independent of treatment assignment over time.
+
+The general form of an MSM can be expressed as follows:
+
+$$
+E[Y^a] = \beta_0 + \beta_1a
+$$
+
+where $E[Y^a]$ is the expected outcome under treatment $a$  and $\beta_0$ and $\beta_1$ are parameters estimated by fitting the weighted model. Again, the weights used in the MSM, typically derived from the IPTW (or another treatment model), adjust for the confounding, allowing the model to estimate the unbiased effect of the treatment on the outcome without requiring covariates in the model.
+
+Where do weights fit in?   Note, we have $E[Y^a]$ in please of $E[Y|A=a]$.  When applying propensity score weights in the linear regression model $E[Y^a] = \beta_0 + \beta_1a$, each observation is weighted by $v_i$, such that $v_i(\beta_0 + \beta_1a)$. This changes the estimation process to focus on a weighted sum of outcomes, where each individual's contribution is adjusted to reflect their probability of receiving the treatment, given their covariates.
 
 
-We again will use simulation-based inference methods to compute standard errors and confidence intervals [@greifer2023].  
+## Interpretation of $\beta_0$ and $\beta_1$  in a Marginal Structural Model
 
-Do not worry! All will be explained next week.
+### Binary Treatment
+
+In models where the treatment $a$ is binary (e.g., $a = 0$ or $a = 1$), such as in many causal inference studies:
+
+- **$\beta_0$**: the expected value of the outcome $Y$ when the treatment is not applied ($a = 0$). This is the baseline level of the outcome in the absence of treatment.
+- **$\beta_1$**: the change in the expected outcome when the treatment status changes from 0 to 1. In logistic regression, $\beta_1$ represents the log-odds ratio of the outcome for the treatment group relative to the control group. In linear regression, $\beta_1$ quantifies the difference in the average outcome between the treated and untreated groups.
+
+### Continuous Treatment
+
+When the treatment $a$ is continuous, the interpretation of $\beta_0$ and $\beta_1$ adjusts slightly:
+
+- **$\beta_0$**: represents the expected value of the outcome $Y$ when the treatment $a$ is at its reference value (often zero). 
+- **$\beta_1$**: represents the expected change in the outcome for each unit increase in the treatment. In this case, $\beta_1$ measures the gradient or slope of the relationship between the treatment and the outcome. For every one-unit increase in treatment, the outcome changes by $\beta_1$ units, assuming all other factors remain constant.
+
+
+<!-- ### Example: Binary treatment, Binary outcome -->
+
+<!-- ### Logistic Regression Model -->
+
+<!-- In the logistic regression (binary outcomes), the Marginal Structural Model (MSM) model is specified as: -->
+<!-- $$ -->
+<!-- \text{Logit}(E[Y^a]) = \beta_0 + \beta_1 a, -->
+<!-- $$ -->
+
+<!-- where $a$ is the treatment indicator (0 for no treatment, 1 for treatment). -->
+
+<!-- ### Calculation for$Y^{a=0}$(No Treatment) -->
+
+<!-- - **Model Simplification**: when$a = 0$(no treatment), the logit model simplifies to: -->
+
+<!--  $$ -->
+<!--   \text{Logit}(E[Y^{a=0}]) = \beta_0. -->
+<!--  $$ -->
+
+
+<!-- - **Expected Outcome**: To find$E[Y^{a=0}]$, convert the logit back to probability: -->
+
+<!--  $$ -->
+<!--   E[Y^{a=0}] = \frac{e^{\beta_0}}{1 + e^{\beta_0}} -->
+<!--  $$ -->
+
+<!--   This formula gives the predicted probability of the outcome occurring when there is no treatment. -->
+
+<!-- ### Calculation for$Y^{a=1}$(Treatment Given) -->
+
+<!-- - **Model Specification**: when$a = 1$(treatment given), the logit model is: -->
+
+<!--  $$ -->
+<!--   \text{Logit}(E[Y^{a=1}]) = \beta_0 + \beta_1. -->
+<!--  $$ -->
+
+<!-- - **Expected Outcome**: To find$E[Y^{a=1}]$, similarly convert the logit to probability: -->
+
+<!--  $$ -->
+<!--   E[Y^{a=1}] = \frac{e^{\beta_0 + \beta_1}}{1 + e^{\beta_0 + \beta_1}}. -->
+<!--  $$ -->
+
+<!--   This is the predicted probability of the outcome occurring when the treatment is applied. -->
+
+<!-- ### Example of MSM -->
+
+<!-- Suppose$\beta_0 = -0.5$and$\beta_1 = 0.8$. Then: -->
+
+<!-- - **No Treatment**:  -->
+
+<!--  $$ -->
+<!--   E[Y^{a=0}] = \frac{e^{-0.5}}{1 + e^{-0.5}} \approx \frac{0.607}{1.607} \approx 0.378, -->
+<!--  $$ -->
+
+
+<!-- indicating a 37.8% probability of the outcome occurring without treatment. -->
+
+<!-- - **With Treatment**: -->
+<!--  $$ -->
+<!--   E[Y^{a=1}] = \frac{e^{-0.5 + 0.8}}{1 + e^{-0.5 + 0.8}} = \frac{e^{0.3}}{1 + e^{0.3}} \approx \frac{1.35}{2.35} \approx 0.574, -->
+<!--  $$ -->
+
+<!-- indicating a 57.4% probability of the outcome occurring with treatment. -->
+
+
+###  How can we apply marginal structural models in subgroups? 
+
+
+### Assumptions
+
+- **Model assumptions**: the treatment model is correctly specified.
+- **Causal assumptions**: all confounders are appropriately controlled, positivity and consistency assumptions hold.
+
+
+### Calculating Treatment Weights (Propensity Scores) and Confounding Control in Subgroups
+
+We may often achieve greater balance when conducting weighted analyses in subgroups by estimating propensity scores *within* these subgroups. The propensity score $ e(L, G) $ is the conditional probability of receiving the exposure $ A = 1 $, given the covariates $ L $ and subgroup indicator $ G $. This is often modelled using logistic regression or other methods that ensure covariate balance
+We define the estimated propensity score as follows:
+
+$$
+\hat{e} = P(A = 1 \mid L, G) = f_A(L, G; \theta_A)
+$$
+
+Here, $ f_A(L, G; \theta_A) $ is the statistical model estimating the probability of exposure $A = 1$ given covariates $L$ and subgroup $G$. We then calculate the weights for each individual, denoted $v$, using the estimated propensity score:
+
+
+
+These weights $v$ depend on $A$ and are calculated as the inverse of the propensity score for exposed individuals and as the inverse of $ 1-\hat{e} $ for unexposed individuals.
+
+Propensity scores are estimated *separately* within strata of the subgroup to control for potential confounding tailored to each subgroup. These weights $v$ are specific to each individual in subgroup $G$. In the lab, we will clarify how to fit models to estimate contrasts for the causal effects within groups $\hat{\delta}_{g}, \hat{\delta}_{g'}$, etc., and how to obtain estimates for group-wise differences:
+
+$$
+\hat{\gamma} = \overbrace{\big( \hat{E}[Y^a \mid G=g] - \hat{E}[Y^{a'} \mid G=g] \big)}^{\hat{\delta}_g} - \overbrace{\big( \hat{E}[Y^{a'} \mid G=g'] - \hat{E}[Y^a \mid G=g'] \big)}^{\hat{\delta}_{g'}}
+$$
+
+
+- **$\hat{E}[Y^a \mid G=g]$**: Estimated expected outcome when treatment $a$ is applied to subgroup $G=g$.
+- **$\hat{E}[Y^{a'} \mid G=g]$**: Estimated expected outcome when a different treatment or control $a'$ is applied to the same subgroup $G=g$.
+- **$\hat{\delta}_g$**: Represents the estimated treatment effect within subgroup $G=g$, computed as the difference in expected outcomes between treatment $a$ and $a'$ within this subgroup.
+
+- **$\hat{E}[Y^{a'} \mid G=g']$**: Estimated expected outcome when treatment $a'$ is applied to a different subgroup $G=g'$.
+- **$\hat{E}[Y^a \mid G=g']$**: Estimated expected outcome when treatment $a$ is applied to subgroup $G=g'$.
+- **$\hat{\delta}_{g'}$**: Represents the estimated treatment effect within subgroup $G=g'$, computed as the difference in expected outcomes between treatment $a'$ and $a$ within this subgroup.
+
+- **$\hat{\gamma}$**: The overall measure calculated from your formula represents the difference in treatment effects between two subgroups, $G=g$ and $G=g'$. It quantifies how the effect of switching between treatments $a$ and $a'$ differs across the two subgroups.
+
+
+### Considerations
+
+- **Estimation**: to estimate the expected outcomes $\hat{E}[Y^a \mid G]$ and $\hat{E}[Y^{a'} \mid G]$, we require statistical models. If we use regression, we include interaction terms between treatment and subgroup indicators to directly estimate subgroup-specific treatment effects. Our use depends on correct model specification.
+- **Confidence intervals**: we may compute confidence intervals for $\hat{\gamma}$ using bootstrap, the delta method, or -- in our excercises -- simulation based methods.
+- **Causal assumptions**: again, a causal interpretation of $\hat{\gamma}$ relies on satisfying both causal assumptions and modelling assumptions.  Here, we have described estimation using propensity scores.
+
 
 ## Doubly Robust Estimation
 
-We can combine regression based estimation and doubly robust estimation. I will walk you through the steps in today's exercises. The TL;DR is this: doubly robust estimation leads to lower reliance on correct model specification. If either the PS model or the regression model is correctly specified, the model will be unbiased -- if the other assumptions of causal inference are met.
+We can combine regression-based estimation and doubly robust estimation. I will walk you through the steps in the lab. The TL;DR is this: doubly robust estimation leads to lower reliance on correct model specification. If either the PS model or the regression model is correctly specified, the model will be unbiased -- if the other causal inference assumptions are met.
 
-We cannot know whether these assumptions are met, we will need to do sensitivity analysis, the topic of next week.
+We cannot know whether these assumptions are met, we will need to do a sensitivity analysis, the topic of next week.
 
-In today's workbook, you will learn how to conduct doubly robust subgroup analysis.
+I'll show you in lab how to employ simulation-based inference methods to compute standard errors and confidence intervals, following the approaches suggested by Greifer (2023)[].
 
 ## Readings:
 
 Noah Griefer's Software and Blogs: [https://ngreifer.github.io/blog/subgroup-analysis-psm/](https://ngreifer.github.io/blog/)
 
 
-## Lab
+# Lab
 
 
 Today we estimate causal effects
@@ -220,6 +441,7 @@ library(MatchThem)
 library(cobalt)
 library(MatchIt)
 library(kableExtra)
+library(lmtp)
 #library(SuperLearner)
 #library(ranger)
 #library(nnls)
@@ -446,6 +668,37 @@ table(dat_long$perfectionism_4tile)
 labels <- levels( dat_long$perfectionism_4tile )
 ```
 
+
+
+
+### Consider where the quantiles break
+
+```{r}
+#| fig-width: 12
+#| fig-height: 12
+
+
+dt_19 <- dat_long |> filter(wave == 2019)
+
+margot::coloured_histogram_quantiles(col_name = "perfectionism", n_quantiles = 4, binwidth = .25, dt_19)
+```
+
+
+### Consider mean
+
+```{r}
+#| fig-width: 12
+#| fig-height: 12
+
+
+dt_19 <- dat_long |> filter(wave == 2019)
+
+margot::coloured_histogram_sd(col_name = "perfectionism", binwidth = .25, dt_19)
+
+```
+
+
+
 ### Set variables
 
 Next lets set our baseline variables
@@ -461,7 +714,11 @@ outcome_vars = c("kessler_latent_anxiety", "kessler_latent_depression")
 ```
 
 
+
+
 In our first analysis we will not merely impute baseline values. Rather we will impute baseline and outcome values within quantiles of the exposure.  Consider, why should we impute within the treatments to be compared?  What are the lingering dangers of this approach? 
+
+
 
 
 ```{r}
@@ -510,7 +767,7 @@ mice_health <- margot::impute_and_combine(list_filtered_df,  m = 5 )
 
 margot::here_save(mice_health, "mice_health")
 
-````
+```
 
 ```{r}
 #| label: read-imputation
@@ -601,11 +858,15 @@ margot::here_save(match_ebal_ate, "match_ebal_ate")
 #| label: vis_matching_ate
 #| eval: true
 #| echo: true
+#| fig-width: 12
+#| fig-height: 12
 
 # read output
 match_ebal_ate <- margot::here_read("match_ebal_ate")
+
+
 # check balance
-bal.tab(match_ebal_ate)
+# bal.tab(match_ebal_ate)
 
 # visualise imbalance
 love.plot(match_ebal_ate, binary = "std", thresholds = c(m = .1),
@@ -628,17 +889,20 @@ plot(sum_ebal_match_ebal_ate)
 Some extreme weights.  We can trip weights as follows. (Note there is no hard and fast rule about how much to trim weights by.)
 
 ```{r}
+#| fig-width: 12
+#| fig-height: 12
+
 # trimmed weights
 match_ebal_ate_trim <- WeightIt::trim(match_ebal_ate, at = .99)
 
 # check balanc
-bal.tab(match_ebal_ate_trim)
+# bal.tab(match_ebal_ate_trim)
 
 # summary
 summary_match_ebal_ate_trim <- summary(match_ebal_ate_trim)
 
 # check - extreme weights gone
-plot(summary_match_ebal_att_trim)
+plot(summary_match_ebal_ate_trim)
 
 # plot for balance
 love.plot(match_ebal_ate_trim, binary = "std", thresholds = c(m = .1),
@@ -648,7 +912,7 @@ love.plot(match_ebal_ate_trim, binary = "std", thresholds = c(m = .1),
 Estimation
 
 ```{r}
-#| label: vis_matching_ate
+#| label: estimate
 #| eval: false
 #| echo: true
 # here_save(match_ebal_ate_trim, "match_ebal_ate_trim")
@@ -851,16 +1115,13 @@ Read model
 
 ```{r}
 df_impute_base <- here_read("df_impute_base")
-df_impute_base$t1_perfectionism_4tile
+
 # get correct censoring 
 t0_na_condition <-
   rowSums(is.na(select(df_impute_base, starts_with("t1_")))) > 0
 t1_na_condition <-
   rowSums(is.na(select(df_impute_base, starts_with("t2_")))) > 0
 
-
-rm(df_clean)
-str(df_impute_base$t1_perfectionism_4tile)
 # tidy your data
 df_clean <- df_impute_base |>
   mutate(t0_censored = ifelse(t0_na_condition, 0, t0_censored)) |>
@@ -903,7 +1164,7 @@ df_clean <- df_impute_base |>
 
 
 # we'll have a variable for "lost" 
-# this is the usual meanin of "censored"
+# this is the usual meaning of "censored"
 table(df_clean$t1_lost)
 table(df_clean$t1_censored)
 str(df_clean$t1_perfectionism_4tile)
@@ -924,7 +1185,7 @@ baseline_vars_models = df_clean |>  # post process of impute and combine
   dplyr::select(starts_with("t0"), - t0_alert_level_combined_lead,-t0_censored, -t0_lost, -t0_sample_weights)|> colnames() # note, we ear
 
 baseline_vars_models
-# fit proptensity score model 
+# fit proponsity score model 
 match_censoring <- margot::match_mi_general(data = df_clean, 
                                       X = "t1_lost", 
                                       baseline_vars = baseline_vars_models, 
@@ -942,21 +1203,22 @@ here_save( match_censoring, "match_censoring")
 #| label: vis_matching_censoring
 #| eval: true
 #| echo: true
+#| fig-width: 12
+#| fig-height: 12
 
 # read output
 match_censoring <- margot::here_read("match_censoring")
 # check balance
-bal.tab(match_censoring)
+# bal.tab(match_censoring)
 
 # visualise imbalance
 love.plot(match_censoring, binary = "std", thresholds = c(m = .1),
           wrap = 50, position = "bottom", size =3)
 ```
 ```{r}
-# let's create 
-# df_clean_filtered<- df_clean_filtered |> 
-#   mutate(t1_perfectionism_high = ifelse(t1_perfectionism_z >= 1, 1, 0))
-
+#| label: subgroup_weights
+#| eval: false
+#| echo: true
 
 # get censoring weights
 lost_prob <- match_censoring$weights
@@ -992,18 +1254,22 @@ levels(df_clean_filtered$t1_perfectionism_4tile)
 # 
 
 df_subgroup <-df_clean_filtered |> filter(t0_eth_cat == "maori" | t0_eth_cat == "euro") |> droplevels()
-levels(df_subgroup$t0_eth_cat)
+
+# save
+here_save(df_subgroup, "df_subgroup")
+
+# check
 table(df_subgroup$t0_eth_cat)
 
 baseline_vars_models_sans_eth <- setdiff(baseline_vars_models, "t0_eth_cat")
 
+# save
+here_save(baseline_vars_models_sans_eth, "baseline_vars_models_sans_eth")
 
 ## 
 string <- formula_str <- as.formula(paste("t1_perfectionism_4tile", "~", paste(baseline_vars_models, collapse = "+")))
 
 string_sans <- formula_str <- as.formula(paste("t1_perfectionism_4tile", "~", paste(baseline_vars_models_sans_eth, collapse = "+")))
-baseline_vars_models_sans_eth
-
 
 W1 <- weightit(
   string,
@@ -1048,48 +1314,55 @@ here_save(W2, "W2")
 
 
 ```{r}
-bal.tab(W1, un = TRUE)
+#| fig-width: 12
+#| fig-height: 12
+
+W1 <- here_read("W1")
+W2 <- here_read("W2")
+
+# read
+df_subgroup <- margot::here_read("df_subgroup")
+
+# bal.tab(W1, un = TRUE)
 love.plot(W1, binary = "std", thresholds = c(m = .1),
           wrap = 50, position = "bottom", size =2)
 
 # this method has better effective samples
-bal.tab(W1)
+# bal.tab(W1)
 
 
 # this method has better balance
-bal.tab(W2, cluster = "t0_eth_cat")
-
+# bal.tab(W2, cluster = "t0_eth_cat")
+# bal.tab(W1, cluster = "t0_eth_cat")
 # graph by cluster
-love.plot(W2,  cluster = "t0_eth_cat", binary = "std", thresholds = c(m = .1),
+love.plot(W1,  cluster = "t0_eth_cat", binary = "std", thresholds = c(m = .1),
           wrap = 50, position = "bottom", size =2)
 ```
 
 
 
 ```{r}
-
 # prepare data
-dt_ref_all$combo_weights = W1$weights * dt_ref_all$t0_sample_weights
+
+# read vars
+baseline_vars_models_sans_eth <- margot::here_read("baseline_vars_models_sans_eth")
 
 
-# Let's calculate the ATE for the entire group, ignoring the subclasses.
-# let's make the contrasts between low and high perfectionism.
-baseline_vars_models_sans_eth
-
-df_clean_filtered$t2_kessler_latent_anxiety_z
-#  GENERAL ATE (Not adjusting for subgroups)
-
-# ATE. we will cover "evalues" next week
+# make combo weights
+df_subgroup$combo_weights = W2$weights * df_subgroup$t0_sample_weights
 
 
-dt_ref_all$t2_kessler_latent_depression_z
+# set dataframe
+df = df_subgroup
+
+
+
 ### SUBGROUP analysis
-df = dt_ref_all
 Y_anxiety = "t2_kessler_latent_anxiety_z"
 Y_depression = "t2_kessler_latent_depression_z"
 
 X = "t1_perfectionism_4tile"
-baseline_vars_models_sans_eth
+
 treat_0 = "tile_1"
 treat_1 = "tile_3"
 estimand = "ATT"
@@ -1165,6 +1438,13 @@ fit_all_all_depression  <- glm(
 # 344     4
 # 
 # insight::get_varcov(fit_all_all_anxiety)
+```
+
+
+```{r}
+#| label: sim_subgroup
+#| eval: false
+#| echo: true
 
 # simulate coefficients
 sim_model_all <- sim(fit_all_all_anxiety, n = nsims, vcov = "HC2")
@@ -1179,31 +1459,306 @@ sim_estimand_all <- sim_ame(
   verbose = FALSE
 )
 
-summary(sim_estimand_all)
+# summary(sim_estimand_all)
 
-# sim_ame()
-# 
-# # simulate effect as modified in māori
-# sim_estimand_all_m <- sim_ame(
-#   sim_model_all,
-#   var = X,
-#   cl = cores,
-#   subset = t0_eth_cat == "maori",
-#   verbose = FALSE
-# )
-# 
-# est_all <- transform(sim_estimand_all, `RD_m - RD_e` = RD_m - RD_e)
-# 
-# 
-
-# combine
+# make table
 sim_estimand_all_tab <-
   transform(sim_estimand_all, RD_euro = `E[Y(tile_3)|euro]` - `E[Y(tile_1)|euro]`,
             RD_maori =  `E[Y(tile_3)|maori]` - `E[Y(tile_1)|maori]`,
             gamma_hat = (`E[Y(tile_3)|euro]` - `E[Y(tile_1)|euro]`) - (`E[Y(tile_3)|maori]` - `E[Y(tile_1)|maori]`))
 
+sim_estimand_all_tab
+# save table
+here_save(sim_estimand_all_tab, "sim_estimand_all_tab")
+```
+
+Summary of model
+
+```{r}
+# read table
+sim_estimand_all_tab <- margot::here_read("sim_estimand_all_tab")
+
+# print table
 summary(sim_estimand_all_tab)
 ```
+
+
+
+```{r}
+#| label: lmtp_subgroup
+#| eval: false
+#| echo: true
+
+
+# lmtp
+library("lmtp")
+# push_mods
+
+
+# set number of folds for ML here. use a minimum of 5 and a max of 10
+SL_folds = 10
+
+#this will allow you to track progress
+progressr::handlers(global = TRUE)
+
+# set seed for reproducing results
+set.seed(0112358)
+
+# set cores for estimation
+library(future)
+plan(multisession)
+n_cores <- parallel::detectCores() - 2 # save two cores for other work while these models run
+
+# min of 10
+n_cores
+
+# super learner libraries
+# these are useful for high-dimensional data
+sl_lib <- c("SL.glmnet",
+            "SL.ranger", # forests
+            "SL.xgboost") # grandient boost
+
+
+df_maori <-df_clean_filtered |> filter(t0_eth_cat == "maori") |> select( -t0_lost, -t1_lost) |> droplevels()
+df_euro <-df_clean_filtered |> filter(t0_eth_cat == "euro") |> select( -t0_lost, -t1_lost) |> droplevels()
+nrow(df_maori)
+nrow(df_euro)
+
+colnames(df_clean_filtered)
+
+A<- "t1_perfectionism_4tile"
+
+
+# note lmtp's unconventional use of "censored"
+C <- c("t1_censored")
+
+df_clean_filtered$sample_weights
+
+names_base <-
+  df_clean_filtered |> select(starts_with("t0"),
+                     -t0_sample_weights, 
+                     -t0_censored,
+                     -t0_lost,
+                     -t0_eth_cat) |> colnames()
+
+C <- c("t1_censored")
+
+
+shift_all_tile_3 <- function(data, trt) {
+  ifelse(data[[trt]] != "tile_3", "tile_3",  data[[trt]])
+}
+glimpse(df_maori)
+
+
+shift_all_tile_1 <- function(data, trt) {
+  ifelse(data[[trt]] != "tile_1", "tile_1",  data[[trt]])
+}
+
+
+
+
+maori_tile_3_t2_kessler_latent_anxiety_z <- lmtp_tmle(
+    data = df_maori,
+    trt = A,
+    baseline = names_base,
+    outcome = "t2_kessler_latent_anxiety_z",
+    cens = C,
+    shift = shift_all_tile_3,
+    mtp = TRUE,
+    folds = 10,
+    # trim = 0.99, # if needed
+    # time_vary = NULL,
+    outcome_type = "continuous",
+    weights = df_maori$sample_weights,
+    learners_trt = "SL.ranger",
+    learners_outcome ="SL.ranger",
+    parallel = n_cores
+  )
+maori_tile_3_t2_kessler_latent_anxiety_z
+here_save(maori_tile_3_t2_kessler_latent_anxiety_z, "maori_tile_3_t2_kessler_latent_anxiety_z")
+
+
+maori_tile_1_t2_kessler_latent_anxiety_z <- lmtp_tmle(
+    data = df_maori,
+    trt = A,
+    baseline = names_base,
+    outcome = "t2_kessler_latent_anxiety_z",
+    cens = C,
+    shift = shift_all_tile_1,
+    mtp = TRUE,
+    folds = 10,
+    # trim = 0.99, # if needed
+    # time_vary = NULL,
+    outcome_type = "continuous",
+    weights = df_maori$sample_weights,
+    learners_trt = "SL.ranger",
+    learners_outcome ="SL.ranger",
+    parallel = n_cores
+  )
+maori_tile_1_t2_kessler_latent_anxiety_z
+here_save(maori_tile_1_t2_kessler_latent_anxiety_z, "maori_tile_1_t2_kessler_latent_anxiety_z")
+
+# higher anxiety 
+maori_results <-lmtp_contrast(maori_tile_3_t2_kessler_latent_anxiety_z, ref = maori_tile_1_t2_kessler_latent_anxiety_z)
+
+here_save(maori_results, "maori_results")
+
+euro_tile_3_t2_kessler_latent_anxiety_z <- lmtp_tmle(
+    data = df_euro,
+    trt = A,
+    baseline = names_base,
+    outcome = "t2_kessler_latent_anxiety_z",
+    cens = C,
+    shift = shift_all_tile_3,
+    mtp = TRUE,
+    folds = 10,
+    # trim = 0.99, # if needed
+    # time_vary = NULL,
+    outcome_type = "continuous",
+    weights = df_euro$sample_weights,
+    learners_trt = "SL.ranger",
+    learners_outcome ="SL.ranger",
+    parallel = n_cores
+  )
+euro_tile_3_t2_kessler_latent_anxiety_z
+here_save(euro_tile_3_t2_kessler_latent_anxiety_z, "euro_tile_3_t2_kessler_latent_anxiety_z")
+
+
+euro_tile_1_t2_kessler_latent_anxiety_z <- lmtp_tmle(
+    data = df_euro,
+    trt = A,
+    baseline = names_base,
+    outcome = "t2_kessler_latent_anxiety_z",
+    cens = C,
+    shift = shift_all_tile_1,
+    mtp = TRUE,
+    folds = 10,
+    # trim = 0.99, # if needed
+    # time_vary = NULL,
+    outcome_type = "continuous",
+    weights = df_euro$sample_weights,
+    learners_trt = "SL.ranger",
+    learners_outcome ="SL.ranger",
+    parallel = n_cores
+  )
+euro_tile_1_t2_kessler_latent_anxiety_z
+here_save(euro_tile_1_t2_kessler_latent_anxiety_z, "euro_tile_1_t2_kessler_latent_anxiety_z")
+
+
+euro_results <- lmtp_contrast(euro_tile_3_t2_kessler_latent_anxiety_z, ref = euro_tile_1_t2_kessler_latent_anxiety_z)
+here_save(euro_results, "euro_results")
+
+```
+
+
+Machine learning results:  No difference between groups. 
+
+```{r}
+euro_results <- margot::here_read("euro_results")
+maori_results<- margot::here_read("maori_results")
+
+g_hat_theta= euro_results$vals$theta - maori_results$vals$theta 
+g_hat_theta # difference of means
+euro_results$vals$std.error
+# difference 
+se_diff = sqrt( (euro_results$vals$std.error^2) + (maori_results$vals$std.error^2) )
+
+diff_conf.low = g_hat_theta - (1.97 * se_diff)
+diff_conf.high = g_hat_theta + (1.97 * se_diff)
+
+
+g_hat_anxiety <- cbind.data.frame(g_hat_theta, se_diff, diff_conf.low, diff_conf.high)
+
+# result
+g_hat_anxiety
+```
+
+
+Note, however that the invevention increases anxiety for both groups equally
+
+
+Europeans
+
+```{r}
+euro_results <- margot::here_read("euro_results")
+round( euro_results$vals, 3)
+```
+
+
+Maori
+
+```{r}
+maori_results<- margot::here_read("maori_results")
+round(maori_results$vals, 3)
+```
+
+
+Graph results
+
+```{r}
+tab_euro_results <- margot::margot_lmtp_evalue(
+  euro_results,
+  scale = "RD",
+  new_name = "Euro: 1_tile to 3_tile"
+)
+
+
+
+tab_maori_results <- margot::margot_lmtp_evalue(
+  maori_results,
+  scale = "RD",
+  new_name = "Māori: 1_tile to 3_tile"
+)
+
+bind_results_anxiety <- rbind(tab_euro_results, tab_maori_results)
+
+here_save(bind_results_anxiety, "bind_results_anxiety")
+
+group_tab_anxiety <- margot::group_tab(bind_results_anxiety, type = "RD")
+```
+
+
+```{r}
+#| fig-width: 10
+#| fig-height: 12
+
+# graph results
+ margot_plot(
+  group_tab_anxiety,
+  type = "RD",
+  title = "Perfectionism: shift all to 3_tile, contrast with 1_tile",
+  subtitle = "Outcome = Anxiety",
+  estimate_scale = 1,
+  base_size = 18,
+  text_size = 4.5,
+  point_size = 3.5,
+  title_size = 20,
+  subtitle_size = 16,
+  legend_text_size = 10,
+  legend_title_size = 10,
+  x_offset = -.5,
+  x_lim_lo = -.5,
+  x_lim_hi =  .5
+)
+```
+
+
+Interpret Results
+
+
+```{r}
+margot_interpret_table(group_tab_anxiety, estimand = "ATT", causal_scale = "causal_difference")
+```
+
+
+## Take Home Message
+
+
+Machine learning with cross validation recovers nearly identical estimates for the effect of a shift in perfectionism on anxiety among Māori and Europeans. 
+
+
+I suggest using machine learning algorithms. They do much better than standard parametric models.  See [].
+
 
 
 

@@ -9,7 +9,7 @@ author:
     echo: false
     warnings: false
     error: false
-    highlight: kate
+    highlight: oblivion
     code-fold: true
     code-overflow: scroll
     code-line-numbers: true
