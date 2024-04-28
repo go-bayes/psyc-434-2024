@@ -148,6 +148,7 @@ editor_options:
 #### Focus
 
 - Workflow for causal question formulation, population statement, and causal diagram creation
+- Data wrangling; exploratory analysis
 - Estimation techniques evaluating evidence for cultural-effect modification using R and documentation with LaTeX
 
 
@@ -162,7 +163,7 @@ editor_options:
 
 #### Lab
 
-- Preparing your report analysis and manuscript: descriptive analysis and reporting
+- Estimation ATE; CATE
 
 ## Week 9: May 6 - Test/Quiz (25%)
 
