@@ -2,14 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.523">
+<meta name="generator" content="quarto-1.5.30">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Joseph Bulbulia">
 <meta name="dcterms.date" content="2023-05-09">
 
-<title>PSYC 434 Conducting Research Across Cultures: Trimester 1, 2023 - Causal Inference: Propensity Scores &amp; Subgroup Analysis</title>
+<title>PSYC 434 Conducting Research Across Cultures: Trimester 1, 2024 – Causal Inference: Propensity Scores &amp; Subgroup Analysis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,7 +22,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -86,6 +106,33 @@ ul.task-list li input[type="checkbox"] {
   </script>
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
 
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
 <link rel="stylesheet" href="../styles.css">
 </head>
 
@@ -97,7 +144,7 @@ ul.task-list li input[type="checkbox"] {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">PSYC 434 Conducting Research Across Cultures: Trimester 1, 2023</span>
+    <span class="navbar-title">PSYC 434 Conducting Research Across Cultures: Trimester 1, 2024</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -106,76 +153,58 @@ ul.task-list li input[type="checkbox"] {
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../content/course-outline.html"> 
+<span class="menu-text">Course Outline</span></a>
+  </li>  
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-content" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Content</span>
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-content">    
         <li>
-    <a class="dropdown-item" href="../content/common_graphs.html">
- <span class="dropdown-text">Background: Causal Graphs</span></a>
+    <a class="dropdown-item" href="../content/glossary.pdf">
+ <span class="dropdown-text">Glossary</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../content/measurement_error.qmd">
- <span class="dropdown-text">Background: Causal Graphs: Measurement Error</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../content/index.html">
- <span class="dropdown-text">Preliminaries</span></a>
+    <a class="dropdown-item" href="../content/course-outline.html">
+ <span class="dropdown-text">Course Outline</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../content/01-content.html">
- <span class="dropdown-text">1: Asking questions in cross-cultural psychology</span></a>
+ <span class="dropdown-text">Week 1: Course Introduction - R (installing packages)</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../content/02-content.html">
- <span class="dropdown-text">2: Getting started with R</span></a>
+ <span class="dropdown-text">Week 2: Causal Diagrams - Elementary Structures and Rules - R (using the interface)</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../content/03-content.html">
- <span class="dropdown-text">3: Lost in Translation? Measurement and Language</span></a>
+ <span class="dropdown-text">Week 3: Causal Diagrams - Confounding Bias - R (regression/simulation)</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../content/04-content.html">
- <span class="dropdown-text">4: Dealing with Data (Factor Analysis)</span></a>
+ <span class="dropdown-text">Week 4: Causal Diagrams - Interaction, Measurement Bias, Selection Bias - R (regression/simulation)</span></a>
   </li>  
-        <li>
-    <a class="dropdown-item" href="../content/05-content.html">
- <span class="dropdown-text">5: Dealing with Data (Multi-Group CFA)</span></a>
-  </li>  
+        <li class="dropdown-header">Week 5: Quiz - R (regression/simulation/reporting)</li>
         <li>
     <a class="dropdown-item" href="../content/06-content.html">
- <span class="dropdown-text">6: Dealing with Data (Partial Invariance)</span></a>
+ <span class="dropdown-text">Week 6: Causal Inference - Key Concepts ATE - R (regression/simulation: ATE)</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../content/07-content.html">
- <span class="dropdown-text">7: Causal Inference: Causal Graphs</span></a>
+ <span class="dropdown-text">Week 7: Causal Inference - Key Concept CATE - R (regression/simulation: ATE)</span></a>
   </li>  
-        <li>
-    <a class="dropdown-item" href="../content/08-content.html">
- <span class="dropdown-text">8: Causal Inference: Causal Effects</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../content/09-content.html">
- <span class="dropdown-text">9: Causal inference: Causal Estimation I</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../content/10-content.html">
- <span class="dropdown-text">10: Causal Inference: Causal Estimation II</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../content/11-content.html">
- <span class="dropdown-text">11: Reconsidering Measurement from a Causal Perspective</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../content/12-content.html">
- <span class="dropdown-text">12: Template for Report</span></a>
-  </li>  
+        <li class="dropdown-header">Week 8: Causal Inference - Estimation of ATE and CATE - R and LaTeX</li>
+        <li class="dropdown-header">Week 9: Quiz - R</li>
+        <li class="dropdown-header">Week 10: Measurement Matters - Factor Analysis, CFA, MultiGroup CFA, Partial Invariance - R</li>
+        <li class="dropdown-header">Week 11: Measurement + External Validity in Causal Inference - R (writing introduction/method section)</li>
+        <li class="dropdown-header">Week 12: Missing Data Workflows - Quarto Documents Seminar - Workflows</li>
     </ul>
   </li>
 </ul>
           </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
+            <div class="quarto-navbar-tools">
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -368,7 +397,7 @@ v =
 <p>Note again that that we estimate propensity scores <em>separately</em> within strata of the subgroup for whom we are interested in effect modification. <span class="math inline">v</span> is the weight for each individual in a given subgroup <span class="math inline">G</span>. To foreshadow our work next week, we will fit models such that we may estimate contrast for the causal effects within groups (<span class="math inline">\hat{\delta_{g}}, \hat{\delta_{g^{\prime}}}\dots</span>); having obtained the group-level estimands, we may then obtain estimates for group-wise differences: (<span class="math inline">\hat{\gamma}</span>)</p>
 <p>Such that,</p>
 <p><span class="math display">\hat{\gamma} = \overbrace{\big( \hat{E}[Y(a)|G=g] - \hat{E}[Y(a^{\prime})|G=g] \big)}^{\hat{\delta_g}} - \overbrace{\big(\hat{E}[Y(a^{\prime})|G=g^{\prime}]- \hat{E}[Y(a)|G=g^{\prime}]\big)}^{\hat{\delta_{g^{\prime}}}}</span></p>
-<p>We again will use simulation-based inference methods to compute standard errors and confidence intervals <span class="citation" data-cites="greifer2023">[@greifer2023]</span>.</p>
+<p>We again will use simulation-based inference methods to compute standard errors and confidence intervals <span class="citation" data-cites="greifer2023">(<a href="#ref-greifer2023" role="doc-biblioref">Greifer et al. 2023</a>)</span>.</p>
 <p>Do not worry! All will be explained next week.</p>
 </section>
 <section id="doubly-robust-estimation" class="level2">
@@ -382,9 +411,14 @@ v =
 <p>Noah Griefer’s Software and Blogs: <a href="https://ngreifer.github.io/blog/">https://ngreifer.github.io/blog/subgroup-analysis-psm/</a></p>
 
 
+
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div>MIT</div></div></section></div></main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-greifer2023" class="csl-entry" role="listitem">
+Greifer, Noah, Steven Worthington, Stefano Iacus, and Gary King. 2023. <em>Clarify: Simulation-Based Inference for Regression Models</em>. <a href="https://iqss.github.io/clarify/">https://iqss.github.io/clarify/</a>.
+</div>
+</div></section><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -420,18 +454,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -463,7 +486,47 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -498,7 +561,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');
@@ -513,27 +580,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
     }
     stripColumnClz(note)
-    const typesetMath = (el) => {
-      if (window.MathJax) {
-        // MathJax Typeset
-        window.MathJax.typeset([el]);
-      } else if (window.katex) {
-        // KaTeX Render
-        var mathElements = el.getElementsByClassName("math");
-        var macros = [];
-        for (var i = 0; i < mathElements.length; i++) {
-          var texText = mathElements[i].firstChild;
-          if (mathElements[i].tagName == "SPAN") {
-            window.katex.render(texText.data, mathElements[i], {
-              displayMode: mathElements[i].classList.contains('display'),
-              throwOnError: false,
-              macros: macros,
-              fleqn: false
-            });
-          }
-        }
-      }
-    }
     if (id === null || id.startsWith('sec-')) {
       // Special case sections, only their first couple elements
       const container = document.createElement("div");
@@ -548,10 +594,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             break;
           }
         }
-        typesetMath(container);
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
         return container.innerHTML
       } else {
-        typesetMath(note);
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
         return note.innerHTML;
       }
     } else {
@@ -560,8 +610,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (anchorLink) {
         anchorLink.remove();
       }
-      typesetMath(note);
-      return note.innerHTML;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
     }
   }
   for (var i=0; i<xrefs.length; i++) {
