@@ -21,6 +21,8 @@
 # Output files from R CMD check
 /*.Rcheck/
 
+/saved
+
 # RStudio files
 .Rproj.user/
 
