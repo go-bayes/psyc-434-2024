@@ -651,6 +651,7 @@ dat_long$sample_weights <-
 
 # we will upweight males and down weight non-males to obtain a balance of gender in the *target* population
 table(dat_long$sample_weights)
+
 ```
 Next let's get our data into shape.  Today we're going to consider a 'treatment' of perfectionism in which we shift people by different quantiles of perfectionism: 
 
@@ -1104,9 +1105,7 @@ tab_combo |>
 ```
 
 
-We see that the doubly robust estimator leads to lower overall effect sizes
-
-
+We see that the doubly robust estimator leads to lower overall effect sizes.
 
 ### Subgroup estimation 
 
