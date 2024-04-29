@@ -447,7 +447,8 @@ library(lmtp)
 # create a folder names saved (you should have done this last week).
 # set your path to this folder
 
-push_mods <- here::here("saved")
+# save in cloud if using github
+push_mods <- here::here('/Users/joseph/Library/CloudStorage/Dropbox-v-project/data/saved')
 
 # check it is correct
 # uncomment, check
@@ -877,7 +878,7 @@ match_ebal_ate <- margot::here_read("match_ebal_ate")
 # visualise imbalance
 love.plot(match_ebal_ate, binary = "std", thresholds = c(m = .1),
           wrap = 50, position = "bottom", size =3)
-```
+  ```
 
 
 ```{r}

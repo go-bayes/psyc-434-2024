@@ -488,7 +488,7 @@ This will allow you to save the outputs of models and other information, which w
 ### Set up a path to a folder in your directory 
 
 # create a folder called saved and make a path like this
-push_mods <- here::here( "saved" )
+push_mods <- here::here('/Users/joseph/Library/CloudStorage/Dropbox-v-project/data/saved')
 
 # view it (will be different for you)
 push_mods

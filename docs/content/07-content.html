@@ -623,12 +623,12 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Set up a path to a folder in your directory </span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># create a folder called saved and make a path like this</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>push_mods <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>( <span class="st">"saved"</span> )</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>push_mods <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">'/Users/joseph/Library/CloudStorage/Dropbox-v-project/data/saved'</span>)</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># view it (will be different for you)</span></span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>push_mods</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "/Users/joseph/GIT/psyc-434-2024/saved"</code></pre>
+<pre><code>[1] "/Users/joseph/Library/CloudStorage/Dropbox-v-project/data/saved"</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># another option</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># saveRDS(object, here::here(push_mods, "object"))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -988,23 +988,23 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
 <span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>table_baseline</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<div id="ocmsjalkuz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#ocmsjalkuz table {
+<div id="nsdnltdbnv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#nsdnltdbnv table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#ocmsjalkuz thead, #ocmsjalkuz tbody, #ocmsjalkuz tfoot, #ocmsjalkuz tr, #ocmsjalkuz td, #ocmsjalkuz th {
+#nsdnltdbnv thead, #nsdnltdbnv tbody, #nsdnltdbnv tfoot, #nsdnltdbnv tr, #nsdnltdbnv td, #nsdnltdbnv th {
   border-style: none;
 }
 
-#ocmsjalkuz p {
+#nsdnltdbnv p {
   margin: 0;
   padding: 0;
 }
 
-#ocmsjalkuz .gt_table {
+#nsdnltdbnv .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1030,12 +1030,12 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   border-left-color: #D3D3D3;
 }
 
-#ocmsjalkuz .gt_caption {
+#nsdnltdbnv .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#ocmsjalkuz .gt_title {
+#nsdnltdbnv .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1047,7 +1047,7 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   border-bottom-width: 0;
 }
 
-#ocmsjalkuz .gt_subtitle {
+#nsdnltdbnv .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1059,7 +1059,7 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   border-top-width: 0;
 }
 
-#ocmsjalkuz .gt_heading {
+#nsdnltdbnv .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1071,13 +1071,13 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   border-right-color: #D3D3D3;
 }
 
-#ocmsjalkuz .gt_bottom_border {
+#nsdnltdbnv .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ocmsjalkuz .gt_col_headings {
+#nsdnltdbnv .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1092,7 +1092,7 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   border-right-color: #D3D3D3;
 }
 
-#ocmsjalkuz .gt_col_heading {
+#nsdnltdbnv .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1112,7 +1112,7 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   overflow-x: hidden;
 }
 
-#ocmsjalkuz .gt_column_spanner_outer {
+#nsdnltdbnv .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1124,15 +1124,15 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   padding-right: 4px;
 }
 
-#ocmsjalkuz .gt_column_spanner_outer:first-child {
+#nsdnltdbnv .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ocmsjalkuz .gt_column_spanner_outer:last-child {
+#nsdnltdbnv .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ocmsjalkuz .gt_column_spanner {
+#nsdnltdbnv .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1144,11 +1144,11 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   width: 100%;
 }
 
-#ocmsjalkuz .gt_spanner_row {
+#nsdnltdbnv .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#ocmsjalkuz .gt_group_heading {
+#nsdnltdbnv .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1174,7 +1174,7 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   text-align: left;
 }
 
-#ocmsjalkuz .gt_empty_group_heading {
+#nsdnltdbnv .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1189,15 +1189,15 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   vertical-align: middle;
 }
 
-#ocmsjalkuz .gt_from_md > :first-child {
+#nsdnltdbnv .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ocmsjalkuz .gt_from_md > :last-child {
+#nsdnltdbnv .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ocmsjalkuz .gt_row {
+#nsdnltdbnv .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1216,7 +1216,7 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   overflow-x: hidden;
 }
 
-#ocmsjalkuz .gt_stub {
+#nsdnltdbnv .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1229,7 +1229,7 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   padding-right: 5px;
 }
 
-#ocmsjalkuz .gt_stub_row_group {
+#nsdnltdbnv .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1243,15 +1243,15 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   vertical-align: top;
 }
 
-#ocmsjalkuz .gt_row_group_first td {
+#nsdnltdbnv .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#ocmsjalkuz .gt_row_group_first th {
+#nsdnltdbnv .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#ocmsjalkuz .gt_summary_row {
+#nsdnltdbnv .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1261,16 +1261,16 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   padding-right: 5px;
 }
 
-#ocmsjalkuz .gt_first_summary_row {
+#nsdnltdbnv .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#ocmsjalkuz .gt_first_summary_row.thick {
+#nsdnltdbnv .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#ocmsjalkuz .gt_last_summary_row {
+#nsdnltdbnv .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1280,7 +1280,7 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   border-bottom-color: #D3D3D3;
 }
 
-#ocmsjalkuz .gt_grand_summary_row {
+#nsdnltdbnv .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1290,7 +1290,7 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   padding-right: 5px;
 }
 
-#ocmsjalkuz .gt_first_grand_summary_row {
+#nsdnltdbnv .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1300,7 +1300,7 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   border-top-color: #D3D3D3;
 }
 
-#ocmsjalkuz .gt_last_grand_summary_row_top {
+#nsdnltdbnv .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1310,11 +1310,11 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   border-bottom-color: #D3D3D3;
 }
 
-#ocmsjalkuz .gt_striped {
+#nsdnltdbnv .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ocmsjalkuz .gt_table_body {
+#nsdnltdbnv .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1323,7 +1323,7 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   border-bottom-color: #D3D3D3;
 }
 
-#ocmsjalkuz .gt_footnotes {
+#nsdnltdbnv .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1337,7 +1337,7 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   border-right-color: #D3D3D3;
 }
 
-#ocmsjalkuz .gt_footnote {
+#nsdnltdbnv .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1346,7 +1346,7 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   padding-right: 5px;
 }
 
-#ocmsjalkuz .gt_sourcenotes {
+#nsdnltdbnv .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1360,7 +1360,7 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   border-right-color: #D3D3D3;
 }
 
-#ocmsjalkuz .gt_sourcenote {
+#nsdnltdbnv .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1368,63 +1368,63 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   padding-right: 5px;
 }
 
-#ocmsjalkuz .gt_left {
+#nsdnltdbnv .gt_left {
   text-align: left;
 }
 
-#ocmsjalkuz .gt_center {
+#nsdnltdbnv .gt_center {
   text-align: center;
 }
 
-#ocmsjalkuz .gt_right {
+#nsdnltdbnv .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ocmsjalkuz .gt_font_normal {
+#nsdnltdbnv .gt_font_normal {
   font-weight: normal;
 }
 
-#ocmsjalkuz .gt_font_bold {
+#nsdnltdbnv .gt_font_bold {
   font-weight: bold;
 }
 
-#ocmsjalkuz .gt_font_italic {
+#nsdnltdbnv .gt_font_italic {
   font-style: italic;
 }
 
-#ocmsjalkuz .gt_super {
+#nsdnltdbnv .gt_super {
   font-size: 65%;
 }
 
-#ocmsjalkuz .gt_footnote_marks {
+#nsdnltdbnv .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#ocmsjalkuz .gt_asterisk {
+#nsdnltdbnv .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#ocmsjalkuz .gt_indent_1 {
+#nsdnltdbnv .gt_indent_1 {
   text-indent: 5px;
 }
 
-#ocmsjalkuz .gt_indent_2 {
+#nsdnltdbnv .gt_indent_2 {
   text-indent: 10px;
 }
 
-#ocmsjalkuz .gt_indent_3 {
+#nsdnltdbnv .gt_indent_3 {
   text-indent: 15px;
 }
 
-#ocmsjalkuz .gt_indent_4 {
+#nsdnltdbnv .gt_indent_4 {
   text-indent: 20px;
 }
 
-#ocmsjalkuz .gt_indent_5 {
+#nsdnltdbnv .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1674,23 +1674,23 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
 <span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>table_exposures</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<div id="hvwmkaahhz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#hvwmkaahhz table {
+<div id="xkhsftgngu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#xkhsftgngu table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#hvwmkaahhz thead, #hvwmkaahhz tbody, #hvwmkaahhz tfoot, #hvwmkaahhz tr, #hvwmkaahhz td, #hvwmkaahhz th {
+#xkhsftgngu thead, #xkhsftgngu tbody, #xkhsftgngu tfoot, #xkhsftgngu tr, #xkhsftgngu td, #xkhsftgngu th {
   border-style: none;
 }
 
-#hvwmkaahhz p {
+#xkhsftgngu p {
   margin: 0;
   padding: 0;
 }
 
-#hvwmkaahhz .gt_table {
+#xkhsftgngu .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1716,12 +1716,12 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   border-left-color: #D3D3D3;
 }
 
-#hvwmkaahhz .gt_caption {
+#xkhsftgngu .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#hvwmkaahhz .gt_title {
+#xkhsftgngu .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1733,7 +1733,7 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   border-bottom-width: 0;
 }
 
-#hvwmkaahhz .gt_subtitle {
+#xkhsftgngu .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1745,7 +1745,7 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   border-top-width: 0;
 }
 
-#hvwmkaahhz .gt_heading {
+#xkhsftgngu .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1757,13 +1757,13 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   border-right-color: #D3D3D3;
 }
 
-#hvwmkaahhz .gt_bottom_border {
+#xkhsftgngu .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#hvwmkaahhz .gt_col_headings {
+#xkhsftgngu .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1778,7 +1778,7 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   border-right-color: #D3D3D3;
 }
 
-#hvwmkaahhz .gt_col_heading {
+#xkhsftgngu .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1798,7 +1798,7 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   overflow-x: hidden;
 }
 
-#hvwmkaahhz .gt_column_spanner_outer {
+#xkhsftgngu .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1810,15 +1810,15 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   padding-right: 4px;
 }
 
-#hvwmkaahhz .gt_column_spanner_outer:first-child {
+#xkhsftgngu .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#hvwmkaahhz .gt_column_spanner_outer:last-child {
+#xkhsftgngu .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#hvwmkaahhz .gt_column_spanner {
+#xkhsftgngu .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1830,11 +1830,11 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   width: 100%;
 }
 
-#hvwmkaahhz .gt_spanner_row {
+#xkhsftgngu .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#hvwmkaahhz .gt_group_heading {
+#xkhsftgngu .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1860,7 +1860,7 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   text-align: left;
 }
 
-#hvwmkaahhz .gt_empty_group_heading {
+#xkhsftgngu .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1875,15 +1875,15 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   vertical-align: middle;
 }
 
-#hvwmkaahhz .gt_from_md > :first-child {
+#xkhsftgngu .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#hvwmkaahhz .gt_from_md > :last-child {
+#xkhsftgngu .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#hvwmkaahhz .gt_row {
+#xkhsftgngu .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1902,7 +1902,7 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   overflow-x: hidden;
 }
 
-#hvwmkaahhz .gt_stub {
+#xkhsftgngu .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1915,7 +1915,7 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   padding-right: 5px;
 }
 
-#hvwmkaahhz .gt_stub_row_group {
+#xkhsftgngu .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1929,15 +1929,15 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   vertical-align: top;
 }
 
-#hvwmkaahhz .gt_row_group_first td {
+#xkhsftgngu .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#hvwmkaahhz .gt_row_group_first th {
+#xkhsftgngu .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#hvwmkaahhz .gt_summary_row {
+#xkhsftgngu .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1947,16 +1947,16 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   padding-right: 5px;
 }
 
-#hvwmkaahhz .gt_first_summary_row {
+#xkhsftgngu .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#hvwmkaahhz .gt_first_summary_row.thick {
+#xkhsftgngu .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#hvwmkaahhz .gt_last_summary_row {
+#xkhsftgngu .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1966,7 +1966,7 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   border-bottom-color: #D3D3D3;
 }
 
-#hvwmkaahhz .gt_grand_summary_row {
+#xkhsftgngu .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1976,7 +1976,7 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   padding-right: 5px;
 }
 
-#hvwmkaahhz .gt_first_grand_summary_row {
+#xkhsftgngu .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1986,7 +1986,7 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   border-top-color: #D3D3D3;
 }
 
-#hvwmkaahhz .gt_last_grand_summary_row_top {
+#xkhsftgngu .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1996,11 +1996,11 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   border-bottom-color: #D3D3D3;
 }
 
-#hvwmkaahhz .gt_striped {
+#xkhsftgngu .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#hvwmkaahhz .gt_table_body {
+#xkhsftgngu .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2009,7 +2009,7 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   border-bottom-color: #D3D3D3;
 }
 
-#hvwmkaahhz .gt_footnotes {
+#xkhsftgngu .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2023,7 +2023,7 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   border-right-color: #D3D3D3;
 }
 
-#hvwmkaahhz .gt_footnote {
+#xkhsftgngu .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2032,7 +2032,7 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   padding-right: 5px;
 }
 
-#hvwmkaahhz .gt_sourcenotes {
+#xkhsftgngu .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2046,7 +2046,7 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   border-right-color: #D3D3D3;
 }
 
-#hvwmkaahhz .gt_sourcenote {
+#xkhsftgngu .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2054,63 +2054,63 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   padding-right: 5px;
 }
 
-#hvwmkaahhz .gt_left {
+#xkhsftgngu .gt_left {
   text-align: left;
 }
 
-#hvwmkaahhz .gt_center {
+#xkhsftgngu .gt_center {
   text-align: center;
 }
 
-#hvwmkaahhz .gt_right {
+#xkhsftgngu .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#hvwmkaahhz .gt_font_normal {
+#xkhsftgngu .gt_font_normal {
   font-weight: normal;
 }
 
-#hvwmkaahhz .gt_font_bold {
+#xkhsftgngu .gt_font_bold {
   font-weight: bold;
 }
 
-#hvwmkaahhz .gt_font_italic {
+#xkhsftgngu .gt_font_italic {
   font-style: italic;
 }
 
-#hvwmkaahhz .gt_super {
+#xkhsftgngu .gt_super {
   font-size: 65%;
 }
 
-#hvwmkaahhz .gt_footnote_marks {
+#xkhsftgngu .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#hvwmkaahhz .gt_asterisk {
+#xkhsftgngu .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#hvwmkaahhz .gt_indent_1 {
+#xkhsftgngu .gt_indent_1 {
   text-indent: 5px;
 }
 
-#hvwmkaahhz .gt_indent_2 {
+#xkhsftgngu .gt_indent_2 {
   text-indent: 10px;
 }
 
-#hvwmkaahhz .gt_indent_3 {
+#xkhsftgngu .gt_indent_3 {
   text-indent: 15px;
 }
 
-#hvwmkaahhz .gt_indent_4 {
+#xkhsftgngu .gt_indent_4 {
   text-indent: 20px;
 }
 
-#hvwmkaahhz .gt_indent_5 {
+#xkhsftgngu .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -2151,23 +2151,23 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>table_exposures</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<div id="sqxagnvyry" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#sqxagnvyry table {
+<div id="yxnyfmdfnh" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#yxnyfmdfnh table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#sqxagnvyry thead, #sqxagnvyry tbody, #sqxagnvyry tfoot, #sqxagnvyry tr, #sqxagnvyry td, #sqxagnvyry th {
+#yxnyfmdfnh thead, #yxnyfmdfnh tbody, #yxnyfmdfnh tfoot, #yxnyfmdfnh tr, #yxnyfmdfnh td, #yxnyfmdfnh th {
   border-style: none;
 }
 
-#sqxagnvyry p {
+#yxnyfmdfnh p {
   margin: 0;
   padding: 0;
 }
 
-#sqxagnvyry .gt_table {
+#yxnyfmdfnh .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2193,12 +2193,12 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   border-left-color: #D3D3D3;
 }
 
-#sqxagnvyry .gt_caption {
+#yxnyfmdfnh .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#sqxagnvyry .gt_title {
+#yxnyfmdfnh .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2210,7 +2210,7 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   border-bottom-width: 0;
 }
 
-#sqxagnvyry .gt_subtitle {
+#yxnyfmdfnh .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2222,7 +2222,7 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   border-top-width: 0;
 }
 
-#sqxagnvyry .gt_heading {
+#yxnyfmdfnh .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2234,13 +2234,13 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   border-right-color: #D3D3D3;
 }
 
-#sqxagnvyry .gt_bottom_border {
+#yxnyfmdfnh .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#sqxagnvyry .gt_col_headings {
+#yxnyfmdfnh .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2255,7 +2255,7 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   border-right-color: #D3D3D3;
 }
 
-#sqxagnvyry .gt_col_heading {
+#yxnyfmdfnh .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2275,7 +2275,7 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   overflow-x: hidden;
 }
 
-#sqxagnvyry .gt_column_spanner_outer {
+#yxnyfmdfnh .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2287,15 +2287,15 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   padding-right: 4px;
 }
 
-#sqxagnvyry .gt_column_spanner_outer:first-child {
+#yxnyfmdfnh .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#sqxagnvyry .gt_column_spanner_outer:last-child {
+#yxnyfmdfnh .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#sqxagnvyry .gt_column_spanner {
+#yxnyfmdfnh .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2307,11 +2307,11 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   width: 100%;
 }
 
-#sqxagnvyry .gt_spanner_row {
+#yxnyfmdfnh .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#sqxagnvyry .gt_group_heading {
+#yxnyfmdfnh .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2337,7 +2337,7 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   text-align: left;
 }
 
-#sqxagnvyry .gt_empty_group_heading {
+#yxnyfmdfnh .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2352,15 +2352,15 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   vertical-align: middle;
 }
 
-#sqxagnvyry .gt_from_md > :first-child {
+#yxnyfmdfnh .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#sqxagnvyry .gt_from_md > :last-child {
+#yxnyfmdfnh .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#sqxagnvyry .gt_row {
+#yxnyfmdfnh .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2379,7 +2379,7 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   overflow-x: hidden;
 }
 
-#sqxagnvyry .gt_stub {
+#yxnyfmdfnh .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2392,7 +2392,7 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   padding-right: 5px;
 }
 
-#sqxagnvyry .gt_stub_row_group {
+#yxnyfmdfnh .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2406,15 +2406,15 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   vertical-align: top;
 }
 
-#sqxagnvyry .gt_row_group_first td {
+#yxnyfmdfnh .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#sqxagnvyry .gt_row_group_first th {
+#yxnyfmdfnh .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#sqxagnvyry .gt_summary_row {
+#yxnyfmdfnh .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2424,16 +2424,16 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   padding-right: 5px;
 }
 
-#sqxagnvyry .gt_first_summary_row {
+#yxnyfmdfnh .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#sqxagnvyry .gt_first_summary_row.thick {
+#yxnyfmdfnh .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#sqxagnvyry .gt_last_summary_row {
+#yxnyfmdfnh .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2443,7 +2443,7 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   border-bottom-color: #D3D3D3;
 }
 
-#sqxagnvyry .gt_grand_summary_row {
+#yxnyfmdfnh .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2453,7 +2453,7 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   padding-right: 5px;
 }
 
-#sqxagnvyry .gt_first_grand_summary_row {
+#yxnyfmdfnh .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2463,7 +2463,7 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   border-top-color: #D3D3D3;
 }
 
-#sqxagnvyry .gt_last_grand_summary_row_top {
+#yxnyfmdfnh .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2473,11 +2473,11 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   border-bottom-color: #D3D3D3;
 }
 
-#sqxagnvyry .gt_striped {
+#yxnyfmdfnh .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#sqxagnvyry .gt_table_body {
+#yxnyfmdfnh .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2486,7 +2486,7 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   border-bottom-color: #D3D3D3;
 }
 
-#sqxagnvyry .gt_footnotes {
+#yxnyfmdfnh .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2500,7 +2500,7 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   border-right-color: #D3D3D3;
 }
 
-#sqxagnvyry .gt_footnote {
+#yxnyfmdfnh .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2509,7 +2509,7 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   padding-right: 5px;
 }
 
-#sqxagnvyry .gt_sourcenotes {
+#yxnyfmdfnh .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2523,7 +2523,7 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   border-right-color: #D3D3D3;
 }
 
-#sqxagnvyry .gt_sourcenote {
+#yxnyfmdfnh .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2531,63 +2531,63 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   padding-right: 5px;
 }
 
-#sqxagnvyry .gt_left {
+#yxnyfmdfnh .gt_left {
   text-align: left;
 }
 
-#sqxagnvyry .gt_center {
+#yxnyfmdfnh .gt_center {
   text-align: center;
 }
 
-#sqxagnvyry .gt_right {
+#yxnyfmdfnh .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#sqxagnvyry .gt_font_normal {
+#yxnyfmdfnh .gt_font_normal {
   font-weight: normal;
 }
 
-#sqxagnvyry .gt_font_bold {
+#yxnyfmdfnh .gt_font_bold {
   font-weight: bold;
 }
 
-#sqxagnvyry .gt_font_italic {
+#yxnyfmdfnh .gt_font_italic {
   font-style: italic;
 }
 
-#sqxagnvyry .gt_super {
+#yxnyfmdfnh .gt_super {
   font-size: 65%;
 }
 
-#sqxagnvyry .gt_footnote_marks {
+#yxnyfmdfnh .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#sqxagnvyry .gt_asterisk {
+#yxnyfmdfnh .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#sqxagnvyry .gt_indent_1 {
+#yxnyfmdfnh .gt_indent_1 {
   text-indent: 5px;
 }
 
-#sqxagnvyry .gt_indent_2 {
+#yxnyfmdfnh .gt_indent_2 {
   text-indent: 10px;
 }
 
-#sqxagnvyry .gt_indent_3 {
+#yxnyfmdfnh .gt_indent_3 {
   text-indent: 15px;
 }
 
-#sqxagnvyry .gt_indent_4 {
+#yxnyfmdfnh .gt_indent_4 {
   text-indent: 20px;
 }
 
-#sqxagnvyry .gt_indent_5 {
+#yxnyfmdfnh .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -2685,23 +2685,23 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
 <span id="cb14-56"><a href="#cb14-56" aria-hidden="true" tabindex="-1"></a>table_outcomes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
-<div id="pgxwmlegur" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#pgxwmlegur table {
+<div id="opojteqjir" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#opojteqjir table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#pgxwmlegur thead, #pgxwmlegur tbody, #pgxwmlegur tfoot, #pgxwmlegur tr, #pgxwmlegur td, #pgxwmlegur th {
+#opojteqjir thead, #opojteqjir tbody, #opojteqjir tfoot, #opojteqjir tr, #opojteqjir td, #opojteqjir th {
   border-style: none;
 }
 
-#pgxwmlegur p {
+#opojteqjir p {
   margin: 0;
   padding: 0;
 }
 
-#pgxwmlegur .gt_table {
+#opojteqjir .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2727,12 +2727,12 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   border-left-color: #D3D3D3;
 }
 
-#pgxwmlegur .gt_caption {
+#opojteqjir .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#pgxwmlegur .gt_title {
+#opojteqjir .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2744,7 +2744,7 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   border-bottom-width: 0;
 }
 
-#pgxwmlegur .gt_subtitle {
+#opojteqjir .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2756,7 +2756,7 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   border-top-width: 0;
 }
 
-#pgxwmlegur .gt_heading {
+#opojteqjir .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2768,13 +2768,13 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   border-right-color: #D3D3D3;
 }
 
-#pgxwmlegur .gt_bottom_border {
+#opojteqjir .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#pgxwmlegur .gt_col_headings {
+#opojteqjir .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2789,7 +2789,7 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   border-right-color: #D3D3D3;
 }
 
-#pgxwmlegur .gt_col_heading {
+#opojteqjir .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2809,7 +2809,7 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   overflow-x: hidden;
 }
 
-#pgxwmlegur .gt_column_spanner_outer {
+#opojteqjir .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2821,15 +2821,15 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   padding-right: 4px;
 }
 
-#pgxwmlegur .gt_column_spanner_outer:first-child {
+#opojteqjir .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#pgxwmlegur .gt_column_spanner_outer:last-child {
+#opojteqjir .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#pgxwmlegur .gt_column_spanner {
+#opojteqjir .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2841,11 +2841,11 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   width: 100%;
 }
 
-#pgxwmlegur .gt_spanner_row {
+#opojteqjir .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#pgxwmlegur .gt_group_heading {
+#opojteqjir .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2871,7 +2871,7 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   text-align: left;
 }
 
-#pgxwmlegur .gt_empty_group_heading {
+#opojteqjir .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2886,15 +2886,15 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   vertical-align: middle;
 }
 
-#pgxwmlegur .gt_from_md > :first-child {
+#opojteqjir .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#pgxwmlegur .gt_from_md > :last-child {
+#opojteqjir .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#pgxwmlegur .gt_row {
+#opojteqjir .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2913,7 +2913,7 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   overflow-x: hidden;
 }
 
-#pgxwmlegur .gt_stub {
+#opojteqjir .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2926,7 +2926,7 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   padding-right: 5px;
 }
 
-#pgxwmlegur .gt_stub_row_group {
+#opojteqjir .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2940,15 +2940,15 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   vertical-align: top;
 }
 
-#pgxwmlegur .gt_row_group_first td {
+#opojteqjir .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#pgxwmlegur .gt_row_group_first th {
+#opojteqjir .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#pgxwmlegur .gt_summary_row {
+#opojteqjir .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2958,16 +2958,16 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   padding-right: 5px;
 }
 
-#pgxwmlegur .gt_first_summary_row {
+#opojteqjir .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#pgxwmlegur .gt_first_summary_row.thick {
+#opojteqjir .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#pgxwmlegur .gt_last_summary_row {
+#opojteqjir .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2977,7 +2977,7 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   border-bottom-color: #D3D3D3;
 }
 
-#pgxwmlegur .gt_grand_summary_row {
+#opojteqjir .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2987,7 +2987,7 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   padding-right: 5px;
 }
 
-#pgxwmlegur .gt_first_grand_summary_row {
+#opojteqjir .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2997,7 +2997,7 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   border-top-color: #D3D3D3;
 }
 
-#pgxwmlegur .gt_last_grand_summary_row_top {
+#opojteqjir .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3007,11 +3007,11 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   border-bottom-color: #D3D3D3;
 }
 
-#pgxwmlegur .gt_striped {
+#opojteqjir .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#pgxwmlegur .gt_table_body {
+#opojteqjir .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3020,7 +3020,7 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   border-bottom-color: #D3D3D3;
 }
 
-#pgxwmlegur .gt_footnotes {
+#opojteqjir .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3034,7 +3034,7 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   border-right-color: #D3D3D3;
 }
 
-#pgxwmlegur .gt_footnote {
+#opojteqjir .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -3043,7 +3043,7 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   padding-right: 5px;
 }
 
-#pgxwmlegur .gt_sourcenotes {
+#opojteqjir .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3057,7 +3057,7 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   border-right-color: #D3D3D3;
 }
 
-#pgxwmlegur .gt_sourcenote {
+#opojteqjir .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -3065,63 +3065,63 @@ Figure&nbsp;3: Imagine A is an experiment. How shall we investigate effect modif
   padding-right: 5px;
 }
 
-#pgxwmlegur .gt_left {
+#opojteqjir .gt_left {
   text-align: left;
 }
 
-#pgxwmlegur .gt_center {
+#opojteqjir .gt_center {
   text-align: center;
 }
 
-#pgxwmlegur .gt_right {
+#opojteqjir .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#pgxwmlegur .gt_font_normal {
+#opojteqjir .gt_font_normal {
   font-weight: normal;
 }
 
-#pgxwmlegur .gt_font_bold {
+#opojteqjir .gt_font_bold {
   font-weight: bold;
 }
 
-#pgxwmlegur .gt_font_italic {
+#opojteqjir .gt_font_italic {
   font-style: italic;
 }
 
-#pgxwmlegur .gt_super {
+#opojteqjir .gt_super {
   font-size: 65%;
 }
 
-#pgxwmlegur .gt_footnote_marks {
+#opojteqjir .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#pgxwmlegur .gt_asterisk {
+#opojteqjir .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#pgxwmlegur .gt_indent_1 {
+#opojteqjir .gt_indent_1 {
   text-indent: 5px;
 }
 
-#pgxwmlegur .gt_indent_2 {
+#opojteqjir .gt_indent_2 {
   text-indent: 10px;
 }
 
-#pgxwmlegur .gt_indent_3 {
+#opojteqjir .gt_indent_3 {
   text-indent: 15px;
 }
 
-#pgxwmlegur .gt_indent_4 {
+#opojteqjir .gt_indent_4 {
   text-indent: 20px;
 }
 
-#pgxwmlegur .gt_indent_5 {
+#opojteqjir .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -4723,7 +4723,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb41-500"><a href="#cb41-500" aria-hidden="true" tabindex="-1"></a><span class="do">### Set up a path to a folder in your directory </span></span>
 <span id="cb41-501"><a href="#cb41-501" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb41-502"><a href="#cb41-502" aria-hidden="true" tabindex="-1"></a><span class="co"># create a folder called saved and make a path like this</span></span>
-<span id="cb41-503"><a href="#cb41-503" aria-hidden="true" tabindex="-1"></a>push_mods <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>( <span class="st">"saved"</span> )</span>
+<span id="cb41-503"><a href="#cb41-503" aria-hidden="true" tabindex="-1"></a>push_mods <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">'/Users/joseph/Library/CloudStorage/Dropbox-v-project/data/saved'</span>)</span>
 <span id="cb41-504"><a href="#cb41-504" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb41-505"><a href="#cb41-505" aria-hidden="true" tabindex="-1"></a><span class="co"># view it (will be different for you)</span></span>
 <span id="cb41-506"><a href="#cb41-506" aria-hidden="true" tabindex="-1"></a>push_mods</span>
