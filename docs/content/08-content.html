@@ -9,7 +9,11 @@
 <meta name="author" content="Joseph Bulbulia">
 <meta name="dcterms.date" content="2023-04-28">
 
+<<<<<<< HEAD
 <title>PSYC 434 Conducting Research Across Cultures: Trimester 1, 2024 – Causal Inference: Estimation of ATE and CATE</title>
+=======
+<title>PSYC 434 Conducting Research Across Cultures: Trimester 1, 2024 – Causal Inference: Propensity Scores &amp; Subgroup Analysis</title>
+>>>>>>> 1b59bde8ef2fa8f3e7c21117bb6badfe6cb7d172
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,6 +26,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+<<<<<<< HEAD
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { line-height: 1.25; }
@@ -56,6 +61,8 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
+=======
+>>>>>>> 1b59bde8ef2fa8f3e7c21117bb6badfe6cb7d172
 /* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
@@ -228,11 +235,16 @@ window.Quarto = {
         <li>
     <a class="dropdown-item" href="../content/07-content.html">
  <span class="dropdown-text">Week 7: Causal Inference - Key Concept CATE - R (regression/simulation: ATE)</span></a>
+<<<<<<< HEAD
   </li>  
         <li>
     <a class="dropdown-item" href="../content/08-content.html">
  <span class="dropdown-text">Week 8: Causal Inference - Estimation of ATE and CATE - R and LaTeX</span></a>
   </li>  
+=======
+  </li>  
+        <li class="dropdown-header">Week 8: Causal Inference - Estimation of ATE and CATE - R and LaTeX</li>
+>>>>>>> 1b59bde8ef2fa8f3e7c21117bb6badfe6cb7d172
         <li class="dropdown-header">Week 9: Quiz - R</li>
         <li class="dropdown-header">Week 10: Measurement Matters - Factor Analysis, CFA, MultiGroup CFA, Partial Invariance - R</li>
         <li class="dropdown-header">Week 11: Measurement + External Validity in Causal Inference - R (writing introduction/method section)</li>
@@ -555,6 +567,7 @@ v_i =
 \frac{1}{1-\hat{e}} &amp; \text{if } A_i = 0
 \end{cases}
 </span></p>
+<<<<<<< HEAD
 <p>where <span class="math inline">v_i</span> is the IPTW weight for individual <span class="math inline">i</span>, <span class="math inline">A_i</span> is the treatment indicator for individual <span class="math inline">i</span>, and <span class="math inline">\hat{e}(L_i)</span> is the estimated propensity score for individual <span class="math inline">i</span>.</p>
 <p>How might we use these weights to obtain causal effect estimates?</p>
 <section id="marginal-structural-models-msms" class="level3">
@@ -665,6 +678,14 @@ E[Y^a] = \beta_0 + \beta_1a
 <li><strong>Causal assumptions</strong>: again, a causal interpretation of <span class="math inline">\hat{\gamma}</span> relies on satisfying both causal assumptions and modelling assumptions. Here, we have described estimation using propensity scores.</li>
 </ul>
 </section>
+=======
+<p>Thus, <span class="math inline">v</span> depends on <span class="math inline">A</span>, and is calculated as the inverse of the propensity score for exposed individuals and as the inverse of <span class="math inline">1-e</span> for unexposed individuals.</p>
+<p>Note again that that we estimate propensity scores <em>separately</em> within strata of the subgroup for whom we are interested in effect modification. <span class="math inline">v</span> is the weight for each individual in a given subgroup <span class="math inline">G</span>. To foreshadow our work next week, we will fit models such that we may estimate contrast for the causal effects within groups (<span class="math inline">\hat{\delta_{g}}, \hat{\delta_{g^{\prime}}}\dots</span>); having obtained the group-level estimands, we may then obtain estimates for group-wise differences: (<span class="math inline">\hat{\gamma}</span>)</p>
+<p>Such that,</p>
+<p><span class="math display">\hat{\gamma} = \overbrace{\big( \hat{E}[Y(a)|G=g] - \hat{E}[Y(a^{\prime})|G=g] \big)}^{\hat{\delta_g}} - \overbrace{\big(\hat{E}[Y(a^{\prime})|G=g^{\prime}]- \hat{E}[Y(a)|G=g^{\prime}]\big)}^{\hat{\delta_{g^{\prime}}}}</span></p>
+<p>We again will use simulation-based inference methods to compute standard errors and confidence intervals <span class="citation" data-cites="greifer2023">(<a href="#ref-greifer2023" role="doc-biblioref">Greifer et al. 2023</a>)</span>.</p>
+<p>Do not worry! All will be explained next week.</p>
+>>>>>>> 1b59bde8ef2fa8f3e7c21117bb6badfe6cb7d172
 </section>
 <section id="doubly-robust-estimation" class="level2">
 <h2 class="anchored" data-anchor-id="doubly-robust-estimation">Doubly Robust Estimation</h2>
@@ -3899,10 +3920,19 @@ For 'Māori: 1_tile to 3_tile', the effect estimate is 0.185 [0.076, 0.294]. The
 <!-- -->
 
 
+
 </section>
 </section>
 
+<<<<<<< HEAD
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></div></div></section></div></main> <!-- /main -->
+=======
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-greifer2023" class="csl-entry" role="listitem">
+Greifer, Noah, Steven Worthington, Stefano Iacus, and Gary King. 2023. <em>Clarify: Simulation-Based Inference for Regression Models</em>. <a href="https://iqss.github.io/clarify/">https://iqss.github.io/clarify/</a>.
+</div>
+</div></section><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></div></div></section></div></main> <!-- /main -->
+>>>>>>> 1b59bde8ef2fa8f3e7c21117bb6badfe6cb7d172
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -3993,6 +4023,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     });
     clipboardModal.on('success', onCopySuccess);
   }
+<<<<<<< HEAD
   const viewSource = window.document.getElementById('quarto-view-source') ||
                      window.document.getElementById('quarto-code-tools-source');
   if (viewSource) {
@@ -4044,6 +4075,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   if (showAllCode) {
     showAllCode.addEventListener("click", toggleCodeHandler(true));
   }
+=======
+>>>>>>> 1b59bde8ef2fa8f3e7c21117bb6badfe6cb7d172
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
