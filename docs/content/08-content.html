@@ -668,7 +668,7 @@ E[Y^a] = \beta_0 + \beta_1a
 </section>
 <section id="doubly-robust-estimation" class="level2">
 <h2 class="anchored" data-anchor-id="doubly-robust-estimation">Doubly Robust Estimation</h2>
-<p>We can combine regression-based estimation and doubly robust estimation. I will walk you through the steps in the lab. The TL;DR is this: doubly robust estimation leads to lower reliance on correct model specification. If either the PS model or the regression model is correctly specified, the model will be unbiased – if the other causal inference assumptions are met.</p>
+<p>We can combine regression-based estimation with propensity score estimation to obtain <em>doubly robust</em> estimation. I will walk you through the steps in the lab. The TL;DR is this: doubly robust estimation reduces reliance on correct model specification. If either the PS model or the regression model is correctly specified, the model will be unbiased – if the other causal inference assumptions are met.</p>
 <p>We cannot know whether these assumptions are met, we will need to do a sensitivity analysis, the topic of next week.</p>
 <p>I’ll show you in lab how to employ simulation-based inference methods to compute standard errors and confidence intervals, following the approaches suggested by Greifer (2023)[].</p>
 </section>
@@ -4812,7 +4812,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb73-409"><a href="#cb73-409" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb73-410"><a href="#cb73-410" aria-hidden="true" tabindex="-1"></a><span class="fu">## Doubly Robust Estimation</span></span>
 <span id="cb73-411"><a href="#cb73-411" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb73-412"><a href="#cb73-412" aria-hidden="true" tabindex="-1"></a>We can combine regression-based estimation and doubly robust estimation. I will walk you through the steps in the lab. The TL;DR is this: doubly robust estimation leads to lower reliance on correct model specification. If either the PS model or the regression model is correctly specified, the model will be unbiased -- if the other causal inference assumptions are met.</span>
+<span id="cb73-412"><a href="#cb73-412" aria-hidden="true" tabindex="-1"></a>We can combine regression-based estimation with propensity score estimation to obtain *doubly robust* estimation. I will walk you through the steps in the lab. The TL;DR is this: doubly robust estimation reduces reliance on correct model specification. If either the PS model or the regression model is correctly specified, the model will be unbiased -- if the other causal inference assumptions are met.</span>
 <span id="cb73-413"><a href="#cb73-413" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb73-414"><a href="#cb73-414" aria-hidden="true" tabindex="-1"></a>We cannot know whether these assumptions are met, we will need to do a sensitivity analysis, the topic of next week.</span>
 <span id="cb73-415"><a href="#cb73-415" aria-hidden="true" tabindex="-1"></a></span>
