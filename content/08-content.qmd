@@ -440,10 +440,11 @@ library(cobalt)
 library(MatchIt)
 library(kableExtra)
 library(lmtp)
-#library(SuperLearner)
-#library(ranger)
-#library(nnls)
-#library(polspline)
+library(SuperLearner)
+library(ranger)
+library(nnls)
+library(polspline)
+
 # create a folder names saved (you should have done this last week).
 # set your path to this folder
 
@@ -658,10 +659,10 @@ Next let's get our data into shape.  Today we're going to consider a 'treatment'
 
 ```{r}
 dat_long <-
-  create_ordered_variable(dat_long, "perfectionism", n_divisions = 4) #
+  margot::create_ordered_variable(dat_long, "perfectionism", n_divisions = 4) #
 
 # view scale
-# uncommend to see break points
+# uncommentto see break points
 # print(quantile(dat_long$perfectionism, probs = seq(0, 1, 1/4), na.rm = TRUE))
 
 # n by groups
@@ -685,7 +686,7 @@ dt_19 <- dat_long |> filter(wave == 2019)
 
 margot::coloured_histogram_quantiles(col_name = "perfectionism",
                                      n_quantiles = 4,
-                                     binwidth = .25,
+                                     binwidth = .5,
                                      dt_19)
 ```
 
@@ -699,8 +700,13 @@ margot::coloured_histogram_quantiles(col_name = "perfectionism",
 
 dt_19 <- dat_long |> filter(wave == 2019)
 
-margot::coloured_histogram_sd(col_name = "perfectionism", binwidth = .25, dt_19)
+margot::coloured_histogram_sd(col_name = "perfectionism", binwidth = .5, dt_19)
 
+margot::coloured_histogram_shift()
+margot::coloured_histogram_shift(col_name = "perfectionism", binwidth = .1, 
+                                 shift = "down",
+                                 range_highlight = c(1,2),
+                                 dt_19)
 ```
 
 
@@ -777,7 +783,6 @@ Next we impute by quartile.  Save this output in your folder.
 mice_health <- margot::impute_and_combine(list_filtered_df,  m = 5 )
 
 margot::here_save(mice_health, "mice_health")
-
 ```
 
 
@@ -832,8 +837,8 @@ saveRDS(mice_health_long, here::here("saved", "mice_health_long"))
 #| echo: true
 
 # this is how you read saved files without the margot package
-mice_health_mids <- readRDS(here::here("saved", "mice_health_mids"))
-mice_health_long <- readRDS(here::here("saved", "mice_health_long"))
+mice_health_mids <- readRDS(here::here(push_mods, "mice_health_mids"))
+mice_health_long <- readRDS(here::here(push_mods, "mice_health_long"))
 # propensity scors --------------------------------------------------------
 
 
@@ -847,11 +852,12 @@ estimand = "ATE"
 baseline_vars_models = mice_health_long |>
   dplyr::select(starts_with("t0"))|> colnames() # note, we earlier change name of `t0_sample_weights` to `sample weights`
 
+baseline_vars_models
 # obtain propensity scores
 match_ebal_ate <- margot::match_mi_general(data = mice_health_mids, 
                                       X = X, 
                                       baseline_vars = baseline_vars_models, 
-                                      estimand = estimand,  
+                                      estimand = "ATE",  
                                    #   focal = "tile_3", #for ATT
                                       method = "ebal", 
                                       sample_weights = "sample_weights")
@@ -873,12 +879,12 @@ match_ebal_ate <- margot::here_read("match_ebal_ate")
 
 
 # check balance
-# bal.tab(match_ebal_ate)
+#bal.tab(match_ebal_ate)
 
 # visualise imbalance
 love.plot(match_ebal_ate, binary = "std", thresholds = c(m = .1),
           wrap = 50, position = "bottom", size =3)
-  ```
+```
 
 
 ```{r}
