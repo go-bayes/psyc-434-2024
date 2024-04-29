@@ -301,10 +301,8 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#causal-estimand-statistical-estimand-statistical-estimator" id="toc-causal-estimand-statistical-estimand-statistical-estimator" class="nav-link" data-scroll-target="#causal-estimand-statistical-estimand-statistical-estimator">Causal Estimand, Statistical Estimand, Statistical Estimator</a></li>
   </ul></li>
-  <li><a href="#methods-for-statistical-estimation-in-causal-inference-inverse-probability-of-treatment-weights-using-propensity-scores" id="toc-methods-for-statistical-estimation-in-causal-inference-inverse-probability-of-treatment-weights-using-propensity-scores" class="nav-link" data-scroll-target="#methods-for-statistical-estimation-in-causal-inference-inverse-probability-of-treatment-weights-using-propensity-scores">Methods for Statistical Estimation in Causal Inference: Inverse Probability of Treatment Weights Using Propensity Scores</a>
-  <ul class="collapse">
+  <li><a href="#methods-for-statistical-estimation-in-causal-inference-inverse-probability-of-treatment-weights-using-propensity-scores" id="toc-methods-for-statistical-estimation-in-causal-inference-inverse-probability-of-treatment-weights-using-propensity-scores" class="nav-link" data-scroll-target="#methods-for-statistical-estimation-in-causal-inference-inverse-probability-of-treatment-weights-using-propensity-scores">Methods for Statistical Estimation in Causal Inference: Inverse Probability of Treatment Weights Using Propensity Scores</a></li>
   <li><a href="#marginal-structural-models-msms" id="toc-marginal-structural-models-msms" class="nav-link" data-scroll-target="#marginal-structural-models-msms">Marginal Structural Models (MSMs)</a></li>
-  </ul></li>
   <li><a href="#interpretation-of-beta_0-and-beta_1-in-a-marginal-structural-model" id="toc-interpretation-of-beta_0-and-beta_1-in-a-marginal-structural-model" class="nav-link" data-scroll-target="#interpretation-of-beta_0-and-beta_1-in-a-marginal-structural-model">Interpretation of <span class="math inline">\beta_0</span> and <span class="math inline">\beta_1</span> in a Marginal Structural Model</a>
   <ul class="collapse">
   <li><a href="#binary-treatment" id="toc-binary-treatment" class="nav-link" data-scroll-target="#binary-treatment">Binary Treatment</a></li>
@@ -431,11 +429,11 @@ For the lab, copy and paste code chunks following the “LAB” section.
 </ul>
 <p>The causal effect of bilingualism on cognitive ability for individual <span class="math inline">i</span> is then defined as the difference between these potential outcomes:</p>
 <p><span class="math display">
-\text{Causal Effect}_i = Y^{a=1} - Y^{a=0}
+\text{Causal Effect}_i = Y_i^{a=1} - Y_i^{a=0}
 </span></p>
 <p>We say there is a causal effect if:</p>
 <p><span class="math display">
-Y^{a=1} - Y^{a=0}  \neq 0
+Y_i^{a=1} - Y_i^{a=0}  \neq 0
 </span></p>
 <p>However, we only observe one of the potential outcomes for each child. The other outcome is not observed because physics prevents a child from both receiving and not receiving bilingual exposure.</p>
 <p>The fact that causal contrasts are not observed in individuals is called “The fundamental problem of causal inference.”</p>
@@ -557,8 +555,9 @@ v_i =
 </span></p>
 <p>where <span class="math inline">v_i</span> is the IPTW weight for individual <span class="math inline">i</span>, <span class="math inline">A_i</span> is the treatment indicator for individual <span class="math inline">i</span>, and <span class="math inline">\hat{e}(L_i)</span> is the estimated propensity score for individual <span class="math inline">i</span>.</p>
 <p>How might we use these weights to obtain causal effect estimates?</p>
-<section id="marginal-structural-models-msms" class="level3">
-<h3 class="anchored" data-anchor-id="marginal-structural-models-msms">Marginal Structural Models (MSMs)</h3>
+</section>
+<section id="marginal-structural-models-msms" class="level2">
+<h2 class="anchored" data-anchor-id="marginal-structural-models-msms">Marginal Structural Models (MSMs)</h2>
 <p>Marginal Structural Models (MSMs) estimate causal effects without requiring an “outcome model” that stratifies on covariates. Rather, MSMs employ weights derived from the inverse probability of treatment weighting (IPTW) to create a pseudo-population in which the distribution of covariates is independent of treatment assignment over time.</p>
 <p>The general form of an MSM can be expressed as follows:</p>
 <p><span class="math display">
@@ -566,7 +565,6 @@ E[Y^a] = \beta_0 + \beta_1a
 </span></p>
 <p>where <span class="math inline">E[Y^a]</span> is the expected outcome under treatment <span class="math inline">a</span> and <span class="math inline">\beta_0</span> and <span class="math inline">\beta_1</span> are parameters estimated by fitting the weighted model. Again, the weights used in the MSM, typically derived from the IPTW (or another treatment model), adjust for the confounding, allowing the model to estimate the unbiased effect of the treatment on the outcome without requiring covariates in the model.</p>
 <p>Where do weights fit in? Note, we have <span class="math inline">E[Y^a]</span> in please of <span class="math inline">E[Y|A=a]</span>. When applying propensity score weights in the linear regression model <span class="math inline">E[Y^a] = \beta_0 + \beta_1a</span>, each observation is weighted by <span class="math inline">v_i</span>, such that <span class="math inline">v_i(\beta_0 + \beta_1a)</span>. This changes the estimation process to focus on a weighted sum of outcomes, where each individual’s contribution is adjusted to reflect their probability of receiving the treatment, given their covariates.</p>
-</section>
 </section>
 <section id="interpretation-of-beta_0-and-beta_1-in-a-marginal-structural-model" class="level2">
 <h2 class="anchored" data-anchor-id="interpretation-of-beta_0-and-beta_1-in-a-marginal-structural-model">Interpretation of <span class="math inline">\beta_0</span> and <span class="math inline">\beta_1</span> in a Marginal Structural Model</h2>
@@ -642,6 +640,7 @@ E[Y^a] = \beta_0 + \beta_1a
 \hat{e} = P(A = 1 \mid L, G) = f_A(L, G; \theta_A)
 </span></p>
 <p>Here, $ f_A(L, G; _A) $ is the statistical model estimating the probability of exposure <span class="math inline">A = 1</span> given covariates <span class="math inline">L</span> and subgroup <span class="math inline">G</span>. We then calculate the weights for each individual, denoted <span class="math inline">v</span>, using the estimated propensity score:</p>
+<p><span class="math inline">\theta_A</span> encapsulates all the coefficients (parameters) in this model, including intercepts, slopes, and potentially other parameters depending on the model complexity (e.g., interaction terms, non-linear effects…etc).</p>
 <p>These weights <span class="math inline">v</span> depend on <span class="math inline">A</span> and are calculated as the inverse of the propensity score for exposed individuals and as the inverse of $ 1- $ for unexposed individuals.</p>
 <p>Propensity scores are estimated <em>separately</em> within strata of the subgroup to control for potential confounding tailored to each subgroup. These weights <span class="math inline">v</span> are specific to each individual in subgroup <span class="math inline">G</span>. In the lab, we will clarify how to fit models to estimate contrasts for the causal effects within groups <span class="math inline">\hat{\delta}_{g}, \hat{\delta}_{g'}</span>, etc., and how to obtain estimates for group-wise differences:</p>
 <p><span class="math display">
@@ -4495,13 +4494,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb73-92"><a href="#cb73-92" aria-hidden="true" tabindex="-1"></a>The causal effect of bilingualism on cognitive ability for individual $i$ is then defined as the difference between these potential outcomes:</span>
 <span id="cb73-93"><a href="#cb73-93" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb73-94"><a href="#cb73-94" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb73-95"><a href="#cb73-95" aria-hidden="true" tabindex="-1"></a>\text{Causal Effect}_i = Y^{a=1} - Y^{a=0} </span>
+<span id="cb73-95"><a href="#cb73-95" aria-hidden="true" tabindex="-1"></a>\text{Causal Effect}_i = Y_i^{a=1} - Y_i^{a=0} </span>
 <span id="cb73-96"><a href="#cb73-96" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb73-97"><a href="#cb73-97" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb73-98"><a href="#cb73-98" aria-hidden="true" tabindex="-1"></a>We say there is a causal effect if:</span>
 <span id="cb73-99"><a href="#cb73-99" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb73-100"><a href="#cb73-100" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb73-101"><a href="#cb73-101" aria-hidden="true" tabindex="-1"></a>Y^{a=1} - Y^{a=0}  \neq 0</span>
+<span id="cb73-101"><a href="#cb73-101" aria-hidden="true" tabindex="-1"></a>Y_i^{a=1} - Y_i^{a=0}  \neq 0</span>
 <span id="cb73-102"><a href="#cb73-102" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb73-103"><a href="#cb73-103" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb73-104"><a href="#cb73-104" aria-hidden="true" tabindex="-1"></a>However, we only observe one of the potential outcomes for each child. The other outcome is not observed because physics prevents a child from both receiving and not receiving bilingual exposure.</span>
@@ -4664,7 +4663,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb73-261"><a href="#cb73-261" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb73-262"><a href="#cb73-262" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb73-263"><a href="#cb73-263" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb73-264"><a href="#cb73-264" aria-hidden="true" tabindex="-1"></a><span class="fu">### Marginal Structural Models (MSMs)</span></span>
+<span id="cb73-264"><a href="#cb73-264" aria-hidden="true" tabindex="-1"></a><span class="fu">## Marginal Structural Models (MSMs)</span></span>
 <span id="cb73-265"><a href="#cb73-265" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb73-266"><a href="#cb73-266" aria-hidden="true" tabindex="-1"></a>Marginal Structural Models (MSMs) estimate causal effects without requiring an "outcome model" that stratifies on covariates. Rather, MSMs employ weights derived from the inverse probability of treatment weighting (IPTW) to create a pseudo-population in which the distribution of covariates is independent of treatment assignment over time.</span>
 <span id="cb73-267"><a href="#cb73-267" aria-hidden="true" tabindex="-1"></a></span>
@@ -4781,7 +4780,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb73-378"><a href="#cb73-378" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb73-379"><a href="#cb73-379" aria-hidden="true" tabindex="-1"></a>Here, $ f_A(L, G; \theta_A) $ is the statistical model estimating the probability of exposure $A = 1$ given covariates $L$ and subgroup $G$. We then calculate the weights for each individual, denoted $v$, using the estimated propensity score:</span>
 <span id="cb73-380"><a href="#cb73-380" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb73-381"><a href="#cb73-381" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb73-381"><a href="#cb73-381" aria-hidden="true" tabindex="-1"></a>$\theta_A$ encapsulates all the coefficients (parameters) in this model, including intercepts, slopes, and potentially other parameters depending on the model complexity (e.g., interaction terms, non-linear effects...etc).</span>
 <span id="cb73-382"><a href="#cb73-382" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb73-383"><a href="#cb73-383" aria-hidden="true" tabindex="-1"></a>These weights $v$ depend on $A$ and are calculated as the inverse of the propensity score for exposed individuals and as the inverse of $ 1-\hat{e} $ for unexposed individuals.</span>
 <span id="cb73-384"><a href="#cb73-384" aria-hidden="true" tabindex="-1"></a></span>

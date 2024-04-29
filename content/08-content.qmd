@@ -90,13 +90,13 @@ Recall the fundamental problem of causal inference, returning to the question of
 The causal effect of bilingualism on cognitive ability for individual $i$ is then defined as the difference between these potential outcomes:
 
 $$
-\text{Causal Effect}_i = Y^{a=1} - Y^{a=0} 
+\text{Causal Effect}_i = Y_i^{a=1} - Y_i^{a=0} 
 $$
 
 We say there is a causal effect if:
 
 $$
-Y^{a=1} - Y^{a=0}  \neq 0
+Y_i^{a=1} - Y_i^{a=0}  \neq 0
 $$
 
 However, we only observe one of the potential outcomes for each child. The other outcome is not observed because physics prevents a child from both receiving and not receiving bilingual exposure.
@@ -259,7 +259,7 @@ How might we use these weights to obtain causal effect estimates?
 
 
 
-### Marginal Structural Models (MSMs)
+## Marginal Structural Models (MSMs)
 
 Marginal Structural Models (MSMs) estimate causal effects without requiring an "outcome model" that stratifies on covariates. Rather, MSMs employ weights derived from the inverse probability of treatment weighting (IPTW) to create a pseudo-population in which the distribution of covariates is independent of treatment assignment over time.
 
@@ -376,7 +376,7 @@ $$
 
 Here, $ f_A(L, G; \theta_A) $ is the statistical model estimating the probability of exposure $A = 1$ given covariates $L$ and subgroup $G$. We then calculate the weights for each individual, denoted $v$, using the estimated propensity score:
 
-
+$\theta_A$ encapsulates all the coefficients (parameters) in this model, including intercepts, slopes, and potentially other parameters depending on the model complexity (e.g., interaction terms, non-linear effects...etc).
 
 These weights $v$ depend on $A$ and are calculated as the inverse of the propensity score for exposed individuals and as the inverse of $ 1-\hat{e} $ for unexposed individuals.
 
