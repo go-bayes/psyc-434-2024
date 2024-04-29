@@ -1,0 +1,1336 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.30">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Joseph Bulbulia">
+<meta name="dcterms.date" content="2023-05-16">
+
+<title>PSYC 434 Conducting Research Across Cultures: Trimester 1, 2024 – Causal inference: a step by step guide</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">PSYC 434 Conducting Research Across Cultures: Trimester 1, 2024</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../content/course-outline.html"> 
+<span class="menu-text">Course Outline</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-content" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Content</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-content">    
+        <li>
+    <a class="dropdown-item" href="../../content/glossary.pdf">
+ <span class="dropdown-text">Glossary</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/course-outline.html">
+ <span class="dropdown-text">Course Outline</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/01-content.html">
+ <span class="dropdown-text">Week 1: Course Introduction - R (installing packages)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/02-content.html">
+ <span class="dropdown-text">Week 2: Causal Diagrams - Elementary Structures and Rules - R (using the interface)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/03-content.html">
+ <span class="dropdown-text">Week 3: Causal Diagrams - Confounding Bias - R (regression/simulation)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/04-content.html">
+ <span class="dropdown-text">Week 4: Causal Diagrams - Interaction, Measurement Bias, Selection Bias - R (regression/simulation)</span></a>
+  </li>  
+        <li class="dropdown-header">Week 5: Quiz - R (regression/simulation/reporting)</li>
+        <li>
+    <a class="dropdown-item" href="../../content/06-content.html">
+ <span class="dropdown-text">Week 6: Causal Inference - Key Concepts ATE - R (regression/simulation: ATE)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/07-content.html">
+ <span class="dropdown-text">Week 7: Causal Inference - Key Concept CATE - R (regression/simulation: ATE)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../content/08-content.html">
+ <span class="dropdown-text">Week 8: Causal Inference - Estimation of ATE and CATE - R and LaTeX</span></a>
+  </li>  
+        <li class="dropdown-header">Week 9: Quiz - R</li>
+        <li class="dropdown-header">Week 10: Measurement Matters - Factor Analysis, CFA, MultiGroup CFA, Partial Invariance - R</li>
+        <li class="dropdown-header">Week 11: Measurement + External Validity in Causal Inference - R (writing introduction/method section)</li>
+        <li class="dropdown-header">Week 12: Missing Data Workflows - Quarto Documents Seminar - Workflows</li>
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Causal inference: a step by step guide</h1>
+                      </div>
+  </div>
+    
+  <div class="quarto-title-meta-author">
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-heading">Affiliation</div>
+    
+      <div class="quarto-title-meta-contents">
+      <p class="author">Joseph Bulbulia <a href="mailto:joseph.bulbulia@vuw.ac.nz" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> <a href="https://orcid.org/0000-0002-5861-2056" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
+    </div>
+    <div class="quarto-title-meta-contents">
+          <p class="affiliation">
+              Victoria University of Wellington, New Zealand
+            </p>
+        </div>
+    </div>
+
+  <div class="quarto-title-meta">
+
+        
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">May 16, 2023</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#link-to-workbook-for-this-week" id="toc-link-to-workbook-for-this-week" class="nav-link active" data-scroll-target="#link-to-workbook-for-this-week">Link to workbook for this week:</a></li>
+  <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#motivations-for-a-three-wave-longitudinal-design-for-observational-causal-inference." id="toc-motivations-for-a-three-wave-longitudinal-design-for-observational-causal-inference." class="nav-link" data-scroll-target="#motivations-for-a-three-wave-longitudinal-design-for-observational-causal-inference.">Motivations for a Three-Wave Longitudinal Design for Observational Causal Inference.</a>
+  <ul class="collapse">
+  <li><a href="#common-cause-of-exposure-and-outcome." id="toc-common-cause-of-exposure-and-outcome." class="nav-link" data-scroll-target="#common-cause-of-exposure-and-outcome.">Common cause of exposure and outcome.</a></li>
+  <li><a href="#solution-adjust-for-confounder" id="toc-solution-adjust-for-confounder" class="nav-link" data-scroll-target="#solution-adjust-for-confounder">Solution: Adjust for Confounder</a></li>
+  <li><a href="#bias-exposure-at-baseline-is-a-common-cause-of-the-exposure-at-t1-and-outcome-at-t2" id="toc-bias-exposure-at-baseline-is-a-common-cause-of-the-exposure-at-t1-and-outcome-at-t2" class="nav-link" data-scroll-target="#bias-exposure-at-baseline-is-a-common-cause-of-the-exposure-at-t1-and-outcome-at-t2">Bias: exposure at baseline is a common cause of the exposure at t1 and outcome at t2</a></li>
+  <li><a href="#solution-adjust-for-confounder-at-baseline" id="toc-solution-adjust-for-confounder-at-baseline" class="nav-link" data-scroll-target="#solution-adjust-for-confounder-at-baseline">Solution: adjust for confounder at baseline</a></li>
+  <li><a href="#a-more-thorough-confounding-control" id="toc-a-more-thorough-confounding-control" class="nav-link" data-scroll-target="#a-more-thorough-confounding-control">A more thorough confounding control</a></li>
+  <li><a href="#generic-3-wave-panel-design-vanderweeele-2020" id="toc-generic-3-wave-panel-design-vanderweeele-2020" class="nav-link" data-scroll-target="#generic-3-wave-panel-design-vanderweeele-2020">Generic 3-wave panel design (VanderWeeele 2020)</a></li>
+  </ul></li>
+  <li><a href="#comprehensive-checklist-for-detailed-reporting-of-a-causal-inferenctial-study-e.g.-assessment-3-option-2" id="toc-comprehensive-checklist-for-detailed-reporting-of-a-causal-inferenctial-study-e.g.-assessment-3-option-2" class="nav-link" data-scroll-target="#comprehensive-checklist-for-detailed-reporting-of-a-causal-inferenctial-study-e.g.-assessment-3-option-2">Comprehensive Checklist for Detailed Reporting of a Causal Inferenctial Study (E.g. Assessment 3 option 2)</a></li>
+  <li><a href="#step-1-formulate-the-research-question" id="toc-step-1-formulate-the-research-question" class="nav-link" data-scroll-target="#step-1-formulate-the-research-question">STEP 1 Formulate the Research Question</a>
+  <ul class="collapse">
+  <li><a href="#d.-highlight-unmeasured-pre-treatment-covariates" id="toc-d.-highlight-unmeasured-pre-treatment-covariates" class="nav-link" data-scroll-target="#d.-highlight-unmeasured-pre-treatment-covariates">d.&nbsp;Highlight unmeasured pre-treatment covariates</a></li>
+  <li><a href="#e.-choose-the-scale-for-a-causal-contrast" id="toc-e.-choose-the-scale-for-a-causal-contrast" class="nav-link" data-scroll-target="#e.-choose-the-scale-for-a-causal-contrast">e. Choose the scale for a causal contrast</a></li>
+  <li><a href="#summary-step-1-consider-how-much-we-need-to-do-when-asking-a-causal-question" id="toc-summary-step-1-consider-how-much-we-need-to-do-when-asking-a-causal-question" class="nav-link" data-scroll-target="#summary-step-1-consider-how-much-we-need-to-do-when-asking-a-causal-question">Summary Step 1: Consider how much we need to do when asking a causal question!</a></li>
+  </ul></li>
+  <li><a href="#step-2-answer-a-causal-question" id="toc-step-2-answer-a-causal-question" class="nav-link" data-scroll-target="#step-2-answer-a-causal-question">STEP 2: ANSWER A CAUSAL QUESTION</a>
+  <ul class="collapse">
+  <li><a href="#include-the-measured-exposure-with-baseline-covariates" id="toc-include-the-measured-exposure-with-baseline-covariates" class="nav-link" data-scroll-target="#include-the-measured-exposure-with-baseline-covariates">Include the measured exposure with baseline covariates</a></li>
+  <li><a href="#state-the-eligibility-criteria-for-participation" id="toc-state-the-eligibility-criteria-for-participation" class="nav-link" data-scroll-target="#state-the-eligibility-criteria-for-participation">State the eligibility criteria for participation</a></li>
+  <li><a href="#determine-how-missing-data-will-be-handled" id="toc-determine-how-missing-data-will-be-handled" class="nav-link" data-scroll-target="#determine-how-missing-data-will-be-handled">Determine how missing data will be handled</a></li>
+  <li><a href="#state-a-statistical-model" id="toc-state-a-statistical-model" class="nav-link" data-scroll-target="#state-a-statistical-model">State a statistical model</a></li>
+  <li><a href="#reporting" id="toc-reporting" class="nav-link" data-scroll-target="#reporting">Reporting</a></li>
+  <li><a href="#example-of-how-to-report-a-doubly-robust-method-in-your-report" id="toc-example-of-how-to-report-a-doubly-robust-method-in-your-report" class="nav-link" data-scroll-target="#example-of-how-to-report-a-doubly-robust-method-in-your-report">Example of how to report a doubly robust method in your report</a></li>
+  <li><a href="#inference" id="toc-inference" class="nav-link" data-scroll-target="#inference">Inference</a></li>
+  </ul></li>
+  <li><a href="#appendix-a-details-of-estimation-approaches" id="toc-appendix-a-details-of-estimation-approaches" class="nav-link" data-scroll-target="#appendix-a-details-of-estimation-approaches">Appendix A: Details of Estimation Approaches</a>
+  <ul class="collapse">
+  <li><a href="#g-computation-for-subgroup-analysis-estimator" id="toc-g-computation-for-subgroup-analysis-estimator" class="nav-link" data-scroll-target="#g-computation-for-subgroup-analysis-estimator">G-computation for Subgroup Analysis Estimator</a></li>
+  <li><a href="#inverse-probability-of-treatment-weighting-iptw-for-subgroup-analysis-estimator" id="toc-inverse-probability-of-treatment-weighting-iptw-for-subgroup-analysis-estimator" class="nav-link" data-scroll-target="#inverse-probability-of-treatment-weighting-iptw-for-subgroup-analysis-estimator">Inverse Probability of Treatment Weighting (IPTW) for Subgroup Analysis Estimator</a></li>
+  <li><a href="#doubly-robust-estimation-for-subgroup-analysis-estimator" id="toc-doubly-robust-estimation-for-subgroup-analysis-estimator" class="nav-link" data-scroll-target="#doubly-robust-estimation-for-subgroup-analysis-estimator">Doubly Robust Estimation for Subgroup Analysis Estimator</a></li>
+  <li><a href="#doubly-robust-estimation-for-subgroup-analysis-estimator-1" id="toc-doubly-robust-estimation-for-subgroup-analysis-estimator-1" class="nav-link" data-scroll-target="#doubly-robust-estimation-for-subgroup-analysis-estimator-1">Doubly Robust Estimation for Subgroup Analysis Estimator</a></li>
+  </ul></li>
+  <li><a href="#appendix-b-g-computation-for-subgroup-analysis-estimator-with-non-additive-effects" id="toc-appendix-b-g-computation-for-subgroup-analysis-estimator-with-non-additive-effects" class="nav-link" data-scroll-target="#appendix-b-g-computation-for-subgroup-analysis-estimator-with-non-additive-effects">Appendix B: G-computation for Subgroup Analysis Estimator with Non-Additive Effects</a></li>
+  <li><a href="#appendix-c-doubly-robust-estimation-for-subgroup-analysis-estimator-with-interaction" id="toc-appendix-c-doubly-robust-estimation-for-subgroup-analysis-estimator-with-interaction" class="nav-link" data-scroll-target="#appendix-c-doubly-robust-estimation-for-subgroup-analysis-estimator-with-interaction">Appendix C: Doubly Robust Estimation for Subgroup Analysis Estimator with Interaction</a></li>
+  <li><a href="#appendix-d-marginal-structural-models-for-estimating-population-average-treatment-effect-with-interaction-doubly-robust" id="toc-appendix-d-marginal-structural-models-for-estimating-population-average-treatment-effect-with-interaction-doubly-robust" class="nav-link" data-scroll-target="#appendix-d-marginal-structural-models-for-estimating-population-average-treatment-effect-with-interaction-doubly-robust">Appendix D: Marginal Structural Models for Estimating Population Average Treatment Effect with Interaction (Doubly Robust)</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<section id="link-to-workbook-for-this-week" class="level2">
+<h2 class="anchored" data-anchor-id="link-to-workbook-for-this-week">Link to workbook for this week:</h2>
+<p><a href="https://github.com/go-bayes/psych-434-2023/blob/main/scripts/example_analysis.R">link to template for option 2 assignment 3</a></p>
+</section>
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>Recall that psychology begins with a question. What do I want to know about thought and behaviour? In cross-cultural psychology, these questions relate to differences, and similarities, between groups.</p>
+<p>Suppose we have asked a question. How can we address it using observational data?</p>
+<p>Too fast.</p>
+<p>Our question must be made precise.</p>
+<p>Today we will consider how to make psychological questions precise, and how to answer them, using 3-wave panel designs <span class="citation" data-cites="vanderweele2020">(<a href="#ref-vanderweele2020" role="doc-biblioref">VanderWeele, Mathur, and Chen 2020</a>)</span>.</p>
+<p>The order is as follows:</p>
+<ol type="1">
+<li><strong>Motivate Three Wave Longitudinal Designs Using Causal Graphs</strong></li>
+<li><strong>Checklist For Causal Estimation in Three Wave Longitudinal Designs</strong></li>
+<li><strong>Explanation of the the Checklist</strong></li>
+</ol>
+<p>Condsider…</p>
+</section>
+<section id="motivations-for-a-three-wave-longitudinal-design-for-observational-causal-inference." class="level2">
+<h2 class="anchored" data-anchor-id="motivations-for-a-three-wave-longitudinal-design-for-observational-causal-inference.">Motivations for a Three-Wave Longitudinal Design for Observational Causal Inference.</h2>
+<p>REVIEW: Causal Diagrammes (DAGS) are a remarkably powerful and simple tool for understanding confounding <a href="https://go-bayes.github.io/psych-434-2023/content/common_graphs.html">https://go-bayes.github.io/psych-434-2023/content/common_graphs.html</a></p>
+<section id="common-cause-of-exposure-and-outcome." class="level3">
+<h3 class="anchored" data-anchor-id="common-cause-of-exposure-and-outcome.">Common cause of exposure and outcome.</h3>
+<p>Our question: does visiting a clinical psychologist reduce the 10 year incidence of heart attacks?</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-dag-1" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-dag-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="09-content_files/figure-html/fig-dag-1-1.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dag-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Common cause of exposure and outcome: example
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="solution-adjust-for-confounder" class="level3">
+<h3 class="anchored" data-anchor-id="solution-adjust-for-confounder">Solution: Adjust for Confounder</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-dag-2" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-dag-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="09-content_files/figure-html/fig-dag-2-1.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dag-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Solution to this problem.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="bias-exposure-at-baseline-is-a-common-cause-of-the-exposure-at-t1-and-outcome-at-t2" class="level3">
+<h3 class="anchored" data-anchor-id="bias-exposure-at-baseline-is-a-common-cause-of-the-exposure-at-t1-and-outcome-at-t2">Bias: exposure at baseline is a common cause of the exposure at t1 and outcome at t2</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-dag-3" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-dag-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="09-content_files/figure-html/fig-dag-3-1.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dag-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Causal graph reveals bias from pre-exosure indicator
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="solution-adjust-for-confounder-at-baseline" class="level3">
+<h3 class="anchored" data-anchor-id="solution-adjust-for-confounder-at-baseline">Solution: adjust for confounder at baseline</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-dag-4" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-dag-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="09-content_files/figure-html/fig-dag-4-1.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dag-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Solution to this problem
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="a-more-thorough-confounding-control" class="level3">
+<h3 class="anchored" data-anchor-id="a-more-thorough-confounding-control">A more thorough confounding control</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-dag-5" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-dag-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="09-content_files/figure-html/fig-dag-5-1.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dag-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: Causal graph:more general panel design
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="generic-3-wave-panel-design-vanderweeele-2020" class="level3">
+<h3 class="anchored" data-anchor-id="generic-3-wave-panel-design-vanderweeele-2020">Generic 3-wave panel design (VanderWeeele 2020)</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-dag-6" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-dag-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="09-content_files/figure-html/fig-dag-6-1.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dag-6-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6: Causal graph: three-wave panel design
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="comprehensive-checklist-for-detailed-reporting-of-a-causal-inferenctial-study-e.g.-assessment-3-option-2" class="level2">
+<h2 class="anchored" data-anchor-id="comprehensive-checklist-for-detailed-reporting-of-a-causal-inferenctial-study-e.g.-assessment-3-option-2">Comprehensive Checklist for Detailed Reporting of a Causal Inferenctial Study (E.g. Assessment 3 option 2)</h2>
+</section>
+<section id="step-1-formulate-the-research-question" class="level2">
+<h2 class="anchored" data-anchor-id="step-1-formulate-the-research-question">STEP 1 Formulate the Research Question</h2>
+<ul>
+<li><strong>Stating the Question:</strong> Is my question clearly stated? If not, state it.</li>
+<li><strong>Relevance of the Question:</strong> Have I explained its importance? If not, explain.</li>
+<li><strong>Ethical Considerations</strong> How might this question affect people? How might not investigating this question affect people?</li>
+<li><strong>Causality of the Question:</strong> Is my question causal? If not, refine your question.</li>
+<li><strong>Subgroup Analysis:</strong> Does my question involve a subgroup (e.g., cultural group)? If not, develop a subgroup analysis question.</li>
+<li><strong>Understanding the Framework:</strong> Can I explain the potential outcomes framework, individual causal effects, the experimental method to obtain average causal effects, the fundamental assumptions of causal inference, and the estimation of causal effects in observational data? If not, review course materials.</li>
+</ul>
+<section id="data-requirements" class="level4">
+<h4 class="anchored" data-anchor-id="data-requirements">Data Requirements</h4>
+<ul>
+<li><strong>Type of Data:</strong> Are my data experimental? If yes, your project may not fit this course.</li>
+<li><strong>Time-Series Data:</strong> Are my data time-series? If not, reconsider your causal question.</li>
+<li><strong>Data Waves:</strong> Do I have at least three waves of data? If not, beware of confounding control issues.</li>
+<li><strong>Data Source:</strong> Are my data from the NZAVS simulated data set? If not, consult with me.</li>
+</ul>
+</section>
+<section id="defining-the-outcome" class="level4">
+<h4 class="anchored" data-anchor-id="defining-the-outcome">Defining the Outcome</h4>
+<ul>
+<li><strong>Outcome Variable:</strong> Is the outcome variable <em>Y</em> defined? If not, define it.</li>
+<li><strong>Multiple Outcomes:</strong> Are there multiple outcomes? If yes, write them down.</li>
+<li><strong>Outcome Relevance:</strong> Can I explain how the outcome variable/s relate to my question? If not, clarify.</li>
+<li><strong>Outcome Type:</strong> Is my outcome binary and rare? If yes, consider logistic regression. If my outcome is continuous, consider z-transforming it or categorising it (consult an expert).</li>
+<li><strong>Outcome Timing:</strong> Does the outcome appear after the exposure? It should.</li>
+</ul>
+</section>
+<section id="determining-the-exposure" class="level4">
+<h4 class="anchored" data-anchor-id="determining-the-exposure">Determining the Exposure</h4>
+<ul>
+<li><strong>Exposure Variable:</strong> Is the exposure variable <em>A</em> defined? If not, define it.</li>
+<li><strong>Multiple Exposures:</strong> Are there multiple exposures? If yes, reassess; if only one exposure, proceed.</li>
+<li><strong>Exposure Relevance:</strong> Can I explain how the exposure variable relates to my question? If not, clarify.</li>
+<li><strong>Positivity:</strong> Can we intervene on the exposure at all levels of the covariates? We should be able to.</li>
+<li><strong>Consistency:</strong> Can I interpret what it means to intervene on the exposure? I should be able to.</li>
+<li><strong>Exchangeability:</strong> Are different versions of the exposure conditionally exchangeable given measured baseline confounders? They should be.</li>
+<li><strong>Exposure Type:</strong> Is the exposure binary or continuous? If continuous, z-transform it or consider categorising it (consult an expert).</li>
+<li><strong>Exposure Timing:</strong> Does the exposure appear before the outcome? It should.</li>
+</ul>
+</section>
+<section id="accounting-for-confounders" class="level4">
+<h4 class="anchored" data-anchor-id="accounting-for-confounders">Accounting for Confounders</h4>
+<ul>
+<li><strong>Baseline Confounders:</strong> Have I defined my baseline confounders <em>L</em>? I should have.</li>
+<li><strong>Justification:</strong> Can I explain how the baseline confounders could affect both <em>A</em> and <em>Y</em>? I should be able to.</li>
+<li><strong>Timing:</strong> Are the baseline confounders measured before the exposure? They should be.</li>
+<li><strong>Inclusion:</strong> Is the baseline measure of the exposure and the baseline outcome included in the set of baseline confounders? They should be.</li>
+<li><strong>Sufficiency:</strong> Are the baseline confounders sufficient to ensure balance on the exposure, such that <em>A</em> is independent of <em>Y</em> given <em>L</em>? If not, plan a sensitivity analysis.</li>
+<li><strong>Confounder Type:</strong> Are the confounders continuous or binary? If so, consider converting them to z-scores. If they are categorical with three or more levels, do not convert them to z-scores.</li>
+</ul>
+</section>
+<section id="drawing-a-causal-diagram-with-unmeasured-confounders" class="level4">
+<h4 class="anchored" data-anchor-id="drawing-a-causal-diagram-with-unmeasured-confounders">Drawing a Causal Diagram with Unmeasured Confounders</h4>
+<ul>
+<li><strong>Unmeasured Confounders:</strong> Does previous science suggest the presence of unmeasured confounders? If not, expand your understanding.</li>
+<li><strong>Causal Diagram:</strong> Have I drawn a causal diagram (DAG) to highlight both measured and unmeasured sources of confounding? I should have.</li>
+<li><strong>M-Bias:</strong> Have I considered the possibility of M-Bias? If not familiar, we’ll discuss later.</li>
+<li><strong>Measurement Error:</strong> Have I described potential biases from measurement errors? If not, we’ll discuss later.</li>
+<li><strong>Temporal Order:</strong> Does my DAG have time indicators to ensure correct temporal order? It should.</li>
+<li><strong>Time Consistency:</strong> Is my DAG organized so that time follows in a consistent direction? It should.</li>
+</ul>
+</section>
+<section id="identifying-the-estimand" class="level4">
+<h4 class="anchored" data-anchor-id="identifying-the-estimand">Identifying the Estimand</h4>
+<ul>
+<li><strong>Causal Estimand:</strong> Is my causal estimand one of the following:</li>
+</ul>
+<p><span class="math display">ATE_{G,(A,A')} = E[Y(1) - Y(0)|G, L]</span></p>
+<p><span class="math display">ATE_{G,(A/A')} = \frac{E[Y(1)|G, L]}{E[Y(0)|G, L]}</span></p>
+<p>If yes, you’re on the right track.</p>
+</section>
+<section id="understanding-source-and-target-populations" class="level4">
+<h4 class="anchored" data-anchor-id="understanding-source-and-target-populations">Understanding Source and Target Populations</h4>
+<ul>
+<li><strong>Populations Identified:</strong> Have I differentiated between my source and target populations? I should have.</li>
+<li><strong>Generalisability and Transportability:</strong> Have I considered whether my results generalise to the source population and transport to a different population? I should have.</li>
+</ul>
+</section>
+<section id="setting-eligibility-criteria" class="level4">
+<h4 class="anchored" data-anchor-id="setting-eligibility-criteria">Setting Eligibility Criteria</h4>
+<ul>
+<li><strong>Criteria Stated:</strong> Have I stated the eligibility criteria for the study? I should have.</li>
+</ul>
+</section>
+<section id="describing-sample-characteristics" class="level4">
+<h4 class="anchored" data-anchor-id="describing-sample-characteristics">Describing Sample Characteristics</h4>
+<ul>
+<li><strong>Descriptive Statistics:</strong> Have I provided descriptive statistics for demographic information taken at baseline? I should have.</li>
+<li><strong>Exposure Change:</strong> Have I demonstrated the magnitudes of change in the exposure from baseline to the exposure interval? I should have.</li>
+<li><strong>References:</strong> Have I included references for more information about the sample? I should have.</li>
+</ul>
+</section>
+<section id="addressing-missing-data" class="level4">
+<h4 class="anchored" data-anchor-id="addressing-missing-data">Addressing Missing Data</h4>
+<ul>
+<li><strong>Missing Data Check:</strong> Have I checked for missing data? I should have.</li>
+<li><strong>Missing Data Plan:</strong> If there is missing data, have I described how I will address it? I should have.</li>
+</ul>
+</section>
+<section id="selecting-the-model-approach" class="level4">
+<h4 class="anchored" data-anchor-id="selecting-the-model-approach">Selecting the Model Approach</h4>
+<ul>
+<li><strong>Approach Decision:</strong> Have I decided on using G-computation, IPTW, or Doubly-Robust Estimation? I should have.</li>
+<li><strong>Interaction Inclusion:</strong> Have I included the interaction of the exposure and baseline covariates? I should have.</li>
+<li><strong>Large Data Set:</strong> If I have a large data set, should I include the interaction of the exposure, group, and baseline confounders? I should consider it.</li>
+<li><strong>Model Specification:</strong> Have I double-checked the model specification? I should.</li>
+<li><strong>Outcome Specifics:</strong> If the outcome is rare and binary, have I specified logistic regression? If it’s continuous, have I considered converting it to z-scores?</li>
+<li><strong>Sensitivity Analysis:</strong> Am I planning a sensitivity analysis using simulation? If yes, describe it (e.g.&nbsp;E-values.)</li>
+</ul>
+</section>
+<section id="d.-highlight-unmeasured-pre-treatment-covariates" class="level3">
+<h3 class="anchored" data-anchor-id="d.-highlight-unmeasured-pre-treatment-covariates">d.&nbsp;Highlight unmeasured pre-treatment covariates</h3>
+<p>Let <strong>U</strong> denoted unmeasured pre-treatment covariates that may potentially bias the statistical association between <em>A</em> and <em>Y</em> independently of the measured covariates.</p>
+<section id="consider" class="level4">
+<h4 class="anchored" data-anchor-id="consider">Consider:</h4>
+<ul>
+<li>To affect <em>Y</em> and <em>A</em>, <em>U</em> must occur before <em>A</em>.</li>
+<li>It is useful to draw a causal diagramme to illustrate all potential sources of bias.</li>
+<li>Causal diagrammes are qualitative tools that require specialist expertise. We cannot typically obtain a causal graph from the data.</li>
+<li>A causal diagramme should include only as much information as is required to assess confounding. See <a href="#fig-dag-outcomewide" class="quarto-xref">Figure&nbsp;7</a> for an example.</li>
+<li>Because we cannot ensure the absence of unmeasured confounders in observational settings, it is vital to conduct sensitivity analyses for the results. For sensitivity analyeses, we use E-values, a topic for a latter seminar.</li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-dag-outcomewide" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-dag-outcomewide-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="09-content_files/figure-html/fig-dag-outcomewide-1.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dag-outcomewide-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7: Causal graph: three-wave panel design.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="e.-choose-the-scale-for-a-causal-contrast" class="level3">
+<h3 class="anchored" data-anchor-id="e.-choose-the-scale-for-a-causal-contrast">e. Choose the scale for a causal contrast</h3>
+<p>Average causal effects can be inferred by contrasting the expected outcome when a population is exposed to an exposure level, <span class="math inline">E[Y(A = a)]</span>, with the expected outcome under a different exposure level, <span class="math inline">E[Y(A=a')]</span>.</p>
+<p>For a binary treatment with levels <span class="math inline">A=0</span> and <span class="math inline">A=1</span>, the Average Treatment Effect (ATE), on the difference scale, is expressed:</p>
+<p><span class="math display">ATE_{\text{risk difference}} = E[Y(1)|L] - E[Y(0)|L]</span></p>
+<p>On the risk ratio scale, the ATE is expressed:</p>
+<p><span class="math display">ATE_{\text{risk ratio}} = \frac{E[Y(1)|L]}{E[Y(0)|L]}</span></p>
+<p>Other effect scales, such as the incidence rate ratio, incidence rate difference, or hazard ratio, might also be of interest. We can also define the Average Treatment Effect on the Treated (ATT) :</p>
+<p><span class="math display">ATT_{\text{risk difference}} = E[Y(1) - Y(0)|A=1,L]</span></p>
+<p><span class="math display">ATT_{\text{risk ratio}} = \frac{E[Y(1)|A=1,L]}{E[Y(0)|A=1, L]}</span></p>
+<p>Another common estimand is the Population Average Treatment Effect (PATE), which denotes the effect the treatment would have on the entire population if applied universally to that population. This quantity can be expressed:</p>
+<p><span class="math display">PATE_{\text{risk difference}} = f(E[Y(1) - Y(0)|L], W)</span></p>
+<p><span class="math display">PATE_{\text{risk ratio}} = f\left(\frac{E[Y(1)|L]}{E[Y(0)|L]}, W\right)</span></p>
+<p>where <span class="math inline">f</span> is a function that incorporates weights <span class="math inline">W</span> into the estimation of the expected outcomes. These weights are given from census estimates for the wider population. Note: I will show you how to use weights in future seminars.</p>
+<p>We might also be interested in identifying effects specific to certain strata, such as risk differences or risk ratios, as they are modified by baseline indicators. Denote a stratum of interest by <span class="math inline">G</span>. We may then compute:</p>
+<p><span class="math display">ATE_{G,\text{risk difference}} = E[Y(1) - Y(0)|G, L]</span></p>
+<p><span class="math display">ATE_{G,\text{risk ratio}} = \frac{E[Y(1)|G, L]}{E[Y(0)|G, L]}</span></p>
+<section id="consider-1" class="level4">
+<h4 class="anchored" data-anchor-id="consider-1">Consider:</h4>
+<ul>
+<li><em>In this course, we are interested in stratum specific comparisons</em></li>
+<li>In the causal inference literature, the concept we use to make sense of stratum specific comparisons is called “effect modification.”</li>
+<li>By inferring effects within stratums, we may evaluate whether the effects of different exposures or treatments on some well-defined outcome (measured in some well-defined time-period after the exposure) differ depending on group measurement.</li>
+<li>The logic of effect modification differs slightly from that of interaction.</li>
+</ul>
+</section>
+<section id="aside-extensions" class="level4">
+<h4 class="anchored" data-anchor-id="aside-extensions">Aside: extensions</h4>
+<p>For continuous exposures, we must stipulate the level of contrast for the exposure (e.g.&nbsp;weekly versus monthly church attendance):</p>
+<p><span class="math display">ATE_{A,A'} = E[Y(A) - Y(A')| L]</span></p>
+<p>This essentially denotes an average treatment effect comparing the outcome under treatment level <span class="math inline">A</span> to the outcome under treatment level <span class="math inline">A'</span>.</p>
+<p>Likewise:</p>
+<p><span class="math display">ATE_{A/A'} = \frac{E[Y(A)| L]}{E[Y(A')| L]}</span></p>
+<p>This defines the contrast of <span class="math inline">A</span> and <span class="math inline">A'</span> on a ratio scale.</p>
+</section>
+<section id="f.-describe-the-populations-for-whom-the-intended-study-is-meant-to-generalise-by-distinguishing-between-source-and-target-populations." class="level4">
+<h4 class="anchored" data-anchor-id="f.-describe-the-populations-for-whom-the-intended-study-is-meant-to-generalise-by-distinguishing-between-source-and-target-populations.">f.&nbsp;Describe the population(s) for whom the intended study is meant to generalise by distinguishing between source and target populations.</h4>
+<p>Consider the following concepts:</p>
+<ul>
+<li><p><strong>Source population</strong>: A source population is where we gather our data for a study. We pull our specific sample from this group. It needs to mirror the broader group for our conclusions to be valid and widely applicable.</p></li>
+<li><p><strong>Target population</strong>: The target population is the larger group we aim to apply our study’s results to. It could be defined by location, demographics, or specific conditions. The closer the source matches the target in ways that are relevant to our causal questions, the stronger our causal inferences about the target population will be.</p>
+<ul>
+<li><strong>Generalisability</strong> refers to the ability to apply the causal effects estimated from a sample to the population it was drawn from. In simpler terms, it deals with the extrapolation of causal knowledge from a sample to the broader population. This concept is also called “external validity”.</li>
+</ul></li>
+</ul>
+<p><span class="math display">\text{Generalisability} = PATE \approx ATE_{\text{sample}}</span></p>
+<ul>
+<li><strong>Transportability</strong> refers to the ability to extrapolate causal effects learned from a source population to a target population when certain conditions are met. It deals with the transfer of causal knowledge across different settings or populations.</li>
+</ul>
+<p><span class="math display">\text{Transportability} = ATE_{\text{target}} \approx f(ATE_{\text{source}}, T)</span></p>
+<p>where <span class="math inline">f</span> is a function and <span class="math inline">T</span> is a function that maps the results from our source population to another population. To achieve transportability, we need information about the source and target populations and an understanding of how the relationships between treatment, outcome, and covariates differ between the populations. Assessing transportability requires scientific knowledge.</p>
+</section>
+</section>
+<section id="summary-step-1-consider-how-much-we-need-to-do-when-asking-a-causal-question" class="level3">
+<h3 class="anchored" data-anchor-id="summary-step-1-consider-how-much-we-need-to-do-when-asking-a-causal-question">Summary Step 1: Consider how much we need to do when asking a causal question!</h3>
+<p>We discover that asking a causal question is a multifaceted task. It demands careful definition of the outcome, including its timing, the exposure, and covariates. It also requires selecting the appropriate scale for causal contrast, controlling for confounding, and potentially adjusting for sample weights or stratification. Finally, when asking a causal question, we must consider for whom the results apply. Only after following these steps can we then ask: “How may we answer this causal question?”</p>
+</section>
+</section>
+<section id="step-2-answer-a-causal-question" class="level2">
+<h2 class="anchored" data-anchor-id="step-2-answer-a-causal-question">STEP 2: ANSWER A CAUSAL QUESTION</h2>
+<section id="obtain-longitudinal-data" class="level4">
+<h4 class="anchored" data-anchor-id="obtain-longitudinal-data">Obtain longitudinal data</h4>
+<p>Note that causal inference from observational data turns on the appropriate temporal ordering of the key variables involved in the study.</p>
+<p>Recall we have defined.</p>
+<ul>
+<li><p><strong>A</strong>: Our exposure or treatment variable, denoted as <strong>A</strong>. Here we consider the example of ‘Church attendance’.</p></li>
+<li><p><strong>Y</strong>: The outcome variable we are interested in, represented by <strong>Y</strong>, is psychological distress. We operationalise this variable through the ‘Kessler-6’ distress scale.</p></li>
+<li><p><strong>L</strong>: The confounding variables, collectively referred to as <strong>L</strong>, represent factors that can independently influence both <strong>A</strong> and <strong>Y</strong>. For example, socio-economic status could be a confounder that impacts both the likelihood of church attendance and the levels of psychological distress.</p></li>
+</ul>
+<p>Given the importance of temporal ordering, we must now define time:</p>
+<ul>
+<li><strong>t</strong> <span class="math inline">\in</span> T: Let <span class="math inline">t</span> denote within a multiwave panel study with <strong>T</strong> measurement intervals.</li>
+</ul>
+<p>Where <span class="math inline">t/\text{{exposure}}</span> denotes the measurement interval for the exposure. Longitudinal data collection provides us the ability to establish a causal model such that:</p>
+<p><span class="math display">t_{confounders} &lt; t_{exposure}&lt; t_{outcome}</span></p>
+<p>To minimise the posibility of time-varying confounding and obtain the clearest effect estimates, we should acquire the most recent values of <span class="math inline">\mathbf{L}</span> preceding <span class="math inline">A</span> and the latest values of <span class="math inline">A</span> before <span class="math inline">Y</span>.</p>
+<p>Note in <a href="#fig-dag-outcomewide" class="quarto-xref">Figure&nbsp;7</a>, We use the prefixes “t0, t1, and t2” to denote temporal ordering. We include in the set of baseline confounders the pre-exposure measurement of <em>A</em> and <em>Y</em>. This allows for more substantial confounding control. For unmeasured confounder to affect both the exposure and the outcome, it would need to do so independently of the pre-exposure confounders. Additionally, including the baseline exposure gives us an effect estimate for the incidence exposure, rather than the prevelance of the exposure. This helps us to assess the expected change in the outcome were we to initate a change in the exposure.</p>
+</section>
+<section id="include-the-measured-exposure-with-baseline-covariates" class="level3">
+<h3 class="anchored" data-anchor-id="include-the-measured-exposure-with-baseline-covariates">Include the measured exposure with baseline covariates</h3>
+<p>Controlling for prior exposure enables the interpretation of the effect estimate as a change in the exposure in a manner akin to a randomised trial. We propose that the effect estimate with prior control for the exposure estimates the “incidence exposure” rather than the “prevalence exposure” <span class="citation" data-cites="danaei2012">(<a href="#ref-danaei2012" role="doc-biblioref">Danaei, Tavakkoli, and Hernán 2012</a>)</span>. It is crucial to estimate the incidence exposure because if the effects of an exposure are harmful in the short term such that these effects are not subsequently measured, a failure to adjust for prior exposure will yield the illusion that the exposure is beneficial. Furthermore, this approach aids in controlling for unmeasured confounding. For such a confounder to explain away the observed exposure-outcome association, it would need to do so independently of the prior level of the exposure and outcome.</p>
+</section>
+<section id="state-the-eligibility-criteria-for-participation" class="level3">
+<h3 class="anchored" data-anchor-id="state-the-eligibility-criteria-for-participation">State the eligibility criteria for participation</h3>
+<p>This step is invaluable for assessing whether we are answering the causal question that we have asked.</p>
+<section id="consider-2" class="level4">
+<h4 class="anchored" data-anchor-id="consider-2">Consider:</h4>
+<ul>
+<li>Generalisability: we cannot evaluate inferences to a target group from the source population if we do not describe the source population</li>
+<li>Eligibility criteria will help us to ensure whether we have correctly evaluated potential measurement bias/error in our instruments.</li>
+</ul>
+<p>For example, the New Zealand Attitudes and Values Study is a National Probability study of New Zealanders. The details provided in the supplementary materials describe how individuals were randomly selected from the country’s electoral roll. From these invitations there was typically less than 15% response rate. How might this process of recruitment affect generalisability and transportability of our results?</p>
+<ul>
+<li>Aside: discuss per protocol effects/ intention to treat effects</li>
+</ul>
+</section>
+</section>
+<section id="determine-how-missing-data-will-be-handled" class="level3">
+<h3 class="anchored" data-anchor-id="determine-how-missing-data-will-be-handled">Determine how missing data will be handled</h3>
+<ul>
+<li>As we will consider in the upcoming weeks, loss to follow up and non-response opens sources for bias. We must develop a strategy for handling missing data.</li>
+</ul>
+</section>
+<section id="state-a-statistical-model" class="level3">
+<h3 class="anchored" data-anchor-id="state-a-statistical-model">State a statistical model</h3>
+<p>The models we have considered in this course are G-computation, Inverse Probability of Treatement Weighting, and Doubly-Robust estimation.</p>
+</section>
+<section id="reporting" class="level3">
+<h3 class="anchored" data-anchor-id="reporting">Reporting</h3>
+<p>Consider the following ideas about how to report one’s model:</p>
+<ul>
+<li><strong>Estimator</strong>: Doubly robust where possible.</li>
+<li><strong>Propensity Score Reporting:</strong> Detail the process of propensity score derivation, including the model used and any variable transformations.</li>
+<li><strong>WeightIt Package Utilisation:</strong> Explicitly mention the use of the ‘WeightIt’ package in R, including any specific options or parameters used in the propensity score estimation process.</li>
+<li><strong>Method Variations:</strong> Report if different methods were used to obtain propensity scores, and the reasons behind the choice of methods such as ‘ebal’, ‘energy’, and ‘ps’.</li>
+<li><strong>Continuous Exposures:</strong> Highlight that for continuous exposures, only the ‘energy’ option was used for propensity score estimation.</li>
+<li><strong>Subgroup Estimation:</strong> Confirm that the propensity scores for subgroups were estimated separately, and discuss how the weights were subsequently combined with the original data.</li>
+<li><strong>Covariate Balance:</strong> Include a Love plot to visually represent covariate balance on the exposure both before and after weighting.</li>
+<li><strong>Weighting Algorithm Statistics:</strong> Report the statistics for the weighting algorithms as provided by the WeightIt package, including any measures of balance or fit.</li>
+<li><strong>Outcome Regression Model:</strong> Clearly report the type of regression model used to estimate outcome model coefficients (e.g., linear regression, Poisson, binomial), and mention if the exposure was interacted with the baseline covariates. Do not report model coefficients as these have no interpretation.</li>
+<li><strong>Subgroup Interaction:</strong> Address whether the subgroup was included separately as an interaction in the outcome model, and if the model successfully converged.</li>
+<li><strong>Model Coefficients:</strong> Note that the model coefficients should not be interpreted, as they are not meaningful in this context.</li>
+<li><strong>Confidence Intervals and Standard Errors:</strong> Describe the methods used to derive confidence intervals and standard errors, noting the use of the ‘clarify’ package in R for simulation based inference.</li>
+</ul>
+</section>
+<section id="example-of-how-to-report-a-doubly-robust-method-in-your-report" class="level3">
+<h3 class="anchored" data-anchor-id="example-of-how-to-report-a-doubly-robust-method-in-your-report">Example of how to report a doubly robust method in your report</h3>
+<p>The Doubly Robust Estimation method for Subgroup Analysis Estimator is a sophisticated tool combining features of both IPTW and G-computation methods, providing unbiased estimates if either the propensity score or outcome model is correctly specified. The process involves five main steps:</p>
+<p><strong>Step 1</strong> involves the estimation of the propensity score, a measure of the conditional probability of exposure given the covariates and the subgroup indicator. This score is calculated using statistical models such as logistic regression, with the model choice depending on the nature of the data and exposure. Weights for each individual are then calculated using this propensity score. These weights depend on the exposure status and are computed differently for exposed and unexposed individuals. The estimation of propensity scores is performed separately within each subgroup stratum.</p>
+<p><strong>Step 2</strong> focuses on fitting a weighted outcome model, making use of the previously calculated weights from the propensity scores. This model estimates the outcome conditional on exposure, covariates, and subgroup, integrating the weights into the estimation process. Unlike in propensity score model estimation, covariates are included as variables in the outcome model. This inclusion makes the method doubly robust - providing a consistent effect estimate if either the propensity score or the outcome model is correctly specified, thereby reducing the assumption of correct model specification.</p>
+<p><strong>Step 3</strong> entails the simulation of potential outcomes for each individual in each subgroup. These hypothetical scenarios assume universal exposure to the intervention within each subgroup, regardless of actual exposure levels. The expectation of potential outcomes is calculated for each individual in each subgroup, using individual-specific weights. These scenarios are performed for both the current and alternative interventions.</p>
+<p><strong>Step 4</strong> is the estimation of the average causal effect for each subgroup, achieved by comparing the computed expected values of potential outcomes under each intervention level. The difference represents the average causal effect of changing the exposure within each subgroup.</p>
+<p><strong>Step 5</strong> involves comparing differences in causal effects across groups by calculating the differences in the estimated causal effects between different subgroups. Confidence intervals and standard errors for these calculations are determined using simulation-based inference methods <span class="citation" data-cites="greifer2023">(<a href="#ref-greifer2023" role="doc-biblioref">Greifer et al. 2023</a>)</span>. This step allows for a comprehensive comparison of the impact of different interventions across various subgroups, while encorporating uncertainty.</p>
+</section>
+<section id="inference" class="level3">
+<h3 class="anchored" data-anchor-id="inference">Inference</h3>
+<p>Consider the following ideas about what to discuss in one’s findings: Consider the following ideas about what to discuss in one’s findings. The order of exposition might be different.</p>
+<ol type="1">
+<li><p><strong>Summary of results</strong>: What did you find?</p></li>
+<li><p><strong>Interpretation of E-values:</strong> Interpret the E-values used for sensitivity analysis. State what they represent in terms of the robustness of the findings to potential unmeasured confounding.</p></li>
+<li><p><strong>Causal Effect Interpretation:</strong> What is the interest of the effect, if any, if an effect was observed? Interpret the average causal effect of changing the exposure level within each subgroup, and discuss its relevance to the research question.</p></li>
+<li><p><strong>Comparison of Subgroups:</strong> Discuss how differences in causal effect estimates between different subgroups, if observed, or if not observed, contribute to the overall findings of the study.</p></li>
+<li><p><strong>Uncertainty and Confidence Intervals:</strong> Consider the uncertainty around the estimated causal effects, and interpret the confidence intervals to understand the precision of the estimates.</p></li>
+<li><p><strong>Generalisability and Transportability:</strong> Reflect on the generalizability of the study results to other contexts or populations. Discuss any factors that might influence the transportability of the causal effects found in the study. (Again see lecture 9.)</p></li>
+<li><p><strong>Assumptions and Limitations:</strong> Reflect on the assumptions made during the study and identify any limitations in the methodology that could affect the interpretation of results. State that the implications of different intervention levels on potential outcomes are not analysed.</p></li>
+<li><p><strong>Theoretical Relevance</strong>: How are these findings relevant to existing theories.</p></li>
+<li><p><strong>Replication and Future Research:</strong> Consider how the study could be replicated or expanded upon in future research, and how the findings contribute to the existing body of knowledge in the field.</p></li>
+<li><p><strong>Real-world Implications:</strong> Discuss the real-world implications of the findings, and how they could be applied in policy, practice, or further research.</p></li>
+</ol>
+</section>
+</section>
+<section id="appendix-a-details-of-estimation-approaches" class="level2">
+<h2 class="anchored" data-anchor-id="appendix-a-details-of-estimation-approaches">Appendix A: Details of Estimation Approaches</h2>
+<section id="g-computation-for-subgroup-analysis-estimator" class="level3">
+<h3 class="anchored" data-anchor-id="g-computation-for-subgroup-analysis-estimator">G-computation for Subgroup Analysis Estimator</h3>
+<p><strong>Step 1:</strong> Estimate the outcome model. Fit a model for the outcome <span class="math inline">Y</span>, conditional on the exposure <span class="math inline">A</span>, the covariates <span class="math inline">L</span>, and subgroup indicator <span class="math inline">G</span>. This model can be a linear regression, logistic regression, or another statistical model. The goal is to capture the relationship between the outcome, exposure, confounders, and subgroups.</p>
+<p><span class="math display"> \hat{E}(Y|A,L,G) = f_Y(A,L,G; \theta_Y) </span></p>
+<p>This equation represents the expected value of the outcome <span class="math inline">Y</span> given the exposure <span class="math inline">A</span>, covariates <span class="math inline">L</span>, and subgroup <span class="math inline">G</span>, as modelled by the function <span class="math inline">f_Y</span> with parameters <span class="math inline">\theta_Y</span>. This formulation allows for the prediction of the average outcome <span class="math inline">Y</span> given certain values of <span class="math inline">A</span>, <span class="math inline">L</span>, and <span class="math inline">G</span>.</p>
+<p><strong>Step 2:</strong> Simulate potential outcomes. For each individual in each subgroup, predict their potential outcome under the intervention <span class="math inline">A=a</span> using the estimated outcome model:</p>
+<p><span class="math display">\hat{E}(Y(a)|G=g) = \hat{E}[Y|A=a,L,G=g; \hat{\theta}_Y]</span></p>
+<p>We also predict the potential outcome for everyone in each subgroup under the causal contrast, setting the intervention for everyone in that group to <span class="math inline">A=a'</span>:</p>
+<p><span class="math display">\hat{E}(Y(a')|G=g) = \hat{E}[Y|A=a',L,G=g; \hat{\theta}_Y]</span></p>
+<p>In these equations, <span class="math inline">Y</span> represents the potential outcome, <span class="math inline">A</span> is the intervention, <span class="math inline">L</span> are the covariates, <span class="math inline">G=g</span> represents the subgroup, and <span class="math inline">\theta_Y</span> are the parameters of the outcome model.</p>
+<p><strong>Step 3:</strong> Calculate the estimated difference for each subgroup <span class="math inline">g</span>:</p>
+<p><span class="math display">\hat{\delta}_g = \hat{E}[Y(a)|G=g] - \hat{E}[Y(a')|G=g]</span></p>
+<p>This difference <span class="math inline">\hat{\delta}_g</span> represents the average causal effect of changing the exposure from level <span class="math inline">a'</span> to level <span class="math inline">a</span> within each subgroup <span class="math inline">g</span>.</p>
+<p>We use simulation-based inference methods to compute standard errors and confidence intervals <span class="citation" data-cites="greifer2023">(<a href="#ref-greifer2023" role="doc-biblioref">Greifer et al. 2023</a>)</span>.</p>
+<p><strong>Step 4:</strong> Compare differences in causal effects by subgroups:</p>
+<p><span class="math display">\hat{\gamma} = \hat{\delta}_g - \hat{\delta}_{g'}</span></p>
+<p>where,</p>
+<p><span class="math display">\hat{\gamma} = \overbrace{\big( \hat{E}[Y(a)|G=g] - \hat{E}[Y(a^{\prime})|G=g] \big)}^{\hat{\delta_g}} - \overbrace{\big(\hat{E}[Y(a^{\prime})|G=g^{\prime}]- \hat{E}[Y(a)|G=g^{\prime}]\big)}^{\hat{\delta_{g^{\prime}}}}</span></p>
+<p>This difference <span class="math inline">\hat{\gamma}</span> represents the difference in the average causal effects between the subgroups <span class="math inline">g</span> and <span class="math inline">g'</span>. It measures the difference in effect of the exposure <span class="math inline">A</span> within subgroup <span class="math inline">G</span> on the outcome <span class="math inline">Y</span>.</p>
+<p><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p>We again use simulation-based inference methods to compute standard errors and confidence intervals <span class="citation" data-cites="greifer2023">(<a href="#ref-greifer2023" role="doc-biblioref">Greifer et al. 2023</a>)</span>.</p>
+</section>
+<section id="inverse-probability-of-treatment-weighting-iptw-for-subgroup-analysis-estimator" class="level3">
+<h3 class="anchored" data-anchor-id="inverse-probability-of-treatment-weighting-iptw-for-subgroup-analysis-estimator">Inverse Probability of Treatment Weighting (IPTW) for Subgroup Analysis Estimator</h3>
+<p><strong>Step 1:</strong> Estimate the propensity score. The propensity score <span class="math inline">e(L, G)</span> is the conditional probability of the exposure <span class="math inline">A = 1</span>, given the covariates <span class="math inline">L</span> and subgroup indicator <span class="math inline">G</span>. This can be modeled using logistic regression or other suitable methods, depending on the nature of the data and the exposure.</p>
+<p><span class="math display">e = P(A = 1 | L, G) = f_A(L, G; \theta_A)</span></p>
+<p>Here, <span class="math inline">f_A(L, G; \theta_A)</span> is a function (statistical model) that estimates the probability of the exposure <span class="math inline">A = 1</span> given covariates <span class="math inline">L</span> and subgroup <span class="math inline">G</span>. Then, we calculate the weights for each individual, denoted as <span class="math inline">v</span>, using the estimated propensity score:</p>
+<p><span class="math display">
+v =
+\begin{cases}
+\frac{1}{e} &amp; \text{if } A = 1 \\
+\frac{1}{1-e} &amp; \text{if } A = 0
+\end{cases}
+</span></p>
+<p><strong>Step 2:</strong> Fit a weighted outcome model. Using the weights calculated from the estimated propensity scores, fit a model for the outcome <span class="math inline">Y</span>, conditional on the exposure <span class="math inline">A</span> and subgroup <span class="math inline">G</span>. This can be represented as:</p>
+<p><span class="math display"> \hat{E}(Y|A, G; V) = f_Y(A, G ; \theta_Y, V) </span></p>
+<p>In this model, <span class="math inline">f_Y</span> is a function (such as a weighted regression model) with parameters <span class="math inline">θ_Y</span>.</p>
+<p><strong>Step 3:</strong> Simulate potential outcomes. For each individual in each subgroup, simulate their potential outcome under the hypothetical scenario where everyone in the subgroup is exposed to the intervention <span class="math inline">A=a</span> regardless of their actual exposure level:</p>
+<p><span class="math display">\hat{E}(Y(a)|G=g) = \hat{E}[Y|A=a,G=g; \hat{\theta}_Y, v]</span></p>
+<p>And also under the hypothetical scenario where everyone is exposed to intervention <span class="math inline">A=a'</span>:</p>
+<p><span class="math display">\hat{E}(Y(a')|G=g) = \hat{E}[Y|A=a',G=g; \hat{\theta}_Y, v]</span></p>
+<p><strong>Step 4:</strong> Estimate the average causal effect for each subgroup as the difference in the predicted outcomes:</p>
+<p><span class="math display">\hat{\delta}_g = \hat{E}[Y(a)|G=g] - \hat{E}[Y(a')|G=g]</span></p>
+<p>The estimated difference <span class="math inline">\hat{\delta}_g</span> represents the average causal effect within group <span class="math inline">g</span>.</p>
+<p><strong>Step 5:</strong> Compare differences in causal effects by groups. Compute the differences in the estimated causal effects between different subgroups:</p>
+<p><span class="math display">\hat{\gamma} = \hat{\delta}_g - \hat{\delta}_{g'}</span></p>
+<p>where,</p>
+<p><span class="math display">\hat{\gamma} = \overbrace{\big( \hat{E}[Y(a)|G=g] - \hat{E}[Y(a')|G=g] \big)}^{\hat{\delta_g}} - \overbrace{\big(\hat{E}[Y(a')|G=g']- \hat{E}[Y(a)|G=g']\big)}^{\hat{\delta_{g'}}}</span></p>
+<p>This <span class="math inline">\hat{\gamma}</span> represents the difference in the average causal effects between the subgroups <span class="math inline">g</span> and <span class="math inline">g'</span>.</p>
+<p>We again use simulation-based inference methods to compute standard errors and confidence intervals <span class="citation" data-cites="greifer2023">(<a href="#ref-greifer2023" role="doc-biblioref">Greifer et al. 2023</a>)</span>.</p>
+</section>
+<section id="doubly-robust-estimation-for-subgroup-analysis-estimator" class="level3">
+<h3 class="anchored" data-anchor-id="doubly-robust-estimation-for-subgroup-analysis-estimator">Doubly Robust Estimation for Subgroup Analysis Estimator</h3>
+<p>It appears that the Doubly Robust Estimation explanation for subgroup analysis is already clear and correct, covering all the necessary steps in the process. Nevertheless, there’s a slight confusion in step 4. The difference <span class="math inline">\delta_g</span> is not defined within the document. I assume that you intended to write <span class="math inline">\hat{\delta}_g</span>. Here’s the corrected version:</p>
+</section>
+<section id="doubly-robust-estimation-for-subgroup-analysis-estimator-1" class="level3">
+<h3 class="anchored" data-anchor-id="doubly-robust-estimation-for-subgroup-analysis-estimator-1">Doubly Robust Estimation for Subgroup Analysis Estimator</h3>
+<p>Doubly Robust Estimation is a powerful technique that combines the strengths of both the IPTW and G-computation methods. It uses both the propensity score model and the outcome model, which makes it doubly robust: it produces unbiased estimates if either one of the models is correctly specified.</p>
+<p><strong>Step 1</strong> Estimate the propensity score. The propensity score <span class="math inline">e(L, G)</span> is the conditional probability of the exposure <span class="math inline">A = 1</span>, given the covariates <span class="math inline">L</span> and subgroup indicator <span class="math inline">G</span>. This can be modeled using logistic regression or other suitable methods, depending on the nature of the data and the exposure.</p>
+<p><span class="math display">e = P(A = 1 | L, G) = f_A(L, G; \theta_A)</span></p>
+<p>Here, <span class="math inline">f_A(L, G; \theta_A)</span> is a function (statistical model) that estimates the probability of the exposure <span class="math inline">A = 1</span> given covariates <span class="math inline">L</span> and subgroup <span class="math inline">G</span>. Then, we calculate the weights for each individual, denoted as <span class="math inline">v</span>, using the estimated propensity score:</p>
+<p><span class="math display">
+v =
+\begin{cases}
+\frac{1}{e} &amp; \text{if } A = 1 \\
+\frac{1}{1-e} &amp; \text{if } A = 0
+\end{cases}
+</span></p>
+<p><strong>Step 2</strong> Fit a weighted outcome model. Using the weights calculated from the estimated propensity scores, fit a model for the outcome <span class="math inline">Y</span>, conditional on the exposure <span class="math inline">A</span>, covariates <span class="math inline">L</span>, and subgroup <span class="math inline">G</span>.</p>
+<p><span class="math display"> \hat{E}(Y|A, L, G; V) = f_Y(A, L, G ; \theta_Y, V) </span></p>
+<p><strong>Step 3</strong> For each individual in each subgroup, simulate their potential outcome under the hypothetical scenario where everyone in the subgroup is exposed to the intervention <span class="math inline">A=a</span> regardless of their actual exposure level:</p>
+<p><span class="math display">\hat{E}(Y(a)|G=g) = \hat{E}[Y|A=a,G=g; L,\hat{\theta}_Y, v]</span></p>
+<p>And also under the hypothetical scenario where everyone in each subgroup is exposed to intervention <span class="math inline">A=a'</span>:</p>
+<p><span class="math display">\hat{E}(Y(a')|G=g) = \hat{E}[Y|A=a',G=g; L; \hat{\theta}_Y, v]</span></p>
+<p><strong>Step 4</strong> Estimate the average causal effect for each subgroup. Compute the estimated expected value of the potential outcomes under each intervention level for each subgroup:</p>
+<p><span class="math display">\hat{\delta}_g = \hat{E}[Y(a)|G=g] - \hat{E}[Y(a')|G=g]</span></p>
+<p>The estimated difference <span class="math inline">\hat{\delta}_g</span> represents the average causal effect of changing the exposure from level <span class="math inline">a'</span> to level <span class="math inline">a</span> within each subgroup.</p>
+<p><strong>Step 5</strong> Compare differences in causal effects by groups. Compute the differences in the estimated causal effects between different subgroups:</p>
+<p><span class="math display">\hat{\gamma} = \hat{\delta}_g - \hat{\delta}_{g'}</span></p>
+<p>where,</p>
+<p><span class="math display">\hat{\gamma} = \overbrace{\big( \hat{E}[Y(a)|G=g] - \hat{E}[Y(a')|G=g] \big)}^{\hat{\delta_g}} - \overbrace{\big(\hat{E}[Y(a')|G=g']- \hat{E}[Y(a)|G=g']\big)}^{\hat{\delta_{g'}}}</span></p>
+<p>We again use simulation-based inference methods to compute standard errors and confidence intervals <span class="citation" data-cites="greifer2023">(<a href="#ref-greifer2023" role="doc-biblioref">Greifer et al. 2023</a>)</span>.</p>
+</section>
+</section>
+<section id="appendix-b-g-computation-for-subgroup-analysis-estimator-with-non-additive-effects" class="level2">
+<h2 class="anchored" data-anchor-id="appendix-b-g-computation-for-subgroup-analysis-estimator-with-non-additive-effects">Appendix B: G-computation for Subgroup Analysis Estimator with Non-Additive Effects</h2>
+<p><strong>Step 1:</strong> Estimate the outcome model. Fit a model for the outcome <span class="math inline">Y</span>, conditional on the exposure <span class="math inline">A</span>, the covariates <span class="math inline">L</span>, subgroup indicator <span class="math inline">G</span>, and interactions between <span class="math inline">A</span> and <span class="math inline">G</span>. This model can be a linear regression, logistic regression, or another statistical model. The goal is to capture the relationship between the outcome, exposure, confounders, subgroups, and their interactions.</p>
+<p><span class="math display"> \hat{E}(Y|A,L,G,AG) = f_Y(A,L,G,AG; \theta_Y) </span></p>
+<p>This equation represents the expected value of the outcome <span class="math inline">Y</span> given the exposure <span class="math inline">A</span>, covariates <span class="math inline">L</span>, subgroup <span class="math inline">G</span>, and interaction term <span class="math inline">AG</span>, as modeled by the function <span class="math inline">f_Y</span> with parameters <span class="math inline">\theta_Y</span>.</p>
+<p><strong>Step 2:</strong> Simulate potential outcomes. For each individual in each subgroup, predict their potential outcome under the intervention <span class="math inline">A=a</span> using the estimated outcome model:</p>
+<p><span class="math display">\hat{E}(Y(a)|G=g) = \hat{E}[Y|A=a,L,G=g,AG=ag; \hat{\theta}_Y]</span></p>
+<p>We also predict the potential outcome for everyone in each subgroup under the causal contrast, setting the intervention for everyone in that group to <span class="math inline">A=a'</span>:</p>
+<p><span class="math display">\hat{E}(Y(a')|G=g) = \hat{E}[Y|A=a',L,G=g,AG=a'g; \hat{\theta}_Y]</span></p>
+<p><strong>Step 3:</strong> Calculate the estimated difference for each subgroup <span class="math inline">g</span>:</p>
+<p><span class="math display">\hat{\delta}_g = \hat{E}[Y(a)|G=g] - \hat{E}[Y(a')|G=g]</span></p>
+<p><strong>Step 4:</strong> Compare differences in causal effects by subgroups:</p>
+<p><span class="math display">\hat{\gamma} = \hat{\delta}_g - \hat{\delta}_{g'}</span></p>
+<p>where,</p>
+<p><span class="math display">\hat{\gamma} = \overbrace{\big( \hat{E}[Y(a)|G=g] - \hat{E}[Y(a^{\prime})|G=g] \big)}^{\hat{\delta_g}} - \overbrace{\big(\hat{E}[Y(a^{\prime})|G=g^{\prime}]- \hat{E}[Y(a)|G=g^{\prime}]\big)}^{\hat{\delta_{g^{\prime}}}}</span></p>
+<p>This difference <span class="math inline">\hat{\gamma}</span> represents the difference in the average causal effects between the subgroups <span class="math inline">g</span> and <span class="math inline">g'</span>, taking into account the interaction effect of the exposure <span class="math inline">A</span> and the subgroup <span class="math inline">G</span> on the outcome <span class="math inline">Y</span>.</p>
+<p>Note that the interaction term <span class="math inline">AG</span> (or <span class="math inline">ag</span> and <span class="math inline">a'g</span> in the potential outcomes) stands for the interaction between the exposure level and the subgroup. This term is necessary to accommodate the non-additive effects in the model. As before, we must ensure that potential confounders <span class="math inline">L</span> are sufficient to control for confounding.</p>
+</section>
+<section id="appendix-c-doubly-robust-estimation-for-subgroup-analysis-estimator-with-interaction" class="level2">
+<h2 class="anchored" data-anchor-id="appendix-c-doubly-robust-estimation-for-subgroup-analysis-estimator-with-interaction">Appendix C: Doubly Robust Estimation for Subgroup Analysis Estimator with Interaction</h2>
+<p>Again, Doubly Robust Estimation combines the strengths of both the IPTW and G-computation methods. It uses both the propensity score model and the outcome model, which makes it doubly robust: it produces unbiased estimates if either one of the models is correctly specified.</p>
+<p><strong>Step 1</strong> Estimate the propensity score. The propensity score <span class="math inline">e(L, G)</span> is the conditional probability of the exposure <span class="math inline">A = 1</span>, given the covariates <span class="math inline">L</span> and subgroup indicator <span class="math inline">G</span>. This can be modeled using logistic regression or other suitable methods, depending on the nature of the data and the exposure.</p>
+<p><span class="math display">e = P(A = 1 | L, G) = f_A(L, G; \theta_A)</span></p>
+<p>Here, <span class="math inline">f_A(L, G; \theta_A)</span> is a function (statistical model) that estimates the probability of the exposure <span class="math inline">A = 1</span> given covariates <span class="math inline">L</span> and subgroup <span class="math inline">G</span>. Then, we calculate the weights for each individual, denoted as <span class="math inline">v</span>, using the estimated propensity score:</p>
+<p><span class="math display">
+v =
+\begin{cases}
+\frac{1}{e} &amp; \text{if } A = 1 \\
+\frac{1}{1-e} &amp; \text{if } A = 0
+\end{cases}
+</span></p>
+<p><strong>Step 2</strong> Fit a weighted outcome model. Using the weights calculated from the estimated propensity scores, fit a model for the outcome <span class="math inline">Y</span>, conditional on the exposure <span class="math inline">A</span>, covariates <span class="math inline">L</span>, subgroup <span class="math inline">G</span> and the interaction between <span class="math inline">A</span> and <span class="math inline">G</span>.</p>
+<p><span class="math display"> \hat{E}(Y|A, L, G, AG; V) = f_Y(A, L, G, AG ; \theta_Y, V) </span></p>
+<p><strong>Step 3</strong> For each individual in each subgroup, simulate their potential outcome under the hypothetical scenario where everyone in the subgroup is exposed to the intervention <span class="math inline">A=a</span> regardless of their actual exposure level:</p>
+<p><span class="math display">\hat{E}(Y(a)|G=g) = \hat{E}[Y|A=a,G=g, AG=ag; L,\hat{\theta}_Y, v]</span></p>
+<p>And also under the hypothetical scenario where everyone in each subgroup is exposed to intervention <span class="math inline">A=a'</span>:</p>
+<p><span class="math display">\hat{E}(Y(a')|G=g) = \hat{E}[Y|A=a',G=g, AG=a'g; L; \hat{\theta}_Y, v]</span></p>
+<p><strong>Step 4</strong> Estimate the average causal effect for each subgroup. Compute the estimated expected value of the potential outcomes under each intervention level for each subgroup:</p>
+<p><span class="math display">\hat{\delta}_g = \hat{E}[Y(a)|G=g] - \hat{E}[Y(a')|G=g]</span></p>
+<p>The estimated difference <span class="math inline">\hat{\delta}_g</span> represents the average causal effect of changing the exposure from level <span class="math inline">a'</span> to level <span class="math inline">a</span> within each subgroup.</p>
+<p><strong>Step 5</strong> Compare differences in causal effects by groups. Compute the differences in the estimated causal effects between different subgroups:</p>
+<p><span class="math display">\hat{\gamma} = \hat{\delta}_g - \hat{\delta}_{g'}</span></p>
+<p>where,</p>
+<p><span class="math display">\hat{\gamma} = \overbrace{\big( \hat{E}[Y(a)|G=g] - \hat{E}[Y(a')|G=g] \big)}^{\hat{\delta_g}} - \overbrace{\big(\hat{E}[Y(a')|G=g']- \hat{E}[Y(a)|G=g']\big)}^{\hat{\delta_{g'}}}</span></p>
+<p>We again use simulation-based inference methods to compute standard errors and confidence intervals <span class="citation" data-cites="greifer2023">(<a href="#ref-greifer2023" role="doc-biblioref">Greifer et al. 2023</a>)</span>.</p>
+</section>
+<section id="appendix-d-marginal-structural-models-for-estimating-population-average-treatment-effect-with-interaction-doubly-robust" class="level2">
+<h2 class="anchored" data-anchor-id="appendix-d-marginal-structural-models-for-estimating-population-average-treatment-effect-with-interaction-doubly-robust">Appendix D: Marginal Structural Models for Estimating Population Average Treatment Effect with Interaction (Doubly Robust)</h2>
+<p>Sometimes we will only wish to estimate a marginal effect. In that case.</p>
+<p><strong>Step 1</strong> Estimate the propensity score. The propensity score <span class="math inline">e(L)</span> is the conditional probability of the exposure <span class="math inline">A = 1</span>, given the covariates <span class="math inline">L</span> which contains the subgroup <span class="math inline">G</span>. This can be modelled using logistic regression or other functions as described in <span class="citation" data-cites="greifer2023">Greifer et al. (<a href="#ref-greifer2023" role="doc-biblioref">2023</a>)</span></p>
+<p><span class="math display">e = P(A = 1 | L) = f_A(L; \theta_A)</span></p>
+<p>Here, <span class="math inline">f_A(L; \theta_A)</span> is a function (a statistical model) that estimates the probability of the exposure <span class="math inline">A = 1</span> given covariates <span class="math inline">L</span>. Then, we calculate the weights for each individual, denoted as <span class="math inline">v</span>, using the estimated propensity score:</p>
+<p><span class="math display">
+v =
+\begin{cases}
+\frac{1}{e} &amp; \text{if } A = 1 \\
+\frac{1}{1-e} &amp; \text{if } A = 0
+\end{cases}
+</span></p>
+<p><strong>Step 2</strong> Fit a weighted outcome model. Using the weights calculated from the estimated propensity scores, fit a model for the outcome <span class="math inline">Y</span>, conditional on the exposure <span class="math inline">A</span> and covariates <span class="math inline">L</span>.</p>
+<p><span class="math display"> \hat{E}(Y|A, L; V) = f_Y(A, L; \theta_Y, V) </span></p>
+<p>This model should include terms for both the main effects of <span class="math inline">A</span> and <span class="math inline">L</span> and their interaction <span class="math inline">AL</span>.</p>
+<p><strong>Step 3</strong> For the entire population, simulate the potential outcome under the hypothetical scenario where everyone is exposed to the intervention <span class="math inline">A=a</span> regardless of their actual exposure level:</p>
+<p><span class="math display">\hat{E}(Y(a)) = \hat{E}[Y|A=a; L,\hat{\theta}_Y, v]</span></p>
+<p>And also under the hypothetical scenario where everyone is exposed to intervention <span class="math inline">A=a'</span>:</p>
+<p><span class="math display">\hat{E}(Y(a')) = \hat{E}[Y|A=a'; L; \hat{\theta}_Y, v]</span></p>
+<p><strong>Step 4</strong> Estimate the average causal effect for the entire population. Compute the estimated expected value of the potential outcomes under each intervention level for the entire population:</p>
+<p><span class="math display">\hat{\delta} = \hat{E}[Y(a)] - \hat{E}[Y(a')]</span></p>
+<p>The estimated difference <span class="math inline">\hat{\delta}</span> represents the average causal effect of changing the exposure from level <span class="math inline">a'</span> to level <span class="math inline">a</span> in the entire population.</p>
+<p>We again use simulation-based inference methods to compute standard errors and confidence intervals <span class="citation" data-cites="greifer2023">(<a href="#ref-greifer2023" role="doc-biblioref">Greifer et al. 2023</a>)</span>.</p>
+<!-- ### What we have not done -->
+<!-- We have not addressed:  -->
+<!-- - measurement error. Our graphs do not incorporate it.  -->
+<!-- - selection bias -->
+<!-- - Outcome-wide studies -->
+<!-- - Sampling weights.  -->
+
+
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-danaei2012" class="csl-entry" role="listitem">
+Danaei, Goodarz, Mohammad Tavakkoli, and Miguel A. Hernán. 2012. <span>“Bias in observational studies of prevalent users: lessons for comparative effectiveness research from a meta-analysis of statins.”</span> <em>American Journal of Epidemiology</em> 175 (4): 250–62. <a href="https://doi.org/10.1093/aje/kwr301">https://doi.org/10.1093/aje/kwr301</a>.
+</div>
+<div id="ref-greifer2023" class="csl-entry" role="listitem">
+Greifer, Noah, Steven Worthington, Stefano Iacus, and Gary King. 2023. <em>Clarify: Simulation-Based Inference for Regression Models</em>. <a href="https://iqss.github.io/clarify/">https://iqss.github.io/clarify/</a>.
+</div>
+<div id="ref-vanderweele2020" class="csl-entry" role="listitem">
+VanderWeele, Tyler J, Maya B Mathur, and Ying Chen. 2020. <span>“Outcome-Wide Longitudinal Designs for Causal Inference: A New Template for Empirical Studies.”</span> <em>Statistical Science</em> 35 (3): 437466.
+</div>
+</div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p><span class="math inline">A</span> and <span class="math inline">G</span> on <span class="math inline">Y</span> might not be additive. We assume that the potential confounders <span class="math inline">L</span> are sufficient to control for confounding. See Appendix<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></div></div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

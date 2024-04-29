@@ -702,7 +702,6 @@ dt_19 <- dat_long |> filter(wave == 2019)
 
 margot::coloured_histogram_sd(col_name = "perfectionism", binwidth = .5, dt_19)
 
-margot::coloured_histogram_shift()
 margot::coloured_histogram_shift(col_name = "perfectionism", binwidth = .1, 
                                  shift = "down",
                                  range_highlight = c(1,2),
