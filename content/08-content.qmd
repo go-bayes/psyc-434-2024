@@ -1353,7 +1353,7 @@ love.plot(W1, binary = "std", thresholds = c(m = .1),
           wrap = 50, position = "bottom", size =2)
 
 # this method has better effective samples
-# bal.tab(W1)
+#bal.tab(W1)
 
 
 # this method has better balance
@@ -1535,6 +1535,7 @@ n_cores
 # super learner libraries
 # these are useful for high-dimensional data
 sl_lib <- c("SL.glmnet",
+            "SL.glm",
             "SL.ranger", # forests
             "SL.xgboost") # grandient boost
 
@@ -1573,6 +1574,7 @@ shift_all_tile_1 <- function(data, trt) {
   ifelse(data[[trt]] != "tile_1", "tile_1",  data[[trt]])
 }
 
+C
 
 ## no parametric estimation 
 maori_tile_3_t2_kessler_latent_anxiety_z <- lmtp_tmle(
@@ -1677,6 +1679,9 @@ No difference between groups.
 euro_results <- margot::here_read("euro_results")
 maori_results<- margot::here_read("maori_results")
 
+euro_results
+maori_results
+
 g_hat_theta= euro_results$vals$theta - maori_results$vals$theta 
 g_hat_theta # difference of means
 euro_results$vals$std.error
@@ -1778,7 +1783,7 @@ Machine learning with cross validation recovers nearly identical estimates for t
 Which results are correct?  We don't know. With more time, we would add more learners to the model, including parametric learners. 
 
 
-Generally I suggest using machine learning algorithms, because they can include parametric estimators. 
+Generally, I suggest using machine learning algorithms, because they can include parametric estimators. 
 
 
 
