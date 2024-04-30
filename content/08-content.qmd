@@ -442,10 +442,19 @@ library(kableExtra)
 library(lmtp)
 library(SuperLearner)
 library(ranger)
+library(xgboost)
 library(nnls)
-library(polspline)
+library(mice)
 
-# create a folder names saved (you should have done this last week).
+if (!requireNamespace("doParallel", quietly = TRUE)) {
+  install.packages("doParallel")
+}
+if (!requireNamespace("foreach", quietly = TRUE)) {
+  install.packages("foreach")
+}
+library(doParallel)
+library(foreach)
+# createmiceadds# create a folder names saved (you should have done this last week).
 # set your path to this folder
 
 # save in cloud if using github
@@ -759,7 +768,7 @@ a + b + c + d == nrow(prep_dat_wide)
 ```
 
 
-#### Visualise missing values
+### Visualise missing values
 
 ```{r}
 # visually inspect missingness
@@ -770,7 +779,7 @@ mice:::find.collinear(prep_dat_wide)
 ```
 
 
-#### Imputations
+### Imputations
 Next we impute by quartile.  Save this output in your folder. 
 
 ```{r}
@@ -823,12 +832,13 @@ dplyr::mutate(
   mutate_if(is.matrix, as.vector) |>
   as.mids()
 
-# this is how you save without the margot package
-saveRDS(mice_health_mids, here::here("saved", "mice_health_mids"))
-saveRDS(mice_health_long, here::here("saved", "mice_health_long"))
+#Save
+here_save(mice_health_mids, "mice_health_mids")
+here_save(mice_health_long, "mice_health_long")
+
 ```
 
-### Compute propensity scores for IPTW
+### Compute propensity scores for IPTW using machine learning
 
 
 ```{r}
@@ -848,7 +858,7 @@ X = "t1_perfectionism_4tile"
 # set estimand
 estimand = "ATE"
 
-# set baseline varaibles
+# set baseline variables
 baseline_vars_models = mice_health_long |>
   dplyr::select(starts_with("t0"))|> colnames() # note, we earlier change name of `t0_sample_weights` to `sample weights`
 
@@ -886,6 +896,8 @@ love.plot(match_ebal_ate, binary = "std", thresholds = c(m = .1),
           wrap = 50, position = "bottom", size =3)
 ```
 
+### Visualise imbalance
+
 
 ```{r}
 # consider results 
@@ -899,7 +911,7 @@ plot(sum_ebal_match_ebal_ate)
 
 ```
 
-Some extreme weights.  We can trip weights as follows. (Note there is no hard and fast rule about how much to trim weights by.)
+Some extreme weights.  We can trim weights as follows. (Note there is no hard and fast rule about how much to trim weights by, here we trim by 1%.)
 
 ```{r}
 #| fig-width: 12
@@ -1107,9 +1119,13 @@ tab_combo |>
 
 We see that the doubly robust estimator leads to lower overall effect sizes.
 
-### Subgroup estimation 
+## Sugroup Estimation Using Machine Learning
+
+### impute baseline values only
 
 ```{r}
+#| eval: false
+#| echo: true
 #| label: impute_subgroup_baseline
 # let's take a different approach
 # this time we include the censored variable 
@@ -1133,10 +1149,12 @@ df_impute_base$t0_sample_weights = dt_18$sample_weights
 here_save(df_impute_base, "df_impute_base")
 ```
 
-### Wrangling
+### Obtain censoring weights
 
 
 ```{r}
+#| eval: false
+#| echo: true
 df_impute_base <- here_read("df_impute_base")
 
 # get correct censoring 
@@ -1188,6 +1206,7 @@ df_clean <- df_impute_base |>
 
 # we'll have a variable for "lost" 
 # this is the usual meaning of "censored"
+table(df_clean$t0_lost)
 table(df_clean$t1_lost)
 table(df_clean$t1_censored)
 str(df_clean$t1_perfectionism_4tile)
@@ -1201,40 +1220,184 @@ df_clean <- margot::remove_numeric_attributes(df_clean)
 
 
 # censoring ---------------------------------------------------------------
-baseline_vars_models = df_clean |>  # post process of impute and combine
+baseline_vars_models_ml = df_clean |>  # post process of impute and combine
   dplyr::select(starts_with("t0"), - t0_alert_level_combined_lead,-t0_censored, -t0_lost, -t0_sample_weights)|> colnames() # note, we ear
 
-baseline_vars_models
+baseline_vars_models_ml
 # fit proponsity score model 
-match_censoring <- margot::match_mi_general(data = df_clean, 
-                                      X = "t1_lost", 
-                                      baseline_vars = baseline_vars_models, 
-                                      estimand = "ATE",  
-                                      # focal = "< >", for ATT
-                                      method = "cbps", 
-                                      sample_weights = "sample_weights")
+# match_censoring <- margot::match_mi_general(data = df_clean, 
+#                                       X = "t1_lost", 
+#                                       baseline_vars = baseline_vars_models, 
+#                                       estimand = "ATE",  
+#                                       # focal = "< >", for ATT
+#                                       method = "cbps", 
+#                                       sample_weights = "sample_weights")
+# 
+# # save output
+# here_save( match_censoring, "match_censoring")  # another approach
 
-# save output
-here_save( match_censoring, "match_censoring") 
+
+
+df_clean_pre <- df_clean[baseline_vars_models_ml]
+# colnames(df_clean_pre)
+# Perform one-hot encoding using model.matrix
+encoded_vars <- model.matrix(~  t0_perfectionism_4tile + t0_eth_cat - 1, data = df_clean_pre)
+
+# convert matrix to data frame
+encoded_df <- as.data.frame(encoded_vars)
+
+
+# make better names (if needed)
+encoded_df <- encoded_df |>
+  janitor::clean_names()
+
+# View the first few rows to confirm structure
+head(encoded_df)
+
+# bind the new one-hot encoded variables back to the original dataframe
+# ensure to remove original categorical variables to avoid duplication
+df_clean_hot <- df_clean |>
+  select(-c(t0_eth_cat,t0_perfectionism_4tile)) |>
+  bind_cols(encoded_df)
+
+# extract and print the new column names for encoded variables
+new_encoded_colnames <- colnames(encoded_df)
+print(new_encoded_colnames)
+
+new_encoded_colnames
+
+colnames(df_clean_pre)
+
+# assuming you have a base list of predictors
+baseline_vars_set <- setdiff(names(df_clean_pre), c("t0_lost", "t0_eth_cat", "t0_perfectionism_4tile"))
+baseline_vars_set
+# Add the new encoded column names
+full_predictor_vars <- c(baseline_vars_set, new_encoded_colnames)
+
+
+# check
+full_predictor_vars
+
+# cross validated sets
+cv_control <- list(V = 10, stratifyCV = TRUE)  # 10-fold CV with stratification
+
+# use super learner
+library(SuperLearner)
+library(ranger)
+
+# Multi core
+library(doParallel)
+library(SuperLearner)
+
+# check predictors
+str(df_clean_hot[full_predictor_vars])
+
+# make library e.g. simple library
+# list learners
+listWrappers()
+
+match_lib = c("SL.glmnet", "SL.ranger")
+
+
+# Set up parallel backend
+no_cores <- detectCores()
+cl <- makeCluster(no_cores - 1)
+
+# start parrallel
+registerDoParallel(cl)
+
+# propensity scores for censoring
+sl <- SuperLearner(
+  Y = df_clean_hot$t1_lost, 
+  X = df_clean_hot[full_predictor_vars],  # Use all specified predictors
+  SL.library = match_lib,
+  family = binomial(), 
+  method = "method.NNloglik", 
+  cvControl = list(V = 10)
+)
+
+# save your model
+here_save(sl, "sl")
+
+# stop your cluster
+stopCluster(cl)
+
+
+# checks 
+print(sl)                  # prints the summary of the SuperLearner output
+summary(sl)                # provides a detailed summary, including cross-validated risks
+
+# detailed examination of cross-validated performance
+sl$cvRisk                  # cross-validated risks for each learner
+sl$coef                    # weights assigned to each learner in the final ensemble
+
+
+
+# generate predictions from the model
+predictions <- predict(sl, newdata = df_clean_hot[full_predictor_vars], type = "response")
+
+# extract predictions from the 'pred' component and ensure it's a vector
+df_clean_hot$pscore <- predictions$pred[, 1]
+
+# Check the structure of the predictions
+str(predictions)
+
+
+df_clean$cens_weights <- ifelse(df_clean_hot$t0_lost == 1, 1 / df_clean_hot$pscore, 1 / (1 - df_clean_hot$pscore))
+
+
+# check 
+hist(df_clean$cens_weights)
+
+mean(df_clean$cens_weights)
+
+max(df_clean$cens_weights)
+
+min(df_clean$cens_weights)
+
+### Stabalise weights
+
+marginal_censored<- mean(df_clean$t0_lost)
+
+# stabalised weights
+df_clean$weights_stabilised <- ifelse(df_clean_hot$t0_lost == 1,
+                                  marginal_censored / df_clean_hot$pscore,
+                                  (1 - marginal_censored) / (1 - df_clean_hot$pscore))
+
+
+
+hist(df_clean$weights_stabilised )
+min(df_clean$weights_stabilised )
+max(df_clean$weights_stabilised )
+
+# new weights
+df_clean$t0_combo_weights = df_clean$weights_stabilised * df_clean$t0_sample_weights
+
+min( df_clean$t0_combo_weights)
+max( df_clean$t0_combo_weights)
+
+hist( df_clean$t0_combo_weights)
+
+here_save(df_clean, "df_clean")
+
+# save the censored sample 
+
+df_clean_t2 <- df_clean |>
+  filter(!is.na(t1_lost)) |> 
+ select(-cens_weights, -marginal_censored) |> 
+  select(-all_of(c("t0_lost", "t1_lost"))) |> 
+  relocate(starts_with("t0_"), .before = starts_with("t1_")) |>
+  relocate("t0_censored", .before = starts_with("t1_"))  |>
+  relocate("t1_censored", .before = starts_with("t2_")) |> 
+  relocate("weights_stabilised", .before = starts_with("t0_"))
+
+colnames(df_clean_t2)
+here_save(df_clean_t2, "df_clean_t2")
 ```
-### Matching
 
-```{r}
-#| label: vis_matching_censoring
-#| eval: true
-#| echo: true
-#| fig-width: 12
-#| fig-height: 12
 
-# read output
-match_censoring <- margot::here_read("match_censoring")
-# check balance
-# bal.tab(match_censoring)
+### Matching in subgroupus
 
-# visualise imbalance
-love.plot(match_censoring, binary = "std", thresholds = c(m = .1),
-          wrap = 50, position = "bottom", size =3)
-```
 
 ### Subgroup analysis 
 
@@ -1243,39 +1406,16 @@ love.plot(match_censoring, binary = "std", thresholds = c(m = .1),
 #| eval: false
 #| echo: true
 
-# get censoring weights
-lost_prob <- match_censoring$weights
-
-# check
-summary(lost_prob)
-
-# rename sample weights # multiply censoring weights by sample weights 
-df_clean$sample_weights <- (match_censoring$weights * df_clean$t0_sample_weights)
-
-summary(df_clean$sample_weights )
-
-# next filter only those who were not lost
-df_clean_filtered<- df_clean |> 
-  filter(t1_censored == 1)
-
-df_clean_filtered <- df_clean_filtered |>
-  relocate("sample_weights", .before = starts_with("t0_")) |>
-  relocate(starts_with("t0_"), .before = starts_with("t1_")) |>
-  relocate("t0_censored", .before = starts_with("t1_"))  |>
-  relocate("t1_censored", .before = starts_with("t2_"))
-
-
-nrow(df_clean_filtered)
 
 hist(df_clean_filtered$sample_weights)
 
 # next propensity scores by groups 
 
-levels(df_clean_filtered$t0_eth_cat)
-levels(df_clean_filtered$t1_perfectionism_4tile)
+levels(df_clean_t2$t0_eth_cat)
+levels(df_clean_t2$t1_perfectionism_4tile)
 # 
 
-df_subgroup <-df_clean_filtered |> filter(t0_eth_cat == "maori" | t0_eth_cat == "euro") |> droplevels()
+df_subgroup <-df_clean_t2 |> filter(t0_eth_cat == "maori" | t0_eth_cat == "euro") |> droplevels()
 
 # save
 here_save(df_subgroup, "df_subgroup")
@@ -1297,7 +1437,7 @@ W1 <- weightit(
   string,
   method = "ipt",
   estimand = "ATT",
-  weights = "sample_weights",
+  weights = "weights_stabilised",
   focal = "tile_3",
   # super = TRUE,
   #SL.library = c("SL.ranger", "SL.glmnet", "SL.polymars", "SL.xgboost"),
@@ -1334,7 +1474,7 @@ here_save(W2, "W2")
 # S
 ```
 
-### Wvaluate subgroup weighting model
+### Evaluate subgroup weighting model
 
 ```{r}
 #| fig-width: 12
@@ -1346,9 +1486,7 @@ W2 <- here_read("W2")
 # read
 df_subgroup <- margot::here_read("df_subgroup")
 
-# bal.tab(W1, un = TRUE)
-love.plot(W1, binary = "std", thresholds = c(m = .1),
-          wrap = 50, position = "bottom", size =2)
+
 
 # this method has better effective samples
 #bal.tab(W1)
@@ -1358,7 +1496,17 @@ love.plot(W1, binary = "std", thresholds = c(m = .1),
 # bal.tab(W2, cluster = "t0_eth_cat")
 # bal.tab(W1, cluster = "t0_eth_cat")
 # graph by cluster
+
+
+# W2 obtains better balance
 love.plot(W1,  cluster = "t0_eth_cat", binary = "std", thresholds = c(m = .1),
+          wrap = 50, position = "bottom", size =2)
+
+love.plot(W2,  cluster = "t0_eth_cat", binary = "std", thresholds = c(m = .1),
+          wrap = 50, position = "bottom", size =2)
+
+# check marginal too
+love.plot(W2,   binary = "std", thresholds = c(m = .1),
           wrap = 50, position = "bottom", size =2)
 ```
 
@@ -1372,7 +1520,7 @@ love.plot(W1,  cluster = "t0_eth_cat", binary = "std", thresholds = c(m = .1),
 baseline_vars_models_sans_eth <- margot::here_read("baseline_vars_models_sans_eth")
 
 # make combo weights
-df_subgroup$combo_weights = W2$weights * df_subgroup$t0_sample_weights
+df_subgroup$combo_weights = W2$weights * df_subgroup$t0_combo_weights
 
 
 # set dataframe
@@ -1514,7 +1662,7 @@ summary(sim_estimand_all_tab)
 library("lmtp")
 
 # set number of folds for ML here. use a minimum of 5 and a max of 10
-SL_folds = 10
+SL_folds = 5
 
 #this will allow you to track progress
 progressr::handlers(global = TRUE)
@@ -1527,45 +1675,43 @@ library(future)
 plan(multisession)
 n_cores <- parallel::detectCores() - 2 # save two cores for other work while these models run
 
-# min of 10
+# check
 n_cores
 
 # super learner libraries
 # these are useful for high-dimensional data
-sl_lib <- c("SL.glmnet",
-            "SL.glm",
-            "SL.ranger", # forests
-            "SL.xgboost") # grandient boost
 
 
-df_maori <-df_clean_filtered |> filter(t0_eth_cat == "maori") |> select( -t0_lost, -t1_lost) |> droplevels()
-df_euro <-df_clean_filtered |> filter(t0_eth_cat == "euro") |> select( -t0_lost, -t1_lost) |> droplevels()
+df_clean_t2 <- here_read('df_clean_t2')
+
+df_maori <-df_clean_t2 |> dplyr::filter(t0_eth_cat == "maori") |> droplevels()
+df_euro <-df_clean_t2 |> dplyr::filter(t0_eth_cat == "euro")  |> droplevels()
 nrow(df_maori)
 nrow(df_euro)
+colnames(df_euro)
 
-colnames(df_clean_filtered)
+
+colnames(df_clean_t2)
 
 A<- "t1_perfectionism_4tile"
 
 # note lmtp's unconventional use of "censored"
 C <- c("t1_censored")
 
-df_clean_filtered$sample_weights
+df_clean_t2$t0_combo_weights
 
 names_base <-
-  df_clean_filtered |> select(starts_with("t0"),
-                     -t0_sample_weights, 
+  df_clean_t2 |> select(starts_with("t0"),
+                     -t0_combo_weights, 
                      -t0_censored,
-                     -t0_lost,
                      -t0_eth_cat) |> colnames()
-
+names_base
 C <- c("t1_censored")
 
 
 shift_all_tile_3 <- function(data, trt) {
   ifelse(data[[trt]] != "tile_3", "tile_3",  data[[trt]])
 }
-glimpse(df_maori)
 
 
 shift_all_tile_1 <- function(data, trt) {
@@ -1573,6 +1719,13 @@ shift_all_tile_1 <- function(data, trt) {
 }
 
 C
+
+# for faster estimation use fewer
+sl_lib <- c(#"SL.glmnet",
+            "SL.ranger", # forests
+          #  "SL.rpart",# 
+            "SL.xgboost"
+            ) 
 
 ## no parametric estimation 
 maori_tile_3_t2_kessler_latent_anxiety_z <- lmtp_tmle(
@@ -1583,17 +1736,23 @@ maori_tile_3_t2_kessler_latent_anxiety_z <- lmtp_tmle(
     cens = C,
     shift = shift_all_tile_3,
     mtp = TRUE,
-    folds = 10,
+    folds = 5,
     # trim = 0.99, # if needed
     # time_vary = NULL,
     outcome_type = "continuous",
-    weights = df_maori$sample_weights,
-    learners_trt = "SL.ranger",
-    learners_outcome ="SL.ranger",
+    weights = df_maori$weights_stabilised,
+    learners_trt = sl_lib,
+    learners_outcome =sl_lib,
     parallel = n_cores
   )
 maori_tile_3_t2_kessler_latent_anxiety_z
 here_save(maori_tile_3_t2_kessler_latent_anxiety_z, "maori_tile_3_t2_kessler_latent_anxiety_z")
+
+# learners for the exposure
+maori_tile_3_t2_kessler_latent_anxiety_z$fits_m
+
+# learners for the  outcome
+maori_tile_3_t2_kessler_latent_anxiety_z$fits_r
 
 
 maori_tile_1_t2_kessler_latent_anxiety_z <- lmtp_tmle(
@@ -1604,13 +1763,13 @@ maori_tile_1_t2_kessler_latent_anxiety_z <- lmtp_tmle(
     cens = C,
     shift = shift_all_tile_1,
     mtp = TRUE,
-    folds = 10,
+    folds = 5,
     # trim = 0.99, # if needed
     # time_vary = NULL,
     outcome_type = "continuous",
-    weights = df_maori$sample_weights,
-    learners_trt = "SL.ranger",
-    learners_outcome ="SL.ranger",
+    weights = df_maori$weights_stabilised,
+    learners_trt = sl_lib,
+    learners_outcome =sl_lib,
     parallel = n_cores
   )
 maori_tile_1_t2_kessler_latent_anxiety_z
@@ -1618,7 +1777,7 @@ here_save(maori_tile_1_t2_kessler_latent_anxiety_z, "maori_tile_1_t2_kessler_lat
 
 # higher anxiety 
 maori_results <-lmtp_contrast(maori_tile_3_t2_kessler_latent_anxiety_z, ref = maori_tile_1_t2_kessler_latent_anxiety_z)
-
+# maori_results
 here_save(maori_results, "maori_results")
 
 euro_tile_3_t2_kessler_latent_anxiety_z <- lmtp_tmle(
@@ -1629,13 +1788,13 @@ euro_tile_3_t2_kessler_latent_anxiety_z <- lmtp_tmle(
     cens = C,
     shift = shift_all_tile_3,
     mtp = TRUE,
-    folds = 10,
+    folds = 5,
     # trim = 0.99, # if needed
     # time_vary = NULL,
     outcome_type = "continuous",
-    weights = df_euro$sample_weights,
-    learners_trt = "SL.ranger",
-    learners_outcome ="SL.ranger",
+    weights = df_euro$weights_stabilised,
+    learners_trt = sl_lib,
+    learners_outcome =sl_lib,
     parallel = n_cores
   )
 euro_tile_3_t2_kessler_latent_anxiety_z
@@ -1650,13 +1809,13 @@ euro_tile_1_t2_kessler_latent_anxiety_z <- lmtp_tmle(
     cens = C,
     shift = shift_all_tile_1,
     mtp = TRUE,
-    folds = 10,
+    folds = 5,
     # trim = 0.99, # if needed
     # time_vary = NULL,
     outcome_type = "continuous",
-    weights = df_euro$sample_weights,
-    learners_trt = "SL.ranger",
-    learners_outcome ="SL.ranger",
+    weights = df_euro$weights_stabilised,
+    learners_trt = sl_lib,
+    learners_outcome =sl_lib,
     parallel = n_cores
   )
 euro_tile_1_t2_kessler_latent_anxiety_z
@@ -1669,7 +1828,7 @@ here_save(euro_results, "euro_results")
 ```
 
 
-### Machine learning results
+### Machine learning: results
 
 No difference between groups. 
 
@@ -1713,6 +1872,9 @@ round( euro_results$vals, 3)
 ```{r}
 maori_results<- margot::here_read("maori_results")
 round(maori_results$vals, 3)
+
+
+
 ```
 
 
@@ -1737,7 +1899,6 @@ bind_results_anxiety <- rbind(tab_euro_results, tab_maori_results)
 
 here_save(bind_results_anxiety, "bind_results_anxiety")
 
-group_tab_anxiety <- margot::group_tab(bind_results_anxiety, type = "RD")
 ```
 
 
@@ -1745,6 +1906,9 @@ group_tab_anxiety <- margot::group_tab(bind_results_anxiety, type = "RD")
 #| fig-width: 10
 #| fig-height: 12
 
+bind_results_anxiety <- here_read("bind_results_anxiety")
+group_tab_anxiety <- margot::group_tab(bind_results_anxiety, type = "RD")
+conflicted::conflicts_prefer(ggplot2::margin)
 # graph results
  margot_plot(
   group_tab_anxiety,
