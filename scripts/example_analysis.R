@@ -37,17 +37,6 @@ if (!require(janitor)) install.packages("janitor")
 
 
 # wrangling ---------------------------------------------------------------
-
-
-
-# createmiceadds# create a folder names saved (you should have done this last week).
-# set your path to this folder
-
-
-# check it is correct
-# uncomment, check
-#push_mods
-
 # set seed for reproducability
 set.seed(123)
 
@@ -60,7 +49,7 @@ df_nz <- haven::zap_label(df_nz)
 df_nz <- haven::zap_widths(df_nz)
 
 
-## test total n in the data
+# test total n in the data
 # total nzavs participants
 n_total <- skimr::n_unique(df_nz$id)
 
@@ -73,7 +62,6 @@ n_total
 # save number for manuscrip
 margot::here_save(n_total, "n_total")
 
-
 # name of exposure
 name_exposure <-  "perfectionism"
 
@@ -84,10 +72,11 @@ skimr::skim(df_nz) |> arrange(n_missing)
 ids_2018 <- df_nz |>
   dplyr::filter(year_measured == 1, wave == 2018) |>
   dplyr::filter(!is.na(!!sym(name_exposure))) |> # criteria, no missing in baseline exposure
-  dplyr::filter(!is.na(eth_cat)) |> # criteria, no missing
+#  dplyr::filter(!is.na(eth_cat)) |> # criteria, no missing
   pull(id)
 
 
+# uncomment if ... 
 # if you decide to include the exposure in the treatment wave, 
 # obtain ids for individuals who participated in 2019
 # ids_2019 <- df_nz |>
@@ -244,7 +233,22 @@ skimr::skim(dat_long)
 # set baseline variables --------------------------------------------------
 
 # for confounding control
-baseline_vars = c("age", "male", "edu", "eth_cat", "partner", "employed", "born_nz", "neighbourhood_community", "household_inc_log", "parent", "religion_religious", "urban","sample_weights", "employed")
+baseline_vars = c(
+  "age",
+  "male",
+  "edu",
+  "eth_cat",
+  "partner",
+  "employed",
+  "born_nz",
+  "neighbourhood_community",
+  "household_inc_log",
+  "parent",
+  "religion_religious",
+  "urban",
+  "sample_weights",
+  "employed"
+)
 
 # treatment
 exposure_var = c("perfectionism", "censored") # we will use the censored variable later
@@ -252,7 +256,6 @@ exposure_var = c("perfectionism", "censored") # we will use the censored variabl
 # outcome, can be many
 
 outcome_vars = c("kessler_latent_anxiety", "kessler_latent_depression")
-
 
 # sample weights balanced male/female -------------------------------------
 
@@ -273,71 +276,24 @@ dat_long$sample_weights <-
   ifelse(dat_long$male == 1, gender_weight_male, gender_weight_female)
 
 # we will upweight males and down weight non-males to obtain a balance of gender in the *target* population
-table(round( dat_long$sample_weights, 3))
+table(round(dat_long$sample_weights, 3))
 
 
 
 
 # make your tables --------------------------------------------------------
+dt_18 <- dat_long|>
+  filter(wave == 2018) 
 
-library(gtsummary)
 # the setdiff command allows us to remove names from the baseline vars list that we do not want
 base_var <-
   setdiff(baseline_vars, c("censored", "sample_weights", outcome_vars))
+base_var
 
-
-#  we only want the data at baseline 
-
-# select only baseline wave
-dt_18 <- dat_long |> 
-  dplyr::filter(wave == 2018)
-
-
-# get only the baseline variables for the table
-selected_base_cols <-
-  dt_18 |> select(all_of(base_var))
-
-#check
-colnames_use <- colnames(selected_base_cols)
-# # aside to get different names in lists
-# everything_better_cols <- c(colnames_use, "inkuk")
-# everything_better_cols
-# 
-# # get rid of name
-# everything_worse_cols <- setdiff(everything_better_cols, "inkuk")
-
-
-
-
-
-
-
-# Adding a spanning header for the 'Born Nz' categorization
-table_baseline <- table_baseline |> 
-  modify_spanning_header(
-    starts_with("stat") ~ "**Born in NZ**"
-  ) # Adjust this key based on your actual table output
-
-
-# After running the above, print out the structure to see what headers are available to modify
-print(table_baseline)
-
-# baseline
-table_baseline
-
-# save your baseline table
-margot::here_save(table_baseline, "table_baseline")
-
-
-# by groups
-library(gtsummary)
-library(dplyr)
-library(janitor)
-
-table_baseline_groups <- selected_base_cols |> 
+table_baseline <- dt_18 |> 
+  select(all_of(base_var)) |> 
   janitor::clean_names(case = "title") |> 
   tbl_summary(
-    by = "Born Nz",  # Ensure this matches the exact name in your dataset
     missing = "ifany",
     percent = "column",
     statistic = list(
@@ -349,19 +305,14 @@ table_baseline_groups <- selected_base_cols |>
     ),
     type = all_continuous() ~ "continuous2"
   ) |>
-  modify_header(label = "**Exposure + Demographic Variables**") |> # Update the column header
-  bold_labels()
-
-# Adding a spanning header for the 'Born Nz' categorization
-table_baseline_groups <- table_baseline_groups |> 
-  modify_spanning_header(
-    starts_with("stat") ~ "**Born in NZ**"
-  ) # Adjust this key based on your actual table output
+  modify_header(label = "**Exposure + Demographic Variables**") |> # update the column header
+  bold_labels() 
 
 
-table_baseline_groups
 
-here_save(table_baseline_groups, "table_baseline_groups")
+table_baseline
+# save baseline
+here_save(table_baseline, "table_baseline")
 
 
 # exposure table ----------------------------------------------------------
@@ -384,7 +335,6 @@ selected_exposure_cols <-
 #str(selected_exposure_cols)
 
 
-library(gtsummary)
 
 table_exposures <- selected_exposure_cols %>%
   janitor::clean_names(case = "title") %>% 
