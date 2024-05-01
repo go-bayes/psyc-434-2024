@@ -8,7 +8,8 @@
 # compare Europeans and Maori
 
 # set path to save models
-push_mods <- here::here('/Users/joseph/Library/CloudStorage/Dropbox-v-project/data/saved')
+push_mods <-
+  here::here('/Users/joseph/Library/CloudStorage/Dropbox-v-project/data/saved')
 
 # load packages
 library("tidyverse")
@@ -54,7 +55,7 @@ df_nz <- haven::zap_widths(df_nz)
 n_total <- skimr::n_unique(df_nz$id)
 
 # get comma in number
-n_total <- prettyNum(n_total,big.mark=",")
+n_total <- prettyNum(n_total, big.mark = ",")
 
 # check
 n_total
@@ -76,8 +77,8 @@ ids_2018 <- df_nz |>
   pull(id)
 
 
-# uncomment if ... 
 # if you decide to include the exposure in the treatment wave, 
+# if you decide to include the exposure in the treatment wave,
 # obtain ids for individuals who participated in 2019
 # ids_2019 <- df_nz |>
 #   dplyr::filter(year_measured == 1, wave == 2019) |>
@@ -113,9 +114,11 @@ dat_long <- df_nz |>
     "parent",
     #"alert_level_combined", # see bibliography
     # 0 = no, 1 = yes
-    "political_conservative", # see nzavs sheet
-    "hours_exercise", # see nzavs sheet
-    "agreeableness", 
+    "political_conservative",
+    # see nzavs sheet
+    "hours_exercise",
+    # see nzavs sheet
+    "agreeableness",
     # Mini-IPIP6 Agreeableness (also modelled as empathy facet)
     # Sympathize with others' feelings.
     # Am not interested in other people's problems.
@@ -160,8 +163,10 @@ dat_long <- df_nz |>
     #"w_gend_age_ethnic",
     "neighbourhood_community",
     # #I feel a sense of community with others in my local neighbourhood.
-    "belong", # see nzavs sheet
-    "rural_gch_2018_l",# see nzavs sheet
+    "belong",
+    # see nzavs sheet
+    "rural_gch_2018_l",
+    # see nzavs sheet
     "support",
     # "support_help",
     # # 'There are people I can depend on to help me if I really need it.
@@ -186,17 +191,15 @@ dat_long <- df_nz |>
     urban = ifelse(rural_gch_2018_l == 1, 1, 0)
     
   ) |>
-  select(-c(year_measured, rural_gch_2018_l) )|>
+  select(-c(year_measured, rural_gch_2018_l)) |>
   dplyr::mutate(
     # rescale these variables, to get all variables on a similar scale
-    # otherwise your models can blow up, or become uninterpretable. 
+    # otherwise your models can blow up, or become uninterpretable.
     household_inc_log = log(household_inc + 1),
-    hours_exercise_log = log(hours_exercise + 1)  ) |>
-  dplyr::select(
-    -c(
-      household_inc,
-      hours_exercise)
+    hours_exercise_log = log(hours_exercise + 1)
   ) |>
+  dplyr::select(-c(household_inc,
+                   hours_exercise)) |>
   droplevels() |>
   # dplyr::rename(sample_weights = w_gend_age_ethnic,
   #               sample_origin =  sample_origin_names_combined) |>
@@ -217,7 +220,7 @@ dat_long <- df_nz |>
 n_participants <- skimr::n_unique(dat_long$id)
 
 # get comma in number
-n_participants <- prettyNum(n_participants,big.mark=",")
+n_participants <- prettyNum(n_participants, big.mark = ",")
 
 # check
 n_participants
@@ -227,6 +230,7 @@ margot::here_save(n_participants, "n_participants")
 
 # inspect data
 skimr::skim(dat_long)
+
 
 
 
@@ -257,9 +261,8 @@ exposure_var = c("perfectionism", "censored") # we will use the censored variabl
 
 outcome_vars = c("kessler_latent_anxiety", "kessler_latent_depression")
 
-# sample weights balanced male/female -------------------------------------
 
-# balance on gender weights
+# sample weights balanced male / female-------------------------------------# balance on gender weights
 # calculate gender weights assuming male is coded as 1 and female as 0
 prop_male_population <-
   0.5  # target proportion of males in the population
@@ -2116,10 +2119,12 @@ W = g_W
 # One can also check that the covariates are balanced across the treated and control group by plotting the inverse-propensity weighted histograms of all samples, overlaid here for each feature (done with ggplot2 which supports weighted histograms):
 IPW <- ifelse(W == 1, 1 / e.hat, 1 / (1 - e.hat))
 
+min(IPW)
+
 #Make long
 
 df <- cbind.data.frame(g_W, g_X_binary,IPW)
-
+df
 head(df)
 table(df$g_W)
 
@@ -2145,4 +2150,18 @@ ggplot(df_long, aes(x = value, weight = IPW, fill = W)) +
 ggplot(df, aes(x = t0_religion_church_round_z, weight = IPW, fill = as.factor(g_W))) +
   geom_histogram(alpha = 0.5, position = "identity", bins = 30) 
 
+
+
+
+n <- 2000
+p <- 10
+X <- matrix(rnorm(n * p), n, p)
+dim(X)
+X
+X.test <- matrix(0, 101, p)
+
+dim(X.test)
+
+X.test[, 1] <- seq(-2, 2, length.out = 101)
+dim(X.test)
 
