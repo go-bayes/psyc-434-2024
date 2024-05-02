@@ -238,8 +238,8 @@ my_data %>%
 -   **Consistency:** can we interpret what it means to intervene on the exposure? 
 -   **Exchangeability:** are there different versions of the exposure conditionally exchangeable given measured baseline confounders?
 -   **Exposure type:** is the exposure binary or continuous?
--   **Shift intervention**: Am you contrasting static interventions or modified treatment policies? 
--   **Exposure timing:** Does your exposure appear before the outcome? (It should.)
+-   **Shift intervention**: do you contrast static interventions or modified treatment policies? 
+-   **Exposure timing:** does your exposure appear before the outcome? (It should.)
 
 #### Account for Confounders
 
@@ -288,7 +288,7 @@ $$
 
 #### Understanding Source and Target Populations
 
--   **Populations identified:** Have you explained how my sample relates to my target populations? 
+-   **Populations identified:** Have you explained how your sample relates to your target populations? 
 
 
 #### Set Eligibility Criteria
@@ -308,7 +308,7 @@ $$
 #### Addressing Missing Data
 
 -   **Missing data checks:** Have you checked for missing data? 
--   **Missing data plan:** If there is missing data, have you described how you will address it? (IPCW, see week 9)
+-   **Missing data plan:** If there are missing data, have you described how you will address the problem? (IPCW, see week 9)
 
 #### Selecting the Model Approach
 
