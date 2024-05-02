@@ -1,6 +1,6 @@
 ---
 title: "Causal diagrams: Five Elementary Structures"
-date: "2023-MAR-04"
+date: "2024-MAR-04"
 bibliography: /Users/joseph/GIT/templates/bib/references.bib
 editor_options: 
   chunk_output_type: console

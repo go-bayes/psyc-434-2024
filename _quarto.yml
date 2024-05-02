@@ -35,14 +35,14 @@ website:
           href: content/07-content.qmd
         - text: "Week 8: Causal Inference - Estimation of ATE and CATE - R and LaTeX"
           href: content/08-content.qmd
-        - text: "Week 9: Hands On Analysis"
+        - text: "Week 9: Hands On: Full Analysis in R"
           href: content/09-content.qmd
-        - text: "Week 10: Measurement Matters- R"
+        - text: "Week 10: Working with Quarto Documents"
           href: content/10-content.qmd
         - text: "Week 11: Measurement: Fctor Analysis, CFA, MultiGroup CFA, Partial Invariance "
           href: content/11-content.qmd
-        - text: "Week 12: Measurement: Conceptual Issue - Quarto Documents Seminar - Workflows"
-          href: content/11-content.qmd
+        - text: "Week 12: Measurement: Conceptual Problems"
+          href: content/12-content.qmd
 format:
   html:
     toc: true

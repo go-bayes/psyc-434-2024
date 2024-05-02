@@ -1,6 +1,6 @@
 ---
 title: "Hands On Working With Quarto Manuscript"
-date: "2023-MAY-13"
+date: "2024-MAY-13"
 bibliography: /Users/joseph/GIT/templates/bib/references.bib
 editor_options: 
   chunk_output_type: console

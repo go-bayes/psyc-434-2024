@@ -1,6 +1,6 @@
 ---
 title: "Causal Diagrams: The Structures of Confounding Bias"
-date: "2023-MAR-08"
+date: "2024-MAR-08"
 bibliography: /Users/joseph/GIT/templates/bib/references.bib
 editor_options: 
   chunk_output_type: console
