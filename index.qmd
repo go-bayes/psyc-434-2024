@@ -210,9 +210,9 @@ my_data %>%
 - Write a draft Introduction to your final essay. 
 - Write a draft Method section for your final essay. 
 
-## Assessment criteria 
+### Assessment criteria 
 
-### Stating the problem
+#### Stating the problem
 -   **State your question:** is your question clearly stated? 
 -   **Relevance:** have you explained its *scientific* importance? 
 -   **Causality:** Is your question causal?
@@ -222,14 +222,14 @@ my_data %>%
 -   **Data source:** are your data from the NZAVS simulated data set? (if not, consult with me)
 -   **Data waves:** are your data using three waves?
 
-#### Determining the outcome
+#### Determining the Outcome
 -   **Outcome variable:** is your outcome variable *Y* well-defined? 
 -   **Multiple outcomes:** do you assess multiple outcomes are are these well-defined?
 -   **Outcome relevance:** can you explain how the outcome variable/s relate to your question? 
 -   **Outcome type:** is your outcome binary and rare? ... etc.
 -   **Outcome timing:** does your outcome appear after your exposure?
 
-#### Determine the Exposure
+#### Determining the Exposure
 
 -   **Exposure variable:** is your exposure variable *A* well-defined?
 -   **Multiple exposures:** are there multiple exposures? (If yes, for this study, reassess).
@@ -241,7 +241,7 @@ my_data %>%
 -   **Shift intervention**: do you contrast static interventions or modified treatment policies? 
 -   **Exposure timing:** does your exposure appear before the outcome? (It should.)
 
-#### Account for Confounders
+#### Accounting for Confounders
 
 -   **Baseline confounders:** Have you defined your baseline confounders *L*?
 -   **Justification:** Can you explain how the baseline confounders could affect both *A* and *Y*? 
@@ -250,14 +250,14 @@ my_data %>%
 -   **Sufficiency:** Are the baseline confounders sufficient to ensure balance on the exposure, such that *A* is independent of *Y* given *L*? If not, explain your sensitivity analysis (E-values)
 -   **Confounder type:** Are the confounders continuous or binary? If so, consider converting them to z-scores. If they are categorical with three or more levels, do not convert them to z-scores, but rather use one-hot encoding (see lecture 9.)
 
-#### Draw a Causal Diagram with Unmeasured Confounders
+#### Drawing a Causal Diagram with Unmeasured Confounders
 
 -   **Causal diagram:** Have you drawn a causal diagram (DAG) to highlight both measured and unmeasured sources of confounding? 
 -   **Measurement error:** Have you described potential biases from measurement errors?
 -   **Temporal order:** Does your DAG have time indicators to ensure correct temporal order? 
 -   **Time consistency:** Is your DAG organized so that time follows in a consistent direction? 
 
-#### Identify the Estimand
+#### Identifying the Estimand
 
 -   **Causal Estimand:** Is your causal estimand one of the following:
 
