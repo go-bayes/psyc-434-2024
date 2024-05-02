@@ -12,7 +12,7 @@ format:
     error: FALSE
     messages: FALSE
     code-overflow: scroll
-    highlight-style: kate
+    highlight-style: oblivion
     code-tools:
       source: true
       toggle: FALSE

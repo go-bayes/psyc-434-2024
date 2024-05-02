@@ -10,7 +10,7 @@ format:
     error: FALSE
     messages: FALSE
     code-overflow: scroll
-    highlight-style: gruvbox
+    highlight-style: oblivion
     code-tools:
       source: TRUE
       toggle: FALSE
