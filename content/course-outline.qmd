@@ -53,7 +53,7 @@ editor_options:
 
 #### Lab
 
-- Practical exercises in R: regression and ggdag
+- Practical exercises in R: regression and `ggdag`
 
 
 #### Readings
@@ -104,12 +104,12 @@ editor_options:
 
 ##   Break: April 1 - 14 
 
-## Week 6: April 15 - Causal Inference: ATE
+## Week 6: April 15 - Causal Inference: Average Treatment (Marginal) Effects
 
 #### Focus
 
 - Key concepts of Average Treatment Effect (ATE)
-- Application of regression and simulation in R for ATE estimation
+- Application of regression and simulation in R to obtain ATE estimation
 
 #### Readings
 - [@hernan2024WHATIF] Chapters 1-3 [link](https://www.dropbox.com/scl/fi/9hy6xw1g1o4yz94ip8cvd/hernanrobins_WhatIf_2jan24.pdf?rlkey=8eaw6lqhmes7ddepuriwk5xk9&dl=0)
@@ -118,10 +118,9 @@ editor_options:
 - [@neal2020introduction] Chapter 1-2 [link](https://www.dropbox.com/scl/fi/9hy6xw1g1o4yz94ip8cvd/hernanrobins_WhatIf_2jan24.pdf?rlkey=8eaw6lqhmes7ddepuriwk5xk9&dl=0)
 
 
-
 #### Lab
 
-- Regression and simulation exercises in R focussed on ATE
+- Regression and simulation exercises in R focussed on estimating the ATE
 
 ## Week 7: April 22 - Causal Inference and Effect Modification
 
@@ -134,26 +133,28 @@ editor_options:
 
 #### Focus
 
-- Effect Modification: Definining the Causal Estimand
+- Effect Modification: Definine your Causal Estimand
 - Distinguishing *Cultural Effect-Modification* from the confused and conflated concepts of "Moderation", "Mediation", "Interaction."
-- Brief Detour into Causal Mediation
+- Detour into Causal Mediation
 
 #### Lab
 
-- Preparing your report analysis and manuscript: setting up your workflow/ quarto documents
+- Analysis step 1: data wrangling and descriptive tables/graphs
 
 
-## Week 8: April 29 - Causal Inference: Estimation of ATE and CATE 
+## Week 8: April 29 - Causal Inference: Marginal Structural Models; Inverse Probability of Treatment Weighting; Conditional Average Treatment Effects; IPTW when Groups are Compared.
 
 #### Focus
 
 - Workflow for causal question formulation, population statement, and causal diagram creation
-- Data wrangling; exploratory analysis
-- Estimation techniques evaluating evidence for cultural-effect modification using R and documentation with LaTeX
+- Marginal Structural Models: propensity scores and Inverse Probability of Treatment Weighting (IPTW)
+- IPTW when estimating conditional causal effects
+- Estimation techniques evaluating evidence for group-wise effect modification using R.
 
 
 #### Readings
 
+- [@greifer2023a] [link](https://ngreifer.github.io/WeightIt/)
 - [@vanderweele2020] [link](https://www.dropbox.com/scl/fi/srpynr0dvjcndveplcydn/OutcomeWide_StatisticalScience.pdf?rlkey=h4fv32oyjegdfl3jq9u1fifc3&dl=0)
 
 ##### Optional Readings 
@@ -178,11 +179,11 @@ editor_options:
 
 ## Week 10: May 13 - Hands On Working With Quarto Manuscript
 
-- No readings, do your quiz!
+- No readings, do your take-home assignment (see course details). 
 
 ## Labs
 
-- Creating and managing Quarto documents for research workflows
+- Creating and managing Quarto documents for publication quality research workflows
 
 
 ## Week 11: May 20 - Measurement Matters
