@@ -1,6 +1,6 @@
 ---
 title:  "Psych 434: Conducting Research Across Cultures"
-subtitle: "Conducting Rsearch About Cultures"
+subtitle: "Conducting Research About Cultures"
 date: "2024-FEB-26"
 bibliography: /Users/joseph/GIT/templates/bib/references.bib
 editor_options: 
@@ -165,7 +165,7 @@ editor_options:
 
 - Estimation ATE; CATE
 
-## Week 9: May 6 - Hands On Analysis (and TAKE HOME Test/Quiz (25%)) 
+## Week 9: May 6 - Hands On Analysis (and TAKE HOME Assessment (25%)) 
 
 #### Focus
 
@@ -211,8 +211,8 @@ editor_options:
 
 #### Focus
 
-- Enhancing measurement and external validity in causal inference studies
-- Guidance on writing introduction and method sections for research papers
+- Understanding causal assumptions of measurement theory
+- Guidance on your final assessment.
 
 #### Readings
 
@@ -227,21 +227,6 @@ editor_options:
 
 - R programming using causal inference to examine failure modes in measurement models
 
-## Week 12: May 27 - Missing Data Workflows.
-
-#### Focus
-
-- Addressing missing data issues in research
-- Creating and managing Quarto documents for research workflows
-
-#### Lab
-
-- Non-parametric causal estimation; inverse probability of censoring weights. 
-- Hands on working with your manuscripts 
-
-#### Suggested readings
-
-- [@bulbulia2023a]  [link](https://www.dropbox.com/scl/fi/78whcr3z5l48hboq0vi1j/bulbulia-long-term-causal-effects.pdf?rlkey=udjrkivk0g245ejlis8sxn5cq&dl=0)
 
 ## Week 13: June 3: No Seminar: Comparative Report Due (40%)
   - You assess a questions: do cultural groups vary in response to interventions on well-beings? 

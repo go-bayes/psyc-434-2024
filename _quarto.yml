@@ -37,9 +37,12 @@ website:
           href: content/08-content.qmd
         - text: "Week 9: Hands On Analysis"
           href: content/09-content.qmd
-        - text: "Week 10: Measurement Matters - Factor Analysis, CFA, MultiGroup CFA, Partial Invariance - R"
-        - text: "Week 11: Measurement + External Validity in Causal Inference - R (writing introduction/method section)"
-        - text: "Week 12: Missing Data Workflows - Quarto Documents Seminar - Workflows"
+        - text: "Week 10: Measurement Matters- R"
+          href: content/10-content.qmd
+        - text: "Week 11: Measurement: Fctor Analysis, CFA, MultiGroup CFA, Partial Invariance "
+          href: content/11-content.qmd
+        - text: "Week 12: Measurement: Conceptual Issue - Quarto Documents Seminar - Workflows"
+          href: content/11-content.qmd
 format:
   html:
     toc: true

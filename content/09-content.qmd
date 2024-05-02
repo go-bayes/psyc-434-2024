@@ -61,18 +61,50 @@ Doing a causal analysis
 :::
 
 ::: {.callout-important}
-## For the lab, download the script
-- And download the relevant libraries.
-- We will go through this script step-by-step.
+-  download the R script
+-  download the relevant libraries.
+-  Will go through this script step-by-step.
 :::
 
 
 
-## Link to workbook for this week:
+- Download the script and store in our R directory: [link to analysis script ](https://raw.githubusercontent.com/go-bayes/psyc-434-2024/main/scripts/example_analysis.R)
+
+- Make sure you can install all libraries required of the manuscript template.
+
+- Come to the seminar prepared to work through the analysis
+
+
+
+## LAB
+
+- We start with our lab this week. 
+
+- Here is a link to the workbook:
 
 [link to template for option 2 assignment 3](https://raw.githubusercontent.com/go-bayes/psyc-434-2024/main/scripts/example_analysis.R)
 
-## Overview
+
+
+
+## What You Will Learn
+
+- **Setting up your analysis:** 
+  
+- **Data wrangling (review):** 
+
+- **Demographic Tables (review):** 
+
+- **Exploratory Tables and Graphs (review)**
+
+- **Computing inverse probability of censoring weights (IPCW) to handle attrition/missingness**
+
+- **Causal Analysis using machine learning ensembles (Targeted Maximum Likelihood)**
+
+
+
+## Part 2 Guide For Preparing Your Study
+
 
 Recall that psychology begins with two questions. 
 
@@ -278,14 +310,14 @@ Our question: does visiting a clinical psychologist reduce the 10 year incidence
 -   **Subgroup analysis:** does my question involve a subgroup (e.g., cultural group)? If not, develop a subgroup analysis question.
 -   **Explain the Framework:** can I explain the causal inference framework and convey the gist to non-specialists? If not, review course materials.
 
-#### Data Requirements
+#### Determine Data Requirements
 
 -   **Data types:** are my data experimental? If yes, your project may not fit this course.
 -   **Time-series data:** are my data time-series? If not, reconsider your causal question.
 -   **Data waves:** do I have at least three waves of data? If not, beware of confounding control issues.
 -   **Data source:** are my data from the NZAVS simulated data set? If not, consult with me.
 
-#### Defining the outcome
+#### Determine the Outcome
 
 -   **Outcome variable:** is the outcome variable *Y* defined? If not, define it.
 -   **Multiple outcomes:** are there multiple outcomes? If yes, explain and define them.
@@ -293,7 +325,7 @@ Our question: does visiting a clinical psychologist reduce the 10 year incidence
 -   **Outcome type:** is my outcome binary and rare? If yes, consider logistic regression. If my outcome is continuous, consider z-transforming it or categorising it (consult an expert).
 -   **Outcome timing:** does the outcome appear after the exposure? It should.
 
-#### Determining the Exposure
+#### Determine the Exposure
 
 -   **Exposure variable:** is the exposure variable *A* defined? If not, define it.
 -   **Multiple exposures:** are there multiple exposures? If yes, reassess; if only one exposure, proceed.
@@ -305,7 +337,7 @@ Our question: does visiting a clinical psychologist reduce the 10 year incidence
 -   **Shift intervention**: Am I contrasting static interventions or modified treatment policies? 
 -   **Exposure timing:** Does the exposure appear before the outcome? It should.
 
-#### Accounting for Confounders
+#### Account for Confounders
 
 -   **Baseline confounders:** Have I defined my baseline confounders *L*? I should have.
 -   **Justification:** Can I explain how the baseline confounders could affect both *A* and *Y*? I should be able to.
@@ -314,7 +346,7 @@ Our question: does visiting a clinical psychologist reduce the 10 year incidence
 -   **Sufficiency:** Are the baseline confounders sufficient to ensure balance on the exposure, such that *A* is independent of *Y* given *L*? If not, plan a sensitivity analysis.
 -   **Confounder type:** Are the confounders continuous or binary? If so, consider converting them to z-scores. If they are categorical with three or more levels, do not convert them to z-scores.
 
-#### Drawing a Causal Diagram with Unmeasured Confounders
+#### Draw a Causal Diagram with Unmeasured Confounders
 
 -   **Unmeasured confounders:** Does previous science suggest the presence of unmeasured confounders? If not, expand your understanding.
 -   **Causal diagram:** Have I drawn a causal diagram (DAG) to highlight both measured and unmeasured sources of confounding? I should have.
@@ -322,7 +354,7 @@ Our question: does visiting a clinical psychologist reduce the 10 year incidence
 -   **Temporal order:** Does my DAG have time indicators to ensure correct temporal order? It should.
 -   **Time consistency:** Is my DAG organized so that time follows in a consistent direction? It should.
 
-#### Identifying the Estimand
+#### Identify the Estimand
 
 -   **Causal Estimand:** Is my causal estimand one of the following:
 
@@ -341,12 +373,12 @@ $$
 a_1 & \text{otherwise} \end{cases}
 $$
 
-$$ g_1 = \text{Intervention 1 - Intervention 2} = E[Y(\mathbf{d}^\lambda) - Y(\mathbf{d}^\phi)] $$
+$$ g' = \text{Intervention 1 - Intervention 2} = E[Y(\mathbf{d}^\lambda) - Y(\mathbf{d}^\phi)] $$
 
-$$ g_2 = \text{Intervention 1 - Intervention 2} = E[Y(\mathbf{d}^\lambda) - Y(\mathbf{d}^\phi)] $$
+$$ g'' = \text{Intervention 1 - Intervention 2} = E[Y(\mathbf{d}^\lambda) - Y(\mathbf{d}^\phi)] $$
 
 $$
-{\gamma}(g) ={g_1} - {g_2}
+{\gamma}(g) ={g'} - {g''}
 $$
 
 If yes, you're on the right track.
@@ -397,7 +429,8 @@ Let **U** denoted unmeasured pre-treatment covariates that may potentially bias 
 #| label: fig-dag-outcomewide
 #| fig-cap: "Causal graph: three-wave panel design." 
 #| out-width: 100%
-#| echo: false
+#| echo: true
+#| code-fold: true
 
 \usetikzlibrary{positioning}
 \usetikzlibrary{shapes.geometric}
@@ -417,7 +450,6 @@ Let **U** denoted unmeasured pre-treatment covariates that may potentially bias 
 \draw [-latex, bend left=50, draw =black] (L) to (Y);
 \draw [-latex, bend right=50, draw =black, dotted] (U) to (Y);
 \draw [-latex, bend left=50, draw =black, dotted] (U) to (A);
-
 
 \end{tikzpicture}
 ```
@@ -879,9 +911,9 @@ The estimated difference $\hat{\delta}$ represents the average causal effect of 
 We again use simulation-based inference methods to compute standard errors and confidence intervals [@greifer2023].
 
 
-### Machine Learning -- example (from https://osf.io/cnphs )
+### Machine Learning
 
-The following is example text you might tweak for you Method section
+Example from https://osf.io/cnphs
 
 
 > We perform statistical estimation using semi-parametric Targeted
@@ -915,7 +947,7 @@ model-misspecification in either the outcome or the treatment model
 either the treatment model or the outcome model is correctly specified,
 the TMLE estimator will consistently estimate the causal effect.
 Additionally, we used cross-validation to avoid over-fitting, following
-the pre-stated protocols in Bulbulia [@bulbulia2024PRACTICA]. The integration of TMLE
+the pre-stated protocols in Bulbulia [@bulbulia2024PRACTICAL]. The integration of TMLE
 and machine learning technologies reduces the dependence on restrictive
 modelling assumptions and introduces an additional layer of robustness.
 For further details of the specific targeted learning strategy we
