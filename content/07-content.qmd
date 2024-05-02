@@ -915,7 +915,7 @@ graph_density_of_exposure_up <- margot::coloured_histogram_shift(
 graph_density_of_exposure_up
 
 # save
-margot::here_save(graph_density_of_exposure_up, "graph_density_of_exposure_up")
+#margot::here_save(graph_density_of_exposure_up, "graph_density_of_exposure_up")
 
 ```
 
@@ -954,7 +954,7 @@ out <-margot::create_transition_matrix(data = dt_18_19_positivity, state_var = "
 transition_table  <- margot::transition_table(out)
 
 # for import later
-margot::here_save(transition_table, "transition_table")
+# margot::here_save(transition_table, "transition_table")
 
 
 print(transition_table$table)
@@ -1405,6 +1405,12 @@ and independent effect modification. For further discussion, see:
 
 
 
+
+### Packages
+
+```{r}
+report::cite_packages()
+```
 
 
 

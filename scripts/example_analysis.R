@@ -11,6 +11,9 @@
 push_mods <-
   here::here('/Users/joseph/Library/CloudStorage/Dropbox-v-project/data/saved')
 
+# update margot
+devtools::install_github("go-bayes/margot")
+
 # load packages
 library("tidyverse")
 library("margot")
@@ -288,6 +291,11 @@ table(round(dat_long$sample_weights, 3))
 dt_18 <- dat_long|>
   filter(wave == 2018) 
 
+# check missing values a baseline
+viss_miss_baseline <- naniar::vis_miss(dt_18, warn_large_data = F)
+here_save(viss_miss_baseline, "viss_miss_baseline")
+
+
 # the setdiff command allows us to remove names from the baseline vars list that we do not want
 base_var <-
   setdiff(baseline_vars, c("censored", "sample_weights", outcome_vars))
@@ -308,7 +316,7 @@ table_baseline <- dt_18 |>
     ),
     type = all_continuous() ~ "continuous2"
   ) |>
-  modify_header(label = "**Exposure + Demographic Variables**") |> # update the column header
+  modify_header(label = "**Demographic Variables**") |> # update the column header
   bold_labels() 
 
 
@@ -358,6 +366,7 @@ table_exposures
 # save baseline
 here_save(table_exposures, "table_exposures")
 
+# check
 table_exposures
 
 
@@ -422,11 +431,29 @@ table_outcomes
 # select 2019 wave
 dt_19 <- dat_long |> dplyr::filter(wave == 2019)
 
-# mean
+# mean of exposure
 mean_exposure <-mean(dt_19$perfectionism, na.rm=TRUE)
+
+# save
+here_save(mean_exposure, "mean_exposure")
+
+# check
+mean_exposure
+
+# sd of exposure
+sd_exposure <-sd(dt_19$perfectionism, na.rm=TRUE)
+
+# save
+here_save(sd_exposure, "sd_exposure")
+
+# check
+sd_exposure
+
 
 # median
 median_exposure <-median(dt_19$perfectionism, na.rm=TRUE)
+
+median_exposure
 
 # check if you like
 # median_exposure
@@ -468,6 +495,83 @@ margot::here_save(transition_table, "transition_table")
 print(transition_table$table)
 print(transition_table$explanation)
 
+
+
+# example of a cross sectional analysis -----------------------------------
+
+dt_18_regress <- dat_long|>
+  filter(wave == 2018) |> 
+  mutate(#perfectionism_z = scale(perfectionism),
+         kessler_latent_anxiety_z = scale(kessler_latent_anxiety),
+         kessler_latent_depression_z = scale(kessler_latent_depression)
+         )
+
+# check
+hist( dt_18_regress$kessler_latent_depression_z) 
+# check
+hist( dt_18_regress$kessler_latent_anxiety_z) 
+
+
+# code from above
+base_var <-
+  setdiff(baseline_vars, c("censored", "sample_weights", outcome_vars))
+
+# fit model 
+fit_kessler_latent_anxiety <-
+  margot::regress_with_covariates(
+    dt_18_regress,
+    outcome = "kessler_latent_anxiety_z",
+    exposure = "perfectionism",
+    baseline_vars = base_var
+  )
+
+# view 
+parameters::model_parameters(fit_kessler_latent_anxiety, ci_method="wald")[2, ]
+
+# full model 
+parameters::model_parameters(fit_kessler_latent_anxiety, ci_method="wald")
+
+# save results
+here_save(fit_kessler_latent_anxiety, "fit_kessler_latent_anxiety")
+
+# view
+fit_kessler_latent_depression <-
+  regress_with_covariates(
+    dt_18_regress,
+    outcome = "kessler_latent_depression_z",
+    exposure = "perfectionism",
+    baseline_vars = base_var
+  )
+# view model
+parameters::model_parameters(fit_kessler_latent_depression, ci_method="wald")[2, ]
+
+# save results
+here_save(fit_kessler_latent_depression, "fit_kessler_latent_depression")
+
+
+# calculate betas anxiety
+lm_fit_kessler_latent_anxiety <- tbl_regression(fit_kessler_latent_anxiety)
+here_save(lm_fit_kessler_latent_anxiety, "lm_fit_kessler_latent_anxiety")
+
+# calculate betas depression
+lm_fit_kessler_latent_depression <- tbl_regression(fit_kessler_latent_depression)
+here_save(lm_fit_kessler_latent_depression, "lm_fit_kessler_latent_depression")
+
+# 
+# # 
+b_lm_fit_kessler_latent_anxiety <-inline_text(lm_fit_kessler_latent_anxiety,
+variable = perfectionism,
+pattern = "b = {estimate}; (95% CI {conf.low}, {conf.high})")
+
+here_save(b_lm_fit_kessler_latent_anxiety, "b_lm_fit_kessler_latent_anxiety")
+
+# # 
+b_lm_fit_kessler_latent_depression <-
+  inline_text(lm_fit_kessler_latent_depression,
+              variable = perfectionism,
+              pattern = "b = {estimate}; (95% CI {conf.low}, {conf.high})")
+
+here_save(b_lm_fit_kessler_latent_depression, "b_lm_fit_kessler_latent_depression")
 
 
 # impute missing values at baseline ---------------------------------------
@@ -825,6 +929,108 @@ here_save(df_clean_t2, "df_clean_t2")
 
 
 
+# imbalance plot ----------------------------------------------------------
+df_clean_t2 <- here_read("df_clean_t2")
+
+hist(df_clean_t2$t0_combo_weights)
+
+# if you are comparing 2 x subgroups out of n > 2 groups,  do this
+# df_subgroup <-df_clean_t2 |> filter(t0_eth_cat == "maori" | t0_eth_cat == "euro") |> droplevels()
+# 
+# # save
+# here_save(df_subgroup, "df_subgroup")
+
+# copy data and make the group to be compared a factor
+df_sub <- df_clean_t2
+df_sub$t0_born_nz<- as.factor(df_clean_t2$t0_born_nz)
+
+
+baseline_vars_models = df_clean_t2 |>
+  dplyr::select(starts_with("t0"),-t0_combo_weights)|> colnames() 
+
+# check
+baseline_vars_models
+
+# needed for subgroup ps
+baseline_vars_models_sans_group <- setdiff(baseline_vars_models, "t0_born_nz")
+
+
+# equation string
+string <- formula_str <- as.formula(paste("t1_perfectionism", "~", paste(baseline_vars_models, collapse = "+")))
+
+# equation string for subgroup analysis
+string_sans <- formula_str <- as.formula(paste("t1_perfectionism", "~", paste(baseline_vars_models_sans_group, collapse = "+")))
+
+
+# iptw marginal analysis
+iptw_marginal  <- WeightIt::weightit(
+  string,
+  method = "ebal",
+  estimand = "ATE",
+  weights = "t0_combo_weights",
+  #focal = "set",
+  data = df_clean_t2
+)
+summary_iptw_marginal <- summary(iptw_marginal)
+here_save(summary_iptw_marginal, "summary_iptw_marginal")
+
+
+# note extreme
+plot(summary(iptw_marginal))
+
+# save model
+here_save(iptw_marginal, "iptw_marginal")
+
+
+# iptw conditional analysis  won't work 
+# no diff in the groups
+# iptw_conditional <- weightit(
+#   string_sans,
+#   method = "ebal",
+#   estimand = "ATE",
+#   by = "t0_born_nz",
+#   weights = "t0_combo_weights",
+#   #focal = "set", # if att
+#   data = df_sub
+# )
+# 
+# # view
+# summary(iptw_conditional)
+
+# save model
+# here_save(iptw_conditional, "iptw_conditional")
+# summary_iptw_conditional <- summary(iptw_conditional)
+# here_save(summary_iptw_conditional, "summary_iptw_conditional")
+
+
+# visualise imbalance
+love_plot_marginal <-
+  love.plot(
+    iptw_marginal,
+    binary = "std",
+    thresholds = c(m = .1),
+    wrap = 50,
+    position = "bottom",
+    size = 3
+  )
+love_plot_marginal
+here_save(love_plot_marginal, "love_plot_marginal")
+# 
+#love_plot_conditional
+# love_plot_conditional <-
+#   love.plot(
+#     iptw_conditional,
+#     cluster = "t0_born_nz",
+#     binary = "std",
+#     thresholds = c(m = .1),
+#     wrap = 50,
+#     position = "bottom",
+#     size = 2
+#   )
+# love_plot_conditional
+
+
+
 # START ANALYSIS HERE --------------------------------------------------------------
 # read data --  start here if previous work already done
 df_clean_t2 <- here_read("df_clean_t2")
@@ -1155,15 +1361,31 @@ here_save(t2_kessler_latent_depression_z_null, "t2_kessler_latent_depression_z_n
 
 
 # subgroup models ---------------------------------------------------------
+# df_final <- here_read("df_final") # if needed
 
 df_born_nz_no  <-df_final |> dplyr::filter(t0_born_nz == 0) |> droplevels()
 df_born_nz_yes <-df_final |> dplyr::filter(t0_born_nz == 1)  |> droplevels()
 
 # checks
-nrow(df_born_nz_no)
+n_participants_born_nz <- nrow(df_born_nz_yes)
+n_participants_born_overseas <- nrow(df_born_nz_no)
 
-# checks 
-nrow(df_born_nz_yes)
+
+
+# make pretty 
+n_participants_born_nz <-
+  prettyNum(n_participants_born_nz, big.mark = ",")
+n_participants_born_overseas <-
+  prettyNum(n_participants_born_overseas, big.mark = ",")
+
+# sanity checks
+n_participants_born_nz
+n_participants_born_overseas
+
+here_save(n_participants_born_nz, "n_participants_born_nz")
+here_save(n_participants_born_overseas, "n_participants_born_overseas")
+
+
 
 
 # need to remove the "born nz" name as we are stratifying
@@ -1388,6 +1610,9 @@ t2_kessler_latent_depression_z_null <- margot::here_read("t2_kessler_latent_depr
 contrast_t2_kessler_latent_anxiety_z <-
   lmtp_contrast(t2_kessler_latent_anxiety_z_gain, ref =  t2_kessler_latent_anxiety_z_null, type = "additive")
 
+# save for manuscript
+here_save(contrast_t2_kessler_latent_anxiety_z,"contrast_t2_kessler_latent_anxiety_z")
+
 # make table
 tab_contrast_t2_kessler_latent_anxiety_z <- margot::margot_lmtp_evalue(
   contrast_t2_kessler_latent_anxiety_z,
@@ -1401,6 +1626,12 @@ tab_contrast_t2_kessler_latent_anxiety_z
 # contrast marginal depression
 contrast_t2_kessler_latent_depression_z <-
   lmtp_contrast(t2_kessler_latent_depression_z_gain, ref =  t2_kessler_latent_depression_z_null, type = "additive")
+
+# save for manuscript
+
+here_save(contrast_t2_kessler_latent_depression_z,"contrast_t2_kessler_latent_depression_z")
+
+
 
 # make table
 tab_contrast_t2_kessler_latent_depression_z <- margot::margot_lmtp_evalue(
@@ -1509,21 +1740,21 @@ margot::here_save( group_tab_marginal_outcomes, "group_tab_marginal_outcomes")
 
 
 # subgroups 
-tab_not_born_overseas_outcomes <-
+tab_born_overseas_outcomes <-
   rbind(
     tab_contrast_df_born_nz_no_t2_kessler_latent_anxiety_z,
     tab_contrast_df_born_nz_no_t2_kessler_latent_depression_z
   )
 
 # save
-margot::here_save( tab_not_born_overseas_outcomes, "tab_not_born_overseas_outcomes")
-
+margot::here_save( tab_born_overseas_outcomes, "tab_born_overseas_outcomes")
+tab_born_overseas_outcomes
 
 # table with evalues for the graph 
-group_tab_not_born_overseas_outcomes <- margot::group_tab(tab_not_born_overseas_outcomes, type = "RD")
+group_tab_born_overseas_outcomes <- margot::group_tab(tab_born_overseas_outcomes, type = "RD")
 
 # view
-group_tab_not_born_overseas_outcomes
+group_tab_born_overseas_outcomes
 
 # save
 margot::here_save( group_tab_born_overseas_outcomes, "group_tab_born_overseas_outcomes")
@@ -1550,7 +1781,7 @@ margot::here_save( group_tab_born_nz_outcomes, "group_tab_born_nz_outcomes")
 
 # view all
 group_tab_marginal_outcomes
-group_tab_not_born_overseas_outcomes
+group_tab_born_overseas_outcomes
 group_tab_born_nz_outcomes
 
 
@@ -1611,8 +1842,11 @@ ggsave(
 
 # subgroup comparisons ----------------------------------------------------
 
-contrast_yes <- contrast_df_born_nz_yes_t2_kessler_latent_anxiety_z
-contrast_no <- contrast_df_born_nz_no_t2_kessler_latent_anxiety_z
+contrast_anxiety_yes <- contrast_df_born_nz_yes_t2_kessler_latent_anxiety_z
+contrast_anxiety_no <- contrast_df_born_nz_no_t2_kessler_latent_anxiety_z
+
+contrast_depression_yes <- contrast_df_born_nz_yes_t2_kessler_latent_anxiety_z
+contrast_depression_no <- contrast_df_born_nz_no_t2_kessler_latent_anxiety_z
 # first calculate the difference in the means
 g_hat_theta <- contrast_yes$vals$theta - contrast_no$vals$theta
 
@@ -1665,8 +1899,17 @@ compute_difference_means <- function(group1, group2) {
 
 
 # use function 
-difference_in_group_means  <- compute_difference(contrast_yes, contrast_no)
-difference_in_group_means
+difference_in_group_means_anxiety  <- margot::compute_difference_means(contrast_anxiety_yes, contrast_anxiety_no)
+difference_in_group_means_anxiety
+here_save(difference_in_group_means_anxiety,"difference_in_group_means_anxiety")
+
+
+difference_in_group_means_depression  <- margot::compute_difference_means(contrast_depression_yes, contrast_depression_no)
+difference_in_group_means_depression
+here_save(difference_in_group_means_depression,"difference_in_group_means_depression")
+
+
+
 
 ## use glue in your document as follows 
 glue::glue("The difference in means is {difference_in_group_means$mean_difference} with a 95% CI of [{difference_in_group_means$conf_low}, {difference_in_group_means$conf_high}].")

@@ -1067,3 +1067,9 @@ Note, as of yet, we have only encountered several of the terms in this glossary.
 [Glossary of key terms in causal inference](/content/glossary.pdf)
 
 
+
+### Packages
+
+```{r}
+report::cite_packages()
+```

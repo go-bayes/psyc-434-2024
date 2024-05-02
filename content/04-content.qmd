@@ -1100,5 +1100,11 @@ ggdag_adjustment_set(dag_sel)
 -  Clarify your assumption.
 
 
+### Packages
+
+```{r}
+report::cite_packages()
+```
+
 
   

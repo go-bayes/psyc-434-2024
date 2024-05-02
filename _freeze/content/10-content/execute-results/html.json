@@ -1,0 +1,15 @@
+{
+  "hash": "1be2b1473b514c14e3781c3ec3cfee27",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Hands On Working With Quarto Manuscript\"\ndate: \"2023-MAY-23\"\nbibliography: /Users/joseph/GIT/templates/bib/references.bib\neditor_options: \n  chunk_output_type: console\nformat:\n  html:\n    warnings: FALSE\n    error: FALSE\n    messages: FALSE\n    code-overflow: scroll\n    highlight-style: oblivion\n    code-tools:\n      source: true\n      toggle: FALSE\nhtml-math-method: katex\nreference-location: margin\ncitation-location: margin\ncap-location: margin\ncode-block-border-left: true\n---\n\n\n\n\n\n\n\n\n::: {.callout-note}\n**Required**\nDownload Quarto here: \n- Use the `prelease` version: https://quarto.org/docs/download/\n\n**Optional**\n- [@Bulbulia2024PracticalGuide] [link](https://osf.io/preprints/psyarxiv/uyg3d)\n- [@hoffman2023] [link](https://arxiv.org/pdf/2304.09460.pdf)\n:::\n\n::: {.callout-important}\n## Key concepts\n- Writing up your manuscript\n\n:::\n\n::: {.callout-important}\n## For the lab, download the script\n- We will go through this script step-by-step.\n:::\n\n\n\n\n\n### Lab Script \n\n\n[link to template for option 2 assignment 3](https://raw.githubusercontent.com/go-bayes/psyc-434-2024/main/scripts/example_analysis.R)\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

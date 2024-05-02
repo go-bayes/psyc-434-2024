@@ -1507,4 +1507,11 @@ If the predictions are not distinct, the observations will not enable a shift in
 
 
 
+### Packages
+
+```{r}
+report::cite_packages()
+```
+
+
 

@@ -527,7 +527,7 @@ dat_long <- df_nz |>
     "partner",
     # 0 = no, 1 = yes
     "parent",
-    "alert_level_combined_lead", # see bibliography
+    #"alert_level_combined_lead", # see bibliography
     # 0 = no, 1 = yes
     "political_conservative", # see nzavs sheet
     "hours_exercise", # see nzavs sheet
@@ -725,7 +725,7 @@ margot::coloured_histogram_shift(col_name = "perfectionism", binwidth = .1,
 Next lets set our baseline variables
 
 ```{r}
-baseline_vars = c("age", "male", "edu", "eth_cat", "partner", "employed", "born_nz", "neighbourhood_community", "household_inc_log", "parent", "religion_religious", "urban", "employed", "alert_level_combined_lead", "sample_weights")
+baseline_vars = c("age", "male", "edu", "eth_cat", "partner", "employed", "born_nz", "neighbourhood_community", "household_inc_log", "parent", "religion_religious", "urban", "employed", "sample_weights")
 
 # treatment
 exposure_vars = c("perfectionism_4tile") 
@@ -747,6 +747,8 @@ In our first analysis we will not merely impute baseline values. Rather we will 
 
 ```{r}
 # make long data wide
+
+# remove sample weights, return them later
 prep_dat_wide <- margot_wide(dat_long, 
                              baseline_vars = baseline_vars, 
                              exposure_var = exposure_vars,
@@ -775,7 +777,7 @@ a + b + c + d == nrow(prep_dat_wide)
 naniar::vis_miss(prep_dat_wide, warn_large_data = FALSE)
 
 # check for collinear vars
-mice:::find.collinear(prep_dat_wide)
+mice:::find.collinear(prep_dat_wide) # note sample weights is collinear
 ```
 
 
@@ -790,6 +792,7 @@ Next we impute by quartile.  Save this output in your folder.
 
 # impute by quartile
 mice_health <- margot::impute_and_combine(list_filtered_df,  m = 5 )
+
 
 margot::here_save(mice_health, "mice_health")
 ```
@@ -811,7 +814,7 @@ mice_health_mids <- mice_health |>
   rename(sample_weights = t0_sample_weights) |>
 dplyr::mutate(
   across(
-    where(is.numeric) & !t0_alert_level_combined_lead &
+    where(is.numeric) &
       !sample_weights,
     ~ scale(.x),
     .names = "{col}_z"
@@ -832,6 +835,10 @@ dplyr::mutate(
   mutate_if(is.matrix, as.vector) |>
   as.mids()
 
+# make long
+mice_health_long <- mice::complete(mice_health_mids, "long", inc = TRUE)
+
+
 #Save
 here_save(mice_health_mids, "mice_health_mids")
 here_save(mice_health_long, "mice_health_long")
@@ -849,6 +856,7 @@ here_save(mice_health_long, "mice_health_long")
 # this is how you read saved files without the margot package
 mice_health_mids <- readRDS(here::here(push_mods, "mice_health_mids"))
 mice_health_long <- readRDS(here::here(push_mods, "mice_health_long"))
+
 # propensity scors --------------------------------------------------------
 
 
@@ -1396,7 +1404,7 @@ here_save(df_clean_t2, "df_clean_t2")
 ```
 
 
-### Matching in subgroupus
+### Matching in subgroups
 
 
 ### Subgroup analysis 
@@ -1947,6 +1955,13 @@ Which results are correct?  We don't know. With more time, we would add more lea
 
 Generally, I suggest using machine learning algorithms, because they can include parametric estimators. 
 
+
+
+### Packages
+
+```{r}
+report::cite_packages()
+```
 
 
 

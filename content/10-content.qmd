@@ -1,0 +1,77 @@
+---
+title: "Hands On Working With Quarto Manuscript"
+date: "2023-MAY-23"
+bibliography: /Users/joseph/GIT/templates/bib/references.bib
+editor_options: 
+  chunk_output_type: console
+format:
+  html:
+    warnings: FALSE
+    error: FALSE
+    messages: FALSE
+    code-overflow: scroll
+    highlight-style: oblivion
+    code-tools:
+      source: true
+      toggle: FALSE
+html-math-method: katex
+reference-location: margin
+citation-location: margin
+cap-location: margin
+code-block-border-left: true
+---
+
+
+```{r}
+#| include: false
+#| echo: false
+#read libraries
+
+library("tinytex")
+library(extrafont)
+loadfonts(device = "all")
+
+library("margot")
+library("tidyverse")
+
+# WARNING:  COMMENT THIS OUT. JB DOES THIS FOR WORKING WITHOUT WIFI
+#source("/Users/joseph/GIT/templates/functions/libs2.R")
+
+# WARNING:  COMMENT THIS OUT. JB DOES THIS FOR WORKING WITHOUT WIFI
+#source("/Users/joseph/GIT/templates/functions/funs.R")
+
+# WARNING:  COMMENT THIS OUT. JB DOES THIS FOR WORKING WITHOUT WIFI
+source("/Users/joseph/GIT/templates/functions/experimental_funs.R")
+```
+
+
+::: {.callout-note}
+**Required**
+Download Quarto here: 
+- Use the `prelease` version: https://quarto.org/docs/download/
+
+**Optional**
+- [@Bulbulia2024PracticalGuide] [link](https://osf.io/preprints/psyarxiv/uyg3d)
+- [@hoffman2023] [link](https://arxiv.org/pdf/2304.09460.pdf)
+:::
+
+::: {.callout-important}
+## Key concepts
+- Writing up your manuscript
+
+:::
+
+::: {.callout-important}
+## For the lab, download the script
+- We will go through this script step-by-step.
+:::
+
+
+
+
+
+### Lab Script 
+
+
+[link to template for option 2 assignment 3](https://raw.githubusercontent.com/go-bayes/psyc-434-2024/main/scripts/example_analysis.R)
+

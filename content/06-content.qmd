@@ -690,3 +690,11 @@ $$
 \text{Causal Effect}_i = Y_{1} - Y_0 
 $$
 Where subscripts are dropped.  You will soon encounter that many 
+
+
+
+### Packages
+
+```{r}
+report::cite_packages()
+```

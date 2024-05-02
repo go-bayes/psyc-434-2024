@@ -1,13 +1,24 @@
 ---
 title: "Causal inference: a step by step guide"
-date: "2023-MAY-16"
-bibliography: references.bib
-theme:
-  light: flatly
-  dark: darkly
-format: 
- html:      
-  html-math-method: katex
+date: "2023-MAY-6"
+bibliography: /Users/joseph/GIT/templates/bib/references.bib
+editor_options: 
+  chunk_output_type: console
+format:
+  html:
+    warnings: FALSE
+    error: FALSE
+    messages: FALSE
+    code-overflow: scroll
+    highlight-style: oblivion
+    code-tools:
+      source: true
+      toggle: FALSE
+html-math-method: katex
+reference-location: margin
+citation-location: margin
+cap-location: margin
+code-block-border-left: true
 ---
 
 ```{r}
@@ -19,23 +30,56 @@ library("tinytex")
 library(extrafont)
 loadfonts(device = "all")
 
-# WARNING:  COMMENT THIS OUT. JB DOES THIS FOR WORKING WITHOUT WIFI
-source("/Users/joseph/GIT/templates/functions/libs2.R")
+library("margot")
+library("tidyverse")
 
 # WARNING:  COMMENT THIS OUT. JB DOES THIS FOR WORKING WITHOUT WIFI
-source("/Users/joseph/GIT/templates/functions/funs.R")
+#source("/Users/joseph/GIT/templates/functions/libs2.R")
+
+# WARNING:  COMMENT THIS OUT. JB DOES THIS FOR WORKING WITHOUT WIFI
+#source("/Users/joseph/GIT/templates/functions/funs.R")
 
 # WARNING:  COMMENT THIS OUT. JB DOES THIS FOR WORKING WITHOUT WIFI
 source("/Users/joseph/GIT/templates/functions/experimental_funs.R")
 ```
 
+
+::: {.callout-note}
+**Required**
+- nil
+
+**Optional**
+- [@Bulbulia2024PracticalGuide] [link](https://osf.io/preprints/psyarxiv/uyg3d)
+- [@hoffman2023] [link](https://arxiv.org/pdf/2304.09460.pdf)
+:::
+
+::: {.callout-important}
+## Key concepts
+
+Doing a causal analysis
+
+:::
+
+::: {.callout-important}
+## For the lab, download the script
+- And download the relevant libraries.
+- We will go through this script step-by-step.
+:::
+
+
+
 ## Link to workbook for this week:
 
-[link to template for option 2 assignment 3](https://github.com/go-bayes/psych-434-2023/blob/main/scripts/example_analysis.R)
+[link to template for option 2 assignment 3](https://raw.githubusercontent.com/go-bayes/psyc-434-2024/main/scripts/example_analysis.R)
 
 ## Overview
 
-Recall that psychology begins with a question. What do I want to know about thought and behaviour? In cross-cultural psychology, these questions relate to differences, and similarities, between groups.
+Recall that psychology begins with two questions. 
+
+> What do I want to know about thought and behaviour? 
+> What is the target population? 
+
+In cross-cultural psychology, these questions relate to differences, and similarities, between groups.
 
 Suppose we have asked a question. How can we address it using observational data?
 
@@ -51,13 +95,11 @@ The order is as follows:
 2. **Checklist For Causal Estimation in Three Wave Longitudinal Designs**
 3. **Explanation of the the Checklist**
 
-Condsider...
-
 
 ## Motivations for a Three-Wave Longitudinal Design for Observational Causal Inference. 
 
 REVIEW: 
-Causal Diagrammes (DAGS) are a remarkably powerful and simple tool for understanding confounding [https://go-bayes.github.io/psych-434-2023/content/common_graphs.html](https://go-bayes.github.io/psych-434-2023/content/common_graphs.html) 
+Causal Diagrammes (DAGS) are a remarkably powerful and simple tool for understanding confounding [See here](https://osf.io/b23k7) 
 
 ### Common cause of exposure and outcome.
 
@@ -192,8 +234,6 @@ Our question: does visiting a clinical psychologist reduce the 10 year incidence
 \draw [-latex, bend left, draw =black] (L) to (Y);
 \draw [-latex, black] (L) to (A);
 \end{tikzpicture}
-
-
 ```
 
 ### Generic 3-wave panel design (VanderWeeele 2020)
@@ -227,60 +267,60 @@ Our question: does visiting a clinical psychologist reduce the 10 year incidence
 \end{tikzpicture}
 ```
 
-## Comprehensive Checklist for Detailed Reporting of a Causal Inferenctial Study (E.g. Assessment 3 option 2)
+## Comprehensive Checklist for Detailed Reporting of a Causal Inferenctial Study.
 
 ## STEP 1 Formulate the Research Question
 
--   **Stating the Question:** Is my question clearly stated? If not, state it.
--   **Relevance of the Question:** Have I explained its importance? If not, explain.
--   **Ethical Considerations** How might this question affect people? How might not investigating this question affect people? 
--   **Causality of the Question:** Is my question causal? If not, refine your question.
--   **Subgroup Analysis:** Does my question involve a subgroup (e.g., cultural group)? If not, develop a subgroup analysis question.
--   **Understanding the Framework:** Can I explain the potential outcomes framework, individual causal effects, the experimental method to obtain average causal effects, the fundamental assumptions of causal inference, and the estimation of causal effects in observational data? If not, review course materials.
+-   **State your question:** is my question clearly stated? If not, state it.
+-   **Relevance:** have I explained its importance? If not, explain.
+-   **Ethics** how might this question affect people? How might not investigating this question affect people? 
+-   **Causality:** Is my question causal? If not, refine your question.
+-   **Subgroup analysis:** does my question involve a subgroup (e.g., cultural group)? If not, develop a subgroup analysis question.
+-   **Explain the Framework:** can I explain the causal inference framework and convey the gist to non-specialists? If not, review course materials.
 
 #### Data Requirements
 
--   **Type of Data:** Are my data experimental? If yes, your project may not fit this course.
--   **Time-Series Data:** Are my data time-series? If not, reconsider your causal question.
--   **Data Waves:** Do I have at least three waves of data? If not, beware of confounding control issues.
--   **Data Source:** Are my data from the NZAVS simulated data set? If not, consult with me.
+-   **Data types:** are my data experimental? If yes, your project may not fit this course.
+-   **Time-series data:** are my data time-series? If not, reconsider your causal question.
+-   **Data waves:** do I have at least three waves of data? If not, beware of confounding control issues.
+-   **Data source:** are my data from the NZAVS simulated data set? If not, consult with me.
 
-#### Defining the Outcome
+#### Defining the outcome
 
--   **Outcome Variable:** Is the outcome variable *Y* defined? If not, define it.
--   **Multiple Outcomes:** Are there multiple outcomes? If yes, write them down.
--   **Outcome Relevance:** Can I explain how the outcome variable/s relate to my question? If not, clarify.
--   **Outcome Type:** Is my outcome binary and rare? If yes, consider logistic regression. If my outcome is continuous, consider z-transforming it or categorising it (consult an expert).
--   **Outcome Timing:** Does the outcome appear after the exposure? It should.
+-   **Outcome variable:** is the outcome variable *Y* defined? If not, define it.
+-   **Multiple outcomes:** are there multiple outcomes? If yes, explain and define them.
+-   **Outcome relevance:** can I explain how the outcome variable/s relate to my question? If not, clarify.
+-   **Outcome type:** is my outcome binary and rare? If yes, consider logistic regression. If my outcome is continuous, consider z-transforming it or categorising it (consult an expert).
+-   **Outcome timing:** does the outcome appear after the exposure? It should.
 
 #### Determining the Exposure
 
--   **Exposure Variable:** Is the exposure variable *A* defined? If not, define it.
--   **Multiple Exposures:** Are there multiple exposures? If yes, reassess; if only one exposure, proceed.
--   **Exposure Relevance:** Can I explain how the exposure variable relates to my question? If not, clarify.
--   **Positivity:** Can we intervene on the exposure at all levels of the covariates? We should be able to.
--   **Consistency:** Can I interpret what it means to intervene on the exposure? I should be able to.
--   **Exchangeability:** Are different versions of the exposure conditionally exchangeable given measured baseline confounders? They should be.
--   **Exposure Type:** Is the exposure binary or continuous? If continuous, z-transform it or consider categorising it (consult an expert).
--   **Exposure Timing:** Does the exposure appear before the outcome? It should.
+-   **Exposure variable:** is the exposure variable *A* defined? If not, define it.
+-   **Multiple exposures:** are there multiple exposures? If yes, reassess; if only one exposure, proceed.
+-   **Exposure relevance:** can I explain how the exposure variable relates to my question? If not, clarify.
+-   **Positivity:** can we intervene on the exposure at all levels of the covariates? We should be able to.
+-   **Consistency:** can I interpret what it means to intervene on the exposure? I should be able to.
+-   **Exchangeability:** are different versions of the exposure conditionally exchangeable given measured baseline confounders? They should be.
+-   **Exposure type:** is the exposure binary or continuous?
+-   **Shift intervention**: Am I contrasting static interventions or modified treatment policies? 
+-   **Exposure timing:** Does the exposure appear before the outcome? It should.
 
 #### Accounting for Confounders
 
--   **Baseline Confounders:** Have I defined my baseline confounders *L*? I should have.
+-   **Baseline confounders:** Have I defined my baseline confounders *L*? I should have.
 -   **Justification:** Can I explain how the baseline confounders could affect both *A* and *Y*? I should be able to.
 -   **Timing:** Are the baseline confounders measured before the exposure? They should be.
 -   **Inclusion:** Is the baseline measure of the exposure and the baseline outcome included in the set of baseline confounders? They should be.
 -   **Sufficiency:** Are the baseline confounders sufficient to ensure balance on the exposure, such that *A* is independent of *Y* given *L*? If not, plan a sensitivity analysis.
--   **Confounder Type:** Are the confounders continuous or binary? If so, consider converting them to z-scores. If they are categorical with three or more levels, do not convert them to z-scores.
+-   **Confounder type:** Are the confounders continuous or binary? If so, consider converting them to z-scores. If they are categorical with three or more levels, do not convert them to z-scores.
 
 #### Drawing a Causal Diagram with Unmeasured Confounders
 
--   **Unmeasured Confounders:** Does previous science suggest the presence of unmeasured confounders? If not, expand your understanding.
--   **Causal Diagram:** Have I drawn a causal diagram (DAG) to highlight both measured and unmeasured sources of confounding? I should have.
--   **M-Bias:** Have I considered the possibility of M-Bias? If not familiar, we'll discuss later.
--   **Measurement Error:** Have I described potential biases from measurement errors? If not, we'll discuss later.
--   **Temporal Order:** Does my DAG have time indicators to ensure correct temporal order? It should.
--   **Time Consistency:** Is my DAG organized so that time follows in a consistent direction? It should.
+-   **Unmeasured confounders:** Does previous science suggest the presence of unmeasured confounders? If not, expand your understanding.
+-   **Causal diagram:** Have I drawn a causal diagram (DAG) to highlight both measured and unmeasured sources of confounding? I should have.
+-   **Measurement error:** Have I described potential biases from measurement errors? If not, we'll discuss later.
+-   **Temporal order:** Does my DAG have time indicators to ensure correct temporal order? It should.
+-   **Time consistency:** Is my DAG organized so that time follows in a consistent direction? It should.
 
 #### Identifying the Estimand
 
@@ -290,36 +330,56 @@ $$ATE_{G,(A,A')} = E[Y(1) - Y(0)|G, L]$$
 
 $$ATE_{G,(A/A')} = \frac{E[Y(1)|G, L]}{E[Y(0)|G, L]}$$
 
+A modified treatment policy, e.g.
+
+$$
+\mathbf{d}^\lambda (a_1) = \begin{cases} 4 & \text{if } a_1 < 4 \\ 
+a_1 & \text{otherwise} \end{cases}
+$$
+$$
+\mathbf{d}^\phi (a_1) = \begin{cases} 0 & \text{if } a_1 > 0 \\ 
+a_1 & \text{otherwise} \end{cases}
+$$
+
+$$ g_1 = \text{Intervention 1 - Intervention 2} = E[Y(\mathbf{d}^\lambda) - Y(\mathbf{d}^\phi)] $$
+
+$$ g_2 = \text{Intervention 1 - Intervention 2} = E[Y(\mathbf{d}^\lambda) - Y(\mathbf{d}^\phi)] $$
+
+$$
+{\gamma}(g) ={g_1} - {g_2}
+$$
+
 If yes, you're on the right track.
 
 #### Understanding Source and Target Populations
 
--   **Populations Identified:** Have I differentiated between my source and target populations? I should have.
--   **Generalisability and Transportability:** Have I considered whether my results generalise to the source population and transport to a different population? I should have.
+-   **Populations identified:** Have I explained how my sample relates to my target populations? I should have.
+-   **Generalisability and transportability:** Have I considered whether my results generalise different populations?  I should have.
 
-#### Setting Eligibility Criteria
+#### Set Eligibility Criteria
 
--   **Criteria Stated:** Have I stated the eligibility criteria for the study? I should have.
+-   **Criteria stated:** Have I stated the eligibility criteria for the study? I should have.
 
-#### Describing Sample Characteristics
+#### Describe Sample Characteristics
 
--   **Descriptive Statistics:** Have I provided descriptive statistics for demographic information taken at baseline? I should have.
--   **Exposure Change:** Have I demonstrated the magnitudes of change in the exposure from baseline to the exposure interval? I should have.
+-   **Descriptive statistics:** have I provided descriptive statistics for demographic information taken at baseline? I should have.
+-   **Exposure change:** Have I demonstrated the magnitudes of change in the exposure from baseline to the exposure interval? I should have.
 -   **References:** Have I included references for more information about the sample? I should have.
 
 #### Addressing Missing Data
 
--   **Missing Data Check:** Have I checked for missing data? I should have.
--   **Missing Data Plan:** If there is missing data, have I described how I will address it? I should have.
+-   **Missing data checks:** Have I checked for missing data? I should have.
+-   **Missing data plan:** If there is missing data, have I described how I will address it? I should have.
 
 #### Selecting the Model Approach
 
--   **Approach Decision:** Have I decided on using G-computation, IPTW, or Doubly-Robust Estimation? I should have.
--   **Interaction Inclusion:** Have I included the interaction of the exposure and baseline covariates? I should have.
--   **Large Data Set:** If I have a large data set, should I include the interaction of the exposure, group, and baseline confounders? I should consider it.
--   **Model Specification:** Have I double-checked the model specification? I should.
+-   **Approach decision:** Have I decided on using G-computation, IPTW, or Doubly-Robust Estimation? I should have.
+-   **Interactions:** If not using machine learning, have I included the interaction of the exposure and baseline covariates? I should have.
+-   **Large data:** If I have a large data set, should I include the interaction of the exposure, group, and baseline confounders? I should consider it.
+-   **Model specification:** have I double-checked the model specification? I should.
 -   **Outcome Specifics:** If the outcome is rare and binary, have I specified logistic regression? If it's continuous, have I considered converting it to z-scores?
--   **Sensitivity Analysis:** Am I planning a sensitivity analysis using simulation? If yes, describe it (e.g. E-values.)
+-   **Sensitivity analysis:** am I planning a sensitivity analysis using simulation? If yes, describe it (e.g. E-values.)
+-   **Machine Learning**: have I explained how machine learning works? 
 
 ### d. Highlight unmeasured pre-treatment covariates
 
@@ -398,7 +458,7 @@ $$ATE_{G,\text{risk ratio}} = \frac{E[Y(1)|G, L]}{E[Y(0)|G, L]}$$
 
 -   *In this course, we are interested in stratum specific comparisons*
 -   In the causal inference literature, the concept we use to make sense of stratum specific comparisons is called "effect modification."
--   By inferring effects within stratums, we may evaluate whether the effects of different exposures or treatments on some well-defined outcome (measured in some well-defined time-period after the exposure) differ depending on group measurement.
+-   By inferring effects within strata, we may evaluate whether the effects of different exposures or treatments on some well-defined outcome (measured in some well-defined time-period after the exposure) differ depending on group measurement.
 -   The logic of effect modification differs slightly from that of interaction.
 
 #### Aside: extensions
@@ -419,9 +479,9 @@ This defines the contrast of $A$ and $A'$ on a ratio scale.
 
 Consider the following concepts:
 
--   **Source population**: A source population is where we gather our data for a study. We pull our specific sample from this group. It needs to mirror the broader group for our conclusions to be valid and widely applicable.
+-   **Source population**: a source population is where we gather our data for a study. We pull our specific sample from this group. It needs to mirror the broader group for our conclusions to be valid and widely applicable.
 
--   **Target population**: The target population is the larger group we aim to apply our study's results to. It could be defined by location, demographics, or specific conditions. The closer the source matches the target in ways that are relevant to our causal questions, the stronger our causal inferences about the target population will be.
+-   **Target population**: the target population is the larger group we aim to apply our study's results to. It could be defined by location, demographics, or specific conditions. The closer the source matches the target in ways that are relevant to our causal questions, the stronger our causal inferences about the target population will be.
 
     -   **Generalisability** refers to the ability to apply the causal effects estimated from a sample to the population it was drawn from. In simpler terms, it deals with the extrapolation of causal knowledge from a sample to the broader population. This concept is also called "external validity".
 
@@ -502,8 +562,9 @@ Consider the following ideas about how to report one's model:
 -   **Weighting Algorithm Statistics:** Report the statistics for the weighting algorithms as provided by the WeightIt package, including any measures of balance or fit.
 -   **Outcome Regression Model:** Clearly report the type of regression model used to estimate outcome model coefficients (e.g., linear regression, Poisson, binomial), and mention if the exposure was interacted with the baseline covariates. Do not report model coefficients as these have no interpretation.
 -   **Subgroup Interaction:** Address whether the subgroup was included separately as an interaction in the outcome model, and if the model successfully converged.
--   **Model Coefficients:** Note that the model coefficients should not be interpreted, as they are not meaningful in this context.
--   **Confidence Intervals and Standard Errors:** Describe the methods used to derive confidence intervals and standard errors, noting the use of the 'clarify' package in R for simulation based inference.
+-   **Machine Learning Using `lmtp`** If using the `lmtp` package, do a stratified analysis. (see today's lab)
+-   **Model coefficients:** note that the model coefficients should not be interpreted, as they are not meaningful in this context.
+-   **Confidence intervals and standard errors:** Describe the methods used to derive confidence intervals and standard errors, noting the use of the 'clarify' package in R for simulation based inference.
 
 ### Example of how to report a doubly robust method in your report
 
@@ -599,15 +660,15 @@ We again use simulation-based inference methods to compute standard errors and c
 
 **Step 1:** Estimate the propensity score. The propensity score $e(L, G)$ is the conditional probability of the exposure $A = 1$, given the covariates $L$ and subgroup indicator $G$. This can be modeled using logistic regression or other suitable methods, depending on the nature of the data and the exposure.
 
-$$e = P(A = 1 | L, G) = f_A(L, G; \theta_A)$$
+$$\hat{e} = P(A = 1 | L, G) = f_A(L, G; \theta_A)$$
 
 Here, $f_A(L, G; \theta_A)$ is a function (statistical model) that estimates the probability of the exposure $A = 1$ given covariates $L$ and subgroup $G$. Then, we calculate the weights for each individual, denoted as $v$, using the estimated propensity score:
 
 $$
 v = 
 \begin{cases} 
-\frac{1}{e} & \text{if } A = 1 \\
-\frac{1}{1-e} & \text{if } A = 0 
+\frac{1}{\hat{e}} & \text{if } A = 1 \\
+\frac{1}{1-\hat{e}} & \text{if } A = 0 
 \end{cases}
 $$
 
@@ -652,17 +713,17 @@ It appears that the Doubly Robust Estimation explanation for subgroup analysis i
 
 Doubly Robust Estimation is a powerful technique that combines the strengths of both the IPTW and G-computation methods. It uses both the propensity score model and the outcome model, which makes it doubly robust: it produces unbiased estimates if either one of the models is correctly specified.
 
-**Step 1** Estimate the propensity score. The propensity score $e(L, G)$ is the conditional probability of the exposure $A = 1$, given the covariates $L$ and subgroup indicator $G$. This can be modeled using logistic regression or other suitable methods, depending on the nature of the data and the exposure.
+**Step 1** Estimate the propensity score. The propensity score $\hat{e}(L, G)$ is the conditional probability of the exposure $A = 1$, given the covariates $L$ and subgroup indicator $G$. This can be modeled using logistic regression or other suitable methods, depending on the nature of the data and the exposure.
 
-$$e = P(A = 1 | L, G) = f_A(L, G; \theta_A)$$
+$$\hat{e} = P(A = 1 | L, G) = f_A(L, G; \theta_A)$$
 
 Here, $f_A(L, G; \theta_A)$ is a function (statistical model) that estimates the probability of the exposure $A = 1$ given covariates $L$ and subgroup $G$. Then, we calculate the weights for each individual, denoted as $v$, using the estimated propensity score:
 
 $$
 v = 
 \begin{cases} 
-\frac{1}{e} & \text{if } A = 1 \\
-\frac{1}{1-e} & \text{if } A = 0 
+\frac{1}{\hat{e}} & \text{if } A = 1 \\
+\frac{1}{1-\hat{e}} & \text{if } A = 0 
 \end{cases}
 $$
 
@@ -741,8 +802,8 @@ Here, $f_A(L, G; \theta_A)$ is a function (statistical model) that estimates the
 $$
 v = 
 \begin{cases} 
-\frac{1}{e} & \text{if } A = 1 \\
-\frac{1}{1-e} & \text{if } A = 0 
+\frac{1}{\hat{e}} & \text{if } A = 1 \\
+\frac{1}{1-\hat{e}} & \text{if } A = 0 
 \end{cases}
 $$
 
@@ -783,7 +844,7 @@ Sometimes we will only wish to estimate a marginal effect. In that case.
 
 **Step 1** Estimate the propensity score. The propensity score $e(L)$ is the conditional probability of the exposure $A = 1$, given the covariates $L$ which contains the subgroup $G$. This can be modelled using logistic regression or other functions as described in @greifer2023
 
-$$e = P(A = 1 | L) = f_A(L; \theta_A)$$
+$$\hat{e} = P(A = 1 | L) = f_A(L; \theta_A)$$
 
 Here, $f_A(L; \theta_A)$ is a function (a statistical model) that estimates the probability of the exposure $A = 1$ given covariates $L$. Then, we calculate the weights for each individual, denoted as $v$, using the estimated propensity score:
 
@@ -818,15 +879,67 @@ The estimated difference $\hat{\delta}$ represents the average causal effect of 
 We again use simulation-based inference methods to compute standard errors and confidence intervals [@greifer2023].
 
 
+### Machine Learning -- example (from https://osf.io/cnphs )
 
-<!-- ### What we have not done -->
+The following is example text you might tweak for you Method section
 
-<!-- We have not addressed:  -->
 
-<!-- - measurement error. Our graphs do not incorporate it.  -->
+> We perform statistical estimation using semi-parametric Targeted
+Learning, specifically a Targeted Minimum Loss-based Estimation (TMLE)
+estimator. TMLE is a robust method that combines machine learning
+techniques with traditional statistical models to estimate causal
+effects while providing valid statistical uncertainty measures for these
+estimates [@van2012targeted; @van2014targeted].
 
-<!-- - selection bias -->
+> TMLE operates through a two-step process that involves modelling both
+the outcome and treatment (exposure). Initially, TMLE employs machine
+learning algorithms to flexibly model the relationship between
+treatments, covariates, and outcomes. This flexibility allows TMLE to
+account for complex, high-dimensional covariate spaces
+\emph{efficiently} without imposing restrictive model assumptions;
+[@vanderlaan2011; @vanderlaan2018]. The outcome of this step is a set
+of initial estimates for these relationships.
 
-<!-- - Outcome-wide studies -->
+> The second step of TMLE involves ``targeting'' these initial estimates
+by incorporating information about the observed data distribution to
+improve the accuracy of the causal effect estimate. TMLE achieves this
+precision through an iterative updating process, which adjusts the
+initial estimates towards the true causal effect. This updating process
+is guided by the efficient influence function, ensuring that the final
+TMLE estimate is as close as possible, given the measures and data, to
+the targeted causal effect while still being robust to
+model-misspecification in either the outcome or the treatment model
+[@van2014discussion].
 
-<!-- - Sampling weights.  -->
+> Again, a central feature of TMLE is its double-robustness property. If
+either the treatment model or the outcome model is correctly specified,
+the TMLE estimator will consistently estimate the causal effect.
+Additionally, we used cross-validation to avoid over-fitting, following
+the pre-stated protocols in Bulbulia [@bulbulia2024PRACTICA]. The integration of TMLE
+and machine learning technologies reduces the dependence on restrictive
+modelling assumptions and introduces an additional layer of robustness.
+For further details of the specific targeted learning strategy we
+favour, see [@duxedaz2021; @hoffman2022, @hoffman2023]. We perform estimation using the
+\texttt{lmtp} package [@williams2021]. We used the \texttt{superlearner} library for semi-parametric estimation with the predefined libraries \texttt{SL.ranger},
+\texttt{SL.glmnet}, and \texttt{SL.xgboost} [@xgboost2023; @polley2023; @Ranger2017]. We created graphs, tables and output reports using the \texttt{margot} package
+[@margot2024].
+
+#### Sensitivity Analysis Using the E-value
+
+> To assess the sensitivity of results to unmeasured confounding, we
+report VanderWeele and Ding's ``E-value'' in all analyses
+[@vanderweele2017]. The E-value quantifies the minimum strength of association (on the risk ratio scale) that an unmeasured confounder would need to have with both the exposure
+and the outcome (after considering the measured covariates) to explain
+away the observed exposure-outcome association
+[@linden2020EVALUE; @vanderweele2020]. To
+evaluate the strength of evidence, we use the bound of the E-value 95\%
+confidence interval closest to 1.
+
+
+
+
+### Packages
+
+```{r}
+report::cite_packages()
+```
