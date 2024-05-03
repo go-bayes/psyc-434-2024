@@ -16,29 +16,32 @@ devtools::install_github("go-bayes/margot")
 
 # load packages
 library("tidyverse")
-library("margot")
-library("skimr")
-library("naniar")
-library("WeightIt")
-library("clarify")
-library("MatchThem")
-library("cobalt")
-library("MatchIt")
-library("kableExtra")
-library("lmtp")
-library("SuperLearner")
-library("ranger")
-library("xgboost")
-library("glmnet")
-library("doParallel")
-library("ggplot2")
-library("here")
-library("skimr")
-library("janitor")
-library("naniar")
-if (!require(gtsummary)) install.packages("gtsummary")
-if (!require(janitor)) install.packages("janitor")
 
+
+# get devtools
+if (!require(devtools, quietly = TRUE)) {
+  install.packages("devtools")
+  library(devtools)
+}
+
+# get 'margot' from my github (make sure to update)
+devtools::install_github("go-bayes/margot")
+}
+
+
+# Check if pacman is installed; if not, install it
+if (!require(pacman, quietly = TRUE)) {
+  install.packages("pacman")
+  library(pacman)
+}
+
+# use p_load to load / install the packages
+pacman::p_load(
+  skimr, naniar, WeightIt, clarify, MatchThem, cobalt, MatchIt,
+  kableExtra, lmtp, SuperLearner, ranger, xgboost, glmnet, 
+  doParallel, ggplot2, here, janitor, naniar, gtsummary, grf, progressr,
+  tidyverse, ggplot2, parameters, kableExtra
+)
 
 # wrangling ---------------------------------------------------------------
 # set seed for reproducability
