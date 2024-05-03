@@ -1,11 +1,10 @@
-# PSYCH 434: Example script for assessment 3 and 5.
+# PSYCH 434: Example script for a causal inference analysis
 # May 2024
 # questions: joseph.bulbulia@vuw.ac.nz
-# Running this command will download the functions and packages you need to complete this worksheet.
-# You many find the code by pointing your browser to the webpage that is contained in the link
 
-# QEUSTION 1. Does a one unit shift in perfectionism affect anxiety and depression
-# compare Europeans and Maori
+# Causal Question Does a one unit shift in perfectionism affect anxiety and depression
+# compare NZ Born (YES vs NO)
+# Population: Residents of New Zealand in 2018-2021
 
 # set path to save models
 push_mods <-
@@ -37,10 +36,31 @@ if (!require(pacman, quietly = TRUE)) {
 
 # use p_load to load / install the packages
 pacman::p_load(
-  skimr, naniar, WeightIt, clarify, MatchThem, cobalt, MatchIt,
-  kableExtra, lmtp, SuperLearner, ranger, xgboost, glmnet, 
-  doParallel, ggplot2, here, janitor, naniar, gtsummary, grf, progressr,
-  tidyverse, ggplot2, parameters, kableExtra
+  skimr,
+  naniar,
+  WeightIt,
+  clarify,
+  MatchThem,
+  cobalt,
+  MatchIt,
+  kableExtra,
+  janitor,
+  lmtp,
+  SuperLearner,
+  ranger,
+  xgboost,
+  glmnet,
+  doParallel,
+  ggplot2,
+  here,
+  naniar,
+  gtsummary,
+  grf,
+  progressr,
+  tidyverse,
+  ggplot2,
+  parameters,
+  kableExtra
 )
 
 # wrangling ---------------------------------------------------------------
@@ -63,10 +83,10 @@ n_total <- skimr::n_unique(df_nz$id)
 # get comma in number
 n_total <- prettyNum(n_total, big.mark = ",")
 
-# check
+# check n total
 n_total
 
-# save number for manuscrip
+# save n for manuscript
 margot::here_save(n_total, "n_total")
 
 # name of exposure
@@ -79,11 +99,11 @@ skimr::skim(df_nz) |> arrange(n_missing)
 ids_2018 <- df_nz |>
   dplyr::filter(year_measured == 1, wave == 2018) |>
   dplyr::filter(!is.na(!!sym(name_exposure))) |> # criteria, no missing in baseline exposure
-#  dplyr::filter(!is.na(eth_cat)) |> # criteria, no missing
+  #  dplyr::filter(!is.na(eth_cat)) |> # criteria, no missing
   pull(id)
 
 
-# if you decide to include the exposure in the treatment wave, 
+# if you decide to include the exposure in the treatment wave,
 # if you decide to include the exposure in the treatment wave,
 # obtain ids for individuals who participated in 2019
 # ids_2019 <- df_nz |>
@@ -204,8 +224,7 @@ dat_long <- df_nz |>
     household_inc_log = log(household_inc + 1),
     hours_exercise_log = log(hours_exercise + 1)
   ) |>
-  dplyr::select(-c(household_inc,
-                   hours_exercise)) |>
+  dplyr::select(-c(household_inc, hours_exercise)) |>
   droplevels() |>
   # dplyr::rename(sample_weights = w_gend_age_ethnic,
   #               sample_origin =  sample_origin_names_combined) |>
@@ -238,8 +257,6 @@ margot::here_save(n_participants, "n_participants")
 skimr::skim(dat_long)
 
 
-
-
 # set baseline variables --------------------------------------------------
 
 # for confounding control
@@ -264,7 +281,6 @@ baseline_vars = c(
 exposure_var = c("perfectionism", "censored") # we will use the censored variable later
 
 # outcome, can be many
-
 outcome_vars = c("kessler_latent_anxiety", "kessler_latent_depression")
 
 
@@ -288,11 +304,13 @@ dat_long$sample_weights <-
 table(round(dat_long$sample_weights, 3))
 
 
-
-
 # make your tables --------------------------------------------------------
-dt_18 <- dat_long|>
-  filter(wave == 2018) 
+dt_18 <- dat_long |>
+  filter(wave == 2018)
+
+# get baseline cols
+selected_base_cols <-
+  dt_18 |> select(all_of(base_var))
 
 # check missing values a baseline
 viss_miss_baseline <- naniar::vis_miss(dt_18, warn_large_data = F)
@@ -300,50 +318,40 @@ here_save(viss_miss_baseline, "viss_miss_baseline")
 
 
 # the setdiff command allows us to remove names from the baseline vars list that we do not want
-base_var <-
-  setdiff(baseline_vars, c("censored", "sample_weights", outcome_vars))
+base_var <- setdiff(baseline_vars, c("censored", "sample_weights", outcome_vars))
+
+# check
 base_var
 
-table_baseline <- dt_18 |> 
-  select(all_of(base_var)) |> 
-  janitor::clean_names(case = "title") |> 
+table_baseline <- selected_base_cols %>%
+  janitor::clean_names(case = "title") %>%
   tbl_summary(
     missing = "ifany",
     percent = "column",
     statistic = list(
-      all_continuous() ~ c(
-        "{mean} ({sd})", # Mean and SD
-        "{min}, {max}", # Range (Min, Max)
-        "{p25}, {p75}" # IQR (25th percentile, 75th percentile)
-      )
+      all_continuous() ~ c("{mean} ({sd})", "{min}, {max}", "{p25}, {p75}")
     ),
-    type = all_continuous() ~ "continuous2"
-  ) |>
-  modify_header(label = "**Demographic Variables**") |> # update the column header
-  bold_labels() 
+    type = list(all_continuous() ~ "continuous2")
+  ) %>%
+  modify_header(label = "**Exposure + Demographic Variables**") %>%
+  bold_labels()
 
-
-
+# baseline
 table_baseline
-# save baseline
-here_save(table_baseline, "table_baseline")
 
+# save your baseline table
+margot::here_save(table_baseline, "table_baseline")
 
 # exposure table ----------------------------------------------------------
 # get first and second wave
-dt_18_19 <- dat_long |> 
-  dplyr::filter(wave == 2018 | wave == 2019) |> 
+dt_18_19 <- dat_long |>
+  dplyr::filter(wave == 2018 | wave == 2019) |>
   # we need to drop unused levels of the wave
   droplevels()
 
 # get vars.
 selected_exposure_cols <-
-  dt_18_19 %>% select(
-    c(
-      "perfectionism",
-      "wave"
-    )
-  )
+  dt_18_19 %>% select(c("perfectionism", "wave"))
 
 # check
 #str(selected_exposure_cols)
@@ -351,20 +359,17 @@ selected_exposure_cols <-
 
 
 table_exposures <- selected_exposure_cols %>%
-  janitor::clean_names(case = "title") %>% 
-  labelled::to_factor() %>%  # ensure consistent use of pipe operator
-  tbl_summary(
-    by = "Wave",  #specify the grouping variable. Adjust "Wave" to match the cleaned column name
-    missing = "always", 
-    percent = "column",
-    # statistic = list(all_continuous() ~ "{mean} ({sd})")  # Uncomment and adjust if needed for continuous variables
-  ) %>%
-  #  add_n() %>%  # Add column with total number of non-missing observations
-  modify_header(label = "**Exposure Variables by Wave**") %>%  # Update the column header
+  janitor::clean_names(case = "title") %>%
+  labelled::to_factor() %>%
+  tbl_summary(by = "Wave",
+              # Specify the grouping variable. Adjust "Wave" to match the cleaned column name.
+              # Uncomment the following line and adjust if you have continuous variables to summarize
+              # statistic = list(all_continuous() ~ "{mean} ({sd})"),
+              # add_n(),  # Add a column with total number of non-missing observations (uncomment if needed))
+              missing = "always",
+              percent = "column") %>%
+  modify_header(label = "**Exposure Variables by Wave**") %>%
   bold_labels()
-
-table_exposures
-
 
 # save baseline
 here_save(table_exposures, "table_exposures")
@@ -375,8 +380,8 @@ table_exposures
 
 # outcome table -----------------------------------------------------------
 
-dt_18_20 <- dat_long |> 
-  dplyr::filter(wave == 2018 | wave == 2020) |> 
+dt_18_20 <- dat_long |>
+  dplyr::filter(wave == 2018 | wave == 2020) |>
   droplevels()
 
 names_outcomes_tab <- setdiff(outcome_vars, dt_18_20)
@@ -385,8 +390,7 @@ names_outcomes_final <- names_outcomes_sorted # consistent workflow
 
 # better names if desirable
 selected_outcome_cols <-
-  dt_18_20 %>% select(all_of(names_outcomes_final),
-                      wave) 
+  dt_18_20 %>% select(all_of(names_outcomes_final), wave)
 # |> # example if you want to rename your variables for the table
 #   rename(
 #     Social_belonging = belong,
@@ -411,15 +415,14 @@ selected_outcome_cols <- selected_outcome_cols %>%
 # colnames(selected_outcome_cols)
 
 table_outcomes <- selected_outcome_cols %>%
-  janitor::clean_names(case = "title") %>% 
+  janitor::clean_names(case = "title") %>%
   labelled::to_factor() %>%  # ensure consistent use of pipe operator
-  tbl_summary(
-    by = "Wave",  #specify the grouping variable. Adjust "Wave" to match the cleaned column name
-    missing = "always", 
-    percent = "column",
-    # statistic = list(all_continuous() ~ "{mean} ({sd})")  # Uncomment and adjust if needed for continuous variables
-  ) %>%
-  #  add_n() %>%  # Add column with total number of non-missing observations
+  tbl_summary(by = "Wave",
+              #specify the grouping variable. Adjust "Wave" to match the cleaned column name
+              # statistic = list(all_continuous() ~ "{mean} ({sd})")  # Uncomment and adjust if needed for continuous variables) %>%
+              #  add_n()
+              missing = "always",
+              percent = "column") %>%  # Add column with total number of non-missing observations
   modify_header(label = "**Outcome Variables by Wave**") %>%  # Update the column header
   bold_labels()
 
@@ -435,7 +438,7 @@ table_outcomes
 dt_19 <- dat_long |> dplyr::filter(wave == 2019)
 
 # mean of exposure
-mean_exposure <-mean(dt_19$perfectionism, na.rm=TRUE)
+mean_exposure <- mean(dt_19$perfectionism, na.rm = TRUE)
 
 # save
 here_save(mean_exposure, "mean_exposure")
@@ -444,7 +447,7 @@ here_save(mean_exposure, "mean_exposure")
 mean_exposure
 
 # sd of exposure
-sd_exposure <-sd(dt_19$perfectionism, na.rm=TRUE)
+sd_exposure <- sd(dt_19$perfectionism, na.rm = TRUE)
 
 # save
 here_save(sd_exposure, "sd_exposure")
@@ -454,7 +457,7 @@ sd_exposure
 
 
 # median
-median_exposure <-median(dt_19$perfectionism, na.rm=TRUE)
+median_exposure <- median(dt_19$perfectionism, na.rm = TRUE)
 
 median_exposure
 
@@ -471,19 +474,20 @@ graph_density_shift_function <- margot::coloured_histogram(
   highlight_range = "highest"
 )
 graph_density_shift_function
-margot::here_save(graph_density_shift_function, "graph_density_shift_function")
-
-
+margot::here_save(graph_density_shift_function,
+                  "graph_density_shift_function")
 
 # change in exposure ------------------------------------------------------
-
 dt_18_19_positivity <- dat_long |>
-  dplyr::filter(wave == 2018 | wave == 2019) |>
+  dplyr::filter(wave == 2018 |
+                  wave == 2019) |>
   dplyr::mutate(perfectionism_round = round(perfectionism, digits = 0)) |>
   dplyr::select(perfectionism_round, id, wave) |>
   droplevels()
 
-out <-margot::create_transition_matrix(data = dt_18_19_positivity, state_var = "perfectionism_round", id_var = "id")
+out <- margot::create_transition_matrix(data = dt_18_19_positivity,
+                                        state_var = "perfectionism_round",
+                                        id_var = "id")
 
 
 # t_tab_2_labels <- c("< weekly", ">= weekly")
@@ -502,24 +506,25 @@ print(transition_table$explanation)
 
 # example of a cross sectional analysis -----------------------------------
 
-dt_18_regress <- dat_long|>
-  filter(wave == 2018) |> 
-  mutate(#perfectionism_z = scale(perfectionism),
-         kessler_latent_anxiety_z = scale(kessler_latent_anxiety),
-         kessler_latent_depression_z = scale(kessler_latent_depression)
-         )
+dt_18_regress <- dat_long |>
+  filter(wave == 2018) |>
+  mutate(
+    #perfectionism_z = scale(perfectionism),
+    kessler_latent_anxiety_z = scale(kessler_latent_anxiety),
+    kessler_latent_depression_z = scale(kessler_latent_depression)
+  )
 
 # check
-hist( dt_18_regress$kessler_latent_depression_z) 
+hist(dt_18_regress$kessler_latent_depression_z)
 # check
-hist( dt_18_regress$kessler_latent_anxiety_z) 
+hist(dt_18_regress$kessler_latent_anxiety_z)
 
 
 # code from above
 base_var <-
   setdiff(baseline_vars, c("censored", "sample_weights", outcome_vars))
 
-# fit model 
+# fit model
 fit_kessler_latent_anxiety <-
   margot::regress_with_covariates(
     dt_18_regress,
@@ -528,11 +533,11 @@ fit_kessler_latent_anxiety <-
     baseline_vars = base_var
   )
 
-# view 
-parameters::model_parameters(fit_kessler_latent_anxiety, ci_method="wald")[2, ]
+# view
+parameters::model_parameters(fit_kessler_latent_anxiety, ci_method = "wald")[2, ]
 
-# full model 
-parameters::model_parameters(fit_kessler_latent_anxiety, ci_method="wald")
+# full model
+parameters::model_parameters(fit_kessler_latent_anxiety, ci_method = "wald")
 
 # save results
 here_save(fit_kessler_latent_anxiety, "fit_kessler_latent_anxiety")
@@ -546,48 +551,58 @@ fit_kessler_latent_depression <-
     baseline_vars = base_var
   )
 # view model
-parameters::model_parameters(fit_kessler_latent_depression, ci_method="wald")[2, ]
+parameters::model_parameters(fit_kessler_latent_depression, ci_method =
+                               "wald")[2, ]
 
 # save results
-here_save(fit_kessler_latent_depression, "fit_kessler_latent_depression")
+here_save(fit_kessler_latent_depression,
+          "fit_kessler_latent_depression")
 
 
 # calculate betas anxiety
 lm_fit_kessler_latent_anxiety <- tbl_regression(fit_kessler_latent_anxiety)
-here_save(lm_fit_kessler_latent_anxiety, "lm_fit_kessler_latent_anxiety")
+here_save(lm_fit_kessler_latent_anxiety,
+          "lm_fit_kessler_latent_anxiety")
 
 # calculate betas depression
 lm_fit_kessler_latent_depression <- tbl_regression(fit_kessler_latent_depression)
-here_save(lm_fit_kessler_latent_depression, "lm_fit_kessler_latent_depression")
+here_save(lm_fit_kessler_latent_depression,
+          "lm_fit_kessler_latent_depression")
 
-# 
-# # 
-b_lm_fit_kessler_latent_anxiety <-inline_text(lm_fit_kessler_latent_anxiety,
-variable = perfectionism,
-pattern = "b = {estimate}; (95% CI {conf.low}, {conf.high})")
+#
+# #
+b_lm_fit_kessler_latent_anxiety <- inline_text(lm_fit_kessler_latent_anxiety,
+                                               variable = perfectionism,
+                                               pattern = "b = {estimate}; (95% CI {conf.low}, {conf.high})")
 
-here_save(b_lm_fit_kessler_latent_anxiety, "b_lm_fit_kessler_latent_anxiety")
+here_save(b_lm_fit_kessler_latent_anxiety,
+          "b_lm_fit_kessler_latent_anxiety")
 
-# # 
+# #
 b_lm_fit_kessler_latent_depression <-
   inline_text(lm_fit_kessler_latent_depression,
               variable = perfectionism,
               pattern = "b = {estimate}; (95% CI {conf.low}, {conf.high})")
 
-here_save(b_lm_fit_kessler_latent_depression, "b_lm_fit_kessler_latent_depression")
+here_save(b_lm_fit_kessler_latent_depression,
+          "b_lm_fit_kessler_latent_depression")
 
 
 # impute missing values at baseline ---------------------------------------
 
 exposure_vars <- c("perfectionism", "censored")
-baseline_vars<-setdiff(baseline_vars, "sample_weights")
+baseline_vars <- setdiff(baseline_vars, "sample_weights")
 
 # check
 baseline_vars
 
-# here we imput the baseline 
-df_impute_base<- margot_wide_impute_baseline(dat_long, baseline_vars = baseline_vars, 
-                                             exposure_var = exposure_vars, outcome_vars = outcome_vars)
+# here we imput the baseline
+df_impute_base <- margot_wide_impute_baseline(
+  dat_long,
+  baseline_vars = baseline_vars,
+  exposure_var = exposure_vars,
+  outcome_vars = outcome_vars
+)
 
 # save
 
@@ -602,7 +617,7 @@ here_save(df_impute_base, "df_impute_base")
 
 
 # data wrangling for censoring weights ------------------------------------
-df_impute_base<- here_read("df_impute_base")
+df_impute_base <- here_read("df_impute_base")
 
 # check data types
 str(df_impute_base)
@@ -615,14 +630,14 @@ df_wide_censored <- df_impute_base |>
   relocate("t1_censored", .before = starts_with("t2_"))
 
 
-# save 
+# save
 here_save(df_wide_censored, "df_wide_censored")
 
 
 # read if needed
-df_wide_censored <-here_save("df_wide_censored")
+df_wide_censored <- here_save("df_wide_censored")
 
-# check missing values 
+# check missing values
 naniar::vis_miss(df_wide_censored, warn_large_data = FALSE)
 
 # people lost at wave 2
@@ -647,16 +662,15 @@ df_clean <- df_wide_censored %>%
     across(
       .cols = where(is.numeric) &
         !t0_censored &
-        !t0_sample_weights & 
+        !t0_sample_weights &
         !t0_born_nz &
-     #   !t1_perfectionism &  we will standardise perfectionism and use it later
-        !t1_censored,
-      .fns = ~ scale(.),
+        #   !t1_perfectionism &  we will standardise perfectionism and use it later!t1_censored,
+        .fns = ~ scale(.),
       .names = "{.col}_z"
     )
   ) |>
   # select(-t0_charity_donate,
-  #        -t0_hours_charity) |> 
+  #        -t0_hours_charity) |>
   select(
     where(is.factor),
     t0_sample_weights,
@@ -666,14 +680,14 @@ df_clean <- df_wide_censored %>%
     t1_censored,
     ends_with("_z")
   ) |>
-  mutate(t0_lost = 1 - t0_censored) |> 
-  mutate(t1_lost = 1 - t1_censored) |> 
+  mutate(t0_lost = 1 - t0_censored) |>
+  mutate(t1_lost = 1 - t1_censored) |>
   relocate(starts_with("t0_"), .before = starts_with("t1_")) |>
   relocate("t0_censored", .before = starts_with("t1_"))  |>
   relocate("t1_censored", .before = starts_with("t2_"))
 
 # check what we have
-colnames(df_clean) # note this  "t1_perfectionism"               "t1_perfectionism_z" 
+colnames(df_clean) # note this  "t1_perfectionism"               "t1_perfectionism_z"
 
 # check again
 naniar::vis_miss(df_clean, warn_large_data = FALSE)
@@ -689,14 +703,14 @@ table(df_clean$t0_censored)
 test <- df_wide_censored |> filter(t0_censored == 1)
 nrow(test)
 
-# 
+#
 # df_impute_base$t1_perfectionism_z = scale(df_impute_base$t1_perfectionism)
 
 # get rid of attributes
 df_clean <- margot::remove_numeric_attributes(df_clean)
 
 # checks
-str( df_clean )
+str(df_clean)
 
 # checks
 nrow(df_clean)
@@ -704,14 +718,15 @@ nrow(df_clean)
 
 # weights for treatment ----------------------------------------------------
 baseline_vars_models = df_clean |>  # post process of impute and combine
-  dplyr::select(starts_with("t0"),-t0_censored, -t0_lost, -t0_sample_weights)|> colnames() # note
+  dplyr::select(starts_with("t0"), -t0_censored, -t0_lost, -t0_sample_weights) |> colnames() # note
 
-# check this is correct. 
+# check this is correct.
 baseline_vars_models
 
-# create fresh dataset 
+# create fresh dataset
 df_clean_pre <- df_clean[baseline_vars_models]
 
+# checks
 str(df_clean_pre)
 
 # if this variable were not a factor, make sure it is
@@ -720,17 +735,13 @@ str(df_clean_pre)
 
 # perform one-hot encoding using model.matrix
 # we need factors to be 0 or 1
-
 encoded_vars <- model.matrix(~ t0_eth_cat  - 1, data = df_clean_pre)
 
-
-
-# Convert matrix to data frame
+# convert matrix to data frame
 encoded_df <- as.data.frame(encoded_vars)
 
-
 # make better names
-encoded_df <- encoded_df %>% 
+encoded_df <- encoded_df %>%
   janitor::clean_names()
 
 # View the first few rows to confirm structure
@@ -749,7 +760,7 @@ print(new_encoded_colnames)
 
 
 # get baseline variable set without factors
-baseline_vars_set <- setdiff(names(df_clean_pre), c("t0_lost", "id","t0_eth_cat"))
+baseline_vars_set <- setdiff(names(df_clean_pre), c("t0_lost", "id", "t0_eth_cat"))
 
 # check
 baseline_vars_set
@@ -789,27 +800,34 @@ match_lib = c("SL.glmnet", "SL.xgboost", "SL.ranger")
 
 # run super learner
 sl <- SuperLearner(
-  Y = df_clean_hot$t0_lost, 
-  X = df_clean_hot[full_predictor_vars],  # use specified predictors
+  Y = df_clean_hot$t0_lost,
+  X = df_clean_hot[full_predictor_vars],
+  # use specified predictors
   SL.library = match_lib,
-  family = binomial(), 
-  method = "method.NNloglik", 
+  family = binomial(),
+  method = "method.NNloglik",
   cvControl = list(V = 10)
 )
 
 # stop the cluster
 stopCluster(cl)
 
-# save your super learner model 
+# save your super learner model
 here_save(sl, "sl")
 
-# check outputs 
-print(sl)                  # summary of the SuperLearner output
-summary(sl)                # a detailed summary, including cross-validated risks
+# check outputs
+# summary of the SuperLearner output
+print(sl)
+
+#a detailed summary, including cross-validated risks
+summary(sl)                #
 
 # examination of cross-validated performance
-sl$cvRisk                  # cross-validated risks for each learner
-sl$coef                    # weights assigned to each learner in the final ensemble
+# cross-validated risks for each learner
+sl$cvRisk
+
+# weights assigned to each learner in the final ensemble
+sl$coef
 
 
 
@@ -825,62 +843,71 @@ str(df_clean_hot$pscore)
 # check pscore
 hist(df_clean_hot$pscore)
 
-# make censoring weights 
-df_clean_hot$weights <- ifelse(df_clean_hot$t0_lost == 1, 1 / df_clean_hot$pscore, 1 / (1 - df_clean_hot$pscore))
+# make censoring weights
+df_clean_hot$weights <- ifelse(df_clean_hot$t0_lost == 1,
+                               1 / df_clean_hot$pscore,
+                               1 / (1 - df_clean_hot$pscore))
 
-# check 
+# check
 hist(df_clean_hot$weights)
 
-# obtain stablise weights 
+# obtain stablise weights
 marginal_censored <- mean(df_clean_hot$t0_lost)
 
+# check (fyi)
 marginal_censored
 
 
 # stabalised weights
-df_clean_hot$weights_stabilised <- ifelse(df_clean_hot$t0_lost == 1,
-                                  marginal_censored / df_clean_hot$pscore,
-                                  (1 - marginal_censored) / (1 - df_clean_hot$pscore))
+df_clean_hot$weights_stabilised <- ifelse(
+  df_clean_hot$t0_lost == 1,
+  marginal_censored / df_clean_hot$pscore,
+  (1 - marginal_censored) / (1 - df_clean_hot$pscore)
+)
 
 # checks
 hist(df_clean_hot$weights_stabilised)
-max(df_clean_hot$weights_stabilised )
-min(df_clean_hot$weights_stabilised )
+max(df_clean_hot$weights_stabilised)
+min(df_clean_hot$weights_stabilised)
 
 # save output of hot code dataset
-here_save( df_clean_hot, "df_clean_hot") 
+here_save(df_clean_hot, "df_clean_hot")
 
 # get weights into the model
-
 # new weights by combining censor and sample weights, using stabalised weights
 df_clean$t0_combo_weights = df_clean_hot$weights_stabilised * df_clean$t0_sample_weights
 
-
-min( df_clean$t0_combo_weights)
-max( df_clean$t0_combo_weights)
+# checks
+min(df_clean$t0_combo_weights)
+max(df_clean$t0_combo_weights)
 
 # check distrobution of weights
-hist( df_clean$t0_combo_weights)
+hist(df_clean$t0_combo_weights)
 
 # next remove those who were lost between t0 and t1
-df_clean_t1 <- df_clean |> filter(t0_lost == 0) |> 
-  select(-t1_perfectionism_z, -t1_lost,-t0_lost,-t0_sample_weights) |> 
+df_clean_t1 <- df_clean |> filter(t0_lost == 0) |>
+  select(-t1_perfectionism_z, -t1_lost, -t0_lost, -t0_sample_weights) |>
   relocate("t0_combo_weights", .before = starts_with("t1_"))
 
 # check
-hist( df_clean_t1$t0_combo_weights )
+hist(df_clean_t1$t0_combo_weights)
 
-max( df_clean_t1$t0_combo_weights )
+# checks
+max(df_clean_t1$t0_combo_weights)
 min(df_clean_t1$t0_combo_weights)
 
-# number of weighted sample at t1, again check 
+# number of weighted sample at t1, again check
 n_censored_sample <- nrow(df_clean_t1)
-n_censored_sample <- prettyNum(n_censored_sample,big.mark=",")
+n_censored_sample <- prettyNum(n_censored_sample, big.mark = ",")
 
+# save output for manuscript
 here_save(n_censored_sample, "n_censored_sample")
+
+# check
 n_censored_sample
 
 # no one missing in exposure
+# check
 table(is.na(df_clean_t1$n_censored_sample)) # none
 
 # gets us the correct df for weights
@@ -888,13 +915,14 @@ table(is.na(df_clean_t1$n_censored_sample)) # none
 # check column oder and missing ness
 naniar::vis_miss(df_clean_t1, warn_large_data = FALSE)
 
+#check
 nrow(df_clean_t1)
 
 # next get data for t1
 hist(df_clean_t1$t0_combo_weights)
-# get correct censoring 
 
-# redundant but OK
+# get correct censoring -----------------------------------------
+# THIS CODE IS redundant but NO HARM DONE
 t0_na_condition <-
   rowSums(is.na(select(df_clean_t1, starts_with("t1_")))) > 0
 
@@ -905,51 +933,56 @@ t1_na_condition <-
 
 
 df_clean_t2 <- df_clean_t1 %>%
-  # select(-t0_alert_level_combined_lead) |> 
+  # select(-t0_alert_level_combined_lead) |>
   mutate(t0_censored = ifelse(t0_na_condition, 0, t0_censored)) %>%
   mutate(t1_censored = ifelse(t1_na_condition, 0, t1_censored)) %>%
   mutate(across(starts_with("t1_"), ~ ifelse(t0_censored == 0, NA_real_, .)),
          across(starts_with("t2_"), ~ ifelse(t0_censored == 0, NA_real_, .))) %>%
   mutate(across(starts_with("t2_"), ~ ifelse(t1_censored == 0, NA_real_, .))) |>
-  # mutate(t0_lost = 1 - t0_censored) |> 
-  mutate(t1_lost = 1 - t1_censored) |> 
+  # mutate(t0_lost = 1 - t0_censored) |>
+  mutate(t1_lost = 1 - t1_censored) |>
   relocate(starts_with("t0_"), .before = starts_with("t1_")) |>
   relocate("t0_censored", .before = starts_with("t1_"))  |>
-  relocate("t1_censored", .before = starts_with("t2_")) |> 
+  relocate("t1_censored", .before = starts_with("t2_")) |>
   select(-t1_lost, -t0_censored)
 
 ## END REDUNDANT
-# test 
+# test
 nrow(df_clean_t2)
 colnames(df_clean_t2)
-# checks 
+# checks
 hist(df_clean_t2$t0_combo_weights)
 
 # outcomes
 naniar::vis_miss(df_clean_t2, warn_large_data = F)
 
+# save
 here_save(df_clean_t2, "df_clean_t2")
 
 
 
+# check propensity scores -------------------------------------------------
 # imbalance plot ----------------------------------------------------------
 df_clean_t2 <- here_read("df_clean_t2")
 
+# view
 hist(df_clean_t2$t0_combo_weights)
 
 # if you are comparing 2 x subgroups out of n > 2 groups,  do this
 # df_subgroup <-df_clean_t2 |> filter(t0_eth_cat == "maori" | t0_eth_cat == "euro") |> droplevels()
-# 
+#
 # # save
 # here_save(df_subgroup, "df_subgroup")
 
 # copy data and make the group to be compared a factor
 df_sub <- df_clean_t2
-df_sub$t0_born_nz<- as.factor(df_clean_t2$t0_born_nz)
 
+# make factor
+df_sub$t0_born_nz <- as.factor(df_clean_t2$t0_born_nz)
 
+# make propensity score model. Need correct covariates
 baseline_vars_models = df_clean_t2 |>
-  dplyr::select(starts_with("t0"),-t0_combo_weights)|> colnames() 
+  dplyr::select(starts_with("t0"), -t0_combo_weights) |> colnames()
 
 # check
 baseline_vars_models
@@ -959,10 +992,18 @@ baseline_vars_models_sans_group <- setdiff(baseline_vars_models, "t0_born_nz")
 
 
 # equation string
-string <- formula_str <- as.formula(paste("t1_perfectionism", "~", paste(baseline_vars_models, collapse = "+")))
+string <- formula_str <- as.formula(paste(
+  "t1_perfectionism",
+  "~",
+  paste(baseline_vars_models, collapse = "+")
+))
 
 # equation string for subgroup analysis
-string_sans <- formula_str <- as.formula(paste("t1_perfectionism", "~", paste(baseline_vars_models_sans_group, collapse = "+")))
+string_sans <- formula_str <- as.formula(paste(
+  "t1_perfectionism",
+  "~",
+  paste(baseline_vars_models_sans_group, collapse = "+")
+))
 
 
 # iptw marginal analysis
@@ -978,14 +1019,14 @@ summary_iptw_marginal <- summary(iptw_marginal)
 here_save(summary_iptw_marginal, "summary_iptw_marginal")
 
 
-# note extreme
+# note any extreme weights
 plot(summary(iptw_marginal))
 
 # save model
 here_save(iptw_marginal, "iptw_marginal")
 
 
-# iptw conditional analysis  won't work 
+# iptw conditional analysis  won't work
 # no diff in the groups
 # iptw_conditional <- weightit(
 #   string_sans,
@@ -996,7 +1037,7 @@ here_save(iptw_marginal, "iptw_marginal")
 #   #focal = "set", # if att
 #   data = df_sub
 # )
-# 
+#
 # # view
 # summary(iptw_conditional)
 
@@ -1016,9 +1057,13 @@ love_plot_marginal <-
     position = "bottom",
     size = 3
   )
+
+# view
 love_plot_marginal
+
+# save for manuscript
 here_save(love_plot_marginal, "love_plot_marginal")
-# 
+#
 #love_plot_conditional
 # love_plot_conditional <-
 #   love.plot(
@@ -1046,30 +1091,29 @@ str(df_clean_t2)
 
 # names of vars for modelling
 names_base <-
-  df_clean_t2 |> select(starts_with("t0"),
-                        -t0_combo_weights) |> colnames()
+  df_clean_t2 |> select(starts_with("t0"), -t0_combo_weights) |> colnames()
 
-# chekc
+# check
 names_base
 
-here_save(names_base, "names_base")
-names_base <- here_read("names_base")
-
-
+# get outcome names for checks
 names_outcomes <-
   df_clean_t2 |> select(starts_with("t2")) |> colnames()
 
+# check
 names_outcomes
 
+# obsessively check
 names(df_clean_t2)
-# explan names
+
+# check against this
 names_base
 
 # df_final_base  <- df_clean_t2[names_base]
 str(df_clean_t2)
 
 
-# lets hot code ethnicity
+# lets one hot encode any categorical vars, here only t0_eth_cat
 
 # this code is the same as above
 encoded_vars <- model.matrix(~ t0_eth_cat  - 1, data = df_clean_t2)
@@ -1079,7 +1123,7 @@ encoded_vars <- model.matrix(~ t0_eth_cat  - 1, data = df_clean_t2)
 encoded_df <- as.data.frame(encoded_vars)
 
 # make better names
-encoded_df <- encoded_df %>% 
+encoded_df <- encoded_df %>%
   janitor::clean_names()
 
 # view the first few rows to confirm structure
@@ -1092,29 +1136,30 @@ head(encoded_df)
 # note new data `df_clean_t2`
 df_clean_hot_t2 <- df_clean_t2 %>%
   select(-c(t0_eth_cat)) %>%
-  bind_cols(encoded_df) |> 
+  bind_cols(encoded_df) |>
   relocate(starts_with("t0_"), .before = starts_with("t1_")) |>
-#  relocate("t0_censored", .before = starts_with("t1_"))  |>
+  #  relocate("t0_censored", .before = starts_with("t1_"))  |>
   relocate("t1_censored", .before = starts_with("t2_"))
 
+# check names
 colnames(df_clean_hot_t2)
 
 # # extract and print the new column names for encoded variables
 # new_encoded_colnames_t2 <- colnames(encoded_df)
 # print(new_encoded_colnames_t2)
-# 
+#
 # print(new_encoded_colnames_t2)
 # # get baseline variable set without factors
-# 
+#
 # baseline_vars_set_t2 <- setdiff(names(df_clean_hot_t2), c("id","t0_eth_cat"))
 # set_final_names <- c(baseline_vars_set_t2, new_encoded_colnames_t2)
 
 # check
 set_final_names
 
+# set names for analysis
 set_final_names <-
-  df_clean_hot_t2 |> select(starts_with("t0"),
-                        -t0_combo_weights) |> colnames()
+  df_clean_hot_t2 |> select(starts_with("t0"), -t0_combo_weights) |> colnames()
 
 
 # add the new encoded column names
@@ -1126,6 +1171,7 @@ full_predictor_vars_t2
 colnames(df_clean_hot_t2)
 
 
+# model estimation --------------------------------------------------------
 
 
 # estimate models ---------------------------------------------------------
@@ -1144,20 +1190,9 @@ library(future)
 library(SuperLearner)
 plan(multisession)
 
-n_cores <- parallel::detectCores()-2
+# hopefully you have 10 :). if not, consider decreasing the number of folds (for this assessment)
+n_cores <- parallel::detectCores() - 2
 
-# 
-# A list of lists is returned with the names of the variables in Ht to be used for estimation of the outcome regression and the treatment mechanism at every time t. Notice that variables A1 and A2 are included in the list of variables used for estimation of the treatment mechamism (trt). This is due to the fact that the nuisance parameter for the treatment mechanism is the density ratio rt, which is a function of A1 and A2.
-# The density ratio is estimated based on a classification trick using an auxiliary variable Λ as a pseudo outcome and the treatment as a predictor. We now briefly describe how this density ratio estimation is done; the process is fully automated and hidden from the software user. Specifically, the TMLE and SDR estimation methods require estimation of the ratio of the densities of Adt and At, conditional on the history Ht, defined as rt above. This is achieved through computing the odds in a classification problem in an augmented dataset with 2n observations where the outcome is the auxiliary variable Λ (defined below) and the predictors are the variables At and Ht. In the 2n augmented data set, the data structure at time t is redefined as
-# inline graphic
-# where Λλ,i = λi indexes duplicate values. For all duplicated observations λ ∈ {0, 1} with the same i, Hλ,i,t is the same. For λ = 0, Aλ,i,t equals the observed exposure values Ai,t, whereas for λ = 1, Aλ,i,t equals the exposure values under the MTP d, namely Adt. The [End Page 111] classification approach to density ratio estimation proceeds by estimating the conditional probability that ∆ = 1 in this dataset, and dividing it by the corresponding estimate of the conditional probability that ∆ = 0. Specifically, denoting pλ the distribution of the data in the augmented dataset, we have:
-#   inline graphic
-# Further details on this algorithm may be found in our technical paper (Díaz et al., 2021).
-
-# L <- list(NULL, c("t1_alert_level_combined"))
-# W <- names_base_base
-
-# check
 
 #### SET VARIABLE NAMES
 #  model
@@ -1182,33 +1217,32 @@ naniar::vis_miss(df_final, warn_large_data = F)
 
 
 
-# function for shift ------------------------------------------------------
-
-# get enpoints 
+#  write function(s) for shift(s) ------------------------------------------------------
+# get enpoints
 max_data <- max(df_final$t1_perfectionism)
 
 
-# shift function 
-gain_A <- function(data, trt){
-  ifelse( data[[trt]] < max_data - 1,  data[[trt]] + 1,  max_data)
+# shift function
+gain_A <- function(data, trt) {
+  ifelse(data[[trt]] < max_data - 1, data[[trt]] + 1, max_data)
 }
 
 
 # set libraries
-sl_lib <- c("SL.glmnet",
-            "SL.ranger", #
+sl_lib <- c("SL.glmnet", "SL.ranger", #
             "SL.xgboost") #
 
-
+# view superlearners
 listWrappers()
 
-# test data 
+# test data
 df_clean_slice <- df_final |>
   slice_head(n = 1000) |>
   as.data.frame()
 
 
 
+# Models!
 t2_kessler_latent_anxiety_z_null_test <- lmtp_tmle(
   outcome = "t2_kessler_latent_anxiety_z",
   baseline = W,
@@ -1224,11 +1258,12 @@ t2_kessler_latent_anxiety_z_null_test <- lmtp_tmle(
   learners_outcome = sl_lib
 )
 
-# evaluate predictive performance of the models 
+# evaluate predictive performance of the models
 # however prediction isn't always best
 t2_kessler_latent_anxiety_z_null_test$fits_r
 t2_kessler_latent_anxiety_z_null_test$fits_m
-here_save(t2_kessler_latent_anxiety_z_null_test, "t2_kessler_latent_anxiety_z_null_test")
+here_save(t2_kessler_latent_anxiety_z_null_test,
+          "t2_kessler_latent_anxiety_z_null_test")
 
 
 # test gain
@@ -1246,14 +1281,22 @@ t2_kessler_latent_anxiety_z_test <- lmtp_tmle(
   learners_trt = sl_lib,
   learners_outcome = sl_lib
 )
+
+# view
 t2_kessler_latent_anxiety_z_test
+
+# view learner performance
 t2_kessler_latent_anxiety_z_test$fits_r
 t2_kessler_latent_anxiety_z_test$fits_m
-here_save(t2_kessler_latent_anxiety_z_null_test, "t2_kessler_latent_anxiety_z_null_test")
+
+# save
+here_save(t2_kessler_latent_anxiety_z_null_test,
+          "t2_kessler_latent_anxiety_z_null_test")
 
 # test contrast
-
 test_contrast_anxiety <- lmtp_contrast(t2_kessler_latent_anxiety_z_test , ref = t2_kessler_latent_anxiety_z_null_test)
+
+# check
 test_contrast_anxiety
 
 
@@ -1281,16 +1324,19 @@ t2_kessler_latent_anxiety_z_gain <- lmtp_tmle(
   learners_outcome = sl_lib
 )
 
+# checks
 t2_kessler_latent_anxiety_z_gain$fits_r
 t2_kessler_latent_anxiety_z_gain$fits_m
+
 # view
 t2_kessler_latent_anxiety_z_gain
 
-# save model 
-here_save(t2_kessler_latent_anxiety_z_gain, "t2_kessler_latent_anxiety_z_gain")
+# save model
+here_save(t2_kessler_latent_anxiety_z_gain,
+          "t2_kessler_latent_anxiety_z_gain")
 
 
-# null model 
+# null model
 t2_kessler_latent_anxiety_z_null <- lmtp_tmle(
   outcome = "t2_kessler_latent_anxiety_z",
   baseline = W,
@@ -1306,14 +1352,12 @@ t2_kessler_latent_anxiety_z_null <- lmtp_tmle(
   learners_outcome = sl_lib
 )
 
-
 # view
 t2_kessler_latent_anxiety_z_null
 
-# save model 
-here_save(t2_kessler_latent_anxiety_z_null, "t2_kessler_latent_anxiety_z_null")
-
-
+# save model
+here_save(t2_kessler_latent_anxiety_z_null,
+          "t2_kessler_latent_anxiety_z_null")
 
 # depression marginal  ----------------------------------------------------
 t2_kessler_latent_depression_z_gain <- lmtp_tmle(
@@ -1335,11 +1379,12 @@ t2_kessler_latent_depression_z_gain <- lmtp_tmle(
 # view
 t2_kessler_latent_depression_z_gain
 
-# save model 
-here_save(t2_kessler_latent_depression_z_gain, "t2_kessler_latent_depression_z_gain")
+# save model
+here_save(t2_kessler_latent_depression_z_gain,
+          "t2_kessler_latent_depression_z_gain")
 
 
-# null model 
+# null model
 t2_kessler_latent_depression_z_null <- lmtp_tmle(
   outcome = "t2_kessler_latent_depression_z",
   baseline = W,
@@ -1358,16 +1403,17 @@ t2_kessler_latent_depression_z_null <- lmtp_tmle(
 # view
 t2_kessler_latent_depression_z_null
 
-# save model 
-here_save(t2_kessler_latent_depression_z_null, "t2_kessler_latent_depression_z_null")
+# save model
+here_save(t2_kessler_latent_depression_z_null,
+          "t2_kessler_latent_depression_z_null")
 
 
 
 # subgroup models ---------------------------------------------------------
 # df_final <- here_read("df_final") # if needed
 
-df_born_nz_no  <-df_final |> dplyr::filter(t0_born_nz == 0) |> droplevels()
-df_born_nz_yes <-df_final |> dplyr::filter(t0_born_nz == 1)  |> droplevels()
+df_born_nz_no  <- df_final |> dplyr::filter(t0_born_nz == 0) |> droplevels()
+df_born_nz_yes <- df_final |> dplyr::filter(t0_born_nz == 1)  |> droplevels()
 
 # checks
 n_participants_born_nz <- nrow(df_born_nz_yes)
@@ -1375,7 +1421,7 @@ n_participants_born_overseas <- nrow(df_born_nz_no)
 
 
 
-# make pretty 
+# make pretty
 n_participants_born_nz <-
   prettyNum(n_participants_born_nz, big.mark = ",")
 n_participants_born_overseas <-
@@ -1386,14 +1432,11 @@ n_participants_born_nz
 n_participants_born_overseas
 
 here_save(n_participants_born_nz, "n_participants_born_nz")
-here_save(n_participants_born_overseas, "n_participants_born_overseas")
-
-
-
+here_save(n_participants_born_overseas,
+          "n_participants_born_overseas")
 
 # need to remove the "born nz" name as we are stratifying
 W_sub <- setdiff(W, "t0_born_nz")
-
 
 # check
 W_sub
@@ -1420,12 +1463,14 @@ df_born_nz_no_t2_kessler_latent_anxiety_z_gain <- lmtp_tmle(
 
 
 # view
-# save model 
-here_save(df_born_nz_no_t2_kessler_latent_anxiety_z_gain, 
-          "df_born_nz_no_t2_kessler_latent_anxiety_z_gain")
+# save model
+here_save(
+  df_born_nz_no_t2_kessler_latent_anxiety_z_gain,
+  "df_born_nz_no_t2_kessler_latent_anxiety_z_gain"
+)
 
 
-# null model 
+# null model
 df_born_nz_no_t2_kessler_latent_anxiety_z_null <- lmtp_tmle(
   outcome = "t2_kessler_latent_anxiety_z",
   baseline = W_sub,
@@ -1441,14 +1486,14 @@ df_born_nz_no_t2_kessler_latent_anxiety_z_null <- lmtp_tmle(
   learners_outcome = sl_lib
 )
 
-
 # view
 df_born_nz_no_t2_kessler_latent_anxiety_z_null
 
-# save model 
-here_save(df_born_nz_no_t2_kessler_latent_anxiety_z_null, "df_born_nz_no_t2_kessler_latent_anxiety_z_null")
-
-
+# save model
+here_save(
+  df_born_nz_no_t2_kessler_latent_anxiety_z_null,
+  "df_born_nz_no_t2_kessler_latent_anxiety_z_null"
+)
 
 # depression born overseas  ----------------------------------------------------
 df_born_nz_no_t2_kessler_latent_depression_z_gain <- lmtp_tmle(
@@ -1470,11 +1515,14 @@ df_born_nz_no_t2_kessler_latent_depression_z_gain <- lmtp_tmle(
 # view
 df_born_nz_no_t2_kessler_latent_depression_z_gain
 
-# save model 
-here_save(df_born_nz_no_t2_kessler_latent_depression_z_gain, "df_born_nz_no_t2_kessler_latent_depression_z_gain")
+# save model
+here_save(
+  df_born_nz_no_t2_kessler_latent_depression_z_gain,
+  "df_born_nz_no_t2_kessler_latent_depression_z_gain"
+)
 
 
-# null model 
+# null model
 df_born_nz_no_t2_kessler_latent_depression_z_null <- lmtp_tmle(
   outcome = "t2_kessler_latent_depression_z",
   baseline = W_sub,
@@ -1493,10 +1541,11 @@ df_born_nz_no_t2_kessler_latent_depression_z_null <- lmtp_tmle(
 # view
 df_born_nz_no_t2_kessler_latent_depression_z_null
 
-# save model 
-here_save(df_born_nz_no_t2_kessler_latent_depression_z_null, "df_born_nz_no_t2_kessler_latent_depression_z_null")
-
-
+# save model
+here_save(
+  df_born_nz_no_t2_kessler_latent_depression_z_null,
+  "df_born_nz_no_t2_kessler_latent_depression_z_null"
+)
 
 
 # subgroup born nz --------------------------------------------------------
@@ -1521,12 +1570,14 @@ df_born_nz_yes_t2_kessler_latent_anxiety_z_gain <- lmtp_tmle(
 # view
 df_born_nz_yes_t2_kessler_latent_anxiety_z_gain
 
-# save model 
-here_save(df_born_nz_yes_t2_kessler_latent_anxiety_z_gain, 
-          "df_born_nz_yes_t2_kessler_latent_anxiety_z_gain")
+# save model
+here_save(
+  df_born_nz_yes_t2_kessler_latent_anxiety_z_gain,
+  "df_born_nz_yes_t2_kessler_latent_anxiety_z_gain"
+)
 
 
-# null model 
+# null model
 df_born_nz_yes_t2_kessler_latent_anxiety_z_null <- lmtp_tmle(
   outcome = "t2_kessler_latent_anxiety_z",
   baseline = W_sub,
@@ -1546,8 +1597,11 @@ df_born_nz_yes_t2_kessler_latent_anxiety_z_null <- lmtp_tmle(
 # view
 df_born_nz_yes_t2_kessler_latent_anxiety_z_null
 
-# save model 
-here_save(df_born_nz_yes_t2_kessler_latent_anxiety_z_null, "df_born_nz_yes_t2_kessler_latent_anxiety_z_null")
+# save model
+here_save(
+  df_born_nz_yes_t2_kessler_latent_anxiety_z_null,
+  "df_born_nz_yes_t2_kessler_latent_anxiety_z_null"
+)
 
 
 
@@ -1571,11 +1625,14 @@ df_born_nz_yes_t2_kessler_latent_depression_z_gain <- lmtp_tmle(
 # view
 df_born_nz_yes_t2_kessler_latent_depression_z_gain
 
-# save model 
-here_save(df_born_nz_yes_t2_kessler_latent_depression_z_gain, "df_born_nz_yes_t2_kessler_latent_depression_z_gain")
+# save model
+here_save(
+  df_born_nz_yes_t2_kessler_latent_depression_z_gain,
+  "df_born_nz_yes_t2_kessler_latent_depression_z_gain"
+)
 
 
-# null model 
+# null model
 df_born_nz_yes_t2_kessler_latent_depression_z_null <- lmtp_tmle(
   outcome = "t2_kessler_latent_depression_z",
   baseline = W_sub,
@@ -1594,8 +1651,11 @@ df_born_nz_yes_t2_kessler_latent_depression_z_null <- lmtp_tmle(
 # view
 df_born_nz_yes_t2_kessler_latent_depression_z_null
 
-# save model 
-here_save(df_born_nz_yes_t2_kessler_latent_depression_z_null, "df_born_nz_yes_t2_kessler_latent_depression_z_null")
+# save model
+here_save(
+  df_born_nz_yes_t2_kessler_latent_depression_z_null,
+  "df_born_nz_yes_t2_kessler_latent_depression_z_null"
+)
 
 
 
@@ -1611,37 +1671,41 @@ t2_kessler_latent_depression_z_null <- margot::here_read("t2_kessler_latent_depr
 
 # contrast marginal anxiety
 contrast_t2_kessler_latent_anxiety_z <-
-  lmtp_contrast(t2_kessler_latent_anxiety_z_gain, ref =  t2_kessler_latent_anxiety_z_null, type = "additive")
+  lmtp_contrast(t2_kessler_latent_anxiety_z_gain,
+                ref =  t2_kessler_latent_anxiety_z_null,
+                type = "additive")
 
 # save for manuscript
-here_save(contrast_t2_kessler_latent_anxiety_z,"contrast_t2_kessler_latent_anxiety_z")
+here_save(contrast_t2_kessler_latent_anxiety_z,
+          "contrast_t2_kessler_latent_anxiety_z")
 
 # make table
-tab_contrast_t2_kessler_latent_anxiety_z <- margot::margot_lmtp_evalue(
-  contrast_t2_kessler_latent_anxiety_z,
-  scale = "RD",
-  new_name = "marginal: anxiety"
-)
+tab_contrast_t2_kessler_latent_anxiety_z <- margot::margot_lmtp_evalue(contrast_t2_kessler_latent_anxiety_z,
+                                                                       scale = "RD",
+                                                                       new_name = "marginal: anxiety")
 
 #view
 tab_contrast_t2_kessler_latent_anxiety_z
 
 # contrast marginal depression
 contrast_t2_kessler_latent_depression_z <-
-  lmtp_contrast(t2_kessler_latent_depression_z_gain, ref =  t2_kessler_latent_depression_z_null, type = "additive")
+  lmtp_contrast(t2_kessler_latent_depression_z_gain,
+                ref =  t2_kessler_latent_depression_z_null,
+                type = "additive")
 
 # save for manuscript
 
-here_save(contrast_t2_kessler_latent_depression_z,"contrast_t2_kessler_latent_depression_z")
+here_save(
+  contrast_t2_kessler_latent_depression_z,
+  "contrast_t2_kessler_latent_depression_z"
+)
 
 
 
 # make table
-tab_contrast_t2_kessler_latent_depression_z <- margot::margot_lmtp_evalue(
-  contrast_t2_kessler_latent_depression_z,
-  scale = "RD",
-  new_name = "marginal: depression"
-)
+tab_contrast_t2_kessler_latent_depression_z <- margot::margot_lmtp_evalue(contrast_t2_kessler_latent_depression_z,
+                                                                          scale = "RD",
+                                                                          new_name = "marginal: depression")
 
 # view
 tab_contrast_t2_kessler_latent_depression_z
@@ -1654,8 +1718,9 @@ df_born_nz_no_t2_kessler_latent_depression_z_null <- margot::here_read("df_born_
 
 # contrast born overseas anxiety
 contrast_df_born_nz_no_t2_kessler_latent_anxiety_z <-
-  lmtp_contrast(df_born_nz_no_t2_kessler_latent_anxiety_z_gain, 
-                ref =  df_born_nz_no_t2_kessler_latent_anxiety_z_null, type = "additive")
+  lmtp_contrast(df_born_nz_no_t2_kessler_latent_anxiety_z_gain,
+                ref =  df_born_nz_no_t2_kessler_latent_anxiety_z_null,
+                type = "additive")
 
 # make table
 tab_contrast_df_born_nz_no_t2_kessler_latent_anxiety_z <- margot::margot_lmtp_evalue(
@@ -1668,9 +1733,12 @@ tab_contrast_df_born_nz_no_t2_kessler_latent_anxiety_z <- margot::margot_lmtp_ev
 tab_contrast_df_born_nz_no_t2_kessler_latent_anxiety_z
 
 # contrast marginal depression
-contrast_df_born_nz_no_t2_kessler_latent_depression_z<-
-  lmtp_contrast(df_born_nz_no_t2_kessler_latent_depression_z_gain, 
-                ref =  df_born_nz_no_t2_kessler_latent_depression_z_null, type = "additive")
+contrast_df_born_nz_no_t2_kessler_latent_depression_z <-
+  lmtp_contrast(
+    df_born_nz_no_t2_kessler_latent_depression_z_gain,
+    ref =  df_born_nz_no_t2_kessler_latent_depression_z_null,
+    type = "additive"
+  )
 
 # make table
 tab_contrast_df_born_nz_no_t2_kessler_latent_depression_z <- margot::margot_lmtp_evalue(
@@ -1682,7 +1750,7 @@ tab_contrast_df_born_nz_no_t2_kessler_latent_depression_z <- margot::margot_lmtp
 #view
 tab_contrast_df_born_nz_no_t2_kessler_latent_depression_z
 
-# import born nz models 
+# import born nz models
 df_born_nz_yes_t2_kessler_latent_anxiety_z_gain <- margot::here_read("df_born_nz_yes_t2_kessler_latent_anxiety_z_gain")
 df_born_nz_yes_t2_kessler_latent_anxiety_z_null <- margot::here_read("df_born_nz_yes_t2_kessler_latent_anxiety_z_null")
 df_born_nz_yes_t2_kessler_latent_depression_z_gain <- margot::here_read("df_born_nz_yes_t2_kessler_latent_depression_z_gain")
@@ -1691,8 +1759,9 @@ df_born_nz_yes_t2_kessler_latent_depression_z_null <- margot::here_read("df_born
 
 # contrast born nz anxiety
 contrast_df_born_nz_yes_t2_kessler_latent_anxiety_z <-
-  lmtp_contrast(df_born_nz_yes_t2_kessler_latent_anxiety_z_gain, 
-                ref =  df_born_nz_yes_t2_kessler_latent_anxiety_z_null, type = "additive")
+  lmtp_contrast(df_born_nz_yes_t2_kessler_latent_anxiety_z_gain,
+                ref =  df_born_nz_yes_t2_kessler_latent_anxiety_z_null,
+                type = "additive")
 
 # make table
 tab_contrast_df_born_nz_yes_t2_kessler_latent_anxiety_z <- margot::margot_lmtp_evalue(
@@ -1705,9 +1774,12 @@ tab_contrast_df_born_nz_yes_t2_kessler_latent_anxiety_z <- margot::margot_lmtp_e
 tab_contrast_df_born_nz_yes_t2_kessler_latent_anxiety_z
 
 # contrast born nz depression
-contrast_df_born_nz_yes_t2_kessler_latent_depression_z<-
-  lmtp_contrast(df_born_nz_yes_t2_kessler_latent_depression_z_gain, 
-                ref =  df_born_nz_yes_t2_kessler_latent_depression_z_null, type = "additive")
+contrast_df_born_nz_yes_t2_kessler_latent_depression_z <-
+  lmtp_contrast(
+    df_born_nz_yes_t2_kessler_latent_depression_z_gain,
+    ref =  df_born_nz_yes_t2_kessler_latent_depression_z_null,
+    type = "additive"
+  )
 
 # make table
 tab_contrast_df_born_nz_yes_t2_kessler_latent_depression_z <- margot::margot_lmtp_evalue(
@@ -1722,27 +1794,27 @@ tab_contrast_df_born_nz_yes_t2_kessler_latent_depression_z
 
 # make tables -------------------------------------------------------------
 
-# marginal tables 
-tab_marginal_outcomes<- rbind(
+# marginal tables
+tab_marginal_outcomes <- rbind(
   tab_contrast_t2_kessler_latent_anxiety_z,
   tab_contrast_t2_kessler_latent_depression_z
 )
 
 # save
-margot::here_save( tab_marginal_outcomes, "tab_marginal_outcomes")
+margot::here_save(tab_marginal_outcomes, "tab_marginal_outcomes")
 # born overseas tables
 
-# table with evalues for the graph 
+# table with evalues for the graph
 group_tab_marginal_outcomes <- margot::group_tab(tab_marginal_outcomes, type = "RD")
 
 # view
 group_tab_marginal_outcomes
 
 # save
-margot::here_save( group_tab_marginal_outcomes, "group_tab_marginal_outcomes")
+margot::here_save(group_tab_marginal_outcomes, "group_tab_marginal_outcomes")
 
 
-# subgroups 
+# subgroups
 tab_born_overseas_outcomes <-
   rbind(
     tab_contrast_df_born_nz_no_t2_kessler_latent_anxiety_z,
@@ -1750,17 +1822,18 @@ tab_born_overseas_outcomes <-
   )
 
 # save
-margot::here_save( tab_born_overseas_outcomes, "tab_born_overseas_outcomes")
+margot::here_save(tab_born_overseas_outcomes, "tab_born_overseas_outcomes")
 tab_born_overseas_outcomes
 
-# table with evalues for the graph 
+# table with evalues for the graph
 group_tab_born_overseas_outcomes <- margot::group_tab(tab_born_overseas_outcomes, type = "RD")
 
 # view
 group_tab_born_overseas_outcomes
 
 # save
-margot::here_save( group_tab_born_overseas_outcomes, "group_tab_born_overseas_outcomes")
+margot::here_save(group_tab_born_overseas_outcomes,
+                  "group_tab_born_overseas_outcomes")
 
 
 
@@ -1775,11 +1848,11 @@ tab_born_nz_outcomes <-
 margot::here_save(tab_born_nz_outcomes , "tab_born_nz_outcomes")
 
 
-# table with evalues for the graph 
+# table with evalues for the graph
 group_tab_born_nz_outcomes <- margot::group_tab(tab_born_nz_outcomes, type = "RD")
 
 # save
-margot::here_save( group_tab_born_nz_outcomes, "group_tab_born_nz_outcomes")
+margot::here_save(group_tab_born_nz_outcomes, "group_tab_born_nz_outcomes")
 
 
 # view all
@@ -1855,13 +1928,13 @@ g_hat_theta <- contrast_yes$vals$theta - contrast_no$vals$theta
 
 # then calculate the se_diff
 
-sqrt( (contrast_yes$vals$std.error^2) + (contrast_no$vals$std.error^2) )
+sqrt((contrast_yes$vals$std.error ^ 2) + (contrast_no$vals$std.error ^ 2))
 
 
-# obtain difference  
-se_diff = sqrt( (contrast_yes$vals$std.error^2) + (contrast_no$vals$std.error^2) )
+# obtain difference
+se_diff = sqrt((contrast_yes$vals$std.error ^ 2) + (contrast_no$vals$std.error ^ 2))
 
-# compute confidence intervals 
+# compute confidence intervals
 conf_low = g_hat_theta - (1.97 * se_diff)
 conf_high = g_hat_theta + (1.97 * se_diff)
 
@@ -1883,7 +1956,7 @@ compute_difference_means <- function(group1, group2) {
   
   #compute difference in means and standard error of the difference
   mean_difference <- mean_A - mean_B
-  se_diff <- sqrt(se_A^2 + se_B^2)
+  se_diff <- sqrt(se_A ^ 2 + se_B ^ 2)
   
   # compute 95% confidence intervals (using 1.96 for Z-value)
   conf_low <- mean_difference - (1.96 * se_diff)
@@ -1901,21 +1974,25 @@ compute_difference_means <- function(group1, group2) {
 }
 
 
-# use function 
+# use function
 difference_in_group_means_anxiety  <- margot::compute_difference_means(contrast_anxiety_yes, contrast_anxiety_no)
 difference_in_group_means_anxiety
-here_save(difference_in_group_means_anxiety,"difference_in_group_means_anxiety")
+here_save(difference_in_group_means_anxiety,
+          "difference_in_group_means_anxiety")
 
 
 difference_in_group_means_depression  <- margot::compute_difference_means(contrast_depression_yes, contrast_depression_no)
 difference_in_group_means_depression
-here_save(difference_in_group_means_depression,"difference_in_group_means_depression")
+here_save(difference_in_group_means_depression,
+          "difference_in_group_means_depression")
 
 
 
 
-## use glue in your document as follows 
-glue::glue("The difference in means is {difference_in_group_means$mean_difference} with a 95% CI of [{difference_in_group_means$conf_low}, {difference_in_group_means$conf_high}].")
+## use glue in your document as follows
+glue::glue(
+  "The difference in means is {difference_in_group_means$mean_difference} with a 95% CI of [{difference_in_group_means$conf_low}, {difference_in_group_means$conf_high}]."
+)
 
 
 
@@ -1924,6 +2001,10 @@ glue::glue("The difference in means is {difference_in_group_means$mean_differenc
 
 # HETEROGENEITY -----------------------------------------------------------
 
+
+
+
+# IGNORE BELOW -- THIS IS EXTRA FOR INVESTIGATING HETEROGENEITY -----------
 
 # EXTRA: heterogeneity with GRF -------------------------------------------
 # see: https://grf-labs.github.io/grf/
@@ -1950,8 +2031,8 @@ t0_combo_weights <- df_grf$t0_combo_weights
 
 table(df_grf$t1_censored)
 
-# get censoring indicator, note that "censored" has the 
-# **opposite meaning in lmtp models!  we need to make D = "not_lost" 
+# get censoring indicator, note that "censored" has the
+# **opposite meaning in lmtp models!  we need to make D = "not_lost"
 t1_lost = 1 - df_grf$t1_censored
 
 
@@ -1962,10 +2043,10 @@ table(t1_lost)
 df_grf$t1_lost <- t1_lost
 
 # label this D
-D <- as.factor ( 1 - df_grf$t1_censored )
+D <- as.factor (1 - df_grf$t1_censored)
 
-# get key data features 
-nrow( df_grf )
+# get key data features
+nrow(df_grf)
 
 #names_grf
 
@@ -1974,8 +2055,8 @@ t1_perfectionism_z <- scale(df_grf$t1_perfectionism)
 
 
 # select exposure
-selected_A = matrix( df_grf$t1_perfectionism_z ) # standard deviation of exposure
-selected_Y = matrix( df_clean_hot$t2_kessler_latent_anxiety_z )
+selected_A = matrix(df_grf$t1_perfectionism_z) # standard deviation of exposure
+selected_Y = matrix(df_clean_hot$t2_kessler_latent_anxiety_z)
 
 
 # select covariates, make sure to remove attributes (we did this above)
@@ -1998,15 +2079,15 @@ sd(pscore)
 
 df_grf$pscore <- pscore
 
-# make censoring weights 
+# make censoring weights
 df_grf$cen_weights <- ifelse(t1_lost == 1, 1 / pscore, 1 / (1 - pscore))
 
 # view
 hist(df_grf$cen_weights, breaks = 50)
-# check 
+# check
 hist(df_grf$cen_weights)
 
-# obtain stablise weights 
+# obtain stablise weights
 marginal_censored <- mean(df_grf$t1_lost)
 
 marginal_censored
@@ -2014,16 +2095,18 @@ marginal_censored
 df_grf$t1_lost
 
 # stabalised weights
-df_grf$weights_stabilised <- ifelse(df_grf$t1_lost == 1,
-                                          marginal_censored / df_grf$pscore,
-                                          (1 - marginal_censored) / (1 - df_grf$pscore))
+df_grf$weights_stabilised <- ifelse(
+  df_grf$t1_lost == 1,
+  marginal_censored / df_grf$pscore,
+  (1 - marginal_censored) / (1 - df_grf$pscore)
+)
 
 
 # checks
 hist(df_grf$weights_stabilised, breaks = 50)
 
-max(df_grf$weights_stabilised )
-min(df_grf$weights_stabilised )
+max(df_grf$weights_stabilised)
+min(df_grf$weights_stabilised)
 
 
 
@@ -2048,17 +2131,18 @@ match_lib = c("SL.glmnet", "SL.xgboost", "SL.ranger")
 
 
 sl_2 <- SuperLearner(
-  Y = df_grf$t1_not_lost, 
-  X = cen_X,  # use specified predictors
+  Y = df_grf$t1_not_lost,
+  X = cen_X,
+  # use specified predictors
   SL.library = match_lib,
-  family = binomial(), 
-  method = "method.NNloglik", 
+  family = binomial(),
+  method = "method.NNloglik",
   cvControl = list(V = 10)
 )
 
 
 
-# save your super learner model 
+# save your super learner model
 here_save(sl_2, "sl_2")
 
 
@@ -2066,7 +2150,7 @@ here_save(sl_2, "sl_2")
 stopCluster(cl)
 
 
-# check outputs 
+# check outputs
 print(sl_2)                  # summary of the SuperLearner output
 summary(sl_2)                # a detailed summary, including cross-validated risks
 
@@ -2094,23 +2178,25 @@ str(df_grf$super_pscore)
 # check pscore
 hist(df_grf$super_pscore)
 
-# make censoring weights 
-df_grf$super_weights <- ifelse(t1_lost == 1, 1 /df_grf$super_pscore, 1 / (1 - df_grf$super_pscore))
+# make censoring weights
+df_grf$super_weights <- ifelse(t1_lost == 1, 1 / df_grf$super_pscore, 1 / (1 - df_grf$super_pscore))
 
-# check 
+# check
 hist(df_grf$super_weights, breaks = 50)
 
 
 # stabalise
-df_grf$weights_stabilised_super <- ifelse(df_grf$t1_lost == 1,
-                                    marginal_censored / df_grf$super_pscore,
-                                    (1 - marginal_censored) / (1 - df_grf$super_pscore))
+df_grf$weights_stabilised_super <- ifelse(
+  df_grf$t1_lost == 1,
+  marginal_censored / df_grf$super_pscore,
+  (1 - marginal_censored) / (1 - df_grf$super_pscore)
+)
 
 
 
 # checks
 hist(df_grf$weights_stabilised_super , breaks = 50)
-max(df_grf$weights_stabilised_super )
+max(df_grf$weights_stabilised_super)
 min(df_grf$weights_stabilised_super)
 
 # compare with causal forest
@@ -2132,34 +2218,34 @@ min(df_grf$t0_combo_weights_w2)
 colnames(df_grf)
 here_save(df_grf, "df_grf")
 
-df_grf_t2 <- df_grf |> 
-  filter(t1_censored == 1) |> 
-  relocate(starts_with("t0_"), .before = starts_with("t1_")) |> 
-  relocate(starts_with("t1_"), .before = starts_with("t2_")) |> 
+df_grf_t2 <- df_grf |>
+  filter(t1_censored == 1) |>
+  relocate(starts_with("t0_"), .before = starts_with("t1_")) |>
+  relocate(starts_with("t1_"), .before = starts_with("t2_")) |>
   relocate("t1_censored", .before = starts_with("t2_"))
-  
+
 colnames(df_grf_t2)
 
 
-# save data with weights 
-here_save( df_grf, "df_grf") 
+# save data with weights
+here_save(df_grf, "df_grf")
 
 summary(df_grf$t1_perfectionism)
-#  make treatment binary 
-df_grf_t2 <- df_grf_t2 |> 
-  mutate( t1_perfectionism_binary = as.integer( ifelse(t1_perfectionism > 4, 1, 0)))
+#  make treatment binary
+df_grf_t2 <- df_grf_t2 |>
+  mutate(t1_perfectionism_binary = as.integer(ifelse(t1_perfectionism > 4, 1, 0)))
 
-# variables need to be in matrix form 
-
-# make it so that large is good
-g_W  = matrix( 1- df_grf_t2$t1_perfectionism_z)
-t2_kessler_latent_depression_z = matrix( df_grf_t2$t2_kessler_latent_depression_z )
+# variables need to be in matrix form
 
 # make it so that large is good
-g_Y = matrix(1- df_grf_t2$t2_kessler_latent_anxiety_z)
+g_W  = matrix(1 - df_grf_t2$t1_perfectionism_z)
+t2_kessler_latent_depression_z = matrix(df_grf_t2$t2_kessler_latent_depression_z)
+
+# make it so that large is good
+g_Y = matrix(1 - df_grf_t2$t2_kessler_latent_anxiety_z)
 
 # set binary exposure so that large is absence of perfectionism
-g_W_binary = matrix( 1- df_grf_t2$t1_perfectionism_binary)
+g_W_binary = matrix(1 - df_grf_t2$t1_perfectionism_binary)
 
 
 g_weights <- df_grf_t2$t0_combo_weights_w2
@@ -2172,17 +2258,25 @@ str(g_Y)
 str(g_weights)
 g_Y
 # model anxiety
-tau_forest_t2_kessler_latent_anxiety_z <- grf::causal_forest(X= g_X, Y= g_Y, W = g_W, sample.weights = g_weights)
- 
+tau_forest_t2_kessler_latent_anxiety_z <- grf::causal_forest(
+  X = g_X,
+  Y = g_Y,
+  W = g_W,
+  sample.weights = g_weights
+)
+
 # save
-here_save(tau_forest_t2_kessler_latent_anxiety_z, 'tau_forest_t2_kessler_latent_anxiety_z')
+here_save(
+  tau_forest_t2_kessler_latent_anxiety_z,
+  'tau_forest_t2_kessler_latent_anxiety_z'
+)
 
 
 # view
 tau_forest_t2_kessler_latent_anxiety_z
 
 # ATE
-anxiety_forest_ate<- average_treatment_effect(tau_forest_t2_kessler_latent_anxiety_z, target.sample = "all")
+anxiety_forest_ate <- average_treatment_effect(tau_forest_t2_kessler_latent_anxiety_z, target.sample = "all")
 
 
 # save
@@ -2192,14 +2286,19 @@ here_save(anxiety_forest_ate, "anxiety_forest_ate")
 anxiety_forest_ate
 
 # model anxiety
-tau_forest_anxiety_binary <- grf::causal_forest(X= g_X, Y= g_Y, W = g_W_binary, sample.weights = g_weights)
+tau_forest_anxiety_binary <- grf::causal_forest(
+  X = g_X,
+  Y = g_Y,
+  W = g_W_binary,
+  sample.weights = g_weights
+)
 
 # save
 here_save(tau_forest_anxiety_binary, 'tau_forest_anxiety_binary')
 
 
 # ATE
-bin_anxiety_forest_ate<- average_treatment_effect(tau_forest_anxiety_binary, target.sample = "overlap")
+bin_anxiety_forest_ate <- average_treatment_effect(tau_forest_anxiety_binary, target.sample = "overlap")
 bin_anxiety_forest_ate
 
 # save
@@ -2216,7 +2315,7 @@ tau.hat.oob <- predict(tau_forest_anxiety_binary)
 # show
 hist(tau.hat.oob$predictions)
 
-# description of heterogeneity 
+# description of heterogeneity
 best_linear_projection(tau_forest_anxiety_binary, g_X)
 
 names_grf
@@ -2230,10 +2329,10 @@ plot(rate, ylab = "Euro", main = "TOC: ranked by decreasing weight")
 # forest.W <- regression_forest(g_X, g_W, tune.parameters = "all")
 # #
 # W.hat <- predict(forest.W)$predictions
-# 
+#
 # #
 # forest.Y <- regression_forest(g_X, g_Y, tune.parameters = "all")
-# 
+#
 # #
 # Y.hat <- predict(forest.Y)$predictions
 
@@ -2244,35 +2343,40 @@ selected.vars <- which(forest.Y.varimp / mean(forest.Y.varimp) > 0.99)
 selected.vars
 colnames(g_X)
 
-# obtain treatment effect in the most important predictors 
-tau.forest <- causal_forest(g_X[, selected.vars], g_Y, g_W_binary,
-                            W.hat = W.hat, Y.hat = Y.hat,
-                            tune.parameters = "all", sample.weights = g_weights)
+# obtain treatment effect in the most important predictors
+tau.forest <- causal_forest(
+  g_X[, selected.vars],
+  g_Y,
+  g_W_binary,
+  W.hat = W.hat,
+  Y.hat = Y.hat,
+  tune.parameters = "all",
+  sample.weights = g_weights
+)
 
 # not must different
 average_treatment_effect(tau.forest, target.sample = "all")
 
 
 # training sample
-n<-nrow(g_X) # n in sample
+n <- nrow(g_X) # n in sample
 
 set.seed(123)
 train <- sample(1:n, n / 2) # get half sampl
 train
 
-# training sample 
-train.forest <- causal_forest(g_X[train, ], g_Y[train], g_W_binary[train],  sample.weights = g_weights[train])
+# training sample
+train.forest <- causal_forest(g_X[train, ], g_Y[train], g_W_binary[train], sample.weights = g_weights[train])
 
-# eavaluation sample 
+# eavaluation sample
 eval.forest <- causal_forest(g_X[-train, ], g_Y[-train], g_W_binary[-train], sample.weights = g_weights[-train])
 
 # rank on new data (ony supports binary treatment effects)
-rate <- rank_average_treatment_effect(eval.forest,
-                                      predict(train.forest, g_X[-train, ])$predictions)
+rate <- rank_average_treatment_effect(eval.forest, predict(train.forest, g_X[-train, ])$predictions)
 plot(rate)
 
- average_treatment_effect(train.forest, target.sample = "treated")
- average_treatment_effect(eval.forest, target.sample = "treated")
+average_treatment_effect(train.forest, target.sample = "treated")
+average_treatment_effect(eval.forest, target.sample = "treated")
 
 
 #tau.hat <- predict(tau.forest, X.test, estimate.variance = TRUE)
@@ -2311,7 +2415,7 @@ best_linear_projection(tau_forest_t2_kessler_latent_anxiety_z, g_X[ranked.vars[1
 # dr.scores <- grf::get_scores(tau_forest_anxiety_binary)
 
 
-# will only work for binary variables 
+# will only work for binary variables
 dr.scores <- double_robust_scores(tau_forest_anxiety_binary)
 dr.scores
 
@@ -2319,8 +2423,8 @@ dr.scores
 # cost <- ate[["estimate"]]
 # cost
 # -dr.scores
-# 
-# dr.rewards <- cbind.data.frame(control = -dr.scores, 
+#
+# dr.rewards <- cbind.data.frame(control = -dr.scores,
 #                      treat = dr.scores - cost)
 # dr.rewards
 # # plot overlap
@@ -2331,7 +2435,7 @@ tree_full <- policy_tree(g_X, dr.scores, depth = 2)
 
 #save
 here_save(tree, "tree")
-here_save(tree_full,"tree_full")
+here_save(tree_full, "tree_full")
 
 print(tree)
 plot(tree)
@@ -2342,13 +2446,20 @@ plot(tree_full)
 # Predict the treatment assignment {1, 2} for each sample.
 predicted <- predict(tree_full, g_X)
 plot(X[, 1], X[, 2], col = predicted)
-legend("topright", c("control", "treat"), col = c(1, 2), pch = 19)
+legend("topright",
+       c("control", "treat"),
+       col = c(1, 2),
+       pch = 19)
 abline(0, -1, lty = 2)
 dev.off()
 node.id <- predict(tree_full, g_X, type = "node.id")
 
-values <- aggregate(dr.scores, by = list(leaf.node = node.id),
-                    FUN = function(x) c(mean = mean(x), se = sd(x) / sqrt(length(x))))
+values <- aggregate(
+  dr.scores,
+  by = list(leaf.node = node.id),
+  FUN = function(x)
+    c(mean = mean(x), se = sd(x) / sqrt(length(x)))
+)
 print(values, digits = 2)
 
 
@@ -2369,7 +2480,7 @@ min(IPW)
 
 #Make long
 
-df <- cbind.data.frame(g_W, g_X_binary,IPW)
+df <- cbind.data.frame(g_W, g_X_binary, IPW)
 df
 head(df)
 table(df$g_W)
@@ -2379,22 +2490,29 @@ library(tidyr)
 
 # Reshape the dataframe
 df_long <- df %>%
-  pivot_longer(
-    cols = starts_with("t0_"), 
-    names_to = "variable", 
-    values_to = "value"
-  ) |> 
+  pivot_longer(cols = starts_with("t0_"),
+               names_to = "variable",
+               values_to = "value") |>
   mutate(W = factor(g_W))
 
 df_long$value
 
 ggplot(df_long, aes(x = value, weight = IPW, fill = W)) +
-  geom_histogram(alpha = 0.5, position = "identity", bins = 30) +
+  geom_histogram(alpha = 0.5,
+                 position = "identity",
+                 bins = 30) +
   facet_wrap( ~ variable, ncol = 2)
 
 
-ggplot(df, aes(x = t0_religion_church_round_z, weight = IPW, fill = as.factor(g_W))) +
-  geom_histogram(alpha = 0.5, position = "identity", bins = 30) 
+ggplot(df,
+       aes(
+         x = t0_religion_church_round_z,
+         weight = IPW,
+         fill = as.factor(g_W)
+       )) +
+  geom_histogram(alpha = 0.5,
+                 position = "identity",
+                 bins = 30)
 
 
 
@@ -2410,4 +2528,3 @@ dim(X.test)
 
 X.test[, 1] <- seq(-2, 2, length.out = 101)
 dim(X.test)
-
