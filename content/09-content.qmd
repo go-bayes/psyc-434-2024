@@ -51,6 +51,7 @@ source("/Users/joseph/GIT/templates/functions/experimental_funs.R")
 **Optional**
 - [@Bulbulia2024PracticalGuide] [link](https://osf.io/preprints/psyarxiv/uyg3d)
 - [@hoffman2023] [link](https://arxiv.org/pdf/2304.09460.pdf)
+- [@vanderweele2020] [link](https://www.dropbox.com/scl/fi/srpynr0dvjcndveplcydn/OutcomeWide_StatisticalScience.pdf?rlkey=h4fv32oyjegdfl3jq9u1fifc3&dl=0)
 :::
 
 ::: {.callout-important}
@@ -89,7 +90,7 @@ Doing a causal analysis
 
 ## What You Will Learn
 
-- **Sensitivity Analysis: E-values**
+- **Modified Treatment Policies**
 
 - **Setting up your analysis:** 
   
@@ -101,7 +102,134 @@ Doing a causal analysis
 
 - **Computing inverse probability of censoring weights (IPCW) to handle attrition/missingness**
 
+- **Sensitivity Analysis: E-values**
+
 - **Causal Analysis using machine learning ensembles (Targeted Maximum Likelihood)**
+
+
+## Part 1: New Content 
+
+### Modified Treatment Policies and E-values
+
+
+A modified treatment policy is a *flexible* intervention of the following form: 
+
+
+$$
+\mathbf{d}^\lambda (a_1) = \begin{cases} 4 & \text{if } a_1 < 4 \\ 
+a_1 & \text{otherwise} \end{cases}
+$$
+$$
+\mathbf{d}^\phi (a_1) = \begin{cases} 0 & \text{if } a_1 > 0 \\ 
+a_1 & \text{otherwise} \end{cases}
+$$
+
+$$ g' = \text{Intervention 1 - Intervention 2} = E[Y(\mathbf{d}^\lambda) - Y(\mathbf{d}^\phi)] $$
+
+$$ g'' = \text{Intervention 1 - Intervention 2} = E[Y(\mathbf{d}^\lambda) - Y(\mathbf{d}^\phi)] $$
+
+$$
+{\delta}(g) ={g'} - {g''}
+$$
+
+
+Rather than shifting an entire population into one of two states, the estimand flexibly shifts a population according to a pre-specified function. 
+
+see: @hoffman2023
+
+
+### Sensitivity Analysis using E-values
+
+
+> The minimum strength of association on the risk ratio scale that an unmeasured confounder would need to have with both the exposure and the outcome, conditional on the measured covariates, to fully explain away a specific exposure-outcome association
+
+See: @mathur2018; @linden2020EVALUE; @vanderweele2017.
+
+For example, suppose that the lower bound of the the E-value was 1.3 with the lower bound of the confidence interval = 1.12, we might then write:
+
+> With an observed risk ratio of RR=1.3, an unmeasured confounder that was associated with both the outcome and the exposure by a risk ratio of 1.3-fold each (or 30%), above and beyond the measured confounders, could explain away the estimate, but weaker joint confounder associations could not; to move the confidence interval to include the null, an unmeasured confounder that was associated with the outcome and the exposure by a risk ratio of 1.12-fold (or 12%) each could do so, but weaker joint confounder associations could not.
+
+The equations are as follows (for risk ratios)
+
+$$
+E-value_{RR} = RR + \sqrt{RR \times (RR - 1)}
+$$ $$
+E-value_{LCL} = LCL + \sqrt{LCL \times (LCL - 1)}
+$$
+
+Here is an R function that will calculate E-values
+
+```{r}
+# evalue for risk ratio
+calculate_e_value <- function(rr, lcl) {
+  e_value_rr = rr + sqrt(rr*(rr - 1))
+  e_value_lcl = lcl + sqrt(lcl*(lcl - 1))
+  
+  list(e_value_rr = e_value_rr, e_value_lcl = e_value_lcl)
+}
+
+# e.g. smoking causes cancer
+# finding 	RR = 10.73 (95% CI: 8.02, 14.36)
+evalue_computed <- calculate_e_value(10.73, 8.02)
+
+#print
+evalue_computed
+
+```
+
+We write:
+
+> With an observed risk ratio of RR=10.7, an unmeasured confounder that was associated `r evalue_computed$e_value_rr`-fold each, above and beyond the measured confounders, could explain away the estimate, but weaker joint confounder associations could not; to move the confidence interval to include the null, an unmeasured confounder that was associated with the outcome and the exposure by a risk ratio of `e_value_rr$e_value_lcl`-fold each could do so, but weaker joint confounder associations could not.
+
+Note that in this class, most of the outcomes will be (standardised) continuous outcomes. Here's a function and LaTeX code to describe the approximation.
+
+This function takes a linear regression coefficient estimate (`est`), its standard error (`se`), the standard deviation of the outcome (`sd`), a contrast of interest in the exposure (`delta`, which defaults to 1), and a "true" standardized mean difference (true, which defaults to 0). It calculates the odds ratio using the formula from Chinn (2000) and VanderWeele (2017), and then uses this to calculate the E-value.
+
+```{r}
+#| label: evalue_ols
+
+#evalue for ols
+compute_evalue_ols <- function(est, se, delta = 1, true = 0) {
+  # rescale estimate and SE to get a contrast of size delta
+  est <- est / delta
+  se <- se / delta
+
+  # compute transformed odds ratio and ci's
+  odds_ratio <- exp(0.91 * est)
+  lo <- exp(0.91 * est - 1.78 * se)
+  hi <- exp(0.91 * est + 1.78 * se)
+
+  # compute E-Values based on the RR values
+  evalue_point_estimate <- odds_ratio * sqrt(odds_ratio + 1)
+  evalue_lower_ci <- lo * sqrt(lo + 1)
+
+  # return the e-values
+  return(list(EValue_PointEstimate = evalue_point_estimate,
+              EValue_LowerCI = evalue_lower_ci))
+}
+
+
+# example:
+# suppose we have an estimate of 0.5, a standard error of 0.1, and a standard deviation of 1.
+# this would correspond to a half a standard deviation increase in the outcome per unit increase in the exposure.
+results <- compute_evalue_ols(est = 0.5, se = 0.1, delta = 1)
+point_round <- round(results$EValue_PointEstimate, 3)
+ci_round <- round(results$EValue_LowerCI, 3)
+
+# print results
+print(point_round)
+print(ci_round)
+
+```
+
+We write:
+
+> With an observed risk ratio of `r point_round`, an unmeasured confounder that was associated with both the outcome and the exposure by a risk ratio of `r point_round`-fold each, above and beyond the measured confounders, could explain away the estimate, but weaker joint confounder associations could not; to move the confidence interval to include the null, an unmeasured confounder that was associated with the outcome and the exposure by a risk ratio of `r ci_round`-fold each could do so, but weaker joint confounder associations could not.
+
+Note the E-values package will do the computational work for us and this is what we use in the `margot` package to obtain E-values for sensitivity analysis.
+
+
+
 
 
 ## Part 2 Guide For Preparing Your Study
@@ -137,6 +265,7 @@ Causal Diagrammes (DAGS) are a remarkably powerful and simple tool for understan
 ### Common cause of exposure and outcome.
 
 Our question: does visiting a clinical psychologist reduce the 10 year incidence of heart attacks?
+
 
 ```{tikz}
 #| label: fig-dag-1
@@ -305,96 +434,6 @@ Our question: does visiting a clinical psychologist reduce the 10 year incidence
 ## Sensitivity analysis
 
 
-### E-value
-
-> The minimum strength of association on the risk ratio scale that an unmeasured confounder would need to have with both the exposure and the outcome, conditional on the measured covariates, to fully explain away a specific exposure-outcome association
-
-See: @mathur2018
-
-For example, suppose that the lower bound of the the E-value was 1.3 with the lower bound of the confidence interval = 1.12, we might then write:
-
-> With an observed risk ratio of RR=1.3, an unmeasured confounder that was associated with both the outcome and the exposure by a risk ratio of 1.3-fold each (or 30%), above and beyond the measured confounders, could explain away the estimate, but weaker joint confounder associations could not; to move the confidence interval to include the null, an unmeasured confounder that was associated with the outcome and the exposure by a risk ratio of 1.12-fold (or 12%) each could do so, but weaker joint confounder associations could not.
-
-The equations are as follows (for risk ratios)
-
-$$
-E-value_{RR} = RR + \sqrt{RR \times (RR - 1)}
-$$ $$
-E-value_{LCL} = LCL + \sqrt{LCL \times (LCL - 1)}
-$$
-
-Here is an R function that will calculate E-values
-
-```{r}
-# evalue for risk ratio
-calculate_e_value <- function(rr, lcl) {
-  e_value_rr = rr + sqrt(rr*(rr - 1))
-  e_value_lcl = lcl + sqrt(lcl*(lcl - 1))
-  
-  list(e_value_rr = e_value_rr, e_value_lcl = e_value_lcl)
-}
-
-# e.g. smoking causes cancer
-# finding 	RR = 10.73 (95% CI: 8.02, 14.36)
-evalue_computed <- calculate_e_value(10.73, 8.02)
-
-#print
-evalue_computed
-
-```
-
-We write:
-
-> With an observed risk ratio of RR=10.7, an unmeasured confounder that was associated `r evalue_computed$e_value_rr`-fold each, above and beyond the measured confounders, could explain away the estimate, but weaker joint confounder associations could not; to move the confidence interval to include the null, an unmeasured confounder that was associated with the outcome and the exposure by a risk ratio of `e_value_rr$e_value_lcl`-fold each could do so, but weaker joint confounder associations could not.
-
-Note that in this class, most of the outcomes will be (standardised) continuous outcomes. Here's a function and LaTeX code to describe the approximation.
-
-This function takes a linear regression coefficient estimate (`est`), its standard error (`se`), the standard deviation of the outcome (`sd`), a contrast of interest in the exposure (`delta`, which defaults to 1), and a "true" standardized mean difference (true, which defaults to 0). It calculates the odds ratio using the formula from Chinn (2000) and VanderWeele (2017), and then uses this to calculate the E-value.
-
-```{r}
-#| label: evalue_ols
-
-#evalue for ols
-compute_evalue_ols <- function(est, se, delta = 1, true = 0) {
-  # rescale estimate and SE to get a contrast of size delta
-  est <- est / delta
-  se <- se / delta
-
-  # compute transformed odds ratio and ci's
-  odds_ratio <- exp(0.91 * est)
-  lo <- exp(0.91 * est - 1.78 * se)
-  hi <- exp(0.91 * est + 1.78 * se)
-
-  # compute E-Values based on the RR values
-  evalue_point_estimate <- odds_ratio * sqrt(odds_ratio + 1)
-  evalue_lower_ci <- lo * sqrt(lo + 1)
-
-  # return the e-values
-  return(list(EValue_PointEstimate = evalue_point_estimate,
-              EValue_LowerCI = evalue_lower_ci))
-}
-
-
-# example:
-# suppose we have an estimate of 0.5, a standard error of 0.1, and a standard deviation of 1.
-# this would correspond to a half a standard deviation increase in the outcome per unit increase in the exposure.
-results <- compute_evalue_ols(est = 0.5, se = 0.1, delta = 1)
-point_round <- round(results$EValue_PointEstimate, 3)
-ci_round <- round(results$EValue_LowerCI, 3)
-
-# print results
-print(point_round)
-print(ci_round)
-
-```
-
-We write:
-
-> With an observed risk ratio of `r point_round`, an unmeasured confounder that was associated with both the outcome and the exposure by a risk ratio of `r point_round`-fold each, above and beyond the measured confounders, could explain away the estimate, but weaker joint confounder associations could not; to move the confidence interval to include the null, an unmeasured confounder that was associated with the outcome and the exposure by a risk ratio of `r ci_round`-fold each could do so, but weaker joint confounder associations could not.
-
-Note the E-values package will do the computational work for us and this is what we use in the `margot` package to obtain E-values for sensitivity analysis.
-
-
 
 ## Comprehensive Checklist for Detailed Reporting of a Causal Inferenctial Study.
 
@@ -500,15 +539,18 @@ If yes, you're on the right track.
 -   **Missing data checks:** Have I checked for missing data? I should have.
 -   **Missing data plan:** If there is missing data, have I described how I will address it? I should have.
 
-#### Selecting the Model Approach
+#### Selecting the Model Approach: If Not Using Machine Learning (Lecture 7)
 
 -   **Approach decision:** Have I decided on using G-computation, IPTW, or Doubly-Robust Estimation? I should have.
 -   **Interactions:** If not using machine learning, have I included the interaction of the exposure and baseline covariates? I should have.
--   **Large data:** If I have a large data set, should I include the interaction of the exposure, group, and baseline confounders? I should consider it.
+-   **Big data:** If I have a large data set, should I include the interaction of the exposure, group, and baseline confounders? I should consider it.
 -   **Model specification:** have I double-checked the model specification? I should.
--   **Outcome Specifics:** If the outcome is rare and binary, have I specified logistic regression? If it's continuous, have I considered converting it to z-scores?
+-   **Outcome assessment:** If the outcome is rare and binary, have I specified logistic regression? If it's continuous, have I considered converting it to z-scores?
 -   **Sensitivity analysis:** am I planning a sensitivity analysis using simulation? If yes, describe it (e.g. E-values.)
--   **Machine Learning**: have I explained how machine learning works? 
+
+#### If Machine Learing
+
+-  **Machine Learning**: have I explained how semi-parametric ensemble machine learning works? (see example below).
 
 ### d. Highlight unmeasured pre-treatment covariates
 
@@ -520,7 +562,7 @@ Let **U** denoted unmeasured pre-treatment covariates that may potentially bias 
 -   It is useful to draw a causal diagramme to illustrate all potential sources of bias.
 -   Causal diagrammes are qualitative tools that require specialist expertise. We cannot typically obtain a causal graph from the data.
 -   A causal diagramme should include only as much information as is required to assess confounding. See @fig-dag-outcomewide for an example.
--   Because we cannot ensure the absence of unmeasured confounders in observational settings, it is vital to conduct sensitivity analyses for the results. For sensitivity analyeses, we use E-values, a topic for a latter seminar.
+-   Because we cannot ensure the absence of unmeasured confounders in observational settings, it is vital to conduct sensitivity analyses for the results. For sensitivity analyeses, we use E-values.
 
 ```{tikz}
 #| label: fig-dag-outcomewide
@@ -683,7 +725,7 @@ Consider the following ideas about how to report one's model:
 
 -   **Estimator**: Doubly robust where possible.
 -   **Propensity Score Reporting:** Detail the process of propensity score derivation, including the model used and any variable transformations.
--   **WeightIt Package Utilisation:** Explicitly mention the use of the 'WeightIt' package in R, including any specific options or parameters used in the propensity score estimation process.
+-   **WeightIt Package:** Explicitly mention the use of the 'WeightIt' package in R, including any specific options or parameters used in the propensity score estimation process.
 -   **Method Variations:** Report if different methods were used to obtain propensity scores, and the reasons behind the choice of methods such as 'ebal', 'energy', and 'ps'.
 -   **Continuous Exposures:** Highlight that for continuous exposures, only the 'energy' option was used for propensity score estimation.
 -   **Subgroup Estimation:** Confirm that the propensity scores for subgroups were estimated separately, and discuss how the weights were subsequently combined with the original data.
