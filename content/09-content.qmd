@@ -62,8 +62,8 @@ Doing a causal analysis
 :::
 
 ::: {.callout-important}
--  download the R script
--  download the relevant libraries.
+-  Download the R script
+-  Download the relevant libraries.
 -  Will go through this script step-by-step.
 :::
 
