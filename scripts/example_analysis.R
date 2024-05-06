@@ -114,6 +114,7 @@ ids_2018 <- df_nz |>
 # intersect IDs from 2018 and 2019 to ensure participation in both years
 # ids_2018_2019 <- intersect(ids_2018, ids_2019)
 
+colnames(df_nz)
 # data wrangling
 dat_long <- df_nz |>
   # dplyr::filter(id %in% ids_2018_2019 &
@@ -308,21 +309,25 @@ table(round(dat_long$sample_weights, 3))
 dt_18 <- dat_long |>
   filter(wave == 2018)
 
+# variables for the table
+base_vars <- setdiff(baseline_vars, c("censored", "sample_weights", outcome_vars))
+
+
 # get baseline cols
 selected_base_cols <-
-  dt_18 |> select(all_of(base_var))
+  dt_18 |> select(all_of(base_vars))
+
+# missing values visualisation
+viss_miss_baseline <- naniar::vis_miss(dt_18, warn_large_data = F)
+here_save(viss_miss_baseline, "base_var")
+
 
 # check missing values a baseline
-viss_miss_baseline <- naniar::vis_miss(dt_18, warn_large_data = F)
-here_save(viss_miss_baseline, "viss_miss_baseline")
+viss_miss_baseline
 
 
-# the setdiff command allows us to remove names from the baseline vars list that we do not want
-base_var <- setdiff(baseline_vars, c("censored", "sample_weights", outcome_vars))
 
-# check
-base_var
-
+# the setdiff command allows us to remove names from the baseline vars list that we do not 
 table_baseline <- selected_base_cols %>%
   janitor::clean_names(case = "title") %>%
   tbl_summary(
@@ -356,8 +361,6 @@ selected_exposure_cols <-
 # check
 #str(selected_exposure_cols)
 
-
-
 table_exposures <- selected_exposure_cols %>%
   janitor::clean_names(case = "title") %>%
   labelled::to_factor() %>%
@@ -379,7 +382,6 @@ table_exposures
 
 
 # outcome table -----------------------------------------------------------
-
 dt_18_20 <- dat_long |>
   dplyr::filter(wave == 2018 | wave == 2020) |>
   droplevels()
@@ -440,6 +442,9 @@ dt_19 <- dat_long |> dplyr::filter(wave == 2019)
 # mean of exposure
 mean_exposure <- mean(dt_19$perfectionism, na.rm = TRUE)
 
+# view
+mean_exposure
+
 # save
 here_save(mean_exposure, "mean_exposure")
 
@@ -453,7 +458,7 @@ sd_exposure <- sd(dt_19$perfectionism, na.rm = TRUE)
 here_save(sd_exposure, "sd_exposure")
 
 # check
-sd_exposure
+# sd_exposure
 
 
 # median
@@ -467,7 +472,7 @@ median_exposure
 graph_density_shift_function <- margot::coloured_histogram(
   dt_19,
   col_name = "perfectionism",
-  binwidth = .25,
+  binwidth = .1,
   unit_of_change = 1,
   scale_min = 1,
   scale_max = 7,
@@ -536,9 +541,6 @@ fit_kessler_latent_anxiety <-
 # view
 parameters::model_parameters(fit_kessler_latent_anxiety, ci_method = "wald")[2, ]
 
-# full model
-parameters::model_parameters(fit_kessler_latent_anxiety, ci_method = "wald")
-
 # save results
 here_save(fit_kessler_latent_anxiety, "fit_kessler_latent_anxiety")
 
@@ -565,15 +567,19 @@ here_save(lm_fit_kessler_latent_anxiety,
           "lm_fit_kessler_latent_anxiety")
 
 # calculate betas depression
+lm_fit_kessler_latent_depression
 lm_fit_kessler_latent_depression <- tbl_regression(fit_kessler_latent_depression)
 here_save(lm_fit_kessler_latent_depression,
           "lm_fit_kessler_latent_depression")
 
 #
-# #
+# 
 b_lm_fit_kessler_latent_anxiety <- inline_text(lm_fit_kessler_latent_anxiety,
                                                variable = perfectionism,
                                                pattern = "b = {estimate}; (95% CI {conf.low}, {conf.high})")
+
+# view
+b_lm_fit_kessler_latent_anxiety
 
 here_save(b_lm_fit_kessler_latent_anxiety,
           "b_lm_fit_kessler_latent_anxiety")
@@ -597,7 +603,7 @@ baseline_vars <- setdiff(baseline_vars, "sample_weights")
 baseline_vars
 
 # here we imput the baseline
-df_impute_base <- margot_wide_impute_baseline(
+df_impute_base <- margot::margot_wide_impute_baseline(
   dat_long,
   baseline_vars = baseline_vars,
   exposure_var = exposure_vars,
@@ -635,7 +641,7 @@ here_save(df_wide_censored, "df_wide_censored")
 
 
 # read if needed
-df_wide_censored <- here_save("df_wide_censored")
+df_wide_censored <- here_read("df_wide_censored")
 
 # check missing values
 naniar::vis_miss(df_wide_censored, warn_large_data = FALSE)
@@ -663,7 +669,7 @@ df_clean <- df_wide_censored %>%
       .cols = where(is.numeric) &
         !t0_censored &
         !t0_sample_weights &
-        !t0_born_nz &
+        !t0_born_nz,
         #   !t1_perfectionism &  we will standardise perfectionism and use it later!t1_censored,
         .fns = ~ scale(.),
       .names = "{.col}_z"
@@ -721,7 +727,7 @@ baseline_vars_models = df_clean |>  # post process of impute and combine
   dplyr::select(starts_with("t0"), -t0_censored, -t0_lost, -t0_sample_weights) |> colnames() # note
 
 # check this is correct.
-baseline_vars_models
+baseline_vars_models <- c(baseline_vars_models)
 
 # create fresh dataset
 df_clean_pre <- df_clean[baseline_vars_models]
@@ -736,6 +742,8 @@ str(df_clean_pre)
 # perform one-hot encoding using model.matrix
 # we need factors to be 0 or 1
 encoded_vars <- model.matrix(~ t0_eth_cat  - 1, data = df_clean_pre)
+head(encoded_vars)
+
 
 # convert matrix to data frame
 encoded_df <- as.data.frame(encoded_vars)
@@ -815,6 +823,9 @@ stopCluster(cl)
 # save your super learner model
 here_save(sl, "sl")
 
+
+sl <- here_read("sl")
+
 # check outputs
 # summary of the SuperLearner output
 print(sl)
@@ -828,8 +839,6 @@ sl$cvRisk
 
 # weights assigned to each learner in the final ensemble
 sl$coef
-
-
 
 # generate predictions
 predictions <- predict(sl, newdata = df_clean_hot[full_predictor_vars], type = "response")
@@ -1047,6 +1056,9 @@ here_save(iptw_marginal, "iptw_marginal")
 # here_save(summary_iptw_conditional, "summary_iptw_conditional")
 
 
+
+colnames(df_nz)
+
 # visualise imbalance
 love_plot_marginal <-
   love.plot(
@@ -1176,18 +1188,16 @@ colnames(df_clean_hot_t2)
 
 # estimate models ---------------------------------------------------------
 library(lmtp)
-library(SuperLearner)0
+library(SuperLearner)
 library(xgboost)
 library(ranger)
-
+library(future)
 # model charitable giving
 # this will allow you to track progress
 progressr::handlers(global = TRUE)
 
 # set seed for reproducing results
 set.seed(0112358)
-library(future)
-library(SuperLearner)
 plan(multisession)
 
 # hopefully you have 10 :). if not, consider decreasing the number of folds (for this assessment)
@@ -1225,6 +1235,17 @@ max_data <- max(df_final$t1_perfectionism)
 # shift function
 gain_A <- function(data, trt) {
   ifelse(data[[trt]] < max_data - 1, data[[trt]] + 1, max_data)
+}
+
+
+# changing your function to be fixed at 7 if you like...
+fixed_shift_to_7 <- function(data, trt) {
+  ifelse(data[[trt]] != 7,  7, data[[trt]])
+}
+
+# changing your function to be fixed at 0 if you like...
+fixed_shift_to_0 <- function(data, trt) {
+  ifelse(data[[trt]] != 0,  0, data[[trt]])
 }
 
 
@@ -1294,18 +1315,14 @@ here_save(t2_kessler_latent_anxiety_z_null_test,
           "t2_kessler_latent_anxiety_z_null_test")
 
 # test contrast
-test_contrast_anxiety <- lmtp_contrast(t2_kessler_latent_anxiety_z_test , ref = t2_kessler_latent_anxiety_z_null_test)
+test_contrast_anxiety <- lmtp::lmtp_contrast(t2_kessler_latent_anxiety_z_test , ref = t2_kessler_latent_anxiety_z_null_test)
 
 # check
 test_contrast_anxiety
 
 
-
 # tests look good, let's run the model ------------------------------------
-
-
 # models ------------------------------------------------------------------
-
 
 
 # anxiety -- marginal -----------------------------------------------------
@@ -1412,6 +1429,42 @@ here_save(t2_kessler_latent_depression_z_null,
 # subgroup models ---------------------------------------------------------
 # df_final <- here_read("df_final") # if needed
 
+
+dt_18 <- dat_long |> 
+  filter(wave == 2018)
+
+## in baseline sample 
+df_18 |> dplyr::filter( dplyr::filter(born_nz == 0)) |> droplevels()
+
+# select participant n at basel
+n_baseline_participants_born_nz_no<- dt_18 |> dplyr::filter(born_nz == 0) |> droplevels()
+n_baseline_participants_born_nz_yes<- dt_18 |> dplyr::filter(born_nz == 1) |> droplevels()
+
+n_baseline_participants_born_overseas<- nrow( n_baseline_participants_born_nz_no)
+n_baseline_participants_born_nz <- nrow ( n_baseline_participants_born_nz_yes )
+       
+       
+# make pretty
+n_baseline_participants_born_overseas <-   prettyNum(n_baseline_participants_born_overseas, big.mark = ",")
+n_baseline_participants_born_nz <-
+  prettyNum(n_baseline_participants_born_nz, big.mark = ",")
+
+# save
+here_save(n_baseline_participants_born_overseas, "n_baseline_participants_born_overseas")
+here_save(n_baseline_participants_born_nz, "n_baseline_participants_born_nz")
+
+
+# sanity checks
+n_participants_born_nz
+n_participants_born_overseas
+
+here_save(n_participants_born_nz, "n_participants_born_nz")
+here_save(n_participants_born_overseas,
+          "n_participants_born_overseas")
+
+
+
+##
 df_born_nz_no  <- df_final |> dplyr::filter(t0_born_nz == 0) |> droplevels()
 df_born_nz_yes <- df_final |> dplyr::filter(t0_born_nz == 1)  |> droplevels()
 
@@ -1747,6 +1800,7 @@ tab_contrast_df_born_nz_no_t2_kessler_latent_depression_z <- margot::margot_lmtp
   new_name = "born overseas: depression"
 )
 
+
 #view
 tab_contrast_df_born_nz_no_t2_kessler_latent_depression_z
 
@@ -1879,12 +1933,12 @@ title_null = "N = 19,735, New Zealand Attitudes and Values Study (synthetic data
 plot_group_tab_marginal_outcomes <- margot_plot(
   group_tab_marginal_outcomes,
   type = "RD",
-  title =  "Religious Service At Least Once Per Week vs None",
-  subtitle = "Out-Group Warmth",
+  title =  "Perfectionism + One vs No Intervention ",
+  subtitle = "on Depression Anxiety",
   estimate_scale = 1,
   base_size = 18,
   text_size = 4.5,
-  point_size = .5,
+  point_size = 4,
   title_size = 20,
   subtitle_size = 14,
   legend_text_size = 8,
@@ -1920,6 +1974,9 @@ ggsave(
 
 contrast_anxiety_yes <- contrast_df_born_nz_yes_t2_kessler_latent_anxiety_z
 contrast_anxiety_no <- contrast_df_born_nz_no_t2_kessler_latent_anxiety_z
+
+contrast_anxiety_yes
+contrast_anxiety_no
 
 contrast_depression_yes <- contrast_df_born_nz_yes_t2_kessler_latent_anxiety_z
 contrast_depression_no <- contrast_df_born_nz_no_t2_kessler_latent_anxiety_z
