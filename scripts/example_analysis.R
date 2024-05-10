@@ -25,8 +25,9 @@ if (!require(devtools, quietly = TRUE)) {
 
 # get 'margot' from my github (make sure to update)
 devtools::install_github("go-bayes/margot")
-}
 
+
+remotes::install_github("go-bayes/margot")
 
 # Check if pacman is installed; if not, install it
 if (!require(pacman, quietly = TRUE)) {
@@ -277,6 +278,7 @@ baseline_vars = c(
   "sample_weights",
   "employed"
 )
+
 
 # treatment
 exposure_var = c("perfectionism", "censored") # we will use the censored variable later
