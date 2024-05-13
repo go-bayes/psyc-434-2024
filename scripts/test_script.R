@@ -8,7 +8,7 @@
 
 # set path to save models
 push_mods <-
-  here::here('/Users/joseph/Library/CloudStorage/Dropbox-v-project/data/saved')
+  here::here('/Users/joseph/Library/CloudStorage/Dropbox-v-project/data/honours')
 
 # load packages
 library("tidyverse")
@@ -89,14 +89,16 @@ n_total
 margot::here_save(n_total, "n_total")
 
 # name of exposure
-name_exposure <-  "perfectionism"
+name_exposure <-  "bodysat"
 
 
 # get names
 colnames(df_nz)
-
-# check missing values
-skimr::skim(df_nz) |> arrange(n_missing)
+summary(df_nz)
+str(df_nz)
+# check missing values so that you can figure out which to select.
+skimr::skim(df_nz) |> 
+  arrange(n_missing)
 
 # obtain ids for individuals who participated in 2018 and have no missing baseline exposure
 ids_2018 <- df_nz |>
@@ -118,6 +120,10 @@ ids_2018 <- df_nz |>
 # ids_2018_2019 <- intersect(ids_2018, ids_2019)
 
 colnames(df_nz)
+
+hist( df_nz$hours_exercise) 
+max(df_nz$hours_exercise, na.rm=TRUE)
+
 # data wrangling
 dat_long <- df_nz |>
   # dplyr::filter(id %in% ids_2018_2019 &
@@ -198,6 +204,7 @@ dat_long <- df_nz |>
     "rural_gch_2018_l",
     # see nzavs sheet
     "support",
+    "bodysat",
     # "support_help",
     # # 'There are people I can depend on to help me if I really need it.
     # "support_turnto",
@@ -207,8 +214,7 @@ dat_long <- df_nz |>
     "perfectionism",
     "religion_religious",
     "kessler_latent_depression",
-    "kessler_latent_anxiety", 
-    hours_
+   # "kessler_latent_anxiety", 
   ) |>
   mutate(
     #initialize 'censored'
@@ -223,13 +229,14 @@ dat_long <- df_nz |>
     
   ) |>
   select(-c(year_measured, rural_gch_2018_l)) |>
+ # dplyr::select(-c(household_inc, hours_exercise)) |>
   dplyr::mutate(
     # rescale these variables, to get all variables on a similar scale
     # otherwise your models can blow up, or become uninterpretable.
     household_inc_log = log(household_inc + 1),
-    hours_exercise_log = log(hours_exercise + 1)
+    hours_exercise_log = log(hours_exercise + 1),
+    hours_binary = ifelse(hours_excercise >= 1.5, 1, 0 ). # FOR MICHAEL
   ) |>
-  dplyr::select(-c(household_inc, hours_exercise)) |>
   droplevels() |>
   # dplyr::rename(sample_weights = w_gend_age_ethnic,
   #               sample_origin =  sample_origin_names_combined) |>
@@ -284,10 +291,10 @@ baseline_vars = c(
 
 
 # treatment
-exposure_var = c("perfectionism", "censored") # we will use the censored variable later
+exposure_var = c("body_sat", "censored") # we will use the censored variable later
 
 # outcome, can be many
-outcome_vars = c("kessler_latent_anxiety", "kessler_latent_depression")
+outcome_vars = c("kessler_latent_depression")
 
 
 # sample weights balanced male / female-------------------------------------# balance on gender weights
@@ -674,8 +681,8 @@ df_clean <- df_wide_censored %>%
         !t0_censored &
         !t0_sample_weights &
         !t0_born_nz,
-        #   !t1_perfectionism &  we will standardise perfectionism and use it later!t1_censored,
-        .fns = ~ scale(.),
+      #   !t1_perfectionism &  we will standardise perfectionism and use it later!t1_censored,
+      .fns = ~ scale(.),
       .names = "{.col}_z"
     )
   ) |>
@@ -1451,8 +1458,8 @@ n_baseline_participants_born_nz_yes<- dt_18 |> dplyr::filter(born_nz == 1) |> dr
 
 n_baseline_participants_born_overseas<- nrow( n_baseline_participants_born_nz_no)
 n_baseline_participants_born_nz <- nrow ( n_baseline_participants_born_nz_yes )
-       
-       
+
+
 # make pretty
 n_baseline_participants_born_overseas <-   prettyNum(n_baseline_participants_born_overseas, big.mark = ",")
 n_baseline_participants_born_nz <-

@@ -17,6 +17,8 @@ author:
 editor_options: 
   chunk_output_type: console
 format:
+  docx: 
+    bibliography: /Users/joseph/GIT/templates/bib/references.bib
   pdf:
     sanitise: true
     keep-tex: true
@@ -114,8 +116,6 @@ library("patchwork")
 library("glue")
 
 
-
-
 # set divice
 loadfonts(device = "all")
 
@@ -129,8 +129,6 @@ n_participants <- margot::here_read("n_participants")
 
 # n (un)censored sample
 n_censored_sample <- here_read("n_censored_sample")
-
-
 
 # n by groups
 n_participants_born_overseas <- margot::here_read("n_participants_born_overseas")
@@ -164,7 +162,6 @@ love_plot_marginal <- margot::here_read("love_plot_marginal")
 # summary of iptw model
 summary_iptw_marginal <- margot::here_read("summary_iptw_marginal")
 
-
 # transition table
 transition_table <- margot::here_read("transition_table")
 
@@ -175,8 +172,6 @@ transition_table <- margot::here_read("transition_table")
 
 # import missing values at baseline
 viss_miss_baseline <-  margot::here_read("viss_miss_baseline")
-
-
 
 # # ordinary regressions
 fit_kessler_latent_anxiety<- margot::here_read('fit_kessler_latent_anxiety')
@@ -189,8 +184,6 @@ lm_fit_kessler_latent_depression <-  margot::here_read("lm_fit_kessler_latent_de
 # betas from models
 b_lm_fit_kessler_latent_anxiety <-  margot::here_read("b_lm_fit_kessler_latent_anxiety")
 b_lm_fit_kessler_latent_depression <-  margot::here_read("b_lm_fit_kessler_latent_depression")
-
-
 
 
 # practical effect sizes -------------------------------------------------------
@@ -228,8 +221,7 @@ percent_greater_regression_depression<-
 # percentage greater cross-sectional inference
 #percent_greater_regression_depression
 
-# comarative results -------------------------------------------------------
-
+# comparative results -------------------------------------------------------
 difference_in_group_means_anxiety <- margot::here_read("difference_in_group_means_anxiety")
 
 difference_in_group_means_depression <- margot::here_read("difference_in_group_means_depression")
@@ -252,8 +244,6 @@ diff_data_scale_depression <- round( ( sd_exposure *  tab_marginal_outcomes[2,1]
 # diff_data_scale_depression  makes a .16 difference on the data scale 1-7
 
 # compute more if/as needed...
-
-
 # marginal results: table for manuscript
 tab_marginal_outcomes <- margot::here_read("tab_marginal_outcomes")
 
@@ -267,8 +257,6 @@ group_tab_born_overseas_outcomes <- margot::here_read("group_tab_born_overseas_o
 # read table for born in NZ
 tab_born_nz_outcomes <- margot::here_read("tab_born_nz_outcomes")
 group_tab_born_nz_outcomes <- margot::here_read("group_tab_born_nz_outcomes")
-
-
 
 # graphs ------------------------------------------------------------------
 title = "Causal Effect of + 1 Perfactionism vs. Status Quo"
@@ -349,13 +337,14 @@ plot_group_tab_born_overseas_outcomes<- margot::margot_plot(
 #plot_group_tab_born_overseas_outcomes
 
 
-# pathwork
+# 
+library(patchwork)
 
 plot_combo_conditional <- plot_group_tab_born_nz_outcomes /
 plot_group_tab_born_overseas_outcomes + 
   plot_annotation(title = "Group Comparisons: Perfectionism on Distress", tag_levels = 'A',
              theme = theme(plot.title = element_text(size = 16, face = "bold")))
-
+#plot_combo_conditional
 ```
 
 
@@ -505,7 +494,7 @@ This table presents a three-wave panel design as described in @vanderweele2020. 
 :::
 
 
-@tbl-02 presents three Single World Intervention Graphs (SWIGs) that describe our confounding control  (identification strategy) [@robins2010alternative; @richardson2013swigsprimer; @shpitser2022multivariate; @richardson2023nested; @richardson2023potential; @shpitser2016causal]. Our approach consistently applies the same identification strategy across all functions estimated in this study. Unlike standard causal diagrams, SWIGs allow us to *separately* read the factorisation of the conditional dependencies for the distribution of each set of counterfactual outcomes under each modified treatment policy [@richardson2013swigsprimer]. Note, that the natural value of the treatment $A$ is obtained both from its observed instances and from baseline historical data, including the baseline treatment. This method ensures that our analysis accurately captures the causal effects of flexible treatment regimes that rely on levels of religious service attendance at the treatment wave, while ensuring balance for each treatment function that we compare [@diaz2012population; @young2014identification; @diaz2021nonparametric]. 
+@tbl-02 presents three Causal Directed Acyclic Graph (DAG) that describe our confounding control  (identification strategy). Our approach consistently applies the same identification strategy across all functions estimated in this study. Unlike standard causal diagrams, SWIGs allow us to *separately* read the factorisation of the conditional dependencies for the distribution of each set of counterfactual outcomes under each modified treatment policy [@richardson2013swigsprimer]. Note, that the natural value of the treatment $A$ is obtained both from its observed instances and from baseline historical data, including the baseline treatment. This method ensures that our analysis accurately captures the causal effects of flexible treatment regimes that rely on levels of religious service attendance at the treatment wave, while ensuring balance for each treatment function that we compare [@diaz2012population; @young2014identification; @diaz2021nonparametric]. 
 
 
 ### Confounding Control
@@ -585,9 +574,8 @@ graph_density_shift_function + theme_classic()
 
 transition_table <- margot::here_read("transition_table")
 
-# explanation here: transition_table$explanation
+#transition_table$explanation
 transition_table$table
-
 ```
 
 
@@ -626,15 +614,16 @@ tab_marginal_outcomes |>
   mutate(across(where(is.numeric), ~ round(., 3))) %>%
   kbl(format = "markdown")
 
+# uncomment read results 
 #margot::margot_interpret_table(group_tab_marginal_outcomes, "causal_difference", "LMTP")
 
 ```
 
 A Longitudinal Modified Treatment Policy (LMTP) calculates the expected outcome difference between treatment and contrast conditions over a sequential regime of treatments for a prespecified target population.
 
-For 'marginal: depression', the effect estimate is 0.141 [0.12, 0.162]. The E-value for this estimate is 1.531, with a lower bound of 1.473. At this lower bound, unmeasured confounders would need a minimum association strength with both the intervention sequence and outcome of 1.473 to negate the observed effect. Weaker confounding would not overturn it. We infer **evidence for causality**.
+For 'marginal: depression', the effect estimate on the causal_difference scale is 0.141 [0.12, 0.162]. The E-value for this estimate is 1.531, with a lower bound of 1.473. At this lower bound, unmeasured confounders would need a minimum association strength with both the intervention sequence and outcome of 1.473 to negate the observed effect. Weaker confounding would not overturn it. Here, **there is evidence for causality**.
 
-For 'marginal: anxiety', the effect estimate is 0.115 [0.096, 0.135]. The E-value for this estimate is 1.46, with a lower bound of 1.405. At this lower bound, unmeasured confounders would need a minimum association strength with both the intervention sequence and outcome of 1.405 to negate the observed effect. Weaker confounding would not overturn it. We infer **evidence for causality**.
+For 'marginal: anxiety', the effect estimate on the causal_difference scale is 0.115 [0.096, 0.135]. The E-value for this estimate is 1.46, with a lower bound of 1.405. At this lower bound, unmeasured confounders would need a minimum association strength with both the intervention sequence and outcome of 1.405 to negate the observed effect. Weaker confounding would not overturn it. Here, **there is evidence for causality**.
 
 {{< pagebreak >}}
 
@@ -656,7 +645,7 @@ For 'marginal: anxiety', the effect estimate is 0.115 [0.096, 0.135]. The E-valu
 #| fig-height: 12
 
 
-plot_combo_conditional
+#plot_combo_conditional
 ```
 
 ```{r}
@@ -693,8 +682,7 @@ tab_born_overseas_outcomes |>
   kbl(format = "markdown")
 
 # uncomment to get interpretation 
-#margot::margot_interpret_table(group_tab_born_overseas_outcomes, "causal_difference", "LMTP")
-
+# margot::margot_interpret_table(group_tab_born_overseas_outcomes, "causal_difference", "LMTP")
 ```
 For 'born overseas: depression', the effect estimate is 0.143 [0.101, 0.185]. The E-value for this estimate is 1.537, with a lower bound of 1.424. At this lower bound, unmeasured confounders would need a minimum association strength with both the intervention sequence and outcome of 1.424 to negate the observed effect. Weaker confounding would not overturn it. We infer **evidence for causality**.
 
