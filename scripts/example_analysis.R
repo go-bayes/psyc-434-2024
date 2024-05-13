@@ -91,12 +91,14 @@ margot::here_save(n_total, "n_total")
 # name of exposure
 name_exposure <-  "perfectionism"
 
-
 # get names
 colnames(df_nz)
+summary(df_nz)
 
-# check missing values
-skimr::skim(df_nz) |> arrange(n_missing)
+str(df_nz)
+# check missing values so that you can figure out which to select.
+skimr::skim(df_nz) |> 
+  arrange(n_missing)
 
 # obtain ids for individuals who participated in 2018 and have no missing baseline exposure
 ids_2018 <- df_nz |>

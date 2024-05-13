@@ -89,7 +89,7 @@ n_total
 margot::here_save(n_total, "n_total")
 
 # name of exposure
-name_exposure <-  "bodysat"
+name_exposure <-  "hours_exercise"
 
 
 # get names
@@ -212,6 +212,7 @@ dat_long <- df_nz |>
     # "support_rnoguidance",
     #There is no one I can turn to for guidance in times of stress.
     "perfectionism",
+    "hours_exercise",
     "religion_religious",
     "kessler_latent_depression",
    # "kessler_latent_anxiety", 
@@ -230,12 +231,12 @@ dat_long <- df_nz |>
   ) |>
   select(-c(year_measured, rural_gch_2018_l)) |>
  # dplyr::select(-c(household_inc, hours_exercise)) |>
+  mutate( hours_exercise_binary = ifelse(hours_exercise >= 1.5, 1, 0 ) ) |> # FOR MICHAEL
   dplyr::mutate(
     # rescale these variables, to get all variables on a similar scale
     # otherwise your models can blow up, or become uninterpretable.
     household_inc_log = log(household_inc + 1),
-    hours_exercise_log = log(hours_exercise + 1),
-    hours_binary = ifelse(hours_excercise >= 1.5, 1, 0 ). # FOR MICHAEL
+    hours_exercise_log = log(hours_exercise + 1)
   ) |>
   droplevels() |>
   # dplyr::rename(sample_weights = w_gend_age_ethnic,
@@ -288,10 +289,10 @@ baseline_vars = c(
   "sample_weights",
   "employed"
 )
-
+  
 
 # treatment
-exposure_var = c("body_sat", "censored") # we will use the censored variable later
+exposure_var = c("hours_exercise_binary", "censored") # we will use the censored variable later
 
 # outcome, can be many
 outcome_vars = c("kessler_latent_depression")
@@ -367,7 +368,7 @@ dt_18_19 <- dat_long |>
 
 # get vars.
 selected_exposure_cols <-
-  dt_18_19 %>% select(c("perfectionism", "wave"))
+  dt_18_19 %>% select(c("hours_exercise_binary", "wave"))
 
 # check
 #str(selected_exposure_cols)
@@ -450,44 +451,41 @@ table_outcomes
 # select 2019 wave
 dt_19 <- dat_long |> dplyr::filter(wave == 2019)
 
-# mean of exposure
-mean_exposure <- mean(dt_19$perfectionism, na.rm = TRUE)
-
-# view
-mean_exposure
-
-# save
-here_save(mean_exposure, "mean_exposure")
-
-# check
-mean_exposure
-
-# sd of exposure
-sd_exposure <- sd(dt_19$perfectionism, na.rm = TRUE)
-
-# save
-here_save(sd_exposure, "sd_exposure")
+# # mean of exposure
+# mean_exposure <- mean(dt_19$perfectionism, na.rm = TRUE)
+# 
+# # view
+# mean_exposure
+# 
+# # save
+# here_save(mean_exposure, "mean_exposure")
+# 
+# # check
+# mean_exposure
+# 
+# # sd of exposure
+# sd_exposure <- sd(dt_19$perfectionism, na.rm = TRUE)
+# 
+# # save
+# here_save(sd_exposure, "sd_exposure")
 
 # check
 # sd_exposure
 
 
 # median
-median_exposure <- median(dt_19$perfectionism, na.rm = TRUE)
+median_exposure <- median(dt_19$hours_exercise_binary, na.rm = TRUE)
 
 median_exposure
 
 # check if you like
 # median_exposure
 # mean_exposure
-graph_density_shift_function <- margot::coloured_histogram(
+graph_density_shift_function <- margot::coloured_histogram_shift(
   dt_19,
-  col_name = "perfectionism",
-  binwidth = .1,
-  unit_of_change = 1,
-  scale_min = 1,
-  scale_max = 7,
-  highlight_range = "hightest" # "lowest" if you want the lowest, "both" if both
+  col_name = "hours_exercise_binary",
+  binwidth = .1
+ # highlight_range = "highest" # "lowest" if you want the lowest, "both" if both
 )
 graph_density_shift_function
 margot::here_save(graph_density_shift_function,
