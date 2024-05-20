@@ -58,7 +58,6 @@ csl: /Users/joseph/GIT/templates/csl/camb-a.csl
 #| include: false
 #| eval: true
 
-
 # copy this template and add a path to it to your machine
 # https://github.com/go-bayes/templates/blob/main/quarto/title.tex
 # set the path using `    template-partials: ` above
@@ -124,6 +123,7 @@ loadfonts(device = "all")
 # n total in the study 
 n_total <-  margot::here_read("n_total")
 
+
 # n participants in your study 
 n_participants <- margot::here_read("n_participants")
 
@@ -162,6 +162,7 @@ love_plot_marginal <- margot::here_read("love_plot_marginal")
 # summary of iptw model
 summary_iptw_marginal <- margot::here_read("summary_iptw_marginal")
 
+
 # transition table
 transition_table <- margot::here_read("transition_table")
 
@@ -172,6 +173,7 @@ transition_table <- margot::here_read("transition_table")
 
 # import missing values at baseline
 viss_miss_baseline <-  margot::here_read("viss_miss_baseline")
+
 
 # # ordinary regressions
 fit_kessler_latent_anxiety<- margot::here_read('fit_kessler_latent_anxiety')
@@ -432,7 +434,6 @@ $$
 \mathbf{d}(a_1) = a_1
 $$
 
-
 ### Causal Contrasts
 
 From these policies, we compute the following causal contrasts.
@@ -582,670 +583,670 @@ transition_table$table
 {{< pagebreak >}}
 
 
-## Results
+<!-- ## Results -->
 
-### Study 1: Causal Effects of Perfectionism on Anxiety and Depression 
+<!-- ### Study 1: Causal Effects of Perfectionism on Anxiety and Depression  -->
 
-Results for the treatment contrasts between perfectionism and the status quo on mental health are displayed in @fig-1_1 and @tbl-1_1. These results are measured on the causal difference scale.
+<!-- Results for the treatment contrasts between perfectionism and the status quo on mental health are displayed in @fig-1_1 and @tbl-1_1. These results are measured on the causal difference scale. -->
 
 
-```{r}
-#| label: fig-1_1
-#| fig-cap: "This figure reports the results of model estimates for the causal effects of a one unit increase in perfectionism vs the status quo depression and anxiety at the end of the study. Contrasts are expressed in standard deviation units."
-#| eval: true
-#| include: true
-#| echo: false
-#| fig-width: 10
-#| fig-height: 12
+<!-- ```{r} -->
+<!-- #| label: fig-1_1 -->
+<!-- #| fig-cap: "This figure reports the results of model estimates for the causal effects of a one unit increase in perfectionism vs the status quo depression and anxiety at the end of the study. Contrasts are expressed in standard deviation units." -->
+<!-- #| eval: true -->
+<!-- #| include: true -->
+<!-- #| echo: false -->
+<!-- #| fig-width: 10 -->
+<!-- #| fig-height: 12 -->
 
 
-plot_group_tab_marginal_outcomes
-```
+<!-- plot_group_tab_marginal_outcomes -->
+<!-- ``` -->
 
 
-```{r}
-#| label: tbl-1_1
-#| tbl-cap: "This table reports the results of model estimates for the causal effects of a one unit increase in perfectionism vs the status quo depression and anxiety at the end of the study. Contrasts are expressed in standard deviation units."
-#| eval: true
-#| include: true
-#| echo: false
+<!-- ```{r} -->
+<!-- #| label: tbl-1_1 -->
+<!-- #| tbl-cap: "This table reports the results of model estimates for the causal effects of a one unit increase in perfectionism vs the status quo depression and anxiety at the end of the study. Contrasts are expressed in standard deviation units." -->
+<!-- #| eval: true -->
+<!-- #| include: true -->
+<!-- #| echo: false -->
 
-tab_marginal_outcomes |>
-  mutate(across(where(is.numeric), ~ round(., 3))) %>%
-  kbl(format = "markdown")
+<!-- tab_marginal_outcomes |> -->
+<!--   mutate(across(where(is.numeric), ~ round(., 3))) %>% -->
+<!--   kbl(format = "markdown") -->
 
-# uncomment read results 
-#margot::margot_interpret_table(group_tab_marginal_outcomes, "causal_difference", "LMTP")
+<!-- # uncomment read results  -->
+<!-- #margot::margot_interpret_table(group_tab_marginal_outcomes, "causal_difference", "LMTP") -->
 
-```
+<!-- ``` -->
 
-A Longitudinal Modified Treatment Policy (LMTP) calculates the expected outcome difference between treatment and contrast conditions over a sequential regime of treatments for a prespecified target population.
+<!-- A Longitudinal Modified Treatment Policy (LMTP) calculates the expected outcome difference between treatment and contrast conditions over a sequential regime of treatments for a prespecified target population. -->
 
-For 'marginal: depression', the effect estimate on the causal_difference scale is 0.141 [0.12, 0.162]. The E-value for this estimate is 1.531, with a lower bound of 1.473. At this lower bound, unmeasured confounders would need a minimum association strength with both the intervention sequence and outcome of 1.473 to negate the observed effect. Weaker confounding would not overturn it. Here, **there is evidence for causality**.
+<!-- For 'marginal: depression', the effect estimate on the causal_difference scale is 0.141 [0.12, 0.162]. The E-value for this estimate is 1.531, with a lower bound of 1.473. At this lower bound, unmeasured confounders would need a minimum association strength with both the intervention sequence and outcome of 1.473 to negate the observed effect. Weaker confounding would not overturn it. Here, **there is evidence for causality**. -->
 
-For 'marginal: anxiety', the effect estimate on the causal_difference scale is 0.115 [0.096, 0.135]. The E-value for this estimate is 1.46, with a lower bound of 1.405. At this lower bound, unmeasured confounders would need a minimum association strength with both the intervention sequence and outcome of 1.405 to negate the observed effect. Weaker confounding would not overturn it. Here, **there is evidence for causality**.
+<!-- For 'marginal: anxiety', the effect estimate on the causal_difference scale is 0.115 [0.096, 0.135]. The E-value for this estimate is 1.46, with a lower bound of 1.405. At this lower bound, unmeasured confounders would need a minimum association strength with both the intervention sequence and outcome of 1.405 to negate the observed effect. Weaker confounding would not overturn it. Here, **there is evidence for causality**. -->
 
-{{< pagebreak >}}
+<!-- {{< pagebreak >}} -->
 
 
-#### Subgroup Analysis: Those Born in NZ 
+<!-- #### Subgroup Analysis: Those Born in NZ  -->
 
-@fig-2_1 present results for the treatment contrasts within the two subgroups, evaluating the effect of a one unit increase in perfectionism vs the status qu. These results are presented on the difference scale in standardized units.
+<!-- @fig-2_1 present results for the treatment contrasts within the two subgroups, evaluating the effect of a one unit increase in perfectionism vs the status qu. These results are presented on the difference scale in standardized units. -->
 
-@tbl-2_1 presents the results for those born in New Zealand. @tbl-2_2 presents results for those born overseas.
+<!-- @tbl-2_1 presents the results for those born in New Zealand. @tbl-2_2 presents results for those born overseas. -->
 
 
-```{r}
-#| label: fig-2_1
-#| fig-cap: "This figure reports the results of for each sub-group analysis for the causal effects of a one unit increase in perfectionism vs the status quo depression and anxiety at the end of the study. Contrasts are expressed in standard deviation units."
-#| eval: true
-#| include: true
-#| echo: false
-#| fig-width: 10
-#| fig-height: 12
+<!-- ```{r} -->
+<!-- #| label: fig-2_1 -->
+<!-- #| fig-cap: "This figure reports the results of for each sub-group analysis for the causal effects of a one unit increase in perfectionism vs the status quo depression and anxiety at the end of the study. Contrasts are expressed in standard deviation units." -->
+<!-- #| eval: true -->
+<!-- #| include: true -->
+<!-- #| echo: false -->
+<!-- #| fig-width: 10 -->
+<!-- #| fig-height: 12 -->
 
 
-#plot_combo_conditional
-```
+<!-- #plot_combo_conditional -->
+<!-- ``` -->
 
-```{r}
-#| label: tbl-2_1
-#| tbl-cap: "This table reports the results of model estimates for in the population of residents born in New Zealand. We again estimate the causal effects of a one unit increase in perfectionism vs the status quo depression and anxiety at the end of the study. Contrasts are expressed in standard deviation units.."
-#| eval: true
-#| include: true
-#| echo: false
+<!-- ```{r} -->
+<!-- #| label: tbl-2_1 -->
+<!-- #| tbl-cap: "This table reports the results of model estimates for in the population of residents born in New Zealand. We again estimate the causal effects of a one unit increase in perfectionism vs the status quo depression and anxiety at the end of the study. Contrasts are expressed in standard deviation units.." -->
+<!-- #| eval: true -->
+<!-- #| include: true -->
+<!-- #| echo: false -->
 
-tab_born_nz_outcomes |>
-  mutate(across(where(is.numeric), ~ round(., 3))) %>%
-  kbl(format = "markdown")
+<!-- tab_born_nz_outcomes |> -->
+<!--   mutate(across(where(is.numeric), ~ round(., 3))) %>% -->
+<!--   kbl(format = "markdown") -->
 
-# uncomment to get interpretation 
-#margot::margot_interpret_table(group_tab_born_nz_outcomes, "causal_difference", "LMTP")
+<!-- # uncomment to get interpretation  -->
+<!-- #margot::margot_interpret_table(group_tab_born_nz_outcomes, "causal_difference", "LMTP") -->
 
-```
+<!-- ``` -->
 
-For 'born NZ: depression', the effect estimate is 0.145 [0.121, 0.168]. The E-value for this estimate is 1.542, with a lower bound of 1.478. At this lower bound, unmeasured confounders would need a minimum association strength with both the intervention sequence and outcome of 1.478 to negate the observed effect. Weaker confounding would not overturn it. We infer **evidence for causality**.
+<!-- For 'born NZ: depression', the effect estimate is 0.145 [0.121, 0.168]. The E-value for this estimate is 1.542, with a lower bound of 1.478. At this lower bound, unmeasured confounders would need a minimum association strength with both the intervention sequence and outcome of 1.478 to negate the observed effect. Weaker confounding would not overturn it. We infer **evidence for causality**. -->
 
-For 'born NZ: anxiety', the effect estimate is 0.113 [0.093, 0.134]. The E-value for this estimate is 1.455, with a lower bound of 1.394. At this lower bound, unmeasured confounders would need a minimum association strength with both the intervention sequence and outcome of 1.394 to negate the observed effect. Weaker confounding would not overturn it. We infer **evidence for causality**.
+<!-- For 'born NZ: anxiety', the effect estimate is 0.113 [0.093, 0.134]. The E-value for this estimate is 1.455, with a lower bound of 1.394. At this lower bound, unmeasured confounders would need a minimum association strength with both the intervention sequence and outcome of 1.394 to negate the observed effect. Weaker confounding would not overturn it. We infer **evidence for causality**. -->
 
-```{r}
-#| label: tbl-2_2
-#| tbl-cap: "This table reports the results of model estimates for in the population of residents not born in New Zealand (born overseas). We again estimate the causal effects of a one unit increase in perfectionism vs the status quo depression and anxiety at the end of the study. Contrasts are expressed in standard deviation units."
-#| eval: true
-#| include: true
-#| echo: false
+<!-- ```{r} -->
+<!-- #| label: tbl-2_2 -->
+<!-- #| tbl-cap: "This table reports the results of model estimates for in the population of residents not born in New Zealand (born overseas). We again estimate the causal effects of a one unit increase in perfectionism vs the status quo depression and anxiety at the end of the study. Contrasts are expressed in standard deviation units." -->
+<!-- #| eval: true -->
+<!-- #| include: true -->
+<!-- #| echo: false -->
 
 
 
-tab_born_overseas_outcomes |>
-  mutate(across(where(is.numeric), ~ round(., 3))) %>%
-  kbl(format = "markdown")
+<!-- tab_born_overseas_outcomes |> -->
+<!--   mutate(across(where(is.numeric), ~ round(., 3))) %>% -->
+<!--   kbl(format = "markdown") -->
 
-# uncomment to get interpretation 
-# margot::margot_interpret_table(group_tab_born_overseas_outcomes, "causal_difference", "LMTP")
-```
-For 'born overseas: depression', the effect estimate is 0.143 [0.101, 0.185]. The E-value for this estimate is 1.537, with a lower bound of 1.424. At this lower bound, unmeasured confounders would need a minimum association strength with both the intervention sequence and outcome of 1.424 to negate the observed effect. Weaker confounding would not overturn it. We infer **evidence for causality**.
+<!-- # uncomment to get interpretation  -->
+<!-- # margot::margot_interpret_table(group_tab_born_overseas_outcomes, "causal_difference", "LMTP") -->
+<!-- ``` -->
+<!-- For 'born overseas: depression', the effect estimate is 0.143 [0.101, 0.185]. The E-value for this estimate is 1.537, with a lower bound of 1.424. At this lower bound, unmeasured confounders would need a minimum association strength with both the intervention sequence and outcome of 1.424 to negate the observed effect. Weaker confounding would not overturn it. We infer **evidence for causality**. -->
 
-For 'born overseas: anxiety', the effect estimate is 0.113 [0.075, 0.152]. The E-value for this estimate is 1.455, with a lower bound of 1.342. At this lower bound, unmeasured confounders would need a minimum association strength with both the intervention sequence and outcome of 1.342 to negate the observed effect. Weaker confounding would not overturn it. We infer **evidence for causality**.
+<!-- For 'born overseas: anxiety', the effect estimate is 0.113 [0.075, 0.152]. The E-value for this estimate is 1.455, with a lower bound of 1.342. At this lower bound, unmeasured confounders would need a minimum association strength with both the intervention sequence and outcome of 1.342 to negate the observed effect. Weaker confounding would not overturn it. We infer **evidence for causality**. -->
 
 
-## Findings
+<!-- ## Findings -->
 
-Comparing the difference in the mean outcomes between to the two groups for anxiety:  `r difference_in_group_means_anxiety$interpretation`. We therefore do not detect a reliable difference between those born in New Zealand and those born elsewhere. 
+<!-- Comparing the difference in the mean outcomes between to the two groups for anxiety:  `r difference_in_group_means_anxiety$interpretation`. We therefore do not detect a reliable difference between those born in New Zealand and those born elsewhere.  -->
 
-Comparing the difference in the mean outcomes between to the two groups for depression: `r difference_in_group_means_depression$interpretation`. We therefore do not detect a reliable difference between those born in New Zealand and those born elsewhere. 
+<!-- Comparing the difference in the mean outcomes between to the two groups for depression: `r difference_in_group_means_depression$interpretation`. We therefore do not detect a reliable difference between those born in New Zealand and those born elsewhere.  -->
 
 
-{{< pagebreak >}}
-### Additional Study: Comparison of Causal Inference Results with Cross-Sectional Regressions
+<!-- {{< pagebreak >}} -->
+<!-- ### Additional Study: Comparison of Causal Inference Results with Cross-Sectional Regressions -->
 
 
-```{r}
-#| label: regressions
-#| eval: true
-#| include: false
-#| echo: false
-# regression 
-# b_church_on_hours_charity<-margot::here_read("b_church_on_hours_charity")
-# b_church_on_hours_charity
-# lm_coef_fit_church_on_charity_donate
-# verify
+<!-- ```{r} -->
+<!-- #| label: regressions -->
+<!-- #| eval: true -->
+<!-- #| include: false -->
+<!-- #| echo: false -->
+<!-- # regression  -->
+<!-- # b_church_on_hours_charity<-margot::here_read("b_church_on_hours_charity") -->
+<!-- # b_church_on_hours_charity -->
+<!-- # lm_coef_fit_church_on_charity_donate -->
+<!-- # verify -->
 
-# contrast for charity
+<!-- # contrast for charity -->
 
-```
+<!-- ``` -->
 
 
-To better evaluate the contributions of our methodology to current practice, we conducted a series of cross-sectional analyses using the baseline wave data. We quantified the statistical associations between religious service attendance and our focal prosocial outcomes. We included all regression covariates from the causal models (including sample weights) for each analysis, obviously omitting the outcome measured at baseline, i.e. the response variable.
+<!-- To better evaluate the contributions of our methodology to current practice, we conducted a series of cross-sectional analyses using the baseline wave data. We quantified the statistical associations between religious service attendance and our focal prosocial outcomes. We included all regression covariates from the causal models (including sample weights) for each analysis, obviously omitting the outcome measured at baseline, i.e. the response variable. -->
 
-**Cross-sectional anxiety result**: the change in expected kessler-6 anxiety for a one-unit increase in perfectionism is `r b_lm_fit_kessler_latent_anxiety`. This result is `r percent_greater_regression_anxiety` per cent greater than the effect estimated from the '+1 vs. status quo' causal contrast (`r marginal_eff_anxiety`), indicating an **overstatement in the cross-sectional regression model.**
+<!-- **Cross-sectional anxiety result**: the change in expected kessler-6 anxiety for a one-unit increase in perfectionism is `r b_lm_fit_kessler_latent_anxiety`. This result is `r percent_greater_regression_anxiety` per cent greater than the effect estimated from the '+1 vs. status quo' causal contrast (`r marginal_eff_anxiety`), indicating an **overstatement in the cross-sectional regression model.** -->
 
-**Cross-sectional depression result**: the change in expected kessler-6 depression for a one-unit increase in perfectionism is `r b_lm_fit_kessler_latent_depression`. This result is `r percent_greater_regression_depression` per cent greater than the effect estimated from the '+1 vs. status quo' causal contrast (`r marginal_eff_depression`), indicating an **overstatement in the cross-sectional regression model.**
+<!-- **Cross-sectional depression result**: the change in expected kessler-6 depression for a one-unit increase in perfectionism is `r b_lm_fit_kessler_latent_depression`. This result is `r percent_greater_regression_depression` per cent greater than the effect estimated from the '+1 vs. status quo' causal contrast (`r marginal_eff_depression`), indicating an **overstatement in the cross-sectional regression model.** -->
 
 
-These findings underscore that the results of cross-sectional regressions, although suggestive, can considerably diverge from those obtained from the causal analysis of panel data.
+<!-- These findings underscore that the results of cross-sectional regressions, although suggestive, can considerably diverge from those obtained from the causal analysis of panel data. -->
 
 
-{{< pagebreak >}}
+<!-- {{< pagebreak >}} -->
 
 
-## Discussion 
+<!-- ## Discussion  -->
 
-### Considerations
+<!-- ### Considerations -->
 
-First, as stated above, our causal inferences turn on three assumptions, which are worth revisiting: 
+<!-- First, as stated above, our causal inferences turn on three assumptions, which are worth revisiting:  -->
 
-(i). **Unmeasured confounding**: although we employ robust methods for causal inference, our results depend on the effectiveness of our strategy to control for confounding. Our sensitivity analyses address the potential impacts of unmeasured confounders. Nevertheless, the presence and influence of such confounders are uncertain and unverifiable from our data.
+<!-- (i). **Unmeasured confounding**: although we employ robust methods for causal inference, our results depend on the effectiveness of our strategy to control for confounding. Our sensitivity analyses address the potential impacts of unmeasured confounders. Nevertheless, the presence and influence of such confounders are uncertain and unverifiable from our data. -->
 
-(ii). **Causal consistency**: the observed outcomes must correspond to the counterfactual treatments contrasted. Although "religious service attendance" may appear conditionally independent of the outcomes given baseline covariates, interpreting these interventions remains challenging. "Religious service attendance" varies widely, encompassing everything from informal gatherings at homes to formal services in cathedrals across New Zealand's religious diversity. This type of "treatment" does not mirror a straightforward medical intervention like a vaccine. The heterogeneity of "religious service" limits the clarity of our results, an issue no amount of data or analysis can resolve because "religious service" reflects a broad spectrum of community activities.
+<!-- (ii). **Causal consistency**: the observed outcomes must correspond to the counterfactual treatments contrasted. Although "religious service attendance" may appear conditionally independent of the outcomes given baseline covariates, interpreting these interventions remains challenging. "Religious service attendance" varies widely, encompassing everything from informal gatherings at homes to formal services in cathedrals across New Zealand's religious diversity. This type of "treatment" does not mirror a straightforward medical intervention like a vaccine. The heterogeneity of "religious service" limits the clarity of our results, an issue no amount of data or analysis can resolve because "religious service" reflects a broad spectrum of community activities. -->
 
-(iii). **Positivity**: we have confirmed that religious service attendance varies within our sample and have used semi-parametric models with ensemble learning and cross-validation to prevent data over-extrapolation and model over-fitting. Conceptually, it is crucial for valid causal inference that every potential level of "treatment" to religious services is realistically possible (refer to discussion in @vanderweele2017causaleffectsService). Although there are instances realised in our data of secular individuals initiating religious service and frequent attendees stopping (refer to @tbl-transition), it might stretch credulity too far to imagine that such changes are possible for everyone.
+<!-- (iii). **Positivity**: we have confirmed that religious service attendance varies within our sample and have used semi-parametric models with ensemble learning and cross-validation to prevent data over-extrapolation and model over-fitting. Conceptually, it is crucial for valid causal inference that every potential level of "treatment" to religious services is realistically possible (refer to discussion in @vanderweele2017causaleffectsService). Although there are instances realised in our data of secular individuals initiating religious service and frequent attendees stopping (refer to @tbl-transition), it might stretch credulity too far to imagine that such changes are possible for everyone. -->
 
 
-Second, our study confronts the spectre of **measurement error**: both direct and correlated measurement errors can introduce biases, either by implying effects where none exist or by attenuating true effects [@vanderweele2012MEASUREMENT]. Importantly, evaluating prosociality using multiple measures while also controlling for these measures and the treatment at baseline helps to mitigate measurement error concerns. Nevertheless, unknown combinations of measurement error might nevertheless bias our results. The outcomes and estimates we report here are best-considered approximations.
+<!-- Second, our study confronts the spectre of **measurement error**: both direct and correlated measurement errors can introduce biases, either by implying effects where none exist or by attenuating true effects [@vanderweele2012MEASUREMENT]. Importantly, evaluating prosociality using multiple measures while also controlling for these measures and the treatment at baseline helps to mitigate measurement error concerns. Nevertheless, unknown combinations of measurement error might nevertheless bias our results. The outcomes and estimates we report here are best-considered approximations. -->
 
-Third, we do not examine **treatment effect heterogeneity**: identifying which subgroups experience the strongest responses remains a task for future research. Such investigations are crucial for making informed policy decisions and tailoring advice relevant to those subgroups of the population who might benefit most. Perhaps the most obvious stratum is religious affiliates [@vanderweele2017causaleffectsService].
+<!-- Third, we do not examine **treatment effect heterogeneity**: identifying which subgroups experience the strongest responses remains a task for future research. Such investigations are crucial for making informed policy decisions and tailoring advice relevant to those subgroups of the population who might benefit most. Perhaps the most obvious stratum is religious affiliates [@vanderweele2017causaleffectsService]. -->
 
-Fourth, the **transportability of our findings remains unclear**: New Zealand is our target population. Our findings generalise to this population. However, the transportability of our findings to other settings—whether our results generalise beyond our targeted New Zealand population—remains an open question, a matter for future investigations. 
+<!-- Fourth, the **transportability of our findings remains unclear**: New Zealand is our target population. Our findings generalise to this population. However, the transportability of our findings to other settings—whether our results generalise beyond our targeted New Zealand population—remains an open question, a matter for future investigations.  -->
 
 
-### Observations and Recommendations
+<!-- ### Observations and Recommendations -->
 
 
-{{< pagebreak >}}
+<!-- {{< pagebreak >}} -->
 
-### Ethics
+<!-- ### Ethics -->
 
- {**authors blinded**} 
+<!--  {**authors blinded**}  -->
 
-### Data Availability
+<!-- ### Data Availability -->
 
-{**authors blinded**} 
+<!-- {**authors blinded**}  -->
 
 
-### Acknowledgements
+<!-- ### Acknowledgements -->
 
- {**authors blinded**} 
+<!--  {**authors blinded**}  -->
 
 
-### Author Statement
+<!-- ### Author Statement -->
 
- {**authors blinded**} 
+<!--  {**authors blinded**}  -->
 
 
-{{< pagebreak >}}
+<!-- {{< pagebreak >}} -->
 
-## Appendix A: Measures {#appendix-measures}
+<!-- ## Appendix A: Measures {#appendix-measures} -->
 
-#### Age (waves: 1-15)
+<!-- #### Age (waves: 1-15) -->
 
-We asked participants' ages in an open-ended question ("What is your age?" or "What is your date of birth?").
+<!-- We asked participants' ages in an open-ended question ("What is your age?" or "What is your date of birth?"). -->
 
 
-#### Born in New Zealand
+<!-- #### Born in New Zealand -->
 
 
-#### Charitable Donations  (Study 1 outcome)
+<!-- #### Charitable Donations  (Study 1 outcome) -->
 
-Using one item from @hoverd_religious_2010, we asked participants, "How much money have you donated to charity in the last year?". 
+<!-- Using one item from @hoverd_religious_2010, we asked participants, "How much money have you donated to charity in the last year?".  -->
 
-<!-- To stabilise this indicator, we took the natural log of the response + 1. -->
+<!-- <!-- To stabilise this indicator, we took the natural log of the response + 1. --> -->
 
 
-#### Charitable Volunteering  (Study 1 outcome)
+<!-- #### Charitable Volunteering  (Study 1 outcome) -->
 
-
-We measured hours of volunteering using one item from @sibley2011: "Hours spent … voluntary/charitable work."
-
-<!-- To stabilise this indicator, we took the natural log of the response + 1. -->
-
-#### Children Number (waves: 1-3, 4-15)
-
-We measured the number of children using one item from @Bulbulia_2015. We asked participants, "How many children have you given birth to, fathered, or adopted. How many children have you given birth to, fathered, or adopted?" or "How many children have you given birth to, fathered, or adopted. How many children have you given birth to, fathered, and/or parented?" (waves: 12-15).
-
-<!-- Here, we used responses to create a binary indicator for parenthood: Parent Yes = 1/ No = 0.  -->
-
-
-
-<!-- #### Community: Sense of Community (Study 2 outcome) -->
-
-<!-- We measured a sense of community with a single item from @sengupta2013: "I feel a sense of community with others in my local neighbourhood." Participants answered on a scale of 1 (strongly disagree) to 7 (strongly agree). -->
-
-
-<!-- #### Community: Felt Belongingness  (Study 2 outcome) -->
-
-<!-- We assessed felt belongingness with three items adapted from the Sense of Belonging Instrument [@hagerty1995]: (1) "Know that people in my life accept and value me"; (2) "Feel like an outsider"; (3) "Know that people around me share my attitudes and beliefs". Participants responded on a scale from 1 (Very Inaccurate) to 7 (Very Accurate). The second item was reversely coded. -->
-
-<!-- #### Community: Social Support (Study 2 outcome) -->
-
-<!-- Participants perceived social support was measured using three items from @cutrona1987 and @williams_cyberostracism_2000: (1) "There are people I can depend on to help me if I really need it"; (2) "There is no one I can turn to for guidance in times of stress"; (3) "I know there are people I can turn to when I need help." Participants indicated how much they agreed with those items (1 = Strongly Disagree to 7 = Strongly Agree). The second item was negatively worded, so we reversely recorded the responses to this item. -->
-
-#### Disability
-
-We assessed disability with a one-item indicator adapted from @verbrugge1997. It asks, "Do you have a health condition or disability that limits you and that has lasted for 6+ months?" (1 = Yes, 0 = No).
-
-
-#### Education Attainment (waves: 1, 4-15)
-
-We asked participants, "What is your highest level of qualification?". We coded participants' highest finished degree according to the New Zealand Qualifications Authority. Ordinal-Rank 0-10 NZREG codes (with overseas school quals coded as Level 3, and all other ancillary categories coded as missing) See:https://www.nzqa.govt.nz/assets/Studying-in-NZ/New-Zealand-Qualification-Framework/requirements-nzqf.pdf
-
-#### Employment (waves: 1-3, 4-11)
-
-We asked participants, "Are you currently employed? (This includes self-employed or casual work)".
-
-<!-- #### European (waves: 1-15) -->
-
-<!-- Participants were asked, "Which ethnic group do you belong to (NZ census question)?" or "Which ethnic group(s) do you belong to? (Open-ended)" (wave: 3). Europeans were coded as 1, whereas other ethnicities were coded as 0. -->
-
-#### Ethnicity
-
-Based on the New Zealand Census, we asked participants, "Which ethnic group(s) do you belong to?". The responses were: (1) New Zealand European; (2) Māori; (3) Samoan; (4) Cook Island Māori; (5) Tongan; (6) Niuean; (7) Chinese; (8) Indian; (9) Other such as DUTCH, JAPANESE, TOKELAUAN. Please state:. We coded their answers into four groups: Maori, Pacific, Asian, and Euro (except for Time 3, which used an open-ended measure).
-
-
-#### Fatigue
-
-We assessed subjective fatigue by asking participants, "During the last 30 days, how often did ... you feel exhausted?" Responses were collected on an ordinal scale (0 = None of The Time, 1 = A little of The Time, 2 = Some of The Time, 3 = Most of The Time, 4 = All of The Time).
-
-
-#### Honesty-Humility-Modesty Facet (waves: 10-14)
-
-Participants indicated the extent to which they agree with the following four statements from @campbell2004 , and @sibley2011 (1 = Strongly Disagree to 7 = Strongly Agree)
-
-```
-i.  I want people to know that I am an important person of high status, (Waves: 1, 10-14)
-ii. I am an ordinary person who is no better than others.
-iii. I wouldn't want people to treat me as though I were superior to them.
-iv. I think that I am entitled to more respect than the average person is.
-```
-
-<!-- #### Has Siblings -->
-
-<!-- "Do you have siblings?" [@stronge2019onlychild] -->
-
-#### Hours of Childcare
-
-We measured hours of exercising using one item from @sibley2011: 'Hours spent … looking after children."
-
-To stabilise this indicator, we took the natural log of the response + 1.
-
-
-#### Hours of Housework
-
-We measured hours of exercising using one item from @sibley2011: "Hours spent … housework/cooking"
-
-To stabilise this indicator, we took the natural log of the response + 1.
-
-#### Hours of Exercise
-
-We measured hours of exercising using one item from @sibley2011: "Hours spent … exercising/physical activity" 
-
-To stabilise this indicator, we took the natural log of the response + 1.
-
-<!-- #### Hours Volunteering -->
 
 <!-- We measured hours of volunteering using one item from @sibley2011: "Hours spent … voluntary/charitable work." -->
 
+<!-- <!-- To stabilise this indicator, we took the natural log of the response + 1. --> -->
+
+<!-- #### Children Number (waves: 1-3, 4-15) -->
+
+<!-- We measured the number of children using one item from @Bulbulia_2015. We asked participants, "How many children have you given birth to, fathered, or adopted. How many children have you given birth to, fathered, or adopted?" or "How many children have you given birth to, fathered, or adopted. How many children have you given birth to, fathered, and/or parented?" (waves: 12-15). -->
+
+<!-- <!-- Here, we used responses to create a binary indicator for parenthood: Parent Yes = 1/ No = 0.  --> -->
+
+
+
+<!-- <!-- #### Community: Sense of Community (Study 2 outcome) --> -->
+
+<!-- <!-- We measured a sense of community with a single item from @sengupta2013: "I feel a sense of community with others in my local neighbourhood." Participants answered on a scale of 1 (strongly disagree) to 7 (strongly agree). --> -->
+
+
+<!-- <!-- #### Community: Felt Belongingness  (Study 2 outcome) --> -->
+
+<!-- <!-- We assessed felt belongingness with three items adapted from the Sense of Belonging Instrument [@hagerty1995]: (1) "Know that people in my life accept and value me"; (2) "Feel like an outsider"; (3) "Know that people around me share my attitudes and beliefs". Participants responded on a scale from 1 (Very Inaccurate) to 7 (Very Accurate). The second item was reversely coded. --> -->
+
+<!-- <!-- #### Community: Social Support (Study 2 outcome) --> -->
+
+<!-- <!-- Participants perceived social support was measured using three items from @cutrona1987 and @williams_cyberostracism_2000: (1) "There are people I can depend on to help me if I really need it"; (2) "There is no one I can turn to for guidance in times of stress"; (3) "I know there are people I can turn to when I need help." Participants indicated how much they agreed with those items (1 = Strongly Disagree to 7 = Strongly Agree). The second item was negatively worded, so we reversely recorded the responses to this item. --> -->
+
+<!-- #### Disability -->
+
+<!-- We assessed disability with a one-item indicator adapted from @verbrugge1997. It asks, "Do you have a health condition or disability that limits you and that has lasted for 6+ months?" (1 = Yes, 0 = No). -->
+
+
+<!-- #### Education Attainment (waves: 1, 4-15) -->
+
+<!-- We asked participants, "What is your highest level of qualification?". We coded participants' highest finished degree according to the New Zealand Qualifications Authority. Ordinal-Rank 0-10 NZREG codes (with overseas school quals coded as Level 3, and all other ancillary categories coded as missing) See:https://www.nzqa.govt.nz/assets/Studying-in-NZ/New-Zealand-Qualification-Framework/requirements-nzqf.pdf -->
+
+<!-- #### Employment (waves: 1-3, 4-11) -->
+
+<!-- We asked participants, "Are you currently employed? (This includes self-employed or casual work)". -->
+
+<!-- <!-- #### European (waves: 1-15) --> -->
+
+<!-- <!-- Participants were asked, "Which ethnic group do you belong to (NZ census question)?" or "Which ethnic group(s) do you belong to? (Open-ended)" (wave: 3). Europeans were coded as 1, whereas other ethnicities were coded as 0. --> -->
+
+<!-- #### Ethnicity -->
+
+<!-- Based on the New Zealand Census, we asked participants, "Which ethnic group(s) do you belong to?". The responses were: (1) New Zealand European; (2) Māori; (3) Samoan; (4) Cook Island Māori; (5) Tongan; (6) Niuean; (7) Chinese; (8) Indian; (9) Other such as DUTCH, JAPANESE, TOKELAUAN. Please state:. We coded their answers into four groups: Maori, Pacific, Asian, and Euro (except for Time 3, which used an open-ended measure). -->
+
+
+<!-- #### Fatigue -->
+
+<!-- We assessed subjective fatigue by asking participants, "During the last 30 days, how often did ... you feel exhausted?" Responses were collected on an ordinal scale (0 = None of The Time, 1 = A little of The Time, 2 = Some of The Time, 3 = Most of The Time, 4 = All of The Time). -->
+
+
+<!-- #### Honesty-Humility-Modesty Facet (waves: 10-14) -->
+
+<!-- Participants indicated the extent to which they agree with the following four statements from @campbell2004 , and @sibley2011 (1 = Strongly Disagree to 7 = Strongly Agree) -->
+
+<!-- ``` -->
+<!-- i.  I want people to know that I am an important person of high status, (Waves: 1, 10-14) -->
+<!-- ii. I am an ordinary person who is no better than others. -->
+<!-- iii. I wouldn't want people to treat me as though I were superior to them. -->
+<!-- iv. I think that I am entitled to more respect than the average person is. -->
+<!-- ``` -->
+
+<!-- <!-- #### Has Siblings --> -->
+
+<!-- <!-- "Do you have siblings?" [@stronge2019onlychild] --> -->
+
+<!-- #### Hours of Childcare -->
+
+<!-- We measured hours of exercising using one item from @sibley2011: 'Hours spent … looking after children." -->
+
 <!-- To stabilise this indicator, we took the natural log of the response + 1. -->
 
-#### Hours of Childcare
 
-We measured hours of exercising using one item from @sibley2011: 'Hours spent … looking after children."
+<!-- #### Hours of Housework -->
 
-To stabilise this indicator, we took the natural log of the response + 1.
+<!-- We measured hours of exercising using one item from @sibley2011: "Hours spent … housework/cooking" -->
 
+<!-- To stabilise this indicator, we took the natural log of the response + 1. -->
 
-#### Hours of Exercise
+<!-- #### Hours of Exercise -->
 
-We measured hours of exercising using one item from @sibley2011: "Hours spent … exercising/physical activity" 
+<!-- We measured hours of exercising using one item from @sibley2011: "Hours spent … exercising/physical activity"  -->
 
-To stabilise this indicator, we took the natural log of the response + 1.
+<!-- To stabilise this indicator, we took the natural log of the response + 1. -->
 
+<!-- <!-- #### Hours Volunteering --> -->
 
-#### Hours of Housework
+<!-- <!-- We measured hours of volunteering using one item from @sibley2011: "Hours spent … voluntary/charitable work." --> -->
 
-We measured hours of exercising using one item from @sibley2011: "Hours spent … housework/cooking"
+<!-- <!-- To stabilise this indicator, we took the natural log of the response + 1. --> -->
 
-To stabilise this indicator, we took the natural log of the response + 1.
+<!-- #### Hours of Childcare -->
 
+<!-- We measured hours of exercising using one item from @sibley2011: 'Hours spent … looking after children." -->
 
-#### Hours of Sleep
+<!-- To stabilise this indicator, we took the natural log of the response + 1. -->
 
-Participants were asked, "During the past month, on average, how many hours of *actual sleep* did you get per night?".
 
+<!-- #### Hours of Exercise -->
 
-#### Hours of Work
+<!-- We measured hours of exercising using one item from @sibley2011: "Hours spent … exercising/physical activity"  -->
 
-We measured work hours using one item from @sibley2011: "Hours spent … working in paid employment."
+<!-- To stabilise this indicator, we took the natural log of the response + 1. -->
 
-To stabilise this indicator, we took the natural log of the response + 1.
 
+<!-- #### Hours of Housework -->
 
-#### Income (waves: 1-3, 4-15)
+<!-- We measured hours of exercising using one item from @sibley2011: "Hours spent … housework/cooking" -->
 
-Participants were asked, "Please estimate your total household income (before tax) for the year XXXX". To stabilise this indicator, we first took the natural log of the response + 1, and then centred and standardised the log-transformed indicator.
+<!-- To stabilise this indicator, we took the natural log of the response + 1. -->
 
-<!-- #### Job Security (waves: 1-3,4-7,9-15) -->
 
-<!-- Participants indicated their feeling of job security by answering "How secure do you feel in your current job?" on a scale from 1 (not secure) to 7 (very secure). -->
+<!-- #### Hours of Sleep -->
 
+<!-- Participants were asked, "During the past month, on average, how many hours of *actual sleep* did you get per night?". -->
 
-#### Kessler-6: Psychological Distress  (waves: 2-3,4-15)
 
-We measured psychological distress using the Kessler-6 scale (kessler2002?), which exhibits
-strong diagnostic concordance for moderate and severe psychological distress in large, crosscultural
-samples (kessler2010?; prochaska2012?). Participants rated during the past 30
-days, how often did… (1) “… you feel hopeless”; (2) “… you feel so depressed that nothing
-could cheer you up”; (3) “… you feel restless or fidgety”; (4)“… you feel that everything was
-an effort”; (5) “… you feel worthless”; (6) ” you feel nervous?” Ordinal response alternatives
-for the Kessler-6 are: “None of the time”; “A little of the time”; “Some of the time”; “Most of
-the time”; “All of the time.”
+<!-- #### Hours of Work -->
 
+<!-- We measured work hours using one item from @sibley2011: "Hours spent … working in paid employment." -->
 
-#### Male Gender (waves: 1-15)
+<!-- To stabilise this indicator, we took the natural log of the response + 1. -->
 
-We asked participants' gender in an open-ended question: "what is your gender?" or "Are you male or female?" (waves: 1-5). Female was coded as 0, Male as 1, and gender diverse coded as 3 [@fraser_coding_2020]. (or 0.5 = neither female nor male)
 
-Here, we coded all those who responded as Male as 1, and those who did not as 0.
+<!-- #### Income (waves: 1-3, 4-15) -->
 
+<!-- Participants were asked, "Please estimate your total household income (before tax) for the year XXXX". To stabilise this indicator, we first took the natural log of the response + 1, and then centred and standardised the log-transformed indicator. -->
 
-#### Mini-IPIP 6 (waves: 1-3,4-15)
+<!-- <!-- #### Job Security (waves: 1-3,4-7,9-15) --> -->
 
-We measured participants' personalities with the Mini International Personality Item Pool 6 (Mini-IPIP6) [@sibley2011], which consists of six dimensions and each dimension is measured with four items:
+<!-- <!-- Participants indicated their feeling of job security by answering "How secure do you feel in your current job?" on a scale from 1 (not secure) to 7 (very secure). --> -->
 
-1.  agreeableness,
 
-    i.  I sympathize with others' feelings.
-    ii. I am not interested in other people's problems. (r)
-    iii. I feel others' emotions.
-    iv. I am not really interested in others. (r)
+<!-- #### Kessler-6: Psychological Distress  (waves: 2-3,4-15) -->
 
-2.  conscientiousness,
+<!-- We measured psychological distress using the Kessler-6 scale (kessler2002?), which exhibits -->
+<!-- strong diagnostic concordance for moderate and severe psychological distress in large, crosscultural -->
+<!-- samples (kessler2010?; prochaska2012?). Participants rated during the past 30 -->
+<!-- days, how often did… (1) “… you feel hopeless”; (2) “… you feel so depressed that nothing -->
+<!-- could cheer you up”; (3) “… you feel restless or fidgety”; (4)“… you feel that everything was -->
+<!-- an effort”; (5) “… you feel worthless”; (6) ” you feel nervous?” Ordinal response alternatives -->
+<!-- for the Kessler-6 are: “None of the time”; “A little of the time”; “Some of the time”; “Most of -->
+<!-- the time”; “All of the time.” -->
 
-    i.  I get chores done right away.
-    ii. I like order.
-    iii. I make a mess of things. (r)
-    iv. I often forget to put things back in their proper place. (r)
 
-3.  extraversion,
+<!-- #### Male Gender (waves: 1-15) -->
 
-    i.  I am the life of the party.
-    ii. I don't talk a lot. (r)
-    iii. I keep in the background. (r)
-    iv. I talk to a lot of different people at parties.
+<!-- We asked participants' gender in an open-ended question: "what is your gender?" or "Are you male or female?" (waves: 1-5). Female was coded as 0, Male as 1, and gender diverse coded as 3 [@fraser_coding_2020]. (or 0.5 = neither female nor male) -->
 
-4.  honesty-humility,
+<!-- Here, we coded all those who responded as Male as 1, and those who did not as 0. -->
 
-    i.  I feel entitled to more of everything. (r)
-    ii. I deserve more things in life. (r)
-    iii. I would like to be seen driving around in a very expensive car. (r)
-    iv. I would get a lot of pleasure from owning expensive luxury goods. (r)
 
-5.  neuroticism, and
+<!-- #### Mini-IPIP 6 (waves: 1-3,4-15) -->
 
-    i.  I have frequent mood swings.
-    ii. I am relaxed most of the time. (r)
-    iii. I get upset easily.
-    iv. I seldom feel blue. (r)
+<!-- We measured participants' personalities with the Mini International Personality Item Pool 6 (Mini-IPIP6) [@sibley2011], which consists of six dimensions and each dimension is measured with four items: -->
 
-6.  openness to experience
+<!-- 1.  agreeableness, -->
 
-    i.  I have a vivid imagination.
-    ii. I have difficulty understanding abstract ideas. (r)
-    iii. I do not have a good imagination. (r)
-    iv. I am not interested in abstract ideas. (r)
+<!--     i.  I sympathize with others' feelings. -->
+<!--     ii. I am not interested in other people's problems. (r) -->
+<!--     iii. I feel others' emotions. -->
+<!--     iv. I am not really interested in others. (r) -->
 
-Each dimension was assessed with four items and participants rated the accuracy of each item as it applies to them from 1 (Very Inaccurate) to 7 (Very Accurate). Items marked with (r) are reverse coded.
+<!-- 2.  conscientiousness, -->
 
+<!--     i.  I get chores done right away. -->
+<!--     ii. I like order. -->
+<!--     iii. I make a mess of things. (r) -->
+<!--     iv. I often forget to put things back in their proper place. (r) -->
 
-#### NZ-Born (waves: 1-2,4-15)
+<!-- 3.  extraversion, -->
 
-We asked participants, "Which country were you born in?" or "Where were you born? (please be specific, e.g., which town/city?)" (waves: 6-15).
+<!--     i.  I am the life of the party. -->
+<!--     ii. I don't talk a lot. (r) -->
+<!--     iii. I keep in the background. (r) -->
+<!--     iv. I talk to a lot of different people at parties. -->
 
+<!-- 4.  honesty-humility, -->
 
-#### NZ Deprivation Index (waves: 1-15)
+<!--     i.  I feel entitled to more of everything. (r) -->
+<!--     ii. I deserve more things in life. (r) -->
+<!--     iii. I would like to be seen driving around in a very expensive car. (r) -->
+<!--     iv. I would get a lot of pleasure from owning expensive luxury goods. (r) -->
 
-We used the NZ Deprivation Index to assign each participant a score based on where they live [@atkinson2019]. This score combines data such as income, home ownership, employment, qualifications, family structure, housing, and access to transport and communication for an area into one deprivation score.
+<!-- 5.  neuroticism, and -->
 
+<!--     i.  I have frequent mood swings. -->
+<!--     ii. I am relaxed most of the time. (r) -->
+<!--     iii. I get upset easily. -->
+<!--     iv. I seldom feel blue. (r) -->
 
-#### NZSEI Occupational Prestige and Status (waves: 8-15)
+<!-- 6.  openness to experience -->
 
-We assessed occupational prestige and status using the New Zealand Socio-economic Index 13 (NZSEI-13) [@fahy2017a]. This index uses the income, age, and education of a reference group, in this case the 2013 New Zealand census, to calculate a score for each occupational group. Scores range from 10 (Lowest) to 90 (Highest). This list of index scores for occupational groups was used to assign each participant an NZSEI-13 score based on their occupation.
+<!--     i.  I have a vivid imagination. -->
+<!--     ii. I have difficulty understanding abstract ideas. (r) -->
+<!--     iii. I do not have a good imagination. (r) -->
+<!--     iv. I am not interested in abstract ideas. (r) -->
 
-We assessed occupational prestige and status using the New Zealand Socio-economic Index 13 (NZSEI-13) [@fahy2017]. This index uses the income, age, and education of a reference group, in this case, the 2013 New Zealand census, to calculate a score for each occupational group. Scores range from 10 (Lowest) to 90 (Highest). This list of index scores for occupational groups was used to assign each participant an NZSEI-13 score based on their occupation.
+<!-- Each dimension was assessed with four items and participants rated the accuracy of each item as it applies to them from 1 (Very Inaccurate) to 7 (Very Accurate). Items marked with (r) are reverse coded. -->
 
-<!-- We asked participants, "If you are a parent, what is the birth date of your eldest child?". -->
-<!-- #### Parent (waves: 5-15) -->
 
-<!-- We asked participants, "If you are a parent, what is the birth date of your eldest child?" or "If you are a parent, in which year was your eldest child born?" (waves: 10-15). Parents were coded as 1, while the others were coded as 0. --> 
+<!-- #### NZ-Born (waves: 1-2,4-15) -->
 
+<!-- We asked participants, "Which country were you born in?" or "Where were you born? (please be specific, e.g., which town/city?)" (waves: 6-15). -->
 
 
-#### Opt-in
+<!-- #### NZ Deprivation Index (waves: 1-15) -->
 
-The New Zealand Attitudes and Values Study allows opt-ins to the study. Because the opt-in population may differ from those sampled randomly from the New Zealand electoral roll; although the opt-in rate is low, we include an indicator (yes/no) for this variable.
+<!-- We used the NZ Deprivation Index to assign each participant a score based on where they live [@atkinson2019]. This score combines data such as income, home ownership, employment, qualifications, family structure, housing, and access to transport and communication for an area into one deprivation score. -->
 
 
+<!-- #### NZSEI Occupational Prestige and Status (waves: 8-15) -->
 
-#### Partner (No/Yes)
+<!-- We assessed occupational prestige and status using the New Zealand Socio-economic Index 13 (NZSEI-13) [@fahy2017a]. This index uses the income, age, and education of a reference group, in this case the 2013 New Zealand census, to calculate a score for each occupational group. Scores range from 10 (Lowest) to 90 (Highest). This list of index scores for occupational groups was used to assign each participant an NZSEI-13 score based on their occupation. -->
 
-"What is your relationship status?" (e.g., single, married, de-facto, civil union, widowed, living together, etc.)
+<!-- We assessed occupational prestige and status using the New Zealand Socio-economic Index 13 (NZSEI-13) [@fahy2017]. This index uses the income, age, and education of a reference group, in this case, the 2013 New Zealand census, to calculate a score for each occupational group. Scores range from 10 (Lowest) to 90 (Highest). This list of index scores for occupational groups was used to assign each participant an NZSEI-13 score based on their occupation. -->
 
+<!-- <!-- We asked participants, "If you are a parent, what is the birth date of your eldest child?". --> -->
+<!-- <!-- #### Parent (waves: 5-15) --> -->
 
-#### Politically Conservative 
+<!-- <!-- We asked participants, "If you are a parent, what is the birth date of your eldest child?" or "If you are a parent, in which year was your eldest child born?" (waves: 10-15). Parents were coded as 1, while the others were coded as 0. -->  -->
 
-We measured participants' political conservative orientation using a single item adapted from @jost_end_2006-1.
 
-"Please rate how politically liberal versus conservative you see yourself as being."
 
-(1 = Extremely Liberal to 7 = Extremely Conservative)
+<!-- #### Opt-in -->
 
+<!-- The New Zealand Attitudes and Values Study allows opt-ins to the study. Because the opt-in population may differ from those sampled randomly from the New Zealand electoral roll; although the opt-in rate is low, we include an indicator (yes/no) for this variable. -->
 
-##### Religious Service Attendance
 
-If participants answered *yes* to "Do you identify with a religion and/or spiritual group?" we measured their frequency of church attendence using one item from @sibley2012: "how many times did you attend a church or place of worship in the last month?". Those participants who were not religious were imputed a score of "0".
 
-#### Rural/Urban Codes
+<!-- #### Partner (No/Yes) -->
 
-Participants residence locations were coded according to a five-level ordinal categorisation ranging from "Urban" to Rural, see @sibley2021.
+<!-- "What is your relationship status?" (e.g., single, married, de-facto, civil union, widowed, living together, etc.) -->
 
-<!-- #### Politically Right Wing  -->
 
-<!-- We measured participants' political right-wing orientation using a single item adapted from @jost_end_2006-1. -->
+<!-- #### Politically Conservative  -->
 
-<!-- "Please rate how politically left-wing versus right-wing you see yourself as being." -->
+<!-- We measured participants' political conservative orientation using a single item adapted from @jost_end_2006-1. -->
 
-<!-- (1 = Extremely left-wing to 7 = Extremely right-wing) -->
+<!-- "Please rate how politically liberal versus conservative you see yourself as being." -->
 
+<!-- (1 = Extremely Liberal to 7 = Extremely Conservative) -->
 
-<!-- #### Religion Affiliation -->
 
-<!-- Participants were asked to indicate their religion identification ("Do you identify with a religion and/or spiritual group?") on a binary response (1 = Yes, 0 = No). We then asked, "What religion or spiritual group?" These questions are used in the New Zealand Census -->
+<!-- ##### Religious Service Attendance -->
 
+<!-- If participants answered *yes* to "Do you identify with a religion and/or spiritual group?" we measured their frequency of church attendence using one item from @sibley2012: "how many times did you attend a church or place of worship in the last month?". Those participants who were not religious were imputed a score of "0". -->
 
-<!-- #### Support -->
+<!-- #### Rural/Urban Codes -->
 
-<!-- Participants' perceived social support was measured using three items from @cutrona1987 and @williams_cyberostracism_2000: (1) "There are people I can depend on to help me if I really need it"; (2) "There is no one I can turn to for guidance in times of stress"; (3) "I know there are people I can turn to when I need help." Participants indicated how much they agreed with those items (1 = Strongly Disagree to 7 = Strongly Agree). The second item was negatively worded, so we reversely recorded the responses to this item. -->
+<!-- Participants residence locations were coded according to a five-level ordinal categorisation ranging from "Urban" to Rural, see @sibley2021. -->
 
-#### Short-Form Health
+<!-- <!-- #### Politically Right Wing  --> -->
 
-Participants' subjective health was measured using one item ("Do you have a health condition or disability that limits you, and that has lasted for 6+ months?"; 1 = Yes, 0 = No) adapted from @verbrugge1997.
+<!-- <!-- We measured participants' political right-wing orientation using a single item adapted from @jost_end_2006-1. --> -->
 
+<!-- <!-- "Please rate how politically left-wing versus right-wing you see yourself as being." --> -->
 
-#### Sample Origin
+<!-- <!-- (1 = Extremely left-wing to 7 = Extremely right-wing) --> -->
 
-Wave enrolled in NZAVS, see @sibley2021.
 
-<!-- #### Socialising (time 10, time 11) -->
+<!-- <!-- #### Religion Affiliation --> -->
 
-<!-- As part of the time usage measures, participants were asked to state how many hour the spent in activities related to socialising with the following groups: -->
+<!-- <!-- Participants were asked to indicate their religion identification ("Do you identify with a religion and/or spiritual group?") on a binary response (1 = Yes, 0 = No). We then asked, "What religion or spiritual group?" These questions are used in the New Zealand Census --> -->
 
-<!--   - Hours spent … socialising with family -->
-<!--   - Hours spent … socialising with friends -->
-<!--   - Hours spent … socialising with community groups -->
 
-<!--   <!-- - Hours spent … socialising with religious groups -->
+<!-- <!-- #### Support --> -->
 
+<!-- <!-- Participants' perceived social support was measured using three items from @cutrona1987 and @williams_cyberostracism_2000: (1) "There are people I can depend on to help me if I really need it"; (2) "There is no one I can turn to for guidance in times of stress"; (3) "I know there are people I can turn to when I need help." Participants indicated how much they agreed with those items (1 = Strongly Disagree to 7 = Strongly Agree). The second item was negatively worded, so we reversely recorded the responses to this item. --> -->
 
-#### Support received: money (waves 10-12) (Study 4 outcomes)
+<!-- #### Short-Form Health -->
 
-The NZAVS has a 'revealed' measure of received help and support measured in hours of support in the previous week. The items are: 
+<!-- Participants' subjective health was measured using one item ("Do you have a health condition or disability that limits you, and that has lasted for 6+ months?"; 1 = Yes, 0 = No) adapted from @verbrugge1997. -->
 
 
-*Please estimate how much help you have received from the following sources in the last week?*
+<!-- #### Sample Origin -->
 
-- *family...MONEY (hours)*
-- *friends...MONEY (hours)*
-- *members of my community...MONEY (hours)*
+<!-- Wave enrolled in NZAVS, see @sibley2021. -->
 
+<!-- <!-- #### Socialising (time 10, time 11) --> -->
 
-Because this measure is highly variable, we convert responses to binary indicators: *0 = none/1 any*
+<!-- <!-- As part of the time usage measures, participants were asked to state how many hour the spent in activities related to socialising with the following groups: --> -->
 
+<!-- <!--   - Hours spent … socialising with family --> -->
+<!-- <!--   - Hours spent … socialising with friends --> -->
+<!-- <!--   - Hours spent … socialising with community groups --> -->
 
-#### Support received: time (waves 10-13) (Study 3 outcomes)
+<!-- <!--   <!-- - Hours spent … socialising with religious groups --> -->
 
-*Please estimate how much help you have received from the following sources in the last week.*
 
-- *family...TIME (hours)*
-- *friends...TIME (hours)*
-- *members of my community...TIME (hours)*
+<!-- #### Support received: money (waves 10-12) (Study 4 outcomes) -->
 
-Because this measure is highly variable, we convert responses to binary indicators: *0 = none/1 any*
-  
+<!-- The NZAVS has a 'revealed' measure of received help and support measured in hours of support in the previous week. The items are:  -->
 
-#### Total Siblings
 
-Participants were asked the following questions related to sibling counts: 
- 
- - Were you the 1st born, 2nd born, or 3rd born, etc, child of your mother?
- - Do you have siblings?
- - How many older sisters do you have?
- - How many younger sisters do you have?
- - How many older brothers do you have?
- - How many younger brothers do you have?
+<!-- *Please estimate how much help you have received from the following sources in the last week?* -->
 
-A single score was obtained from sibling counts by summing responses to the "How many..." items. From these scores, an ordered factor was created ranging from 0 to 7, where participants with more than 7 siblings were grouped into the highest category. 
+<!-- - *family...MONEY (hours)* -->
+<!-- - *friends...MONEY (hours)* -->
+<!-- - *members of my community...MONEY (hours)* -->
 
 
-<!-- #### Volunteers -->
+<!-- Because this measure is highly variable, we convert responses to binary indicators: *0 = none/1 any* -->
 
-<!-- We asked participants,"Please estimate how many hours you spent doing each of the following things last week" and responded to an item ("voluntary/charitable work") from [@sibley2011]. -->
 
+<!-- #### Support received: time (waves 10-13) (Study 3 outcomes) -->
 
-{{< pagebreak >}}
+<!-- *Please estimate how much help you have received from the following sources in the last week.* -->
 
-## Appendix B. Baseline Demographic Statistics {#appendix-demographics}
+<!-- - *family...TIME (hours)* -->
+<!-- - *friends...TIME (hours)* -->
+<!-- - *members of my community...TIME (hours)* -->
 
+<!-- Because this measure is highly variable, we convert responses to binary indicators: *0 = none/1 any* -->
 
-```{r}
-#| label: tbl-table-demography
-#| tbl-cap: "Baseline demographic statistics"
-#| eval: true
-#| include: true
-#| echo: false
 
-table_baseline <- margot::here_read("table_baseline")
-table_baseline |>  kbl(format = "markdown")
-```
+<!-- #### Total Siblings -->
 
+<!-- Participants were asked the following questions related to sibling counts:  -->
 
-@tbl-table-demography baseline demographic statistics for couples who met inclusion criteria.
+<!--  - Were you the 1st born, 2nd born, or 3rd born, etc, child of your mother? -->
+<!--  - Do you have siblings? -->
+<!--  - How many older sisters do you have? -->
+<!--  - How many younger sisters do you have? -->
+<!--  - How many older brothers do you have? -->
+<!--  - How many younger brothers do you have? -->
 
-{{< pagebreak >}}
+<!-- A single score was obtained from sibling counts by summing responses to the "How many..." items. From these scores, an ordered factor was created ranging from 0 to 7, where participants with more than 7 siblings were grouped into the highest category.  -->
 
 
-##  Appendix C: Treatment Statistics {#appendix-exposures}
+<!-- <!-- #### Volunteers --> -->
 
+<!-- <!-- We asked participants,"Please estimate how many hours you spent doing each of the following things last week" and responded to an item ("voluntary/charitable work") from [@sibley2011]. --> -->
 
-```{r}
-#| label: tbl-table-exposures-code
-#| tbl-cap: "Exposures at baseline and baseline + 1 (treatment) wave"
-#| eval: true
-#| include: true
-#| echo: false
 
-table_exposures <-margot::here_read("table_exposures")
-table_exposures |>  kbl(format = "markdown")
-```
+<!-- {{< pagebreak >}} -->
 
+<!-- ## Appendix B. Baseline Demographic Statistics {#appendix-demographics} -->
 
-
-tbl-table-exposures-code presents baseline (NZAVS time 10) and exposure wave (NZAVS time 11) statistics for the exposure variable: perfectionism (range 1-7). 
-
-<!-- Responses coded as eight or above were coded as "8". This decision to avoid spare treatments was based on theoretical grounds, namely, that daily exposure would be similar in its effects to more than daily exposure. We note that causal contrasts were obtained for projects with either no attendance or four or more visits per month. Hence this simplification of the measure is unlikely to affect theoretical and practical inferences. All models adjusted for the pandemic alert level because the treatment wave (NZAVS time 11) occurred during New Zealand's COVID-19 pandemic. The pandemic is not a "confounder" because a confounder must be related to the treatment and the outcome. At the end of the study, all participants had been exposed to the pandemic.  However, to satisfy the causal consistency assumption, all treatments must be conditionally equivalent within levels of all covariates [@vanderweele2013]. Because COVID affected the ability or willingness of individuals to attend religious service, we included the lockdown condition as a covariate [@sibley2021]. To better enable conditional independence within levels of the treatment variable, we conditioned on the lead value of COVID-alert level at baseline. To mitigate systematic biases arising from attrition and missingness, the `lmtp` package uses inverse probability of censoring weights, which were used when estimating the causal effects of the exposure on the outcome.  -->
-
-
-
-<!-- ### Binary Transition Table for The Treatment -->
 
 <!-- ```{r} -->
-<!-- #| label: tbl-transition-tablegain -->
-<!-- #| tbl-cap: "Transition table for stability and change in regular religious service (4x per month) between baseline and treatment wave." -->
+<!-- #| label: tbl-table-demography -->
+<!-- #| tbl-cap: "Baseline demographic statistics" -->
 <!-- #| eval: true -->
 <!-- #| include: true -->
 <!-- #| echo: false -->
 
-<!-- transition_table_binary_gain <-margot::here_read("transition_table_binary_gain") -->
-
-<!-- transition_table_binary_gain$table -->
+<!-- table_baseline <- margot::here_read("table_baseline") -->
+<!-- table_baseline |>  kbl(format = "markdown") -->
 <!-- ``` -->
 
-<!-- @tbl-transition-tablegain presents a transition matrix to evaluate treatment shifts between baseline and treatment wave. Here, we focus on the shift from/to monthly attendance at four or more visits per month. Entries along the diagonal (in bold) indicate the number of individuals who **stayed** in their initial state. By contrast, the off-diagonal shows the transitions from the initial state (bold) to another state in the following wave (off diagonal). Thus the cell located at the intersection of row $i$ and column $j$, where $i \neq j$, gives us the counts of individuals moving from state $i$ to state $j$. -->
+
+<!-- @tbl-table-demography baseline demographic statistics for couples who met inclusion criteria. -->
+
+<!-- {{< pagebreak >}} -->
 
 
-
+<!-- ##  Appendix C: Treatment Statistics {#appendix-exposures} -->
 
 
 <!-- ```{r} -->
-<!-- #| label: tbl-transition-tableloss -->
-<!-- #| tbl-cap:  "Transition table for stability and change in zero religious service (0 x per month) between baseline and treatment wave." -->
+<!-- #| label: tbl-table-exposures-code -->
+<!-- #| tbl-cap: "Exposures at baseline and baseline + 1 (treatment) wave" -->
 <!-- #| eval: true -->
 <!-- #| include: true -->
 <!-- #| echo: false -->
 
-<!-- transition_table_binary_zero <-margot::here_read("transition_table_binary_zero") -->
-<!-- transition_table_binary_zero$table -->
+<!-- table_exposures <-margot::here_read("table_exposures") -->
+<!-- table_exposures |>  kbl(format = "markdown") -->
 <!-- ``` -->
 
-<!-- @tbl-transition-tableloss presents a transition matrix to evaluate treatment shifts between baseline and treatment wave. Here, we focus on the shift from/to zero religious service attendance. Again, entries along the diagonal (in bold) indicate the number of individuals who **stayed** in their initial state. By contrast, the off-diagonal shows the transitions from the initial state (bold) to another state in the following wave (off diagonal). Thus the cell located at the intersection of row $i$ and column $j$, where $i \neq j$, gives us the counts of individuals moving from state $i$ to state $j$. -->
 
 
-### Imbalance of Confounding Covariates Treatments 
+<!-- tbl-table-exposures-code presents baseline (NZAVS time 10) and exposure wave (NZAVS time 11) statistics for the exposure variable: perfectionism (range 1-7).  -->
 
-@fig-match_1 shows imbalance of covariates on the treatment at the treatment wave. The variable on which there is strongest imbalance is the baseline measure of religious service attendance. It is important to adjust for this measure both for confounding control and to better estimate an incident exposure effect for the religious service at the treatment wave (in contrast to merely estimating a prevalence effect). See @vanderweele2020.
-
-```{r}
-#| label: fig-match_1
-#| fig-cap: "This figure shows the imbalance in covariates on the treatment"
-#| eval: true
-#| include: true
-#| echo: false
-#| fig-width: 10
-#| fig-height: 10
-
-love_plot_marginal <- margot::here_read("love_plot_marginal")
-love_plot_marginal
-```
-
-
-##  Appendix D: Baseline and End of Study Outcome Statistics {#appendix-outcomes}
-
-
-```{r}
-#| label: tbl-table-outcomes
-#| tbl-cap: "Outcomes at baseline and end-of-study"
-#| eval: true
-#| include: true
-#| echo: false
-table_outcomes <-margot::here_read("table_outcomes")
-table_outcomes |>  kbl(format = "markdown")
-```
+<!-- <!-- Responses coded as eight or above were coded as "8". This decision to avoid spare treatments was based on theoretical grounds, namely, that daily exposure would be similar in its effects to more than daily exposure. We note that causal contrasts were obtained for projects with either no attendance or four or more visits per month. Hence this simplification of the measure is unlikely to affect theoretical and practical inferences. All models adjusted for the pandemic alert level because the treatment wave (NZAVS time 11) occurred during New Zealand's COVID-19 pandemic. The pandemic is not a "confounder" because a confounder must be related to the treatment and the outcome. At the end of the study, all participants had been exposed to the pandemic.  However, to satisfy the causal consistency assumption, all treatments must be conditionally equivalent within levels of all covariates [@vanderweele2013]. Because COVID affected the ability or willingness of individuals to attend religious service, we included the lockdown condition as a covariate [@sibley2021]. To better enable conditional independence within levels of the treatment variable, we conditioned on the lead value of COVID-alert level at baseline. To mitigate systematic biases arising from attrition and missingness, the `lmtp` package uses inverse probability of censoring weights, which were used when estimating the causal effects of the exposure on the outcome.  --> -->
 
 
 
-@tbl-table-outcomes presents baseline and end-of-study descriptive statistics for the outcome variables.  
+<!-- <!-- ### Binary Transition Table for The Treatment --> -->
+
+<!-- <!-- ```{r} --> -->
+<!-- <!-- #| label: tbl-transition-tablegain --> -->
+<!-- <!-- #| tbl-cap: "Transition table for stability and change in regular religious service (4x per month) between baseline and treatment wave." --> -->
+<!-- <!-- #| eval: true --> -->
+<!-- <!-- #| include: true --> -->
+<!-- <!-- #| echo: false --> -->
+
+<!-- <!-- transition_table_binary_gain <-margot::here_read("transition_table_binary_gain") --> -->
+
+<!-- <!-- transition_table_binary_gain$table --> -->
+<!-- <!-- ``` --> -->
+
+<!-- <!-- @tbl-transition-tablegain presents a transition matrix to evaluate treatment shifts between baseline and treatment wave. Here, we focus on the shift from/to monthly attendance at four or more visits per month. Entries along the diagonal (in bold) indicate the number of individuals who **stayed** in their initial state. By contrast, the off-diagonal shows the transitions from the initial state (bold) to another state in the following wave (off diagonal). Thus the cell located at the intersection of row $i$ and column $j$, where $i \neq j$, gives us the counts of individuals moving from state $i$ to state $j$. --> -->
 
 
-{{< pagebreak >}}
+
+
+
+<!-- <!-- ```{r} --> -->
+<!-- <!-- #| label: tbl-transition-tableloss --> -->
+<!-- <!-- #| tbl-cap:  "Transition table for stability and change in zero religious service (0 x per month) between baseline and treatment wave." --> -->
+<!-- <!-- #| eval: true --> -->
+<!-- <!-- #| include: true --> -->
+<!-- <!-- #| echo: false --> -->
+
+<!-- <!-- transition_table_binary_zero <-margot::here_read("transition_table_binary_zero") --> -->
+<!-- <!-- transition_table_binary_zero$table --> -->
+<!-- <!-- ``` --> -->
+
+<!-- <!-- @tbl-transition-tableloss presents a transition matrix to evaluate treatment shifts between baseline and treatment wave. Here, we focus on the shift from/to zero religious service attendance. Again, entries along the diagonal (in bold) indicate the number of individuals who **stayed** in their initial state. By contrast, the off-diagonal shows the transitions from the initial state (bold) to another state in the following wave (off diagonal). Thus the cell located at the intersection of row $i$ and column $j$, where $i \neq j$, gives us the counts of individuals moving from state $i$ to state $j$. --> -->
+
+
+<!-- ### Imbalance of Confounding Covariates Treatments  -->
+
+<!-- @fig-match_1 shows imbalance of covariates on the treatment at the treatment wave. The variable on which there is strongest imbalance is the baseline measure of religious service attendance. It is important to adjust for this measure both for confounding control and to better estimate an incident exposure effect for the religious service at the treatment wave (in contrast to merely estimating a prevalence effect). See @vanderweele2020. -->
+
+<!-- ```{r} -->
+<!-- #| label: fig-match_1 -->
+<!-- #| fig-cap: "This figure shows the imbalance in covariates on the treatment" -->
+<!-- #| eval: true -->
+<!-- #| include: true -->
+<!-- #| echo: false -->
+<!-- #| fig-width: 10 -->
+<!-- #| fig-height: 10 -->
+
+<!-- love_plot_marginal <- margot::here_read("love_plot_marginal") -->
+<!-- love_plot_marginal -->
+<!-- ``` -->
+
+
+<!-- ##  Appendix D: Baseline and End of Study Outcome Statistics {#appendix-outcomes} -->
+
+
+<!-- ```{r} -->
+<!-- #| label: tbl-table-outcomes -->
+<!-- #| tbl-cap: "Outcomes at baseline and end-of-study" -->
+<!-- #| eval: true -->
+<!-- #| include: true -->
+<!-- #| echo: false -->
+<!-- table_outcomes <-margot::here_read("table_outcomes") -->
+<!-- table_outcomes |>  kbl(format = "markdown") -->
+<!-- ``` -->
+
+
+
+<!-- @tbl-table-outcomes presents baseline and end-of-study descriptive statistics for the outcome variables.   -->
+
+
+<!-- {{< pagebreak >}} -->
 
 
 

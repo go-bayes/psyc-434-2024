@@ -280,7 +280,7 @@ baseline_vars = c(
   "parent",
   "religion_religious",
   "urban",
-  "sample_weights",
+ # "sample_weights",
   "employed"
 )
 

@@ -8,7 +8,7 @@
 
 <meta name="author" content="YOUR NAME HERE">
 <meta name="author" content="YOUR CO-AUTHOR HERE">
-<meta name="dcterms.date" content="2024-05-02">
+<meta name="dcterms.date" content="2024-05-13">
 
 <title>PSYC 434 Conducting Research Across Cultures: Trimester 1, 2024 – Your Title Here</title>
 <style>
@@ -202,14 +202,20 @@ window.Quarto = {
   </li>  
         <li>
     <a class="dropdown-item" href="../content/09-content.html">
- <span class="dropdown-text">Week 9: Hands On Analysis</span></a>
+ <span class="dropdown-text">Week 9: Hands On: Full Analysis in R</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../content/10-content.html">
- <span class="dropdown-text">Week 10: Measurement Matters- R</span></a>
+ <span class="dropdown-text">Week 10: Working with Quarto Documents</span></a>
   </li>  
-        <li class="dropdown-header">Week 11: Measurement: Fctor Analysis, CFA, MultiGroup CFA, Partial Invariance</li>
-        <li class="dropdown-header">Week 12: Measurement: Conceptual Issue - Quarto Documents Seminar - Workflows</li>
+        <li>
+    <a class="dropdown-item" href="../content/11-content.html">
+ <span class="dropdown-text">Week 11: Measurement: Factor Analysis, CFA, MultiGroup CFA, Partial Invariance</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../content/12-content.html">
+ <span class="dropdown-text">Week 12: Measurement: Conceptual Problems</span></a>
+  </li>  
     </ul>
   </li>
 </ul>
@@ -255,7 +261,7 @@ window.Quarto = {
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">May 2, 2024</p>
+        <p class="date">May 13, 2024</p>
       </div>
     </div>
     
@@ -325,7 +331,7 @@ window.Quarto = {
   <li><a href="#appendix-outcomes" id="toc-appendix-outcomes" class="nav-link" data-scroll-target="#appendix-outcomes">Appendix D: Baseline and End of Study Outcome Statistics</a></li>
   
   </ul>
-<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="example-manuscript.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="example-manuscript.docx"><i class="bi bi-file-word"></i>MS Word</a></li><li><a href="example-manuscript.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
@@ -447,7 +453,7 @@ Table&nbsp;1: This table presents a three-wave panel design as described in <spa
 </div>
 </figure>
 </div>
-<p><a href="#tbl-02" class="quarto-xref">Table&nbsp;1</a> presents three Single World Intervention Graphs (SWIGs) that describe our confounding control (identification strategy) <span class="citation" data-cites="robins2010alternative richardson2013swigsprimer shpitser2022multivariate richardson2023nested richardson2023potential shpitser2016causal">(<a href="#ref-richardson2023nested" role="doc-biblioref">Richardson <em>et al.</em> 2023</a>; <a href="#ref-richardson2013swigsprimer" role="doc-biblioref">Richardson and Robins 2013</a>, <a href="#ref-richardson2023potential" role="doc-biblioref">2023</a>; <a href="#ref-robins2010alternative" role="doc-biblioref">Robins and Richardson 2010</a>; <a href="#ref-shpitser2022multivariate" role="doc-biblioref">Shpitser <em>et al.</em> 2022</a>; <a href="#ref-shpitser2016causal" role="doc-biblioref">Shpitser and Tchetgen 2016</a>)</span>. Our approach consistently applies the same identification strategy across all functions estimated in this study. Unlike standard causal diagrams, SWIGs allow us to <em>separately</em> read the factorisation of the conditional dependencies for the distribution of each set of counterfactual outcomes under each modified treatment policy <span class="citation" data-cites="richardson2013swigsprimer">(<a href="#ref-richardson2013swigsprimer" role="doc-biblioref">Richardson and Robins 2013</a>)</span>. Note, that the natural value of the treatment <span class="math inline">A</span> is obtained both from its observed instances and from baseline historical data, including the baseline treatment. This method ensures that our analysis accurately captures the causal effects of flexible treatment regimes that rely on levels of religious service attendance at the treatment wave, while ensuring balance for each treatment function that we compare <span class="citation" data-cites="diaz2012population young2014identification diaz2021nonparametric">(<a href="#ref-diaz2021nonparametric" role="doc-biblioref">Dı́az <em>et al.</em> 2021</a>; <a href="#ref-diaz2012population" role="doc-biblioref">Muñoz and Van Der Laan 2012</a>; <a href="#ref-young2014identification" role="doc-biblioref">Young <em>et al.</em> 2014</a>)</span>.</p>
+<p><a href="#tbl-02" class="quarto-xref">Table&nbsp;1</a> presents three Causal Directed Acyclic Graph (DAG) that describe our confounding control (identification strategy). Our approach consistently applies the same identification strategy across all functions estimated in this study. Unlike standard causal diagrams, SWIGs allow us to <em>separately</em> read the factorisation of the conditional dependencies for the distribution of each set of counterfactual outcomes under each modified treatment policy <span class="citation" data-cites="richardson2013swigsprimer">(<a href="#ref-richardson2013swigsprimer" role="doc-biblioref">Richardson and Robins 2013</a>)</span>. Note, that the natural value of the treatment <span class="math inline">A</span> is obtained both from its observed instances and from baseline historical data, including the baseline treatment. This method ensures that our analysis accurately captures the causal effects of flexible treatment regimes that rely on levels of religious service attendance at the treatment wave, while ensuring balance for each treatment function that we compare <span class="citation" data-cites="diaz2012population young2014identification diaz2021nonparametric">(<a href="#ref-diaz2021nonparametric" role="doc-biblioref">Dı́az <em>et al.</em> 2021</a>; <a href="#ref-diaz2012population" role="doc-biblioref">Muñoz and Van Der Laan 2012</a>; <a href="#ref-young2014identification" role="doc-biblioref">Young <em>et al.</em> 2014</a>)</span>.</p>
 </section>
 <section id="confounding-control" class="level3">
 <h3 class="anchored" data-anchor-id="confounding-control">Confounding Control</h3>
@@ -686,27 +692,13 @@ Table&nbsp;3: This table reports the results of model estimates for the causal e
 </div>
 </div>
 <p>A Longitudinal Modified Treatment Policy (LMTP) calculates the expected outcome difference between treatment and contrast conditions over a sequential regime of treatments for a prespecified target population.</p>
-<p>For ‘marginal: depression’, the effect estimate is 0.141 [0.12, 0.162]. The E-value for this estimate is 1.531, with a lower bound of 1.473. At this lower bound, unmeasured confounders would need a minimum association strength with both the intervention sequence and outcome of 1.473 to negate the observed effect. Weaker confounding would not overturn it. We infer <strong>evidence for causality</strong>.</p>
-<p>For ‘marginal: anxiety’, the effect estimate is 0.115 [0.096, 0.135]. The E-value for this estimate is 1.46, with a lower bound of 1.405. At this lower bound, unmeasured confounders would need a minimum association strength with both the intervention sequence and outcome of 1.405 to negate the observed effect. Weaker confounding would not overturn it. We infer <strong>evidence for causality</strong>.</p>
+<p>For ‘marginal: depression’, the effect estimate on the causal_difference scale is 0.141 [0.12, 0.162]. The E-value for this estimate is 1.531, with a lower bound of 1.473. At this lower bound, unmeasured confounders would need a minimum association strength with both the intervention sequence and outcome of 1.473 to negate the observed effect. Weaker confounding would not overturn it. Here, <strong>there is evidence for causality</strong>.</p>
+<p>For ‘marginal: anxiety’, the effect estimate on the causal_difference scale is 0.115 [0.096, 0.135]. The E-value for this estimate is 1.46, with a lower bound of 1.405. At this lower bound, unmeasured confounders would need a minimum association strength with both the intervention sequence and outcome of 1.405 to negate the observed effect. Weaker confounding would not overturn it. Here, <strong>there is evidence for causality</strong>.</p>
 <div style="page-break-after: always;"></div>
 <section id="subgroup-analysis-those-born-in-nz" class="level4">
 <h4 class="anchored" data-anchor-id="subgroup-analysis-those-born-in-nz">Subgroup Analysis: Those Born in NZ</h4>
-<p><a href="#fig-2_1" class="quarto-xref">Figure&nbsp;3</a> present results for the treatment contrasts within the two subgroups, evaluating the effect of a one unit increase in perfectionism vs the status qu. These results are presented on the difference scale in standardized units.</p>
+<p><strong>?@fig-2_1</strong> present results for the treatment contrasts within the two subgroups, evaluating the effect of a one unit increase in perfectionism vs the status qu. These results are presented on the difference scale in standardized units.</p>
 <p><a href="#tbl-2_1" class="quarto-xref">Table&nbsp;4</a> presents the results for those born in New Zealand. <a href="#tbl-2_2" class="quarto-xref">Table&nbsp;5</a> presents results for those born overseas.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-2_1" class="quarto-figure quarto-figure-center quarto-float anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-2_1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="example-manuscript_files/figure-html/fig-2_1-1.png" class="img-fluid figure-img" width="960">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-2_1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3: This figure reports the results of for each sub-group analysis for the causal effects of a one unit increase in perfectionism vs the status quo depression and anxiety at the end of the study. Contrasts are expressed in standard deviation units.
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
 <div class="cell">
 <div id="tbl-2_1" class="cell quarto-float anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -1143,7 +1135,7 @@ Table&nbsp;6: Baseline demographic statistics
 <table class="do-not-create-environment cell table table-sm table-striped small">
 <thead>
 <tr class="header">
-<th style="text-align: left;"><strong>Demographic Variables</strong></th>
+<th style="text-align: left;"><strong>Exposure + Demographic Variables</strong></th>
 <th style="text-align: left;"><strong>N = 19,997</strong></th>
 </tr>
 </thead>
@@ -1376,7 +1368,7 @@ Table&nbsp;7: Exposures at baseline and baseline + 1 (treatment) wave
 <!-- @tbl-transition-tableloss presents a transition matrix to evaluate treatment shifts between baseline and treatment wave. Here, we focus on the shift from/to zero religious service attendance. Again, entries along the diagonal (in bold) indicate the number of individuals who **stayed** in their initial state. By contrast, the off-diagonal shows the transitions from the initial state (bold) to another state in the following wave (off diagonal). Thus the cell located at the intersection of row $i$ and column $j$, where $i \neq j$, gives us the counts of individuals moving from state $i$ to state $j$. -->
 <section id="imbalance-of-confounding-covariates-treatments" class="level3">
 <h3 class="anchored" data-anchor-id="imbalance-of-confounding-covariates-treatments">Imbalance of Confounding Covariates Treatments</h3>
-<p><a href="#fig-match_1" class="quarto-xref">Figure&nbsp;4</a> shows imbalance of covariates on the treatment at the treatment wave. The variable on which there is strongest imbalance is the baseline measure of religious service attendance. It is important to adjust for this measure both for confounding control and to better estimate an incident exposure effect for the religious service at the treatment wave (in contrast to merely estimating a prevalence effect). See <span class="citation" data-cites="vanderweele2020">VanderWeele <em>et al.</em> (<a href="#ref-vanderweele2020" role="doc-biblioref">2020</a>)</span>.</p>
+<p><a href="#fig-match_1" class="quarto-xref">Figure&nbsp;3</a> shows imbalance of covariates on the treatment at the treatment wave. The variable on which there is strongest imbalance is the baseline measure of religious service attendance. It is important to adjust for this measure both for confounding control and to better estimate an incident exposure effect for the religious service at the treatment wave (in contrast to merely estimating a prevalence effect). See <span class="citation" data-cites="vanderweele2020">VanderWeele <em>et al.</em> (<a href="#ref-vanderweele2020" role="doc-biblioref">2020</a>)</span>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-match_1" class="quarto-figure quarto-figure-center quarto-float anchored">
@@ -1385,7 +1377,7 @@ Table&nbsp;7: Exposures at baseline and baseline + 1 (treatment) wave
 <img src="example-manuscript_files/figure-html/fig-match_1-1.png" class="img-fluid figure-img" width="960">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-match_1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4: This figure shows the imbalance in covariates on the treatment
+Figure&nbsp;3: This figure shows the imbalance in covariates on the treatment
 </figcaption>
 </figure>
 </div>
@@ -1552,20 +1544,11 @@ Pearl, J (2009) <em><a href="https://doi.org/10.1214/09-SS057">Causal inference 
 <div id="ref-polley2023" class="csl-entry" role="listitem">
 Polley, E, LeDell, E, Kennedy, C, and Laan, M van der (2023) <em>SuperLearner: Super learner prediction</em>. Retrieved from <a href="https://CRAN.R-project.org/package=SuperLearner">https://CRAN.R-project.org/package=SuperLearner</a>
 </div>
-<div id="ref-richardson2023nested" class="csl-entry" role="listitem">
-Richardson, TS, Evans, RJ, Robins, JM, and Shpitser, I (2023) Nested <span>M</span>arkov properties for acyclic directed mixed graphs. <em>The Annals of Statistics</em>, <strong>51</strong>(1), 334–361.
-</div>
 <div id="ref-richardson2013swigsprimer" class="csl-entry" role="listitem">
 Richardson, TS, and Robins, JM (2013) Single world intervention graphs: A primer. In <em>Second UAI workshop on causal structure learning, <span>B</span>ellevue, <span>W</span>ashington</em>, Citeseer. Retrieved from <a href="https://citeseerx.ist.psu.edu/document?repid=rep1&amp;type=pdf&amp;doi=07bbcb458109d2663acc0d098e8913892389a2a7">https://citeseerx.ist.psu.edu/document?repid=rep1&amp;type=pdf&amp;doi=07bbcb458109d2663acc0d098e8913892389a2a7</a>
 </div>
-<div id="ref-richardson2023potential" class="csl-entry" role="listitem">
-Richardson, TS, and Robins, JM (2023) Potential outcome and decision theoretic foundations for statistical causality. <em>Journal of Causal Inference</em>, <strong>11</strong>(1), 20220012.
-</div>
 <div id="ref-robins1986" class="csl-entry" role="listitem">
 Robins, J (1986) A new approach to causal inference in mortality studies with a sustained exposure period—application to control of the healthy worker survivor effect. <em>Mathematical Modelling</em>, <strong>7</strong>(9-12), 1393–1512.
-</div>
-<div id="ref-robins2010alternative" class="csl-entry" role="listitem">
-Robins, JM, and Richardson, TS (2010) Alternative graphical causal models and the identification of direct effects. <em>Causality and Psychopathology: Finding the Determinants of Disorders and Their Cures</em>, <strong>84</strong>, 103–158.
 </div>
 <div id="ref-rubin2005" class="csl-entry" role="listitem">
 Rubin, DB (2005) Causal inference using potential outcomes: Design, modeling, decisions. <em>Journal of the American Statistical Association</em>, <strong>100</strong>(469), 322–331. Retrieved from <a href="https://www.jstor.org/stable/27590541">https://www.jstor.org/stable/27590541</a>
@@ -1575,12 +1558,6 @@ Schloss, JP, and Murray, MJ (2011) Evolutionary accounts of belief in supernatur
 </div>
 <div id="ref-shiba2021using" class="csl-entry" role="listitem">
 Shiba, K, and Kawahara, T (2021) Using propensity scores for causal inference: Pitfalls and tips. <em>Journal of Epidemiology</em>, <strong>31</strong>(8), 457–463.
-</div>
-<div id="ref-shpitser2022multivariate" class="csl-entry" role="listitem">
-Shpitser, I, Richardson, TS, and Robins, JM (2022) Multivariate counterfactual systems and causal graphical models. In <em>Probabilistic and causal inference: The works of <span>J</span>udea <span>P</span>earl</em>, 813–852.
-</div>
-<div id="ref-shpitser2016causal" class="csl-entry" role="listitem">
-Shpitser, I, and Tchetgen, ET (2016) Causal inference with a graphical hierarchy of interventions. <em>Annals of Statistics</em>, <strong>44</strong>(6), 2433.
 </div>
 <div id="ref-sibley2012" class="csl-entry" role="listitem">
 Sibley, C. G., and Bulbulia, JA (2012) Healing those who need healing: How religious practice affects social belonging. <em>Journal for the Cognitive Science of Religion</em>, <strong>1</strong>, 29–45.
