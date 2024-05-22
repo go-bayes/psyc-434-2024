@@ -62,6 +62,8 @@ pacman::p_load(
   kableExtra
 )
 
+# correct sample #  w_gend_age_euro
+
 # wrangling ---------------------------------------------------------------
 # set seed for reproducability
 set.seed(123)
@@ -73,7 +75,6 @@ df_nz <- as.data.frame(df_nz)
 df_nz <- haven::zap_formats(df_nz)
 df_nz <- haven::zap_label(df_nz)
 df_nz <- haven::zap_widths(df_nz)
-
 
 # test total n in the data
 # total nzavs participants
@@ -209,8 +210,7 @@ dat_long <- df_nz |>
     "perfectionism",
     "religion_religious",
     "kessler_latent_depression",
-    "kessler_latent_anxiety", 
-    hours_
+    "kessler_latent_anxiety"
   ) |>
   mutate(
     #initialize 'censored'
@@ -233,7 +233,7 @@ dat_long <- df_nz |>
   ) |>
   dplyr::select(-c(household_inc, hours_exercise)) |>
   droplevels() |>
-  # dplyr::rename(sample_weights = w_gend_age_ethnic,
+  # dplyr::rename(sample_weights = w_gend_age_euro, # JM TO DO
   #               sample_origin =  sample_origin_names_combined) |>
   arrange(id, wave) |>
   mutate(
@@ -413,6 +413,8 @@ selected_outcome_cols <-
 #     Social_support = support,
 #     Sense_neighbourhood_community = neighbourhood_community
 #   )
+
+
 
 # order names correctly
 selected_outcome_cols <- selected_outcome_cols %>%
@@ -1237,6 +1239,10 @@ naniar::vis_miss(df_final, warn_large_data = F)
 # get enpoints
 max_data <- max(df_final$t1_perfectionism)
 
+
+gain_A <- function(data, trt) {
+  ifelse(data[[trt]] < max_data, data[[trt]], max_data)
+}
 
 # shift function
 gain_A <- function(data, trt) {
