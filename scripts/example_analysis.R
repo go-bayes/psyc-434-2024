@@ -575,7 +575,6 @@ here_save(lm_fit_kessler_latent_anxiety,
           "lm_fit_kessler_latent_anxiety")
 
 # calculate betas depression
-lm_fit_kessler_latent_depression
 lm_fit_kessler_latent_depression <- tbl_regression(fit_kessler_latent_depression)
 here_save(lm_fit_kessler_latent_depression,
           "lm_fit_kessler_latent_depression")
@@ -587,8 +586,6 @@ b_lm_fit_kessler_latent_anxiety <- inline_text(lm_fit_kessler_latent_anxiety,
                                                pattern = "b = {estimate}; (95% CI {conf.low}, {conf.high})")
 
 # view
-b_lm_fit_kessler_latent_anxiety
-
 here_save(b_lm_fit_kessler_latent_anxiety,
           "b_lm_fit_kessler_latent_anxiety")
 
