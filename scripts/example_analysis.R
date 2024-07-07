@@ -2186,6 +2186,8 @@ min(df_grf$weights_stabilised)
 df_grf$t1_not_lost = 1 - df_grf$t1_censored
 
 
+
+
 # set up superlearner
 cv_control <- list(V = 10, stratifyCV = TRUE)  # 10-fold CV with stratification
 
@@ -2289,10 +2291,10 @@ colnames(df_grf)
 here_save(df_grf, "df_grf")
 
 df_grf_t2 <- df_grf |>
-  filter(t1_censored == 1) |>
+  filter(t1_not_lost == 1) |>
   relocate(starts_with("t0_"), .before = starts_with("t1_")) |>
   relocate(starts_with("t1_"), .before = starts_with("t2_")) |>
-  relocate("t1_censored", .before = starts_with("t2_"))
+  relocate("t1_not_lost", .before = starts_with("t2_")) |> 
 
 colnames(df_grf_t2)
 
